@@ -4,20 +4,95 @@
 MUSE=muse
 
 function add_image() {
-	printf -v k "%03d" $2
+	dir=$1
+	page=$2
+	caption=$3
+
+	printf -v k "%03d" $page
 	echo "\\begin{figure}[p]"
-	echo "\\caption{$3}"
+	echo "\\caption{$caption}"
 	echo "\\makebox[\\linewidth]{"
-	echo "\\includegraphics[width=0.95\\linewidth]{facsimil-images/$1/image-$k.jpg}"
+	echo "\\includegraphics[width=0.95\\linewidth]{facsimil-images/$dir/image-$k.jpg}"
 	echo "}"
 	echo "\\end{figure}"
 }
 
-function add_init() {
+function get_init() {
 	echo "\\documentclass[titlepage,hidelinks]{article}"
 	echo "\\input{header.tex}"
 	echo "\\begin{document}"
 	echo "\\input{title.tex}"
+}
+function get_titles() {
+	n="$1"
+	music="$2"
+	text="$3"
+
+	echo "\\def\\mytitle{\\centering \\LARGE Cancionero de Miranda\\\\ Tono ${n}º: $title \\\\}"
+	echo "\\def\\mymusic{$music}"
+	echo "\\def\\mytext{$text}" 
+}
+
+function get_version() {
+	rev_count=$(git rev-list --count main -- "$@")
+	echo "\\def\\myversion{0.${rev_count}}" 
+	echo "\\def\\myversioncomment{( en progreso )}" 
+}
+
+
+function get_text_part() {
+	text_transcription=$1
+	text_comments=$2
+
+	echo "\\section*{\centering\Large{Texto}}"
+	cat $text_transcription
+	if [ -f $text_comments ]; then
+		echo "\\section*{\centering\Large{Notas a la edición poética}}"
+		cat $text_comments
+	fi
+}
+
+function get_music_part() {
+	music_transcription=$1
+	music_comments=$2
+
+	rm -f music.pdf
+	if [ -f $music_transcription ]; then
+		$MUSE --export-to=music.pdf $music_transcription
+		echo "\includepdf[pages=-]{music.pdf}"
+		if [ -f $music_comments ]; then
+			echo "\\section*{\centering\Large{Notas a la edición musical}}"
+			cat $music_comments
+		fi
+	fi
+}
+
+
+function get_images() {
+	dir=$1
+	pages=$2
+	caption=$3
+
+	if [ -n "$pages" ]; then
+		for page in $pages; do
+				N=$(($page - 1))
+				add_image $dir $N "$caption"
+				caption=""
+		done
+	fi
+}
+
+
+function get_facsimil() {
+	S1=$1
+	S2=$2
+	T=$3
+	G=$4
+
+	get_images S1 "$S1" "Partitura facsimil tiple 1"
+	get_images S2 "$S2" "Partitura facsimil tiple 2"
+	get_images T "$T" "Partitura facsimil tenor"
+	get_images G "$G" "Partitura facsimil guión"
 }
 
 
@@ -47,69 +122,24 @@ for i in $(seq 0 $count); do
 	else
 		music="Anónimo"
 	fi
-
 	printf -v j "%d" $TONO
 	title=${titles[$i]}
-	echo "Tono $j con titulo $title tiene pagina $S1 de S1, $S2 de S2, $T de T y $G de G"
 
-	echo "\\def\\mytitle{\\centering \\LARGE Cancionero de Miranda\\\\ Tono $(($i + 1))º: $title \\\\}" > values.tex
-	echo "\\def\\mymusic{$music}" >> values.tex
-	echo "\\def\\mytext{$text}" >> values.tex
+	text_transcription=text-transcriptions/${TONO}*-text.tex
+	text_comments=text-comments/${TONO}*-text-comments.tex
+	music_transcription=music-transcriptions/${TONO}*-music.mscz
+	music_comments=music-comments/${TONO}*-music-comments.tex
 
-	add_init > tmp.tex
-	echo "\\section*{\centering\Large{Texto}}" >> tmp.tex
-	cat text-transcriptions/${TONO}*.tex >> tmp.tex
-	if [ -f text-comments/${TONO}.tex ]; then
-		echo "\\section*{\centering\Large{Notas a la edición poética}}" >> tmp.tex
-		cat music-comments/${TONO}.tex >> tmp.tex
-	fi
+	get_titles $(($i + 1)) "$music" "$text" > values.tex
+	get_version $text_transcription $text_comments $music_transcription $music_comments >> values.tex
 
-	rm -f music.pdf
-	if [ -f music-transcriptions/${TONO}*.mscz ]; then
-		$MUSE --export-to=music.pdf music-transcriptions/${TONO}*.mscz
-		echo "\includepdf[pages=-]{music.pdf}" >> tmp.tex
-		if [ -f music-comments/${TONO}.tex ]; then
-			echo "\\section*{\centering\Large{Notas a la edición musical}}" >> tmp.tex
-			cat music-comments/${TONO}.tex >> tmp.tex
-		fi
-	fi
+	get_init > tmp.tex
+	get_text_part $text_transcription $text_comments >> tmp.tex
+	get_music_part $music_transcription $music_comments >> tmp.tex
 
-	rm -f facsimil.tex
-	if [ -n "$S1" ]; then
-		caption="Partitura facsimil tiple 1"
-        	for i in $S1; do
-        		N=$(($i - 1))
-			add_image S1 $N "$caption" >> facsimil.tex
-			caption=""
-			
-		done
-	fi
-	if [ -n "$S2" ]; then
-		caption="Partitura facsimil tiple 2"
-        	for i in $S2; do
-        		N=$(($i - 1))
-			add_image S2 $N "$caption" >> facsimil.tex
-			caption=""
-		done
-	fi
-	if [ -n "$T" ]; then
-		caption="Partitura facsimil tenor"
-        	for i in $T; do
-        		N=$(($i - 1))
-			add_image T $N "$caption" >> facsimil.tex
-			caption=""
-		done
-	fi
-	if [ -n "$G" ]; then
-		caption="Partitura facsimil guión"
-        	for i in $G; do
-        		N=$(($i - 1))
-			add_image G $N "$caption" >> facsimil.tex
-			caption=""
-		done
-	fi
-
+	get_facsimil "$S1" "$S2" "$T" "$G" > facsimil.tex
 	echo "\\input{facsimil.tex}" >> tmp.tex
+
 	echo "\\end{document}" >> tmp.tex
 
 	mkdir -p output
