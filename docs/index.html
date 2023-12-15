@@ -9,21 +9,61 @@
   
 
 <div class="panel-body">
-    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 800px;"></div>
+    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 120px;"></div>
+		<div id="selector">
+			<div id="selector-title">Selecciona un tono:</div>
+			<div id="tonos"/>
+		</div>
 </div>
 
 <script type="module">
     import 'https://editor.verovio.org/javascript/app/verovio-app.js';
 
-    const app = new Verovio.App(document.getElementById("app"), {});
+		const tonos = [ 
+			{ "title": "Un imposible me mata", "file": "01_-_Un_imposible_me_mata-music.mei" },
+			{ "title": "Querido imposible mio", "file": "02_-_Querido_imposible_mio-music.mei" },
+			{ "title": "Amariles yo no puedo", "file": "03_-_Amariles_yo_no_puedo-music.mei" },
+			{ "title": "Más merece quien más ama", "file": "04_-_Mas_merece_quien_mas_ama-music.mei" },
+			{ "title": "En carroza de cristal", "file": "05_-_En_carroza_de_cristal-music.mei" },
+			{ "title": "Ojos, yo no di licencia", "file": "06_-_Ojos_yo_no_di_licencia-music.mei" },
+			{ "title": "A dónde corres arroyo", "file": "07_-_A_donde_corres_arroyo-music.mei" },
+			{ "title": "Alarma alarma luzeros", "file": "08_-_alarma_alarma_luceros-music.mei" },
+			{ "title": "La belleza de Amariles", "file": "09_-_La_belleza_de_Amariles-music.mei" },
+			{ "title": "Aquella deidad del tajo", "file": "10_-_Aquella_deidad_del_Tajo-music.mei" },
+			{ "title": "Ojos bellos, quién ha visto", "file": "11_-_Ojos_bellos_quien_ha_visto-music.mei" },
+			{ "title": "Filis yo por ti me muero", "file": "12_-_Filis_yo_por_ti_me_muero-music.mei" },
+			{ "title": "Celebrando esta el Amor", "file": "13_-_Celebrando_esta_el_Amor-music.mei" },
+			{ "title": "Triste tortola que en quejas", "file": "14_-_Triste_tortola_que_en_quejas-music.mei" }
+		];
 
-    fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/mei/music-transcriptions/01_-_Un_imposible_me_mata-music.mei")
-        .then(function(response) {
+		function loadTono(filename) {
+    	const app = new Verovio.App(document.getElementById("app"), {});
+    	fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/mei/music-transcriptions/" + filename)
+				.then(function(response) {
             return response.text();
         })
         .then(function(text) {
             app.loadData(text);
         });
+		}
+
+		function addTonos() {
+			var tonosDiv = document.getElementById("tonos"); 
+			for (let i = 0; i < tonos.length; i++) {
+					const div = document.createElement("div");
+					div.setAttribute("class", "tono");
+					const a = document.createElement("a");
+					const text = document.createTextNode(tonos[i]["title"]);
+					a.setAttribute("href", 'javascript:loadTono("' + tonos[i]["file"] + '");');
+					a.appendChild(text)
+					div.appendChild(a)
+					tonosDiv.appendChild(div);
+			}
+		}
+
+
+		addTonos();
+		loadTono(tonos[0]["file"]);
 </script>
  
 
