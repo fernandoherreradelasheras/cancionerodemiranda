@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+  
+
+<div class="panel-body">
+    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 800px;"></div>
+</div>
+
+<script type="module">
+    import 'https://editor.verovio.org/javascript/app/verovio-app.js';
+
+    const app = new Verovio.App(document.getElementById("app"), {});
+
+    fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/mei/music-transcriptions/01_-_Un_imposible_me_mata-music.mei")
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(text) {
+            app.loadData(text);
+        });
+</script>
+ 
+
+</body>
+</html>
