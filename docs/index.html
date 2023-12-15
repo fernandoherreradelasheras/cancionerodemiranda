@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.11/pako.min.js"></script>
+</head>
+<body>
+  
+
+<div class="panel-body" style="height: 100vh">
+		<div id="selector" style="padding-bottom: 16px;">
+			<label for="tonos">Selecciona un tono:</label>
+			<select name="tonos" id="tonos">
+			</select>
+			<button id="generate-pdf">Download PDF</button>
+		</div>
+    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 90%; height: 90%"/>
+</div>
+
+<script type="module">
+    import 'https://editor.verovio.org/javascript/app/verovio-app.js';
+		import { PDFWorkerProxy, VerovioWorkerProxy, ValidatorWorkerProxy } from 'https://editor.verovio.org/dist/worker-proxy.js'
+		import { PDFGenerator } from 'https://editor.verovio.org/dist/pdf-generator.js'
+
+		const options = {
+    	defaultView: 'responsive', // instead of 'responsive' by default
+	    responsiveZoom: 3, // 0-7, default is 3
+			enableDocument: true,
+		}
+
+		const tonos = [ 
+			{ "title": "Un imposible me mata", "file": "01_-_Un_imposible_me_mata-music.mei" },
+			{ "title": "Querido imposible mio", "file": "02_-_Querido_imposible_mio-music.mei" },
+			{ "title": "Amariles yo no puedo", "file": "03_-_Amariles_yo_no_puedo-music.mei" },
+			{ "title": "Más merece quien más ama", "file": "04_-_Mas_merece_quien_mas_ama-music.mei" },
+			{ "title": "En carroza de cristal", "file": "05_-_En_carroza_de_cristal-music.mei" },
+			{ "title": "Ojos, yo no di licencia", "file": "06_-_Ojos_yo_no_di_licencia-music.mei" },
+		];
+
+		window.localStorage.removeItem("options");
+    const app = new Verovio.App(document.getElementById("app"), options);
+		var currentTono = 0;
+
+		function loadTono(index) {
+			const filename = tonos[index]["file"];
+    	fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/music-transcriptions/" + filename)
+				.then(function(response) {
+            return response.text();
+        })
+        .then(function(text) {
+						currentTono = index;
+            app.loadData(text);
+        });
+		}
+
+		function addTonos() {
+			var select = document.getElementById("tonos"); 
+			for (let i = 0; i < tonos.length; i++) {
+					const option = document.createElement("option");
+					const text = document.createTextNode(tonos[i]["title"]);
+					option.setAttribute("value", i);
+					option.appendChild(text)
+					select.appendChild(option)
+			}
+			select.addEventListener("change", (event) => {
+				loadTono(event.target.value);
+			});
+		}
+
+		async function generatePdf() {
+        if (!app.pdf) {
+            const pdfWorkerURL = app.getWorkerURL("https://editor.verovio.org/dist/pdf-worker.js");
+            const pdfWorker = new Worker(pdfWorkerURL);
+            app.pdf = new PDFWorkerProxy(pdfWorker);
+        }
+
+        const pdfGenerator = new PDFGenerator(app.verovio, app.pdf, app.verovioOptions.scale);
+        const pdfOutputStr = await pdfGenerator.generateFile();
+
+        app.endLoading();
+				console.log(pdfOutputStr);
+
+    		const aElement = document.createElement('a');
+
+      	aElement.setAttribute('download', tonos[currentTono]["title"].replace(/\.[^\.]*$/, '.pdf'));
+      	aElement.href = pdfOutputStr;
+      	aElement.click();
+    }
+
+		localStorage.removeItem("options");
+		addTonos();
+		loadTono(0);
+		document.getElementById("generate-pdf").addEventListener("click", () => generatePdf());
+</script>
+ 
+
+</body>
+</html>
