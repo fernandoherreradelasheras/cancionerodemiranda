@@ -21,6 +21,6 @@ The script [generate-pdfs.sh](generate-pdfs.sh) generates a pdf for each of the 
 If you are not planning to contribute to this work and just want to get the music you can just grab the pdfs generated from the latest release at [releases](https://github.com/fernandoherreradelasheras/cancionerodemiranda/releases/)
 
 ## Experimental score viewer
-The experimental [score viewer](https://fernandoherreradelasheras.github.io/cancionerodemiranda/) renders the in-progress musical transcriptions using the [verovio](https://www.verovio.org/index.xhtml) toolkit is a responsive and customizable view directly on your browser. It also can generate a engraved pdf with the transcription.
+The experimental [score viewer](http://cdm.humanoydivino.com/) renders the in-progress musical transcriptions using the [verovio](https://www.verovio.org/index.xhtml) toolkit is a responsive and customizable view directly on your browser. It also can generate a engraved pdf with the transcription.
 
 We will be experimenting with different features unlocked by using the MEI score format (selective display of annotations and comments, variants, automatic transposition, etc...)
