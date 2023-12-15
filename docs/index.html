@@ -16,7 +16,11 @@
 			</select>
 			<button id="generate-pdf">Download PDF</button>
 		</div>
-    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 90%; height: 90%"/>
+    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 90%; height: 90%">
+		</div>
+		<div id="foot" style="padding-top: 16px;">
+Visor de las partituras del <a href="https://github.com/fernandoherreradelasheras/cancionerodemiranda/">repositorio del Cancionero de Miranda</a>
+		
 </div>
 
 <script type="module">
@@ -31,12 +35,12 @@
 		}
 
 		const tonos = [ 
-			{ "title": "Un imposible me mata", "file": "01_-_Un_imposible_me_mata-music.mei" },
-			{ "title": "Querido imposible mio", "file": "02_-_Querido_imposible_mio-music.mei" },
-			{ "title": "Amariles yo no puedo", "file": "03_-_Amariles_yo_no_puedo-music.mei" },
-			{ "title": "Más merece quien más ama", "file": "04_-_Mas_merece_quien_mas_ama-music.mei" },
-			{ "title": "En carroza de cristal", "file": "05_-_En_carroza_de_cristal-music.mei" },
-			{ "title": "Ojos, yo no di licencia", "file": "06_-_Ojos_yo_no_di_licencia-music.mei" },
+			{ "title": "Un imposible me mata", "file": "01_-_Un_imposible_me_mata/01_-_Un_imposible_me_mata-music.mei" },
+			{ "title": "Querido imposible mio", "file": "02_-_Querido_imposible_mio/02_-_Querido_imposible_mio-music.mei" },
+			{ "title": "Amariles yo no puedo", "file": "03_-_Amariles_yo_no_puedo/03_-_Amariles_yo_no_puedo-music.mei" },
+			{ "title": "Más merece quien más ama", "file": "04_-_Mas_merece_quien_mas_ama/04_-_Mas_merece_quien_mas_ama-music.mei" },
+			{ "title": "En carroza de cristal", "file": "05_-_En_carroza_de_cristal/05_-_En_carroza_de_cristal-music.mei" },
+			{ "title": "Ojos, yo no di licencia", "file": "06_-_Ojos_yo_no_di_licencia/06_-_Ojos_yo_no_di_licencia-music.mei" },
 		];
 
 		window.localStorage.removeItem("options");
@@ -44,8 +48,8 @@
 		var currentTono = 0;
 
 		function loadTono(index) {
-			const filename = tonos[index]["file"];
-    	fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/tonos/" + filename)
+			const path = tonos[index]["file"];
+    	fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/tonos/" + path)
 				.then(function(response) {
             return response.text();
         })
