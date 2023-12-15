@@ -4,20 +4,29 @@
   <link rel="stylesheet" href="styles.css">
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.11/pako.min.js"></script>
 </head>
 <body>
   
 
-<div class="panel-body">
-    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 1200px;"></div>
-		<div id="selector">
-			<div id="selector-title">Selecciona un tono:</div>
-			<div id="tonos"/>
+<div class="panel-body" style="height: 100vh">
+		<div id="selector" style="padding-bottom: 16px;">
+			<label for="tonos">Selecciona un tono:</label>
+			<select name="tonos" id="tonos">
+			</select>
+			<button class="generate-pdf">Download PDF</button>
 		</div>
+    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 90%; height: 90%"/>
 </div>
 
 <script type="module">
     import 'https://editor.verovio.org/javascript/app/verovio-app.js';
+
+		const options = {
+    	defaultView: 'responsive', // instead of 'responsive' by default
+	    responsiveZoom: 3, // 0-7, default is 3
+			enableDocument: true
+		}
 
 		const tonos = [ 
 			{ "title": "Un imposible me mata", "file": "01_-_Un_imposible_me_mata-music.mei" },
@@ -36,8 +45,9 @@
 			{ "title": "Triste tortola que en quejas", "file": "14_-_Triste_tortola_que_en_quejas-music.mei" }
 		];
 
+    const app = new Verovio.App(document.getElementById("app"), options);
+
 		function loadTono(filename) {
-    	const app = new Verovio.App(document.getElementById("app"), {});
     	fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/mei/music-transcriptions/" + filename)
 				.then(function(response) {
             return response.text();
@@ -48,22 +58,21 @@
 		}
 
 		function addTonos() {
-			var tonosDiv = document.getElementById("tonos"); 
+			var select = document.getElementById("tonos"); 
 			for (let i = 0; i < tonos.length; i++) {
-					const div = document.createElement("div");
-					div.setAttribute("class", "tono");
-					const a = document.createElement("a");
-					a.setAttribute("href", "#");
+					const option = document.createElement("option");
 					const text = document.createTextNode(tonos[i]["title"]);
 					const file = tonos[i]["file"];
-					a.addEventListener("click", function() { loadTono(file) })
-					a.appendChild(text)
-					div.appendChild(a)
-					tonosDiv.appendChild(div);
+					option.setAttribute("value", file);
+					option.appendChild(text)
+					select.appendChild(option)
 			}
+			select.addEventListener("change", (event) => {
+				loadTono(event.target.value);
+			});
 		}
 
-
+		localStorage.removeItem("options");
 		addTonos();
 		loadTono(tonos[0]["file"]);
 </script>
