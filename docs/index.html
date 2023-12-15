@@ -45,7 +45,7 @@
 
 		function loadTono(index) {
 			const filename = tonos[index]["file"];
-    	fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/music-transcriptions/" + filename)
+    	fetch("https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/tonos/" + filename)
 				.then(function(response) {
             return response.text();
         })
@@ -89,10 +89,10 @@
       	aElement.click();
     }
 
-		localStorage.removeItem("options");
-		addTonos();
-		loadTono(0);
-		document.getElementById("generate-pdf").addEventListener("click", () => generatePdf());
+    localStorage.removeItem("options");
+    addTonos();
+    loadTono(0);
+    document.getElementById("generate-pdf").addEventListener("click", () => generatePdf());
 </script>
  
 

@@ -125,10 +125,10 @@ for i in $(seq 0 $count); do
 	printf -v j "%d" $TONO
 	title=${titles[$i]}
 
-	text_transcription=text-transcriptions/${TONO}*-text.tex
-	text_comments=text-comments/${TONO}*-text-comments.tex
-	music_transcription=music-transcriptions/${TONO}*-music.mscz
-	music_comments=music-comments/${TONO}*-music-comments.tex
+	text_transcription=tonos/${TONO}*/*-text.tex
+	text_comments=tonos/${TONO}*/*-text-comments.tex
+	music_transcription=tonos/${TONO}*/*-music.mscz
+	music_comments=tonos/${TONO}*/*-music-comments.tex
 
 	get_titles $(($i + 1)) "$music" "$text" > values.tex
 	get_version $text_transcription $text_comments $music_transcription $music_comments >> values.tex
