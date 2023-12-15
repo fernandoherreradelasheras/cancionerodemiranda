@@ -9,7 +9,7 @@
   
 
 <div class="panel-body">
-    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 120px;"></div>
+    <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 1200px;"></div>
 		<div id="selector">
 			<div id="selector-title">Selecciona un tono:</div>
 			<div id="tonos"/>
@@ -53,8 +53,10 @@
 					const div = document.createElement("div");
 					div.setAttribute("class", "tono");
 					const a = document.createElement("a");
+					a.setAttribute("href", "#");
 					const text = document.createTextNode(tonos[i]["title"]);
-					a.setAttribute("href", 'javascript:loadTono("' + tonos[i]["file"] + '");');
+					const file = tonos[i]["file"];
+					a.addEventListener("click", function() { loadTono(file) })
 					a.appendChild(text)
 					div.appendChild(a)
 					tonosDiv.appendChild(div);
