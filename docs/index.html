@@ -90,17 +90,17 @@
         const variants = document.getElementById("variants");
         for (let variant of tonoVariants) {
           const label = document.createElement("label");
-          label.setAttribute("for", "select-" + variant["name"]);
-          const labelText = document.createTextNode(variant["name"] + ": ");
+          label.setAttribute("for", "select-" + variant["variant_name"]);
+          const labelText = document.createTextNode(variant["variant_name"] + ": ");
           label.appendChild(labelText);
           variants.appendChild(label);
           const select = document.createElement("select");
-          select.setAttribute("id", "select-" + variant["name"]);
+          select.setAttribute("id", "select-" + variant["variant_name"]);
           variants.appendChild(select);
           select.addEventListener("change", (event) => rebuildXpathQuery());
-          for (let variantOption of variant["variants"]) {
+          for (let variantOption of variant["options"]) {
             const option = document.createElement("option");
-            const optionText = document.createTextNode(variantOption["name"]);
+            const optionText = document.createTextNode(variantOption["option_name"]);
             option.setAttribute("value", variantOption["appXPathQuery"]);
             option.appendChild(optionText);
             select.appendChild(option);
