@@ -10,11 +10,18 @@
   
 
 <div class="panel-body" style="height: 100vh">
-		<div id="selector" style="padding-bottom: 16px;">
-			<label for="tonos">Selecciona un tono:</label>
-			<select name="tonos" id="tonos">
-			</select>
-			<button id="generate-pdf">Download PDF</button>
+		<div id="header">
+			<div id="selector">
+				<label for="tonos">Selecciona un tono:</label>
+				<select name="tonos" id="tonos">
+				</select>
+				<button id="generate-pdf">Download PDF</button>
+			</div>
+			<div id="title" style="visibility:hidden;">
+				<h1 id="title-name" style="text-align:center;margin: 0;">Empty title</h1>
+				<h2 style="text-align:center;margin: 0">(Cancionero de Miranda)</h2>
+				<h3><span id="music-author" style="float:left"></span><span id="text-author" style="float:right"></span></h3>
+			</div>
 		</div>
     <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 90%; height: 90%">
 		</div>
@@ -53,13 +60,17 @@ Visor de las partituras del <a href="https://github.com/fernandoherreradelashera
             return response.text();
         })
         .then(function(text) {
-            app.loadData(text);
+            app.loadData(text, tono["data"]["mei_file"]);
             updateCurrentTono(index, tono);
         });
 		}
 
 		function updateCurrentTono(index, tono) {
       currentTono = index;
+      document.getElementById("title-name").innerHTML = tono["data"]["title"];
+      document.getElementById("music-author").innerHTML = "Música: " + tono["data"]["music_author"];
+      document.getElementById("text-author").innerHTML = "Texto: " + tono["data"]["text_author"];
+			document.getElementById("title").style.visibility = 'visible';
     }
 
 		async function getTonoDefinitions(tonos) {
@@ -108,7 +119,7 @@ Visor de las partituras del <a href="https://github.com/fernandoherreradelashera
 
     		const aElement = document.createElement('a');
 
-      	aElement.setAttribute('download', tonos[currentTono]["title"].replace(/\.[^\.]*$/, '.pdf'));
+      	aElement.setAttribute('download', tonos[currentTono]["data"]["title"].replace(/\.[^\.]*$/, '.pdf'));
       	aElement.href = pdfOutputStr;
       	aElement.click();
     }
