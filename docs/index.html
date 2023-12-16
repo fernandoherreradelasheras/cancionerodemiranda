@@ -1,115 +1,159 @@
 <!doctype html>
 <html>
+
 <head>
   <link rel="stylesheet" href="styles.css">
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.11/pako.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.11/pako.min.js"></script>
 </head>
+
 <body>
-  
 
-<div class="panel-body" style="height: 100vh">
-		<div id="header">
-			<div id="selector">
-				<label for="tonos">Selecciona un tono:</label>
-				<select name="tonos" id="tonos">
-				</select>
-				<button id="generate-pdf">Download PDF</button>
-			</div>
-			<div id="title" style="visibility:hidden;">
-				<h1 id="title-name" style="text-align:center;margin: 0;">Empty title</h1>
-				<h2 style="text-align:center;margin: 0">(Cancionero de Miranda)</h2>
-				<h3><span id="music-author" style="float:left"></span><span id="text-author" style="float:right"></span></h3>
-			</div>
-		</div>
+
+  <div class="panel-body" style="height: 100vh">
+    <div id="header">
+      <div id="selector">
+        <label for="tonos">Selecciona un tono:</label>
+        <select name="tonos" id="tonos">
+        </select>
+        <button id="generate-pdf">Download PDF</button>
+      </div>
+      <div id="variants" style="display:none;">
+      </div>
+
+      <div id="title" style="visibility:hidden;">
+        <h1 id="title-name" style="text-align:center;margin: 0;">Empty title</h1>
+        <h2 style="text-align:center;margin: 0">(Cancionero de Miranda)</h2>
+        <h3><span id="music-author" style="float:left"></span><span id="text-author" style="float:right"></span></h3>
+      </div>
+    </div>
     <div id="app" class="panel" style="border: 1px solid lightgray; min-height: 90%; height: 90%">
-		</div>
-		<div id="foot" style="padding-top: 16px;">
-Visor de las partituras del <a href="https://github.com/fernandoherreradelasheras/cancionerodemiranda/">repositorio del Cancionero de Miranda</a>
-		
-</div>
+    </div>
+    <div id="foot" style="padding-top: 16px;">
+      Visor de las partituras del <a
+        href="https://github.com/fernandoherreradelasheras/cancionerodemiranda/">repositorio del Cancionero de
+        Miranda</a>
 
-<script type="module">
-    import 'https://editor.verovio.org/javascript/app/verovio-app.js';
-		import { PDFWorkerProxy, VerovioWorkerProxy, ValidatorWorkerProxy } from 'https://editor.verovio.org/dist/worker-proxy.js'
-		import { PDFGenerator } from 'https://editor.verovio.org/dist/pdf-generator.js'
+    </div>
 
-    const repoRoot = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/";
+    <script type="module">
+      import 'https://editor.verovio.org/javascript/app/verovio-app.js';
+      import { PDFWorkerProxy, VerovioWorkerProxy, ValidatorWorkerProxy } from 'https://editor.verovio.org/dist/worker-proxy.js'
+      import { PDFGenerator } from 'https://editor.verovio.org/dist/pdf-generator.js'
 
-		const options = {
-    	defaultView: 'responsive',
-	    responsiveZoom: 3,
-			enableDocument: true,
-		}
+      const repoRoot = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/";
 
-    const tonos = [
-      { "definition": "tonos/01_-_Un_imposible_me_mata/def.json" },
-      { "definition": "tonos/02_-_Querido_imposible_mio/def.json" },
-      { "definition": "tonos/03_-_Amariles_yo_no_puedo/def.json" },
-      { "definition": "tonos/04_-_Mas_merece_quien_mas_ama/def.json" },
-      { "definition": "tonos/05_-_En_carroza_de_cristal/def.json" },
-      { "definition": "tonos/06_-_Ojos,_yo_no_di_licencia/def.json" },
-    ];
+      const options = {
+        defaultView: 'responsive',
+        responsiveZoom: 3,
+        enableDocument: true,
+      }
 
-		function loadTono(index, tono) {
-      const dir = tono["definition"].substring(0, tono["definition"].lastIndexOf("/"));
-			const fileUrl = repoRoot + dir + "/" + tono["data"]["mei_file"];
-    	fetch(fileUrl)
-				.then(function(response) {
+      const tonos = [
+        { "definition": "tonos/01_-_Un_imposible_me_mata/def.json" },
+        { "definition": "tonos/02_-_Querido_imposible_mio/def.json" },
+        { "definition": "tonos/03_-_Amariles_yo_no_puedo/def.json" },
+        { "definition": "tonos/04_-_Mas_merece_quien_mas_ama/def.json" },
+        { "definition": "tonos/05_-_En_carroza_de_cristal/def.json" },
+        { "definition": "tonos/06_-_Ojos,_yo_no_di_licencia/def.json" },
+      ];
+
+      function loadTono(index, tono) {
+        const dir = tono["definition"].substring(0, tono["definition"].lastIndexOf("/"));
+        const fileUrl = repoRoot + dir + "/" + tono["data"]["mei_file"];
+        fetch(fileUrl)
+          .then(function (response) {
             return response.text();
-        })
-        .then(function(text) {
+          })
+          .then(function (text) {
             app.loadData(text, tono["data"]["mei_file"]);
             updateCurrentTono(index, tono);
-        });
-		}
+          });
+      }
 
-		function updateCurrentTono(index, tono) {
-      currentTono = index;
-      document.getElementById("title-name").innerHTML = tono["data"]["title"];
-      document.getElementById("music-author").innerHTML = "Música: " + tono["data"]["music_author"];
-      document.getElementById("text-author").innerHTML = "Texto: " + tono["data"]["text_author"];
-			document.getElementById("title").style.visibility = 'visible';
-    }
-
-		async function getTonoDefinitions(tonos) {
-      for (let i = 0; i < tonos.length; i++) {
-        const definitionPath = tonos[i]["definition"];
-        const data = await getTonoDefinition(definitionPath);
-        tonos[i]["data"] = data;
-        appendTono(i, data);
-        if (i == 0) {
-          loadTono(0, tonos[0]);
+      function updateCurrentTono(index, tono) {
+        currentTono = index;
+        document.getElementById("title-name").innerHTML = tono["data"]["title"];
+        document.getElementById("music-author").innerHTML = "Música: " + tono["data"]["music_author"];
+        document.getElementById("text-author").innerHTML = "Texto: " + tono["data"]["text_author"];
+        document.getElementById("title").style.visibility = 'visible';
+        const variants = tono["data"]["mei_variants"];
+        if (variants !== 'undefined' && variants.length > 0) {
+          setTonoVariants(variants);
+        } else {
+          clearTonoVariants();
         }
       }
-    }
 
-    async function getTonoDefinition(path) {
-			const fileUrl = repoRoot + path;
-    	return fetch(fileUrl)
-				.then(function(response) {
+      function setTonoVariants(tonoVariants) {
+        const variants = document.getElementById("variants");
+        for (let variant of tonoVariants) {
+          const label = document.createElement("label");
+          label.setAttribute("for", "select-" + variant["name"]);
+          const labelText = document.createTextNode(variant["name"] + ": ");
+          label.appendChild(labelText);
+          variants.appendChild(label);
+          const select = document.createElement("select");
+          select.setAttribute("id", "select-" + variant["name"]);
+          variants.appendChild(select);
+          select.addEventListener("change", (event) => rebuildXpathQuery());
+          for (let variantOption of variant["variants"]) {
+            const option = document.createElement("option");
+            const optionText = document.createTextNode(variantOption["name"]);
+            option.setAttribute("value", variantOption["appXPathQuery"]);
+            option.appendChild(optionText);
+            select.appendChild(option);
+          }
+        }
+        variants.style.display = 'block';
+      }
+
+      function clearTonoVariants() {
+        const variants = document.getElementById("variants");
+        while (variants.firstChild) {
+          variants.removeChild(variants.firstChild);
+        }
+        document.getElementById("title").style.display = 'none';
+      }
+
+      async function getTonoDefinitions(tonos) {
+        for (let i = 0; i < tonos.length; i++) {
+          const definitionPath = tonos[i]["definition"];
+          const data = await getTonoDefinition(definitionPath);
+          tonos[i]["data"] = data;
+          appendTono(i, data);
+          if (i == 0) {
+            loadTono(0, tonos[0]);
+          }
+        }
+      }
+
+      async function getTonoDefinition(path) {
+        const fileUrl = repoRoot + path;
+        return fetch(fileUrl)
+          .then(function (response) {
             return response.json();
-        })
-        .then(function(json) {
+          })
+          .then(function (json) {
             return json
-        });
-    }
+          });
+      }
 
-    function appendTono(index, tono) {
-      const select = document.getElementById("tonos"); 
-      const option = document.createElement("option");
-      const text = document.createTextNode(tono["title"]);
-      option.setAttribute("value", index);
-      option.appendChild(text)
-      select.appendChild(option)
-		}
+      function appendTono(index, tono) {
+        const select = document.getElementById("tonos");
+        const option = document.createElement("option");
+        const text = document.createTextNode(tono["title"]);
+        option.setAttribute("value", index);
+        option.appendChild(text)
+        select.appendChild(option)
+      }
 
-		async function generatePdf() {
+      async function generatePdf() {
         if (!app.pdf) {
-            const pdfWorkerURL = app.getWorkerURL("https://editor.verovio.org/dist/pdf-worker.js");
-            const pdfWorker = new Worker(pdfWorkerURL);
-            app.pdf = new PDFWorkerProxy(pdfWorker);
+          const pdfWorkerURL = app.getWorkerURL("https://editor.verovio.org/dist/pdf-worker.js");
+          const pdfWorker = new Worker(pdfWorkerURL);
+          app.pdf = new PDFWorkerProxy(pdfWorker);
         }
 
         const pdfGenerator = new PDFGenerator(app.verovio, app.pdf, app.verovioOptions.scale);
@@ -117,27 +161,51 @@ Visor de las partituras del <a href="https://github.com/fernandoherreradelashera
 
         app.endLoading();
 
-    		const aElement = document.createElement('a');
+        const aElement = document.createElement('a');
 
-      	aElement.setAttribute('download', tonos[currentTono]["data"]["title"].replace(/\.[^\.]*$/, '.pdf'));
-      	aElement.href = pdfOutputStr;
-      	aElement.click();
-    }
+        aElement.setAttribute('download', tonos[currentTono]["data"]["title"].replace(/\.[^\.]*$/, '.pdf'));
+        aElement.href = pdfOutputStr;
+        aElement.click();
+      }
 
+      async function rebuildXpathQuery() {
+        const query = [];
+        const variants = document.getElementById("variants");
+        for (let child of variants.children) {
+          if (child.tagName.toLowerCase() != "select") {
+            continue;
+          }
+          const selectedValue = child.value;
+          if (selectedValue !== undefined && selectedValue != "") {
+            query.push(selectedValue);
+          }
+        }
 
-		var currentTono = 0;
+        app.verovioOptions.appXPathQuery = query;
+        await app.verovio.setOptions(app.verovioOptions);
+        let event = new CustomEvent('onUpdateData', {
+          detail: {
+            currentId: app.clientId,
+            caller: app.view
+          }
+        });
+        app.customEventManager.dispatch(event);
+      }
 
-		window.localStorage.removeItem("options");
-    const app = new Verovio.App(document.getElementById("app"), options);
+      var currentTono = 0;
 
-    localStorage.removeItem("options");
+      window.localStorage.removeItem("options");
+      const app = new Verovio.App(document.getElementById("app"), options);
 
-    document.getElementById("tonos").addEventListener("change", (event) => loadTono(event.target.value, tonos[event.target.value]));
-    document.getElementById("generate-pdf").addEventListener("click", () => generatePdf());
+      localStorage.removeItem("options");
 
-    getTonoDefinitions(tonos);
-</script>
- 
+      document.getElementById("tonos").addEventListener("change", (event) => loadTono(event.target.value, tonos[event.target.value]));
+      document.getElementById("generate-pdf").addEventListener("click", () => generatePdf());
+
+      getTonoDefinitions(tonos);
+    </script>
+
 
 </body>
+
 </html>
