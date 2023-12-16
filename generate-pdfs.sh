@@ -4,9 +4,9 @@
 MUSE=muse
 
 function add_image() {
-	dir=$1
-	page=$2
-	caption=$3
+	local dir=$1
+	local page=$2
+	local caption=$3
 
 	printf -v k "%03d" $page
 	echo "\\begin{figure}[p]"
@@ -24,9 +24,9 @@ function get_init() {
 	echo "\\input{title.tex}"
 }
 function get_titles() {
-	n="$1"
-	music="$2"
-	text="$3"
+	local n="$1"
+	local music="$2"
+	local text="$3"
 
 	echo "\\def\\mytitle{\\centering \\LARGE Cancionero de Miranda\\\\ Tono ${n}º: $title \\\\}"
 	echo "\\def\\mymusic{$music}"
@@ -34,15 +34,44 @@ function get_titles() {
 }
 
 function get_version() {
-	rev_count=$(git rev-list --count main -- "$@")
+	local rev_count=$(git rev-list --count main -- "$@")
 	echo "\\def\\myversion{0.${rev_count}}" 
-	echo "\\def\\myversioncomment{( en progreso )}" 
 }
 
+function get_status() {
+	if [ -f $1 ]; then
+		local text_transcription=$(cat $1 | jq ".text_transcription" -r)
+		local text_validation=$(cat $1 | jq ".text_validation" -r)
+		local text_proof_reading=$(cat $1 | jq ".text_proof_reading" -r)
+		local music_transcription=$(cat $1 | jq ".music_transcription" -r)
+		local music_proof_reading=$(cat $1 | jq ".music_proof_reading" -r)
+		local music_validation=$(cat $1 | jq ".music_validation" -r)
+		local poetic_study=$(cat $1 | jq ".poetic_study" -r)
+		local musical_study=$(cat $1 | jq ".musical_study" -r)
+	else 
+		local text_transcription="not started"
+		local text_proof_reading="not started"
+		local text_validation="not started"
+		local music_transcription="not started"
+		local music_proof_reading="not started"
+		local music_validation="not started"
+		local poetic_study="not started"
+		local musical_study="not started"
+	fi
+
+	echo "\\def\\mytexttranscription{$text_transcription}"
+  echo "\\def\\mytextproofreading{$text_proof_reading}"
+  echo "\\def\\mytextvalidation{$text_validation}"
+  echo "\\def\\mymusictranscription{$music_transcription}"
+  echo "\\def\\mymusicproofreading{$music_proof_reading}"
+  echo "\\def\\mymusicvalidation{$music_validation}"
+  echo "\\def\\mypoeticstudy{$poetic_study}"
+  echo "\\def\\mymusicalstudy{$musical_study}"
+}
 
 function get_text_part() {
-	text_transcription=$1
-	text_comments=$2
+	local text_transcription=$1
+	local text_comments=$2
 
 	echo "\\section*{\centering\Large{Texto}}"
 	cat $text_transcription
@@ -53,8 +82,8 @@ function get_text_part() {
 }
 
 function get_music_part() {
-	music_transcription=$1
-	music_comments=$2
+	local music_transcription=$1
+	local music_comments=$2
 
 	rm -f music.pdf
 	if [ -f $music_transcription ]; then
@@ -67,11 +96,10 @@ function get_music_part() {
 	fi
 }
 
-
 function get_images() {
-	dir=$1
-	pages=$2
-	caption=$3
+	local dir=$1
+	local pages=$2
+	local caption=$3
 
 	if [ -n "$pages" ]; then
 		for page in $pages; do
@@ -82,12 +110,11 @@ function get_images() {
 	fi
 }
 
-
 function get_facsimil() {
-	S1=$1
-	S2=$2
-	T=$3
-	G=$4
+	local S1=$1
+	local S2=$2
+	local T=$3
+	local G=$4
 
 	get_images S1 "$S1" "Partitura facsimil tiple 1"
 	get_images S2 "$S2" "Partitura facsimil tiple 2"
@@ -129,9 +156,11 @@ for i in $(seq 0 $count); do
 	text_comments=tonos/${TONO}*/*-text-comments.tex
 	music_transcription=tonos/${TONO}*/*-music.mscz
 	music_comments=tonos/${TONO}*/*-music-comments.tex
+	jsonstatus=tonos/${TONO}*/status.json
 
 	get_titles $(($i + 1)) "$music" "$text" > values.tex
 	get_version $text_transcription $text_comments $music_transcription $music_comments >> values.tex
+	get_status $jsonstatus >> values.tex
 
 	get_init > tmp.tex
 	get_text_part $text_transcription $text_comments >> tmp.tex
