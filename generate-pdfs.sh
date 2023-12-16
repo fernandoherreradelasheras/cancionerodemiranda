@@ -39,25 +39,14 @@ function get_version() {
 }
 
 function get_status() {
-	if [ -f $1 ]; then
-		local text_transcription=$(cat $1 | jq ".text_transcription" -r)
-		local text_validation=$(cat $1 | jq ".text_validation" -r)
-		local text_proof_reading=$(cat $1 | jq ".text_proof_reading" -r)
-		local music_transcription=$(cat $1 | jq ".music_transcription" -r)
-		local music_proof_reading=$(cat $1 | jq ".music_proof_reading" -r)
-		local music_validation=$(cat $1 | jq ".music_validation" -r)
-		local poetic_study=$(cat $1 | jq ".poetic_study" -r)
-		local musical_study=$(cat $1 | jq ".musical_study" -r)
-	else 
-		local text_transcription="not started"
-		local text_proof_reading="not started"
-		local text_validation="not started"
-		local music_transcription="not started"
-		local music_proof_reading="not started"
-		local music_validation="not started"
-		local poetic_study="not started"
-		local musical_study="not started"
-	fi
+	local text_transcription=$(echo "$1" | jq ".status_text_transcription" -r)
+	local text_validation=$(echo "$1" | jq ".status_text_validation" -r)
+	local text_proof_reading=$(echo "$1" | jq ".status_text_proof_reading" -r)
+	local music_transcription=$(echo "$1" | jq ".status_music_transcription" -r)
+	local music_proof_reading=$(echo "$1" | jq ".status_music_proof_reading" -r)
+	local music_validation=$(echo "$1" | jq ".status_music_validation" -r)
+	local poetic_study=$(echo "$1" | jq ".status_poetic_study" -r)
+	local musical_study=$(echo "$1" | jq ".status_musical_study" -r)
 
 	echo "\\def\\mytexttranscription{$text_transcription}"
   echo "\\def\\mytextproofreading{$text_proof_reading}"
@@ -98,7 +87,7 @@ function get_music_part() {
 
 function get_images() {
 	local dir=$1
-	local pages=$2
+	local pages="$2"
 	local caption=$3
 
 	if [ -n "$pages" ]; then
@@ -124,21 +113,22 @@ function get_facsimil() {
 
 
 
-readarray -t titles < titulos-unescaped.csv 
-readarray -t pages < index-pages-pdfs.csv
+count=0
+for dir in tonos/*; do
+	count=$(($count + 1))
+	json=$(cat $dir/def.json)
+  S1=$(echo $json | jq '.s1_pages | join(" ")' -r)
+  S2=$(echo $json | jq '.s2_pages | join(" ")' -r)
+  T=$(echo $json | jq '.t_pages | join(" ")' -r)
+  G=$(echo $json | jq '.g_pages | join(" ")' -r)
+  text=$(echo $json | jq '.text_author' -r)
+  music=$(echo $json |jq '.music_author' -r)
+  title=$(echo $json | jq '.title' -r)
+	text_transcription=$dir/$(echo $json |jq '.text_transcription_file' -r)
+	text_comments=$dir/$(echo $json |jq '.text_comments_file' -r)
+	music_transcription=$dir/$(echo $json |jq '.musicxml_file' -r)
+	music_comments=$dir/$(echo $json |jq '.music_comments_file' -r)
 
-count=$((${#pages[@]} - 1))
-
-for i in $(seq 0 $count); do
-	echo $i
-	page=${pages[$i]}
-	TONO=$(echo $page | cut -d, -f1)
-        S1=$(echo $page | cut -d, -f2)
-        S2=$(echo $page | cut -d, -f3)
-        T=$(echo $page | cut -d, -f4)
-        G=$(echo $page | cut -d, -f5)
-        poet=$(echo $page | cut -d, -f6)
-        composer=$(echo $page | cut -d, -f7)
 	if [ -n "$poet" ]; then
 		text="$poet"
 	else
@@ -149,18 +139,11 @@ for i in $(seq 0 $count); do
 	else
 		music="Anónimo"
 	fi
-	printf -v j "%d" $TONO
-	title=${titles[$i]}
+	printf -v TONO "%02d" $count
 
-	text_transcription=tonos/${TONO}*/*-text.tex
-	text_comments=tonos/${TONO}*/*-text-comments.tex
-	music_transcription=tonos/${TONO}*/*-music.mscz
-	music_comments=tonos/${TONO}*/*-music-comments.tex
-	jsonstatus=tonos/${TONO}*/status.json
-
-	get_titles $(($i + 1)) "$music" "$text" > values.tex
+	get_titles $count "$music" "$text" > values.tex
 	get_version $text_transcription $text_comments $music_transcription $music_comments >> values.tex
-	get_status $jsonstatus >> values.tex
+	get_status "$json" >> values.tex
 
 	get_init > tmp.tex
 	get_text_part $text_transcription $text_comments >> tmp.tex
@@ -172,6 +155,6 @@ for i in $(seq 0 $count); do
 	echo "\\end{document}" >> tmp.tex
 
 	mkdir -p output
-	pdflatex tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
+	pdflatex -interaction=batchmode -quiet tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
 	rm -f tmp.* facsimil.tex values.tex music.pdf
 done
