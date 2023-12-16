@@ -78,11 +78,11 @@
         document.getElementById("music-author").innerHTML = "Música: " + tono["data"]["music_author"];
         document.getElementById("text-author").innerHTML = "Texto: " + tono["data"]["text_author"];
         document.getElementById("title").style.visibility = 'visible';
+        
+        clearTonoVariants();
         const variants = tono["data"]["mei_variants"];
         if (variants !== 'undefined' && variants.length > 0) {
           setTonoVariants(variants);
-        } else {
-          clearTonoVariants();
         }
       }
 
