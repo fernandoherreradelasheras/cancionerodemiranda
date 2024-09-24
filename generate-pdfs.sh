@@ -1,7 +1,8 @@
 #!/usr/bin/bash
 
 #Set this to MuseScore binary
-MUSE=muse
+MUSE=MuseScore-Studio.AppImage
+USE_MEI=1
 
 function add_image() {
 	local dir=$1
@@ -63,7 +64,15 @@ function get_text_part() {
 	local text_comments=$2
 
 	echo "\\section*{\centering\Large{Texto}}"
-	cat $text_transcription
+	echo "\\centering"
+	echo "\\Large{"
+	cat $text_transcription | while read line; do
+		if [ -z "${line}" ]; then
+			echo -e "\n\\\\vspace{2\\\\baselineskip}\n"
+		else
+			echo -e "\n${line}\n"
+		fi
+	done
 	if [ -f $text_comments ]; then
 		echo "\\section*{\centering\Large{Notas a la edición poética}}"
 		cat $text_comments
@@ -71,12 +80,23 @@ function get_text_part() {
 }
 
 function get_music_part() {
-	local music_transcription=$1
-	local music_comments=$2
+	local music_transcription="$1"
+	local text_transcription="$2"
+	local music_comments="$3"
+	local title="$4"
+	local order="$5"
+	local poet="$6"
+	local composer="$7"
 
 	rm -f music.pdf
 	if [ -f $music_transcription ]; then
-		$MUSE --export-to=music.pdf $music_transcription
+		if [ "$USE_MEI" = "1" ]; then
+			cat "$music_transcription" | sed -e 's/mei-basic/mei-all/g' | sed -e 's/5\.0+basic/5.0/g' > tmp.mei
+			xsltproc --stringparam title "$title" --stringparam order "$order" --stringparam poet "$poet" --stringparam composer "$composer" pgHead.xsl tmp.mei > tmp-with-header.mei
+			sh mei_to_pdf.sh tmp-with-header.mei "$text_transcription" music.pdf > /dev/null
+		else
+			$MUSE --export-to=music.pdf $music_transcription
+		fi
 		echo "\includepdf[pages=-]{music.pdf}"
 		if [ -f $music_comments ]; then
 			echo "\\section*{\centering\Large{Notas a la edición musical}}"
@@ -114,7 +134,7 @@ function get_facsimil() {
 
 
 count=0
-for dir in tonos/*; do
+for dir in tonos/02*; do
 	count=$(($count + 1))
 	json=$(cat $dir/def.json)
   S1=$(echo $json | jq '.s1_pages | join(" ")' -r)
@@ -126,7 +146,11 @@ for dir in tonos/*; do
   title=$(echo $json | jq '.title' -r)
 	text_transcription=$dir/$(echo $json |jq '.text_transcription_file' -r)
 	text_comments=$dir/$(echo $json |jq '.text_comments_file' -r)
-	music_transcription=$dir/$(echo $json |jq '.musicxml_file' -r)
+	if [ "$USE_MEI" = "1" ]; then
+		music_transcription=$dir/$(echo $json |jq '.mei_file' -r)
+	else
+		music_transcription=$dir/$(echo $json |jq '.musicxml_file' -r)
+	fi
 	music_comments=$dir/$(echo $json |jq '.music_comments_file' -r)
 
 	if [ -n "$poet" ]; then
@@ -147,7 +171,7 @@ for dir in tonos/*; do
 
 	get_init > tmp.tex
 	get_text_part $text_transcription $text_comments >> tmp.tex
-	get_music_part $music_transcription $music_comments >> tmp.tex
+	get_music_part "$music_transcription" "$text_transcription" "$music_comments" "$title" "$TONO" "$text" "$music" >> tmp.tex
 
 	get_facsimil "$S1" "$S2" "$T" "$G" > facsimil.tex
 	echo "\\input{facsimil.tex}" >> tmp.tex
@@ -156,5 +180,5 @@ for dir in tonos/*; do
 
 	mkdir -p output
 	pdflatex -interaction=batchmode -quiet tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
-	rm -f tmp.* facsimil.tex values.tex music.pdf
+	#rm -f tmp.* facsimil.tex values.tex music.pdf
 done
