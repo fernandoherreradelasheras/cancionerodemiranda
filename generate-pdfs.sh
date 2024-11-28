@@ -205,6 +205,8 @@ function generate_tono() {
 	local dir="$1"
 	local count=$2
 
+	rm -f tmp.tex facsimil.tex values.tex final.mei music.pdf tmp1.mei tmp2.mei tmp3.mei
+
 	json=$(cat $dir/def.json)
 	S1=$(echo $json | jq '.s1_pages | join(" ")' -r)
 	S2=$(echo $json | jq '.s2_pages | join(" ")' -r)
@@ -232,7 +234,7 @@ function generate_tono() {
 	else
 		music="Anónimo"
 	fi
-	printf -v TONO "%02d" $count
+	printf -v TONO "%02.0f" "$count"
 
 	get_titles $count "$music" "$text" > values.tex
 	get_version "$text_transcription" $text_comments $music_transcription $music_comments >> values.tex
@@ -249,7 +251,7 @@ function generate_tono() {
 
 	mkdir -p output
 	if [ "$USE_MEI" = "1" ]; then
-		cp tmp-with-header.mei "output/${TONO} - ${title}.mei"
+		cp final.mei "output/${TONO} - ${title}.mei"
 		echo "MEI score: output/${TONO} - ${title}.mei"
 	fi
 
