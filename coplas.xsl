@@ -14,9 +14,17 @@
   <xsl:template match="mei:div[@type='coplas']">
     <div>
 	<rend halign="left" valign="top">
+        <lb/>
+        <rend fontsize="large"> </rend>
+        <lb/>
+
         <xsl:for-each select="tokenize($text,'\n')">
     		     <rend halign="left" fontsize="125%"> <xsl:value-of select="." /><lb/></rend>
         </xsl:for-each>
+
+        <lb/>
+        <rend fontsize="large"> </rend>
+        <lb/>
 	</rend>
     </div>
   </xsl:template>

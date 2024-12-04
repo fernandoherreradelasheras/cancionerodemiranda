@@ -17,8 +17,8 @@
                      </rend>
                      <rend> <lb/></rend>
                      <rend> <lb/></rend>
-                     <rend halign="left" valign="bottom" type="poet">Música: <xsl:value-of select="$poet"/><lb/> <lb/></rend>
-                     <rend halign="right" valign="bottom" type="composer">Poesía: <xsl:value-of select="$composer"/><lb/> <lb/></rend>
+                     <rend halign="left" valign="bottom" type="poet">Música: <xsl:value-of select="$composer"/><lb/> <lb/></rend>
+                     <rend halign="right" valign="bottom" type="composer">Poesía: <xsl:value-of select="$poet"/><lb/> <lb/></rend>
 
 
     </xsl:element>
