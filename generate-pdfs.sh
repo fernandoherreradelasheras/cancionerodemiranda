@@ -5,14 +5,20 @@ set -e
 #Set this to MuseScore binary
 MUSE=MuseScore-Studio.AppImage
 USE_MEI=1
+PRE_RELEASE=1
+BASE_URL="https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda"
 
 function add_image() {
 	local dir=$1
 	local page=$2
 	local caption=$3
+	local title=$4
 
 	printf -v k "%03d" $page
 	echo "\\begin{figure}[p]"
+	if [ ! -z $title ]; then
+		echo "\\section*{\centering\LARGE{$title}}"
+	fi
 	echo "\\caption{$caption}"
 	echo "\\makebox[\\linewidth]{"
 	echo "\\includegraphics[width=0.95\\linewidth]{facsimil-images/$dir/image-$k.jpg}"
@@ -21,17 +27,21 @@ function add_image() {
 }
 
 function get_init() {
-	echo "\\documentclass[titlepage,hidelinks]{article}"
+	#echo "\\documentclass[titlepage,hidelinks]{article}"
+	echo "\\documentclass[10pt, a4paper, twoside,hidelinks]{article}"
+	echo "\\usepackage{iberianpolyphony}"
+	echo "\\addmanuscriptwatermark"
+
 	echo "\\input{header.tex}"
 	echo "\\begin{document}"
-	echo "\\input{title.tex}"
+	echo "\\customtitlepage{\mytitle}"
 }
 function get_titles() {
 	local n="$1"
 	local music="$2"
 	local text="$3"
 
-	echo "\\def\\mytitle{\\centering \\LARGE Cancionero de Miranda\\\\ Tono ${n}º: $title \\\\}"
+	echo "\\def\\mytitle{\\centering \\LARGE Tono ${n}º: $title \\\\}"
 	echo "\\def\\mymusic{$music}"
 	echo "\\def\\mytext{$text}" 
 }
@@ -166,11 +176,11 @@ function get_music_part() {
 		else
 			$MUSE --export-to=music.pdf $music_transcription
 		fi
-		echo "\includepdf[pages=-]{music.pdf}"
+		echo "\\section*{\centering\LARGE{Edición musical}}"
 		if [ -f $music_comments ]; then
-			echo "\\section*{\centering\Large{Notas a la edición musical}}"
 			cat $music_comments
 		fi
+		echo "\includepdf[pages=-]{music.pdf}"
 	fi
 }
 
@@ -178,12 +188,14 @@ function get_images() {
 	local dir=$1
 	local pages="$2"
 	local caption=$3
+	local title=$4
 
 	if [ -n "$pages" ]; then
 		for page in $pages; do
 				N=$(($page - 1))
-				add_image $dir $N "$caption"
+				add_image $dir $N "$caption" "$title"
 				caption=""
+				title=""
 		done
 	fi
 }
@@ -194,11 +206,27 @@ function get_facsimil() {
 	local T=$3
 	local G=$4
 
-	get_images S1 "$S1" "Partitura facsimil tiple 1"
-	get_images S2 "$S2" "Partitura facsimil tiple 2"
-	get_images T "$T" "Partitura facsimil tenor"
-	get_images G "$G" "Partitura facsimil guión"
+	get_images S1 "$S1" "Facsimil tiple 1" "Facsimiles"
+	get_images S2 "$S2" "Facsimil tiple 2"
+	get_images T "$T" "Facsimil tenor"
+	get_images G "$G" "Facsimil guión"
 }
+
+function get_mei_link() {
+	local meifile="$1"
+
+	rev=`git rev-parse HEAD`
+	echo "$BASE_URL/$rev/$meifile"
+}
+
+function get_mei_name() {
+	local meifile="$1"
+
+	basename "$meifile" | sed -e  's/_/\\_/g'
+}
+
+
+
 
 
 function generate_tono() {
@@ -212,8 +240,9 @@ function generate_tono() {
 	S2=$(echo $json | jq '.s2_pages | join(" ")' -r)
 	T=$(echo $json | jq '.t_pages | join(" ")' -r)
 	G=$(echo $json | jq '.g_pages | join(" ")' -r)
-	text=$(echo $json | jq '.text_author' -r)
-	music=$(echo $json |jq '.music_author' -r)
+	intro=$(echo $json | jq '.introduction' -r)
+	poet=$(echo $json | jq '.text_author' -r)
+	composer=$(echo $json |jq '.music_author' -r)
 	title=$(echo $json | jq '.title' -r)
 	text_transcription=$(echo $json | jq '.text_transcription' -r)
 	text_comments=$dir/$(echo $json |jq '.text_comments_file' -r)
@@ -239,13 +268,29 @@ function generate_tono() {
 	get_titles $count "$music" "$text" > values.tex
 	get_version "$text_transcription" $text_comments $music_transcription $music_comments >> values.tex
 	get_status "$json" >> values.tex
+	if [[ ! -z $PRE_RELEASE ]]; then
+		echo "\\def\\prerelease{true}" >> values.tex
+	fi
+
+	meilink=`get_mei_link  "$music_transcription"`
+	meiname=`get_mei_name  "$music_transcription"`
+	echo "\\def\\mymeilink{$meilink}" >> values.tex
+	echo "\\def\\mymeiname{$meiname}" >> values.tex
+	#echo "\\def\\mymeiname{https://google.com/65_-_Del_silencio_de_este_valle.mei/}" >> values.tex
 
 	get_init > tmp.tex
+	if [ "$intro" != "null" ]; then 
+		echo "\\section*{\\centering\\LARGE{Introducción}}" >> tmp.tex
+		cat "${dir}/${intro}" >> tmp.tex
+	fi
 	get_text_part "$dir" "$text_transcription" $text_comments >> tmp.tex
 	get_music_part "$dir" "$music_transcription" "$text_transcription" "$music_comments" "$title" "$TONO" "$text" "$music" >> tmp.tex
 
-	get_facsimil "$S1" "$S2" "$T" "$G" > facsimil.tex
+	get_facsimil "$S1" "$S2" "$T" "$G" >> facsimil.tex
 	echo "\\input{facsimil.tex}" >> tmp.tex
+	echo "\\clearpage" >> tmp.tex
+
+	echo "\\input{acerca.tex}" >> tmp.tex
 
 	echo "\\end{document}" >> tmp.tex
 
@@ -255,7 +300,8 @@ function generate_tono() {
 		echo "MEI score: output/${TONO} - ${title}.mei"
 	fi
 
-	pdflatex -interaction=batchmode tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
+	#pdflatex -interaction=batchmode tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
+	pdflatex  tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
 	echo "PDF file: output/${TONO} - ${title}.pdf"
 
 	#rm -f tmp.* facsimil.tex values.tex music.pdf tmp-with-header.mei
