@@ -13,6 +13,7 @@
 	</head>
 	<body class="is-preload">
 
+
 		<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -35,17 +36,11 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1>Acerca del proyecto</h1>
+										<h2>Tonos</h2>
 									</header>
-
-									<span class="image main"><img src="images/header1.jpg" alt="" /></span>
-
-									<p>El cancionero de Miranda se encuentra actualmente en fase de edición. Esta edición, al requerir la reconstrucción de la voz perdida del alto, require un trabajo superior al habitual.
-										Todo este trabajo de transcripción y edición se está realizando en el repositorio público del proyecto <a href="https://github.com/fernandoherreradelasheras/cancionerodemiranda">https://github.com/fernandoherreradelasheras/cancionerodemiranda</a>.</p>
-									<p>Hasta que la edición esté lista, esta web permite consultar el progreso de la edición de cada uno de los tonos que componen el cancionero. </p>
-									<p>A través del menú de la izquierda se puede acceder a las textos y partituras en desarrollo, tanto en versión web como en versiones imprimibles similares al aspecto que tendrán en la edición final. </p>
-							
-
+									<h4>Listado de tonos en progreso</h4>
+									<ul id="lista-de-tonos" class="alt">
+									</ul>
 								</section>
 
 						</div>
@@ -71,7 +66,6 @@
 										<li><a href="tonos.html">Tonos</a></li>
 										<li><a href="index.html">Acerca del proyecto</a></li>
 										<li><a href="https://github.com/fernandoherreradelasheras/cancionerodemiranda">Repositorio github</a></li>
-	
 									</ul>
 								</nav>
 
@@ -85,6 +79,7 @@
 											<a href="#" class="image"><img src="images/humano-y-divino-logo1.jpg" alt="" /></a>
 											<p>Humano y divino: iniciativa para difundir y promover el patrimonio poético-musical en lengua romance del barroco ibérico y americano.</p>
 										</article>
+									
 									</div>
 									<ul class="actions">
 										<li><a href="https://humanoydivino.com" class="button">Visitar</a></li>
@@ -92,17 +87,17 @@
 								</section>
 
 							<!-- Section -->
-							<section>
-								<header class="major">
-									<h2>Contacto</h2>
-								</header>
-								<p>fherrera (at) onirica (.) com</p>
-							</section>
+								<section>
+									<header class="major">
+										<h2>Contacto</h2>
+									</header>
+									<p>fherrera (at) onirica (.) com</p>
+								</section>
 
-						<!-- Footer -->
-							<footer id="footer">
-								<p class="copyright">&copy; Design: Plantilla por <a href="https://html5up.net">HTML5 UP</a>.</p>
-							</footer>
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Design: Plantilla por <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
 
 						</div>
 					</div>
@@ -115,6 +110,62 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/tonos.js"></script>
+
+			<script>
+
+
+				function appendTono(index, tono) {
+					const ul = document.getElementById("lista-de-tonos");
+					const li = document.createElement("li");
+					li.setAttribute("numero", index);
+					const a =  document.createElement("a");
+					a.setAttribute("href", `tono.html?path=${tono["definition"]}`);
+					a.classList.add("item-tono-status");
+				
+					const text = document.createTextNode(`${index + 1}. ${tono["data"]["title"]}: `);
+					a.appendChild(text)
+
+					const [statusText, statusClass] = tonoOveralStatus(tono);
+					const span = document.createElement("span");
+					const progressText = document.createTextNode(statusText + " ");
+					span.appendChild(progressText);
+					span.classList.add(statusClass);
+					a.append(span);
+
+					if (tonoHasText(tono["data"])) {
+						const span = document.createElement("span");
+						span.classList = "icon fa-regular fa-file-lines";               
+						a.appendChild(span);
+						const text = document.createTextNode(" ");
+						a.appendChild(text);
+					}
+					if (tonoHasMusic(tono["data"])) {
+						const span = document.createElement("span");
+						span.classList = "icon fa-solid fa-music";;
+						a.appendChild(span);
+						const text = document.createTextNode(" ");
+						a.appendChild(text);				
+					}
+
+
+					li.appendChild(a);
+					ul.appendChild(li)
+				}
+
+				async function pupulateTonos(tonos) {
+					for (let i = 0; i < tonos.length; i++) {
+						const definitionPath = tonos[i]["definition"];
+						const data = await getTonoData(definitionPath);
+						tonos[i]["data"] = data;
+						appendTono(i, tonos[i]);
+					}
+				}
+
+				$( document ).ready(function() {				
+					pupulateTonos(tonos);
+				});
+			</script>
 
 	</body>
 </html>
