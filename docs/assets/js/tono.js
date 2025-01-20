@@ -20,6 +20,7 @@ const TEXT_TRANSCRIPTION = 'text_transcription';
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const definitionPath = urlParams.get('path');
+const tonoIdx = parseInt(definitionPath.substring(0, 2)) - 1;
 const dir = definitionPath.substring(0, definitionPath.lastIndexOf("/"));
 
 
@@ -185,6 +186,15 @@ async function populateLatex(parent, path) {
 $( document ).ready(async function() {		    
     
 
+    const pdfs = await fetch("./pdfs-release-v0.0.2.json")
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (json) {
+            return json
+        });
+
+   
     const data = await getTonoData(definitionPath);
     updateCurrentTono(data);
     const imgsUrls = [
@@ -350,10 +360,22 @@ $( document ).ready(async function() {
             img.src = imgsUrls[0];
             currentFacsimilImageIdx = 0;
 
-
-
         }        
 
+    });
+
+
+    $("#boton-pdf").on( "click", function() {    
+            const pdfContainer = document.getElementById("tono-pdf");
+            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+            const offsetTop = pdfContainer.offsetTop;
+            pdfContainer.style.height = `${vh - offsetTop - 20}px`;
+
+            const pdfObject = document.getElementById("pdf-object");
+            pdfObject.setAttribute("data", pdfs[tonoIdx]);
+
+            const pdfLink = document.getElementById("pdf-link");
+            pdfLink.setAttribute("href", pdfs[tonoIdx]);
     });
     
 
