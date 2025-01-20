@@ -1,0 +1,144 @@
+
+% iberianpolyphony.sty - Enhanced Style for Unique Project Identity
+% Author: Customized for Iberian Polyphony Manuscript Collection
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{iberianpolyphony}[2024/11/28 v1.2 Style for Poetry and Identity]
+
+% Load Essential Packages
+\RequirePackage{lmodern}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[english,spanish]{babel}
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{eso-pic} % For background watermarks
+\RequirePackage{musixtex} % Musical examples
+\RequirePackage{verse} % Poetry formatting
+
+% Geometry
+\geometry{a4paper, margin=2cm}
+
+% Colors for Identity
+\definecolor{iberianRed}{HTML}{A50021} % Deep crimson
+%\definecolor{iberianGold}{HTML}{C59C00} % Gold accent
+\definecolor{iberianGold}{HTML}{896d00} % Gold accent
+
+% Page Background Watermark (optional)
+\newcommand{\addmanuscriptwatermark}{
+    \AddToShipoutPictureBG*{%
+        \AtPageLowerLeft{%
+            \includegraphics[width=\paperwidth,height=\paperheight]{manuscript_background.png} % Background image
+        }
+    }
+}
+
+% Header/Footer Customization
+\pagestyle{fancy}
+\fancyhf{} % Clear defaults
+\fancyhead[LE]{\textcolor{iberianRed}{\small \textit{Cancionero de Miranda}}} % Left header
+\fancyhead[RO]{\textcolor{iberianRed}{\small \textit{\rightmark}}} % Right header
+\fancyfoot[C]{\thepage} % Center footer
+\fancyfoot[LE,RO]{\textcolor{iberianGold}{\footnotesize Publicado bajo licencia CC-BY. (c) humanoydivino.com}}
+
+% Section Titles with Identity Colors
+\titleformat{\section}[block]
+    {\normalfont\scshape\Large\color{iberianRed}}
+    {\thesection.}{0.5em}{}
+\titleformat{\subsection}[block]
+    {\normalfont\itshape\large\color{iberianGold}}
+    {\thesubsection.}{0.5em}{}
+
+% Title Page Customization
+\newcommand{\customtitlepage}[1]{
+    \begin{titlepage}
+        \centering
+        \vspace*{3cm}
+        {\Huge\scshape \textcolor{iberianRed}{Cancionero de Miranda} \par}
+        \vspace{1cm}
+        {\Huge \textcolor{iberianGold}{#1}}
+        \vspace{1cm}
+        {\Large {de la:}}
+        \vspace{1cm}
+
+        \parbox[b]{0.4\textwidth}{
+            \sloppy\setlength\parfillskip{0pt}
+            {\Large \textit{Misçelanea de Tonos de varios autores a 4º do Pe. Dos. de Mirda da Costa Cappellão cantor da Cappella Real} \par}
+        }
+
+        \vfill
+
+        \ifdefined\prerelease
+            \begin{flushleft}
+            Versión: \myversion
+
+            \textbf{Transcripción del texto:} \mytexttranscription
+
+            \textbf{Revisión del texto:} \mytextproofreading
+
+            \textbf{Validación del texto:} \mytextvalidation
+
+            \textbf{Transcripción de la música:} \mymusictranscription
+
+            \textbf{Revisión de la música:} \mymusicproofreading
+
+            \textbf{Validación de la música:} \mymusicvalidation
+
+            \textbf{Estudio poético:} \mypoeticstudy
+
+            \textbf{Estudio musical:} \mymusicalstudy
+            \end{flushleft}
+        \fi
+
+        \textcolor{iberianGold}{\footnotesize humanoydivino.com}
+    \end{titlepage}
+}
+
+% Section Dividers with Flourishes
+\newcommand{\sectiondivider}{
+    \vspace{1em}
+    \noindent\makebox[\textwidth]{%
+        \rule{0.8\textwidth}{0.5pt}
+    }
+    \vspace{1em}
+}
+
+% Typography Adjustments
+\renewcommand{\normalsize}{\fontsize{12}{14}\selectfont} % Body text
+\renewcommand{\large}{\fontsize{14}{16}\selectfont}      % Subsection titles
+\renewcommand{\Large}{\fontsize{16}{18}\selectfont}      % Section titles
+\renewcommand{\huge}{\fontsize{18}{20}\selectfont}       % Main title
+\linespread{1.1} % Slightly tighter line spacing
+\setlength{\parskip}{0.25em}  % Smaller gap between paragraphs
+\setlength{\parindent}{1.5em} % Adjust paragraph indentation
+
+\RequirePackage{intcalc} % For modulo operations
+
+
+% Smaller Body Text
+\renewcommand{\normalsize}{\fontsize{9}{11}\selectfont} % Body text (9pt)
+
+% Reduce Section and Title Sizes
+\renewcommand{\large}{\fontsize{11}{13}\selectfont}      % Subsection titles
+\renewcommand{\Large}{\fontsize{12}{14}\selectfont}      % Section titles
+%\renewcommand{\huge}{\fontsize{14}{16}\selectfont}       % Main title
+
+% Tighter Line Spacing
+\linespread{1.0} % Compact line spacing
+
+
+
+
+% Bibliography (if needed)
+%\RequirePackage[style=authoryear,backend=biber]{biblatex}
+
+% End Document Customization
+\AtEndDocument{
+    \clearpage
+}
+
+\endinput

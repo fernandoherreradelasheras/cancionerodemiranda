@@ -4,7 +4,6 @@ set -e
 
 #Set this to MuseScore binary
 MUSE=MuseScore-Studio.AppImage
-USE_MEI=1
 PRE_RELEASE=1
 BASE_URL="https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda"
 
@@ -28,7 +27,7 @@ function add_image() {
 
 function get_init() {
 	#echo "\\documentclass[titlepage,hidelinks]{article}"
-	echo "\\documentclass[10pt, a4paper, twoside,hidelinks]{article}"
+	echo "\\documentclass[12pt, a4paper, twoside,hidelinks]{article}"
 	echo "\\usepackage{iberianpolyphony}"
 	echo "\\addmanuscriptwatermark"
 
@@ -41,7 +40,9 @@ function get_titles() {
 	local music="$2"
 	local text="$3"
 
-	echo "\\def\\mytitle{\\centering \\LARGE Tono ${n}º: $title \\\\}"
+	ordinal=$(echo $n | sed -e 's/^0*\([0-9]*\)/\1º/')
+
+	echo "\\def\\mytitle{\\centering \\LARGE Tono ${ordinal}: $title \\\\}"
 	echo "\\def\\mymusic{$music}"
 	echo "\\def\\mytext{$text}" 
 }
@@ -118,7 +119,7 @@ function get_text_part() {
 
 
 	if [ -f $text_comments ]; then
-		echo "\\section*{\centering\Large{Notas a la edición poética}}"
+		echo "\\section*{\centering\Large{Notas al texto poético}}"
 		cat $text_comments
 	fi
 }
@@ -126,6 +127,9 @@ function get_text_part() {
 should_append_text() {
         local dir="$1"
         local text_transcription="$2"
+	if [ -z "$text_transcription" ]; then
+		return
+	fi
         length=$(echo "$text_transcription" | jq 'length' -r)
         if [ "$length" -eq 1 ]; then
                 file=$(echo "$text_transcription" | jq '.[0].file' -r)
@@ -151,37 +155,93 @@ function get_music_part() {
 	local composer="$8"
 
 	rm -f music.pdf
-	if [ -f $music_transcription ]; then
-		if [ "$USE_MEI" = "1" ]; then
-			# Fix mei exported from musescore
-			cat "$music_transcription" | sed -e 's/mei-basic/mei-all/g' | sed -e 's/5\.0+basic/5.0/g' | xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -s "//mei:score/mei:scoreDef" -t elem -n "pgHead" > tmp1.mei
-
-			# Generate header from metadata using xslt
-			xsltproc --stringparam title "$title" --stringparam order "$order" --stringparam poet "$poet" --stringparam composer "$composer" pgHead.xsl tmp1.mei > tmp2.mei
-
-			# If there are more coplas, append the text in a <div> element 
-			append_text_file=$(should_append_text "$dir" "$text_transcription")
-			if [ ! -z "${append_text_file}" ]; then
-				# Skip first stanza
-        			starting_line=`grep -n "^$" "$append_text_file" | cut -f1 -d: | head -1`
-				verses=$(tail -n +$(($starting_line + 1)) $append_text_file)
-       				java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:tmp2.mei -xsl:coplas.xsl -o:tmp3.mei text="$verses"
-				mv tmp3.mei final.mei
-			else
-				mv tmp2.mei final.mei
-			fi
-
-			# render the mei file 
-			sh mei_to_pdf.sh final.mei music.pdf > /dev/null
-		else
-			$MUSE --export-to=music.pdf $music_transcription
-		fi
-		echo "\\section*{\centering\LARGE{Edición musical}}"
-		if [ -f $music_comments ]; then
-			cat $music_comments
-		fi
-		echo "\includepdf[pages=-]{music.pdf}"
+	if [ -z $music_transcription ]; then
+		return
 	fi
+
+	# Fix mei exported from musescore
+	cat "$music_transcription" | sed -e 's/mei-basic/mei-all/g' | sed -e 's/5\.0+basic/5.0/g' | xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -s "//mei:score/mei:scoreDef" -t elem -n "pgHead" > tmp1.mei
+
+	# Generate header from metadata using xslt
+	ordinal=$(echo $order | sed -e 's/^0*\([0-9]*\)/\1º/')
+	if [ "$poet" = "Anónimo" ]; then meipoet="[Anónimo]"; else meipoet="$poet"; fi
+	if [ "$composer" = "Anónimo" ]; then meicomposer="[Anónimo]"; else meicomposer="$composer"; fi
+	xsltproc --stringparam title "$title" --stringparam subtitle "$ordinal Tono del Cancionero de Miranda" --stringparam poet "$meipoet" --stringparam composer "$meicomposer" pgHead.xsl tmp1.mei > tmp2.mei
+
+
+	# If there are more coplas, append a <div> element as a placeholder in order to
+	# overlay at that place another pdf with the text. The current text rendering offerted
+	# by verorio is not enough to present text in columns with proper alignement.
+	append_text_file=$(should_append_text "$dir" "$text_transcription")
+	if [ ! -z "${append_text_file}" ]; then
+		# Add the placeholder text
+
+		extra_space=$(echo "$text_transcription" | jq '.[] | select( .type == "coplas" ).flags == "extra-space"')
+		if [ "$extra_space" == "true" ]; then
+			XSLT=coplas-placeholder-long.xsl
+		else
+			XSLT=coplas-placeholder.xsl
+		fi
+		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:tmp2.mei -xsl:$XSLT -o:tmp3.mei
+		mv tmp3.mei final.mei
+		sh mei_to_pdf.sh final.mei music.pdf > /dev/null
+		# Locate the placeholder in the resulting pdf and delete it
+		pages_and_offset=`python find_and_remove_place_holder.py music.pdf`
+		page=`echo $pages_and_offset | cut -f1 -d:`
+		offset=`echo $pages_and_offset | cut -f2 -d:`
+		pages=`echo $pages_and_offset | cut -f3 -d:`
+
+		# Get the text to render after Skiping first stanza
+       		starting_line=`grep -n "^$" "$append_text_file" | cut -f1 -d: | head -1`
+		verses=$(tail -n +$(($starting_line + 1)) $append_text_file)
+
+		# Build and render a pdf with the coplas placed at the placeholder vertical position
+		python build_verses_overlay.py "$offset" "$verses" > stanzas.tex
+		pdflatex stanzas.tex > /dev/null
+
+		# Extract the page from the score pdf where we want to overlay the pdf with the coplas 
+		pdftk music.pdf cat $page output music_page_to_overlay.pdf > /dev/null
+
+		# Do the overlay operation
+		pdftk music_page_to_overlay.pdf background stanzas.pdf output music_with_stanzas.pdf > /dev/null
+
+		# Build back the final music pdf
+		if [ $page == 1 ]; then
+			RANGE="B"
+			if [ $pages -gt 2 ]; then
+				RANGE+=" A2-end"
+			elif [ $pages -gt 1 ]; then
+				RANGE+=" A2"
+			fi
+		elif [ $page == 2 ]; then
+			RANGE="A1 B"
+			if [ $pages -gt 3 ]; then
+				RANGE+=" A3-end"
+			elif [ $pages -gt 2 ]; then
+				RANGE+=" A3"
+			fi
+		elif [ $pages == $page ]; then
+			RANGE="A1-$(($page - 1)) B"
+		else
+			RANGE="A1-$(($page - 1)) B A$(($page + 1))"
+			if [ $pages -gt $(($page + 1)) ]; then
+				RANG+="-end"
+			fi
+		fi
+
+
+		pdftk A=music.pdf B=music_with_stanzas.pdf cat $RANGE output music-updated.pdf > /dev/null
+		mv music-updated.pdf music.pdf
+	else
+		mv tmp2.mei final.mei
+		sh mei_to_pdf.sh final.mei music.pdf > /dev/null
+	fi
+
+	echo "\\section*{\centering\LARGE{Edición musical}}"
+	if [ -f $music_comments ]; then
+		cat $music_comments
+	fi
+	echo "\\includepdf[pages=-]{music.pdf}"
 }
 
 function get_images() {
@@ -212,21 +272,6 @@ function get_facsimil() {
 	get_images G "$G" "Facsimil guión"
 }
 
-function get_mei_link() {
-	local meifile="$1"
-
-	rev=`git rev-parse HEAD`
-	echo "$BASE_URL/$rev/$meifile"
-}
-
-function get_mei_name() {
-	local meifile="$1"
-
-	basename "$meifile" | sed -e  's/_/\\_/g'
-}
-
-
-
 
 
 function generate_tono() {
@@ -240,18 +285,19 @@ function generate_tono() {
 	S2=$(echo $json | jq '.s2_pages | join(" ")' -r)
 	T=$(echo $json | jq '.t_pages | join(" ")' -r)
 	G=$(echo $json | jq '.g_pages | join(" ")' -r)
-	intro=$(echo $json | jq '.introduction' -r)
+	intro=$(echo $json | jq '.introduction | select (.!=null)' -r)
 	poet=$(echo $json | jq '.text_author' -r)
 	composer=$(echo $json |jq '.music_author' -r)
 	title=$(echo $json | jq '.title' -r)
-	text_transcription=$(echo $json | jq '.text_transcription' -r)
-	text_comments=$dir/$(echo $json |jq '.text_comments_file' -r)
-	if [ "$USE_MEI" = "1" ]; then
-		music_transcription=$dir/$(echo $json |jq '.mei_file' -r)
+	text_transcription=$(echo $json | jq '.text_transcription | select (.!=null)' -r)
+	text_comments=$dir/$(echo $json |jq '.text_comments_file | select (.!=null)' -r)
+	music_file=$(echo $json |jq '.mei_file | select (.!=null)' -r)
+	if [ ! -z $music_file ] && [ -f $dir/$music_file ]; then
+		music_transcription="$dir/$music_file"
 	else
-		music_transcription=$dir/$(echo $json |jq '.musicxml_file' -r)
+		music_transcription=""
 	fi
-	music_comments=$dir/$(echo $json |jq '.music_comments_file' -r)
+	music_comments=$dir/$(echo $json |jq '.music_comments_file | select (.!=null)' -r)
 
 	if [ -n "$poet" ]; then
 		text="$poet"
@@ -272,14 +318,8 @@ function generate_tono() {
 		echo "\\def\\prerelease{true}" >> values.tex
 	fi
 
-	meilink=`get_mei_link  "$music_transcription"`
-	meiname=`get_mei_name  "$music_transcription"`
-	echo "\\def\\mymeilink{$meilink}" >> values.tex
-	echo "\\def\\mymeiname{$meiname}" >> values.tex
-	#echo "\\def\\mymeiname{https://google.com/65_-_Del_silencio_de_este_valle.mei/}" >> values.tex
-
 	get_init > tmp.tex
-	if [ "$intro" != "null" ]; then 
+	if [ ! -z "$intro" ]; then 
 		echo "\\section*{\\centering\\LARGE{Introducción}}" >> tmp.tex
 		cat "${dir}/${intro}" >> tmp.tex
 	fi
@@ -295,16 +335,21 @@ function generate_tono() {
 	echo "\\end{document}" >> tmp.tex
 
 	mkdir -p output
-	if [ "$USE_MEI" = "1" ]; then
+
+	pdflatex -interaction=batchmode tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
+	pdflatex tmp.tex 
+
+	if [ -f final.mei ]; then
 		cp final.mei "output/${TONO} - ${title}.mei"
 		echo "MEI score: output/${TONO} - ${title}.mei"
+		pdftk tmp.pdf attach_files "output/${TONO} - ${title}.mei" to_page end  output "output/${TONO} - ${title}.pdf"
+	else 
+		mv tmp.pdf "output/${TONO} - ${title}.pdf"
 	fi
 
-	#pdflatex -interaction=batchmode tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
-	pdflatex  tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
 	echo "PDF file: output/${TONO} - ${title}.pdf"
-
-	#rm -f tmp.* facsimil.tex values.tex music.pdf tmp-with-header.mei
+	
+	rm -f tmp.* facsimil.tex values.tex music.pdf tmp-with-header.mei
 }
 
 if [[ $# -eq 1 ]]; then
