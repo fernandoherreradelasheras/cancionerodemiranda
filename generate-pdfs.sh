@@ -119,7 +119,7 @@ function get_text_part() {
 
 
 	if [ -f $text_comments ]; then
-		echo "\\section*{\centering\Large{Notas al texto poético}}"
+		echo "\\subsection*{Notas al texto poético}"
 		cat $text_comments
 	fi
 }
@@ -153,6 +153,7 @@ function get_music_part() {
 	local order="$6"
 	local poet="$7"
 	local composer="$8"
+	local mei_unit="$9"
 
 	rm -f music.pdf
 	if [ -z $music_transcription ]; then
@@ -184,7 +185,12 @@ function get_music_part() {
 		fi
 		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:tmp2.mei -xsl:$XSLT -o:tmp3.mei
 		mv tmp3.mei final.mei
-		sh mei_to_pdf.sh final.mei music.pdf > /dev/null
+		if [ ! -z $mei_unit ]; then
+			MEI_UNIT=$mei_unit
+		else
+			MEI_UNIT=8.0
+		fi
+		sh mei_to_pdf.sh $MEI_UNIT final.mei music.pdf > /dev/null
 		# Locate the placeholder in the resulting pdf and delete it
 		pages_and_offset=`python find_and_remove_place_holder.py music.pdf`
 		page=`echo $pages_and_offset | cut -f1 -d:`
@@ -237,7 +243,10 @@ function get_music_part() {
 		sh mei_to_pdf.sh final.mei music.pdf > /dev/null
 	fi
 
-	echo "\\section*{\centering\LARGE{Edición musical}}"
+	echo "\\section*{Edición musical}"
+	if [ $INDIVIDUAL = "true" ]; then
+		    echo "\\input{criterios-musicales.tex}" 
+	fi
 	if [ -f $music_comments ]; then
 		cat $music_comments
 	fi
@@ -297,6 +306,7 @@ function generate_tono() {
 	else
 		music_transcription=""
 	fi
+	music_unit=$(echo $json |jq '.mei_unit | select (.!=null)' -r)
 	music_comments=$dir/$(echo $json |jq '.music_comments_file | select (.!=null)' -r)
 
 	if [ -n "$poet" ]; then
@@ -324,7 +334,7 @@ function generate_tono() {
 		cat "${dir}/${intro}" >> tmp.tex
 	fi
 	get_text_part "$dir" "$text_transcription" $text_comments >> tmp.tex
-	get_music_part "$dir" "$music_transcription" "$text_transcription" "$music_comments" "$title" "$TONO" "$text" "$music" >> tmp.tex
+	get_music_part "$dir" "$music_transcription" "$text_transcription" "$music_comments" "$title" "$TONO" "$text" "$music" "$music_unit" >> tmp.tex
 
 	get_facsimil "$S1" "$S2" "$T" "$G" >> facsimil.tex
 	echo "\\input{facsimil.tex}" >> tmp.tex
@@ -352,6 +362,9 @@ function generate_tono() {
 	rm -f tmp.* facsimil.tex values.tex music.pdf tmp-with-header.mei
 }
 
+
+INDIVIDUAL=true
+
 if [[ $# -eq 1 ]]; then
 	if [ -d tonos/"$1"* ]; then
 		generate_tono tonos/"$1"* $1
@@ -365,3 +378,5 @@ else
 		generate_tono "$dir" $count
 	done
 fi
+
+#TODO: If not individual, merge all pdfs (and make cover additiong dependant on that)
