@@ -160,6 +160,12 @@ function get_music_part() {
 		return
 	fi
 
+	if [ ! -z $mei_unit ]; then
+		MEI_UNIT=$mei_unit
+	else
+		MEI_UNIT=8.0
+	fi
+
 	# Fix mei exported from musescore
 	cat "$music_transcription" | sed -e 's/mei-basic/mei-all/g' | sed -e 's/5\.0+basic/5.0/g' | xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -s "//mei:score/mei:scoreDef" -t elem -n "pgHead" > tmp1.mei
 
@@ -185,11 +191,6 @@ function get_music_part() {
 		fi
 		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:tmp2.mei -xsl:$XSLT -o:tmp3.mei
 		mv tmp3.mei final.mei
-		if [ ! -z $mei_unit ]; then
-			MEI_UNIT=$mei_unit
-		else
-			MEI_UNIT=8.0
-		fi
 		sh ./mei_to_pdf.sh $MEI_UNIT final.mei music.pdf > /dev/null
 		# Locate the placeholder in the resulting pdf and delete it
 		pages_and_offset=`python find_and_remove_place_holder.py music.pdf`
@@ -240,7 +241,7 @@ function get_music_part() {
 		mv music-updated.pdf music.pdf
 	else
 		mv tmp2.mei final.mei
-		sh mei_to_pdf.sh final.mei music.pdf > /dev/null
+		sh mei_to_pdf.sh $MEI_UNIT final.mei music.pdf > /dev/null
 	fi
 
 	echo "\\section*{Edición musical}"
