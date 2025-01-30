@@ -1,8 +1,7 @@
 
 
 import 'https://editor.verovio.org/javascript/app/verovio-app.js';
-import { PDFWorkerProxy, VerovioWorkerProxy, ValidatorWorkerProxy } from 'https://editor.verovio.org/dist/worker-proxy.js'
-import { PDFGenerator } from 'https://editor.verovio.org/dist/pdf-generator.js'
+
 
 const repoRoot = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/";
 
@@ -164,6 +163,17 @@ async function getTonoData(path) {
         });
 }
 
+function unTex(line) {
+   
+    line = line.replaceAll( /\\subsection\*{([^}]+)}/g, "<br/><h3>$1</h3>");
+    line = line.replaceAll( /\\textbf{([^}]+)}/g, "<strong>$1</strong>");
+    line = line.replaceAll( /\\textit{([^}]+)}/g, "<em>$1</em>");
+    line = line.replaceAll( /\\\\/g, "<br/>");
+    line = line.replaceAll( /\\noindent/g, "");
+
+    return line;
+}
+
 async function populateLatex(parent, path) {
     let url = repoRoot + "tonos/" + dir + "/" + path;
     let text = await fetch(url).then(function (response) {
@@ -171,14 +181,16 @@ async function populateLatex(parent, path) {
     });
 
     let p = document.createElement("p");
+
+    var html = "";
     for (let line of text.split('\n')) {
-        let text = document.createTextNode(line);
-        p.appendChild(text);
-        let br = document.createElement("br");
-        p.appendChild(br);
+        html += unTex(line);
     }
+    p.innerHTML = html;        
     parent.appendChild(p);
-}   
+}
+
+
 
 
 
@@ -378,18 +390,6 @@ $( document ).ready(async function() {
             pdfLink.setAttribute("href", pdfs[tonoIdx]);
     });
     
-
-
-
-
-
-
-
-
-
-
-
-     
 
 
 });
