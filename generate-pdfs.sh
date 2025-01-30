@@ -190,7 +190,7 @@ function get_music_part() {
 		else
 			MEI_UNIT=8.0
 		fi
-		sh mei_to_pdf.sh $MEI_UNIT final.mei music.pdf > /dev/null
+		sh ./mei_to_pdf.sh $MEI_UNIT final.mei music.pdf > /dev/null
 		# Locate the placeholder in the resulting pdf and delete it
 		pages_and_offset=`python find_and_remove_place_holder.py music.pdf`
 		page=`echo $pages_and_offset | cut -f1 -d:`
