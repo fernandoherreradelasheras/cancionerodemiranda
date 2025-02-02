@@ -29,7 +29,7 @@ function get_init() {
 	#echo "\\documentclass[titlepage,hidelinks]{article}"
 	echo "\\documentclass[12pt, a4paper, twoside,hidelinks]{article}"
 	echo "\\usepackage{iberianpolyphony}"
-	echo "\\addmanuscriptwatermark"
+	echo "\\addcovermanuscriptbackground"
 
 	echo "\\input{header.tex}"
 	echo "\\begin{document}"
@@ -70,6 +70,13 @@ function get_status() {
 	echo "\\def\\mymusicvalidation{$music_validation}"
 	echo "\\def\\mypoeticstudy{$poetic_study}"
 	echo "\\def\\mymusicalstudy{$musical_study}"
+
+	for status in "$text_transcription" "$text_validation" "$text_proof_reading" "$music_proof_reading" "$music_validation" "$poetic_study" "$musical_study"; do
+		if [ "$status" != "completed" ]; then
+			echo "\\DraftwatermarkOptions{stamp=true}" 
+			break
+		fi
+	done
 }
 
 function txt_to_tex() {
@@ -109,7 +116,11 @@ function get_text_part() {
 		for i in `seq 0 $(($length - 1))`; do
 			type=$(echo "$text_transcription" | jq ".[$i].type" -r)
 			file=$(echo "$text_transcription" | jq ".[$i].file" -r)
-			echo -n "\\flagverse{$type} " 
+			if [ $type == "estribillo" ]; then
+				echo "\\flagverse{\\textnormal{Estribillo}}" 
+			elif [ $type == "coplas" ]; then
+				echo "\\flagverse{\\textnormal{Coplas}}" 
+			fi
 			txt_to_tex "$dir/$file"
 		done
 	fi
@@ -232,7 +243,7 @@ function get_music_part() {
 		else
 			RANGE="A1-$(($page - 1)) B A$(($page + 1))"
 			if [ $pages -gt $(($page + 1)) ]; then
-				RANG+="-end"
+				RANGE+="-end"
 			fi
 		fi
 
