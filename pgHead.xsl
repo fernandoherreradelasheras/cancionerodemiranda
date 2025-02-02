@@ -44,69 +44,32 @@
   </xsl:attribute-set>
 
 
-
   <xsl:template match="mei:score/mei:scoreDef/mei:pgHead">
     <xsl:element name="pgHead" use-attribute-sets="pghead-first">
-                     <app>
-                        <lem>
-                           <rend halign="center" valign="top">
-                              <rend type="title" fontsize="x-large"><xsl:value-of select="$title"/></rend>
-                              <lb/>
-                              <rend fontsize="large"> </rend>
-                              <lb/>
-                              <rend type="subtitle" fontsize="large"><xsl:value-of select="$subtitle"/></rend>
-                              <lb/>
-                              <rend fontsize="large"> </rend>
-                              <lb/>
-                              <rend fontsize="large"> </rend>
-                              <lb/>
-                           </rend>
-                           <rend halign="left" valign="bottom">
-                              <rend type="poet">Texto: <xsl:value-of select="$poet"/></rend>
-                           </rend>
-                           <rend halign="right" valign="bottom">
-                              <rend type="composer">Música: <xsl:value-of select="$composer"/></rend>
-                           </rend>
-                        </lem>
-                        <rdg label="web-pghead">
-                           <rend halign="center" valign="top">
-                              <rend type="title" fontsize="large"><xsl:value-of select="$title"/></rend>
-                              <lb/>
-                              <rend type="subtitle" fontsize="large"><xsl:value-of select="$subtitle"/></rend>
-                           </rend>
-                           <rend halign="left" valign="top">
-                              <rend type="poet">Texto: <xsl:value-of select="$poet"/></rend>
-                           </rend>
-                           <rend halign="right" valign="top">
-                              <rend type="composer">Música: <xsl:value-of select="$composer"/></rend>
-                           </rend>
-                        </rdg>
-                     </app>
+               <rend halign="center" valign="top">
+                  <rend type="title" fontsize="x-large"><xsl:value-of select="$title"/></rend>
+                  <lb/>
+                  <rend fontsize="large"> </rend>
+                  <lb/>
+                  <rend type="subtitle" fontsize="large"><xsl:value-of select="$subtitle"/></rend>
+                  <lb/>
+                  <rend fontsize="large"> </rend>
+                  <lb/>
+                  <rend fontsize="large"> </rend>
+                  <lb/>
+               </rend>
+               <rend halign="left" valign="bottom">
+                  <rend type="poet">Texto: <xsl:value-of select="$poet"/></rend>
+               </rend>
+               <rend halign="right" valign="bottom">
+                  <rend type="composer">Música: <xsl:value-of select="$composer"/></rend>
+               </rend>
             </xsl:element>
             <xsl:element name="pgHead" use-attribute-sets="pghead-all">
-                     <app>
-                        <lem>
-                           <rend halign="left" fontsize="normal"><xsl:value-of select="$title"/></rend>
-                        </lem>
-                        <rdg label="web-pghead"/>
-                     </app>
-
+               <rend halign="left" fontsize="normal"><xsl:value-of select="$title"/></rend>
             </xsl:element>
             <xsl:element name="pgFoot" use-attribute-sets="pghead-all">
-                     <rend halign="center" fontsize="small">© 2025 https://humanoydivino.com licensed under CC BY-SA 4.0</rend>
-            </xsl:element>
-            <xsl:element name="pgHead">
-                     <rend halign="center" valign="top">
-                        <rend type="title" fontsize="x-large"><xsl:value-of select="$title"/></rend>
-                        <lb />
-                        <rend type="subtitle" fontsize="large"><xsl:value-of select="$subtitle"/></rend>
-                     </rend>
-                     <rend halign="left" valign="bottom">
-                        <rend type="composer">Texto: <xsl:value-of select="$poet"/></rend>
-                     </rend>
-                     <rend halign="right" valign="bottom">
-                        <rend type="composer">Música: <xsl:value-of select="$composer"/></rend>
-                     </rend>
+               <rend halign="center" fontsize="small">© 2025 https://humanoydivino.com licensed under CC BY-SA 4.0</rend>
             </xsl:element>
   </xsl:template>
 

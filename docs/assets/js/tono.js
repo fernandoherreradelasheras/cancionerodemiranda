@@ -190,6 +190,31 @@ async function populateLatex(parent, path) {
     parent.appendChild(p);
 }
 
+function updateMeiTitle(text, tonoData) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, "text/xml");
+    let titleStmt = doc.getElementsByTagName("titleStmt")[0];
+
+    while (titleStmt.lastElementChild) {
+        titleStmt.removeChild(titleStmt.lastElementChild);
+    }
+
+    let mainTitle=doc.createElement("title");
+    mainTitle.setAttribute("type", "main");
+    let titleText=doc.createTextNode(tonoData['title']);
+    mainTitle.appendChild(titleText);
+    titleStmt.appendChild(mainTitle);
+
+    let subTitle=doc.createElement("title");
+    subTitle.setAttribute("type", "subordinate");
+    let subTitleText=doc.createTextNode(`Texto: ${tonoData['text_author']} Música: ${tonoData['music_author']}`);
+    subTitle.appendChild(subTitleText);
+    titleStmt.appendChild(subTitle);
+
+    const serializer = new XMLSerializer();
+    return serializer.serializeToString(doc);
+}
+
 
 
 
@@ -291,7 +316,8 @@ $( document ).ready(async function() {
                     return response.text();
                 })
                 .then(function (text) {
-                    verovioApp.loadData(text, data["mei_file"]);           
+                    const newMei = updateMeiTitle(text, data);
+                    verovioApp.loadData(newMei, data["mei_file"]);
                 });
             }, 500);
         }
