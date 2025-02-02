@@ -45,7 +45,7 @@
 
 
 
-   <xsl:template match="mei:pgHead">
+  <xsl:template match="mei:score/mei:scoreDef/mei:pgHead">
     <xsl:element name="pgHead" use-attribute-sets="pghead-first">
                      <app>
                         <lem>

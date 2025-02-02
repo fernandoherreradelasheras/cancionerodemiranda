@@ -29,7 +29,7 @@
 \definecolor{iberianGold}{HTML}{896d00} % Gold accent
 
 % Page Background Watermark (optional)
-\newcommand{\addmanuscriptwatermark}{
+\newcommand{\addcovermanuscriptbackground}{
     \AddToShipoutPictureBG*{%
         \AtPageLowerLeft{%
             \includegraphics[width=\paperwidth,height=\paperheight]{manuscript_background.png} % Background image
@@ -133,6 +133,10 @@
 
 % Todo command
 \newcommand\todo[1]{\colorbox{yellow!30}{\textbf{TODO}: #1}}
+
+\usepackage[firstpageonly=false,fontsize=0.18\paperwidth,stamp=false]{draftwatermark} 
+\SetWatermarkText{\tikz{\node[opacity=0.2]{BORRADOR};}}
+\SetWatermarkLightness{0.5}
 
 
 % Bibliography (if needed)
