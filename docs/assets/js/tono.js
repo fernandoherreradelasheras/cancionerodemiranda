@@ -284,6 +284,7 @@ $( document ).ready(async function() {
             verovioDiv.style.height = `${vh - offsetTop - 20}px`;
             setTimeout(function() {
                 verovioApp = new Verovio.App(verovioDiv, options);
+                verovioApp.fileStack.reset();
 
                 fetch(meiUrl)
                 .then(function (response) {
