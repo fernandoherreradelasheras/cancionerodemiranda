@@ -223,7 +223,7 @@ function updateMeiTitle(text, tonoData) {
 $( document ).ready(async function() {		    
     
 
-    const pdfs = await fetch("./pdfs-release-v0.0.2.json")
+    const pdfs = await fetch("./assets/json/pdfs-release-latest.json")
         .then(function (response) {
             return response.json();
         })
