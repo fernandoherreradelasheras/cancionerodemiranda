@@ -7,6 +7,10 @@ MUSE=MuseScore-Studio.AppImage
 PRE_RELEASE=1
 BASE_URL="https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda"
 
+function log() {
+	echo "$1" >> $TMP/debug.log
+}
+
 function add_image() {
 	local dir=$1
 	local page=$2
@@ -49,6 +53,7 @@ function get_titles() {
 
 function get_version() {
 	local rev_count=$(git rev-list --count main -- "$@")
+
 	echo "\\def\\myversion{0.${rev_count}}" 
 }
 
@@ -109,7 +114,7 @@ function get_text_part() {
 	echo "\\begin{verse}[\\versewidth]"
 	echo "\\poemlines{5}"
 	length=$(echo "$text_transcription" | jq 'length' -r)
-	if [ "$length" -eq 1 ]; then
+	if [ ! -z "$length" ] && [ "$length" -eq 1 ]; then
 		file=$(echo "$text_transcription" | jq '.[0].file' -r)
 		txt_to_tex "$dir/$file"
 	else
@@ -135,27 +140,44 @@ function get_text_part() {
 	fi
 }
 
-should_append_text() {
-        local dir="$1"
-        local text_transcription="$2"
-	if [ -z "$text_transcription" ]; then
+function count_lines_in_overlay() {
+        local file="$1"
+	local section="$2"
+	if [ ! -f "$file" ]; then
 		return
 	fi
-        length=$(echo "$text_transcription" | jq 'length' -r)
-        if [ "$length" -eq 1 ]; then
-                file=$(echo "$text_transcription" | jq '.[0].file' -r)
-        else
-                file=$(echo "$text_transcription" | jq '.[] |select(.type=="coplas").file' -r)
-		skip=$(echo "$text_transcription" | jq '.[] |select( .type == "coplas" ).flags == "skip"')
-		if [ "$skip" = "true" ]; then
-			return
-		fi
-        fi
 
-        extra_stances=`grep -c "^$" "$dir/$file"`
-        if [ $extra_stances -gt 0 ]; then
-                echo "$dir/$file"
-        fi
+	log "Checking lines for section $section in file $file" >> $TMP/debug.log
+
+	ANNOTATIONS_COUNT=$(grep  "^%append_to_score_section=" "$file"  | wc -l)
+	if [ $ANNOTATIONS_COUNT -gt 0 ]; then
+		# Get all paragraphs with a annotation matching our section. Change empty line x2
+		sed -e '/./{H;$!d;}' -e "x;/\n%append_to_score_section=${section}\n/"'!'"d;s/^\n%append_to_score_section=${section}\n/\n\n/" "$file" | wc -l
+	else 
+		# If no annotations, coplas section gets all after first one: Remove comments, skip up to first empty line and then newlines x2
+		grep  -v "^%"  "$file" | sed -n '/^$/,$p'  | sed -e 's/^$/\n/' | wc -l
+	fi
+}
+
+function insert_title_in_mei() {
+	local mei_file="$1"
+	local section="$2"
+
+	local heading_section="${section}_heading"
+	local title=$(echo "   ${section^}" | tr "_" " " )
+
+	local path="//mei:section[@label=\"${section}\"]"
+	xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -i "$path"  -t elem -n "section label=\"${heading_section}\"" "$mei_file"
+
+	path="//mei:section[@label=\"${heading_section}\"]"
+	xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -s "$path" -t elem -n "div type=\"heading\"" "$mei_file" 
+
+	path+="/mei:div"
+	xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -s "$path" -t elem -n "rend" -v "$title" "$mei_file"
+
+	path+="/mei:rend"
+	xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -i "$path" -t attr -n "fontsize" -v "large" "$mei_file"
+	xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -i "$path" -t attr -n "fontweight" -v "bold" "$mei_file"
 }
 
 
@@ -170,8 +192,7 @@ function get_music_part() {
 	local composer="$8"
 	local mei_unit="$9"
 
-	rm -f music.pdf
-	if [ -z $music_transcription ]; then
+	if [ -z "$music_transcription" ]; then
 		return
 	fi
 
@@ -182,50 +203,95 @@ function get_music_part() {
 	fi
 
 	# Fix mei exported from musescore
-	cat "$music_transcription" | sed -e 's/mei-basic/mei-all/g' | sed -e 's/5\.0+basic/5.0/g' | xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -s "//mei:score/mei:scoreDef" -t elem -n "pgHead" > tmp1.mei
+	cat "$music_transcription" | sed -e 's/mei-basic/mei-all/g' | sed -e 's/5\.0+basic/5.0/g' | xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -s "//mei:score/mei:scoreDef" -t elem -n "pgHead" > $TMP/tmp1.mei
 
 	# Generate header from metadata using xslt
 	ordinal=$(echo $order | sed -e 's/^0*\([0-9]*\)/\1º/')
 	if [ "$poet" = "Anónimo" ]; then meipoet="[Anónimo]"; else meipoet="$poet"; fi
 	if [ "$composer" = "Anónimo" ]; then meicomposer="[Anónimo]"; else meicomposer="$composer"; fi
-	xsltproc --stringparam title "$title" --stringparam subtitle "$ordinal Tono del Cancionero de Miranda" --stringparam poet "$meipoet" --stringparam composer "$meicomposer" pgHead.xsl tmp1.mei > tmp2.mei
+	xsltproc --stringparam title "$title" --stringparam subtitle "$ordinal Tono del Cancionero de Miranda" --stringparam poet "$meipoet" --stringparam composer "$meicomposer" pgHead.xsl $TMP/tmp1.mei > $TMP/tmp2.mei
+
+	total_sections=$(echo "$text_transcription" | jq -r ". | length")
+	coplas_filename=$(echo "$text_transcription" | jq -r ".[] | select( .type == \"coplas\" ).file")
+	single_filename=$(echo "$text_transcription" | jq -r ".[] | select( .type == \"single\" ).file")
+	estribillo_filename=$(echo "$text_transcription" | jq -r ".[] | select( .type == \"estribillo\" ).file")
+	if [ ! -z "$coplas_filename" ]; then
+		extra_coplas="$dir/$coplas_filename"
+	elif [ ! -z "$single_filename" ]; then
+		extra_coplas="$dir/$single_filename"
+	fi
+
+	score_sections_to_append=$(grep "^%append_to_score_section=" ${extra_coplas} | cut -d= -f2 | sort | uniq)
+	if [ -z "$score_sections_to_append" ]; then
+		score_sections_to_append=('coplas')
+	fi
 
 
-	# If there are more coplas, append a <div> element as a placeholder in order to
-	# overlay at that place another pdf with the text. The current text rendering offerted
-	# by verorio is not enough to present text in columns with proper alignement.
-	append_text_file=$(should_append_text "$dir" "$text_transcription")
-	if [ ! -z "${append_text_file}" ]; then
-		# Add the placeholder text
-
-		extra_space=$(echo "$text_transcription" | jq '.[] | select( .type == "coplas" ).flags == "extra-space"')
-		if [ "$extra_space" == "true" ]; then
+	log "sections: $score_sections_to_append"
+	for section in ${score_sections_to_append[@]}; do 
+		if [ "$section" = "none" ]; then
+			continue
+		fi
+		log "Checking section: $section"
+		lines=$(count_lines_in_overlay "$extra_coplas" "$section")
+		log "Lines in section $section : $lines"
+		# TODO: instead of using this aproximation we whould  fixed sized we sould measure the size of
+		#       the rendered text and expand the placeholder accorfing to it
+		if [ $lines -gt 16 ]; then
 			XSLT=coplas-placeholder-long.xsl
 		else
 			XSLT=coplas-placeholder.xsl
 		fi
-		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:tmp2.mei -xsl:$XSLT -o:tmp3.mei
-		mv tmp3.mei final.mei
-		sh ./mei_to_pdf.sh $MEI_UNIT final.mei music.pdf > /dev/null
-		# Locate the placeholder in the resulting pdf and delete it
-		pages_and_offset=`python find_and_remove_place_holder.py music.pdf`
+
+		# section with a title preceding the music only if there are more sections
+		if [ $total_sections -gt 1 ]; then
+			insert_title_in_mei $TMP/tmp2.mei "$section"
+		fi
+
+		# section for the text with the remaining coplas after the music
+		injected_section="${section}_extra_text"
+		log "new section to inject: $new_section"
+		xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -a "//mei:section[@label=\"$section\"]" -t elem -n "section label=\"${injected_section}\"" $TMP/tmp2.mei
+		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:$TMP/tmp2.mei -xsl:$XSLT -o:$TMP/tmp3.mei "section=$injected_section"
+		mv $TMP/tmp3.mei $TMP/tmp2.mei
+	done
+
+
+	# Add always the estribillo title
+	if [ ! -z "$estribillo_filename" ]; then
+		insert_title_in_mei $TMP/tmp2.mei "estribillo"
+	fi
+
+	# Render the mei file with the placeholders
+	mv $TMP/tmp2.mei $TMP/final.mei
+	sh ./mei_to_pdf.sh $MEI_UNIT $TMP/final.mei $TMP/music.pdf > /dev/null
+
+
+	# Now inject the text in any placer holder we might have added
+	for section in ${score_sections_to_append[@]}; do 
+		if [ "$section" = "none" ]; then
+			continue
+		fi
+		# Locate the placeholder in the score pdf and delete it
+		injected_section="${section}_extra_text"
+		pages_and_offset=`python find_and_remove_place_holder.py "$injected_section" $TMP/music.pdf`
+
+		log "rendering text for section $section : $pages_and_offset"
+
 		page=`echo $pages_and_offset | cut -f1 -d:`
 		offset=`echo $pages_and_offset | cut -f2 -d:`
 		pages=`echo $pages_and_offset | cut -f3 -d:`
 
-		# Get the text to render after Skiping first stanza
-       		starting_line=`grep -n "^$" "$append_text_file" | cut -f1 -d: | head -1`
-		verses=$(tail -n +$(($starting_line + 1)) $append_text_file)
-
-		# Build and render a pdf with the coplas placed at the placeholder vertical position
-		python build_verses_overlay.py "$offset" "$verses" > stanzas.tex
-		pdflatex stanzas.tex > /dev/null
+		# Render a pdf with the text rendered at the position where the placeholder was in the score page
+		outputname="stanzas_${section}"
+		python build_verses_overlay.py "$offset" "$extra_coplas" "$section"  > "$TMP/${outputname}.tex"
+		pdflatex  -interaction=batchmode -output-directory=$TMP "$TMP/${outputname}.tex" > /dev/null
 
 		# Extract the page from the score pdf where we want to overlay the pdf with the coplas 
-		pdftk music.pdf cat $page output music_page_to_overlay.pdf > /dev/null
+		pdftk $TMP/music.pdf cat $page output $TMP/music_page_to_overlay.pdf > /dev/null
 
 		# Do the overlay operation
-		pdftk music_page_to_overlay.pdf background stanzas.pdf output music_with_stanzas.pdf > /dev/null
+		pdftk $TMP/music_page_to_overlay.pdf background "$TMP/${outputname}.pdf" output $TMP/music_with_stanzas.pdf > /dev/null
 
 		# Build back the final music pdf
 		if [ $page == 1 ]; then
@@ -251,13 +317,10 @@ function get_music_part() {
 			fi
 		fi
 
+		pdftk A=$TMP/music.pdf B=$TMP/music_with_stanzas.pdf cat $RANGE output $TMP/music-updated.pdf > /dev/null
+		mv $TMP/music-updated.pdf $TMP/music.pdf
+	done
 
-		pdftk A=music.pdf B=music_with_stanzas.pdf cat $RANGE output music-updated.pdf > /dev/null
-		mv music-updated.pdf music.pdf
-	else
-		mv tmp2.mei final.mei
-		sh mei_to_pdf.sh $MEI_UNIT final.mei music.pdf > /dev/null
-	fi
 
 	echo "\\section*{Edición musical}"
 	if [ $INDIVIDUAL = "true" ]; then
@@ -303,7 +366,6 @@ function generate_tono() {
 	local dir="$1"
 	local count=$2
 
-	rm -f tmp.tex facsimil.tex values.tex final.mei music.pdf tmp1.mei tmp2.mei tmp3.mei
 
 	json=$(cat $dir/def.json)
 	S1=$(echo $json | jq '.s1_pages | join(" ")' -r)
@@ -317,7 +379,7 @@ function generate_tono() {
 	text_transcription=$(echo $json | jq '.text_transcription | select (.!=null)' -r)
 	text_comments=$dir/$(echo $json |jq '.text_comments_file | select (.!=null)' -r)
 	music_file=$(echo $json |jq '.mei_file | select (.!=null)' -r)
-	if [ ! -z $music_file ] && [ -f $dir/$music_file ]; then
+	if [ ! -z "$music_file" ] && [ -f "$dir/$music_file" ]; then
 		music_transcription="$dir/$music_file"
 	else
 		music_transcription=""
@@ -337,53 +399,65 @@ function generate_tono() {
 	fi
 	printf -v TONO "%02.0f" "$count"
 
-	get_titles $count "$music" "$text" > values.tex
-	get_version "$text_transcription" $text_comments $music_transcription $music_comments >> values.tex
-	get_status "$json" >> values.tex
+	get_titles $count "$music" "$text" > $TMP/values.tex
+
+	readarray -t gitFiles <<< $(echo "$text_transcription" | jq -r "\"$dir/\" + .[].file")
+	if [ -f "$text_comments" ];
+		then gitFiles+=($text_comments)
+	fi
+	if [ -f "$music_transcription" ];
+		then gitFiles+=($music_transcription)
+	fi
+	if [ -f "$music_comments" ];
+		then gitFiles+=($music_comments)
+	fi
+	get_version  "${gitFiles[@]}" >> $TMP/values.tex
+
+	get_status "$json" >> $TMP/values.tex
 	if [[ ! -z $PRE_RELEASE ]]; then
-		echo "\\def\\prerelease{true}" >> values.tex
+		echo "\\def\\prerelease{true}" >> $TMP/values.tex
 	fi
 
-	get_init > tmp.tex
+	get_init > $TMP/tmp.tex
 	if [ ! -z "$intro" ]; then 
-		echo "\\section*{\\centering\\LARGE{Introducción}}" >> tmp.tex
-		cat "${dir}/${intro}" >> tmp.tex
+		echo "\\section*{\\centering\\LARGE{Introducción}}" >> $TMP/tmp.tex
+		cat "${dir}/${intro}" >> $TMP/tmp.tex
 	fi
-	get_text_part "$dir" "$text_transcription" $text_comments >> tmp.tex
-	get_music_part "$dir" "$music_transcription" "$text_transcription" "$music_comments" "$title" "$TONO" "$text" "$music" "$music_unit" >> tmp.tex
+	get_text_part "$dir" "$text_transcription" $text_comments >> $TMP/tmp.tex
+	get_music_part "$dir" "$music_transcription" "$text_transcription" "$music_comments" "$title" "$TONO" "$text" "$music" "$music_unit" >> $TMP/tmp.tex
 
-	get_facsimil "$S1" "$S2" "$T" "$G" >> facsimil.tex
-	echo "\\input{facsimil.tex}" >> tmp.tex
-	echo "\\clearpage" >> tmp.tex
+	get_facsimil "$S1" "$S2" "$T" "$G" >> $TMP/facsimil.tex
+	echo "\\input{facsimil.tex}" >> $TMP/tmp.tex
+	echo "\\clearpage" >> $TMP/tmp.tex
 
-	echo "\\input{acerca.tex}" >> tmp.tex
+	echo "\\input{acerca.tex}" >> $TMP/tmp.tex
 
-	echo "\\end{document}" >> tmp.tex
+	echo "\\end{document}" >> $TMP/tmp.tex
 
 	mkdir -p output
 
-	pdflatex -interaction=batchmode tmp.tex && mv tmp.pdf "output/${TONO} - ${title}.pdf"
-	pdflatex tmp.tex 
+	pdflatex  -interaction=batchmode -output-directory=$TMP $TMP/tmp.tex && cp $TMP/tmp.pdf "output/${TONO} - ${title}.pdf"
 
-	if [ -f final.mei ]; then
-		cp final.mei "output/${TONO} - ${title}.mei"
-		echo "MEI score: output/${TONO} - ${title}.mei"
-		pdftk tmp.pdf attach_files "output/${TONO} - ${title}.mei" to_page end  output "output/${TONO} - ${title}.pdf"
+	if [ -f $TMP/final.mei ]; then
+		cp $TMP/final.mei "output/${TONO} - ${title}.mei"
+		echo "MEI score: \"output/${TONO} - ${title}.mei\""
+		pdftk $TMP/tmp.pdf attach_files "output/${TONO} - ${title}.mei" to_page end  output "output/${TONO} - ${title}.pdf"
 	else 
-		mv tmp.pdf "output/${TONO} - ${title}.pdf"
+		mv $TMP/tmp.pdf "output/${TONO} - ${title}.pdf"
 	fi
 
-	echo "PDF file: output/${TONO} - ${title}.pdf"
-	
-	rm -f tmp.* facsimil.tex values.tex music.pdf tmp-with-header.mei
+	echo "PDF file: \"output/${TONO} - ${title}.pdf\""
 }
 
 
 INDIVIDUAL=true
 
+TMP=`mktemp -d`
+
 if [[ $# -eq 1 ]]; then
 	if [ -d tonos/"$1"* ]; then
 		generate_tono tonos/"$1"* $1
+		rm -rf $TMP/* 
 	else
 		echo "Not such tono: $1"
 	fi
@@ -391,7 +465,9 @@ else
 	count=0
 	for dir in tonos/*; do
 		count=$(($count + 1))
+		echo -e "Building tono #${count} from dir $dir\n"
 		generate_tono "$dir" $count
+		rm -rf $TMP/* 
 	done
 fi
 

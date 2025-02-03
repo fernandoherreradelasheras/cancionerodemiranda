@@ -1,9 +1,12 @@
 import fitz
 import sys
 import os
+import shutil
 
-doc = fitz.open(sys.argv[1])
-search_term = "{{ TEXT PLACEHOLDER }}"
+section = sys.argv[1]
+filename = sys.argv[2]
+doc = fitz.open(filename)
+search_term = f'{{{{ %% {section} %% }}}}'
 for idx,page in enumerate(doc):
     found = page.search_for(search_term)
     if len(found) == 1:
@@ -14,4 +17,5 @@ for idx,page in enumerate(doc):
         print(f'{idx+1}:{offset}:{len(doc)}')
 
 doc.save("tmp-pdf.pdf")
-os.rename("tmp-pdf.pdf", sys.argv[1])
+
+shutil.move("tmp-pdf.pdf", filename)
