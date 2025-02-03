@@ -146,6 +146,10 @@ should_append_text() {
                 file=$(echo "$text_transcription" | jq '.[0].file' -r)
         else
                 file=$(echo "$text_transcription" | jq '.[] |select(.type=="coplas").file' -r)
+		skip=$(echo "$text_transcription" | jq '.[] |select( .type == "coplas" ).flags == "skip"')
+		if [ "$skip" = "true" ]; then
+			return
+		fi
         fi
 
         extra_stances=`grep -c "^$" "$dir/$file"`
