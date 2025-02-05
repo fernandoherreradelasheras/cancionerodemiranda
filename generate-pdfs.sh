@@ -154,10 +154,28 @@ function count_lines_in_overlay() {
 		# Get all paragraphs with a annotation matching our section. Change empty line x2
 		sed -e '/./{H;$!d;}' -e "x;/\n%append_to_score_section=${section}\n/"'!'"d;s/^\n%append_to_score_section=${section}\n/\n\n/" "$file" | wc -l
 	else 
-		# If no annotations, coplas section gets all after first one: Remove comments, skip up to first empty line and then newlines x2
-		grep  -v "^%"  "$file" | sed -n '/^$/,$p'  | sed -e 's/^$/\n/' | wc -l
+		# If no annotations, coplas section gets all after first one: Remove comments, skip up to first empty line and then remove emptylines
+		grep  -v "^%"  "$file" | sed -n '/^$/,$p'  | sed '/^$/d' | wc -l
 	fi
 }
+
+function count_stanzas() {
+        local file="$1"
+	local section="$2"
+	if [ ! -f "$file" ]; then
+		return
+	fi
+
+	ANNOTATIONS_COUNT=$(grep  "^%append_to_score_section=" "$file"  | wc -l)
+	if [ $ANNOTATIONS_COUNT -gt 0 ]; then
+		# Get all paragraphs with a annotation matching our section. Count empty lines
+		sed -e '/./{H;$!d;}' -e "x;/\n%append_to_score_section=${section}\n/"'!'"d;" "$file" | grep "^$" | wc -l
+	else
+		grep -v ^% "$file" | grep "^$" | wc -l
+	fi
+}
+
+
 
 function insert_title_in_mei() {
 	local mei_file="$1"
@@ -234,14 +252,13 @@ function get_music_part() {
 		fi
 		log "Checking section: $section"
 		lines=$(count_lines_in_overlay "$extra_coplas" "$section")
-		log "Lines in section $section : $lines"
-		# TODO: instead of using this aproximation we whould  fixed sized we sould measure the size of
-		#       the rendered text and expand the placeholder accorfing to it
-		if [ $lines -gt 16 ]; then
-			XSLT=coplas-placeholder-long.xsl
-		else
-			XSLT=coplas-placeholder.xsl
+		stanzas=$(count_stanzas "$extra_coplas" "$section")
+		cols=3
+		if [ $stanzas -eq 0 ]; then
+			continue;
 		fi
+		stanza_size=$(($lines / $stanzas))
+		printed_lines=$(( $stanza_size + ($lines - 1) / $stanza_size / $cols * $stanza_size))
 
 		# section with a title preceding the music only if there are more sections
 		if [ $total_sections -gt 1 ]; then
@@ -252,7 +269,7 @@ function get_music_part() {
 		injected_section="${section}_extra_text"
 		log "new section to inject: $new_section"
 		xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -a "//mei:section[@label=\"$section\"]" -t elem -n "section label=\"${injected_section}\"" $TMP/tmp2.mei
-		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:$TMP/tmp2.mei -xsl:$XSLT -o:$TMP/tmp3.mei "section=$injected_section"
+		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:$TMP/tmp2.mei -xsl:coplas-placeholder.xsl -o:$TMP/tmp3.mei "section=$injected_section" "lines=$printed_lines"
 		mv $TMP/tmp3.mei $TMP/tmp2.mei
 	done
 
@@ -457,7 +474,9 @@ TMP=`mktemp -d`
 if [[ $# -eq 1 ]]; then
 	if [ -d tonos/"$1"* ]; then
 		generate_tono tonos/"$1"* $1
-		rm -rf $TMP/* 
+		#rm -rf $TMP/
+		echo "${TMP}: "
+		ls -l $TMP/
 	else
 		echo "Not such tono: $1"
 	fi
