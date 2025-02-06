@@ -115,14 +115,21 @@
 			<script>
 
 
-				function appendTono(index, tono) {
+				function appendTono(index, definition) {
 					const ul = document.getElementById("lista-de-tonos");
 					const li = document.createElement("li");
-					li.setAttribute("numero", index);
+					li.setAttribute("id", `tono-${index}`);
 					const a =  document.createElement("a");
-					a.setAttribute("href", `tono.html?path=${tono["definition"]}`);
+					a.setAttribute("href", `tono.html?path=${definition}`);
 					a.classList.add("item-tono-status");
 				
+					li.appendChild(a);
+					ul.appendChild(li)
+				}
+
+				function updateTono(index, tono) {
+
+					const a =  document.querySelector(`#tono-${index} a`);
 					const text = document.createTextNode(`${index + 1}. ${tono["data"]["title"]}: `);
 					a.appendChild(text)
 
@@ -147,18 +154,17 @@
 						const text = document.createTextNode(" ");
 						a.appendChild(text);				
 					}
-
-
-					li.appendChild(a);
-					ul.appendChild(li)
 				}
 
-				async function pupulateTonos(tonos) {
+
+				function pupulateTonos(tonos) {
 					for (let i = 0; i < tonos.length; i++) {
 						const definitionPath = tonos[i]["definition"];
-						const data = await getTonoData(definitionPath);
-						tonos[i]["data"] = data;
-						appendTono(i, tonos[i]);
+						appendTono(i, definitionPath);
+						getTonoData(definitionPath).then(function(data) {
+							tonos[i]["data"] = data;
+							updateTono(i, tonos[i]);
+						});
 					}
 				}
 
