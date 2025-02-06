@@ -39,8 +39,6 @@
                 </xsl:call-template>
                 <lb/>
                 <rend fontsize="large"> </rend>
-                <lb/>
-                <rend fontsize="large"> </rend>
 	    </rend>
         </div>
     </section>
