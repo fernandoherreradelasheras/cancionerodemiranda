@@ -8,7 +8,12 @@ PRE_RELEASE=1
 BASE_URL="https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda"
 
 function log() {
-	echo "$1" >> $TMP/debug.log
+	echo "$@" >> $TMP/debug.log
+}
+
+function msg() {
+	log "$@"
+	echo "$@" 1>&2
 }
 
 function add_image() {
@@ -46,6 +51,8 @@ function get_titles() {
 
 	ordinal=$(echo $n | sed -e 's/^0*\([0-9]*\)/\1º/')
 
+	msg "Title: Tono ${ordinal}: $title"
+
 	echo "\\def\\mytitle{\\centering \\LARGE Tono ${ordinal}: $title \\\\}"
 	echo "\\def\\mymusic{$music}"
 	echo "\\def\\mytext{$text}" 
@@ -53,6 +60,8 @@ function get_titles() {
 
 function get_version() {
 	local rev_count=$(git rev-list --count main -- "$@")
+
+	msg "version based on git revisions count: 0.${rev_count}"
 
 	echo "\\def\\myversion{0.${rev_count}}" 
 }
@@ -220,6 +229,8 @@ function get_music_part() {
 		MEI_UNIT=8.0
 	fi
 
+	msg "Generating score header for the printed version"
+
 	# Fix mei exported from musescore
 	cat "$music_transcription" | sed -e 's/mei-basic/mei-all/g' | sed -e 's/5\.0+basic/5.0/g' | xmlstarlet ed -L -N  mei="http://www.music-encoding.org/ns/mei" -s "//mei:score/mei:scoreDef" -t elem -n "pgHead" > $TMP/tmp1.mei
 
@@ -245,6 +256,7 @@ function get_music_part() {
 	fi
 
 
+	msg "Collecting text to be appended to the score"
 	log "sections: $score_sections_to_append"
 	for section in ${score_sections_to_append[@]}; do 
 		if [ "$section" = "none" ]; then
@@ -258,13 +270,15 @@ function get_music_part() {
 			continue;
 		fi
 		stanza_size=$(($lines / $stanzas))
-		printed_lines=$(( $stanza_size + ($lines - 1) / $stanza_size / $cols * $stanza_size))
+		printed_lines=$(( $stanza_size + ($lines - 1) / $stanza_size / $cols * $stanza_size + 2 * $stanzas))
 
 		# section with a title preceding the music only if there are more sections
 		if [ $total_sections -gt 1 ]; then
+			msg "Adding section header $section"
 			insert_title_in_mei $TMP/tmp2.mei "$section"
 		fi
 
+		msg "Injecting placeholder space at the end of $section"
 		# section for the text with the remaining coplas after the music
 		injected_section="${section}_extra_text"
 		log "new section to inject: $new_section"
@@ -293,17 +307,20 @@ function get_music_part() {
 		injected_section="${section}_extra_text"
 		pages_and_offset=`python find_and_remove_place_holder.py "$injected_section" $TMP/music.pdf`
 
-		log "rendering text for section $section : $pages_and_offset"
+		msg "rendering text for section $section"
 
 		page=`echo $pages_and_offset | cut -f1 -d:`
 		offset=`echo $pages_and_offset | cut -f2 -d:`
 		pages=`echo $pages_and_offset | cut -f3 -d:`
+
+		log "page: $page offset $offset"
 
 		# Render a pdf with the text rendered at the position where the placeholder was in the score page
 		outputname="stanzas_${section}"
 		python build_verses_overlay.py "$offset" "$extra_coplas" "$section"  > "$TMP/${outputname}.tex"
 		pdflatex  -interaction=batchmode -output-directory=$TMP "$TMP/${outputname}.tex" > /dev/null
 
+		msg "overlaying text over the score placeholder space"
 		# Extract the page from the score pdf where we want to overlay the pdf with the coplas 
 		pdftk $TMP/music.pdf cat $page output $TMP/music_page_to_overlay.pdf > /dev/null
 
@@ -419,13 +436,17 @@ function generate_tono() {
 	get_titles $count "$music" "$text" > $TMP/values.tex
 
 	readarray -t gitFiles <<< $(echo "$text_transcription" | jq -r "\"$dir/\" + .[].file")
+	msg "using text transcription files: $gitFiles"
 	if [ -f "$text_comments" ];
+		msg "Using text comments file: $text_comments"
 		then gitFiles+=($text_comments)
 	fi
 	if [ -f "$music_transcription" ];
+		msg "Using music transcription file: $music_transcription"
 		then gitFiles+=($music_transcription)
 	fi
 	if [ -f "$music_comments" ];
+		msg "Using music comments file: $music_comments"
 		then gitFiles+=($music_comments)
 	fi
 	get_version  "${gitFiles[@]}" >> $TMP/values.tex
@@ -436,13 +457,20 @@ function generate_tono() {
 	fi
 
 	get_init > $TMP/tmp.tex
+
 	if [ ! -z "$intro" ]; then 
+		msg "Building introduction text"
 		echo "\\section*{\\centering\\LARGE{Introducción}}" >> $TMP/tmp.tex
 		cat "${dir}/${intro}" >> $TMP/tmp.tex
 	fi
+
+	msg "Building poem text"
 	get_text_part "$dir" "$text_transcription" $text_comments >> $TMP/tmp.tex
+
+	msg "Building score"
 	get_music_part "$dir" "$music_transcription" "$text_transcription" "$music_comments" "$title" "$TONO" "$text" "$music" "$music_unit" >> $TMP/tmp.tex
 
+	msg "Building facimile pages"
 	get_facsimil "$S1" "$S2" "$T" "$G" >> $TMP/facsimil.tex
 	echo "\\input{facsimil.tex}" >> $TMP/tmp.tex
 	echo "\\clearpage" >> $TMP/tmp.tex
@@ -453,17 +481,18 @@ function generate_tono() {
 
 	mkdir -p output
 
+	msg "rendering file"
 	pdflatex  -interaction=batchmode -output-directory=$TMP $TMP/tmp.tex && cp $TMP/tmp.pdf "output/${TONO} - ${title}.pdf"
 
 	if [ -f $TMP/final.mei ]; then
 		cp $TMP/final.mei "output/${TONO} - ${title}.mei"
-		echo "MEI score: \"output/${TONO} - ${title}.mei\""
+		msg "MEI score: \"output/${TONO} - ${title}.mei\""
 		pdftk $TMP/tmp.pdf attach_files "output/${TONO} - ${title}.mei" to_page end  output "output/${TONO} - ${title}.pdf"
 	else 
 		mv $TMP/tmp.pdf "output/${TONO} - ${title}.pdf"
 	fi
 
-	echo "PDF file: \"output/${TONO} - ${title}.pdf\""
+	msg "PDF file: \"output/${TONO} - ${title}.pdf\""
 }
 
 
@@ -471,12 +500,16 @@ INDIVIDUAL=true
 
 TMP=`mktemp -d`
 
+if [[ $# -gt 0 ]] && [[ "$1" = "-d" ]]; then
+	debug=true
+	shift 1
+fi
+
 if [[ $# -eq 1 ]]; then
 	if [ -d tonos/"$1"* ]; then
 		generate_tono tonos/"$1"* $1
-		#rm -rf $TMP/
-		echo "${TMP}: "
-		ls -l $TMP/
+		$debug || rm -rf $TMP/
+		$debug && echo "intermediate files ketps at ${TMP}"
 	else
 		echo "Not such tono: $1"
 	fi
