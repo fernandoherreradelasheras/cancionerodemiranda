@@ -238,7 +238,7 @@ function get_music_part() {
 	ordinal=$(echo $order | sed -e 's/^0*\([0-9]*\)/\1º/')
 	if [ "$poet" = "Anónimo" ]; then meipoet="[Anónimo]"; else meipoet="$poet"; fi
 	if [ "$composer" = "Anónimo" ]; then meicomposer="[Anónimo]"; else meicomposer="$composer"; fi
-	xsltproc --stringparam title "$title" --stringparam subtitle "$ordinal Tono del Cancionero de Miranda" --stringparam poet "$meipoet" --stringparam composer "$meicomposer" pgHead.xsl $TMP/tmp1.mei > $TMP/tmp2.mei
+	xsltproc --stringparam title "$title" --stringparam ordinal "$ordinal" --stringparam poet "$meipoet" --stringparam composer "$meicomposer" pgHead.xsl $TMP/tmp1.mei > $TMP/tmp2.mei
 
 	total_sections=$(echo "$text_transcription" | jq -r ". | length")
 	coplas_filename=$(echo "$text_transcription" | jq -r ".[] | select( .type == \"coplas\" ).file")

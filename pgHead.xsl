@@ -13,7 +13,7 @@
     <xsl:element name="fileDesc">
           <titleStmt>
             <title type="main"><xsl:value-of select="$title"/></title>
-            <title type="subordinate"><xsl:value-of select="$subtitle"/></title>
+            <title type="subordinate">Tono <xsl:value-of select="$ordinal"/> del Cancionero de Miranda</title>
             <composer>
                <persName role="composer"><xsl:value-of select="$composer"/></persName>
             </composer>
@@ -51,7 +51,7 @@
                   <lb/>
                   <rend fontsize="large"> </rend>
                   <lb/>
-                  <rend type="subtitle" fontsize="large"><xsl:value-of select="$subtitle"/></rend>
+                  <rend type="subtitle" fontsize="large">Tono <xsl:value-of select="$ordinal"/> del Cancionero de Miranda</rend>
                   <lb/>
                   <rend fontsize="large"> </rend>
                   <lb/>
@@ -66,7 +66,8 @@
                </rend>
             </xsl:element>
             <xsl:element name="pgHead" use-attribute-sets="pghead-all">
-               <rend halign="left" fontsize="normal"><xsl:value-of select="$title"/></rend>
+               <rend halign="left" fontsize="smaler">Tono <xsl:value-of select="$ordinal"/>: <xsl:value-of select="$title"/></rend>
+               <rend halign="right" fontsize="smaler">Cancionero de Miranda</rend>
             </xsl:element>
             <xsl:element name="pgFoot" use-attribute-sets="pghead-all">
                <rend halign="center" fontsize="small">© 2025 https://humanoydivino.com licensed under CC BY-SA 4.0</rend>
