@@ -66,11 +66,11 @@
                </rend>
             </xsl:element>
             <xsl:element name="pgHead" use-attribute-sets="pghead-all">
-               <rend halign="left" fontsize="smaler">Tono <xsl:value-of select="$ordinal"/>: <xsl:value-of select="$title"/></rend>
-               <rend halign="right" fontsize="smaler">Cancionero de Miranda</rend>
+               <rend halign="left" fontsize="90%">Tono <xsl:value-of select="$ordinal"/>: <xsl:value-of select="$title"/></rend>
+               <rend halign="right" fontsize="90%">Cancionero de Miranda</rend>
             </xsl:element>
             <xsl:element name="pgFoot" use-attribute-sets="pghead-all">
-               <rend halign="center" fontsize="small">© 2025 https://humanoydivino.com licensed under CC BY-SA 4.0</rend>
+               <rend halign="center" fontsize="90%">© 2025 https://humanoydivino.com licensed under CC BY-SA 4.0</rend>
             </xsl:element>
   </xsl:template>
 
