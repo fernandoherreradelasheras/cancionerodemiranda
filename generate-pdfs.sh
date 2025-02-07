@@ -508,8 +508,8 @@ fi
 if [[ $# -eq 1 ]]; then
 	if [ -d tonos/"$1"* ]; then
 		generate_tono tonos/"$1"* $1
-		$debug || rm -rf $TMP/
-		$debug && echo "intermediate files ketps at ${TMP}"
+		[ $debug ] || rm -rf $TMP/
+		[ $debug ] && echo "intermediate files ketps at ${TMP}"
 	else
 		echo "Not such tono: $1"
 	fi
