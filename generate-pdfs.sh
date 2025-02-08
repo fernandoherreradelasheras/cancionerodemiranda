@@ -256,6 +256,7 @@ function get_music_part() {
 	fi
 
 
+	score_sections_appended=()
 	msg "Collecting text to be appended to the score"
 	log "sections: $score_sections_to_append"
 	for section in ${score_sections_to_append[@]}; do 
@@ -269,6 +270,8 @@ function get_music_part() {
 		if [ $stanzas -eq 0 ]; then
 			continue;
 		fi
+
+		score_sections_appended+=($section)
 		stanza_size=$(($lines / $stanzas))
 		printed_lines=$(( $stanza_size + ($lines - 1) / $stanza_size / $cols * $stanza_size + 2 * $stanzas))
 
@@ -299,7 +302,7 @@ function get_music_part() {
 
 
 	# Now inject the text in any placer holder we might have added
-	for section in ${score_sections_to_append[@]}; do 
+	for section in ${score_sections_appended[@]}; do 
 		if [ "$section" = "none" ]; then
 			continue
 		fi
