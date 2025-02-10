@@ -97,13 +97,21 @@ function txt_to_tex() {
 	local file="$1"
 	cat "$file" | while read line; do
 		if [ -z "${line}" ]; then
-			echo '!'
+			[ $ignoreUntilNext ] || echo '!'
+			unset ignoreUntilNext
 		else
-			echo " "
-			echo -e -n "$line \\\\\\\\"
+			if [[ "${line}" =~ ^%append_to_score_section=.* ]]; then
+				if [ "${line}" = "%append_to_score_section=respuesta" ]; then
+					ignoreUntilNext=1
+				else
+					unset ignoreUntilNext
+				fi
+			fi
+			[ $ignoreUntilNext ] || echo " "
+			[ $ignoreUntilNext ] || echo -e -n "$line \\\\\\\\"
 		fi
 	done
-	echo '!'
+	echo ''
 }
 
 
@@ -240,7 +248,7 @@ function get_music_part() {
 	if [ "$composer" = "Anónimo" ]; then meicomposer="[Anónimo]"; else meicomposer="$composer"; fi
 	xsltproc --stringparam title "$title" --stringparam ordinal "$ordinal" --stringparam poet "$meipoet" --stringparam composer "$meicomposer" pgHead.xsl $TMP/tmp1.mei > $TMP/tmp2.mei
 
-	total_sections=$(echo "$text_transcription" | jq -r ". | length")
+	section_files_count=$(echo "$text_transcription" | jq -r ". | length")
 	coplas_filename=$(echo "$text_transcription" | jq -r ".[] | select( .type == \"coplas\" ).file")
 	single_filename=$(echo "$text_transcription" | jq -r ".[] | select( .type == \"single\" ).file")
 	estribillo_filename=$(echo "$text_transcription" | jq -r ".[] | select( .type == \"estribillo\" ).file")
@@ -250,15 +258,15 @@ function get_music_part() {
 		extra_coplas="$dir/$single_filename"
 	fi
 
-	score_sections_to_append=$(grep "^%append_to_score_section=" ${extra_coplas} | cut -d= -f2 | sort | uniq)
+	readarray -t score_sections_to_append  <<< $(grep "^%append_to_score_section=" ${extra_coplas} | cut -d= -f2 | sort | uniq)
 	if [ -z "$score_sections_to_append" ]; then
 		score_sections_to_append=('coplas')
 	fi
 
-
 	score_sections_appended=()
 	msg "Collecting text to be appended to the score"
 	log "sections: $score_sections_to_append"
+
 	for section in ${score_sections_to_append[@]}; do 
 		if [ "$section" = "none" ]; then
 			continue
@@ -276,7 +284,7 @@ function get_music_part() {
 		printed_lines=$(( $stanza_size + ($lines - 1) / $stanza_size / $cols * $stanza_size + 2 * $stanzas))
 
 		# section with a title preceding the music only if there are more sections
-		if [ $total_sections -gt 1 ]; then
+		if [ $section_files_count= -gt 1 ] || [ ${#score_sections_to_append[@]} -gt 1 ]; then
 			msg "Adding section header $section"
 			insert_title_in_mei $TMP/tmp2.mei "$section"
 		fi

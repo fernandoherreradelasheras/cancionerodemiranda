@@ -28,6 +28,9 @@ for idx,line in enumerate(lines + [""]):
             readingStanza = True
     elif line.startswith('%append_to_score_section='):
         readingStanza = True if line == f'%append_to_score_section={section}' else False
+        # Special case of non-really stanzas so they should not be counted
+        if line == '%append_to_score_section=respuesta':
+            currentStanzaNumber = currentStanzaNumber - 1
     elif readingStanza:
         verses.append(line)
         if len(line) > len(currentLongestVerse):
