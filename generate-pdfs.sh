@@ -281,10 +281,10 @@ function get_music_part() {
 
 		score_sections_appended+=($section)
 		stanza_size=$(($lines / $stanzas))
-		printed_lines=$(( $stanza_size + ($lines - 1) / $stanza_size / $cols * $stanza_size + 2 * $stanzas))
+		printed_lines=$(( $stanza_size + ($lines - 1) / $stanza_size / $cols * $stanza_size + 3 * $stanzas))
 
 		# section with a title preceding the music only if there are more sections
-		if [ $section_files_count= -gt 1 ] || [ ${#score_sections_to_append[@]} -gt 1 ]; then
+		if [ $section_files_count -gt 1 ] || [ ${#score_sections_to_append[@]} -gt 1 ]; then
 			msg "Adding section header $section"
 			insert_title_in_mei $TMP/tmp2.mei "$section"
 		fi
