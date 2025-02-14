@@ -1,11 +1,12 @@
-import { RefObject, useEffect, useRef, useState } from 'react'
-import { TonoDef, tonoDefinitions } from './utils'
+import { RefObject, useContext, useEffect, useRef, useState } from 'react'
+import { TonoDef } from './utils'
 import IntroView from './IntroView'
 import MusicView from './MusicView'
 import ImagesView from './ImagesView'
 import Pdf from './Pdf'
 import { Link } from 'react-router-dom'
 import TonoRightPanel from './TonoRightPanel'
+import { Context } from './Context'
 
 
 const getStatusElement = (text: string, status: string) => {
@@ -32,6 +33,8 @@ const getDocument = (e:RefObject<any>) =>
 
 
 const TonoView = ({ tono }: { tono: TonoDef }) => {
+
+    const { definitions } = useContext(Context)    
 
     const [currentLeftPanel, setCurrentLeftPanel] = useState(getDefaultSection(tono))
     const [currentRightPanel, setCurrentRightPanel] = useState("")
@@ -149,7 +152,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
     const navLinkNext = () => {
         const icon = ( <i className="icon fa-solid fa-right-long fa-lg"></i> )
-        return tono.number >= tonoDefinitions.length
+        return tono.number >= definitions.length
             ?  ( <Link to="#" className="button nav-button tono-action small disabled">Tono siguiente {icon}</Link> )
             :  ( <Link to={`/tono/${tono.number + 1}`} className="button nav-button tono-action small">Tono siguiente {icon}</Link> )
     }
