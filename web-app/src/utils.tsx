@@ -3,6 +3,12 @@ export const tonoDefinitionsPath = "tonos/definitions.json"
 export const latestPdfsUrl = "https://cdm.humanoydivino.com/pdfs-release-latest.json"
 
 
+export interface TranscriptionEntry {
+  file: string,
+  type: string | undefined,
+  append_to: string | undefined 
+}
+
 export interface TonoDef {
   index: number;
   title: string;
@@ -23,7 +29,7 @@ export interface TonoDef {
   introduction: string;
   mei_file: string;
   mei_unit: number;
-  text_transcription: { file: string, type: string }[],
+  text_transcription: TranscriptionEntry[],
   text_comments_file: string;
   music_comments_file: string;
   path: string;
