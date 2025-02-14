@@ -530,6 +530,7 @@ def generate_mei(input_mei, order, poet, composer, title, tmp_dir, output_mei):
 def render_mei(mei_file, mei_unit, tmp_dir, output_name):
     cmd = [ 'verovio',  '--unit', mei_unit, '--multi-rest-style', 'auto', '--mdiv-all', '-a', '--mm-output', '--mnum-interval', '0',
             '--bottom-margin-header', '2.5', '--page-margin-left', '150', '--page-margin-right', '150', '--page-margin-top', '50',
+           '--lyric-height-factor', '1.25', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2',
             '--bottom-margin-header', '8', '--page-margin-bottom', '50', '--top-margin-pg-footer', '4',  '--header', 'auto', '--footer', 'encoded',
             '--breaks', 'auto', '--condense', 'encoded', '--min-last-justification', '1.0', '-o', f'{tmp_dir}/output.svg', mei_file ]
     run_cmd(cmd)
@@ -604,7 +605,7 @@ def main():
     
     try:
         if len(sys.argv) == 2:
-            tonoIdx = int(sys.argv[1])
+            tonoIdx = int(sys.argv[1]) - 1
             if tonoIdx >= 0 and tonoIdx < len(data):
                 generate_tono(data[tonoIdx], tmp_dir)
             else:
