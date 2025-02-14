@@ -9,7 +9,7 @@ const getText = async (url: string) => {
     return response.text();
 };
 
-const getTitle = (type: string) => {
+const getTitle = (type: string | undefined) => {
     if (type == "coplas") 
         return "\n\\textbf{Coplas}\n"
     else if (type == "estribillo")

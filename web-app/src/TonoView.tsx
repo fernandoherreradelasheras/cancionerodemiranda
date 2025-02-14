@@ -1,5 +1,5 @@
 import { RefObject, useContext, useEffect, useRef, useState } from 'react'
-import { TonoDef } from './utils'
+import { TonoDef, TranscriptionEntry } from './utils'
 import IntroView from './IntroView'
 import MusicView from './MusicView'
 import ImagesView from './ImagesView'
@@ -24,6 +24,28 @@ const getDefaultSection = (tono: TonoDef) => {
         return "music"
     else
         return "images"
+}
+
+const transcriptionEntryToSection = (entry: TranscriptionEntry) => {
+    if (entry.type != undefined) {
+        if (entry.type == "single") {
+            return "sección única"
+        } else {
+            return entry.type;
+        }
+    }
+
+    if (entry.append_to == undefined || entry.append_to == "@none") {
+        return null
+    }
+
+    if (entry.append_to == "@custom") {
+        return "@custom: TODO"
+    } else {
+        return entry.append_to
+    }
+
+    return null
 }
 
 const getDocument = (e:RefObject<any>) => 
@@ -94,19 +116,29 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     )
 
     const status = (
-        <div className="row">
-            <div className="col-4 col-12-small">
+        <div style={{display: "flex" }}>
+            <div style={{flex: 3 }}>
                 <h3 id="tono-autor-musica">Música: {tono.music_author}</h3>
                 <h3 id="tono-autor-texto">Texto: {tono.text_author}</h3>
             </div>
-            <div className="col-4 col-12-small">
+            <div style={{flex: 2 }}>
                 <ul id="tono-estado-texto" className="alt">
+                <li><span style={{ fontWeight: "bolder"}}>Secciones:</span></li>
+                    <ul>
+                        {tono.text_transcription.map((entry: TranscriptionEntry) => transcriptionEntryToSection(entry))
+                        .filter(e => e != null)
+                        .map(section => <li>{section}</li>)}
+                    </ul>
+                </ul>
+            </div>
+            <div style={{flex: 3 }}>
+                <ul id="tono-stats" className="alt">
                     {getStatusElement("Transcripción del texto:", tono.status_text_transcription)}
                     {getStatusElement("Revisión del texto:", tono.status_text_proof_reading)}
                     {getStatusElement("Validación del texto:", tono.status_text_validation)}
                 </ul>
             </div>
-            <div className="col-4 col-12-small">
+            <div style={{flex: 3 }}>
                 <ul id="tono-estado-musica" className="alt">
                     {getStatusElement("Transcripción de la música:", tono.status_music_transcription)}
                     {getStatusElement("Revisión de la música:", tono.status_music_proof_reading)}

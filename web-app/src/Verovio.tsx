@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import createVerovioModule from 'verovio/wasm';
 import { VerovioToolkit } from 'verovio/esm';
 import Pagination from './Pagination';
+import {  } from 'html-midi-player'
 import { getSvgHighlightedMeasureStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
 
 
@@ -20,7 +21,13 @@ const verovioOptions = {
     pageMarginBottom: 10,
     svgViewBox: true,
     svgBoundingBoxes: true,
+    lyricElision: "regular", 
+    lyricHeightFactor: 1.30,
+    lyricSize: 5,
+    lyricTopMinMargin: 4.0,
+    lyricVerseCollapse: true
 }
+
 
 const nsResolver = (ns: string) => { return { mei: "http://www.music-encoding.org/ns/mei", xml: "http://www.w3.org/XML/1998/namespace" }[ns] }
 
@@ -31,19 +38,66 @@ function Verovio({ mei_url, maxHeight, style }: {
 }) {
     const [scale, setScale] = useState(50)
     const [score, setScore] = useState<string | null>(null);
-    const [meiDoc, setMeiDoc] = useState<Document | null>(null)
+    const [renderedMeiDoc, setRenderedMeiDoc] = useState<Document | null>(null)
     const [verovio, setVerovio] = useState<VerovioToolkit | null>(null);
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
     const [hoverMeasure, setHoverMeasure] = useState<number|null>(null)
     const [selectedMeasure, setSelectedMeasure] = useState<number|null>(null)
+    const [showNVerses, setShowNVerses] = useState(0)
     
     const containerRef = useRef(null);
     
 
-    const getPageForMeasureN = (n: number) => { 
+    const maxVerseNum = (doc: Document) => { 
         //@ts-ignore
-        let xmlid = meiDoc?.evaluate(`//mei:measure[@n="${n}"]/@xml:id`, meiDoc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
+        let maxN = doc?.evaluate("//mei:verse/@n[not(. < ../../mei:verse/@n)][1]", doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
+        console.log(maxN)
+        return maxN
+    }
+
+    const getPageForMeasureN = (doc: Document, n: number) => { 
+        //@ts-ignore
+        let xmlid = doc?.evaluate(`//mei:measure[@n="${n}"]/@xml:id`, doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
         return verovio?.getPageWithElement(xmlid)    
+    }
+
+    const getVersesAmmountSelector = (numVerses: number | null) => {
+        if (numVerses == null || numVerses < 2) 
+            return null
+
+        const options: any[] = []
+        for (let i = 0; i < numVerses; i++) {
+            options.push( ( <option value={i+1} key={i}>{i+1} versos</option>) )
+         } 
+
+        return (
+         <div style={{ display: "flex", flexDirection: "row",  alignItems: "baseline" }}>
+            <em>Mostrar: </em>
+            <select value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select> 
+        </div>
+        )
+    }
+
+
+    const filterScoreToNVerses = (score: string, numVerses: number) => {
+        // First do a copy so we keep the original score around
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(score, "application/xml")
+        //@ts-ignore
+        let matches = doc?.evaluate(`//mei:verse[@n > "${numVerses}"]`, doc, nsResolver, XPathResult.ANY_TYPE, null)
+        if (matches == null) {
+            return score
+        }
+        const nodes = []
+        var node = matches.iterateNext()
+        while (node != null) {
+            nodes.push(node)
+            node = matches.iterateNext()           
+        }
+        nodes.forEach(n => n.parentElement?.removeChild(n) )        
+
+        const s = new XMLSerializer();
+        return s.serializeToString(doc);
     }
 
     useEffect(() => {
@@ -55,6 +109,7 @@ function Verovio({ mei_url, maxHeight, style }: {
             });
         });
     }, []);
+
 
     useEffect(() => {
         fetch(mei_url).then(response => {
@@ -98,8 +153,14 @@ function Verovio({ mei_url, maxHeight, style }: {
     }, [containerRef]);
 
 
+    const parsedScore = useMemo(() => {
+        if (score != null) {
+            const parser = new DOMParser();
+            return parser.parseFromString(score, "application/xml")
+        }
+    }, [score])
 
-    const renderedScore = useMemo(() => {
+    const renderedHtml = useMemo(() => {
         if (verovio != null && containerRef.current != null && score != null) {
             //@ts-ignore
             const rect = containerRef.current.getBoundingClientRect()
@@ -111,18 +172,25 @@ function Verovio({ mei_url, maxHeight, style }: {
                  svgAdditionalAttribute: getVerovioSvgExtraAttributes(),
 
             })
-            verovio.loadData(score)
+
+            if (showNVerses != null && showNVerses > 0 && parsedScore != undefined) {
+                const filteredScore = filterScoreToNVerses(score, showNVerses) 
+                verovio.loadData(filteredScore)
+            } else {
+                verovio.loadData(score)
+            }
+
             const pageCount = verovio.getPageCount()
             const renderedHtml = verovio.renderToSVG(currentPageNumber)
             const parser = new DOMParser();
-            setMeiDoc(parser.parseFromString(verovio.getMEI({pageNo: 0}), "application/xml"))
+            setRenderedMeiDoc(parser.parseFromString(verovio.getMEI({pageNo: 0}), "application/xml"))
 
             return { pageCount: pageCount, html: renderedHtml }
         } else {
             return { pageCount: 0, html: (<div>Loading....</div>) }
         }
 
-    }, [score, verovio, scale, /*maxHeight,*/ currentPageNumber])
+    }, [score, verovio, scale, /*maxHeight,*/ currentPageNumber, showNVerses])
 
 
     const onPageNumberClicked = (pageNumber: number) => { 
@@ -136,31 +204,62 @@ function Verovio({ mei_url, maxHeight, style }: {
 
 
 
-    var treeStyleString = ""
-
-    if (selectedMeasure != null && selectedMeasure != undefined && selectedMeasure > 0) {
-        let page = getPageForMeasureN(selectedMeasure)
-        if (page != undefined && page > 0 && page != currentPageNumber) {
-            setCurrentPageNumber(page)
-        }
-        treeStyleString += getSvgSelectedMeasureStyle(selectedMeasure)    
-    }
-    if (hoverMeasure != null && hoverMeasure != undefined &&  hoverMeasure > 0 && hoverMeasure != selectedMeasure) {
-        let page = getPageForMeasureN(hoverMeasure)
-        if (page != null && page > 0 && page == currentPageNumber) {
-            treeStyleString += getSvgHighlightedMeasureStyle(hoverMeasure)
-        }
-    }
     
 
-    return (
-        
+    const {svgStyles, targetPage  } 
+    : {svgStyles: string | null, targetPage: number | null } = useMemo(() => {
+        if (!renderedMeiDoc) {
+            return { svgStyles: null, targetPage: null }
+        }
+
+
+        if (selectedMeasure == null && hoverMeasure == null) {
+            return { svgStyles: null, targetPage: null }
+        }
+
+        var treeStyleString = ""
+        if (selectedMeasure != null && selectedMeasure > 0) {
+            let page = getPageForMeasureN(renderedMeiDoc, selectedMeasure)
+            if (page != undefined && page > 0 && page != currentPageNumber) {
+                return { svgStyles: null, targetPage: page  }
+            }
+            treeStyleString += getSvgSelectedMeasureStyle(selectedMeasure)    
+        }
+        if (hoverMeasure != null &&  hoverMeasure > 0 && hoverMeasure != selectedMeasure) {
+            let page = getPageForMeasureN(renderedMeiDoc, hoverMeasure)
+            if (page != null && page > 0 && page == currentPageNumber) {
+                treeStyleString += getSvgHighlightedMeasureStyle(hoverMeasure)
+            }
+        }
+        return { targetPage: null, svgStyles: treeStyleString }
+
+    
+    }, [renderedMeiDoc, selectedMeasure, hoverMeasure])
+
+
+    if (targetPage != null) {
+        setCurrentPageNumber(targetPage)
+    }
+
+    const numVersesAvailable  = useMemo(() => {
+        if (parsedScore != null) {
+            return maxVerseNum(parsedScore)
+        }
+    }, [score])
+
+
+    if (numVersesAvailable != null && numVersesAvailable > 1 && showNVerses == 0) {
+        setShowNVerses(numVersesAvailable) // All by default
+    }
+
+    
+    return (        
 
         <div style={style}>
-            
-            <style dangerouslySetInnerHTML={{__html: treeStyleString }} />
 
-            <div dangerouslySetInnerHTML={{ __html: renderedScore.html }}
+            <style dangerouslySetInnerHTML={{__html: svgStyles! }} />
+
+            <div dangerouslySetInnerHTML={{ __html: renderedHtml.html }}
                 className="panel" ref={containerRef} style={{
                     border: "1px solid lightgray",
                     width: "100%", 
@@ -174,9 +273,11 @@ function Verovio({ mei_url, maxHeight, style }: {
                     <li><a className="button icon primary fa-solid fa-magnifying-glass-plus" onClick={zoomIn}></a></li>
                 </ul>
 
+                {getVersesAmmountSelector(numVersesAvailable)}
+
                 <Pagination
                     currentPageNumber={currentPageNumber}
-                    totalPages={renderedScore.pageCount}
+                    totalPages={renderedHtml.pageCount}
                     onPage={onPageNumberClicked} />
                     
                 <div style={{ flex: 1 }}></div>
