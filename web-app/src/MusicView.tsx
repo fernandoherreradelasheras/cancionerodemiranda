@@ -10,7 +10,7 @@ function MusicView({ tono, maxHeight}: {
 }) {
 
 
-    const tonoUrl = repoRoot + "tonos" + "/" + tono.path + "/" + tono.mei_file;
+    const tonoUrl = repoRoot + tono.path + "/" + tono.mei_file;
     const attributes: any = {
         mei_url: tonoUrl,
         maxHeight: maxHeight,

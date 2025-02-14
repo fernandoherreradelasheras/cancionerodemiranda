@@ -26,12 +26,12 @@ function TextView({ tono }: { tono: TonoDef }) {
         const fetchText = async () => {
             var newText = "";
             for (let transcription of tono.text_transcription) {
-                const url = repoRoot + "tonos" + "/" + tono.path + "/" + transcription.file;
+                const url = repoRoot + tono.path + "/" + transcription.file;
                 const response = await getText(url);
                 newText += getTitle(transcription.type) + "<em>" + response + "</em>";
             }
             if (tono.text_comments_file != null) {
-                const url = repoRoot + "tonos" + "/" + tono.path + "/" + tono.text_comments_file;
+                const url = repoRoot + tono.path + "/" + tono.text_comments_file;
                 const response = await getText(url);
                 newText += "\n\\subsection*{Notas al texto}" + response;
             }
