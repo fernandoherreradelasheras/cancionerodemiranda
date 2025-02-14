@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import createVerovioModule from 'verovio/wasm';
 import { VerovioToolkit } from 'verovio/esm';
 import Pagination from './Pagination';
-import {  } from 'html-midi-player'
 import { getSvgHighlightedMeasureStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
 
 
