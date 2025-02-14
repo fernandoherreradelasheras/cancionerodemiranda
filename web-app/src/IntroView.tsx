@@ -18,7 +18,7 @@ function IntroView({ tono }: { tono: TonoDef }) {
 
     useEffect(() => {
         const fetchIntro = async () => {
-            const url = repoRoot + "tonos" + "/" + tono.path + "/" + tono.introduction;
+            const url = repoRoot + tono.path + "/" + tono.introduction;
             const text = await getText(url);
             setIntro("\\section*{Introducción}" + text);
         };

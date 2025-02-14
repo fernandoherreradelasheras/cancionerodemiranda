@@ -18,7 +18,7 @@ function MusicComments({ tono }: { tono: TonoDef }) {
 
     useEffect(() => {
         const fetchComments = async () => {
-            const url = repoRoot + "tonos" + "/" + tono.path + "/" + tono.music_comments_file;
+            const url = repoRoot + tono.path + "/" + tono.music_comments_file;
             const text = await getUrl(url);
 
             setComments(text.trimStart());
