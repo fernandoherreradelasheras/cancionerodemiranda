@@ -1,5 +1,5 @@
 export const repoRoot = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/"
-export const latestPdfsUrl = "https://cdm.humanoydivino.com/assets/json/pdfs-release-latest.json"
+export const latestPdfsUrl = "https://cdm.humanoydivino.com/pdfs-release-latest.json"
 
 
 export interface TonoDef {
