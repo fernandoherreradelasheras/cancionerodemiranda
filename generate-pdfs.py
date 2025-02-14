@@ -514,7 +514,7 @@ def generate_mei(input_mei, order, poet, composer, title, tmp_dir, output_mei):
     print(cmd)
     run_cmd(cmd)
     
-    ordinal = re.sub(r"^0*([0-9]*)", r"\1º", order)
+    ordinal = re.sub(r"^0*([0-9]*)", r"\1º", str(order))
 
     if poet == "Anónimo":
         poet = "[Anónimo]"
@@ -599,20 +599,21 @@ def main():
     # Create temporary directory
     tmp_dir = tempfile.mkdtemp()
 
+    with open(os.path.join("tonos", "definitions.json")) as f:
+        data = json.load(f)
     
     try:
         if len(sys.argv) == 2:
-            tono_pattern = f"tonos/{sys.argv[1]}*"           
-            matching_dirs = list(Path().glob(tono_pattern))
-            if matching_dirs:
-                generate_tono(str(matching_dirs[0]), sys.argv[1], tmp_dir)
+            tonoIdx = int(sys.argv[1])
+            if tonoIdx >= 0 and tonoIdx < len(data):
+                generate_tono(data[tonoIdx], tmp_dir)
             else:
                 print(f"No such tono: {sys.argv[1]}")
         else:
             # Process all tonos
-            for count, dir_path in enumerate(sorted(Path("tonos").glob("*")), 1):
-                print(f"Building tono #{count} from dir {dir_path}\n")
-                generate_tono(str(dir_path), str(count).zfill(2), tmp_dir)
+            for tono in data:
+                print(f"Building tono {tono['number']} from dir {tono['path']}\n")
+                generate_tono(tono, tmp_dir)
                 for file in os.listdir(tmp_dir):
                     os.remove(os.path.join(tmp_dir, file))
     
@@ -622,78 +623,77 @@ def main():
         else:
             print(f"Intermediate files kept at {tmp_dir}")
 
-def generate_tono(directory, count, tmp_dir):
-    with open(os.path.join(directory, "def.json")) as f:
-        data = json.load(f)
+def generate_tono(data, tmp_dir):
         
-        print(f"** Building tono {count}: {data['title']} **")
+    print(f"** Building tono {data['number']}: {data['title']} **")
+
+    directory = data['path']
         
-        # convert filenames to full path        
-        data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'text_comments_file', 'music_comments_file', 'mei_file'] else data[key] for key in data.keys()}
-        data['text_transcription'] = [{k: directory + "/" + v if k == "file" else v  for k, v in entry.items()}  for entry in data['text_transcription'] ]
+    # convert filenames to full path        
+    data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'text_comments_file', 'music_comments_file', 'mei_file'] else data[key] for key in data.keys()}
+    data['text_transcription'] = [{k: directory + "/" + v if k == "file" else v  for k, v in entry.items()}  for entry in data['text_transcription'] ]
+        
+    valuesLatexStr = ""
+        
+    files =  [data[key] for key in [ 'text_comments_file', 'music_comments_file', 'mei_file', 'introduction'] if key in data] + [ entry['file'] for entry in data['text_transcription']]
+    vers = get_version_from_git(files)
+    print(f"Version baseed on # of git revisions: {vers}")
+        
+    valuesLatexStr = valuesLatexStr + format_version(vers)
+        
+    valuesLatexStr = valuesLatexStr + format_titles(data['number'], data['title'], data['music_author'], data['text_author']) 
+        
+    valuesLatexStr = valuesLatexStr + format_status(data)
+    
+    if PRE_RELEASE:
+        valuesLatexStr = valuesLatexStr + "\\def\\prerelease{true}\n"
+            
+    latexStr = format_init()
+    if 'introduction' in data:
+        latexStr = latexStr + "\\section*{\\centering\\LARGE{Introducción}}\n"
+        latexStr = latexStr + Path(data['introduction']).read_text()
+            
+    latexStr = latexStr + format_text_part(data['text_transcription'], data['text_comments_file'] if 'text_comments_file' in data else None)
+        
+    got_score = generate_score(data['number'], data, tmp_dir)
+        
+    latexStr = latexStr + "\\section*{Edición musical}\n"
+    latexStr = latexStr + "\\input{criterios-musicales.tex}" 
+        
+    if 'music_comments_file' in data:
+        print(f"Adding music comments from file {data['music_comments_file']}")
+        latexStr = latexStr + Path(data['music_comments_file']).read_text()
+            
+    if got_score:
+        latexStr = latexStr + "\\includepdf[pages=-]{music.pdf}\n"
+        
+    (Path(tmp_dir) / 'facsimil.tex').write_text(get_facsimil(data['s1_pages'], data['s2_pages'], data['t_pages'], data['g_pages']))
+    latexStr = latexStr + "\\input{facsimil.tex}\n"
         
     
-        valuesLatexStr = ""
-        
-        files =  [data[key] for key in [ 'text_comments_file', 'music_comments_file', 'mei_file', 'introduction'] if key in data] + [ entry['file'] for entry in data['text_transcription']]
-        vers = get_version_from_git(files)
-        print(f"Version baseed on # of git revisions: {vers}")
-        
-        valuesLatexStr = valuesLatexStr + format_version(vers)
-        
-        valuesLatexStr = valuesLatexStr + format_titles(count, data['title'], data['music_author'], data['text_author']) 
-        
-        valuesLatexStr = valuesLatexStr + format_status(data)
-        
-        if PRE_RELEASE:
-            valuesLatexStr = valuesLatexStr + "\\def\\prerelease{true}\n"
-            
-        latexStr = format_init()
-        if 'introduction' in data:
-            latexStr = latexStr + "\\section*{\\centering\\LARGE{Introducción}}\n"
-            latexStr = latexStr + Path(data['introduction']).read_text()
-            
-        latexStr = latexStr + format_text_part(data['text_transcription'], data['text_comments_file'] if 'text_comments_file' in data else None)
-        
-        got_score = generate_score(count, data, tmp_dir)
-        
-        latexStr = latexStr + "\\section*{Edición musical}\n"
-        latexStr = latexStr + "\\input{criterios-musicales.tex}" 
-        
-        if 'music_comments_file' in data:
-            print(f"Adding music comments from file {data['music_comments_file']}")
-            latexStr = latexStr + Path(data['music_comments_file']).read_text()
-            
-        if got_score:
-            latexStr = latexStr + "\\includepdf[pages=-]{music.pdf}\n"
-        
-        (Path(tmp_dir) / 'facsimil.tex').write_text(get_facsimil(data['s1_pages'], data['s2_pages'], data['t_pages'], data['g_pages']))
-        latexStr = latexStr + "\\input{facsimil.tex}\n"
-        
-        
-        latexStr = latexStr + "\\clearpage\n"
-        latexStr = latexStr + "\\input{acerca.tex}\n"
-        latexStr = latexStr +  "\\end{document}" 
+    latexStr = latexStr + "\\clearpage\n"
+    latexStr = latexStr + "\\input{acerca.tex}\n"
+    latexStr = latexStr +  "\\end{document}" 
 
         
-        (Path(tmp_dir) / 'values.tex').write_text(valuesLatexStr)
-        (Path(tmp_dir) / 'tmp.tex').write_text(latexStr)
+    (Path(tmp_dir) / 'values.tex').write_text(valuesLatexStr)
+    (Path(tmp_dir) / 'tmp.tex').write_text(latexStr)
         
-        print("Rendering final pdf")
-        render_latex(tmp_dir, 'tmp.tex')
+    print("Rendering final pdf")
+    render_latex(tmp_dir, 'tmp.tex')
         
-        destname =  f'output/{str(count).zfill(2)} - {data['title']}'
+    destname =  f'output/{str(data['number']).zfill(2)} - {data['title']}'
         
-        if got_score and (Path(tmp_dir) / 'tmp1.mei').exists():
-            shutil.copy(f'{tmp_dir}/tmp1.mei', f'{destname}.mei')        
-            print(f"MEI score: {destname}.mei")
-            cmd = [ 'pdftk', f'{tmp_dir}/tmp.pdf', 'attach_files', f'{destname}.mei', 'to_page', 'end',  'output', f'{destname}.pdf']
-            run_cmd(cmd)    
-        else:
-            shutil.move(f'{tmp_dir}/tmp.pdf', f'{destname}.pdf')      
+    if got_score and (Path(tmp_dir) / 'tmp1.mei').exists():
+        shutil.copy(f'{tmp_dir}/tmp1.mei', f'{destname}.mei')        
+        print(f"MEI score: {destname}.mei")
+        cmd = [ 'pdftk', f'{tmp_dir}/tmp.pdf', 'attach_files', f'{destname}.mei', 'to_page', 'end',  'output', f'{destname}.pdf']
+        run_cmd(cmd)    
+    else:
+        shutil.move(f'{tmp_dir}/tmp.pdf', f'{destname}.pdf')      
                 
         
-        print(f"Tono generado: {destname}.pdf")
+    print(f"Tono generado: {destname}.pdf")
 
 
         

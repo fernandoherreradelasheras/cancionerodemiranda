@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Context } from './Context';
-import { getJson, latestPdfsUrl, repoRoot, TonoDef, tonoDefinitions } from './utils';
+import { getJson, latestPdfsUrl, repoRoot, TonoDef, tonoDefinitionsPath } from './utils';
 
 
 
@@ -22,29 +22,15 @@ function Layout() {
 
     const fecchDefinitions = async () => {
 
-        let urls = tonoDefinitions.map(d => repoRoot + "tonos/" + d)
 
-        const texts = await Promise.all(
-            urls.map(async (url) => {     
-                const resp = await fetch(url);
-                return resp.json();
-            })
-        );
-
- 
-        let dataCollected = texts.reduce((dataCollected, response) => {
-            dataCollected = dataCollected.concat(response);
-            return dataCollected;
-        }, []);
+        const tonos = await getJson(repoRoot + tonoDefinitionsPath)
 
         const pdflist = await getJson(latestPdfsUrl)
 
-        dataCollected.forEach((tono: TonoDef, index: number) => {
-            tono.path = tonoDefinitions[index].substring(0, tonoDefinitions[index].lastIndexOf("/"));
-            tono.number = index + 1
+        tonos.forEach((tono: TonoDef, index: number) => {
             tono.pdf_url = pdflist[index]
         })
-        setDefinitions(dataCollected);
+        setDefinitions(tonos);
     };
 
 
