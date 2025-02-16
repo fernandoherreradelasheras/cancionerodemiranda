@@ -2,9 +2,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import createVerovioModule from 'verovio/wasm';
 import { VerovioToolkit } from 'verovio/esm';
 import Pagination from './Pagination';
-import { getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
+import { getSvgEdirtorialHighlightStyle, getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
 import AudioPlayer from './AudioPlayer';
-import { getNumMeasures, getPageForMeasureN, getPageForSection, maxVerseNum } from './Score';
+import { filterScoreToNVerses, getEditorial, getNumMeasures, getPageForMeasureN, getPageForSection, maxVerseNum } from './Score';
 import ClipLoader from "react-spinners/ClipLoader"
 
 const verovioOptions = {
@@ -68,6 +68,8 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
     const [midiHighlightElements, setMidiHiglightElements] = useState<string[]>([])
     const [prevSection, setPrevSection] = useState<string|null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [editorialElements, setEditorialElements] = useState({})
+    const [showEditorial, setShowEditorial] = useState(false)
 
     const containerRef = useRef(null);
 
@@ -90,27 +92,6 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
     }
 
 
-    const filterScoreToNVerses = (score: string, numVerses: number) => {
-        // First do a copy so we keep the original score around
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(score, "application/xml")
-        //@ts-ignore
-        let matches = doc?.evaluate(`//mei:verse[@n > "${numVerses}"]`, doc, nsResolver, XPathResult.ANY_TYPE, null)
-        if (matches == null) {
-            return score
-        }
-        const nodes = []
-        var node = matches.iterateNext()
-        while (node != null) {
-            nodes.push(node)
-            node = matches.iterateNext()
-        }
-        nodes.forEach(n => n.parentElement?.removeChild(n))
-
-        const s = new XMLSerializer();
-        return s.serializeToString(doc);
-    }
-
     useEffect(() => {
         setTimeout(() => {
             createVerovioModule().then(VerovioModule => {
@@ -123,6 +104,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
 
 
     useEffect(() => {
+        console.log(mei_url)
         fetch(mei_url).then(response => {
             return response.text()
         }).then((score) => {
@@ -224,7 +206,10 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
             if (isLoading) {
                 setIsLoading(false)
                 if (renderedMeiDoc) {
-                    onScoreRendered(getNumMeasures(renderedMeiDoc))
+                    const measuresCount = getNumMeasures(renderedMeiDoc)
+                    const editorial = getEditorial(renderedMeiDoc)
+                    onScoreRendered(measuresCount)
+                    setEditorialElements(editorial)
                 }
             }
         }
@@ -320,7 +305,18 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
         return styles
     }
 
-    const svgStyles = svgRules + measuresSvgStyles + getMidiHighlightStyles()
+    const getEditorialHighlightStyles = () => {
+        if (renderedMeiDoc == undefined || !showEditorial || Object.keys(editorialElements).length <= 0) {
+            return ""
+        }
+
+      
+        return "g.unclear { outline: 75px ridge rgba(170, 50, 220, .6);  }"
+    }
+
+
+    const svgStyles = svgRules + measuresSvgStyles + getMidiHighlightStyles() + getEditorialHighlightStyles()
+    console.log(showEditorial)
 
     return (
 
@@ -354,13 +350,20 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
                         zIndex: 10, border: "1px solid lightgray" }}/>
             </div>
           
-
-
             <div style={{ display: "flex" }}>
                 <ul className="actions" style={{ flex: 1 }}>
                     <li><a className="button icon primary fa-solid fa-magnifying-glass-minus" onClick={zoomOut}></a></li>
                     <li><a className="button icon primary fa-solid fa-magnifying-glass-plus" onClick={zoomIn}></a></li>
                 </ul>
+
+                { Object.keys(editorialElements).length > 0 ? 
+                    <span><input 
+                            name="chedk-editorial"
+                            id="check-editorial"
+                            type="checkbox"
+                            checked={showEditorial}
+                            onChange={(e) => { setShowEditorial(!showEditorial) }}/>
+                <label htmlFor="check-editorial">Notas editoriales</label></span> : null } 
 
                 {getVersesAmmountSelector(numVersesAvailable)}
 

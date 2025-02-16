@@ -1,8 +1,9 @@
+import { useLocation } from "react-router-dom";
 import { TonoDef, repoRoot } from "./utils"
 import Verovio from "./Verovio";
 
 
-
+const TESTING = true
 
 function MusicView({ tono, maxHeight, section, onScoreRendered}: {
     tono: TonoDef,
@@ -11,8 +12,9 @@ function MusicView({ tono, maxHeight, section, onScoreRendered}: {
     onScoreRendered:  (numMeasures: number) => void
 }) {
 
+    
 
-    const tonoUrl = repoRoot + tono.path + "/" + tono.mei_file;
+    const tonoUrl = TESTING ? "/" + tono.mei_file : repoRoot + tono.path + "/" + tono.mei_file
     
     const attributes: any = {
         mei_url: tonoUrl,
