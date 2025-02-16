@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Context } from './Context';
-import { getJson, latestPdfsUrl, repoRoot, TonoDef, tonoDefinitionsPath } from './utils';
+import { getJson, latestPdfsPath, repoRoot, TonoDef, tonoDefinitionsPath } from './utils';
 
 
 
@@ -24,7 +24,7 @@ function BaseLayout() {
 
         const tonos = await getJson(repoRoot + tonoDefinitionsPath)
 
-        const pdflist = await getJson(latestPdfsUrl)
+        const pdflist = await getJson(latestPdfsPath)
 
         tonos.forEach((tono: TonoDef, index: number) => {
             tono.pdf_url = pdflist[index]

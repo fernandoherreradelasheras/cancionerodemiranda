@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { TonoDef, repoRoot } from "./utils"
 import Verovio from "./Verovio";
 

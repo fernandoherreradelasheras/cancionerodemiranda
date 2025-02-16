@@ -1,4 +1,5 @@
 import { VerovioToolkit } from "verovio/esm"
+import { EditorialItem } from "./Editorial"
 
 
 const nsResolver = (ns: string) => { return { mei: "http://www.music-encoding.org/ns/mei", xml: "http://www.w3.org/XML/1998/namespace" }[ns] }
@@ -50,33 +51,26 @@ export const getNumMeasures = (doc: Document) => {
     return lastMeasureN
 }
 
-const addNodesOfType = (doc: Document, registry: {}, type: string) =>  {
+const getNodesOfType = (doc: Document, type: string) =>  {
+    const items = []
+    //@ts-ignore
     let matches = doc?.evaluate(`//mei:${type}`, doc, nsResolver, XPathResult.ANY_TYPE, null)
-    console.log(matches)
     let node = matches.iterateNext()
-    console.log(node)
-    while (node != null) {
-        for (const child of node.childNodes) {
-            console.log(child) 
-            if (child.nodeType != Node.ELEMENT_NODE)
-                continue
-            const childId = child.getAttribute("xml:id")
-            if (childId) {
-                const entry = { type: "unclear", node: node }
-                if (registry[childId] == undefined) {
-                    registry[childId] = [ entry ]
-                } else {
-                    registry[childId].push(entry)
-                }
-            }  
-        }      
+    while (node != null) {  
+        const id = (node as Element).getAttribute("xml:id")    
+        const reason = (node as Element).getAttribute("mei:reason")
+        const resp = (node as Element).getAttribute("mei:resp")
+        const targetIds = [...node.childNodes?.values()].filter(n => n.nodeType == Node.ELEMENT_NODE).map((n: any) => n.getAttribute("xml:id"))  
+
+        const item : EditorialItem = { id: id!!, reason: reason || "", resp : resp || "", type: type, boundingBox: null, targetIds: targetIds }
+        items.push(item)
         node = matches.iterateNext()
     }
+    return items
 }
 
-export const getEditorial = (doc: Document) => {
-    const editorialElements = {}
-    addNodesOfType(doc, editorialElements, "unclear")
+export const getEditorial = (doc: Document) : EditorialItem[] => {
+    const editorialElements = getNodesOfType(doc, "unclear") 
     console.log(editorialElements)
     return editorialElements
 }
