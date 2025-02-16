@@ -2,7 +2,7 @@ import { TonoDef, repoRoot } from "./utils"
 import Verovio from "./Verovio";
 
 
-const TESTING = true
+const TESTING = false
 
 function MusicView({ tono, maxHeight, section, onScoreRendered}: {
     tono: TonoDef,
