@@ -69,7 +69,7 @@ function Pagination({currentPageNumber, totalPages, onPage}
         <ul className="pagination">
 
             {pagination(currentPageNumber, totalPages).map((label: any, index: number) =>
-                <li key={label != "..." ? label : `…${index}`}>
+                <li key={index}>
                     {paginationElement(label)}
                 </li>)}
 

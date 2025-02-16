@@ -2,8 +2,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import createVerovioModule from 'verovio/wasm';
 import { VerovioToolkit } from 'verovio/esm';
 import Pagination from './Pagination';
-import { getSvgHighlightedMeasureStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
-
+import { getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
+import AudioPlayer from './AudioPlayer';
+import { getNumMeasures, getPageForMeasureN, getPageForSection, maxVerseNum } from './Score';
+import ClipLoader from "react-spinners/ClipLoader"
 
 const verovioOptions = {
     breaks: "auto",
@@ -20,60 +22,70 @@ const verovioOptions = {
     pageMarginBottom: 10,
     svgViewBox: true,
     svgBoundingBoxes: true,
-    lyricElision: "regular", 
+    lyricElision: "regular",
     lyricHeightFactor: 1.30,
     lyricSize: 5,
     lyricTopMinMargin: 4.0,
     lyricVerseCollapse: true
 }
 
+const svgRules = [1, 2, 3, 4, 5].map(i=> `.staff[data-n="${i}"] { --high: url(#highlighting-${i}); }`).join('\n') 
 
-const nsResolver = (ns: string) => { return { mei: "http://www.music-encoding.org/ns/mei", xml: "http://www.w3.org/XML/1998/namespace" }[ns] }
 
-function Verovio({ mei_url, maxHeight, style }: {
+
+const svgFilter = (id: string, color: string) =>
+    <filter id={`highlighting-${id}`} x="-50%" y="-50%" width="200%" height="200%">
+        <feFlood floodColor={color} result="base">
+        </feFlood>
+        <feGaussianBlur in="SourceAlpha" result="blur-out" stdDeviation="50" />
+        <feOffset in="blur-out" result="the-shadow" />
+        <feComposite result="drop" in="base" in2="color-out" operator="in" />
+        <feBlend in="SourceGraphic" in2="drop" mode="normal" />
+    </filter>
+
+
+
+
+function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style }: {
     mei_url: string,
+    mp3_url: string | undefined,
     maxHeight: number | undefined,
+    section: string | undefined,
+    onScoreRendered: (numMeasures: number) => void,
     style: {}
 }) {
     const [scale, setScale] = useState(50)
     const [score, setScore] = useState<string | null>(null);
+    const [pageCount, setPageCount] = useState(0)
+    const [scoreSvg, setScoreSvg] = useState<string>("")
+    const [timeMap, setTimeMap] = useState<{} | null>(null)
     const [renderedMeiDoc, setRenderedMeiDoc] = useState<Document | null>(null)
     const [verovio, setVerovio] = useState<VerovioToolkit | null>(null);
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
-    const [hoverMeasure, setHoverMeasure] = useState<number|null>(null)
-    const [selectedMeasure, setSelectedMeasure] = useState<number|null>(null)
+    const [hoverMeasure, setHoverMeasure] = useState<number | null>(null)
+    const [selectedMeasure, setSelectedMeasure] = useState<number | null>(null)
     const [showNVerses, setShowNVerses] = useState(0)
-    
+    const [midiHighlightElements, setMidiHiglightElements] = useState<string[]>([])
+    const [prevSection, setPrevSection] = useState<string|null>(null)
+    const [isLoading, setIsLoading] = useState(true)
+
     const containerRef = useRef(null);
-    
 
-    const maxVerseNum = (doc: Document) => { 
-        //@ts-ignore
-        let maxN = doc?.evaluate("//mei:verse/@n[not(. < ../../mei:verse/@n)][1]", doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
-        console.log(maxN)
-        return maxN
-    }
-
-    const getPageForMeasureN = (doc: Document, n: number) => { 
-        //@ts-ignore
-        let xmlid = doc?.evaluate(`//mei:measure[@n="${n}"]/@xml:id`, doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
-        return verovio?.getPageWithElement(xmlid)    
-    }
 
     const getVersesAmmountSelector = (numVerses: number | null) => {
-        if (numVerses == null || numVerses < 2) 
+        if (numVerses == null || numVerses < 2)
             return null
 
         const options: any[] = []
         for (let i = 0; i < numVerses; i++) {
-            options.push( ( <option value={i+1} key={i}>{i+1} versos</option>) )
-         } 
+            options.push((<option value={i + 1} key={i}>{i + 1} versos</option>))
+        }
 
         return (
-         <div style={{ display: "flex", flexDirection: "row",  alignItems: "baseline" }}>
-            <em>Mostrar: </em>
-            <select value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select> 
-        </div>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "baseline" }}>
+                <em>Mostrar: </em>
+                <select value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select>
+            </div>
         )
     }
 
@@ -91,9 +103,9 @@ function Verovio({ mei_url, maxHeight, style }: {
         var node = matches.iterateNext()
         while (node != null) {
             nodes.push(node)
-            node = matches.iterateNext()           
+            node = matches.iterateNext()
         }
-        nodes.forEach(n => n.parentElement?.removeChild(n) )        
+        nodes.forEach(n => n.parentElement?.removeChild(n))
 
         const s = new XMLSerializer();
         return s.serializeToString(doc);
@@ -119,12 +131,12 @@ function Verovio({ mei_url, maxHeight, style }: {
     }, [mei_url]);
 
 
-    const hoveredMeasure = (measure: number) => { setHoverMeasure(measure)}
+    const hoveredMeasure = (measure: number) => { setHoverMeasure(measure) }
     const unhoveredMeasure = (_: number) => { setHoverMeasure(null) }
-    const clickedMeasure = (measure: number) => { setSelectedMeasure(measure)}
+    const clickedMeasure = (measure: number) => { setSelectedMeasure(measure) }
 
     const installHooks = (window: any) => {
-        installWindowHooks(window, { 
+        installWindowHooks(window, {
             onMouseEnterMusicNotesMeasureNumber: hoveredMeasure,
             onMouseLeaveMusicNotesMeasureNumber: unhoveredMeasure,
             onMusicNotesMeasureNumberClick: clickedMeasure
@@ -159,40 +171,67 @@ function Verovio({ mei_url, maxHeight, style }: {
         }
     }, [score])
 
-    const renderedHtml = useMemo(() => {
+
+
+    useEffect(() => {
         if (verovio != null && containerRef.current != null && score != null) {
             //@ts-ignore
             const rect = containerRef.current.getBoundingClientRect()
             //@ts-ignore
-            verovio.setOptions( { ...verovioOptions,
-                 pageWidth: rect.width,
-                 pageHeight:  rect.height,
-                 scale: scale,
-                 svgAdditionalAttribute: getVerovioSvgExtraAttributes(),
+            verovio.setOptions({
+                ...verovioOptions,
+                pageWidth: rect.width,
+                pageHeight: rect.height,
+                scale: scale,
+                svgAdditionalAttribute: getVerovioSvgExtraAttributes(),
 
             })
 
+            setIsLoading(true)
+
             if (showNVerses != null && showNVerses > 0 && parsedScore != undefined) {
-                const filteredScore = filterScoreToNVerses(score, showNVerses) 
+                const filteredScore = filterScoreToNVerses(score, showNVerses)
                 verovio.loadData(filteredScore)
             } else {
                 verovio.loadData(score)
             }
 
-            const pageCount = verovio.getPageCount()
-            const renderedHtml = verovio.renderToSVG(currentPageNumber)
+            setPageCount(verovio.getPageCount())
+            setTimeMap(verovio.renderToTimemap({ includeMeasures: true }))
+            const renderedStr = verovio.getMEI({ pageNo: 0 })
             const parser = new DOMParser();
-            setRenderedMeiDoc(parser.parseFromString(verovio.getMEI({pageNo: 0}), "application/xml"))
-
-            return { pageCount: pageCount, html: renderedHtml }
-        } else {
-            return { pageCount: 0, html: (<div>Loading....</div>) }
+            setRenderedMeiDoc(parser.parseFromString(renderedStr, "application/xml"))
         }
+    }, [score, verovio, scale, /*maxHeight,*/ showNVerses])
 
-    }, [score, verovio, scale, /*maxHeight,*/ currentPageNumber, showNVerses])
 
 
-    const onPageNumberClicked = (pageNumber: number) => { 
+
+
+    if (verovio != null && renderedMeiDoc != null && section != null && section != prevSection) {
+        const pageForSection = getPageForSection(renderedMeiDoc, verovio, section)
+        if (pageForSection) {
+            setHoverMeasure(null)
+            setSelectedMeasure(null)
+            setPrevSection(section)
+            setCurrentPageNumber(pageForSection)
+        }
+    }
+
+    useEffect(() => {
+        if (verovio != null && containerRef.current != null && score != null) {
+            setScoreSvg(verovio.renderToSVG(currentPageNumber))
+            if (isLoading) {
+                setIsLoading(false)
+                if (renderedMeiDoc) {
+                    onScoreRendered(getNumMeasures(renderedMeiDoc))
+                }
+            }
+        }
+    }, [renderedMeiDoc, currentPageNumber])
+
+
+    const onPageNumberClicked = (pageNumber: number) => {
         setHoverMeasure(null)
         setSelectedMeasure(null)
         setCurrentPageNumber(pageNumber)
@@ -202,45 +241,45 @@ function Verovio({ mei_url, maxHeight, style }: {
     const zoomIn = () => { if (scale < 150) setScale(scale + 10) };
 
 
-
-    
-
-    const {svgStyles, targetPage  } 
-    : {svgStyles: string | null, targetPage: number | null } = useMemo(() => {
-        if (!renderedMeiDoc) {
-            return { svgStyles: null, targetPage: null }
-        }
-
-
-        if (selectedMeasure == null && hoverMeasure == null) {
-            return { svgStyles: null, targetPage: null }
-        }
-
-        var treeStyleString = ""
-        if (selectedMeasure != null && selectedMeasure > 0) {
-            let page = getPageForMeasureN(renderedMeiDoc, selectedMeasure)
-            if (page != undefined && page > 0 && page != currentPageNumber) {
-                return { svgStyles: null, targetPage: page  }
+    const { measuresSvgStyles, targetPage }
+        : { measuresSvgStyles: string, targetPage: number | null } = useMemo(() => {
+            if (!verovio || !renderedMeiDoc) {
+                return { measuresSvgStyles: "", targetPage: null }
             }
-            treeStyleString += getSvgSelectedMeasureStyle(selectedMeasure)    
-        }
-        if (hoverMeasure != null &&  hoverMeasure > 0 && hoverMeasure != selectedMeasure) {
-            let page = getPageForMeasureN(renderedMeiDoc, hoverMeasure)
-            if (page != null && page > 0 && page == currentPageNumber) {
-                treeStyleString += getSvgHighlightedMeasureStyle(hoverMeasure)
-            }
-        }
-        return { targetPage: null, svgStyles: treeStyleString }
 
-    
-    }, [renderedMeiDoc, selectedMeasure, hoverMeasure])
+
+            if (selectedMeasure == null && hoverMeasure == null) {
+                return { measuresSvgStyles: "", targetPage: null }
+            }
+
+            var treeStyleString = ""
+            if (selectedMeasure != null && selectedMeasure > 0) {
+                let page = getPageForMeasureN(renderedMeiDoc, verovio, selectedMeasure)
+                if (page != undefined && page > 0 && page != currentPageNumber) {
+                    return { measuresSvgStyles: "", targetPage: page }
+                }
+                treeStyleString += getSvgSelectedMeasureStyle(selectedMeasure)
+            }
+            if (hoverMeasure != null && hoverMeasure > 0 && hoverMeasure != selectedMeasure) {
+                let page = getPageForMeasureN(renderedMeiDoc, verovio, hoverMeasure)
+                if (page != null && page > 0 && page == currentPageNumber) {
+                    treeStyleString += getSvgHighlightedMeasureStyle(hoverMeasure)
+                }
+            }
+
+
+
+            return { measuresSvgStyles: treeStyleString, targetPage: null }
+
+
+        }, [renderedMeiDoc, selectedMeasure, hoverMeasure])
 
 
     if (targetPage != null) {
         setCurrentPageNumber(targetPage)
     }
 
-    const numVersesAvailable  = useMemo(() => {
+    const numVersesAvailable = useMemo(() => {
         if (parsedScore != null) {
             return maxVerseNum(parsedScore)
         }
@@ -251,22 +290,73 @@ function Verovio({ mei_url, maxHeight, style }: {
         setShowNVerses(numVersesAvailable) // All by default
     }
 
-    
-    return (        
+    const onMidiUpdate = (off: string[], on: string[]) => {
+        var newHighlightElements = []
+        for (var e of midiHighlightElements) {
+            if (!off.includes(e)) {
+                newHighlightElements.push(e)
+            }
+        }
+
+        newHighlightElements = newHighlightElements.concat(on)
+        setMidiHiglightElements(newHighlightElements)
+    }
+
+
+    const getMidiHighlightStyles = () => {
+        if (renderedMeiDoc == undefined || midiHighlightElements.length <= 0) {
+            return ""
+        }
+
+        var styles = ""
+        midiHighlightElements.forEach(id => {
+            const pageForPlayingElement = verovio?.getPageWithElement(id)
+            if (pageForPlayingElement != undefined && pageForPlayingElement > currentPageNumber) {
+                setCurrentPageNumber(pageForPlayingElement)
+            }
+            styles += getSvgMidiHighlightStyle(id)
+
+        });
+        return styles
+    }
+
+    const svgStyles = svgRules + measuresSvgStyles + getMidiHighlightStyles()
+
+    return (
 
         <div style={style}>
 
-            <style dangerouslySetInnerHTML={{__html: svgStyles! }} />
+            <svg xmlns="http://www.w3.org/2000/svg" overflow="visible" width="0" height="0">
+                <defs>
+                    {svgFilter("1", "#8e0000")}
+                    {svgFilter("2", "#00ff00")}
+                    {svgFilter("3", "#225c5c")}
+                    {svgFilter("4", "#e9227a")}
+                    {svgFilter("4", "#fa8072")}
+                    {svgFilter("5", "#11ddff")}
+                </defs>
+            </svg>
 
-            <div dangerouslySetInnerHTML={{ __html: renderedHtml.html }}
-                className="panel" ref={containerRef} style={{
-                    border: "1px solid lightgray",
-                    width: "100%", 
-                    height: `${maxHeight}px`
-                }}>
 
+            <style key={svgStyles} dangerouslySetInnerHTML={{ __html: svgStyles }} />
+    
+            <div style={{width: "100%", height: `${maxHeight}px`, position: "relative" }}>
+                <ClipLoader
+                    color="#f56a6a"
+                    loading={isLoading}
+                    cssOverride={{ top: "50%", left: "50%", position: "absolute" }}
+                    size={100}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"/>
+                
+                <div dangerouslySetInnerHTML={{ __html: scoreSvg }}
+                    className="panel" ref={containerRef} style={{ top: 0, left: 0, width: "100%", height: "100%", position: "absolute", 
+                        zIndex: 10, border: "1px solid lightgray" }}/>
             </div>
-            <div style={{ display: "flex"  }}>
+          
+
+
+            <div style={{ display: "flex" }}>
                 <ul className="actions" style={{ flex: 1 }}>
                     <li><a className="button icon primary fa-solid fa-magnifying-glass-minus" onClick={zoomOut}></a></li>
                     <li><a className="button icon primary fa-solid fa-magnifying-glass-plus" onClick={zoomIn}></a></li>
@@ -276,10 +366,12 @@ function Verovio({ mei_url, maxHeight, style }: {
 
                 <Pagination
                     currentPageNumber={currentPageNumber}
-                    totalPages={renderedHtml.pageCount}
+                    totalPages={pageCount}
                     onPage={onPageNumberClicked} />
-                    
-                <div style={{ flex: 1 }}></div>
+
+                <div style={{ flex: 1 }}>
+                    {mp3_url != undefined ? <AudioPlayer src={mp3_url} timeMap={timeMap} onMidiUpdate={onMidiUpdate} /> : null }
+                </div>
             </div>
         </div>
     );
