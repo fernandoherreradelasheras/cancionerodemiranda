@@ -1,6 +1,8 @@
 import { VerovioToolkit } from "verovio/esm"
 
+
 const nsResolver = (ns: string) => { return { mei: "http://www.music-encoding.org/ns/mei", xml: "http://www.w3.org/XML/1998/namespace" }[ns] }
+
 
 export const maxVerseNum = (doc: Document) => {
     //@ts-ignore
@@ -46,5 +48,57 @@ export const getNumMeasures = (doc: Document) => {
     let lastMeasureN = doc?.evaluate(`(//mei:measure)[last()]/@n`, doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
     console.log(lastMeasureN)
     return lastMeasureN
+}
+
+const addNodesOfType = (doc: Document, registry: {}, type: string) =>  {
+    let matches = doc?.evaluate(`//mei:${type}`, doc, nsResolver, XPathResult.ANY_TYPE, null)
+    console.log(matches)
+    let node = matches.iterateNext()
+    console.log(node)
+    while (node != null) {
+        for (const child of node.childNodes) {
+            console.log(child) 
+            if (child.nodeType != Node.ELEMENT_NODE)
+                continue
+            const childId = child.getAttribute("xml:id")
+            if (childId) {
+                const entry = { type: "unclear", node: node }
+                if (registry[childId] == undefined) {
+                    registry[childId] = [ entry ]
+                } else {
+                    registry[childId].push(entry)
+                }
+            }  
+        }      
+        node = matches.iterateNext()
+    }
+}
+
+export const getEditorial = (doc: Document) => {
+    const editorialElements = {}
+    addNodesOfType(doc, editorialElements, "unclear")
+    console.log(editorialElements)
+    return editorialElements
+}
+
+export const filterScoreToNVerses = (score: string, numVerses: number) => {
+    // First do a copy so we keep the original score around
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(score, "application/xml")
+    //@ts-ignore
+    let matches = doc?.evaluate(`//mei:verse[@n > "${numVerses}"]`, doc, nsResolver, XPathResult.ANY_TYPE, null)
+    if (matches == null) {
+        return score
+    }
+    const nodes = []
+    var node = matches.iterateNext()
+    while (node != null) {
+        nodes.push(node)
+        node = matches.iterateNext()
+    }
+    nodes.forEach(n => n.parentElement?.removeChild(n))
+
+    const s = new XMLSerializer();
+    return s.serializeToString(doc);
 }
 

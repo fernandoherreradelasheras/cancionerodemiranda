@@ -63,7 +63,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const [currentTonoNumber, setCurrentTonoNumber] = useState(tono.number)
     const [currentMusicSection, setCurrentMusicSection] = useState<string|undefined>()
     const [maxHeight, setMaxHeight] = useState(0)
-    const [scoreMeasuresCount, setScoreMeasuresCount] = useState(0)
+    const [scoreMeasuresCount, setScoreMeasuresCount] = useState<number | null>(null)
+
 
 
     const leftPanelRef = useRef(null)
@@ -107,8 +108,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
     const musicInfo = (
         <ul className="small" style={{ alignSelf: "flex-end", flex: 1 }}>            
-            <li><span>Número de compases: </span><span>{scoreMeasuresCount > 0 ? scoreMeasuresCount : ""}</span></li>
-            <li><span>Número de blah: </span><span></span></li>
+            <li><span>Número de compases: </span><span>{scoreMeasuresCount != null ? scoreMeasuresCount : ""}</span></li>
         </ul>
     )
 
