@@ -35,6 +35,7 @@ export interface TonoDef {
   path: string;
   pdf_url: string;
   number: number;
+  mp3_file: string;
 }
 
 export const getJson = async (url: string) => {

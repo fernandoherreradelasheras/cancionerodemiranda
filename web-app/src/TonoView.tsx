@@ -61,7 +61,9 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const [currentLeftPanel, setCurrentLeftPanel] = useState(getDefaultSection(tono))
     const [currentRightPanel, setCurrentRightPanel] = useState("")
     const [currentTonoNumber, setCurrentTonoNumber] = useState(tono.number)
+    const [currentMusicSection, setCurrentMusicSection] = useState<string|undefined>()
     const [maxHeight, setMaxHeight] = useState(0)
+    const [scoreMeasuresCount, setScoreMeasuresCount] = useState(0)
 
 
     const leftPanelRef = useRef(null)
@@ -73,6 +75,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     }
 
     const showMusic = () => {
+        setCurrentMusicSection(undefined)
         setCurrentLeftPanel("music")
     }
     const showImages = () => {
@@ -84,8 +87,12 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         setCurrentRightPanel("")
     }
 
+    const onScoreRendered = (numMeasures: number) => {
+        setScoreMeasuresCount(numMeasures)
+    }
+
     const leftActions = (
-        <ul className="actions">
+        <ul className="actions" style={{ flex: 3}}>
             {tono.introduction != null ?
                 <li><Link to="#" onClick={showIntro} className={`button tono-action icon primary ${currentLeftPanel == "intro" ? "disabled" : ""}`}>Introducción</Link></li>
                 : null}
@@ -97,8 +104,17 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         </ul>
     )
 
+
+    const musicInfo = (
+        <ul className="small" style={{ alignSelf: "flex-end", flex: 1 }}>            
+            <li><span>Número de compases: </span><span>{scoreMeasuresCount > 0 ? scoreMeasuresCount : ""}</span></li>
+            <li><span>Número de blah: </span><span></span></li>
+        </ul>
+    )
+
+
     const rightActions = (
-        <ul className="actions small" style={{ alignSelf: "flex-end" }}>
+        <ul className="actions small" style={{ alignSelf: "flex-end", flex: 1 }}>
             {tono.text_transcription != null ?
                 <li><Link to="#" onClick={() => setCurrentRightPanel("text")} className={`button small tono-action primary ${currentRightPanel == "text" ? "disabled" : ""}`}>Texto poético</Link></li>
                 : null}
@@ -111,9 +127,18 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const actions = (
         <div style={{ display: "flex", justifyContent: "space-between" }}>
             {leftActions}
+            {currentLeftPanel == "music" ? musicInfo : <></> }
             {currentLeftPanel == "music" ? rightActions : <></>}
         </div>
     )
+
+    const onSectionClicked = (section: string) => {
+        setCurrentLeftPanel("music")
+        setCurrentMusicSection(section)
+    }
+
+
+    const enableSectionLinks = tono.mei_file != undefined
 
     const status = (
         <div style={{display: "flex" }}>
@@ -127,7 +152,13 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                     <ul>
                         {tono.text_transcription.map((entry: TranscriptionEntry) => transcriptionEntryToSection(entry))
                         .filter(e => e != null)
-                        .map(section => <li>{section}</li>)}
+                        .map((section, index) => {
+                            if (enableSectionLinks)  
+                                return <li key={index}><Link to="" onClick={() => onSectionClicked(section)}>{section}</Link></li>
+                            else 
+                                return <li key={index}>{section}</li>
+                        }
+                    )}
                     </ul>
                 </ul>
             </div>
@@ -152,7 +183,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         if (currentLeftPanel == "intro") {
             return (<IntroView tono={tono} />)
         } else if (currentLeftPanel == "music") {
-            return (<MusicView  tono={tono}  maxHeight={maxHeight}    />)
+            return (<MusicView  tono={tono}  maxHeight={maxHeight} section={currentMusicSection} onScoreRendered={onScoreRendered}  />)
         } else if (currentLeftPanel == "images") {
             return (<ImagesView tono={tono} />)
         } else if (currentLeftPanel == "pdf") {
@@ -197,7 +228,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                     const window = leftPanelRef.current.ownerDocument.defaultView;
                     //@ts-ignore
                     const clientRect = leftPanelRef.current.getBoundingClientRect()
-                    const maxHeight = Math.round(window.innerHeight - clientRect.top - 50)
+                    const maxHeight = Math.round(window.innerHeight - clientRect.top - 100)
                     setMaxHeight(maxHeight)
                 }
                 
