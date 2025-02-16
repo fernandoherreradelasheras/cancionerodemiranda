@@ -2324,27 +2324,52 @@ div.audio-player  {
 }
 
 
-
-.loader {
-  border: 10px solid #f3f3f3;
-  border-top: 10px solid #3498db;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  animation: spin 1s linear infinite;
+rect.overlay-editorial {
+  pointer-events: all; 
+  opacity: 0.1;
 }
 
+rect.overlay-editorial:hover {
+  cursor: pointer;
+}
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-} 
+.overlay-editorial-tooltip {
+  display: none;
+}
 
+g:has(> rect.overlay-editorial:hover) text {
+  display: block;
+}
 
+.overlay-box {
+  background-color: rgb(155 0 155 / 10%);
+  backdrop-filter: blur(2px);
+}
+
+.overlay-box h1 {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+}
+.overlay-box h2 {
+  position: absolute;
+  top: 30%;
+  width: 100%;
+  text-align: left;
+}
+.overlay-box h3 {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: left;
+}
+.overlay-box h4 {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: left;
+}
 
 
 

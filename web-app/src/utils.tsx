@@ -1,6 +1,7 @@
 export const repoRoot = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/"
 export const tonoDefinitionsPath = "tonos/definitions.json"
-export const latestPdfsUrl = "https://cdm.humanoydivino.com/pdfs-release-latest.json"
+export const latestPdfsPath = "/pdfs-release-latest.json"
+
 
 
 export interface TranscriptionEntry {
