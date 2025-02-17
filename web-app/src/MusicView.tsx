@@ -1,25 +1,23 @@
-import { TonoDef, repoRoot } from "./utils"
+import { TonoDef, getTonoUrl } from "./utils"
 import Verovio from "./Verovio";
 
 
-const TESTING = false
 
-function MusicView({ tono, maxHeight, section, onScoreRendered}: {
+function MusicView({ tono, maxHeight, section }: {
     tono: TonoDef,
     maxHeight: number | undefined,
-    section: string | undefined,
-    onScoreRendered:  (numMeasures: number) => void
+    section: string | undefined
 }) {
 
     
 
-    const tonoUrl = TESTING ? "/" + tono.mei_file : repoRoot + tono.path + "/" + tono.mei_file
+    const tonoUrl = getTonoUrl(tono.path, tono.mei_file)
+    console.log(tonoUrl)
     
     const attributes: any = {
         mei_url: tonoUrl,
         maxHeight: maxHeight,
-        style: { flex: 1, width: "100%", height: maxHeight },
-        onScoreRendered: onScoreRendered
+        style: { flex: 1, width: "100%", height: maxHeight }
     }
     if (section != undefined) {
         attributes.section = section

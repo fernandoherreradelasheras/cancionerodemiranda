@@ -56,7 +56,7 @@ function ImagesView({ tono }: { tono: TonoDef }) {
 
             <h4 id="facsimil-title">{imgsLabels[pageIdx]}</h4>
 
-            <Pagination currentPageNumber={pageIdx + 1}
+            <Pagination className="images-pagination" currentPageNumber={pageIdx + 1}
                     totalPages={ imgsUrls.length}
                     onPage={(pageNumber: number) => setCurrentPageNumber(pageNumber)} />
             

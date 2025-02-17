@@ -56,8 +56,7 @@ function AudioPlayer ({src, timeMap, onMidiUpdate} : {
     
 
     return (
-        <div className="audio-player">
-            Audio demo:
+        <div className="audio-player" style={{border:"solid 1px"}}>
             <ul className="actions" style={{ flex: 1 }}>
                 <li><a className={`button small icon primary fa-solid ${isPlaying ? "fa-pause" : "fa-play"}`} onClick={play}></a></li>
                 <progress value={audioProgress} max="100"></progress>

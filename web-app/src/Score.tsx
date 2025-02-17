@@ -1,5 +1,5 @@
 import { VerovioToolkit } from "verovio/esm"
-import { EditorialItem } from "./Editorial"
+import { Annotation, EditorialItem } from "./Editorial"
 
 
 const nsResolver = (ns: string) => { return { mei: "http://www.music-encoding.org/ns/mei", xml: "http://www.w3.org/XML/1998/namespace" }[ns] }
@@ -51,26 +51,60 @@ export const getNumMeasures = (doc: Document) => {
     return lastMeasureN
 }
 
+export const getEditor = (doc: Document) => {
+    //@ts-ignore
+    let name = doc?.evaluate("//mei:respStmt/mei:name[1]", doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.textContent
+    console.log(name)
+    return name
+}
+
 const getNodesOfType = (doc: Document, type: string) =>  {
     const items = []
     //@ts-ignore
     let matches = doc?.evaluate(`//mei:${type}`, doc, nsResolver, XPathResult.ANY_TYPE, null)
     let node = matches.iterateNext()
-    while (node != null) {  
-        const id = (node as Element).getAttribute("xml:id")    
-        const reason = (node as Element).getAttribute("mei:reason")
-        const resp = (node as Element).getAttribute("mei:resp")
-        const targetIds = [...node.childNodes?.values()].filter(n => n.nodeType == Node.ELEMENT_NODE).map((n: any) => n.getAttribute("xml:id"))  
-
-        const item : EditorialItem = { id: id!!, reason: reason || "", resp : resp || "", type: type, boundingBox: null, targetIds: targetIds }
-        items.push(item)
+    while (node != null) { 
+        if (node.parentElement?.tagName != "choice") {
+            const element = node as Element 
+            const id = element.getAttribute("xml:id")    
+            const reason = element.getAttribute("reason")
+            const resp = element.getAttribute("resp")        
+            const targetIds = [...node.childNodes?.values()].filter(n => n.nodeType == Node.ELEMENT_NODE).map((n: any) => n.getAttribute("xml:id"))  
+            
+            const item : EditorialItem = { id: id!!, reason: reason || "", resp : resp || "", type: type, boundingBox: null, targetIds: targetIds }
+            items.push(item)
+        }
         node = matches.iterateNext()
     }
     return items
 }
 
+export const getAnnots = (doc: Document) =>  {
+    const annots = []
+    //@ts-ignore
+    let matches = doc?.evaluate(`//mei:annot`, doc, nsResolver, XPathResult.ANY_TYPE, null)
+    let node = matches.iterateNext()
+    while (node != null) { 
+        const element = node as Element
+        const id = element.getAttribute("xml:id")  
+        const targetIds = element.getAttribute("plist")?.split(" ").map(ref => ref.replace("#", ""))
+        const text = [...node.childNodes?.values()].filter(n => n.nodeType == Node.TEXT_NODE).map((n) => n.textContent).join("\n")
+
+        const annot : Annotation = { id: id!!, targetIds: targetIds!!, text: text }
+        annots.push(annot)
+        
+        node = matches.iterateNext()
+    }
+    return annots
+}
+
 export const getEditorial = (doc: Document) : EditorialItem[] => {
-    const editorialElements = getNodesOfType(doc, "unclear") 
+    const editorialElements: EditorialItem[] = 
+        getNodesOfType(doc, "unclear")
+        .concat(getNodesOfType(doc, "choice"))
+        .concat(getNodesOfType(doc, "sic"))
+        .concat(getNodesOfType(doc, "corr"))
+
     console.log(editorialElements)
     return editorialElements
 }

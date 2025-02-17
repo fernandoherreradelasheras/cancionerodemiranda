@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { EditorialItem } from "./Editorial";
 
-const OUTLINE_VERTICAL_GAP = 12
-
+const getBorderColor = (type: string) => {
+    if (type == "unclear") return "rgb(187, 172, 39)"
+    else if (type == "corr")  return "rgb(36, 160, 73)"
+    else if (type == "sic")  return "rgb(172, 32, 32)"
+    else if (type == "choice")  return "rgb(121, 100, 240)"
+    else return "rgb(0, 0, 0)"
+}
 
 function SvgOverlay( {width, height, editorialOverlays } : {
     width: number,
@@ -10,11 +15,12 @@ function SvgOverlay( {width, height, editorialOverlays } : {
     editorialOverlays: EditorialItem[]
  } ) {
 
-    const [showingEditorial, setShowingEditorial] = useState<string|null>(null)
+    const [showingEditorial, setShowingEditorial] = useState<{id: string, posX: number, posY: number} | null>(null)
 
-    const onEditorialClick = (id: string) => {
-        console.log("clieked on id:  " + id)
-        setShowingEditorial(id)
+    const onEditorialClick = (id: string, e: any) => {
+        setShowingEditorial({ id: id,
+            posX:  e?.target?.x?.baseVal?.value + e?.target?.width?.baseVal?.value + 20, 
+            posY: e?.target?.y?.baseVal?.value + e?.target?.height?.baseVal?.value + 20 })
     }
 
     const onSvgClick = () => {
@@ -29,9 +35,21 @@ function SvgOverlay( {width, height, editorialOverlays } : {
         }
     }
 
+    const formatTitle = (type: string) => {
+        if (type == "corr") {
+            return "Corrección aplicada"
+        } else if (type == "unclear") {
+            return "Elemento poco claro en la fuente"
+        } else if (type == "choice") {
+            return "Otra opción disponible"
+        } else {
+            return `tipo: ${type}`
+        }
+    }
+
 
     console.log(editorialOverlays)
-    const showingEditorialItem = showingEditorial ? editorialOverlays.find(e=> e.id == showingEditorial) : null
+    const showingEditorialItem = showingEditorial ? editorialOverlays.find(e => e.id == showingEditorial.id) : null
 
     return (
         <div>
@@ -46,31 +64,43 @@ function SvgOverlay( {width, height, editorialOverlays } : {
                 onClick={onSvgClick}
                 viewBox={`0 0 ${width} ${height}`}>
 
-                {editorialOverlays.map((b) => 
-                    <g key={b.id}  >
+                {editorialOverlays.map((overlay) => 
+                    <g key={overlay.id}  >
                         <rect className="overlay-editorial"
-                            x={b.boundingBox!!.x}
-                            y={b.boundingBox!!.y - OUTLINE_VERTICAL_GAP}
-                            width={b.boundingBox!!.width}
-                            height={b.boundingBox!!.height + OUTLINE_VERTICAL_GAP}
-                            onClick={()=>onEditorialClick(b.id)}   
-                            strokeWidth="5px"
-                            stroke="red">               
-                        </rect>
+                            x={overlay.boundingBox!!.x}
+                            y={overlay.boundingBox!!.y}
+                            width={overlay.boundingBox!!.width}
+                            height={overlay.boundingBox!!.height}
+                            onClick={(e)=>onEditorialClick(overlay.id, e)}   
+                            strokeWidth="2"
+                            fillOpacity="0.05"
+                            stroke={getBorderColor(overlay.type)}/>
+                        
                         <text className="overlay-editorial-tooltip" fill="blue"
-                        fontSize="1.2em" x={b.boundingBox!!.x + b.boundingBox!!.width / 2} y={b.boundingBox!!.y - 2* OUTLINE_VERTICAL_GAP}
-                        dominantBaseline="middle" text-anchor="middle">{b.type}</text>
+                        fontSize="1.2em"
+                        x={overlay.boundingBox!!.x + overlay.boundingBox!!.width / 2}
+                        y={overlay.boundingBox!!.y + overlay.boundingBox!!.height + 6}
+                        dominantBaseline="middle"
+                        textAnchor="middle">{overlay.type}</text>
                     </g>
                     )}
         
             </svg>
             {showingEditorialItem != null ? 
-                <div onClick={onModalClick} className="overlay-modal" style={{zIndex: 10, position: "absolute", left: "12%", top: "25%", width:"100%", height: "100%" }}>
-                    <div className="overlay-box" style={{width: "75%", height: "50%" }} >
-                        <h1>{`Nota ${showingEditorialItem.type}`}</h1>
-                        <h2>{`id: ${showingEditorialItem.targetIds}`}</h2>
-                        <h3>{`Razon: ${showingEditorialItem.reason}`}</h3>
-                        <h4>{`responsable: ${showingEditorialItem.resp}`}</h4>
+                <div onClick={onModalClick} className="overly-modal" style={{
+                    zIndex: 10,
+                    position: "absolute",
+                    left: showingEditorial?.posX,
+                    top: showingEditorial?.posY,
+                    width:"100%",
+                    height: "100%" }}>
+                    <div className="overlay-box" style={{width: "75%" }} >
+                        <h1>{ formatTitle(showingEditorialItem.type) }</h1>
+                        <p>Id elemento afectado: <em>{showingEditorialItem.targetIds}</em></p>
+                        <p>{ showingEditorialItem.textFromAnnotations }</p>
+                        { showingEditorialItem.reason != "" ? <p>{`Razon: ${showingEditorialItem.reason}`}</p> : "" }
+                        { showingEditorialItem.resp != "" ? <p>{`Responsable: ${showingEditorialItem.resp}`}</p> : "" }
+                        { showingEditorialItem.type == "choice" ? <p>TODO: añadir botón para renderizar esa opción</p> : "" }
                     </div>
                 </div> : null }
 

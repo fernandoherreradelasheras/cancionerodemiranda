@@ -4,7 +4,7 @@ import { VerovioToolkit } from 'verovio/esm';
 import Pagination from './Pagination';
 import { getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
 import AudioPlayer from './AudioPlayer';
-import { filterScoreToNVerses, getEditorial, getNumMeasures, getPageForMeasureN, getPageForSection, maxVerseNum } from './Score';
+import { filterScoreToNVerses, getAnnots, getEditor, getEditorial, getNumMeasures, getPageForMeasureN, getPageForSection, maxVerseNum } from './Score';
 import ClipLoader from "react-spinners/ClipLoader"
 import SvgOverlay from './SvgOverlay';
 import { EditorialItem } from './Editorial'
@@ -13,11 +13,12 @@ const verovioOptions = {
     breaks: "auto",
     footer: "none",
     header: "none",
-    justifyVertically: false,
     scaleToPageSize: true,
     shrinkToFit: true,
     adjustPageHeight: false,
     adjustPageWidth: false,
+    justifyVertically: true,
+    mdivAll: true,
     pageMarginLeft: 10,
     pageMarginRight: 10,
     pageMarginTop: 30,
@@ -48,12 +49,11 @@ const svgFilter = (id: string, color: string) =>
 
 
 
-function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style }: {
+function Verovio({ mei_url, mp3_url, maxHeight, section, style }: {
     mei_url: string,
     mp3_url: string | undefined,
     maxHeight: number | undefined,
     section: string | undefined,
-    onScoreRendered: (numMeasures: number) => void,
     style: {}
 }) {
     const [scale, setScale] = useState(50)
@@ -63,6 +63,8 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
     const [timeMap, setTimeMap] = useState<{} | null>(null)
     const [renderedMeiDoc, setRenderedMeiDoc] = useState<Document | null>(null)
     const [verovio, setVerovio] = useState<VerovioToolkit | null>(null);
+    const [measuresCount, setMeasuresCount] = useState<number|null>(null)
+    const [editor, setEditor] = useState <string|null>(null)
     const [currentPageNumber, setCurrentPageNumber] = useState(1)
     const [hoverMeasure, setHoverMeasure] = useState<number | null>(null)
     const [selectedMeasure, setSelectedMeasure] = useState<number | null>(null)
@@ -76,19 +78,16 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
     const containerRef = useRef<HTMLDivElement>(null);
 
 
-    const getVersesAmmountSelector = (numVerses: number | null) => {
-        if (numVerses == null || numVerses < 2)
-            return null
+    const getVersesAmmountSelector = (numVerses: number) => {
 
         const options: any[] = []
         for (let i = 0; i < numVerses; i++) {
-            options.push((<option value={i + 1} key={i}>{i + 1} versos</option>))
+            options.push((<option value={i + 1} key={i}>{i + 1} verso{ i > 0 ? "s" : ""}</option>))
         }
 
         return (
-            <div style={{ display: "flex", flexDirection: "row", alignItems: "baseline" }}>
-                <em>Mostrar: </em>
-                <select value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select>
+            <div className="verovio-topbar-element">
+                <select style={{width: "auto"}} value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select>
             </div>
         )
     }
@@ -209,9 +208,9 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
             if (isLoading) {
                 setIsLoading(false)
                 if (renderedMeiDoc) {
-                    const measuresCount = getNumMeasures(renderedMeiDoc)
-                    console.log("After rendering page to svg")
-                    onScoreRendered(measuresCount)
+                    setMeasuresCount(getNumMeasures(renderedMeiDoc))
+                    const editor = getEditor(renderedMeiDoc)
+                    setEditor(editor ? editor : "Fernando Herrera")
                 }
             }
         }
@@ -267,6 +266,8 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
     const numVersesAvailable = useMemo(() => {
         if (parsedScore != null) {
             return maxVerseNum(parsedScore)
+        } else {
+            return 1
         }
     }, [score])
 
@@ -309,8 +310,13 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
         if (renderedMeiDoc == undefined || !showEditorial) {
             return ""
         }
-     
-        return "g.unclear { outline: 75px ridge rgba(170, 50, 220, .6);  }"
+     /*
+        return "g.unclear { outline: 75px ridge rgba(187, 172, 39, 0.6);  }\n" +
+         "g.corr { outline: 75px ridge rgba(36, 160, 73, 0.6);  }\n" +
+         "g.sic { outline: 75px ridge rgba(172, 32, 32, 0.6);  }\n" +
+         "g.choice { outline: 75px ridge rgba(121, 100, 240, 0.6);  }\n" 
+*/
+        return ""
     }
 
     useEffect(() => {
@@ -329,22 +335,46 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
         if (svg == null) {
             return
         }
+
         const editorialOverlays: EditorialItem[] = []
+
         let svgBB = svg.getBoundingClientRect();
 
-        for (const item of editorialElements) {
+        for (const item of editorialElements.filter(i => i.type != "annot")) {    
             const svgG = svg.querySelector(`#${item.id}`) as SVGElement
-            console.log(svgG)
             if (svgG) {
                 const bb = svgG.getBoundingClientRect()
                 const newItem = { ...item, 
                     boundingBox: { x: bb.x - svgBB.x, y: bb.y - svgBB.y, width: bb.width, height: bb.height } }
                 editorialOverlays.push(newItem)
+            }            
+        }
+
+        const annotations = getAnnots(renderedMeiDoc)
+        for (const annot of annotations) {
+            for (const ref of annot.targetIds) {
+                const targetOverlay = editorialOverlays.find(o=> o.id == ref)
+                console.log(targetOverlay)
+                if (targetOverlay == null) {
+                    continue
+                }
+                if (targetOverlay.textFromAnnotations != undefined) {
+                    targetOverlay.textFromAnnotations = targetOverlay.textFromAnnotations + "\n" + annot.text
+                } else {
+                    targetOverlay.textFromAnnotations = annot.text
+                }           
             }
         }
-    
+
         setEditorialOverlays(editorialOverlays)
     }, [scoreSvg])
+
+    const musicInfo = (
+        <div className="small verovio-topbar-element vertical-list" >            
+            <span>Número de compases: {measuresCount != null ? measuresCount : ""}</span><br/>
+            <span>Autor de la transcripción: {editor != null ? editor : ""}</span><br/>            
+        </div>
+    )
 
 
 
@@ -353,17 +383,39 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
     return (
 
         <div style={style}>
+            <div className="verovio-topbar">
+                <ul className="actions verovio-top-bar-element topbar-left">
+                    <li><a className="button small icon primary fa-solid fa-magnifying-glass-minus" onClick={zoomOut}></a></li>
+                    <li><a className="button small icon primary fa-solid fa-magnifying-glass-plus" onClick={zoomIn}></a></li>
+                </ul>
 
-            <svg xmlns="http://www.w3.org/2000/svg" overflow="visible" width="0" height="0">
-                <defs>
-                    {svgFilter("1", "#8e0000")}
-                    {svgFilter("2", "#00ff00")}
-                    {svgFilter("3", "#225c5c")}
-                    {svgFilter("4", "#e9227a")}
-                    {svgFilter("4", "#fa8072")}
-                    {svgFilter("5", "#11ddff")}
-                </defs>
-            </svg>
+                <div className="verovio-topbar-element"> 
+                    <input                      
+                        name="chedk-editorial"
+                        id="check-editorial"
+                        type="checkbox"
+                        checked={showEditorial}
+                        onChange={(_) => { setShowEditorial(!showEditorial) }}/>
+                    <label
+                        htmlFor="check-editorial">Notas editoriales</label>
+                </div>
+
+                {getVersesAmmountSelector(numVersesAvailable)}
+            
+
+                <Pagination
+                    className="verovio-topbar-element topbar-center"
+                    currentPageNumber={currentPageNumber}
+                    totalPages={pageCount}
+                    onPage={onPageNumberClicked} />
+
+                { musicInfo }
+
+                <div className="verovio-topbar-element topbar-right">
+                    {mp3_url != undefined ? <AudioPlayer src={mp3_url} timeMap={timeMap} onMidiUpdate={onMidiUpdate} /> : null }
+                </div>
+
+            </div>
 
 
             <style key={svgStyles} dangerouslySetInnerHTML={{ __html: svgStyles }} />
@@ -387,32 +439,17 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, onScoreRendered, style 
                       /> : null }
             </div>
           
-            <div style={{ display: "flex" }}>
-                <ul className="actions" style={{ flex: 1 }}>
-                    <li><a className="button icon primary fa-solid fa-magnifying-glass-minus" onClick={zoomOut}></a></li>
-                    <li><a className="button icon primary fa-solid fa-magnifying-glass-plus" onClick={zoomIn}></a></li>
-                </ul>
+            <svg xmlns="http://www.w3.org/2000/svg" overflow="visible" style={{height:"0%", width:"0%"}}>
+                <defs>
+                    {svgFilter("1", "#8e0000")}
+                    {svgFilter("2", "#00ff00")}
+                    {svgFilter("3", "#225c5c")}
+                    {svgFilter("4", "#e9227a")}
+                    {svgFilter("4", "#fa8072")}
+                    {svgFilter("5", "#11ddff")}
+                </defs>
+            </svg>
 
-                { editorialOverlays.length > 0 ? 
-                    <span><input 
-                            name="chedk-editorial"
-                            id="check-editorial"
-                            type="checkbox"
-                            checked={showEditorial}
-                            onChange={(_) => { setShowEditorial(!showEditorial) }}/>
-                <label htmlFor="check-editorial">Notas editoriales</label></span> : null } 
-
-                {getVersesAmmountSelector(numVersesAvailable)}
-
-                <Pagination
-                    currentPageNumber={currentPageNumber}
-                    totalPages={pageCount}
-                    onPage={onPageNumberClicked} />
-
-                <div style={{ flex: 1 }}>
-                    {mp3_url != undefined ? <AudioPlayer src={mp3_url} timeMap={timeMap} onMidiUpdate={onMidiUpdate} /> : null }
-                </div>
-            </div>
         </div>
     );
 }
