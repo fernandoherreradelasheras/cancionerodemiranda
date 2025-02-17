@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Context } from './Context';
-import { getJson, latestPdfsPath, repoRoot, TonoDef, tonoDefinitionsPath } from './utils';
+import { getJson, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
 
 
 
@@ -22,7 +22,7 @@ function BaseLayout() {
     const fecchDefinitions = async () => {
 
 
-        const tonos = await getJson(repoRoot + tonoDefinitionsPath)
+        const tonos = await getJson(tonoDefinitionsUrl)
 
         const pdflist = await getJson(latestPdfsPath)
 

@@ -46,7 +46,7 @@ export const getSvgMidiHighlightStyle = (id: string) =>
 
 
 export const getSvgEdirtorialHighlightStyle = (id: string, _: string) => 
-    `g#${id}.note > .note.boundingbox > rect { fill:blue;stroke:pink;stroke-width:100;fill-opacity:0.3;stroke-opacity:0.9; }\n`
+    `g#${id}.note > .note.boundingbox > rect { fill:blue;stroke:rga(172, 32, 32);stroke-width:3;fill-opacity:0.1;stroke-opacity:0.9; }\n`
 
 
 

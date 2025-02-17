@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import LatexView from './LatexView';
 
-import { TonoDef, repoRoot } from "./utils"
+import { repoRoot, TonoDef } from "./utils"
 
 
 

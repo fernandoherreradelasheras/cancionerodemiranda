@@ -1,7 +1,13 @@
+const TESTING = false
+
 export const repoRoot = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/"
-export const tonoDefinitionsPath = "tonos/definitions.json"
+const tonoDefinitionsPath = "tonos/definitions.json"
+
+export const tonoDefinitionsUrl = TESTING ? "/definitions.json"  : repoRoot + tonoDefinitionsPath
+
 export const latestPdfsPath = "/pdfs-release-latest.json"
 
+export const getTonoUrl = (path: string, file: string) => TESTING ? "/" + file : repoRoot + path + "/" + file
 
 
 export interface TranscriptionEntry {

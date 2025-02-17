@@ -39,10 +39,11 @@ function range(start: number, end: number) {
   
 
 
-function Pagination({currentPageNumber, totalPages, onPage} 
+function Pagination({currentPageNumber, totalPages, className, onPage} 
     : { 
         currentPageNumber: number,
         totalPages: number,
+        className: string,
         onPage: (page: number) => void,
 
     }) {
@@ -66,7 +67,7 @@ function Pagination({currentPageNumber, totalPages, onPage}
 
     return (
 
-        <ul className="pagination">
+        <ul className={"pagination " + className}>
 
             {pagination(currentPageNumber, totalPages).map((label: any, index: number) =>
                 <li key={index}>
