@@ -12,8 +12,10 @@ export const getTonoUrl = (path: string, file: string) => TESTING ? "/" + file :
 
 export interface TranscriptionEntry {
   file: string,
-  type: string | undefined,
-  append_to: string | undefined 
+  type?: string,
+  append_to?: string,
+  name?: string,
+  label?: string
 }
 
 export interface TonoDef {
@@ -49,3 +51,18 @@ export const getJson = async (url: string) => {
   const response = await fetch(url)
   return response.json()
 };
+
+export const compareArrays = (a: any, b: any) =>
+  a.length === b.length && a.every((element: any, index: number) => element === b[index]);
+
+export const calcHighlightScaling = (nVerses: number) => {
+  if (nVerses < 2) {
+    return 1.3
+  } else if (nVerses == 2) {
+    return 1.2
+  } else if (nVerses == 3) {
+    return 1.1
+  } else {
+    return 1.0
+  }
+}

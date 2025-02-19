@@ -35,11 +35,11 @@ const transcriptionEntryToSection = (entry: TranscriptionEntry) => {
         }
     }
 
-    if (entry.append_to == undefined || entry.append_to == "@none") {
+    if (entry.append_to == undefined) {
         return null
-    }
-
-    if (entry.append_to == "@custom") {
+    } else if (entry.append_to == "@none") {
+        return "coplas" //TODO: Verify this
+    } else if (entry.append_to == "@custom") {
         return "@custom: TODO"
     } else {
         return entry.append_to

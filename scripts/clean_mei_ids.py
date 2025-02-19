@@ -27,7 +27,10 @@ tree = ET.parse(input_file, parser)
 
 idsReferenced = {value[1:] for elem in tree.iter() for name,value in elem.items() if value.startswith("#")}
 print(f'Found {len(idsReferenced)} ids referenced that will be kept: {idsReferenced}')
-for e in [elem for elem in tree.iter() for item in elem.items() if item[0] == ID and item[1] not in idsReferenced]:
+idsLinked = {ref[1:] for elem in tree.iter() for name,value in elem.items() for ref in value.split(" ") if name == "plist"}
+print(f'Found {len(idsLinked)} ids linked that will be kept: {idsLinked}')
+idsToKeep = idsReferenced | idsLinked | { "FHH", "OMA" }
+for e in [elem for elem in tree.iter() for item in elem.items() if item[0] == ID and item[1] not in idsToKeep]:
     e.attrib.pop(ID, None)
 
 
