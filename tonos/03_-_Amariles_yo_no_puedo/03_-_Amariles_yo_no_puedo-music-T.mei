@@ -21,27 +21,63 @@
                         <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
                            <label>Tiple 1º</label>
                            <labelAbbr>T. 1</labelAbbr>
-                           <clef shape="G" line="2" />
+                           <clef xml:id="xuifui2" shape="G" line="2" />
                         </staffDef>
                         <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
                            <label>Tiple 2º</label>
                            <labelAbbr>T. 2</labelAbbr>
-                           <clef shape="G" line="2" />
+                           <clef xml:id="xuifui3" shape="G" line="2" />
                         </staffDef>
                         <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
-                           <clef shape="G" line="2" dis="8" dis.place="below" />
+                           <clef xml:id="xuifui4" shape="G" line="2" dis="8" dis.place="below" />
                         </staffDef>
                      </staffGrp>
                      <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
                         <label>Guion</label>
                         <labelAbbr>G</labelAbbr>
-                        <clef shape="F" line="4" />
+                        <clef xml:id="xuifui5" shape="F" line="4" />
                      </staffDef>
                   </staffGrp>
                </scoreDef>
                <section label="coplas">
+                  <app xml:id="apsod093" >
+                  <lem label="clefs-modernisation"/>
+                  <rdg label="clefs-modernisation">
+                     <scoreDef>
+                        <staffGrp>
+                           <staffGrp symbol="bracket">
+                              <staffGrp symbol="bracketsq">
+                                 <staffDef n="1" lines="5" keysig="1f" meter.count="3"
+                                    meter.unit="2">
+                                    <label>Tiple 1º</label>
+                                    <labelAbbr>T. 1</labelAbbr>
+                                    <clef copyof="#xuifui2" shape="G" line="2" />
+                                 </staffDef>
+                                 <staffDef n="2" lines="5" keysig="1f" meter.count="3"
+                                    meter.unit="2">
+                                    <label>Tiple 2º</label>
+                                    <labelAbbr>S. 2</labelAbbr>
+                                    <clef copyof="#xuifui3" shape="G" line="2" />
+                                 </staffDef>
+                              </staffGrp>
+                              <staffDef n="3" lines="5" keysig="1f" meter.count="3" meter.unit="2">
+                                 <label>Tenor</label>
+                                 <labelAbbr>Tn.</labelAbbr>
+                                 <clef corresp="#xuifui4" shape="C" line="3" />
+                              </staffDef>
+                           </staffGrp>
+                           <staffDef n="4" lines="5" keysig="1f" meter.count="3" meter.unit="2">
+                              <label>Giuon</label>
+                              <labelAbbr>G</labelAbbr>
+                              <clef corresp="#xuifui5" shape="C" line="4" />
+                           </staffDef>
+                        </staffGrp>
+                     </scoreDef>
+                  </rdg>
+               </app>
+                  <annot plist="#apsod093 #xuifui4 #xuifui5">Claves de tenor y acompañamiento modernizadas</annot>
                   <measure n="1">
                      <staff n="1">
                         <layer n="1">
@@ -401,12 +437,15 @@
                                  <syl con="d" wordpos="m">rer</syl>
                               </verse>
                            </note>
-                           <note dur="1" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">te</syl>
-                              </verse>
-                           </note>
+                           <unclear xml:id="u8298di" reason="ink" resp="#FHH">
+                              <note dur="1" pname="e" oct="4">
+                                 <verse n="1">
+                                    <syl wordpos="t">te</syl>
+                                 </verse>
+                              </note>
+                           </unclear>
                         </layer>
+                        <annot plist="#u8298di">semibreve no visible en el manuscrito. Deducida</annot>
                      </staff>
                      <staff n="4">
                         <layer n="1">

@@ -50,7 +50,9 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
         } else if (type == "rdg") {
             return "otra lectura"        
         } else if (type == "sic") {
-            return "error evidente"        
+            return "error evidente"     
+        } else if (type == "supplied") {
+            return "parte añadida"       
         } else {
             return `tipo: ${type}`
         }
