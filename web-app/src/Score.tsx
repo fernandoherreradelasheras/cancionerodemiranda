@@ -132,6 +132,7 @@ export const getEditorial = (doc: Document) : EditorialItem[] => {
         getEditorialNodesOfType(doc, "unclear")
         .concat(getEditorialNodesOfType(doc, "sic"))
         .concat(getEditorialNodesOfType(doc, "corr"))
+        .concat(getEditorialNodesOfType(doc, "supplied"))
         .concat(getChoiceNodesOfType(doc, "choice"))        
         .concat(getChoiceNodesOfType(doc, "app"))
 
