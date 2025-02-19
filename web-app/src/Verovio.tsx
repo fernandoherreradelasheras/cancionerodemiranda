@@ -74,7 +74,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
         const removeEntries = choice.options.filter((_, index) => index != selectedOptionIndex).map(o => o.selector)
         if (type == "app") {
             const newOptions = appOptions.filter(o => !removeEntries.includes(o))          
-            newOptions.push(choice.options[selectedOptionIndex].selector)         
+            newOptions.push(choice.options[selectedOptionIndex].selector)
             setAppOptions(newOptions)
         } else if (type == "choice") {
             const newOptions = choiceOptions.filter(o => !removeEntries.includes(o))
@@ -204,7 +204,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
             const meiDoc = parser.parseFromString(loadedDocStr, "application/xml")
             setLoadedMeiDoc(meiDoc)
         }
-    }, [score, verovio, showNVerses])
+    }, [score, verovio, showNVerses, appOptions, choiceOptions])
 
 
     useEffect(() => {
@@ -216,9 +216,6 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
                 pageWidth: rect.width,
                 pageHeight: rect.height,
                 scale: scale,
-                svgAdditionalAttribute: getVerovioSvgExtraAttributes(),
-                appXPathQuery: Object.values(appOptions) as string[],
-                choiceXPathQuery: Object.values(choiceOptions) as string[]
             }
 
             verovio.setOptions(options)
@@ -238,7 +235,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
                 }
             }
         }
-    }, [scale, appOptions, choiceOptions])
+    }, [scale])
 
 
     if (verovio != null && loadedMeiDoc != null && section != null && section != prevSection) {
@@ -268,11 +265,8 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
 
             const currentPageMei = parser.parseFromString(verovio.getMEI({ pageNo: currentPageNumber }), "application/xml")            
             setFirstMeasureOnPage(getFirstMeasureN(currentPageMei))
-            //console.log(`First measure on page ${currentPageNumber}: ${getFirstMeasureN(currentPageMei)}`)
-
-
         }
-    }, [loadedMeiDoc, currentPageNumber])
+    }, [loadedMeiDoc, currentPageNumber, scale])
 
 
     const onPageNumberClicked = (pageNumber: number) => {
