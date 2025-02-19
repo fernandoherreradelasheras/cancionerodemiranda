@@ -1,18 +1,27 @@
 import { useState, useRef } from "react";
 
 
-function AudioPlayer ({src, timeMap, onMidiUpdate} : { 
-    src: string | undefined, timeMap: any, onMidiUpdate: (off: string[], on: string[]) => void
+function AudioPlayer ({src, timeMap, enabled, onMidiUpdate} : { 
+    src: string | undefined,
+    timeMap: any,
+    enabled: boolean,
+    onMidiUpdate: (playing: boolean, off: string[], on: string[]) => void
 }) {
 
+    const [canPlay, setCanPlay] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [timeMapIndex, setTimeMapIndex] = useState(0)
+
 
     const audioRef = useRef<HTMLAudioElement>(null)
 
-    const [timeMapIndex, setTimeMapIndex] = useState(0)
 
     const play = () => {
         setIsPlaying(!isPlaying)
+    }
+
+    const onCanPlay = (_: any) => {
+        setCanPlay(true)
     }
 
     const onTimeUpdate = (e: any)  => {
@@ -39,14 +48,19 @@ function AudioPlayer ({src, timeMap, onMidiUpdate} : {
             i++
         }
         setTimeMapIndex(i)
-        onMidiUpdate(offElements, onElements)
+        onMidiUpdate(isPlaying, offElements, onElements)
+    }
+
+    const onAudioEnded = (_: any) => {
+        setTimeMapIndex(0)        
+        setIsPlaying(false)
+        onMidiUpdate(false, [], [])
     }
 
     if (audioRef.current != null) {
         if (isPlaying && audioRef.current.paused) {
           audioRef.current.play()
-          setTimeMapIndex(0)
-        
+          setTimeMapIndex(0)        
         } else if (!isPlaying && !audioRef.current.paused) {
             audioRef.current.pause();
         }
@@ -58,11 +72,18 @@ function AudioPlayer ({src, timeMap, onMidiUpdate} : {
     return (
         <div className="audio-player" style={{border:"solid 1px"}}>
             <ul className="actions" style={{ flex: 1 }}>
-                <li><a className={`button small icon primary fa-solid ${isPlaying ? "fa-pause" : "fa-play"}`} onClick={play}></a></li>
+                <li>
+                    <a className={`button small icon primary fa-solid ${isPlaying ? "fa-pause" : "fa-play"} ${!canPlay || !enabled ? "disabled" : ""}`}
+                        onClick={play}></a>
+                </li>
                 <progress value={audioProgress} max="100"></progress>
             </ul>
-            <audio ref={audioRef} src={src}  onError={(e)=> console.log(e)} onTimeUpdate={onTimeUpdate} onLoadedData={() => console.log("loaded data")}  />
-
+            <audio ref={audioRef} src={src}
+                onError={(e)=> console.log(e)}
+                onEnded={onAudioEnded}
+                onTimeUpdate={onTimeUpdate}
+                onCanPlayThrough={onCanPlay}
+                onLoadedData={() => console.log("loaded data")}  />
         </div>
     )
 }

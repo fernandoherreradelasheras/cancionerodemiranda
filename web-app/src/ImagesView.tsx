@@ -10,10 +10,10 @@ const zeroPad = (num: number, places: number) => String(num).padStart(places, '0
 function ImagesView({ tono }: { tono: TonoDef }) {
 
     const imgsUrls = [
-        ...tono['s1_pages'].map(p => `${repoRoot}facsimil-images/S1/image-${zeroPad(p, 3)}.jpg`),
-        ...tono['s2_pages'].map(p => `${repoRoot}facsimil-images/S2/image-${zeroPad(p, 3)}.jpg`),
-        ...tono['t_pages'].map(p => `${repoRoot}facsimil-images/T/image-${zeroPad(p, 3)}.jpg`),
-        ...tono['g_pages'].map(p => `${repoRoot}facsimil-images/G/image-${zeroPad(p, 3)}.jpg`)];
+        ...tono['s1_pages'].map(p => `${repoRoot}facsimil-images/S1/image-${zeroPad(p - 1, 3)}.jpg`),
+        ...tono['s2_pages'].map(p => `${repoRoot}facsimil-images/S2/image-${zeroPad(p - 1, 3)}.jpg`),
+        ...tono['t_pages'].map(p => `${repoRoot}facsimil-images/T/image-${zeroPad(p - 1, 3)}.jpg`),
+        ...tono['g_pages'].map(p => `${repoRoot}facsimil-images/G/image-${zeroPad(p - 1, 3)}.jpg`)];
     const imgsLabels = [
         ...tono['s1_pages'].map(p => `Tiple 1º p. ${p}`),
         ...tono['s2_pages'].map(p => `Tiple 2º p. ${p}`),

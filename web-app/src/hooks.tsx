@@ -41,8 +41,8 @@ export const getSvgSelectedMeasureStyle = (measure: number) =>
 
 // This scaling of the whole group is not ideal because lyrics gets pushed down way too much. But appiying the transform to the head + stem is a mess
 // because they are drawn using different centers depending on the stem direction
-export const getSvgMidiHighlightStyle = (id: string) =>  
-    `g#${id}.note { filter: var(--high); transform-origin: center; transform-box: fill-box; transform: scale(1.3); }\n`
+export const getSvgMidiHighlightStyle = (id: string, scale: number) =>  
+    `g#${id}.note { filter: var(--high); transform-origin: center; transform-box: fill-box; transform: scale(${scale}); }\n`
 
 
 export const getSvgEdirtorialHighlightStyle = (id: string, _: string) => 
@@ -50,11 +50,4 @@ export const getSvgEdirtorialHighlightStyle = (id: string, _: string) =>
 
 
 
-
-
-  
-
-
-
-
-export const getVerovioSvgExtraAttributes = () =>  [ "measure@n", "staff@n" ]
+export const getVerovioSvgExtraAttributes = () =>  [ "measure@n", "staff@n", "clef@corresp" ]

@@ -194,8 +194,9 @@ def format_text_part(transcription, comments):
         
         # Add heading only if there is more than one section
         if len(transcription) > 1:
-            if 'append_to' in section:
-                str = str + "\\flagverse{\\textnormal{Coplas}}\n" 
+            if 'append_to' and 'name' in section:
+                name = section['name']
+                str = str + "\\flagverse{\\textnormal{%s}}\n" % name 
             else:
                 str = str + "\\flagverse{\\textnormal{Estribillo}}\n" 
         str = str + txt_to_tex(contents)        
@@ -527,13 +528,14 @@ def generate_mei(input_mei, order, poet, composer, title, tmp_dir, output_mei):
     run_cmd(cmd)
 
 
-def render_mei(mei_file, mei_unit, tmp_dir, output_name):
+def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
     cmd = [ 'verovio',  '--unit', mei_unit, '--multi-rest-style', 'auto', '--mdiv-all', '-a', '--mm-output', '--mnum-interval', '0',
             '--bottom-margin-header', '2.5', '--page-margin-left', '150', '--page-margin-right', '150', '--page-margin-top', '50',
            '--lyric-height-factor', '1.4', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2', "--no-justification",
             '--bottom-margin-header', '8', '--page-margin-bottom', '50', '--top-margin-pg-footer', '4',  '--header', 'auto', '--footer', 'encoded',
-            '--breaks', 'auto', '--condense', 'encoded', '--min-last-justification', '0.2', '--scale', '100', '--justify-vertically',
+            '--breaks', 'auto', '--condense', 'encoded', '--min-last-justification', '0.2', '--scale', mei_scale, '--scale-to-page-size', '--justify-vertically',
            '-o', f'{tmp_dir}/output.svg', mei_file ]
+    print(" ".join(cmd))
     run_cmd(cmd)
     
     cmd = [ 'sh', '-c', f'svgs2pdf -m "{output_name}" -o "{tmp_dir}" {tmp_dir}/*.svg' ]
@@ -556,11 +558,12 @@ def add_titles(mei_file, entries):
     print(f'sections gathered for titles: custom: {custom}, regular_append: {regular_append}, not_append:{not_append} ')
     
     for entry in regular_append:
-        name = entry['header_name'] if 'header_name' in entry else entry['append_to']
-        insert_title_in_mei(mei_file, entry['append_to'], name)
+        name = entry['name'] if 'name' in entry else entry['append_to']
+        score_label = entry['append_to'] if entry['append_to'] != "@none" else entry['label']
+        insert_title_in_mei(mei_file, score_label, name)
             
     for entry in not_append:         
-        name = entry['header_name'] if 'header_name' in entry else "Estribillo"
+        name = entry['name'] if 'name' in entry else "Estribillo"
         score_section = entry['score_section'] if 'score_section' in entry else "estribillo"
         insert_title_in_mei(mei_file, score_section, name)
         
@@ -578,6 +581,7 @@ def generate_score(order, data, tmp_dir):
         return False
     
     mei_unit = str(data['mei_unit']) if 'mei_unit' in data else "8.0"
+    mei_scale = str(data['mei_scale']) if 'mei_scale' in data else "100"
     tmp_file = f"{tmp_dir}/tmp1.mei"
     
     generate_mei(data['mei_file'], order, data['text_author'], data['music_author'], data['title'], tmp_dir, tmp_file)
@@ -589,7 +593,7 @@ def generate_score(order, data, tmp_dir):
     
     inject_section_place_holders(f"{tmp_dir}/tmp1.mei", blocks_to_inject)   
     
-    render_mei(f"{tmp_dir}/tmp1.mei", mei_unit, tmp_dir, "music.pdf")   
+    render_mei(f"{tmp_dir}/tmp1.mei", mei_unit, mei_scale, tmp_dir, "music.pdf")   
     
     inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/music.pdf", tmp_dir)
 
