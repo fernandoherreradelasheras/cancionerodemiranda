@@ -4,7 +4,7 @@ import { VerovioToolkit } from 'verovio/esm';
 import Pagination from './Pagination';
 import { getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
 import AudioPlayer from './AudioPlayer';
-import { filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getNumMeasures, getPageForMeasureN, getPageForSection, maxVerseNum, scoreAddTitles } from './Score';
+import { filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getNumMeasures, getPageForMeasureN, getPageForSection, getTargettableChildren, getTargetTableChildren, maxVerseNum, scoreAddTitles } from './Score';
 import ClipLoader from "react-spinners/ClipLoader"
 import SvgOverlay from './SvgOverlay';
 import { Choice, EditorialItem } from './Editorial'
@@ -388,6 +388,23 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
         })    
     }
 
+    const getBBForSelector = (container: SVGSVGElement, selector: string) => {
+        let svgG = container.querySelector(selector)
+        if (svgG) {
+            const bb = svgG.getBoundingClientRect()
+            if (bb.width > 0 && bb.height > 0) {
+                return bb
+            }
+        }
+        return null
+    }
+
+    const buildItemWithBB = (item: EditorialItem, bb: DOMRect, offsetX: number, offsetY: number) => {
+        return {
+            ...item, boundingBox: { x: bb.x - offsetX, y: bb.y - offsetY, width: bb.width, height: bb.height }
+        }        
+    }
+
 
     useEffect(() => {
         
@@ -406,36 +423,36 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
             return
         }
 
-        const editorialOverlays: EditorialItem[] = []
+        const editorialOverlays: EditorialItem[] = [] 
 
         let svgBB = svg.getBoundingClientRect();
 
         for (const item of editorialElements) {
-            let svgG = svg.querySelector(`#${item.id}`)
-            if (svgG) {
-                const bb = svgG.getBoundingClientRect()
-                const newItem = { ...item,
-                    boundingBox: { x: bb.x - svgBB.x, y: bb.y - svgBB.y, width: bb.width, height: bb.height }
-                 }
-                editorialOverlays.push(newItem)
-            } 
+            const bb = getBBForSelector(svg, `#${item.id}`)
+            if (bb) {
+                editorialOverlays.push(buildItemWithBB(item, bb, svgBB.x, svgBB.y ))
+            } else {
+                // Some element like measures have empty bounding boxes, so we need to terget the children
+                const children = getTargettableChildren(loadedMeiDoc, item.id)
+                for (const id of children) {
+                    const cbb = getBBForSelector(svg, `#${id}`)
+                    if (cbb) {
+                        editorialOverlays.push(buildItemWithBB(item, cbb, svgBB.x, svgBB.y ))
+                    }
+                }     
+            }
             if (item.correspIds != undefined) {
                 item.correspIds.forEach(id => {
-                    let svgG = svg.querySelector(`[data-corresp="#${id}"]`)
-                    if (svgG) {
-                        const bb = svgG.getBoundingClientRect()
-                        const newItem = { ...item,
-                            id : id,
-                            boundingBox: { x: bb.x - svgBB.x, y: bb.y - svgBB.y, width: bb.width, height: bb.height }
-                        }
-                        editorialOverlays.push(newItem)
-                    } 
+                    const bb = getBBForSelector(svg, `[data-corresp="#${id}"]`)
+                    if (bb) {
+                        editorialOverlays.push(buildItemWithBB(item, bb, svgBB.x, svgBB.y ))
+                    }
                 })
-            }        
+            }
         }
+                   
 
         updateChoicesWithCurrentOptions(editorialOverlays)
-           
 
         setEditorialOverlays(editorialOverlays)
     }, [scoreSvg])
