@@ -56,7 +56,7 @@ const getDocument = (e:RefObject<any>) =>
 
 const TonoView = ({ tono }: { tono: TonoDef }) => {
 
-    const { definitions } = useContext(Context)    
+    const { definitions, useBreakpoint } = useContext(Context)
 
     const [currentLeftPanel, setCurrentLeftPanel] = useState(getDefaultSection(tono))
     const [currentRightPanel, setCurrentRightPanel] = useState("")
@@ -66,6 +66,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
 
     const leftPanelRef = useRef(null)
+
+    const breakpoint = useBreakpoint()
 
 
     const showIntro = () => {
@@ -216,8 +218,11 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                     const window = leftPanelRef.current.ownerDocument.defaultView;
                     //@ts-ignore
                     const clientRect = leftPanelRef.current.getBoundingClientRect()
-                    const maxHeight = Math.round(window.innerHeight - clientRect.top - 100)
-                    setMaxHeight(maxHeight)
+                    if (breakpoint == "XL" || breakpoint == "L") {
+                        setMaxHeight(Math.round(window.innerHeight - clientRect.top - 100))
+                    } else {
+                        setMaxHeight(window.innerHeight - 100)
+                    }
                 }
                 
             });
