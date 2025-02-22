@@ -41,7 +41,6 @@ export const getPageForMeasureN = (doc: Document, verovio: VerovioToolkit, n: nu
 export const getFirstMeasureN = (doc: Document) => {
     //@ts-ignore
     let xmlid = doc?.evaluate(`(//mei:measure)[1]/@xml:id`, doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
-    console.log(xmlid)
     return xmlid
 }
 
@@ -133,8 +132,10 @@ export const getEditorial = (doc: Document) : EditorialItem[] => {
         .concat(getEditorialNodesOfType(doc, "sic"))
         .concat(getEditorialNodesOfType(doc, "corr"))
         .concat(getEditorialNodesOfType(doc, "supplied"))
+        .concat(getEditorialNodesOfType(doc, "reg"))
         .concat(getChoiceNodesOfType(doc, "choice"))        
         .concat(getChoiceNodesOfType(doc, "app"))
+
 
     const annotations = getAnnotations(doc)
     const consumedAnnotationsTargets = new Set()
@@ -151,6 +152,7 @@ export const getEditorial = (doc: Document) : EditorialItem[] => {
     // any other EditorialElement
     annotations.forEach(annot => {
         const unusedIds = annot.targetIds.filter(id => !consumedAnnotationsTargets.has(id))
+          
         if (unusedIds.length > 0) {
             const elementsForAnnotation = editorialElements.filter(e => e.annotations.has(annot))
             if (elementsForAnnotation.length == 1) {
@@ -162,8 +164,20 @@ export const getEditorial = (doc: Document) : EditorialItem[] => {
         }        
     }) 
 
-
    return editorialElements
+}
+
+export const getTargettableChildren = (doc: Document, id: string) => {
+    const ids = []
+    //@ts-ignore
+    let matches = doc?.evaluate(`//mei:*[@xml:id="${id}"]//mei:staff`, doc, nsResolver, XPathResult.ANY_TYPE, null)
+    let node = matches.iterateNext()
+    while (node != null) { 
+        ids.push((node as Element).getAttribute("xml:id"))
+        node = matches.iterateNext()
+    }
+    return ids
+
 }
 
 export const filterScoreToNVerses = (score: string, numVerses: number) => {
@@ -199,7 +213,6 @@ export const scoreAddTitles = (score: string, titleMap: { label: string, title: 
         }
     
         var node = matches.iterateNext()
-        console.log(node)
         const dir = doc.createElement("dir")    
         dir.setAttribute("place", "above")
         dir.setAttribute("staff", "1")

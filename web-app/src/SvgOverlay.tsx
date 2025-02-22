@@ -158,8 +158,8 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
                     </filter>
                 </defs>
 
-                {editorialOverlays.map((overlay) => 
-                    <g key={overlay.id}  >
+                {editorialOverlays.map((overlay, index) => 
+                    <g key={index}  >
                         <rect className="overlay-editorial"
                             x={overlay.boundingBox!!.x}
                             y={overlay.boundingBox!!.y}
