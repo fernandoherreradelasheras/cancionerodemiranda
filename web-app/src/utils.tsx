@@ -18,6 +18,24 @@ export interface TranscriptionEntry {
   label?: string
 }
 
+export enum TextStatus {
+  "not started" = "not started",
+  "raw transcription" = "raw transcription",
+  "transcription completed" = "transcription completed",
+  "reviewed" = "reviewed",
+  "completed" = "completed"
+}
+
+export enum MusicStatus {
+  "not started" = "not started",
+  "raw transcription" = "raw transcription",
+  "transcription completed" = "transcription completed",
+  "lost voice reconstructed" = "lost voice reconstructed", 
+  "reviewed" = "reviewed",
+  "completed" = "completed"
+}
+
+
 export interface TonoDef {
   index: number;
   title: string;
@@ -27,14 +45,8 @@ export interface TonoDef {
   s2_pages: number[];
   t_pages: number[];
   g_pages: number[];
-  status_text_transcription: string;
-  status_text_proof_reading: string;
-  status_text_validation: string;
-  status_music_transcription: string;
-  status_music_proof_reading: string;
-  status_music_validation: string;
-  status_poetic_study: string;
-  status_musical_study: string;
+  status_text: TextStatus;
+  status_music: MusicStatus;
   introduction: string;
   mei_file: string;
   mei_unit: number;

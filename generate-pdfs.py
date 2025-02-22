@@ -95,26 +95,14 @@ def format_version(version):
 
 def format_status(data):
     str = ""
-    text_transcription=data['status_text_transcription']
-    text_validation=data['status_text_validation']
-    text_proof_reading=data['status_text_proof_reading']
-    music_transcription=data['status_music_transcription']
-    music_proof_reading=data['status_music_proof_reading']
-    music_validation=data['status_music_validation']
-    poetic_study=data['status_poetic_study']
-    musical_study=data['status_musical_study']
+    status_text=data['status_text']
+    status_music=data['status_music']
 
-    str = str + f"\\def\\mytexttranscription{{{text_transcription}}}\n"
-    str = str +  f"\\def\\mytextproofreading{{{text_proof_reading}}}\n"
-    str = str +  f"\\def\\mytextvalidation{{{text_validation}}}\n"
-    str = str +  f"\\def\\mymusictranscription{{{music_transcription}}}\n"
-    str = str +  f"\\def\\mymusicproofreading{{{music_proof_reading}}}\n"
-    str = str +  f"\\def\\mymusicvalidation{{{music_validation}}}\n"
-    str = str +  f"\\def\\mypoeticstudy{{{poetic_study}}}\n"
-    str = str +  f"\\def\\mymusicalstudy{{{musical_study}}}\n"
+    str = str + f"\\def\\mystatustext{{{status_text}}}\n"
+    str = str +  f"\\def\\mystatusmusic{{{status_music}}}\n"
     
 
-    for status in [ text_transcription, text_validation, text_proof_reading, music_proof_reading, music_validation, poetic_study, musical_study ]:
+    for status in [ status_text, status_music ]:
         if status != "completed": 
             str = str + "\\DraftwatermarkOptions{stamp=true}\n" 
             break

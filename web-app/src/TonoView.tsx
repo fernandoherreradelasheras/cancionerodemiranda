@@ -1,5 +1,5 @@
 import { RefObject, useContext, useEffect, useRef, useState } from 'react'
-import { TonoDef, TranscriptionEntry } from './utils'
+import { MusicStatus, TextStatus, TonoDef, TranscriptionEntry } from './utils'
 import IntroView from './IntroView'
 import MusicView from './MusicView'
 import ImagesView from './ImagesView'
@@ -7,15 +7,34 @@ import Pdf from './Pdf'
 import { Link } from 'react-router-dom'
 import TonoRightPanel from './TonoRightPanel'
 import { Context } from './Context'
+import 'primereact/resources/themes/lara-light-cyan/theme.css';
+
+import { ProgressBar } from 'primereact/progressbar'
 
 
-const getStatusElement = (text: string, status: string) => {
-    const className = "text-" + status.replace(' ', '-')
-    return (
-        <li>{text}<span className={className}>{status}</span>
-        </li>
-    )
+const getProgressFromTextStatus = (status: TextStatus) => {
+    switch(status) {
+        case "not started": return { value: 0, text: "sin comenzar" }
+        case "raw transcription": return  { value: 25, text: "transcripción en progreso" }
+        case "transcription completed": return  { value: 50, text: "transcripción completa" }
+        case "reviewed": return  { value: 75, text: "revisado" }
+    }
+    return  { value: 100, text: "completado" }
+
 }
+
+const getProgressFromMusicStatus = (status: MusicStatus) => {
+    switch(status) {
+        case "not started": return { value: 0, text: "sin comenzar" }
+        case "raw transcription": return  { value: 20, text: "transcripción en progreso" }
+        case "transcription completed": return  { value: 40, text: "transcripción completa" }
+        case "lost voice reconstructed": return { value: 60, text: "voz perdida reconstruida"} 
+        case "reviewed": return  { value: 80, text: "revisado" }
+    }
+    return  { value: 100, text: "completado" }
+}
+
+
 
 const getDefaultSection = (tono: TonoDef) => {
     if (tono.introduction != undefined)
@@ -129,6 +148,11 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
 
     const enableSectionLinks = tono.mei_file != undefined
+    const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tono.status_text)
+    const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tono.status_music)
+
+
+
 
     const status = (
         <div style={{display: "flex" }}>
@@ -154,16 +178,18 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             </div>
             <div style={{flex: 3 }}>
                 <ul id="tono-stats" className="alt">
-                    {getStatusElement("Transcripción del texto:", tono.status_text_transcription)}
-                    {getStatusElement("Revisión del texto:", tono.status_text_proof_reading)}
-                    {getStatusElement("Validación del texto:", tono.status_text_validation)}
+                    <li>Texto: {textStatusText}
+                        <ProgressBar value={textStatusValue} showValue={false} color={`var(--progress-color-${textStatusValue})`} >
+                        </ProgressBar>         
+                    </li>
+                    <li>Musica: {musicStatusText}
+                         <ProgressBar value={musicStatusValue} showValue={false} color={`var(--progress-color-${musicStatusValue})`} >
+                        </ProgressBar>         
+                    </li>
                 </ul>
             </div>
             <div style={{flex: 3 }}>
                 <ul id="tono-estado-musica" className="alt">
-                    {getStatusElement("Transcripción de la música:", tono.status_music_transcription)}
-                    {getStatusElement("Revisión de la música:", tono.status_music_proof_reading)}
-                    {getStatusElement("Validación de la música:", tono.status_music_validation)}
                 </ul>
             </div>
         </div>
