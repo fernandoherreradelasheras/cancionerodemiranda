@@ -21,28 +21,60 @@
                         <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
                            <label>Tiple 1º</label>
                            <labelAbbr>T. 1</labelAbbr>
-                           <clef shape="G" line="2" />
+                           <clef shape="G" line="2" xml:id="cjkdud1" />
                         </staffDef>
                         <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
                            <label>Tiple 2º</label>
                            <labelAbbr>T. 2</labelAbbr>
-                           <clef shape="G" line="2" />
+                           <clef shape="G" line="2" xml:id="cjkdud2" />
                         </staffDef>
                         <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
-                           <clef shape="G" line="2" dis="8" dis.place="below" />
+                           <clef shape="G" line="2" dis="8" dis.place="below" xml:id="cjkdud3" />
                         </staffDef>
                      </staffGrp>
                      <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
                         <label>Guión</label>
                         <labelAbbr>G.</labelAbbr>
-                        <clef shape="F" line="4" />
+                        <clef shape="F" line="4" xml:id="cjkdud4" />
                      </staffDef>
                   </staffGrp>
                </scoreDef>
                <section label="coplas">
-                  <measure n="1">
+                  <app xml:id="acdkjf9">
+			<lem label="app_clefs" />
+			<rdg label="app_clefs">
+			<scoreDef midi.bpm="210.0">
+                  <staffGrp>
+                     <staffGrp symbol="bracket">
+                        <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
+                           <label>Tiple 1º</label>
+                           <labelAbbr>T. 1</labelAbbr>
+                           <clef shape="G" line="2" copyof="#cjkdud1" />
+                        </staffDef>
+                        <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
+                           <label>Tiple 2º</label>
+                           <labelAbbr>T. 2</labelAbbr>
+                           <clef shape="G" line="2" copyof="#cjkdud2" />
+                        </staffDef>
+                        <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
+                           <label>Tenor</label>
+                           <labelAbbr>Tn.</labelAbbr>
+                           <clef shape="C" line="3" corresp="#cjkdud3" />
+                        </staffDef>
+                     </staffGrp>
+                     <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
+                        <label>Guión</label>
+                        <labelAbbr>G.</labelAbbr>
+                        <clef shape="C" line="4" corresp="#cjkdud4" />
+                     </staffDef>
+                  </staffGrp>
+               </scoreDef>
+			</rdg>
+		</app>
+		<annot plist="#acdkjf9 #cjkdud3 #cjkdud4">Claves modernizadas</annot>
+		<measure n="1">
                      <staff n="1">
                         <layer n="1">
                            <rest dur="2" />
@@ -312,7 +344,8 @@
                      <tie startid="#nmz5nfb" endid="#ncnpf5y" />
                      <tie startid="#n1cpkiwq" endid="#n10t3qyc" />
                   </measure>
-                  <measure n="6">
+                  <supplied xml:id="s0923kf">
+                  <measure n="6" >
                      <staff n="1">
                         <layer n="1">
                            <note xml:id="nw9bnz0" dur="2" pname="c" oct="5" />
@@ -514,6 +547,8 @@
                      </staff>
                      <tie startid="#n1q5trvu" endid="#n13korss" />
                   </measure>
+               </supplied>
+               <annot plist="#s0923kf">La repetición del primer verso se indica en las partes vocales mediantes barras de repetición mientras que el guion varía las notas en la repetición. Repetimos los 3 compases en todas las partes por claridad.</annot>
                   <measure n="10">
                      <staff n="1">
                         <layer n="1">
@@ -1274,13 +1309,16 @@
                      <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="c" oct="3" />
-                           <note xml:id="n12c12ei" dur="2" pname="f" oct="2" />
+                           <reg xml:id="roiod78">
+                              <note xml:id="n12c12ei" dur="2" pname="f" oct="2" />
+                           </reg>
                         </layer>
                      </staff>
                      <dir type="mscore-staff-text" startid="#n12c12ei" place="above">Rojão</dir>
                      <tie startid="#n12c12ei" endid="#ndxtwvu" />
                      <repeatMark startid="nnxbs3i" staff="4" place="below" func="fine" />
                   </measure>
+                  <reg xml:id="roiod79">
                   <measure n="26">
                      <staff n="1">
                         <layer n="1">
@@ -1476,6 +1514,8 @@
                      </staff>
                      <repeatMark startid="#rc0zleo" staff="4" place="below" func="dalSegno">Dal <symbol glyph.auth="smufl" glyph.name="segno"/> al fine</repeatMark>
                   </measure>
+               </reg>
+               <annot plist="#roiod78 roiod79">El guión incluye un rojão, esto es interludio instrumental equivalente portugués al pasacalle español, para ser tocador entre una copla y otra. Para más información sobre este tipo de prelucios véase Rojão: um prelúdio Português no séc. XVIII: manuscrito musical P-CUG MM 97, Biblioteca Geral da Universidade de Coimbra</annot>
                </section>
             </score>
          </mdiv>

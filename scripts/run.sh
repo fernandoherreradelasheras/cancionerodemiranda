@@ -33,4 +33,13 @@ for file in "${mei_files[@]}"; do
 		sh "$script_dir/fix-ellisons.sh" "$file" > ./.tmp_output.mei
 		mv ./.tmp_output.mei "$file"
 	fi
+	if [ "$cmd" = "add-clefs-app" ] || [ "$cmd" = "all" ]; then
+		python "$script_dir/add_app_clefs.py" "$file" ./.tmp_output.mei
+		echo '<?xml version="1.0" encoding="UTF-8"?>' > "$file"
+		echo '<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>' >> "$file"
+		echo '<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>' >> "$file"
+		sed -e 's/\([^ ]\)\/>$/\1 \/>/g' ./.tmp_output.mei >> "$file"
+		rm -f ./.tmp_output.mei
+
+	fi
 done
