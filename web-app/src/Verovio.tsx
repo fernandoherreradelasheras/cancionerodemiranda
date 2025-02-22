@@ -261,6 +261,9 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
                     const editor = getEditor(loadedMeiDoc)
                     setEditor(editor ? editor : "<missing>")
                 }
+                containerRef.current?.scrollIntoView({
+                    behavior: 'smooth'
+                  })
             }
             const parser = new DOMParser();
 

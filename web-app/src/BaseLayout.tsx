@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Context } from './Context';
 import { getJson, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
+import { createBreakpoint } from 'react-use';
 
 
+const useBreakpoint = createBreakpoint({ XL: 1281, L: 981, M: 737, S: 481 });
 
 const Toggle = ({ toggle }: { toggle: () => void }) => {
     return (
@@ -14,37 +16,49 @@ const Toggle = ({ toggle }: { toggle: () => void }) => {
 
 
 function BaseLayout() {
+
     const [definitions, setDefinitions] = useState<TonoDef[]>([])
 
     const [activeSidebar, setActiveSidebar] = useState(true);
+    const [lastLocation, setLastLocation] = useState<string|null>(null)
+
+    const mainDivRef = useRef<HTMLDivElement>(null)
+
+    const location = useLocation()
+
     const toggle = () => setActiveSidebar(val => !val);
 
-    const fecchDefinitions = async () => {
-
-
+    const fetchDefinitions = async () => {
         const tonos = await getJson(tonoDefinitionsUrl)
-
         const pdflist = await getJson(latestPdfsPath)
 
         tonos.forEach((tono: TonoDef, index: number) => {
             tono.pdf_url = pdflist[index]
-            if (index == 38) tono.mp3_file = "/39.mp3" // TESTING
         })
         
         setDefinitions(tonos);
     };
 
 
-
     useEffect(() => {
-        fecchDefinitions()
+        fetchDefinitions()
     }, []);
+
+    const breakpoint = useBreakpoint()
+
+
+    if (breakpoint != "XL" && breakpoint != "L") {
+        if (lastLocation == null || lastLocation != location.pathname) {
+            setLastLocation(location.pathname)
+            setActiveSidebar(false)
+        }
+    }
 
 
     return (
-        <Context.Provider value={{ definitions, setDefinitions }}>
+        <Context.Provider value={{ definitions, setDefinitions, useBreakpoint }}>
             <div id="wrapper">
-                <div id="main">
+                <div ref={mainDivRef} id="main">
                     <div className="inner">
                         <header id="header">
                             <span><strong>Cancionero de Miranda</strong>: una edición en progreso</span>
@@ -53,14 +67,11 @@ function BaseLayout() {
                     </div>
                 </div>
                 <div id="sidebar" className={activeSidebar ? "" : "inactive"}>
-
                     <Sidebar />
                     <Toggle toggle={toggle} />
-
                 </div>
             </div>
         </Context.Provider>
-
     )
 }
 
