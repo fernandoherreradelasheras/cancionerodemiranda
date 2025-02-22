@@ -91,6 +91,7 @@ ET.register_namespace("mei", MEI_NS)
 editorial_notes = []
 partNames = get_part_names(root)
 orig_clefs = get_orig_clefs(root, partNames)
+print(orig_clefs)
 
 annots = root.xpath('//mei:annot', namespaces=NSMAP)
 for annot in annots:
