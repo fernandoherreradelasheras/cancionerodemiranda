@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
-import LatexView from './LatexView';
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
-import { repoRoot, TonoDef } from "./utils"
+import { getTonoUrl, TonoDef } from "./utils"
 
 
 
 
 const getText = async (url: string) => {
-    const response = await fetch(url);
-    return response.text();
+    const response = await fetch(url)
+    return response.text()
 };
 
 
@@ -18,15 +19,19 @@ function IntroView({ tono }: { tono: TonoDef }) {
 
     useEffect(() => {
         const fetchIntro = async () => {
-            const url = repoRoot + tono.path + "/" + tono.introduction;
-            const text = await getText(url);
-            setIntro("\\section*{Introducción}" + text);
+            const url = getTonoUrl(tono.path , tono.introduction)
+            const text = await getText(url)
+            setIntro("## Introducción\n\n" + text)
         };
-        fetchIntro();
+        fetchIntro()
     }, []);
+    console.log(intro)
 
     return (
-        <LatexView text={intro}/>
+        <div>
+            <Markdown remarkPlugins={[remarkGfm]}>{intro}</Markdown>
+        </div>
+        
     )
 }
 export default IntroView

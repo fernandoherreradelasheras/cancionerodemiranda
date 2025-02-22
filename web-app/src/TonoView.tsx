@@ -124,12 +124,9 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
 
     const rightActions = (
-        <ul className="actions small" style={{ alignSelf: "flex-end", flex: 1 }}>
+        <ul className="actions small right-panel">
             {tono.text_transcription != null ?
                 <li><Link to="#" onClick={() => setCurrentRightPanel("text")} className={`button small tono-action primary ${currentRightPanel == "text" ? "disabled" : ""}`}>Texto poético</Link></li>
-                : null}
-            {tono.music_comments_file != null ?
-                <li><Link to="#" onClick={() => setCurrentRightPanel("music-comments")} className={`button small tono-action primary ${currentRightPanel == "music-comments" ? "disabled" : ""}`}>Notas ed. musical</Link></li>
                 : null}
         </ul>
     )
