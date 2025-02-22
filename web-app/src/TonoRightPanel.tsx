@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import MusicComments from "./MusicComments"
 import TextView from "./TextView"
 import { TonoDef } from "./utils"
 
@@ -10,7 +9,6 @@ function TonoRightPanel  ({ panel, tono, maxHeight, onPanelClose }: { panel: str
     if (panel == "")
         return (<></>)
 
-    const content = panel == "text" ? (<TextView tono={tono} />) : (<MusicComments tono={tono} />)
 
     return (
         <div style={{display: "flex", flexDirection: "column" }}>
@@ -22,7 +20,7 @@ function TonoRightPanel  ({ panel, tono, maxHeight, onPanelClose }: { panel: str
                 width: "20vw",
                 height: maxHeight != null ? `${maxHeight}px` : "100%",
                 overflowY: "scroll"}}>
-                {content}
+                <TextView tono={tono} />
             </div>
         </div>
     )

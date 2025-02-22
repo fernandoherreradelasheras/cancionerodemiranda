@@ -1,4 +1,6 @@
-const TESTING = false
+const VITE_TEST_URLS = import.meta.env.VITE_TEST_URLS
+
+const TESTING = (VITE_TEST_URLS != undefined) ? true : false
 
 export const repoRoot = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/"
 const tonoDefinitionsPath = "tonos/definitions.json"

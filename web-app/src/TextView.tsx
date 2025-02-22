@@ -1,7 +1,8 @@
-import { TonoDef, repoRoot } from "./utils"
+import { TonoDef, TranscriptionEntry, getTonoUrl } from "./utils"
 
 import { useEffect, useState } from 'react'
-import LatexView from './LatexView';
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 
 const getText = async (url: string) => {
@@ -9,11 +10,11 @@ const getText = async (url: string) => {
     return response.text();
 };
 
-const getTitle = (type: string | undefined) => {
-    if (type == "coplas") 
-        return "\n\\textbf{Coplas}\n"
-    else if (type == "estribillo")
-        return "\n\\textbf{Estribillo}\n"
+const getTitle = (transcription: TranscriptionEntry) => {
+    if (transcription.name != undefined) 
+        return `\n### ${transcription.name}\n\n`
+    else if (transcription.type == "estribillo")
+        return "\n### Estribillo\n\n"
     else return ""
 }
 
@@ -26,14 +27,22 @@ function TextView({ tono }: { tono: TonoDef }) {
         const fetchText = async () => {
             var newText = "";
             for (let transcription of tono.text_transcription) {
-                const url = repoRoot + tono.path + "/" + transcription.file;
-                const response = await getText(url);
-                newText += getTitle(transcription.type) + "<em>" + response + "</em>";
+                newText += getTitle(transcription) 
+                const url = getTonoUrl(tono.path, transcription.file)
+                const response = await getText(url)                
+                for (let line of response.split('\n')) {
+                    if (line == "") {
+                        newText = newText.slice(0, -2) + "\n\n"
+                    } else {
+                        newText += `*${line}*\\\n`
+                    }
+                }
+                console.log(newText)
             }
             if (tono.text_comments_file != null) {
-                const url = repoRoot + tono.path + "/" + tono.text_comments_file;
-                const response = await getText(url);
-                newText += "\n\\subsection*{Notas al texto}" + response;
+                const url = getTonoUrl(tono.path ,tono.text_comments_file)
+                const response = await getText(url)
+                newText += "## Notas al texto\n\n" + response
             }
             setText(newText);
         };
@@ -41,7 +50,9 @@ function TextView({ tono }: { tono: TonoDef }) {
     }, []);
 
     return (
-        <LatexView text={text}/>
+        <div>
+            <Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown>
+        </div>
     )
 }
 

@@ -164,7 +164,7 @@ def txt_to_tex(txt):
     
     return "\n".join(result)
 
-def format_text_part(transcription, comments):
+def format_text_part(transcription, comments, tmp_dir):
     str = "\\section*{\\centering\\LARGE{Texto poético}}" \
 	    + "\\begingroup\n" \
 	    + "\\centering\n" \
@@ -195,8 +195,11 @@ def format_text_part(transcription, comments):
     str = str + "\\endgroup\n"
 
     if comments:
+        cmd = [ 'pandoc', Path(comments), '-o', f'{tmp_dir}/text_comments.tex']
+        run_cmd(cmd)
         print(f'Adding text comments: {comments}')
-        str = str + Path(comments).read_text()
+        str = str + "\\noindent" 
+        str = str + "\\input{text_comments.tex}" 
 
     return str
 
@@ -644,16 +647,23 @@ def generate_tono(data, tmp_dir):
             
     latexStr = format_init()
     if 'introduction' in data:
+
+        cmd = [ 'pandoc', Path(data['introduction']), '-o', f'{tmp_dir}/intro.tex']
+        run_cmd(cmd)
         latexStr = latexStr + "\\section*{\\centering\\LARGE{Introducción}}\n"
-        latexStr = latexStr + Path(data['introduction']).read_text()
+        latexStr = latexStr + "\\input{intro.tex}" 
             
-    latexStr = latexStr + format_text_part(data['text_transcription'], data['text_comments_file'] if 'text_comments_file' in data else None)
+    latexStr = latexStr + format_text_part(
+                            data['text_transcription'],
+                            data['text_comments_file'] if 'text_comments_file' in data else None,
+                            tmp_dir)
         
     got_score = generate_score(data['number'], data, tmp_dir)
         
     latexStr = latexStr + "\\section*{Edición musical}\n"
     latexStr = latexStr + "\\input{criterios-musicales.tex}" 
         
+    # TODO, extract the music editorial notes from MEI file
     if 'music_comments_file' in data:
         print(f"Adding music comments from file {data['music_comments_file']}")
         latexStr = latexStr + Path(data['music_comments_file']).read_text()
