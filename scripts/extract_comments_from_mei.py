@@ -91,7 +91,6 @@ ET.register_namespace("mei", MEI_NS)
 editorial_notes = []
 partNames = get_part_names(root)
 orig_clefs = get_orig_clefs(root, partNames)
-print(orig_clefs)
 
 annots = root.xpath('//mei:annot', namespaces=NSMAP)
 for annot in annots:
@@ -99,31 +98,41 @@ for annot in annots:
         res =  root.xpath('//*[@xml:id="%s"]' % id, namespaces=NSMAP)
         if len(res) > 0:
             e = res[0]
+            measureN = 0
             res = root.xpath('//*[@xml:id="%s"]/ancestor::mei:measure/@n' % id, namespaces=NSMAP)
-            if len(res) <= 0:
-                print(f'annotation target {id} without measure {e}')
-                continue            
-            measureN = res[0]
-            
+            if len(res) > 0:
+                measureN = res[0]
+            else:
+                res = root.xpath('//*[@xml:id="%s"]/mei:measure/@n' % id, namespaces=NSMAP)
+                if len(res) > 0:
+                    measureN = res[0]                    
+                            
             res = root.xpath('//*[@xml:id="%s"]/ancestor::mei:staff/@n' % id, namespaces=NSMAP)
             if len(res) <= 0:
-                print(f'annotation target {id} without staff {e}')         
-                continue            
-            staffN = res[0]        
+                staffN = 0
+                partName = ""
+            else:        
+                staffN = res[0]
+                partName = partNames[staffN]
+                               
+                        
             if e.tag == f'{{{MEI_NS}}}corr':
-                editorial_notes.append(build_note( measureN, partNames[staffN], annot.text, "corr"))
+                editorial_notes.append(build_note( measureN, partName, annot.text, "corr"))
                 break                
             elif e.tag == f'{{{MEI_NS}}}sic':
-                editorial_notes.append(build_note(measureN, partNames[staffN], annot.text, "sic"))
+                editorial_notes.append(build_note(measureN, partName, annot.text, "sic"))
                 break
             elif e.tag == f'{{{MEI_NS}}}choice':
-                editorial_notes.append(build_note( measureN, partNames[staffN], annot.text, "choice"))
+                editorial_notes.append(build_note( measureN, partName, annot.text, "choice"))
                 break                
             elif e.tag == f'{{{MEI_NS}}}unclear':
-                editorial_notes.append(build_note(measureN, partNames[staffN], annot.text, "unclear"))
+                editorial_notes.append(build_note(measureN, partName, annot.text, "unclear"))
                 break
             elif e.tag == f'{{{MEI_NS}}}supplied':
-                editorial_notes.append(build_note(measureN, partNames[staffN], annot.text, "supplied"))
+                editorial_notes.append(build_note(measureN, partName, annot.text, "supplied"))
+                break    
+            elif e.tag == f'{{{MEI_NS}}}reg':
+                editorial_notes.append(build_note(measureN, partName, annot.text, "reg"))
                 break    
 
 
@@ -142,7 +151,9 @@ if output_file:
     f.write("\\subsection*{Notas a la edición musical}\n\n")
     f.write("\\noindent")
     for note in editorial_notes:
-        f.write("\\textbf{Compás %s, %s}: %s\\\\\n" % (note['measure'] if 'measure' in note else "0", note['partName'], note['annotText']))
+        f.write("\\textbf{Compás %s%s}: %s\\\\\n" % (note['measure'] if 'measure' in note else "0",
+                                                     f', {note['partName']}' if partName != "" else "",
+                                                     note['annotText']))
     f.write("\n\n")
     f.close()
 else:
