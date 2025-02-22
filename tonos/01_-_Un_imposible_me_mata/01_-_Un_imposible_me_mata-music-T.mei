@@ -11,7 +11,7 @@
                <persName role="composer">[Anónimo]</persName>
             </composer>
             <respStmt>
-               <persName xml:id="FHH" role="encoder">Fernando Herrera de las Heras</persName>
+               <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
          </titleStmt>
          <pubStmt>
@@ -52,17 +52,54 @@
                         <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
-                           <clef shape="G" line="2" dis="8" dis.place="below" />
+                           <clef xml:id="ci982231" shape="G" line="2" dis="8" dis.place="below" />
                         </staffDef>
                      </staffGrp>
                      <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
                         <label>Guion</label>
                         <labelAbbr>G.</labelAbbr>
-                        <clef shape="F" line="4" />
+                        <clef xml:id="ci982232" shape="F" line="4" />
                      </staffDef>
                   </staffGrp>
                </scoreDef>
                <section label="coplas">
+                  <app xml:id="a9823">
+                     <lem label="app_clefs" />
+                     <rdg label="app_clefs">
+                        <scoreDef midi.bpm="180.0">
+                           <staffGrp>
+                              <staffGrp symbol="bracket">
+                                 <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
+                                    <label>Tiple 1º</label>
+                                    <labelAbbr>T. 1</labelAbbr>
+                                    <clef shape="G" line="2" />
+                                 </staffDef>
+                                 <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
+                                    <label>Tiple 2º</label>
+                                    <labelAbbr>T. 2</labelAbbr>
+                                    <clef shape="G" line="2" />
+                                 </staffDef>
+                                 <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
+                                    <label>Alto</label>
+                                    <labelAbbr>A.</labelAbbr>
+                                    <clef shape="G" line="2" />
+                                 </staffDef>
+                                 <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
+                                    <label>Tenor</label>
+                                    <labelAbbr>Tn.</labelAbbr>
+                                    <clef corresp="#ci982231" shape="C" line="3" />
+                                 </staffDef>
+                              </staffGrp>
+                              <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
+                                 <label>Guion</label>
+                                 <labelAbbr>G.</labelAbbr>
+                                 <clef corresp="#ci982232" shape="C" line="4" />
+                              </staffDef>
+                           </staffGrp>
+                        </scoreDef>
+                     </rdg>
+                  </app>
+                  <annot plist="#a9823 #ci982231 #ci982232">Claves modernizadas</annot>
                   <measure n="1">
                      <staff n="1">
                         <layer n="1">
@@ -377,7 +414,7 @@
                      <staff n="4">
                         <layer n="1">
                            <note xml:id="nt461gu" dur="2" oct="4" pname="f" />
-                           <supplied agent="ink"
+                           <supplied xml:id="suidu82" agent="ink"
                               reason="Parte del compás 6 está cubierta de tinta y no se pueden leer las notas, por lo que ha sido reconstruido"
                               resp="#FHH">
                               <note dur="2" oct="4" pname="g">
@@ -392,6 +429,7 @@
                               </note>
                            </supplied>
                         </layer>
+                        <annot plist="#suidu82">Añanadidas las dos últimas notas del compás que son ilegibles en el manuscrito por casusa de la tinta</annot>
                      </staff>
                      <staff n="5">
                         <layer n="1">

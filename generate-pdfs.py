@@ -203,6 +203,11 @@ def format_text_part(transcription, comments, tmp_dir):
 
     return str
 
+def generate_comments_from_mei_file(mei_file, json_params, tmp_dir):
+    cmd = [ 'python',  './scripts/extract_comments_from_mei.py', mei_file, json_params, f'{tmp_dir}/music_comments.tex' ]
+    run_cmd(cmd)
+    return "\\input{music_comments.tex}\n"
+
 
 def get_contents_for_section(section, blocks_to_inject):
     contents = ""
@@ -667,6 +672,10 @@ def generate_tono(data, tmp_dir):
     if 'music_comments_file' in data:
         print(f"Adding music comments from file {data['music_comments_file']}")
         latexStr = latexStr + Path(data['music_comments_file']).read_text()
+    else:
+        json_params = json.dumps({ "organic" : data['organic'], "high_clefs" :  data['high_clefs'], "original_armor" : data['original_armor'], "transposition" : data['transposition'], "encoded_armor" : data['encoded_armor'] })
+        print(json_params)
+        latexStr = latexStr + generate_comments_from_mei_file(data['mei_file'], json_params, tmp_dir)
             
     if got_score:
         latexStr = latexStr + "\\includepdf[pages=-]{music.pdf}\n"
