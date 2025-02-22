@@ -4,6 +4,7 @@ import Sidebar from './Sidebar'
 import { Context } from './Context';
 import { getJson, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
 import { createBreakpoint } from 'react-use';
+import { PrimeReactProvider } from 'primereact/api';
 
 
 const useBreakpoint = createBreakpoint({ XL: 1281, L: 981, M: 737, S: 481 });
@@ -57,20 +58,22 @@ function BaseLayout() {
 
     return (
         <Context.Provider value={{ definitions, setDefinitions, useBreakpoint }}>
-            <div id="wrapper">
-                <div ref={mainDivRef} id="main">
-                    <div className="inner">
-                        <header id="header">
-                            <span><strong>Cancionero de Miranda</strong>: una edición en progreso</span>
-                        </header>
-                        <Outlet />
+            <PrimeReactProvider>
+                <div id="wrapper">
+                    <div ref={mainDivRef} id="main">
+                        <div className="inner">
+                            <header id="header">
+                                <span><strong>Cancionero de Miranda</strong>: una edición en progreso</span>
+                            </header>
+                            <Outlet />
+                        </div>
+                    </div>
+                    <div id="sidebar" className={activeSidebar ? "" : "inactive"}>
+                        <Sidebar />
+                        <Toggle toggle={toggle} />
                     </div>
                 </div>
-                <div id="sidebar" className={activeSidebar ? "" : "inactive"}>
-                    <Sidebar />
-                    <Toggle toggle={toggle} />
-                </div>
-            </div>
+            </PrimeReactProvider>
         </Context.Provider>
     )
 }
