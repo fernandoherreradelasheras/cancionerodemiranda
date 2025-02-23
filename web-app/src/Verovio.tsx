@@ -1,22 +1,25 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import createVerovioModule from 'verovio/wasm';
 import { VerovioToolkit } from 'verovio/esm';
-import Pagination from './Pagination';
+
+
 import { getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
+import { filterScoreNormalizingFicta, filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getNumMeasures, getPageForMeasureN, getPageForSection, getTargettableChildren, hasFictaElements, maxVerseNum, scoreAddTitles } from './Score';
+import Pagination from './Pagination';
+
 import AudioPlayer from './AudioPlayer';
-import { filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getNumMeasures, getPageForMeasureN, getPageForSection, getTargettableChildren, maxVerseNum, scoreAddTitles } from './Score';
 import ClipLoader from "react-spinners/ClipLoader"
 import SvgOverlay from './SvgOverlay';
 import { Choice, EditorialItem } from './Editorial'
 import { SVG_FILTERS, SVG_STYLE_RULES } from './svgutils';
 import { TonoDef, calcHighlightScaling } from './utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
 
-import { faMagnifyingGlassMinus, faMagnifyingGlassPlus, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
 import SimpleToggle from './SimpleToggle';
 import SimpleIconButton from './SimpleIconButton';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 const verovioOptions = {
@@ -43,7 +46,7 @@ const verovioOptions = {
     lyricVerseCollapse: true
 }
 
-library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus, faToggleOn, faToggleOff)
+library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus)
 
 
 
@@ -73,6 +76,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
     const [midiHightlightStyles, setMidiHiglightStyles] = useState<string|null>(null)
     const [prevSection, setPrevSection] = useState<string|null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [hasEditorialElements, setHasEditorialElements] = useState(false)
     const [editorialOverlays, setEditorialOverlays] = useState<EditorialItem[]>([])
     const [showEditorial, setShowEditorial] = useState(false)
     const [normalizeFicta, setNormalizeFicta] = useState(false)
@@ -166,6 +170,24 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
         })
     }
 
+    const filterScore = (score: string) => {
+        if (parsedScore == undefined) {
+            return score
+        }
+
+        var newScore = score;
+
+        if (showNVerses != null && showNVerses > 0) {
+            newScore = filterScoreToNVerses(newScore, showNVerses)
+        }
+        if (normalizeFicta) {
+            newScore = filterScoreNormalizingFicta(newScore)
+        }
+
+        return newScore
+           
+    }
+
 
     useEffect(() => {
         if (containerRef.current != null) {
@@ -204,12 +226,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
 
             setIsLoading(true)
 
-            if (showNVerses != null && showNVerses > 0 && parsedScore != undefined) {
-                const filteredScore = filterScoreToNVerses(score, showNVerses)
-                verovio.loadData(filteredScore)
-            } else {
-                verovio.loadData(score)
-            }
+            verovio.loadData(filterScore(score))
 
             setPageCount(verovio.getPageCount())
             setTimeMap(verovio.renderToTimemap({ includeMeasures: true }))
@@ -218,7 +235,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
             const meiDoc = parser.parseFromString(loadedDocStr, "application/xml")
             setLoadedMeiDoc(meiDoc)
         }
-    }, [score, verovio, showNVerses, appOptions, choiceOptions])
+    }, [score, verovio, showNVerses, normalizeFicta, appOptions, choiceOptions])
 
 
     useEffect(() => {
@@ -351,6 +368,14 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
         setShowNVerses(numVersesAvailable) // All by default
     }
 
+    const hasFicta = useMemo(() => {
+        if (parsedScore != null) {
+            return hasFictaElements(parsedScore)
+        } else {
+            return false
+        }
+    }, [score])
+
     const onMidiUpdate = (isPlaying: boolean, off: string[], on: string[]) => {
         var newHighlightElements = []
         var styles: string | null = null
@@ -464,9 +489,8 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
             }
         }
                    
-
+        setHasEditorialElements(editorialElements.length > 0)
         updateChoicesWithCurrentOptions(editorialOverlays)
-
         setEditorialOverlays(editorialOverlays)
     }, [scoreSvg])
 
@@ -490,11 +514,11 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
                 <SimpleIconButton icon={faMagnifyingGlassPlus}
                     onClick={zoomIn}/>
 
-                <SimpleToggle text="Notas editoriales" toggled={showEditorial}
+                <SimpleToggle text="Notas editoriales" toggled={showEditorial} enabled={hasEditorialElements}
                      onClick={() => setShowEditorial(!showEditorial)}/>
 
-                <SimpleToggle text="Normalizar M.Ficta" toggled={normalizeFicta}
-                     onClick={() => setShowEditorial(!normalizeFicta)}/>
+                <SimpleToggle text="Normalizar M.Ficta" toggled={normalizeFicta} enabled={hasFicta}
+                     onClick={() => setNormalizeFicta(!normalizeFicta)}/>
              
 
                 {getVersesAmmountSelector(numVersesAvailable)}

@@ -2405,6 +2405,10 @@ span.toggle-text {
   font-size: 1.1em;
 }
 
+.toggle-button-element.disabled {
+  opacity: 0.5;
+}
+
 .toggle-button-icon svg {
   color: #f56a6a;
 }
@@ -2425,7 +2429,12 @@ span.toggle-text {
   margin: 0 !important;
 }
 
-.clickable-icon {
+
+.icon-button .clickable-icon  {
+  cursor: pointer;
+}
+
+.toggle-button-element:not(.disabled) .clickable-icon  {
   cursor: pointer;
 }
 
