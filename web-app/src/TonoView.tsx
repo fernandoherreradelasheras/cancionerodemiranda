@@ -7,14 +7,12 @@ import Pdf from './Pdf'
 import { Link } from 'react-router-dom'
 import TonoRightPanel from './TonoRightPanel'
 import { Context } from './Context'
-import { ProgressBar } from 'primereact/progressbar'
-import 'primereact/resources/themes/lara-light-cyan/theme.css';
 
 
 
 const getProgressFromTextStatus = (status: TextStatus) => {
     switch(status) {
-        case "not started": return { value: 0, text: "sin comenzar" }
+        case "not started": return { value: 5, text: "sin comenzar" }
         case "raw transcription": return  { value: 25, text: "transcripción en progreso" }
         case "transcription completed": return  { value: 50, text: "transcripción completa" }
         case "reviewed": return  { value: 75, text: "revisado" }
@@ -25,7 +23,7 @@ const getProgressFromTextStatus = (status: TextStatus) => {
 
 const getProgressFromMusicStatus = (status: MusicStatus) => {
     switch(status) {
-        case "not started": return { value: 0, text: "sin comenzar" }
+        case "not started": return { value: 5, text: "sin comenzar" }
         case "raw transcription": return  { value: 20, text: "transcripción en progreso" }
         case "transcription completed": return  { value: 40, text: "transcripción completa" }
         case "lost voice reconstructed": return { value: 60, text: "voz perdida reconstruida"} 
@@ -33,6 +31,12 @@ const getProgressFromMusicStatus = (status: MusicStatus) => {
     }
     return  { value: 100, text: "completado" }
 }
+
+const getStatusElement = (title: string, textValue: string, value: number) => (
+    <div className="progress-status-element"><span>{title}: {textValue}</span>
+        <progress max="100" value={value} className={`status-progress progress-state-${value}`} />
+    </div>
+)
 
 
 
@@ -173,14 +177,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             </div>
             <div className="status-expand">
                 <ul id="tono-stats" className="alt">
-                    <li>Texto: {textStatusText}
-                        <ProgressBar value={textStatusValue} showValue={false} color={`var(--progress-color-${textStatusValue})`} >
-                        </ProgressBar>         
-                    </li>
-                    <li>Musica: {musicStatusText}
-                         <ProgressBar value={musicStatusValue} showValue={false} color={`var(--progress-color-${musicStatusValue})`} >
-                        </ProgressBar>         
-                    </li>
+                    <li>{getStatusElement("Texto", textStatusText, textStatusValue)}</li>
+                    <li>{getStatusElement("Música", musicStatusText, musicStatusValue)}</li>
                 </ul>
             </div>
             <div className="status-expand">
