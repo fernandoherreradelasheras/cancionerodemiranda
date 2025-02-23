@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
 import TextView from "./TextView"
 import { TonoDef } from "./utils"
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
+library.add(faCircleXmark)
 
 function TonoRightPanel  ({ panel, tono, maxHeight, onPanelClose }: { panel: string, tono: TonoDef, maxHeight: number | undefined, onPanelClose: () => void }) {
 
@@ -9,17 +13,12 @@ function TonoRightPanel  ({ panel, tono, maxHeight, onPanelClose }: { panel: str
     if (panel == "")
         return (<></>)
 
-
     return (
-        <div style={{display: "flex", flexDirection: "column" }}>
+        <div className="right-panel">
             <Link to="#" onClick={onPanelClose} className="small panel-close-button">
-                <i className="fa-solid fa-circle-xmark"></i>
+                <FontAwesomeIcon className='clickable-icon' icon={faCircleXmark} size="2xl" />
             </Link>
-            <div style={{
-                marginLeft: "4px",
-                width: "20vw",
-                height: maxHeight != null ? `${maxHeight}px` : "100%",
-                overflowY: "scroll"}}>
+            <div style={{ height: maxHeight != null ? `${maxHeight}px` : "100%" }}>                
                 <TextView tono={tono} />
             </div>
         </div>
