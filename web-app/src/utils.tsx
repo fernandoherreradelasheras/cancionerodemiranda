@@ -80,3 +80,5 @@ export const calcHighlightScaling = (nVerses: number) => {
     return 1.0
   }
 }
+// TODO: modo this to a proper themeing place
+export const PCOLOR = "#f56a6a";

@@ -10,6 +10,14 @@ import SvgOverlay from './SvgOverlay';
 import { Choice, EditorialItem } from './Editorial'
 import { SVG_FILTERS, SVG_STYLE_RULES } from './svgutils';
 import { TonoDef, calcHighlightScaling } from './utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import { faMagnifyingGlassMinus, faMagnifyingGlassPlus, faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
+import SimpleToggle from './SimpleToggle';
+import SimpleIconButton from './SimpleIconButton';
+
 
 const verovioOptions = {
     breaks: "auto",
@@ -34,6 +42,8 @@ const verovioOptions = {
     lyricTopMinMargin: 4.0,
     lyricVerseCollapse: true
 }
+
+library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus, faToggleOn, faToggleOff)
 
 
 
@@ -65,6 +75,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
     const [isLoading, setIsLoading] = useState(true)
     const [editorialOverlays, setEditorialOverlays] = useState<EditorialItem[]>([])
     const [showEditorial, setShowEditorial] = useState(false)
+    const [normalizeFicta, setNormalizeFicta] = useState(false)
     const [appOptions, setAppOptions] = useState<string[]>([])
     const [choiceOptions, setChoiceOptions] = useState<string[]>([])
 
@@ -474,25 +485,21 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
 
         <div style={style}>
             <div className="verovio-topbar">
-                <ul className="actions verovio-top-bar-element topbar-left">
-                    <li><a className="button small icon primary fa-solid fa-magnifying-glass-minus" onClick={zoomOut}></a></li>
-                    <li><a className="button small icon primary fa-solid fa-magnifying-glass-plus" onClick={zoomIn}></a></li>
-                </ul>
+                <SimpleIconButton icon={faMagnifyingGlassMinus}
+                    onClick={zoomOut}/>
+                <SimpleIconButton icon={faMagnifyingGlassPlus}
+                    onClick={zoomIn}/>
 
-                <div className="verovio-topbar-element">
-                    <input
-                        name="chedk-editorial"
-                        id="check-editorial"
-                        type="checkbox"
-                        checked={showEditorial}
-                        onChange={(_) => { setShowEditorial(!showEditorial) }} />
-                    <label htmlFor="check-editorial">Notas editoriales</label>
-                </div>
+                <SimpleToggle text="Notas editoriales" toggled={showEditorial}
+                     onClick={() => setShowEditorial(!showEditorial)}/>
+
+                <SimpleToggle text="Normalizar M.Ficta" toggled={normalizeFicta}
+                     onClick={() => setShowEditorial(!normalizeFicta)}/>
+             
 
                 {getVersesAmmountSelector(numVersesAvailable)}
             
             <div className="verovio-topbar-element">
-
 
             </div>
 
