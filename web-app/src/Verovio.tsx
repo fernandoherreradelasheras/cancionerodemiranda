@@ -109,9 +109,11 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
             options.push((<option value={i + 1} key={i}>{i + 1} verso{ i > 0 ? "s" : ""}</option>))
         }
 
+        const disabled = numVerses <= 1
+
         return (
-            <div className="verovio-topbar-element">
-                <select style={{width: "auto"}} disabled={numVerses <= 1} value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select>
+            <div className={`verovio-topbar-element${disabled ? " disabled" : ""}`}>
+                <select style={{width: "auto"}} disabled={disabled} value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select>
             </div>
         )
     }
