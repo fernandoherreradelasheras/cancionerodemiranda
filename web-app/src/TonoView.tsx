@@ -8,6 +8,12 @@ import { Link } from 'react-router-dom'
 import TonoRightPanel from './TonoRightPanel'
 import { Context } from './Context'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faMusic, faFilePdf, faFileImage, faLeftLong, faRightLong } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+library.add(faMusic, faFilePdf, faFileImage, faLeftLong, faRightLong)
 
 
 const getProgressFromTextStatus = (status: TextStatus) => {
@@ -113,15 +119,39 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
 
     const leftActions = (
-        <ul className="actions" style={{ flex: 3}}>
-            {tono.introduction != null ?
-                <li><Link to="#" onClick={showIntro} className={`button tono-action icon primary ${currentLeftPanel == "intro" ? "disabled" : ""}`}>Introducción</Link></li>
-                : null}
-            {tono.mei_file != null ?
-                <li><Link to="#" onClick={showMusic} className={`button tono-action primary icon fa-solid fa-music ${currentLeftPanel == "music" ? "disabled" : ""}`}>Transcripción</Link></li>
-                : null}
-            <li><Link to="#" onClick={showImages} className={`button tono-action icon primary fa-regular fa-file-image ${currentLeftPanel == "images" ? "disabled" : ""}`}>Manuscrito</Link></li>
-            <li><Link to="#" onClick={showPdf} className="button tono-action icon primary fa-regular fa-file-pdf">PDF</Link></li>
+        <ul className="actions tono-swicthes" style={{ flex: 3 }}>
+            {tono.introduction != null ? <li>
+                <Link to="#" onClick={showIntro} className={`button tono-action icon primary ${currentLeftPanel == "intro" ? "disabled" : ""}`}>
+                        <span>Introducción</span>                    
+                    </Link>
+            </li> : null}
+            {tono.mei_file != null ? <li>
+                    <Link to="#" onClick={showMusic} className={`button tono-action primary ${currentLeftPanel == "music" ? "disabled" : ""}`}>
+                        <FontAwesomeIcon
+                            className='clickable-icon reverse-color'
+                            icon={faMusic}
+                            size="2x" />
+                        <span>Transcripción</span>
+                    </Link>
+            </li> : null}
+            <li>
+                <Link to="#" onClick={showImages} className={`button tono-action primary ${currentLeftPanel == "images" ? "disabled" : ""}`}>
+                    <FontAwesomeIcon
+                        className='clickable-icon reverse-color'
+                        icon={faFileImage}
+                        size="2x" />
+                    <span>Manuscrito</span>
+                </Link>
+            </li>
+            <li>
+                <Link to="#" onClick={showPdf} className="button tono-action primary">
+                    <FontAwesomeIcon
+                        className='clickable-icon reverse-color'
+                        icon={faFilePdf}
+                        size="2x" />
+                    <span>PDF</span>
+                </Link>
+            </li>
         </ul>
     )
 
@@ -216,14 +246,14 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
 
     const navLinkPrev = () => {
-        const icon = ( <i className="icon fa-solid fa-left-long fa-lg"></i> )
+        const icon = <FontAwesomeIcon className='clickable-icon' icon={faLeftLong} size="2xl" />
         return tono.number <= 1
             ?  ( <Link to="#" className="button nav-button tono-action small disabled">{icon} Tono anterior</Link> )
             :  ( <Link to={`/tono/${tono.number - 1}`} className="button nav-button tono-action small">{icon} Tono anterior</Link> )
     }
 
     const navLinkNext = () => {
-        const icon = ( <i className="icon fa-solid fa-right-long fa-lg"></i> )
+        const icon = <FontAwesomeIcon className='clickable-icon' icon={faRightLong} size="2xl" />
         return tono.number >= definitions.length
             ?  ( <Link to="#" className="button nav-button tono-action small disabled">Tono siguiente {icon}</Link> )
             :  ( <Link to={`/tono/${tono.number + 1}`} className="button nav-button tono-action small">Tono siguiente {icon}</Link> )
