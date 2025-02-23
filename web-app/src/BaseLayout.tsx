@@ -4,14 +4,24 @@ import Sidebar from './Sidebar'
 import { Context } from './Context';
 import { getJson, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
 import { createBreakpoint } from 'react-use';
-import { PrimeReactProvider } from 'primereact/api';
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
 
+
+library.add(faBars)
 
 const useBreakpoint = createBreakpoint({ XL: 1281, L: 981, M: 737, S: 481 });
 
 const Toggle = ({ toggle }: { toggle: () => void }) => {
     return (
-        <a className="toggle" onClick={toggle}>Toggle</a>
+        <a className="main-toggle" onClick={toggle}>
+            <FontAwesomeIcon        
+                color='#7f888f'
+                style={{ marginTop: "0.2em"}}    
+                icon={['fas', 'bars']}
+                size="3x" />
+        </a>
     );
 };
 
@@ -58,22 +68,21 @@ function BaseLayout() {
 
     return (
         <Context.Provider value={{ definitions, setDefinitions, useBreakpoint }}>
-            <PrimeReactProvider>
-                <div id="wrapper">
-                    <div ref={mainDivRef} id="main">
-                        <div className="inner">
-                            <header id="header">
-                                <span><strong>Cancionero de Miranda</strong>: una edición en progreso</span>
-                            </header>
-                            <Outlet />
-                        </div>
-                    </div>
-                    <div id="sidebar" className={activeSidebar ? "" : "inactive"}>
-                        <Sidebar />
+            <div id="wrapper">
+                <div ref={mainDivRef} id="main">
+                    <div className="inner">
                         <Toggle toggle={toggle} />
+                        <header id="header">
+                            <span><strong>Cancionero de Miranda</strong>: una edición en progreso</span>
+                        </header>
+
+                        <Outlet />
                     </div>
                 </div>
-            </PrimeReactProvider>
+                <div id="sidebar" className={activeSidebar ? "" : "inactive"}>
+                    <Sidebar />
+                </div>
+            </div>
         </Context.Provider>
     )
 }

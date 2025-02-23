@@ -1,5 +1,14 @@
 import { useState, useRef } from "react";
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { PCOLOR } from "./utils";
+
+library.add(faPause, faPlay)
+
+
 
 function AudioPlayer ({src, timeMap, enabled, onMidiUpdate} : { 
     src: string | undefined,
@@ -70,11 +79,19 @@ function AudioPlayer ({src, timeMap, enabled, onMidiUpdate} : {
     
 
     return (
-        <div className="audio-player" style={{border:"solid 1px"}}>
+        <div className="audio-player">
             <ul className="actions" style={{ flex: 1 }}>
                 <li>
-                    <a className={`button small icon primary fa-solid ${isPlaying ? "fa-pause" : "fa-play"} ${!canPlay || !enabled ? "disabled" : ""}`}
-                        onClick={play}></a>
+                    <a className={!canPlay || !enabled ? "disabled" : ""}
+                        onClick={play}>
+
+                        <FontAwesomeIcon
+                            color={PCOLOR}                            
+                            className='clickable-icon'
+                            fixedWidth
+                            icon={['fas', isPlaying ? "pause" : "play"]}
+                      />
+                        </a>
                 </li>
                 <progress value={audioProgress} max="100"></progress>
             </ul>
