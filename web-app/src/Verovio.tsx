@@ -8,7 +8,6 @@ import { filterScoreNormalizingFicta, filterScoreToNVerses, getEditor, getEditor
 import Pagination from './Pagination';
 
 import AudioPlayer from './AudioPlayer';
-import ClipLoader from "react-spinners/ClipLoader"
 import SvgOverlay from './SvgOverlay';
 import { Choice, EditorialItem } from './Editorial'
 import { SVG_FILTERS, SVG_STYLE_RULES } from './svgutils';
@@ -19,7 +18,8 @@ import SimpleToggle from './SimpleToggle';
 import SimpleIconButton from './SimpleIconButton';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlassMinus, faMagnifyingGlassPlus, faCog } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const verovioOptions = {
@@ -46,7 +46,7 @@ const verovioOptions = {
     lyricVerseCollapse: true
 }
 
-library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus)
+library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus, faCog)
 
 
 
@@ -546,13 +546,14 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
             <style key={svgStyles} dangerouslySetInnerHTML={{ __html: svgStyles }} />
     
             <div style={{width: "100%", height: `${maxHeight}px`, position: "relative" }}>
-                <ClipLoader
-                    color="#f56a6a"
-                    loading={isLoading}
-                    cssOverride={{ top: "50%", left: "50%", position: "absolute" }}
-                    size={100}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"/>
+                { isLoading ? 
+                    <FontAwesomeIcon
+                        className="loading-spinner"
+                        icon={faCog}
+                        spin
+                        size="10x"
+                        aria-label="Loading Spinner"/> : null }
+
                 
                 <div dangerouslySetInnerHTML={{ __html: scoreSvg }}
                     className="panel" ref={containerRef} style={{ top: 0, left: 0, width: "100%", height: "100%", position: "absolute", 
