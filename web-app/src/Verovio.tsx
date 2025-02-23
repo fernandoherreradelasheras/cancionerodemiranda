@@ -4,7 +4,7 @@ import { VerovioToolkit } from 'verovio/esm';
 import Pagination from './Pagination';
 import { getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
 import AudioPlayer from './AudioPlayer';
-import { filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getNumMeasures, getPageForMeasureN, getPageForSection, getTargettableChildren, getTargetTableChildren, maxVerseNum, scoreAddTitles } from './Score';
+import { filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getNumMeasures, getPageForMeasureN, getPageForSection, getTargettableChildren, maxVerseNum, scoreAddTitles } from './Score';
 import ClipLoader from "react-spinners/ClipLoader"
 import SvgOverlay from './SvgOverlay';
 import { Choice, EditorialItem } from './Editorial'
@@ -88,13 +88,15 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
     const getVersesAmmountSelector = (numVerses: number) => {
 
         const options: any[] = []
+        
+    
         for (let i = 0; i < numVerses; i++) {
             options.push((<option value={i + 1} key={i}>{i + 1} verso{ i > 0 ? "s" : ""}</option>))
         }
 
         return (
             <div className="verovio-topbar-element">
-                <select style={{width: "auto"}} value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select>
+                <select style={{width: "auto"}} disabled={numVerses <= 1} value={showNVerses} onChange={e => setShowNVerses(parseInt(e.target.value))} >{options}</select>
             </div>
         )
     }
@@ -465,6 +467,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
     )
 
 
+
     const svgStyles = SVG_STYLE_RULES + measuresSvgStyles + midiHightlightStyles
 
     return (
@@ -476,19 +479,22 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
                     <li><a className="button small icon primary fa-solid fa-magnifying-glass-plus" onClick={zoomIn}></a></li>
                 </ul>
 
-                <div className="verovio-topbar-element"> 
-                    <input                      
+                <div className="verovio-topbar-element">
+                    <input
                         name="chedk-editorial"
                         id="check-editorial"
                         type="checkbox"
                         checked={showEditorial}
-                        onChange={(_) => { setShowEditorial(!showEditorial) }}/>
-                    <label
-                        htmlFor="check-editorial">Notas editoriales</label>
+                        onChange={(_) => { setShowEditorial(!showEditorial) }} />
+                    <label htmlFor="check-editorial">Notas editoriales</label>
                 </div>
 
                 {getVersesAmmountSelector(numVersesAvailable)}
             
+            <div className="verovio-topbar-element">
+
+
+            </div>
 
                 <Pagination
                     className="verovio-topbar-element topbar-center"

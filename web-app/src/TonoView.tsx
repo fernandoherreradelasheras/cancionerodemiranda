@@ -7,9 +7,9 @@ import Pdf from './Pdf'
 import { Link } from 'react-router-dom'
 import TonoRightPanel from './TonoRightPanel'
 import { Context } from './Context'
+import { ProgressBar } from 'primereact/progressbar'
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
 
-import { ProgressBar } from 'primereact/progressbar'
 
 
 const getProgressFromTextStatus = (status: TextStatus) => {
@@ -143,21 +143,19 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         setCurrentMusicSection(section)
     }
 
-
     const enableSectionLinks = tono.mei_file != undefined
     const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tono.status_text)
     const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tono.status_music)
 
 
-
-
     const status = (
-        <div style={{display: "flex" }}>
-            <div style={{flex: 3 }}>
+        <div className="status-area" >
+
+            <div className="status-expand">
                 <h3 id="tono-autor-musica">Música: {tono.music_author}</h3>
                 <h3 id="tono-autor-texto">Texto: {tono.text_author}</h3>
             </div>
-            <div style={{flex: 2 }}>
+            <div className="status-no-expand">
                 <ul id="tono-estado-texto" className="alt">
                 <li><span style={{ fontWeight: "bolder"}}>Secciones:</span></li>
                     <ul>
@@ -173,7 +171,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                     </ul>
                 </ul>
             </div>
-            <div style={{flex: 3 }}>
+            <div className="status-expand">
                 <ul id="tono-stats" className="alt">
                     <li>Texto: {textStatusText}
                         <ProgressBar value={textStatusValue} showValue={false} color={`var(--progress-color-${textStatusValue})`} >
@@ -185,7 +183,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                     </li>
                 </ul>
             </div>
-            <div style={{flex: 3 }}>
+            <div className="status-expand">
                 <ul id="tono-estado-musica" className="alt">
                 </ul>
             </div>
@@ -263,18 +261,18 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     return (
         <div key={tono.number}>
             <section id="tono-informacion">
-                <header className="main" style={{display: "flex" }}>
-                    <div style={{ flex: 1 }}>{navLinkPrev()}</div>
+                <header className="main tono-header">
+                    <div className="header-left">{navLinkPrev()}</div>
                     <h2 className="tono-titulo" >Tono nº{tono.number}: {tono.title}</h2>
-                    <div style={{ flex: 1 }}>  </div>
-                    <div style={{ flex: 0 }}>{navLinkNext()}</div>
+                    <div className="header-spacer" >  </div>
+                    <div className="header-right">{navLinkNext()}</div>
                 </header>
 
                 {status}
 
                 {actions}
 
-                <div ref={leftPanelRef} style={{ display: "flex", flexDirection: "row" }} >
+                <div ref={leftPanelRef} className="tono-left-panel" >
                     {leftPanelElement()}
                     <TonoRightPanel maxHeight={maxHeight}  panel={currentRightPanel} tono={tono} onPanelClose={() => setCurrentRightPanel("")}/>                                             
                 </div>
