@@ -11,21 +11,28 @@ export const maxVerseNum = (doc: Document) => {
     return maxN
 }
 
-//@ts-ignore
+const getFictaAccidIterator = (doc: Document) => 
+    //@ts-ignore
+    doc?.evaluate('//mei:accid[@func="edit"]', doc, nsResolver, XPathResult.ANY_TYPE, null)
+
+export const hasFictaElements = (doc: Document) => {
+    const it = getFictaAccidIterator(doc)
+    return it.iterateNext() != null
+} 
+
+
 export const midiBpm = (doc: Document) => {
     //@ts-ignore
     let bpm = doc?.evaluate("//mei:scoreDef[1]/@midi.bpm", doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
     return parseInt(bpm)
 }
 
-//@ts-ignore
 export const getNoteDur = (doc: Document, id: string) => {
     //@ts-ignore
     let dur = doc?.evaluate(`//mei:note[@xml:id="${id}"]/@dur`, doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
     return dur
 }
 
-//@ts-ignore
 export const getNoteStaff = (doc: Document, id: string) => {
     //@ts-ignore
     let n = doc?.evaluate(`//mei:note[@xml:id="${id}"]/ancestor::mei:staff/@n`, doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
@@ -181,7 +188,6 @@ export const getTargettableChildren = (doc: Document, id: string) => {
 }
 
 export const filterScoreToNVerses = (score: string, numVerses: number) => {
-    // First do a copy so we keep the original score around
     const parser = new DOMParser();
     const doc = parser.parseFromString(score, "application/xml")
     //@ts-ignore
@@ -200,6 +206,33 @@ export const filterScoreToNVerses = (score: string, numVerses: number) => {
     const s = new XMLSerializer();
     return s.serializeToString(doc);
 }
+
+
+export const filterScoreNormalizingFicta = (score: string) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(score, "application/xml")
+    const fictacAccidIter = getFictaAccidIterator(doc)
+
+    if (fictacAccidIter == null) {
+        return score
+    }
+
+    const nodes = []
+    var node = fictacAccidIter.iterateNext()
+    while (node != null) {
+        nodes.push(node as Element)
+        node = fictacAccidIter.iterateNext()
+    }
+
+    nodes.forEach(n => {
+        n.removeAttribute("func")
+        n.removeAttribute("enclose")
+    })
+
+    const s = new XMLSerializer();
+    return s.serializeToString(doc);
+}
+
 
 
 export const scoreAddTitles = (score: string, titleMap: { label: string, title: string }[]) => {
