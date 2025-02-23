@@ -2430,10 +2430,10 @@ g:has(> rect.overlay-editorial:hover) text {
 }
 
 
-:root {
-  --progress-color-0: #FF4B4B;
-  --progress-color-25: #FF8C42;
+.status-progress {
+  --progress-color-5: #FF4B4B;
   --progress-color-20: #FF8C42;
+  --progress-color-25: #FF8C42;
   --progress-color-40: #FFC13D;
   --progress-color-50: #FFC13D;
   --progress-color-60: #9ED36A;
@@ -2441,6 +2441,25 @@ g:has(> rect.overlay-editorial:hover) text {
   --progress-color-80: #4CAF50;
   --progress-color-100: #2E7D32;
 }
+
+.progress-status-element {
+  display:  flex;
+  flex-direction: column;
+}
+
+.status-progress.progress-state-5::-moz-progress-bar {
+  background:  var(--progress-color-5);
+}
+
+.status-progress.progress-state-20::-moz-progress-bar {
+  background:  var(--progress-color-20);
+}
+
+.status-progress.progress-state-25::-moz-progress-bar {
+  background:  var(--progress-color-25);
+}
+
+
   
 
 .progress-text {
