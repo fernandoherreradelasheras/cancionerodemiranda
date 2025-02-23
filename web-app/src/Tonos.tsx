@@ -8,9 +8,7 @@ const Tonos = () => {
             <header className="main">
                 <h2>Listado de tonos</h2>
             </header>
-            <ul className="alt">
-                <TonosList />
-            </ul>
+            <TonosList />
         </section>
     )
 }

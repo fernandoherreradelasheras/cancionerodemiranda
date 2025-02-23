@@ -2,6 +2,12 @@ import { useContext } from 'react'
 import { TonoDef } from './utils'
 import { Link } from 'react-router-dom';
 import { Context } from './Context';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFileLines, faMarker, faMusic, faHighlighter } from '@fortawesome/free-solid-svg-icons'
+
+library.add( faFileLines, faMarker, faMusic, faHighlighter)
+
 
 
 
@@ -67,17 +73,13 @@ function tonoHasMusicComments(tono: TonoDef | null) {
 const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
 
     return (
-        <li>
+        <li className="tono-list-item">
             <Link  className="item-tono-status" to={`/tono/${index + 1}`} state={{ tono: tono }}>{index + 1}. {tono?.title}:
                 {tonoOveralStatus(tono)}
-                <span> </span>
-                {tonoHasText(tono) ? <span className="icon fa-regular fa-file-lines"></span> : null}
-                <span> </span>
-                {tonoHasTextComments(tono) ? <span className="icon fa-solid fa-marker"></span> : null}
-                <span> </span>
-                {tonoHasMusic(tono) ? <span className="icon fa-solid fa-music"></span> : null}
-                <span> </span>
-                {tonoHasMusicComments(tono) ? <span className="icon fa-solid fa-highlighter"></span> : null}
+                {tonoHasText(tono) ? <FontAwesomeIcon icon={faFileLines} size="xl"/> : null}
+                {tonoHasTextComments(tono) ? <FontAwesomeIcon icon={faMarker} size="xl"/> : null}
+                {tonoHasMusic(tono) ?  <FontAwesomeIcon icon={faMusic} size="xl"/> : null}
+                {tonoHasMusicComments(tono) ?  <FontAwesomeIcon icon={faHighlighter} size="xl"/> : null}
             </Link> 
         </li>
     )
@@ -94,7 +96,7 @@ const TonosList = () => {
 
     return (
 
-        <ul className="alt">
+        <ul className="alt tono-list">
             {listItems}
         </ul>
     );
