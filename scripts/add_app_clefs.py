@@ -22,7 +22,7 @@ print(scoreDef)
 section = root.xpath('(//mei:section)[1]', namespaces=NSMAP)[0]
 
 newDef = ET.fromstring(ET.tostring(scoreDef))
-newDef.tail = "\n\t\t\t"
+newDef.tail = "\n      "
 
 clefsOrig = list(scoreDef.iter(f'{{{MEI_NS}}}clef'))
 C = 1
@@ -38,19 +38,19 @@ for clef in clefsCopied:
 
 app = ET.Element(f"app")
 app.set(f'{{{XML_NS}}}id', "acdkjf9")
-app.text = "\n\t\t\t"
-app.tail = "\n\t\t"
+app.text = "\n      "
+app.tail = "\n\n          "
 section.insert(0,app)
 
 lem = ET.Element(f"lem")
 lem.set(f'label', "app_clefs")
-lem.tail = "\n\t\t\t"
+lem.tail = "      \n                     "
 app.append(lem)
 
 rdg = ET.Element(f"rdg")
 rdg.set(f'label', "app_clefs")
-rdg.text = "\n\t\t\t"
-rdg.tail = "\n\t\t"
+rdg.text = "\n      "
+rdg.tail = "\n          "
 app.append(rdg)
 
 rdg.append(newDef)
@@ -59,7 +59,7 @@ rdg.append(newDef)
 annot = ET.Element(f"annot")
 annot.set(f'plist', "#acdkjf9 #cjkdud3 #cjkdud4")
 annot.text = "Claves modernizadas"
-annot.tail = "\n\t\t"
+annot.tail = "\n    "
 section.insert(1, annot)
 
 
