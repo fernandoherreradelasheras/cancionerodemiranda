@@ -146,7 +146,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
             }).filter(t => t != null)
 
 
-            const scoreWithTitles = scoreAddTitles(score, titleMap)
+            const scoreWithTitles = titleMap.length > 1 ? scoreAddTitles(score, titleMap) : score
             setScore(scoreWithTitles)
         });
     }, [mei_url]);
