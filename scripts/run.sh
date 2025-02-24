@@ -2,7 +2,7 @@ set -e
 
 HEADER1='<?xml version="1.0" encoding="UTF-8"?>'
 HEADER2='<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>'
-HEADER2='<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>'
+HEADER3='<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>'
 
 if [[ $# -ne 2 ]]; then
 	echo "Usage: $0 <clean-ids | renumber-measures | fix-ellisons | all> <[file] | -a>"
@@ -32,8 +32,7 @@ for file in "${mei_files[@]}"; do
 	fi
 	if [ "$cmd" = "fix-ellisons" ] || [ "$cmd" = "all" ]; then
 		echo "Fixing missing syl ellisons from $file"
-		python "$script_dir/fix-ellisons.py" "$file" > ./.tmp_output.mei
-		mv ./.tmp_output.mei "$file"
+		python "$script_dir/fix-ellisons.py" "$file"
 		FIX_HEADER=1
 	fi
 	if [ "$cmd" = "add-clefs-app" ] || [ "$cmd" = "all" ]; then
@@ -47,6 +46,7 @@ for file in "${mei_files[@]}"; do
 		echo "$HEADER1" > ./.tmp_output.mei
 		echo "$HEADER2" >> ./.tmp_output.mei
 		echo "$HEADER3" >> ./.tmp_output.mei
+		cat "$file" >> ./.tmp_output.mei
 		mv ./.tmp_output.mei "$file"
 	fi
 
