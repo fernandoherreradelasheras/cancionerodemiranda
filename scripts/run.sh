@@ -1,5 +1,8 @@
 set -e
 
+HEADER1='<?xml version="1.0" encoding="UTF-8"?>'
+HEADER2='<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>'
+HEADER2='<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>'
 
 if [[ $# -ne 2 ]]; then
 	echo "Usage: $0 <clean-ids | renumber-measures | fix-ellisons | all> <[file] | -a>"
@@ -26,20 +29,27 @@ for file in "${mei_files[@]}"; do
 	if [ "$cmd" = "renumber-measures" ] || [ "$cmd" = "all" ]; then
 		echo "renumbering measures from $file"
 		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform "-s:$file" "-xsl:$script_dir/fix_mei_measure_ns.xsl" -o:./.tmp_output.mei
-		sed -e 's/\([^ ]\)\/>$/\1 \/>/g' ./.tmp_output.mei > "$file"
 	fi
 	if [ "$cmd" = "fix-ellisons" ] || [ "$cmd" = "all" ]; then
 		echo "Fixing missing syl ellisons from $file"
-		sh "$script_dir/fix-ellisons.sh" "$file" > ./.tmp_output.mei
+		python "$script_dir/fix-ellisons.py" "$file" > ./.tmp_output.mei
 		mv ./.tmp_output.mei "$file"
+		FIX_HEADER=1
 	fi
 	if [ "$cmd" = "add-clefs-app" ] || [ "$cmd" = "all" ]; then
 		python "$script_dir/add_app_clefs.py" "$file" ./.tmp_output.mei
-		echo '<?xml version="1.0" encoding="UTF-8"?>' > "$file"
-		echo '<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>' >> "$file"
-		echo '<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>' >> "$file"
-		sed -e 's/\([^ ]\)\/>$/\1 \/>/g' ./.tmp_output.mei >> "$file"
-		rm -f ./.tmp_output.mei
+		mv ./.tmp_output.mei "$file"
+		FIX_HEADER=1
 
 	fi
+
+	if [ ! -z "$FIX_HEADER" ]; then
+		echo "$HEADER1" > ./.tmp_output.mei
+		echo "$HEADER2" >> ./.tmp_output.mei
+		echo "$HEADER3" >> ./.tmp_output.mei
+		mv ./.tmp_output.mei "$file"
+	fi
+
+	sed -i -e 's/\([^ ]\)\/>$/\1 \/>/g' "$file"
+
 done
