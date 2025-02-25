@@ -29,6 +29,7 @@ for file in "${mei_files[@]}"; do
 	if [ "$cmd" = "renumber-measures" ] || [ "$cmd" = "all" ]; then
 		echo "renumbering measures from $file"
 		java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform "-s:$file" "-xsl:$script_dir/fix_mei_measure_ns.xsl" -o:./.tmp_output.mei
+		mv ./.tmp_output.mei "$file"
 	fi
 	if [ "$cmd" = "fix-ellisons" ] || [ "$cmd" = "all" ]; then
 		echo "Fixing missing syl ellisons from $file"
