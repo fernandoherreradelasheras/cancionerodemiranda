@@ -87,6 +87,24 @@ for measure1, measure2 in zip(measures1, measures2):
                 for syl in verse1.iter(f'{{{MEI_NS}}}syl'):
                     dest.append(deepcopy(syl))
 
+            # Delete syls not on the score we are merging from
+            for verse2 in note2.iter(f'{{{MEI_NS}}}verse'):
+                verseN = verse2.get("n")
+                if verseN not in verses_to_merge:
+                    continue
+                found = False
+                for verse1 in note1.iter(f'{{{MEI_NS}}}verse'):
+                    n1 = verse1.get("n")
+                    if int(n1) == int(verseN):
+                        found = True
+                        break
+                if not found:
+                    verse2.getparent().remove(verse2)
+
+
+        
+
+
         
 
             
