@@ -9,7 +9,7 @@ def fix_syl(element, tokens):
     con = element.get('con')
     element.set('con', 'b')
     wordpos = element.get('wordpos')
-    if wordpos is not None and wordpos == "i":
+    if wordpos == "i" or wordpos == "m":
         element.attrib.pop('wordpos', None)
     else:
         wordpos = None
@@ -24,9 +24,9 @@ def fix_syl(element, tokens):
         parent.append(nsyl)
 
     if wordpos is not None:
-        nsyl.set('wordpos', wordpos)
         if wordpos == 'i' or wordpos == 'm':
             nsyl.set('con', 'd')
+            nsyl.set('wordpos', 'i')
         
     element.tail = element.tail + "   "
 
