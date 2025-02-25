@@ -22,7 +22,16 @@ print(scoreDef)
 section = root.xpath('(//mei:section)[1]', namespaces=NSMAP)[0]
 
 newDef = ET.fromstring(ET.tostring(scoreDef))
-newDef.tail = "\n      "
+newDef.tail = section.tail + "         "
+newDef.text = section.text + "         "
+for child in newDef.iter(f'{{{MEI_NS}}}staffGrp', f'{{{MEI_NS}}}staffDef'):
+    if child.text is not None:
+        child.text = child.text + "         "
+        child.tail = child.tail + "         "
+for child in newDef.iter(f'{{{MEI_NS}}}label', f'{{{MEI_NS}}}labelAbbr', f'{{{MEI_NS}}}clef'):
+    if child.tail is not None:
+        child.tail = child.tail + "         "
+
 
 clefsOrig = list(scoreDef.iter(f'{{{MEI_NS}}}clef'))
 C = 1
@@ -38,19 +47,19 @@ for clef in clefsCopied:
 
 app = ET.Element(f"app")
 app.set(f'{{{XML_NS}}}id', "acdkjf9")
-app.text = "\n      "
-app.tail = "\n\n          "
+app.text = section.text + "   "
+app.tail = section.tail + "      "
 section.insert(0,app)
 
 lem = ET.Element(f"lem")
 lem.set(f'label', "app_clefs")
-lem.tail = "      \n                     "
+lem.tail = app.text
 app.append(lem)
 
 rdg = ET.Element(f"rdg")
 rdg.set(f'label', "app_clefs")
-rdg.text = "\n      "
-rdg.tail = "\n          "
+rdg.text = app.text + "   "
+rdg.tail = app.tail
 app.append(rdg)
 
 rdg.append(newDef)
@@ -59,7 +68,7 @@ rdg.append(newDef)
 annot = ET.Element(f"annot")
 annot.set(f'plist', "#acdkjf9 #cjkdud3 #cjkdud4")
 annot.text = "Claves modernizadas"
-annot.tail = "\n    "
+annot.tail = app.tail
 section.insert(1, annot)
 
 
