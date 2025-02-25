@@ -6,11 +6,11 @@ XML_NS = 'http://www.w3.org/XML/1998/namespace'
 NSMAP = {"mei" : MEI_NS, "xml": XML_NS}
 
 def fix_syl(element, tokens):
-    con = element.get(f'{{{MEI_NS}}}con')
+    con = element.get('con')
     element.set('con', 'b')
-    wordpos = element.get(f'{{{MEI_NS}}}wordpos')
+    wordpos = element.get('wordpos')
     if wordpos is not None and wordpos == "i":
-        element.attrib.pop(f'{{{MEI_NS}}}wordpos', None)
+        element.attrib.pop('wordpos', None)
     else:
         wordpos = None
 
@@ -18,13 +18,15 @@ def fix_syl(element, tokens):
     element.tail = element.tail
     parent = syl.getparent()
     for token in tokens[1:]:
-        nsyl = ET.Element(f'{{{MEI_NS}}}syl')
+        nsyl = ET.Element('syl')
         nsyl.text = token
         nsyl.tail = element.tail
         parent.append(nsyl)
 
     if wordpos is not None:
-        nyl.set(f'{{{MEI_NS}}}wordpos', wordpos)
+        nsyl.set('wordpos', wordpos)
+        if wordpos == 'i' or wordpos == 'm':
+            nsyl.set('con', 'd')
         
     element.tail = element.tail + "   "
 
