@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/5.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="https://music-encoding.org/schema/5.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0+basic">
    <meiHead>
       <fileDesc>
-         <titleStmt>
-         </titleStmt>
+         <titleStmt />
          <pubStmt>
             <date isodate="2023-12-15T10:14:10" />
          </pubStmt>
@@ -15,7 +14,7 @@
       <body>
          <mdiv>
             <score>
-               <scoreDef midi.bpm="180.0">
+               <scoreDef>
                   <staffGrp>
                      <staffGrp symbol="bracket">
                         <staffGrp symbol="bracketsq">
@@ -31,96 +30,35 @@
                            </staffDef>
                         </staffGrp>
                         <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
-                           <label>Alto</label>
-                           <labelAbbr>A.</labelAbbr>
-                           <clef shape="G" line="2" />
-                        </staffDef>
-                        <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
                            <label>Tenor</label>
                            <labelAbbr>T.</labelAbbr>
                            <clef shape="C" line="3" />
                         </staffDef>
                      </staffGrp>
-                     <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
+                     <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
                         <label>Acompañamiento</label>
                         <labelAbbr>Acc</labelAbbr>
                         <clef shape="C" line="4" />
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <app>
-                  <lem />
-                  <rdg label="modern-clef">
-                     <scoreDef>
-                        <staffGrp>
-                           <staffGrp symbol="bracket">
-                              <staffGrp symbol="bracketsq">
-                                 <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
-                                    <label>Soprano 1</label>
-                                    <labelAbbr>S. 1</labelAbbr>
-                                    <clef shape="G" line="2" />
-                                 </staffDef>
-                                 <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
-                                    <label>Soprano 2</label>
-                                    <labelAbbr>S. 2</labelAbbr>
-                                    <clef shape="G" line="2" />
-                                 </staffDef>
-                              </staffGrp>
-                              <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Alto</label>
-                                 <labelAbbr>A.</labelAbbr>
-                                 <clef shape="G" line="2" />
-                              </staffDef>
-                              <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tenor</label>
-                                 <labelAbbr>T.</labelAbbr>
-                                 <clef shape="G" line="2" />
-                              </staffDef>
-                           </staffGrp>
-                           <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
-                              <label>Acompañamiento</label>
-                              <labelAbbr>Acc</labelAbbr>
-                              <clef shape="F" line="4" />
-                           </staffDef>
-                        </staffGrp>
-                     </scoreDef>
-                  </rdg>
-               </app>
-               <section xml:id="s1" label="coplas">
-                  <pb />
+               <section xml:id="s1">
                   <measure xml:id="m1hv36rb" n="1">
                      <staff xml:id="m1s1" n="1">
                         <layer xml:id="m1s1l1" n="1">
                            <rest xml:id="r640jy7" dur="2" />
                            <rest xml:id="r1hyvitj" dur="4" />
-                           <app>
-                              <lem>
-                                 <note xml:id="nmidrkk" dur="4" pname="g" oct="5">
-                                    <verse n="1">
-                                       <syl>En</syl>
-                                    </verse>
-                                    <verse n="2">
-                                       <syl con="d" wordpos="i">Sa</syl>
-                                    </verse>
-                                    <verse n="3">
-                                       <syl>Por</syl>
-                                    </verse>
-                                 </note>
-                              </lem>
-                              <rdg label="original-iberian-white-mensural">
-                                 <note xml:id="nmidrkk" dur="8" head.fill="void" pname="g" oct="5">
-                                    <verse n="1">
-                                       <syl>En</syl>
-                                    </verse>
-                                    <verse n="2">
-                                       <syl con="d" wordpos="i">Sa</syl>
-                                    </verse>
-                                    <verse n="3">
-                                       <syl>Por</syl>
-                                    </verse>
-                                 </note>
-                              </rdg>
-                           </app>
+                           <note xml:id="nmidrkk" dur="4" pname="g" oct="5">
+                              <verse n="1">
+                                 <syl>En</syl>
+                              </verse>
+                              <verse n="2">
+                                 <syl con="d" wordpos="i">Sa</syl>
+                              </verse>
+                              <verse n="3">
+                                 <syl>Por</syl>
+                              </verse>
+                           </note>
                            <note xml:id="n16a2joj" dur="2" pname="g" oct="5">
                               <verse n="1">
                                  <syl con="d" wordpos="i">ca</syl>
@@ -164,11 +102,6 @@
                      </staff>
                      <staff xml:id="m1s3" n="3">
                         <layer xml:id="m1s3l1" n="1">
-                           <mRest xml:id="m1ckweis" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m1s4" n="4">
-                        <layer xml:id="m1s4l1" n="1">
                            <rest xml:id="ri8qvt6" dur="2" />
                            <rest xml:id="r1kmqws4" dur="4" />
                            <note xml:id="n1yrvzka" dur="4" pname="g" oct="4">
@@ -195,8 +128,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m1s5" n="5">
-                        <layer xml:id="m1s5l1" n="1">
+                     <staff xml:id="m1s4" n="4">
+                        <layer xml:id="m1s4l1" n="1">
                            <note xml:id="n1j39rxu" dur="1" pname="g" oct="3" />
                            <note xml:id="nmvpepg" dur="2" pname="g" oct="3" />
                         </layer>
@@ -236,33 +169,28 @@
                                  <syl con="d" wordpos="m">rro</syl>
                               </verse>
                               <verse n="2">
-                                 <syl>más</syl>
+                                 <syl con="u">más</syl>
                               </verse>
                               <verse n="3">
                                  <syl con="d" wordpos="m">le</syl>
                               </verse>
                            </note>
-                           <note xml:id="n1x9lmkk" dur="4" pname="d" oct="5">
-                              <verse n="1">
-                                 <syl con="u" wordpos="t">za</syl>
+                           <note xml:id="n1x9lmkk" dur="4" pname="d" oct="5" />
+                           <note xml:id="nwhwb5h" dur="2" pname="c" oct="5">
+                              <verse xml:id="v16bjjum" n="1">
+                                 <syl wordpos="t">za</syl>
                               </verse>
-                              <verse n="2">
+                              <verse xml:id="vchgu2o" n="3">
+                                 <syl wordpos="t">brar</syl>
+                              </verse>
+                              <verse xml:id="v1unkzib" n="2">
                                  <syl con="d" wordpos="i">tem</syl>
                               </verse>
-                              <verse n="3">
-                                 <syl con="u" wordpos="t">brar</syl>
-                              </verse>
                            </note>
-                           <note xml:id="nwhwb5h" dur="2" pname="c" oct="5" />
                         </layer>
                      </staff>
                      <staff xml:id="m2s3" n="3">
                         <layer xml:id="m2s3l1" n="1">
-                           <mRest xml:id="m5da84m" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m2s4" n="4">
-                        <layer xml:id="m2s4l1" n="1">
                            <note xml:id="n1jyktcn" dots="1" dur="2" pname="e" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="m">rro</syl>
@@ -288,8 +216,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m2s5" n="5">
-                        <layer xml:id="m2s5l1" n="1">
+                     <staff xml:id="m2s4" n="4">
+                        <layer xml:id="m2s4l1" n="1">
                            <note xml:id="n1dn0lo7" dots="1" dur="2" pname="c" oct="4" />
                            <note xml:id="nl4affm" dur="4" pname="d" oct="4" />
                            <note xml:id="n571dpc" dur="2" pname="e" oct="4" />
@@ -299,23 +227,7 @@
                   <measure xml:id="mk6j0wt" n="3">
                      <staff xml:id="m3s1" n="1">
                         <layer xml:id="m3s1l1" n="1">
-                           <app>
-
-                           <lem>
-                              <note xml:id="n1q0iq2n" dur="2" pname="g" oct="5">
-                                 <verse n="1">
-                                    <syl>de</syl>
-                                 </verse>
-                                 <verse n="2">
-                                    <syl con="d" wordpos="m">pra</syl>
-                                 </verse>
-                                 <verse n="3">
-                                    <syl con="d" wordpos="i">el</syl>
-                                 </verse>
-                              </note>
-                        </lem>
-                        <rdg label="original-iberian-white-mensural">
-                           <note xml:id="n1q0iq2n" dur="2" colored="true" head.fill="solid" pname="g" oct="5">
+                           <note xml:id="n1q0iq2n" dur="2" pname="g" oct="5">
                               <verse n="1">
                                  <syl>de</syl>
                               </verse>
@@ -323,11 +235,9 @@
                                  <syl con="d" wordpos="m">pra</syl>
                               </verse>
                               <verse n="3">
-                                 <syl con="d" wordpos="i">el</syl>
+                                 <syl>el</syl>
                               </verse>
                            </note>
-                           </rdg>
-                           </app>
                            <note xml:id="nunvhwr" dur="1" pname="f" oct="5">
                               <verse n="1">
                                  <syl con="d" wordpos="i">cris</syl>
@@ -337,7 +247,7 @@
                                  <syl>el</syl>
                               </verse>
                               <verse n="3">
-                                 <syl con="d" wordpos="m">fes</syl>
+                                 <syl con="d" wordpos="i">feste</syl>
                               </verse>
                               <accid accid="s" />
                            </note>
@@ -365,18 +275,13 @@
                                  <syl>el</syl>
                               </verse>
                               <verse n="3">
-                                 <syl con="d" wordpos="i">fes</syl>
+                                 <syl con="d" wordpos="i">feste</syl>
                               </verse>
                            </note>
                         </layer>
                      </staff>
                      <staff xml:id="m3s3" n="3">
                         <layer xml:id="m3s3l1" n="1">
-                           <mRest xml:id="micf7t9" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m3s4" n="4">
-                        <layer xml:id="m3s4l1" n="1">
                            <note xml:id="n1ww1sfb" dur="2" pname="d" oct="4">
                               <verse n="1">
                                  <syl>de</syl>
@@ -397,13 +302,13 @@
                                  <syl>el</syl>
                               </verse>
                               <verse n="3">
-                                 <syl con="d" wordpos="i">fes</syl>
+                                 <syl con="d" wordpos="i">feste</syl>
                               </verse>
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m3s5" n="5">
-                        <layer xml:id="m3s5l1" n="1">
+                     <staff xml:id="m3s4" n="4">
+                        <layer xml:id="m3s4l1" n="1">
                            <note xml:id="nzxff17" dots="1" dur="1" pname="d" oct="4" />
                         </layer>
                      </staff>
@@ -419,7 +324,7 @@
                                  <syl>sol</syl>
                               </verse>
                               <verse n="3">
-                                 <syl wordpos="t">te jo</syl>
+                                 <syl wordpos="t">jo</syl>
                               </verse>
                            </note>
                            <rest xml:id="r11k9nt1" dur="2" />
@@ -436,7 +341,7 @@
                                  <syl>sol</syl>
                               </verse>
                               <verse n="3">
-                                 <syl wordpos="t">te jo</syl>
+                                 <syl wordpos="t">jo</syl>
                               </verse>
                            </note>
                            <rest xml:id="rg9hdy7" dur="2" />
@@ -445,11 +350,6 @@
                      </staff>
                      <staff xml:id="m4s3" n="3">
                         <layer xml:id="m4s3l1" n="1">
-                           <mRest xml:id="mfa9vmz" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m4s4" n="4">
-                        <layer xml:id="m4s4l1" n="1">
                            <note xml:id="n8ihlcu" dur="2" pname="g" oct="3">
                               <verse n="1">
                                  <syl wordpos="t">tal</syl>
@@ -458,15 +358,15 @@
                                  <syl>sol</syl>
                               </verse>
                               <verse n="3">
-                                 <syl wordpos="t">te jo</syl>
+                                 <syl wordpos="t">jo</syl>
                               </verse>
                            </note>
                            <rest xml:id="r1hmnvc" dur="2" />
                            <rest xml:id="r8v8vn0" dur="2" />
                         </layer>
                      </staff>
-                     <staff xml:id="m4s5" n="5">
-                        <layer xml:id="m4s5l1" n="1">
+                     <staff xml:id="m4s4" n="4">
+                        <layer xml:id="m4s4l1" n="1">
                            <note xml:id="n1pz5sn3" dots="1" dur="1" pname="g" oct="3" />
                         </layer>
                      </staff>
@@ -530,11 +430,6 @@
                      </staff>
                      <staff xml:id="m5s3" n="3">
                         <layer xml:id="m5s3l1" n="1">
-                           <mRest xml:id="m1ixvr2y" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m5s4" n="4">
-                        <layer xml:id="m5s4l1" n="1">
                            <rest xml:id="r1hjke0u" dur="2" />
                            <note xml:id="nd419ft" dur="2" pname="g" oct="4">
                               <verse n="1">
@@ -561,8 +456,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m5s5" n="5">
-                        <layer xml:id="m5s5l1" n="1">
+                     <staff xml:id="m5s4" n="4">
+                        <layer xml:id="m5s4l1" n="1">
                            <note xml:id="nt8iy3k" dots="1" dur="1" pname="g" oct="3" />
                         </layer>
                      </staff>
@@ -625,11 +520,6 @@
                      </staff>
                      <staff xml:id="m6s3" n="3">
                         <layer xml:id="m6s3l1" n="1">
-                           <mRest xml:id="m1o2jupu" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m6s4" n="4">
-                        <layer xml:id="m6s4l1" n="1">
                            <note xml:id="nk6byyl" dur="2" pname="g" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">ran</syl>
@@ -655,8 +545,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m6s5" n="5">
-                        <layer xml:id="m6s5l1" n="1">
+                     <staff xml:id="m6s4" n="4">
+                        <layer xml:id="m6s4l1" n="1">
                            <note xml:id="n1g2t476" dur="2" pname="g" oct="3" />
                            <note xml:id="nujg2dt" dur="1" pname="g" oct="3" />
                         </layer>
@@ -666,7 +556,6 @@
                      <tie xml:id="t5e761j" startid="#nx1pe79" endid="#naxfivz" />
                      <tie xml:id="t1c6txoz" startid="#nujg2dt" endid="#n6ep94b" />
                   </measure>
-                  <pb />
                   <measure xml:id="mk0gg1" n="7">
                      <staff xml:id="m7s1" n="1">
                         <layer xml:id="m7s1l1" n="1">
@@ -729,11 +618,6 @@
                      </staff>
                      <staff xml:id="m7s3" n="3">
                         <layer xml:id="m7s3l1" n="1">
-                           <mRest xml:id="mj8l2th" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m7s4" n="4">
-                        <layer xml:id="m7s4l1" n="1">
                            <note xml:id="naxfivz" dur="2" pname="a" oct="4" />
                            <note xml:id="navcejw" dur="2" pname="a" oct="4">
                               <verse n="1">
@@ -761,8 +645,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m7s5" n="5">
-                        <layer xml:id="m7s5l1" n="1">
+                     <staff xml:id="m7s4" n="4">
+                        <layer xml:id="m7s4l1" n="1">
                            <note xml:id="n6ep94b" dur="2" pname="g" oct="3" />
                            <note xml:id="nsuznao" dur="2" pname="a" oct="3" />
                            <note xml:id="n1s649za" dur="2" pname="d" oct="3" />
@@ -826,11 +710,6 @@
                      </staff>
                      <staff xml:id="m8s3" n="3">
                         <layer xml:id="m8s3l1" n="1">
-                           <mRest xml:id="m1n5q2pa" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m8s4" n="4">
-                        <layer xml:id="m8s4l1" n="1">
                            <note xml:id="n6pv1o1" dur="2" pname="e" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">pí</syl>
@@ -856,8 +735,8 @@
                            <rest xml:id="rkpslhj" dur="2" />
                         </layer>
                      </staff>
-                     <staff xml:id="m8s5" n="5">
-                        <layer xml:id="m8s5l1" n="1">
+                     <staff xml:id="m8s4" n="4">
+                        <layer xml:id="m8s4l1" n="1">
                            <note xml:id="n1197okm" dots="1" dur="1" pname="e" oct="3" />
                         </layer>
                      </staff>
@@ -921,11 +800,6 @@
                      </staff>
                      <staff xml:id="m9s3" n="3">
                         <layer xml:id="m9s3l1" n="1">
-                           <mRest xml:id="m1p2gvmo" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m9s4" n="4">
-                        <layer xml:id="m9s4l1" n="1">
                            <rest xml:id="rvrn5f4" dur="2" />
                            <note xml:id="nncttor" dur="2" pname="e" oct="4">
                               <verse n="1">
@@ -952,8 +826,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m9s5" n="5">
-                        <layer xml:id="m9s5l1" n="1">
+                     <staff xml:id="m9s4" n="4">
+                        <layer xml:id="m9s4l1" n="1">
                            <note xml:id="n727e41" dots="1" dur="1" pname="e" oct="4" />
                         </layer>
                      </staff>
@@ -1014,11 +888,6 @@
                      </staff>
                      <staff xml:id="m10s3" n="3">
                         <layer xml:id="m10s3l1" n="1">
-                           <mRest xml:id="m1icvdqg" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m10s4" n="4">
-                        <layer xml:id="m10s4l1" n="1">
                            <note xml:id="n1p1u03" dur="2" pname="e" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">bru</syl>
@@ -1044,8 +913,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m10s5" n="5">
-                        <layer xml:id="m10s5l1" n="1">
+                     <staff xml:id="m10s4" n="4">
+                        <layer xml:id="m10s4l1" n="1">
                            <note xml:id="np944bv" dur="2" pname="e" oct="4" />
                            <note xml:id="ncijzik" dur="1" pname="a" oct="3" />
                         </layer>
@@ -1115,11 +984,6 @@
                      </staff>
                      <staff xml:id="m11s3" n="3">
                         <layer xml:id="m11s3l1" n="1">
-                           <mRest xml:id="ms6mx7i" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m11s4" n="4">
-                        <layer xml:id="m11s4l1" n="1">
                            <note xml:id="nrtl1r0" dur="2" pname="c" oct="4">
                               <accid accid.ges="s" />
                            </note>
@@ -1149,8 +1013,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m11s5" n="5">
-                        <layer xml:id="m11s5l1" n="1">
+                     <staff xml:id="m11s4" n="4">
+                        <layer xml:id="m11s4l1" n="1">
                            <note xml:id="n1tarz6r" dur="2" pname="a" oct="3" />
                            <note xml:id="ny0rz5t" dur="2" pname="d" oct="4" />
                            <note xml:id="n1vimwgs" dur="2" pname="c" oct="4">
@@ -1217,11 +1081,6 @@
                      </staff>
                      <staff xml:id="m12s3" n="3">
                         <layer xml:id="m12s3l1" n="1">
-                           <mRest xml:id="m1jlcgxx" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m12s4" n="4">
-                        <layer xml:id="m12s4l1" n="1">
                            <note xml:id="n11xxvr" dur="2" pname="d" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">rue</syl>
@@ -1247,8 +1106,8 @@
                            <rest xml:id="r17sg4y1" dur="2" />
                         </layer>
                      </staff>
-                     <staff xml:id="m12s5" n="5">
-                        <layer xml:id="m12s5l1" n="1">
+                     <staff xml:id="m12s4" n="4">
+                        <layer xml:id="m12s4l1" n="1">
                            <note xml:id="n1by8ycl" dur="2" pname="d" oct="4" />
                            <note xml:id="nrcns67" dur="1" pname="a" oct="3" />
                         </layer>
@@ -1313,11 +1172,6 @@
                      </staff>
                      <staff xml:id="m13s3" n="3">
                         <layer xml:id="m13s3l1" n="1">
-                           <mRest xml:id="m11d2mfl" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m13s4" n="4">
-                        <layer xml:id="m13s4l1" n="1">
                            <rest xml:id="r10e234m" dur="2" />
                            <note xml:id="n18icmy2" dur="2" pname="d" oct="4">
                               <verse n="1">
@@ -1344,14 +1198,13 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m13s5" n="5">
-                        <layer xml:id="m13s5l1" n="1">
+                     <staff xml:id="m13s4" n="4">
+                        <layer xml:id="m13s4l1" n="1">
                            <note xml:id="n1r1gjje" dur="1" pname="d" oct="4" />
                            <note xml:id="n1xs6yvq" dur="2" pname="d" oct="4" />
                         </layer>
                      </staff>
                   </measure>
-                  <sb />
                   <measure xml:id="mh4c5mp" n="14">
                      <staff xml:id="m14s1" n="1">
                         <layer xml:id="m14s1l1" n="1">
@@ -1366,19 +1219,18 @@
                                  <syl con="d" wordpos="m">tio</syl>
                               </verse>
                            </note>
-                           <note xml:id="nmjz0o3" dur="4" pname="e" oct="5">
-                              <verse n="1">
-                                 <syl con="u" wordpos="t">yos</syl>
+                           <note xml:id="nmjz0o3" dur="4" pname="e" oct="5" />
+                           <note xml:id="n53kxso" dur="2" pname="g" oct="5">
+                              <verse xml:id="vhy1v58" n="1">
+                                 <syl wordpos="t">yos</syl>
                               </verse>
-                              <verse n="2">
-                                 <syl con="b" wordpos="t">la</syl>
-                                 <syl con="u">y</syl>
+                              <verse xml:id="v1fwxnvu" n="2">
+                                 <syl wordpos="t">la y</syl>
                               </verse>
-                              <verse n="3">
+                              <verse xml:id="vs00yfp" n="3">
                                  <syl con="d" wordpos="m">pí</syl>
                               </verse>
                            </note>
-                           <note xml:id="n53kxso" dur="2" pname="g" oct="5" />
                         </layer>
                      </staff>
                      <staff xml:id="m14s2" n="2">
@@ -1388,7 +1240,7 @@
                                  <syl con="d" wordpos="i">ra</syl>
                               </verse>
                               <verse n="2">
-                                 <syl>ga</syl>
+                                 <syl con="d" wordpos="i">ga</syl>
                               </verse>
                               <verse n="3">
                                  <syl con="d" wordpos="m">tio</syl>
@@ -1402,7 +1254,7 @@
                                  <syl wordpos="t">yos</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">la</syl>
+                                 <syl con="b" wordpos="t">la</syl>
                                  <syl>y</syl>
                               </verse>
                            </note>
@@ -1410,11 +1262,6 @@
                      </staff>
                      <staff xml:id="m14s3" n="3">
                         <layer xml:id="m14s3l1" n="1">
-                           <mRest xml:id="m12f0cjf" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m14s4" n="4">
-                        <layer xml:id="m14s4l1" n="1">
                            <note xml:id="nfy7i99" dots="1" dur="2" pname="d" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">ra</syl>
@@ -1441,8 +1288,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m14s5" n="5">
-                        <layer xml:id="m14s5l1" n="1">
+                     <staff xml:id="m14s4" n="4">
+                        <layer xml:id="m14s4l1" n="1">
                            <note xml:id="n1vvjgny" dots="1" dur="2" pname="d" oct="4" />
                            <note xml:id="n1j4vq1h" dur="4" pname="c" oct="4" />
                            <note xml:id="n1r94hze" dur="2" pname="b" oct="3" />
@@ -1465,9 +1312,6 @@
                               </verse>
                            </note>
                            <note xml:id="n168vngq" dur="4" pname="f" oct="5">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">ne</syl>
-                              </verse>
                               <verse n="2">
                                  <syl con="d" wordpos="m">za</syl>
                               </verse>
@@ -1476,7 +1320,11 @@
                                  <syl con="d" wordpos="i">Es</syl>
                               </verse>
                            </note>
-                           <note xml:id="n1is014r" dur="2" pname="e" oct="5" />
+                           <note xml:id="n1is014r" dur="2" pname="e" oct="5">
+                              <verse xml:id="v1qj2lr0" n="1">
+                                 <syl con="d" wordpos="m">ne</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff xml:id="m15s2" n="2">
@@ -1511,11 +1359,6 @@
                      </staff>
                      <staff xml:id="m15s3" n="3">
                         <layer xml:id="m15s3l1" n="1">
-                           <mRest xml:id="mcpgofj" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m15s4" n="4">
-                        <layer xml:id="m15s4l1" n="1">
                            <note xml:id="n407nt0" dots="1" dur="2" pname="c" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">guar</syl>
@@ -1543,8 +1386,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m15s5" n="5">
-                        <layer xml:id="m15s5l1" n="1">
+                     <staff xml:id="m15s4" n="4">
+                        <layer xml:id="m15s4l1" n="1">
                            <note xml:id="n1rinyr4" dots="1" dur="2" pname="c" oct="4" />
                            <note xml:id="nfid1t8" dur="4" pname="d" oct="4" />
                            <note xml:id="nlpkxhu" dur="2" pname="e" oct="4" />
@@ -1593,11 +1436,6 @@
                      </staff>
                      <staff xml:id="m16s3" n="3">
                         <layer xml:id="m16s3l1" n="1">
-                           <mRest xml:id="m10m7kpi" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m16s4" n="4">
-                        <layer xml:id="m16s4l1" n="1">
                            <note xml:id="n19yc776" dots="1" dur="2" pname="d" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="m">ci</syl>
@@ -1613,8 +1451,8 @@
                            <note xml:id="nbr08y3" dur="2" pname="d" oct="4" />
                         </layer>
                      </staff>
-                     <staff xml:id="m16s5" n="5">
-                        <layer xml:id="m16s5l1" n="1">
+                     <staff xml:id="m16s4" n="4">
+                        <layer xml:id="m16s4l1" n="1">
                            <note xml:id="nz0d2rr" dots="1" dur="2" pname="d" oct="4" />
                            <note xml:id="n10k1vsd" dur="4" pname="e" oct="4" />
                            <note xml:id="n1o6wuex" dur="2" pname="d" oct="4" />
@@ -1662,11 +1500,6 @@
                      </staff>
                      <staff xml:id="m17s3" n="3">
                         <layer xml:id="m17s3l1" n="1">
-                           <mRest xml:id="mbsalwu" />
-                        </layer>
-                     </staff>
-                     <staff xml:id="m17s4" n="4">
-                        <layer xml:id="m17s4l1" n="1">
                            <note xml:id="n3uv3ig" dur="2" pname="d" oct="4" />
                            <note xml:id="nffmsnb" dur="1" pname="g" oct="3">
                               <verse n="1">
@@ -1681,8 +1514,8 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff xml:id="m17s5" n="5">
-                        <layer xml:id="m17s5l1" n="1">
+                     <staff xml:id="m17s4" n="4">
+                        <layer xml:id="m17s4l1" n="1">
                            <note xml:id="n81o333" dur="2" pname="d" oct="4" />
                            <note xml:id="n5w8t9j" dur="1" pname="g" oct="3" />
                         </layer>

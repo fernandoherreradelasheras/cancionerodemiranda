@@ -74,15 +74,16 @@ for measure1, measure2 in zip(measures1, measures2):
                 if replaceAt is None:
                     dest = ET.Element(f"verse")
                     dest.set('n', verseN)
-                    dest.text = "\n                                 "
-                    dest.tail = "\n                              "                
+                    dest.text = verse1.text
+                    dest.tail = verse1.tail
                     note2.append(dest)                
+                    prev = dest.getprevious()
+                    if prev is not None:
+                        prev.tail = prev.tail + '   '
                 else:
                     dest = replaceAt
                     for node in dest.iter(f'{{{MEI_NS}}}syl'):   
                         dest.remove(node)                    
-                    dest.tail = dest.tail + "    "
-        
         
                 for syl in verse1.iter(f'{{{MEI_NS}}}syl'):
                     dest.append(deepcopy(syl))
