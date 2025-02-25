@@ -237,6 +237,9 @@ def run_xmlstarlet(cmd):
     cmd = "xmlstarlet ed -L -N mei=\"http://www.music-encoding.org/ns/mei\" " + cmd
     subprocess.check_output(['sh', '-c', cmd]).decode().strip()
 
+def mei_has_more_than_1verse(file):
+    cmd = ['xmlstarlet', 'sel', '-N', 'mei=http://www.music-encoding.org/ns/mei', '-t', '-v', 'count(//mei:verse[@n="2"])', file]
+    return int(subprocess.check_output(cmd).decode().strip()) > 0
     
 
 
@@ -440,7 +443,7 @@ def inject_text_into_place_holders(blocks_to_inject, music_pdf, tmp_dir):
             print(f'Cannot find placeholder for section {section} on the rendered pdf. Skipping text injection')
             return
 
-		# Render a pdf with the text rendered at the position where the placeholder was in the score page
+	# Render a pdf with the text rendered at the position where the placeholder was in the score page
         outputname = f"stanzas_{section}"
         contents = get_contents_for_section(section, blocks_to_inject)
         
@@ -454,18 +457,18 @@ def inject_text_into_place_holders(blocks_to_inject, music_pdf, tmp_dir):
         
         render_latex(tmp_dir, outputname)
         
-		# Extract the page from the score pdf where we want to overlay the pdf with the coplas
+	# Extract the page from the score pdf where we want to overlay the pdf with the coplas
         overlay = f'{tmp_dir}/music_page_to_overlay.pdf'
         cmd = [ 'pdftk' , music_pdf, 'cat', str(page),  'output', overlay ]
         run_cmd(cmd)
         
 
-		# Do the overlay operation
+	# Do the overlay operation
         cmd = [ 'pdftk' , overlay, 'background', f"{tmp_dir}/{outputname}.pdf",  'output', f'{tmp_dir}/music_with_stanzas.pdf' ]
         run_cmd(cmd)
 
 
-		# Build back the final music pdf
+	# Build back the final music pdf
         if page == 1:
             RANGE="B"
             if pages > 2:
@@ -488,7 +491,7 @@ def inject_text_into_place_holders(blocks_to_inject, music_pdf, tmp_dir):
 					
         range_args = RANGE.split(" ")
 
-        cmd = [ 'pdftk', f'A={tmp_dir}/music.pdf', f'B={tmp_dir}/music_with_stanzas.pdf', 'cat'] + range_args + [ 'output', f'{tmp_dir}/music-updated.pdf' ]    
+        cmd = [ 'pdftk', f'A={music_pdf}', f'B={tmp_dir}/music_with_stanzas.pdf', 'cat'] + range_args + [ 'output', f'{tmp_dir}/music-updated.pdf' ]    
         run_cmd(cmd)
         
         shutil.move(f"{tmp_dir}/music-updated.pdf", music_pdf)
@@ -501,14 +504,10 @@ def inject_text_into_place_holders(blocks_to_inject, music_pdf, tmp_dir):
     
 
 def generate_mei(input_mei, order, poet, composer, title, tmp_dir, output_mei):
-    
-
     tmp0 = f'{tmp_dir}/tmp0.mei'
-	# Fix mei exported from musescore
+    # Fix mei exported from musescore
     cmd = [ 'sh', '-c', f'sed -e "s/mei-basic/mei-all/g" "{input_mei}"  | sed -e "s/5\\.0+basic/5.0/g" | ' + \
         f'xmlstarlet ed -N  mei="http://www.music-encoding.org/ns/mei" -s "//mei:score/mei:scoreDef" -t elem -n "pgHead" > {tmp0}' ] 
-
-    print(cmd)
     run_cmd(cmd)
     
     ordinal = re.sub(r"^0*([0-9]*)", r"\1º", str(order))
@@ -520,11 +519,13 @@ def generate_mei(input_mei, order, poet, composer, title, tmp_dir, output_mei):
         
     cmd = [ 'xsltproc', '--stringparam', 'title', title, '--stringparam', 'ordinal', ordinal, '--stringparam', 'poet', poet, '--stringparam', 'composer', composer,
           '-o', output_mei , 'pgHead.xsl', tmp0 ]
-    print(cmd)
     run_cmd(cmd)
 
 
 def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
+    cmd = [ 'sh', '-c', f'rm -f {tmp_dir}/*.svg' ]
+    run_cmd(cmd)    
+
     cmd = [ 'verovio',  '--unit', mei_unit, '--multi-rest-style', 'auto', '--mdiv-all', '-a', '--mm-output', '--mnum-interval', '0',
             '--bottom-margin-header', '2.5', '--page-margin-left', '150', '--page-margin-right', '150', '--page-margin-top', '50',
            '--lyric-height-factor', '1.4', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2', "--no-justification",
@@ -572,28 +573,34 @@ def add_titles(mei_file, entries):
             
 
 def generate_score(order, data, tmp_dir):
+
+    generated = []
     
     if not 'mei_file' in data:
-        return False
+        return generated
     
     mei_unit = str(data['mei_unit']) if 'mei_unit' in data else "8.0"
     mei_scale = str(data['mei_scale']) if 'mei_scale' in data else "100"
     tmp_file = f"{tmp_dir}/tmp1.mei"
     
     generate_mei(data['mei_file'], order, data['text_author'], data['music_author'], data['title'], tmp_dir, tmp_file)
-    
     add_titles(tmp_file, data['text_transcription'])
+    shutil.copy(tmp_file, f'{tmp_dir}/final.mei')        
 
-        
+    if mei_has_more_than_1verse(tmp_file):
+        render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "music-all-verses.pdf")
+        generated.append("music-all-verses.pdf")
+
+    path = f"//mei:verse[@n!=\"1\"]"
+    run_xmlstarlet(f"-d '{path}' {tmp_file}")
+
     blocks_to_inject = [entry for entry in data['text_transcription'] if 'append_to' in entry and entry['append_to'] != "@none" ]
-    
-    inject_section_place_holders(f"{tmp_dir}/tmp1.mei", blocks_to_inject)   
-    
-    render_mei(f"{tmp_dir}/tmp1.mei", mei_unit, mei_scale, tmp_dir, "music.pdf")   
-    
-    inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/music.pdf", tmp_dir)
+    inject_section_place_holders(tmp_file, blocks_to_inject)   
+    render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "music-single-verse.pdf")   
+    inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/music-single-verse.pdf", tmp_dir)
+    generated.append("music-single-verse.pdf")
 
-    return True
+    return generated
 
 
 def main():
@@ -663,7 +670,7 @@ def generate_tono(data, tmp_dir):
                             data['text_comments_file'] if 'text_comments_file' in data else None,
                             tmp_dir)
         
-    got_score = generate_score(data['number'], data, tmp_dir)
+    generated_scores = generate_score(data['number'], data, tmp_dir)
         
     latexStr = latexStr + "\\section*{Edición musical}\n"
     latexStr = latexStr + "\\input{criterios-musicales.tex}" 
@@ -677,8 +684,8 @@ def generate_tono(data, tmp_dir):
         print(json_params)
         latexStr = latexStr + generate_comments_from_mei_file(data['mei_file'], json_params, tmp_dir)
             
-    if got_score:
-        latexStr = latexStr + "\\includepdf[pages=-]{music.pdf}\n"
+    for score in generated_scores:
+        latexStr = latexStr + "\\includepdf[pages=-]{%s}\n" % score
         
     (Path(tmp_dir) / 'facsimil.tex').write_text(get_facsimil(data['s1_pages'], data['s2_pages'], data['t_pages'], data['g_pages']))
     latexStr = latexStr + "\\input{facsimil.tex}\n"
@@ -697,8 +704,8 @@ def generate_tono(data, tmp_dir):
         
     destname =  f'output/{str(data['number']).zfill(2)} - {data['title']}'
         
-    if got_score and (Path(tmp_dir) / 'tmp1.mei').exists():
-        shutil.copy(f'{tmp_dir}/tmp1.mei', f'{destname}.mei')        
+    if len(generated_scores) > 0 and (Path(tmp_dir) / 'final.mei').exists():
+        shutil.copy(f'{tmp_dir}/final.mei', f'{destname}.mei')        
         print(f"MEI score: {destname}.mei")
         cmd = [ 'pdftk', f'{tmp_dir}/tmp.pdf', 'attach_files', f'{destname}.mei', 'to_page', 'end',  'output', f'{destname}.pdf']
         run_cmd(cmd)    
