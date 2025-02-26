@@ -11,7 +11,7 @@ import AudioPlayer from './AudioPlayer';
 import SvgOverlay from './SvgOverlay';
 import { Choice, EditorialItem } from './Editorial'
 import { SVG_FILTERS, SVG_STYLE_RULES } from './svgutils';
-import { TonoDef, calcHighlightScaling } from './utils';
+import { TonoDef } from './utils';
 
 
 import SimpleToggle from './SimpleToggle';
@@ -50,7 +50,7 @@ library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus, faCog)
 
 
 
-function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
+function Verovio({ mei_url, mp3_url, maxHeight, section, style }: {
     tono: TonoDef,
     mei_url: string,
     mp3_url: string | undefined,
@@ -391,7 +391,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
                 if (pageForPlayingElement != undefined && pageForPlayingElement > currentPageNumber) {
                     newPage = pageForPlayingElement
                 }
-                styles += getSvgMidiHighlightStyle(id, calcHighlightScaling(showNVerses))
+                styles += getSvgMidiHighlightStyle(id)
 
             });
         }

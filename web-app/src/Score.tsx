@@ -14,7 +14,6 @@ export const maxVerseNum = (doc: Document) => {
         let value = parseInt(node.nodeValue || "0")
         if (value > max) {
             max = value
-            console.log(max)
         }        
     }
     return max
