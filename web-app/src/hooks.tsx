@@ -39,15 +39,16 @@ export const getSvgSelectedMeasureStyle = (measure: number) =>
     `[data-n="${measure}"] .staff.bounding-box rect { fill:red;stroke:orange;stroke-width:50;fill-opacity:0.4;stroke-opacity:0.8; }\n`
 
 
-// This scaling of the whole group is not ideal because lyrics gets pushed down way too much. But appiying the transform to the head + stem is a mess
-// because they are drawn using different centers depending on the stem direction
+// Using the filter on the note bouding box gets the whole lyrics and can be quite confusing
+// But stem, is too thin to get really highlight with the svg filter, so...
 export const getSvgMidiHighlightStyle = (id: string, scale: number) =>  
-    `g#${id}.note { filter: var(--high); transform-origin: center; transform-box: fill-box; transform: scale(${scale}); }\n`
+    `g#${id}.note .notehead { filter: var(--high);   }\n`    +
+    `g#${id}.note g.stem path { color: var(--hgcolor); stroke-width: 50;   }\n`     
+
+
 
 
 export const getSvgEdirtorialHighlightStyle = (id: string, _: string) => 
     `g#${id}.note > .note.boundingbox > rect { fill:blue;stroke:rga(172, 32, 32);stroke-width:3;fill-opacity:0.1;stroke-opacity:0.9; }\n`
-
-
 
 export const getVerovioSvgExtraAttributes = () =>  [ "measure@n", "staff@n", "clef@corresp" ]
