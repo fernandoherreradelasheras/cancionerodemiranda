@@ -25,7 +25,6 @@ function IntroView({ tono }: { tono: TonoDef }) {
         };
         fetchIntro()
     }, []);
-    console.log(intro)
 
     return (
         <div>

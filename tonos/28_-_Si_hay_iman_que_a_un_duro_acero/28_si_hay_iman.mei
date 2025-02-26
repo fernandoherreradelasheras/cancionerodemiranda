@@ -15,69 +15,107 @@
     <body>
       <mdiv>
         <score>
-          <scoreDef midi.bpm="180.0">
-              <staffGrp>
-                <staffGrp symbol="bracket">
-                  <staffDef n="1" lines="5" />
-                  <staffDef n="2" lines="5" />
-                  <staffDef n="3" lines="5" />
-                  <staffDef n="4" lines="5" />
-                </staffGrp>
-                <staffDef n="5" lines="5" />
-              </staffGrp>
-          </scoreDef>
-          <section label="coplas" restart="true">
             <scoreDef midi.bpm="180.0">
               <staffGrp symbol="bracket">
                 <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
                   <label>Alto 1º</label>
                   <labelAbbr>A. 1</labelAbbr>
-                  <clef shape="G" line="2"/>
+                  <clef xml:id="coi2388" shape="G" line="2"/>
                 </staffDef>
                 <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
                   <label>Guion</label>
                   <labelAbbr>G</labelAbbr>
-                  <clef shape="F" line="4"/>
+                  <clef xml:id="coi2389" shape="F" line="4"/>
                 </staffDef>
               </staffGrp>
             </scoreDef>
+          <section label="coplas_a_solo">
+            <app xml:id="acario23">
+              <lem label="app_clefs" />
+              <rdg label="app_clefs">
+                <scoreDef midi.bpm="180.0">
+                  <staffGrp symbol="bracket">
+                    <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
+                      <label>Alto 1º</label>
+                      <labelAbbr>A. 1</labelAbbr>
+                      <clef shape="C" line="2" corresp="#coi2388" />
+                    </staffDef>
+                    <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
+                      <label>Guion</label>
+                      <labelAbbr>G</labelAbbr>
+                      <clef shape="C" line="4" corresp="#coi2389" />
+                    </staffDef>
+                  </staffGrp>
+                </scoreDef>
+              </rdg>
+            </app>
+            <annot plist="#acario23 #coi2388 #coi2389">Claves modernizadas</annot>
             <measure n="1">
               <staff n="1">
                 <layer n="1">
                   <rest dur="2"/>
                   <note dur="2" pname="a" oct="3">
                     <verse n="1">
-                      <syl>Si hay</syl>
+                      <syl con="b">Si</syl>
+                      <syl>hay</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="b">Si</syl>
+                      <syl>hay</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>Si</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">Si</syl>
+                      <syl>es</syl>
                     </verse>
                   </note>
                   <note dur="2" pname="a" oct="3">
                     <verse n="1">
                       <syl con="d" wordpos="i">i</syl>
                     </verse>
-                  </note>
-                </layer>
-              </staff>
-              <staff n="2">
-                <layer n="1">
-                  <note dur="2" pname="d" oct="3" stem.dir="down"/>
-                  <note dur="1" pname="a" oct="3" stem.len="0.000000"/>
-                </layer>
-              </staff>
-              <tempo type="mscore-infer-from-text" staff="1" tstamp="1.000000" midi.bpm="190.000000"><rend glyph.auth="smufl"></rend> = 190</tempo>
-            </measure>
-            <measure n="2">
-              <staff n="1">
-                <layer n="1">
-                  <note dots="1" dur="1" pname="d" oct="4" stem.len="0.000000">
-                    <verse n="1">
-                      <syl wordpos="t">mán</syl>
+                    <verse n="2">
+                      <syl>flor</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>por</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>un</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dots="1" dur="1" pname="b" oct="3" stem.len="0.000000">
+                  <note dur="2" pname="d" oct="3"/>
+                  <note dur="1" pname="a" oct="3"/>
+                </layer>
+              </staff>
+            </measure>
+            <measure n="2">
+              <staff n="1">
+                <layer n="1">
+                  <note dots="1" dur="1" pname="d" oct="4">
+                    <verse n="1">
+                      <syl wordpos="t">mán</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>que</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">a</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">es</syl>
+                    </verse>
+                  </note>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <note dots="1" dur="1" pname="b" oct="3">
                     <accid accid="f"/>
                   </note>
                 </layer>
@@ -88,52 +126,102 @@
                 <layer n="1">
                   <note dur="2" pname="c" oct="4">
                     <verse n="1">
-                      <syl>que a un</syl>
+                      <syl con="b">que</syl>
+                      <syl>a</syl>
+                      <syl>un</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl con="b">de</syl>
+                      <syl con="d" wordpos="i">e</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">mor</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="m">co</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">du</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="m">na</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">gi</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="e" oct="4">
                     <verse n="1">
-                      <syl con="d" wordpos="m">ro a</syl>
+                      <syl con="b">ro</syl>
+                      <syl con="d" wordpos="i">a</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="m">mo</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t" con="b">me</syl>
+                      <syl>y</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>y</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="a" oct="3" stem.dir="down"/>
-                  <note dur="2" pname="a" oct="2" stem.dir="up"/>
-                  <note dur="2" pname="a" oct="2" stem.dir="up"/>
+                  <note dur="2" pname="a" oct="3"/>
+                  <note dur="2" pname="a" oct="2"/>
+                  <note dur="2" pname="a" oct="2"/>
                 </layer>
               </staff>
             </measure>
             <measure n="4">
               <staff n="1">
                 <layer n="1">
-                  <note dots="1" dur="1" pname="f" oct="4" stem.len="0.000000">
+                  <note dots="1" dur="1" pname="f" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="m">ce</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="m">ra</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">llo</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">tron</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dots="1" dur="1" pname="d" oct="3" stem.len="0.000000"/>
+                  <note dots="1" dur="1" pname="d" oct="3"/>
                 </layer>
               </staff>
             </measure>
             <measure n="5">
               <staff n="1">
                 <layer n="1">
-                  <note dur="1" pname="e" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="e" oct="4">
                     <verse n="1">
                       <syl>ro</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">da</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">co</syl>
                     </verse>
                   </note>
                   <rest dur="2"/>
@@ -141,11 +229,11 @@
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="c" oct="3" stem.dir="up">
+                  <note dur="2" pname="c" oct="3">
                     <accid accid="s"/>
                   </note>
-                  <note dur="2" pname="d" oct="3" stem.dir="down"/>
-                  <note dur="2" pname="e" oct="3" stem.dir="down"/>
+                  <note dur="2" pname="d" oct="3"/>
+                  <note dur="2" pname="e" oct="3"/>
                 </layer>
               </staff>
             </measure>
@@ -157,17 +245,35 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">mue</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>va</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">a</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">cie</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl wordpos="t">va,</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>tras</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">quel</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">gos</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dots="1" dur="1" pname="f" oct="3" stem.len="0.000000"/>
+                  <note dots="1" dur="1" pname="f" oct="3"/>
                 </layer>
               </staff>
             </measure>
@@ -179,19 +285,37 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">mue</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>va</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">a</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">cie</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="e" oct="4">
                     <verse n="1">
                       <syl wordpos="t">va</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>tras</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">quel</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">gos</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="e" oct="3" stem.dir="down"/>
-                  <note dur="2" pname="e" oct="3" stem.dir="down"/>
-                  <note dur="2" pname="c" oct="3" stem.dir="up">
+                  <note dur="2" pname="e" oct="3"/>
+                  <note dur="2" pname="e" oct="3"/>
+                  <note dur="2" pname="c" oct="3">
                     <accid accid="s"/>
                   </note>
                 </layer>
@@ -205,15 +329,42 @@
                     <verse n="1">
                       <syl>por</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>los</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">tier</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>hay</syl>
+                    </verse>
                   </note>
                   <note dur="4" pname="g" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">in</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">ra</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">no</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">a</syl>
+                    </verse>
                   </note>
                   <note xml:id="n1a8n14g" dur="2" pname="a" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="m">cli</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">yos</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">rui</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="m">man</syl>
                     </verse>
                   </note>
                 </layer>
@@ -221,8 +372,8 @@
               <staff n="2">
                 <layer n="1">
                   <rest dur="2"/>
-                  <note dur="2" pname="d" oct="3" stem.dir="down"/>
-                  <note dur="2" pname="c" oct="3" stem.dir="up"/>
+                  <note dur="2" pname="d" oct="3"/>
+                  <note dur="2" pname="c" oct="3"/>
                 </layer>
               </staff>
               <tie startid="#n1a8n14g" endid="#n180derl"/>
@@ -231,16 +382,26 @@
               <staff n="1">
                 <layer n="1">
                   <note xml:id="n180derl" dur="2" pname="a" oct="4"/>
-                  <note dur="1" pname="g" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="g" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="m">na</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>del</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">se</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">te</syl>
+                      <syl con="d" wordpos="i">a</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dots="1" dur="1" pname="b" oct="2" stem.len="0.000000">
+                  <note dots="1" dur="1" pname="b" oct="2">
                     <accid accid="f"/>
                   </note>
                 </layer>
@@ -249,22 +410,44 @@
             <measure n="10">
               <staff n="1">
                 <layer n="1">
-                  <note dur="1" pname="a" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="a" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ción,</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>sol</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ñor</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">mor</syl>
                     </verse>
                   </note>
                   <note xml:id="n1varjtc" dur="2" pname="c" oct="5">
                     <verse n="1">
-                      <syl con="d" wordpos="i">¿qué ha</syl>
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="a" oct="2" stem.dir="up"/>
-                  <note dur="1" pname="a" oct="2" stem.len="0.000000"/>
+                  <note dur="2" pname="a" oct="2"/>
+                  <note dur="1" pname="a" oct="2"/>
                 </layer>
               </staff>
               <tie startid="#n1varjtc" endid="#nmb5rsj"/>
@@ -273,20 +456,29 @@
               <staff n="1">
                 <layer n="1">
                   <note xml:id="nmb5rsj" dur="2" pname="c" oct="5"/>
-                  <note dur="1" pname="b" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="b" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ré</syl>
                     </verse>
                     <accid accid="f"/>
+                    <verse n="2">
+                      <syl wordpos="t">re</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ré</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">ré</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="f" oct="2" stem.dir="up">
+                  <note dur="2" pname="f" oct="2">
                     <accid accid="s"/>
                   </note>
-                  <note xml:id="n1ywstwp" dur="1" pname="g" oct="2" stem.len="0.000000"/>
+                  <note xml:id="n1ywstwp" dur="1" pname="g" oct="2"/>
                 </layer>
               </staff>
               <tie startid="#n1ywstwp" endid="#n156lvxp"/>
@@ -294,14 +486,36 @@
             <measure n="12">
               <staff n="1">
                 <layer n="1">
-                  <note dur="1" pname="a" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="a" oct="4">
                     <verse n="1">
+                      <syl>yo,</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>yo,</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>yo,</syl>
+                    </verse>
+                    <verse n="4">
                       <syl>yo,</syl>
                     </verse>
                   </note>
                   <note xml:id="n1bbqjaq" dur="2" pname="c" oct="5">
                     <verse n="1">
-                      <syl con="d" wordpos="i">qué ha</syl>
+                      <syl con="b">qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="b">qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                 </layer>
@@ -309,10 +523,10 @@
               <staff n="2">
                 <layer n="1">
                   <note xml:id="n156lvxp" dur="2" pname="g" oct="2"/>
-                  <note dur="2" pname="f" oct="2" stem.dir="up">
+                  <note dur="2" pname="f" oct="2">
                     <accid accid="s"/>
                   </note>
-                  <note dur="2" pname="e" oct="2" stem.dir="up"/>
+                  <note dur="2" pname="e" oct="2"/>
                 </layer>
               </staff>
               <tie startid="#n1bbqjaq" endid="#n1mhf4da"/>
@@ -321,20 +535,29 @@
               <staff n="1">
                 <layer n="1">
                   <note xml:id="n1mhf4da" dur="2" pname="c" oct="5"/>
-                  <note dur="1" pname="b" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="b" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ré</syl>
                     </verse>
                     <accid accid="f"/>
+                    <verse n="2">
+                      <syl wordpos="t">ré</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ré</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">ré</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="f" oct="2" stem.dir="up">
+                  <note dur="2" pname="f" oct="2">
                     <accid accid="s"/>
                   </note>
-                  <note xml:id="n1bl2qhj" dur="1" pname="g" oct="2" stem.len="0.000000"/>
+                  <note xml:id="n1bl2qhj" dur="1" pname="g" oct="2"/>
                 </layer>
               </staff>
               <tie startid="#n1bl2qhj" endid="#nh1qdv2"/>
@@ -342,14 +565,36 @@
             <measure n="14">
               <staff n="1">
                 <layer n="1">
-                  <note dur="1" pname="a" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="a" oct="4">
                     <verse n="1">
+                      <syl>yo,</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>yo,</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>yo,</syl>
+                    </verse>
+                    <verse n="4">
                       <syl>yo,</syl>
                     </verse>
                   </note>
                   <note xml:id="ngvrghe" dur="2" pname="g" oct="4">
                     <verse n="1">
-                      <syl con="d" wordpos="i">qué ha</syl>
+                      <syl con="b">qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="b">qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                 </layer>
@@ -369,8 +614,17 @@
               <staff n="1">
                 <layer n="1">
                   <note xml:id="nfaa1dq" dur="2" pname="g" oct="4"/>
-                  <note dur="1" pname="f" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="f" oct="4">
                     <verse n="1">
+                      <syl wordpos="t">ré</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ré</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ré</syl>
+                    </verse>
+                    <verse n="4">
                       <syl wordpos="t">ré</syl>
                     </verse>
                   </note>
@@ -378,16 +632,25 @@
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="a" oct="2" stem.dir="up"/>
-                  <note dur="1" pname="d" oct="3" stem.len="0.000000"/>
+                  <note dur="2" pname="a" oct="2"/>
+                  <note dur="1" pname="d" oct="3"/>
                 </layer>
               </staff>
             </measure>
             <measure n="16">
               <staff n="1">
                 <layer n="1">
-                  <note dots="1" dur="1" pname="e" oct="4" stem.len="0.000000">
+                  <note dots="1" dur="1" pname="e" oct="4">
                     <verse n="1">
+                      <syl>yo?</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>yo?</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>yo?</syl>
+                    </verse>
+                    <verse n="4">
                       <syl>yo?</syl>
                     </verse>
                   </note>
@@ -395,8 +658,8 @@
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="1" pname="a" oct="3" stem.len="0.000000"/>
-                  <note dur="2" pname="a" oct="3" stem.dir="down"/>
+                  <note dur="1" pname="a" oct="3"/>
+                  <note dur="2" pname="a" oct="3"/>
                 </layer>
               </staff>
             </measure>
@@ -408,8 +671,8 @@
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="a" oct="3" stem.dir="down"/>
-                  <note dur="1" pname="g" oct="3" stem.len="0.000000"/>
+                  <note dur="2" pname="a" oct="3"/>
+                  <note dur="1" pname="g" oct="3"/>
                 </layer>
               </staff>
             </measure>
@@ -420,23 +683,51 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">Cuan</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>A</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>Si</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>que,</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">vis</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">lo</syl>
+                      <syl con="d" wordpos="i">i</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">de</syl>
                     </verse>
                   </note>
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl>más</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ta</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">rra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">más</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="1" pname="f" oct="3" stem.len="0.000000"/>
-                  <note dur="2" pname="e" oct="3" stem.dir="down"/>
+                  <note dur="1" pname="f" oct="3"/>
+                  <note dur="2" pname="e" oct="3"/>
                 </layer>
               </staff>
             </measure>
@@ -448,6 +739,15 @@
                       <syl con="d" wordpos="i">tier</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl>del</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">cio</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>de</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
@@ -455,41 +755,77 @@
                       <syl>es</syl>
                     </verse>
                     <accid accid.ges="s"/>
+                    <verse n="2">
+                      <syl>sol</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">nal</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">te</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl>un</syl>
                     </verse>
                     <accid accid.ges="s"/>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">pa</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">ner</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="1" pname="d" oct="3" stem.len="0.000000"/>
-                  <note dur="2" pname="c" oct="3" stem.dir="up"/>
+                  <note dur="1" pname="d" oct="3"/>
+                  <note dur="2" pname="c" oct="3"/>
                 </layer>
               </staff>
             </measure>
             <measure n="20">
               <staff n="1">
                 <layer n="1">
-                  <note dur="1" pname="g" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="g" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">al</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">be</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">de</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">o</syl>
                     </verse>
                   </note>
                   <note dur="2" pname="g" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ma,</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ce</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">jos</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="1" pname="b" oct="2" stem.len="0.000000"/>
-                  <note xml:id="n1yqnty4" dur="2" pname="c" oct="3" stem.dir="up"/>
+                  <note dur="1" pname="b" oct="2"/>
+                  <note xml:id="n1yqnty4" dur="2" pname="c" oct="3"/>
                 </layer>
               </staff>
               <tie startid="#n1yqnty4" curvedir="below" endid="#n1y4dxlt"/>
@@ -502,8 +838,8 @@
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note xml:id="n1y4dxlt" dur="2" pname="c" oct="3" stem.dir="up"/>
-                  <note dur="1" pname="b" oct="2" stem.len="0.000000"/>
+                  <note xml:id="n1y4dxlt" dur="2" pname="c" oct="3"/>
+                  <note dur="1" pname="b" oct="2"/>
                 </layer>
               </staff>
             </measure>
@@ -514,22 +850,50 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">cuan</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>a</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>si</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>que,</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="g" oct="4">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">vis</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">lo</syl>
+                      <syl con="d" wordpos="i">i</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">de</syl>
                     </verse>
                   </note>
                   <note dur="2" pname="g" oct="4">
                     <verse n="1">
                       <syl>más</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ta</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">rra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">más</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dots="1" dur="1" pname="c" oct="3" stem.len="0.000000"/>
+                  <note dots="1" dur="1" pname="c" oct="3"/>
                 </layer>
               </staff>
             </measure>
@@ -541,25 +905,53 @@
                       <syl con="d" wordpos="i">tier</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl>del</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">cio</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>de</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="g" oct="4">
                     <verse n="1">
-                      <syl wordpos="t">na es</syl>
+                      <syl wordpos="t" con="b">na</syl>
+                      <syl>es</syl>
                     </verse>
                     <accid accid.ges="s"/>
+                    <verse n="2">
+                      <syl>sol</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">nal</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">te</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="g" oct="4">
                     <verse n="1">
                       <syl>un</syl>
                     </verse>
                     <accid accid.ges="s"/>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">pa</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">ner</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="1" pname="b" oct="2" stem.len="0.000000"/>
-                  <note dur="2" pname="b" oct="2" stem.dir="up"/>
+                  <note dur="1" pname="b" oct="2"/>
+                  <note dur="2" pname="b" oct="2"/>
                 </layer>
               </staff>
             </measure>
@@ -570,23 +962,52 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">al</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">be</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">de</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">o</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="a" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ma,</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ce</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">jos</syl>
                     </verse>
                   </note>
                   <note xml:id="na1adha" dur="2" pname="g" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">cuan</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">ni</syl>
+                      <syl con="d" wordpos="i">es</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="1" pname="a" oct="2" stem.len="0.000000"/>
-                  <note dur="2" pname="b" oct="2" stem.dir="up"/>
+                  <note dur="1" pname="a" oct="2"/>
+                  <note dur="2" pname="b" oct="2"/>
                 </layer>
               </staff>
               <tie startid="#na1adha" endid="#n10321y9"/>
@@ -595,19 +1016,28 @@
               <staff n="1">
                 <layer n="1">
                   <note xml:id="n10321y9" dur="2" pname="g" oct="4"/>
-                  <note dur="1" pname="f" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="f" oct="4">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">sen</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">rá</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="m">co</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="c" oct="3" stem.dir="up">
+                  <note dur="2" pname="c" oct="3">
                     <accid accid="s"/>
                   </note>
-                  <note dur="1" pname="d" oct="3" stem.len="0.000000"/>
+                  <note dur="1" pname="d" oct="3"/>
                 </layer>
               </staff>
             </measure>
@@ -618,23 +1048,51 @@
                     <verse n="1">
                       <syl>más</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="m">si</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>quien</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">i</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ble</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">tie</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>ni</syl>
                     </verse>
                   </note>
                   <note xml:id="n7akj7d" dur="2" pname="g" oct="4">
                     <verse n="1">
                       <syl wordpos="t">mán,</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="b">que</syl>
+                      <syl con="d" wordpos="i">u</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ne</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">tron</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="1" pname="a" oct="2" stem.len="0.000000"/>
-                  <note dur="2" pname="b" oct="2" stem.dir="up"/>
+                  <note dur="1" pname="a" oct="2"/>
+                  <note dur="2" pname="b" oct="2"/>
                 </layer>
               </staff>
               <tie startid="#n7akj7d" endid="#na3yjzy"/>
@@ -643,87 +1101,131 @@
               <staff n="1">
                 <layer n="1">
                   <note xml:id="na3yjzy" dur="2" pname="g" oct="4"/>
-                  <note dur="1" pname="f" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="f" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">a</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">na</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">ra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">co</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="2">
                 <layer n="1">
-                  <note dur="2" pname="c" oct="3" stem.dir="up">
+                  <note dur="2" pname="c" oct="3">
                     <accid accid="s"/>
                   </note>
-                  <note dur="1" pname="d" oct="3" stem.len="0.000000"/>
+                  <note dur="1" pname="d" oct="3"/>
+                </layer>
+              </staff>
+            </measure>
+            <measure xml:id="mbfboea" n="28">
+              <staff xml:id="m28s1" n="1">
+                <layer xml:id="m28s1l1" n="1">
+                  <note xml:id="n11ot1g8" dots="1" dur="1" pname="e" oct="4">
+                    <verse xml:id="v1tx90c4" n="1">
+                      <syl wordpos="t">mor</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>flor</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">zón?</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>soy</syl>
+                    </verse>
+                  </note>
+                </layer>
+              </staff>
+              <staff xml:id="m28s2" n="2">
+                <layer xml:id="m28s2l1" n="1">
+                  <note xml:id="n1wuakj2" dots="1" dur="1" pname="a" oct="3"/>
                 </layer>
               </staff>
             </measure>
             <sb/>
           </section>
-          <section label="respuesta" restart="true">
+        </score>
+      </mdiv>
+      <mdiv>
+        <score>
             <scoreDef midi.bpm="180.0">
               <staffGrp>
                 <staffGrp symbol="bracket">
                   <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
                     <label>Tiple</label>
                     <labelAbbr>T.</labelAbbr>
-                    <clef shape="G" line="2"/>
+                    <clef xml:id="coid821" shape="G" line="2"/>
                   </staffDef>
                   <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
                     <label>Alto 1º</label>
                     <labelAbbr>A. 1</labelAbbr>
-                    <clef shape="G" line="2"/>
+                    <clef xml:id="coid822" shape="G" line="2"/>
                   </staffDef>
                   <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
                     <label>Alto 2º</label>
                     <labelAbbr>A. 2</labelAbbr>
-                    <clef shape="G" line="2"/>
+                    <clef xml:id="coid823" shape="G" line="2"/>
                   </staffDef>
                   <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
-                    <label>Tenorº</label>
+                    <label>Tenor</label>
                     <labelAbbr>Tn.</labelAbbr>
-                    <clef shape="G" line="2" dis="8" place="below"/>
+                    <clef xml:id="coid824" shape="G" line="2" dis="8" dis.place="below"/>
                   </staffDef>
                 </staffGrp>
                 <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
                   <label>Guion</label>
                   <labelAbbr>G</labelAbbr>
-                  <clef shape="F" line="4"/>
+                  <clef xml:id="coid825" shape="F" line="4"/>
                 </staffDef>
               </staffGrp>
             </scoreDef>
-            <measure n="28">
-              <staff n="1">
-                <layer n="1">
-                  <mRest/>
-                </layer>
-              </staff>
-              <staff n="2">
-                <layer n="1">
-                  <mRest/>
-                </layer>
-              </staff>
-              <staff n="3">
-                <layer n="1">
-                  <note dots="1" dur="1" pname="e" oct="4" stem.len="0.000000">
-                    <verse n="1">
-                      <syl wordpos="t">mor,</syl>
-                    </verse>
-                  </note>
-                </layer>
-              </staff>
-              <staff n="4">
-                <layer n="1">
-                  <mRest/>
-                </layer>
-              </staff>
-              <staff n="5">
-                <layer n="1">
-                  <note dots="1" dur="1" pname="a" oct="3" stem.len="0.000000"/>
-                </layer>
-              </staff>
-            </measure>
+          <section label="respuesta_a_4" restart="true">
+            <app xml:id="aiduf89">
+              <lem label="app_clefs" />
+              <rdg label="app_clefs">
+                <scoreDef midi.bpm="180.0">
+                  <staffGrp>
+                    <staffGrp symbol="bracket">
+                      <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
+                        <label>Tiple</label>
+                        <labelAbbr>T.</labelAbbr>
+                        <clef copyof="#coid821" shape="G" line="2"/>
+                      </staffDef>
+                      <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
+                        <label>Alto 1º</label>
+                        <labelAbbr>A. 1</labelAbbr>
+                        <clef corresp="#coid822" shape="C" line="2"/>
+                      </staffDef>
+                      <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
+                        <label>Alto 2º</label>
+                        <labelAbbr>A. 2</labelAbbr>
+                        <clef corresp="#coid823" shape="C" line="2"/>
+                      </staffDef>
+                      <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
+                        <label>Tenor</label>
+                        <labelAbbr>Tn.</labelAbbr>
+                        <clef corresp="#coid824" shape="C" line="3" />
+                      </staffDef>
+                    </staffGrp>
+                    <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
+                      <label>Guion</label>
+                      <labelAbbr>G</labelAbbr>
+                      <clef corresp="#coid825" shape="C" line="4"/>
+                    </staffDef>
+                  </staffGrp>
+                </scoreDef>
+              </rdg>
+            </app>
+            <annot plist="#aiduf89 #coid822 #coid823 #coid824 #coid825">Claves modernizadas</annot>
             <measure n="29">
               <staff n="1">
                 <layer n="1">
@@ -735,7 +1237,7 @@
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl con="b">Qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="e" oct="4">
@@ -755,7 +1257,7 @@
                   <note dur="2" pname="f" oct="3">
                     <verse n="1">
                       <syl con="b">Qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="g" oct="3">
@@ -790,12 +1292,13 @@
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note dur="2" pname="f" oct="4" stem.dir="up">
+                  <note dur="2" pname="f" oct="4">
                     <verse n="1">
-                      <syl con="d" wordpos="i">¿qué ha</syl>
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
-                  <note dur="1" pname="e" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="e" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ré</syl>
                     </verse>
@@ -823,7 +1326,7 @@
                   <note dur="2" pname="d" oct="5">
                     <verse n="1">
                       <syl con="b">Qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="b" oct="4">
@@ -841,12 +1344,12 @@
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note xml:id="n90fttx" dur="2" pname="d" oct="4" stem.dir="up">
+                  <note xml:id="n90fttx" dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl>yo</syl>
                     </verse>
                   </note>
-                  <note xml:id="n1lw5q6p" dur="1" pname="e" oct="4" stem.len="0.000000"/>
+                  <note xml:id="n1lw5q6p" dur="1" pname="e" oct="4"/>
                 </layer>
               </staff>
               <staff n="4">
@@ -854,7 +1357,7 @@
                   <note dur="2" pname="f" oct="3">
                     <verse n="1">
                       <syl con="b">Qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="g" oct="3">
@@ -913,7 +1416,7 @@
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl con="b">que</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="b" oct="4">
@@ -929,7 +1432,7 @@
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl con="b">que</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="g" oct="3">
@@ -941,13 +1444,13 @@
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note dur="2" pname="a" oct="3" stem.dir="up">
+                  <note dur="2" pname="a" oct="3">
                     <verse n="1">
                       <syl con="b">qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
-                  <note dur="1" pname="c" oct="4" stem.len="0.000000">
+                  <note dur="1" pname="c" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ré</syl>
                     </verse>
@@ -959,7 +1462,7 @@
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl con="b">que</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="e" oct="4">
@@ -997,7 +1500,7 @@
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note xml:id="n1eb0tl6" dots="1" dur="1" pname="e" oct="4" stem.len="0.000000">
+                  <note xml:id="n1eb0tl6" dots="1" dur="1" pname="e" oct="4">
                     <verse n="1">
                       <syl>yo</syl>
                     </verse>
@@ -1058,15 +1561,43 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">Cuan</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>A</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>Si</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>que</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="e" oct="5">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">vis</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">lo</syl>
+                      <syl con="d" wordpos="i">i</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">de</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="e" oct="5">
                     <verse n="1">
                       <syl>más</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ta</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">rra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">más</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1099,16 +1630,43 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">tier</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>del</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">cio</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>de</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="c" oct="5">
                     <verse n="1">
                       <syl con="b" wordpos="t">na</syl>
                       <syl>es</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>sol</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">nal</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">te</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="c" oct="5">
                     <verse n="1">
                       <syl>un</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">pa</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">ner</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1120,19 +1678,47 @@
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note dur="2" pname="d" oct="4" stem.dir="up">
+                  <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">Cuan</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>A</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>Si</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>que</syl>
+                    </verse>
                   </note>
-                  <note dur="2" pname="c" oct="4" stem.dir="up">
+                  <note dur="2" pname="c" oct="4">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">vis</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">lo</syl>
+                      <syl con="d" wordpos="i">i</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">de</syl>
+                    </verse>
                   </note>
-                  <note dur="2" pname="c" oct="4" stem.dir="up">
+                  <note dur="2" pname="c" oct="4">
                     <verse n="1">
                       <syl>más</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ta</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">rra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">más</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1157,6 +1743,15 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">al</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">be</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">de</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">o</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1166,34 +1761,90 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">Cuan</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>A</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>Si</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>que</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">vis</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">lo</syl>
+                      <syl con="d" wordpos="i">i</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">de</syl>
                     </verse>
                   </note>
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl>más</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ta</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">rra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">más</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note dur="2" pname="b" oct="3" stem.dir="up">
+                  <note dur="2" pname="b" oct="3">
                     <verse n="1">
                       <syl con="d" wordpos="i">tier</syl>
                     </verse>
-                  </note>
-                  <note dur="2" pname="a" oct="3" stem.dir="up">
-                    <verse n="1">
-                      <syl wordpos="t">na es</syl>
+                    <verse n="2">
+                      <syl>del</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">cio</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>de</syl>
                     </verse>
                   </note>
-                  <note dur="2" pname="a" oct="3" stem.dir="up">
+                  <note dur="2" pname="a" oct="3">
+                    <verse n="1">
+                      <syl con="b" wordpos="t">na</syl>
+                      <syl>es</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>sol</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">nal</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">te</syl>
+                    </verse>
+                  </note>
+                  <note dur="2" pname="a" oct="3">
                     <verse n="1">
                       <syl>un</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">pa</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">ner</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1204,15 +1855,43 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">Cuan</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>A</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>Si</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>que</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="g" oct="3">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">vis</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">lo</syl>
+                      <syl con="d" wordpos="i">i</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">de</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="g" oct="3">
                     <verse n="1">
                       <syl>más</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ta</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">rra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">más</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1230,10 +1909,28 @@
                     <verse n="1">
                       <syl wordpos="t">ma</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ce</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">jos</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="b" oct="4">
                     <verse n="1">
                       <syl>un</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">pa</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">o</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1244,16 +1941,43 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">tier</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>del</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">cio</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>de</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl con="b" wordpos="t">na</syl>
                       <syl>es</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>sol</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">nal</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">te</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
-                      <syl>un.</syl>
+                      <syl>un</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">pa</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">ner</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1265,6 +1989,15 @@
                       <syl con="d" wordpos="i">al</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">be</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">de</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">o</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1275,6 +2008,15 @@
                       <syl con="d" wordpos="i">tier</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl>del</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">cio</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>de</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="g" oct="3">
                     <verse n="1">
@@ -1282,12 +2024,30 @@
                       <syl>es</syl>
                     </verse>
                     <accid accid.ges="s"/>
+                    <verse n="2">
+                      <syl>sol</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">nal</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">te</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="g" oct="3">
                     <verse n="1">
                       <syl>un</syl>
                     </verse>
                     <accid accid.ges="s"/>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">pa</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">ner</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1306,15 +2066,41 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">al</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">be</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">de</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="a" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ma</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ce</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">jos</syl>
+                    </verse>
                   </note>
                   <note xml:id="ndakvbg" dur="2" pname="a" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">cuan</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">ni</syl>
+                      <syl con="d" wordpos="i">es</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1326,15 +2112,44 @@
                       <syl con="d" wordpos="i">al</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">be</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">de</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">o</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl wordpos="t">ma</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ce</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">jos</syl>
+                    </verse>
                   </note>
                   <note xml:id="n16dk6q1" dur="2" pname="e" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">cuan</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">ni</syl>
+                      <syl con="d" wordpos="i">es</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1346,10 +2161,30 @@
                       <syl wordpos="t">ma</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ce</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">jos</syl>
+                    </verse>
                   </note>
-                  <note xml:id="n21k2ew" dur="2" pname="b" oct="3" stem.dir="up">
+                  <note xml:id="n21k2ew" dur="2" pname="b" oct="3">
                     <verse n="1">
                       <syl con="d" wordpos="i">cuan</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">ni</syl>
+                      <syl con="d" wordpos="i">es</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1360,10 +2195,28 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">al</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">be</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="m">de</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">o</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="a" oct="3">
                     <verse n="1">
                       <syl wordpos="t">ma</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ce</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">jos</syl>
                     </verse>
                   </note>
                   <note xml:id="n17fqsgq" dur="2" pname="c" oct="3">
@@ -1371,6 +2224,17 @@
                       <syl con="d" wordpos="i">cuan</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl>más</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="b">¿qué</syl>
+                      <syl con="d" wordpos="i">ha</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="b">ni</syl>
+                      <syl con="d" wordpos="i">es</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1397,6 +2261,15 @@
                     <verse n="1">
                       <syl wordpos="t">to</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">sen</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">rá</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="m">co</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1407,15 +2280,33 @@
                     <verse n="1">
                       <syl wordpos="t">to</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">sen</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">rá</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="m">co</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note xml:id="n1staomf" dur="2" pname="b" oct="3" stem.dir="up"/>
-                  <note dur="1" pname="a" oct="3" stem.len="0.000000">
+                  <note xml:id="n1staomf" dur="2" pname="b" oct="3"/>
+                  <note dur="1" pname="a" oct="3">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">sen</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">rá</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="m">co</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1428,6 +2319,15 @@
                   <note dur="1" pname="d" oct="3">
                     <verse n="1">
                       <syl wordpos="t">to</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="i">sen</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">rá</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="m">co</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1448,15 +2348,43 @@
                     <verse n="1">
                       <syl>más</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="m">si</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>quien</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="a" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">i</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ble</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">tie</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>ni</syl>
+                    </verse>
                   </note>
                   <note xml:id="n6pxjiz" dur="2" pname="a" oct="4">
                     <verse n="1">
                       <syl wordpos="t">mán,</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="b">que</syl>
+                      <syl con="d" wordpos="i">u</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ne</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">tron</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1468,35 +2396,91 @@
                       <syl>más</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl con="d" wordpos="m">si</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>quien</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl con="d" wordpos="i">i</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ble</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">tie</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>ni</syl>
+                    </verse>
                   </note>
                   <note xml:id="n1h9k45i" dur="2" pname="e" oct="4">
                     <verse n="1">
-                      <syl wordpos="t">mán</syl>
+                      <syl wordpos="t">mán,</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="b">que</syl>
+                      <syl con="d" wordpos="i">u</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ne</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">tron</syl>
                     </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note dur="2" pname="g" oct="3" stem.dir="up">
+                  <note dur="2" pname="g" oct="3">
                     <verse n="1">
                       <syl>más</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl con="d" wordpos="m">si</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>quien</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
                   </note>
-                  <note dur="2" pname="a" oct="3" stem.dir="up">
+                  <note dur="2" pname="a" oct="3">
                     <verse n="1">
                       <syl con="d" wordpos="i">i</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ble</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">tie</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>ni</syl>
+                    </verse>
                   </note>
-                  <note xml:id="n528vpv" dur="2" pname="b" oct="3" stem.dir="up">
+                  <note xml:id="n528vpv" dur="2" pname="b" oct="3">
                     <verse n="1">
                       <syl wordpos="t">mán,</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl con="b">que</syl>
+                      <syl con="d" wordpos="i">u</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ne</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">tron</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1507,17 +2491,45 @@
                     <verse n="1">
                       <syl>más</syl>
                     </verse>
+                    <verse n="2">
+                      <syl con="d" wordpos="m">si</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl>quien</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">llo</syl>
+                    </verse>
                   </note>
                   <note dur="2" pname="d" oct="3">
                     <verse n="1">
                       <syl con="d" wordpos="i">i</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">ble</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">tie</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>ni</syl>
+                    </verse>
                   </note>
                   <note xml:id="n2efsao" dur="2" pname="c" oct="3">
                     <verse n="1">
-                      <syl wordpos="t">mán</syl>
+                      <syl wordpos="t">mán,</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl con="b">que</syl>
+                      <syl con="d" wordpos="i">u</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">ne</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl con="d" wordpos="i">tron</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1544,6 +2556,15 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">a</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">na</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">ra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">co</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1554,15 +2575,33 @@
                     <verse n="1">
                       <syl con="d" wordpos="i">a</syl>
                     </verse>
+                    <verse n="2">
+                      <syl wordpos="t">na</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">ra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">co</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note xml:id="nau05nn" dur="2" pname="b" oct="3" stem.dir="up"/>
-                  <note dur="1" pname="a" oct="3" stem.len="0.000000">
+                  <note xml:id="nau05nn" dur="2" pname="b" oct="3"/>
+                  <note dur="1" pname="a" oct="3">
                     <verse n="1">
                       <syl con="d" wordpos="i">a</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">na</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">ra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">co</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1575,6 +2614,15 @@
                   <note dur="1" pname="d" oct="3">
                     <verse n="1">
                       <syl con="d" wordpos="i">a</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl wordpos="t">na</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl con="d" wordpos="i">ra</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl wordpos="t">co</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1595,6 +2643,15 @@
                     <verse n="1">
                       <syl wordpos="t">mor</syl>
                     </verse>
+                    <verse n="2">
+                      <syl>flor</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">zón</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>soy</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1605,16 +2662,34 @@
                       <syl wordpos="t">mor</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl>flor</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">zón</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>soy</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note dots="1" dur="1" pname="g" oct="3" stem.len="0.000000">
+                  <note dots="1" dur="1" pname="g" oct="3">
                     <verse n="1">
-                      <syl wordpos="t">mor,</syl>
+                      <syl wordpos="t">mor</syl>
                     </verse>
                     <accid accid="s"/>
+                    <verse n="2">
+                      <syl>flor</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">zón</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>soy</syl>
+                    </verse>
                   </note>
                 </layer>
               </staff>
@@ -1623,6 +2698,15 @@
                   <note dots="1" dur="1" pname="a" oct="3">
                     <verse n="1">
                       <syl wordpos="t">mor</syl>
+                    </verse>
+                    <verse n="2">
+                      <syl>flor</syl>
+                    </verse>
+                    <verse n="3">
+                      <syl wordpos="t">zón</syl>
+                    </verse>
+                    <verse n="4">
+                      <syl>soy</syl>
                     </verse>
                   </note>
                 </layer>
@@ -1639,7 +2723,7 @@
                   <note dur="2" pname="d" oct="5">
                     <verse n="1">
                       <syl con="b">qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="b" oct="4">
@@ -1655,7 +2739,7 @@
                   <note dur="2" pname="d" oct="4">
                     <verse n="1">
                       <syl con="b">qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="e" oct="4">
@@ -1675,7 +2759,7 @@
                   <note dur="2" pname="f" oct="3">
                     <verse n="1">
                       <syl con="b">qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="g" oct="3">
@@ -1720,7 +2804,7 @@
               <staff n="3">
                 <layer n="1">
                   <rest dur="2"/>
-                  <note xml:id="nzyjg7l" dur="1" pname="c" oct="4" stem.len="0.000000">
+                  <note xml:id="nzyjg7l" dur="1" pname="c" oct="4">
                     <verse n="1">
                       <syl>qué</syl>
                     </verse>
@@ -1750,7 +2834,7 @@
                   <note dur="2" pname="f" oct="4">
                     <verse n="1">
                       <syl con="b">qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="b" oct="4">
@@ -1797,7 +2881,7 @@
                   <note dur="2" pname="f" oct="3">
                     <verse n="1">
                       <syl con="b">qué</syl>
-                      <syl wordpos="i" con="d">ha</syl>
+                      <syl con="d" wordpos="i">ha</syl>
                     </verse>
                   </note>
                   <note dur="1" pname="g" oct="3">
@@ -1835,7 +2919,7 @@
               </staff>
               <staff n="3">
                 <layer n="1">
-                  <note xml:id="n10yw1q3" dots="1" dur="1" pname="a" oct="3" stem.len="0.000000">
+                  <note xml:id="n10yw1q3" dots="1" dur="1" pname="a" oct="3">
                     <verse n="1">
                       <syl>yo?</syl>
                     </verse>
