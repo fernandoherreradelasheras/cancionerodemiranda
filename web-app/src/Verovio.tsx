@@ -134,19 +134,7 @@ function Verovio({ tono, mei_url, mp3_url, maxHeight, section, style }: {
         fetch(mei_url).then(response => {
             return response.text()
         }).then((score) => {
-            const titleMap = tono.text_transcription.map(t => { 
-                if (t.type == "estribillo") {
-                    return { label: "estribillo", title: "Estribillo" } 
-                } else if (t.append_to != undefined) {
-                    return { label: t.append_to == "@none" ? t.label! : t.append_to!,
-                             title: t.name != undefined ? t.name : t.append_to }
-                } else {
-                    return null
-                }
-            }).filter(t => t != null)
-
-
-            const scoreWithTitles = titleMap.length > 1 ? scoreAddTitles(score, titleMap) : score
+            const scoreWithTitles = scoreAddTitles(score)
             setScore(scoreWithTitles)
         });
     }, [mei_url]);

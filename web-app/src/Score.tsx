@@ -39,6 +39,18 @@ export const getNoteStaff = (doc: Document, id: string) => {
     return n
 }
 
+export const getSectionLabels = (doc: Document) => {
+    const labels = []
+    //@ts-ignore
+    let matches = doc?.evaluate(`//mei:section[@label]/@label`, doc, nsResolver, XPathResult.ANY_TYPE, null)
+    var label = matches.iterateNext()
+    while (label != null) {
+        labels.push(label)
+        label = matches.iterateNext()
+    }
+    return labels
+}
+
 export const getPageForMeasureN = (doc: Document, verovio: VerovioToolkit, n: number) => {
     //@ts-ignore
     let xmlid = doc?.evaluate(`//mei:measure[@n="${n}"]/@xml:id`, doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
@@ -235,32 +247,52 @@ export const filterScoreNormalizingFicta = (score: string) => {
 
 
 
-export const scoreAddTitles = (score: string, titleMap: { label: string, title: string }[]) => {
+export const scoreAddTitles = (score: string) => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(score, "application/xml")
-    for (let entry of titleMap) {
     //@ts-ignore
-        let matches = doc?.evaluate(`//mei:section[@label="${entry.label}"]/mei:measure[1]`, doc, nsResolver, XPathResult.ANY_TYPE, null)
-        if (matches == null) {
-            continue
+    let matches = doc?.evaluate(`//mei:section[@label]/@label`, doc, nsResolver, XPathResult.ANY_TYPE, null)
+    let node;
+    const labels = []
+    while ((node = matches?.iterateNext())) {
+                if (node.nodeValue != null && node.nodeValue.indexOf("_heading") < 0) {
+            labels.push(node.nodeValue)
         }
-    
-        var node = matches.iterateNext()
+    }
+
+    // Only write titles if we have more than one section
+    if (labels.length <= 1) {
+        return score
+    }
+    var modified = false
+    labels.forEach(label => {
+        //@ts-ignore
+        let measure = doc?.evaluate(`//mei:section[@label="${label}"]/mei:measure[1]`, doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()
+        if (measure == null) {
+            return
+        }
+        modified = true
+        const title = (label.charAt(0).toUpperCase() + label.slice(1)).replace(/_/g, " ")
         const dir = doc.createElement("dir")    
         dir.setAttribute("place", "above")
         dir.setAttribute("staff", "1")
         dir.setAttribute("tstamp", "0")         
-        node?.insertBefore(dir, node.firstChild)
+        measure?.insertBefore(dir, measure.firstChild)
         const rend = doc.createElement("rend")
         rend.setAttribute("fontstyle", "normal")
         rend.setAttribute("fontweight", "bold")
         dir.appendChild(rend)
-        const text = doc.createTextNode(entry.title)
+        const text = doc.createTextNode(title)
         rend.appendChild(text)
-    }
+    })
 
-    const s = new XMLSerializer();
-    return s.serializeToString(doc);
+
+    if (modified) {
+        const s = new XMLSerializer();
+        return s.serializeToString(doc);
+    } else {
+        return score
+    }
 }
 
 

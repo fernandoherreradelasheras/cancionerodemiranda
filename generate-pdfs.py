@@ -530,7 +530,7 @@ def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
             '--bottom-margin-header', '2.5', '--page-margin-left', '150', '--page-margin-right', '150', '--page-margin-top', '50',
            '--lyric-height-factor', '1.4', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2', "--no-justification",
             '--bottom-margin-header', '8', '--page-margin-bottom', '50', '--top-margin-pg-footer', '4',  '--header', 'auto', '--footer', 'encoded',
-            '--breaks', 'auto', '--condense', 'encoded', '--min-last-justification', '0.2', '--scale', mei_scale, '--scale-to-page-size', '--justify-vertically',
+            '--breaks', 'auto', '--condense', 'auto', '--min-last-justification', '0.2', '--scale', mei_scale, '--scale-to-page-size', '--justify-vertically',
            '-o', f'{tmp_dir}/output.svg', mei_file ]
     print(" ".join(cmd))
     run_cmd(cmd)
