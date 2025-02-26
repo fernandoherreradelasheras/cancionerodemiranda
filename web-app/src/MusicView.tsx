@@ -17,7 +17,6 @@ function MusicView({ tono, maxHeight, section }: {
     const tonoUrl = getTonoUrl(tono.path, tono.mei_file)
     
     const attributes: any = {
-        tono: tono,
         mei_url: tonoUrl,
         maxHeight: maxHeight,
         style: { flex: 1, width: "100%", height: maxHeight }

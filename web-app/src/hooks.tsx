@@ -41,10 +41,9 @@ export const getSvgSelectedMeasureStyle = (measure: number) =>
 
 // Using the filter on the note bouding box gets the whole lyrics and can be quite confusing
 // But stem, is too thin to get really highlight with the svg filter, so...
-export const getSvgMidiHighlightStyle = (id: string, scale: number) =>  
+export const getSvgMidiHighlightStyle = (id: string) =>  
     `g#${id}.note .notehead { filter: var(--high);   }\n`    +
-    `g#${id}.note g.stem path { color: var(--hgcolor); stroke-width: 50;   }\n`     
-
+    `g#${id}.note g.stem path { color: var(--hgcolor); stroke-width: 50;  }\n`
 
 
 
