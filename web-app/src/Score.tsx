@@ -7,8 +7,17 @@ const nsResolver = (ns: string) => { return { mei: "http://www.music-encoding.or
 
 export const maxVerseNum = (doc: Document) => {
     //@ts-ignore
-    let maxN = doc?.evaluate("//mei:verse/@n[not(. < ../../mei:verse/@n)][1]", doc, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.value
-    return maxN
+    let matches = doc?.evaluate("//mei:verse/@n", doc, nsResolver, XPathResult.ANY_TYPE, null)
+    var max = 0
+    let node 
+    while ((node = matches?.iterateNext())) {
+        let value = parseInt(node.nodeValue || "0")
+        if (value > max) {
+            max = value
+            console.log(max)
+        }        
+    }
+    return max
 }
 
 const getFictaAccidIterator = (doc: Document) => 
