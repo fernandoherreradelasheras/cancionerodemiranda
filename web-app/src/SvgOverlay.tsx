@@ -52,7 +52,9 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
         } else if (type == "sic") {
             return "error evidente"     
         } else if (type == "supplied") {
-            return "parte añadida"       
+            return "parte añadida"     
+        } else if (type == "reg") {
+            return "Regularización"     
         } else {
             return `tipo: ${type}`
         }
