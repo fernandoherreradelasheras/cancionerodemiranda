@@ -51,20 +51,16 @@ function tonoHasText(tono: TonoDef | null) {
     }
 }
 
-function tonoHasTextComments(tono: TonoDef | null) {
-    if (tono == null) {
-        return ""
-    } else {
-        return tono.text_comments_file != undefined
-    }
+function tonoHasTextCompleted(tono: TonoDef | null) {
+        return (tono?.status_text == "transcription completed"  || tono?.status_text == "reviewed" 
+                ||  tono?.status_text == "completed")
 }
 
-function tonoHasMusicComments(tono: TonoDef | null) {
-    if (tono == null) {
-        return ""
-    } else {
-        return tono.music_comments_file != undefined
-    }
+function tonoHasMusicTranscriptionCompleted(tono: TonoDef | null) {
+    return (tono?.status_music == "transcription completed" || 
+            tono?.status_music == "lost voice reconstructed" ||
+            tono?.status_music == "reviewed" ||
+            tono?.status_music == "completed")
 }
 
 
@@ -76,10 +72,10 @@ const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
         <li className="tono-list-item">
             <Link  className="item-tono-status" to={`/tono/${index + 1}`} state={{ tono: tono }}>{index + 1}. {tono?.title}:
                 {tonoOveralStatus(tono)}
-                {tonoHasText(tono) ? <FontAwesomeIcon icon={faFileLines} size="xl"/> : null}
-                {tonoHasTextComments(tono) ? <FontAwesomeIcon icon={faMarker} size="xl"/> : null}
-                {tonoHasMusic(tono) ?  <FontAwesomeIcon icon={faMusic} size="xl"/> : null}
-                {tonoHasMusicComments(tono) ?  <FontAwesomeIcon icon={faHighlighter} size="xl"/> : null}
+                {tonoHasText(tono) ? <FontAwesomeIcon title="transcripción del texto" icon={faFileLines} size="xl"/> : null}
+                {tonoHasTextCompleted(tono) ? <FontAwesomeIcon title="todas las coplas codificadas" icon={faMarker} size="xl"/> : null}
+                {tonoHasMusic(tono) ?  <FontAwesomeIcon title="transcripción musical iniciada" icon={faMusic} size="xl"/> : null}
+                {tonoHasMusicTranscriptionCompleted(tono) ?  <FontAwesomeIcon title="transcripción musical finalizada" icon={faHighlighter} size="xl"/> : null}
             </Link> 
         </li>
     )
