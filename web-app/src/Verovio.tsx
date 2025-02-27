@@ -39,7 +39,6 @@ const verovioOptions = {
     pageMarginBottom: 10,
     svgViewBox: true,
     svgBoundingBoxes: true,
-    mnumInterval: 5,
     lyricElision: "regular",
     lyricHeightFactor: 1.30,
     lyricSize: 5,

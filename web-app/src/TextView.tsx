@@ -37,7 +37,6 @@ function TextView({ tono }: { tono: TonoDef }) {
                         newText += `*${line}*\\\n`
                     }
                 }
-                console.log(newText)
             }
             if (tono.text_comments_file != null) {
                 const url = getTonoUrl(tono.path ,tono.text_comments_file)
