@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import createVerovioModule from 'verovio/wasm';
 import { VerovioToolkit } from 'verovio/esm';
 
 
 import { getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
-import { filterScoreNormalizingFicta, filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getNumMeasures, getPageForMeasureN, getPageForSection, getTargettableChildren, hasFictaElements, maxVerseNum, scoreAddTitles } from './Score';
+import { filterScoreNormalizingFicta, filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getMeiNotes, getNumMeasures, getPageForMeasureN, getPageForSection, getTargettableChildren, hasFictaElements, maxVerseNum, scoreAddTitles } from './Score';
 import Pagination from './Pagination';
 
 import AudioPlayer from './AudioPlayer';
@@ -20,6 +20,7 @@ import SimpleIconButton from './SimpleIconButton';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus, faCog } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Context } from './Context';
 
 
 const verovioOptions = {
@@ -50,14 +51,19 @@ library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus, faCog)
 
 
 
-function Verovio({ mei_url, mp3_url, maxHeight, section, style }: {
+function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }: {
     tono: TonoDef,
     mei_url: string,
     mp3_url: string | undefined,
     maxHeight: number | undefined,
     section: string | undefined,
-    style: {}
+    style: {},
+    onNotesUpdated: (notes: string[]) => void
 }) {
+
+    const { scoreCache, setScoreCache } = useContext(Context)
+    
+
     const [scale, setScale] = useState(50)
     const [score, setScore] = useState<string | null>(null);
     const [pageCount, setPageCount] = useState(0)
@@ -129,14 +135,25 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style }: {
         });
     }, []);
 
+    const loadScore = (score: string) => {
+        const scoreWithTitles = scoreAddTitles(score)
+        setScore(scoreWithTitles)      
+    }
+
 
     useEffect(() => {
-        fetch(mei_url).then(response => {
-            return response.text()
-        }).then((score) => {
-            const scoreWithTitles = scoreAddTitles(score)
-            setScore(scoreWithTitles)
-        });
+        if (scoreCache != undefined && scoreCache[mei_url] != undefined) {
+            loadScore(scoreCache[mei_url])      
+        } else {
+            fetch(mei_url).then(response => {
+                return response.text()
+            }).then((score) => {
+                setScoreCache(
+                    {...scoreCache,  [mei_url]: score}
+                )
+                loadScore(score)
+            });
+        }
     }, [mei_url]);
 
 
@@ -223,6 +240,10 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style }: {
             const loadedDocStr = verovio.getMEI({ pageNo: 0 })
             const parser = new DOMParser();
             const meiDoc = parser.parseFromString(loadedDocStr, "application/xml")
+            const notes = getMeiNotes(meiDoc)        
+            if (notes && notes.length > 0 && onNotesUpdated != null) {
+                onNotesUpdated(notes)
+            }
             setLoadedMeiDoc(meiDoc)
         }
     }, [score, verovio, showNVerses, normalizeFicta, appOptions, choiceOptions])

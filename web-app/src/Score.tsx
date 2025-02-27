@@ -28,6 +28,18 @@ export const hasFictaElements = (doc: Document) => {
     return it.iterateNext() != null
 } 
 
+export const getMeiNotes = (doc: Document) => {
+        //@ts-ignore
+        let matches = doc?.evaluate("//mei:meiHead//mei:extMeta//mei:pendingIssues", doc, nsResolver, XPathResult.ANY_TYPE, null)
+        const notes = []
+        let node
+        while ((node = matches?.iterateNext())) {  
+            if (node.textContent != null) {
+                notes.push(node.textContent)
+            }
+        }
+        return notes
+}
 
 export const midiBpm = (doc: Document) => {
     //@ts-ignore
