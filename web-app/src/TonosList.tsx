@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { Context } from './Context';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFileLines, faMarker, faMusic, faHighlighter } from '@fortawesome/free-solid-svg-icons'
+import { faFileLines, faMarker, faMusic, faHighlighter, faHeadphones } from '@fortawesome/free-solid-svg-icons'
 
-library.add( faFileLines, faMarker, faMusic, faHighlighter)
+library.add( faFileLines, faMarker, faMusic, faHighlighter, faHeadphones )
 
 
 
@@ -63,6 +63,10 @@ function tonoHasMusicTranscriptionCompleted(tono: TonoDef | null) {
             tono?.status_music == "completed")
 }
 
+function tonoHasAudio(tono: TonoDef | null) {
+    return (tono?.mp3_file != undefined && tono?.mp3_file != null)
+}
+
 
 
 
@@ -76,6 +80,7 @@ const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
                 {tonoHasTextCompleted(tono) ? <FontAwesomeIcon title="todas las coplas codificadas" icon={faMarker} size="xl"/> : null}
                 {tonoHasMusic(tono) ?  <FontAwesomeIcon title="transcripción musical iniciada" icon={faMusic} size="xl"/> : null}
                 {tonoHasMusicTranscriptionCompleted(tono) ?  <FontAwesomeIcon title="transcripción musical finalizada" icon={faHighlighter} size="xl"/> : null}
+                {tonoHasAudio(tono) ?  <FontAwesomeIcon title="demo audio disponible" icon={faHeadphones} size="xl"/> : null}
             </Link> 
         </li>
     )
