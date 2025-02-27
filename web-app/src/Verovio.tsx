@@ -506,8 +506,8 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
 
     const musicInfo = (
         <div className="small verovio-topbar-element vertical-list" >            
-            <span>Número de compases: {measuresCount != null ? measuresCount : ""}</span><br/>
-            <span>Autor de la transcripción: {editor != null ? editor : ""}</span><br/>            
+            <span>Compases: {measuresCount != null ? measuresCount : ""}</span><br/>
+            <span>Editor: {editor != null ? editor : ""}</span><br/>            
         </div>
     )
 
