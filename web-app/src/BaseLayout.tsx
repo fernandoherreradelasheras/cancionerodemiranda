@@ -8,6 +8,13 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
+import mp3_files from "./assets/mp3-files.json"
+
+
+type Mp3Files = {
+    [key:string] : string
+}
+
 
 library.add(faBars)
 
@@ -46,6 +53,7 @@ function BaseLayout() {
 
         tonos.forEach((tono: TonoDef, index: number) => {
             tono.pdf_url = pdflist[index]
+            tono.mp3_file = (mp3_files as Mp3Files)[`${tono.number}`] 
         })
         
         setDefinitions(tonos);
