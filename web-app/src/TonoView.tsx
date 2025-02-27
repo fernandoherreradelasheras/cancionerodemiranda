@@ -92,6 +92,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const [currentTonoNumber, setCurrentTonoNumber] = useState(tono.number)
     const [currentMusicSection, setCurrentMusicSection] = useState<string|undefined>()
     const [maxHeight, setMaxHeight] = useState(0)
+    const [musicNotes, setMusicNotes] = useState<string[]|null>(null)
 
 
     const leftPanelRef = useRef(null)
@@ -115,6 +116,10 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const showPdf = () => {
         setCurrentLeftPanel("pdf")
         setCurrentRightPanel("")
+    }
+
+    const onNotesUpdated = (notes: string[]) => {
+        setMusicNotes(notes)
     }
 
 
@@ -212,7 +217,9 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                 </ul>
             </div>
             <div className="status-expand">
+                Pendiente:
                 <ul id="tono-estado-musica" className="alt">
+                    {musicNotes?.map((n, index) =>  <li key={index}>{n}</li>   )}
                 </ul>
             </div>
         </div>
@@ -222,7 +229,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         if (currentLeftPanel == "intro") {
             return (<IntroView tono={tono} />)
         } else if (currentLeftPanel == "music") {
-            return (<MusicView  tono={tono}  maxHeight={maxHeight} section={currentMusicSection}  />)
+            return (<MusicView  tono={tono}  maxHeight={maxHeight} section={currentMusicSection} onNotesUpdated={onNotesUpdated} />)
         } else if (currentLeftPanel == "images") {
             return (<ImagesView tono={tono} />)
         } else if (currentLeftPanel == "pdf") {

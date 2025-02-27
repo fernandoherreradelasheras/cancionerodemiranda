@@ -29,6 +29,7 @@ const Toggle = ({ toggle }: { toggle: () => void }) => {
 function BaseLayout() {
 
     const [definitions, setDefinitions] = useState<TonoDef[]>([])
+    const [scoreCache, setScoreCache] = useState<{[index: string] : string }>({})
 
     const [activeSidebar, setActiveSidebar] = useState(true);
     const [lastLocation, setLastLocation] = useState<string|null>(null)
@@ -67,7 +68,7 @@ function BaseLayout() {
 
 
     return (
-        <Context.Provider value={{ definitions, setDefinitions, useBreakpoint }}>
+        <Context.Provider value={{ definitions, setDefinitions, scoreCache, setScoreCache, useBreakpoint }}>
             <div id="wrapper">
                 <div ref={mainDivRef} id="main">
                     <div className="inner">

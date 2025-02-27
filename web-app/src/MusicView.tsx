@@ -7,19 +7,20 @@ type Mp3Files = {
     [key:string] : string
 }
 
-function MusicView({ tono, maxHeight, section }: {
+function MusicView({ tono, maxHeight, section, onNotesUpdated }: {
     tono: TonoDef,
     maxHeight: number | undefined,
-    section: string | undefined
+    section: string | undefined,
+    onNotesUpdated: (notes: string[]) => void
 }) {
-
 
     const tonoUrl = getTonoUrl(tono.path, tono.mei_file)
     
     const attributes: any = {
         mei_url: tonoUrl,
         maxHeight: maxHeight,
-        style: { flex: 1, width: "100%", height: maxHeight }
+        style: { flex: 1, width: "100%", height: maxHeight },
+        onNotesUpdated: onNotesUpdated
     }
 
     if (section != undefined) {
