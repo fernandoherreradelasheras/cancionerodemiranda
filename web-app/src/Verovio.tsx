@@ -417,7 +417,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
 
             });
         }
-        if (newHighlightElements.length > 0) setMidiHiglightElements(newHighlightElements)
+        setMidiHiglightElements(newHighlightElements)
         if (styles != null) setMidiHiglightStyles(styles)
         if (newPage != null) setCurrentPageNumber(newPage)
     }
