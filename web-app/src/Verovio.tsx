@@ -1,9 +1,10 @@
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Tooltip } from 'react-tooltip'
 import createVerovioModule from 'verovio/wasm';
 import { VerovioToolkit } from 'verovio/esm';
 
 
-import { getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, uninstallWindowHooks } from './hooks';
+import { getStaffTooltipContent, getSvgHighlightedMeasureStyle, getSvgMidiHighlightStyle, getSvgSelectedMeasureStyle, getVerovioSvgExtraAttributes, installWindowHooks, SVG_STAFF_CSS_SELECTOR, uninstallWindowHooks } from './hooks';
 import { filterScoreNormalizingFicta, filterScoreToNVerses, getEditor, getEditorial, getFirstMeasureN, getMeiNotes, getNumMeasures, getPageForMeasureN, getPageForSection, getTargettableChildren, hasFictaElements, maxVerseNum, scoreAddTitles } from './Score';
 import Pagination from './Pagination';
 
@@ -61,7 +62,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
 }) {
 
     const { scoreCache, setScoreCache } = useContext(Context)
-    
+
 
     const [scale, setScale] = useState(50)
     const [score, setScore] = useState<string | null>(null);
@@ -77,7 +78,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
     const [hoverMeasure, setHoverMeasure] = useState<number | null>(null)
     const [selectedMeasure, setSelectedMeasure] = useState<number | null>(null)
     const [showNVerses, setShowNVerses] = useState(0)
-    const [midiHighlightElements, setMidiHiglightElements] = useState<string[]>([])    
+    const [midiHighlightElements, setMidiHiglightElements] = useState<string[]>([])
     const [midiHightlightStyles, setMidiHiglightStyles] = useState<string|null>(null)
     const [prevSection, setPrevSection] = useState<string|null>(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -94,7 +95,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
     const onOptionSelected = (type: string, choice: Choice, selectedOptionIndex: number) => {
         const removeEntries = choice.options.filter((_, index) => index != selectedOptionIndex).map(o => o.selector)
         if (type == "app") {
-            const newOptions = appOptions.filter(o => !removeEntries.includes(o))          
+            const newOptions = appOptions.filter(o => !removeEntries.includes(o))
             newOptions.push(choice.options[selectedOptionIndex].selector)
             setAppOptions(newOptions)
         } else if (type == "choice") {
@@ -103,13 +104,13 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
             setChoiceOptions(newOptions)
         }
     }
-    
+
 
     const getVersesAmmountSelector = (numVerses: number) => {
 
         const options: any[] = []
-        
-    
+
+
         for (let i = 0; i < numVerses; i++) {
             options.push((<option value={i + 1} key={i}>{i + 1} verso{ i > 0 ? "s" : ""}</option>))
         }
@@ -136,13 +137,13 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
 
     const loadScore = (score: string) => {
         const scoreWithTitles = scoreAddTitles(score)
-        setScore(scoreWithTitles)      
+        setScore(scoreWithTitles)
     }
 
 
     useEffect(() => {
         if (scoreCache != undefined && scoreCache[mei_url] != undefined) {
-            loadScore(scoreCache[mei_url])      
+            loadScore(scoreCache[mei_url])
         } else {
             fetch(mei_url).then(response => {
                 return response.text()
@@ -191,7 +192,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
         }
 
         return newScore
-           
+
     }
 
 
@@ -239,7 +240,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
             const loadedDocStr = verovio.getMEI({ pageNo: 0 })
             const parser = new DOMParser();
             const meiDoc = parser.parseFromString(loadedDocStr, "application/xml")
-            const notes = getMeiNotes(meiDoc)        
+            const notes = getMeiNotes(meiDoc)
             if (notes && notes.length > 0 && onNotesUpdated != null) {
                 onNotesUpdated(notes)
             }
@@ -293,7 +294,8 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
     useEffect(() => {
         if (verovio != null && containerRef.current != null && score != null) {
             console.log(`rendering page ${currentPageNumber}`)
-            setScoreSvg(verovio.renderToSVG(currentPageNumber))
+            const svgString = verovio.renderToSVG(currentPageNumber)
+            setScoreSvg(svgString)
             if (isLoading) {
                 setIsLoading(false)
                 if (loadedMeiDoc) {
@@ -307,7 +309,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
             }
             const parser = new DOMParser();
 
-            const currentPageMei = parser.parseFromString(verovio.getMEI({ pageNo: currentPageNumber }), "application/xml")            
+            const currentPageMei = parser.parseFromString(verovio.getMEI({ pageNo: currentPageNumber }), "application/xml")
             setFirstMeasureOnPage(getFirstMeasureN(currentPageMei))
         }
     }, [loadedMeiDoc, currentPageNumber, scale])
@@ -320,7 +322,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
     }
 
 
-    const updateScale = (scale: number) => { 
+    const updateScale = (scale: number) => {
         setScale(scale)
     }
 
@@ -404,8 +406,8 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
         }
 
         newHighlightElements = newHighlightElements.concat(on)
-        if (loadedMeiDoc != undefined && midiHighlightElements.length > 0) {      
-            styles = ""    
+        if (loadedMeiDoc != undefined && midiHighlightElements.length > 0) {
+            styles = ""
             newHighlightElements.forEach(id => {
                 const pageForPlayingElement = verovio?.getPageWithElement(id)
                 if (pageForPlayingElement != undefined && pageForPlayingElement > currentPageNumber) {
@@ -422,7 +424,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
 
 
     const updateChoicesWithCurrentOptions = (editorialOverlays: EditorialItem[]) => {
-        editorialOverlays.forEach(e => {    
+        editorialOverlays.forEach(e => {
             if (e.choice != undefined) {
                 const choice = e.choice
                 choice.options.forEach((option, index) => {
@@ -433,7 +435,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
                     }
                 })
             }
-        })    
+        })
     }
 
     const getBBForSelector = (container: SVGSVGElement, selector: string) => {
@@ -450,12 +452,12 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
     const buildItemWithBB = (item: EditorialItem, bb: DOMRect, offsetX: number, offsetY: number) => {
         return {
             ...item, boundingBox: { x: bb.x - offsetX, y: bb.y - offsetY, width: bb.width, height: bb.height }
-        }        
+        }
     }
 
 
     useEffect(() => {
-        
+
         if (containerRef.current == null || loadedMeiDoc == null) {
             return
         }
@@ -465,13 +467,13 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
             return
         }
 
-        const container = containerRef.current        
+        const container = containerRef.current
         let svg = container.children[0] as SVGSVGElement
         if (svg == null) {
             return
         }
 
-        const editorialOverlays: EditorialItem[] = [] 
+        const editorialOverlays: EditorialItem[] = []
 
         let svgBB = svg.getBoundingClientRect();
 
@@ -487,7 +489,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
                     if (cbb) {
                         editorialOverlays.push(buildItemWithBB(item, cbb, svgBB.x, svgBB.y ))
                     }
-                }     
+                }
             }
             if (item.correspIds != undefined) {
                 item.correspIds.forEach(id => {
@@ -498,16 +500,16 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
                 })
             }
         }
-                   
+
         setHasEditorialElements(editorialElements.length > 0)
         updateChoicesWithCurrentOptions(editorialOverlays)
         setEditorialOverlays(editorialOverlays)
     }, [scoreSvg])
 
     const musicInfo = (
-        <div className="small verovio-topbar-element vertical-list" >            
+        <div className="small verovio-topbar-element vertical-list" >
             <span>Compases: {measuresCount != null ? measuresCount : ""}</span><br/>
-            <span>Editor: {editor != null ? editor : ""}</span><br/>            
+            <span>Editor: {editor != null ? editor : ""}</span><br/>
         </div>
     )
 
@@ -518,6 +520,7 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
     return (
 
         <div style={style}>
+
             <div className="verovio-topbar">
                 <SimpleIconButton icon={faMagnifyingGlassMinus}
                     onClick={zoomOut}/>
@@ -529,10 +532,10 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
 
                 <SimpleToggle text="Normalizar M.Ficta" toggled={normalizeFicta} enabled={hasFicta}
                      onClick={() => setNormalizeFicta(!normalizeFicta)}/>
-             
+
 
                 {getVersesAmmountSelector(numVersesAvailable)}
-            
+
             <div className="verovio-topbar-element">
 
             </div>
@@ -546,17 +549,18 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
                 { musicInfo }
 
                 <div className="verovio-topbar-element topbar-right">
-                    {mp3_url != undefined ? 
+                    {mp3_url != undefined ?
                         <AudioPlayer src={mp3_url} timeMap={timeMap} onMidiUpdate={onMidiUpdate} enabled={scoreSvg != ""} />
                          : null }
                 </div>
             </div>
 
+            <Tooltip id="verovio-tooltip" delayShow={500} delayHide={300} anchorSelect={SVG_STAFF_CSS_SELECTOR} render={getStaffTooltipContent}/>
 
             <style key={svgStyles} dangerouslySetInnerHTML={{ __html: svgStyles }} />
-    
+
             <div style={{width: "100%", height: `${maxHeight}px`, position: "relative" }}>
-                { isLoading ? 
+                { isLoading ?
                     <FontAwesomeIcon
                         className="loading-spinner"
                         icon={faCog}
@@ -564,18 +568,18 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
                         size="10x"
                         aria-label="Loading Spinner"/> : null }
 
-                
+
                 <div dangerouslySetInnerHTML={{ __html: scoreSvg }}
-                    className="panel" ref={containerRef} style={{ top: 0, left: 0, width: "100%", height: "100%", position: "absolute", 
+                    className="panel" ref={containerRef} style={{ top: 0, left: 0, width: "100%", height: "100%", position: "absolute",
                         zIndex: 1, border: "1px solid lightgray" }}/>
 
-                {showEditorial && containerRef.current != null && editorialOverlays.length > 0 ? 
+                {showEditorial && containerRef.current != null && editorialOverlays.length > 0 ?
                 <SvgOverlay width={containerRef.current?.getBoundingClientRect().width}
                      height={containerRef.current?.getBoundingClientRect().height} editorialOverlays={editorialOverlays}
-                     onOptionSelected={onOptionSelected}                                       
+                     onOptionSelected={onOptionSelected}
                       /> : null }
             </div>
-          
+
             {SVG_FILTERS}
 
         </div>
