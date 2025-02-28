@@ -528,7 +528,7 @@ def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
 
     cmd = [ 'verovio',  '--unit', mei_unit, '--multi-rest-style', 'auto', '--mdiv-all', '-a', '--mm-output', '--mnum-interval', '0',
             '--bottom-margin-header', '2.5', '--page-margin-left', '150', '--page-margin-right', '150', '--page-margin-top', '50',
-           '--lyric-height-factor', '1.4', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2', "--no-justification",
+           '--lyric-height-factor', '1.2', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2', "--no-justification",
             '--bottom-margin-header', '8', '--page-margin-bottom', '50', '--top-margin-pg-footer', '4',  '--header', 'auto', '--footer', 'encoded',
             '--breaks', 'auto', '--condense', 'none', '--min-last-justification', '0.2', '--scale', mei_scale, '--scale-to-page-size', '--justify-vertically',
            '-o', f'{tmp_dir}/output.svg', mei_file ]
