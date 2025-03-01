@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { Context } from './Context';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFileLines, faMarker, faMusic, faHighlighter, faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import { faFileLines, faMarker, faMusic, faHighlighter, faHeadphones, faListCheck } from '@fortawesome/free-solid-svg-icons'
 
-library.add( faFileLines, faMarker, faMusic, faHighlighter, faHeadphones )
+library.add( faFileLines, faMarker, faMusic, faHighlighter, faHeadphones, faListCheck )
 
 
 
@@ -52,13 +52,19 @@ function tonoHasText(tono: TonoDef | null) {
 }
 
 function tonoHasTextCompleted(tono: TonoDef | null) {
-        return (tono?.status_text == "transcription completed"  || tono?.status_text == "reviewed" 
+        return (tono?.status_text == "transcription completed"  || tono?.status_text == "reviewed"
                 ||  tono?.status_text == "completed")
 }
 
 function tonoHasMusicTranscriptionCompleted(tono: TonoDef | null) {
-    return (tono?.status_music == "transcription completed" || 
+    return (tono?.status_music == "transcription completed" ||
             tono?.status_music == "lost voice reconstructed" ||
+            tono?.status_music == "reviewed" ||
+            tono?.status_music == "completed")
+}
+
+function tonoHasMusicVoiceReconstructed(tono: TonoDef | null) {
+    return (tono?.status_music == "lost voice reconstructed" ||
             tono?.status_music == "reviewed" ||
             tono?.status_music == "completed")
 }
@@ -66,7 +72,6 @@ function tonoHasMusicTranscriptionCompleted(tono: TonoDef | null) {
 function tonoHasAudio(tono: TonoDef | null) {
     return (tono?.mp3_file != undefined && tono?.mp3_file != null)
 }
-
 
 
 
@@ -80,8 +85,9 @@ const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
                 {tonoHasTextCompleted(tono) ? <FontAwesomeIcon title="todas las coplas codificadas" icon={faMarker} size="xl"/> : null}
                 {tonoHasMusic(tono) ?  <FontAwesomeIcon title="transcripción musical iniciada" icon={faMusic} size="xl"/> : null}
                 {tonoHasMusicTranscriptionCompleted(tono) ?  <FontAwesomeIcon title="transcripción musical finalizada" icon={faHighlighter} size="xl"/> : null}
+                {tonoHasMusicVoiceReconstructed(tono) ?  <FontAwesomeIcon title="voz perdida reconstruida" icon={faListCheck} size="xl"/> : null}
                 {tonoHasAudio(tono) ?  <FontAwesomeIcon title="demo audio disponible" icon={faHeadphones} size="xl"/> : null}
-            </Link> 
+            </Link>
         </li>
     )
 }
@@ -91,7 +97,7 @@ const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
 const TonosList = () => {
 
 
-    const { definitions } = useContext(Context)    
+    const { definitions } = useContext(Context)
 
     const listItems = definitions.map((tono: TonoDef, index: number) => <TonoItem tono={tono} index={index} key={index}  />);
 
