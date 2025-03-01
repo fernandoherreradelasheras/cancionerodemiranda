@@ -11,13 +11,20 @@ import sys
 import fitz
 import math
 from pathlib import Path
+from lxml import etree as ET
+from copy import deepcopy
 
 
 # Constants
+MEI_NS = 'http://www.music-encoding.org/ns/mei'
+NSMAP = {"mei" : MEI_NS}
 MUSE = "MuseScore-Studio.AppImage"
 PRE_RELEASE = 1
 BASE_URL = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda"
 debug=True
+
+ET.register_namespace("mei", MEI_NS)
+
 
 def log(message, tmp_dir):
     """Write message to debug log file"""
@@ -28,6 +35,28 @@ def msg(message, tmp_dir):
     """Log message and print to stderr"""
     log(message, tmp_dir)
     print(message, file=sys.stderr)
+
+
+# Currently verovio has a bug that results on overflowing page
+# contents when you have two consecutive div elements.
+def workaround_verovio_2divs_bug(mei_file):
+    tree = ET.parse(mei_file)
+    root = tree.getroot()
+    divs = root.xpath('//mei:section/mei:div', namespaces=NSMAP)
+
+    for div in divs:
+        parent = div.getparent()
+        parentPrev = parent.getprevious()
+        parentPrevChild = parentPrev.getchildren()[0]
+        if parentPrev.tag == f"{{{MEI_NS}}}section" and parentPrevChild.tag == f"{{{MEI_NS}}}div":
+            child = div.getchildren()[0]
+            parentPrevChild.append(deepcopy(child))
+            parent.getparent().remove(parent)
+
+    f = open(mei_file, 'wb')
+    f.write(ET.tostring(root, pretty_print=True,  encoding="utf-8"))
+    f.close()
+
 
 def add_image(directory, page, caption, title=None):
     """Generate LaTeX code for including an image"""
@@ -344,8 +373,10 @@ def inject_section_place_holders(mei_file, blocks_to_inject):
         
         runXslt(mei_file, 'coplas-placeholder.xsl', {'section': injected_section, 'lines': str(printed_lines)})
 
-def find_and_remove_place_holder(section, pdf):
+def find_and_remove_place_holder(section, pdf, tmp_dir):
     
+    shutil.copy(pdf, f"{tmp_dir}/tmp-pdf-with-placeholder-{section}.pdf")
+
     page_with_placeholder = -1
     offset = -1
 
@@ -360,9 +391,9 @@ def find_and_remove_place_holder(section, pdf):
             offset = 0.0352778 * found[0].bl.y
             page_with_placeholder = idx+1
 
-    doc.save("tmp-pdf.pdf")
 
-    shutil.move("tmp-pdf.pdf", pdf)
+    doc.save(f"{tmp_dir}/tmp-pdf-with-placeholder-hidden-{section}.pdf")
+    shutil.copy(f"{tmp_dir}/tmp-pdf-with-placeholder-hidden-{section}.pdf", pdf)
     
     return (page_with_placeholder, offset, len(doc))
 
@@ -396,10 +427,10 @@ def build_verses_overlay(offset, contents, section, initialStanzaCount):
     stanzasCount = len(stanzas)
     colbreak = stanzasCount // 3 if len(stanzas) > 3 else 1
 
-    outputStr = outputStr + '\\documentclass{memoir}\n'
+    outputStr = outputStr + '\\documentclass[a4paper]{memoir}\n'
     outputStr = outputStr + '\\usepackage{paracol}\n'
     outputStr = outputStr + '\\usepackage[utf8]{inputenc}\n'
-    outputStr = outputStr + '\\usepackage[top=%dcm,bottom=1cm,left=0.25cm,right=0.25cm]{geometry}\n' % math.floor(offset)
+    outputStr = outputStr + '\\usepackage[layout=a4paper,top=%dcm,bottom=1cm,left=0.25cm,right=0.25cm]{geometry}\n' % math.floor(offset)
     outputStr = outputStr + '\\pagenumbering{gobble}\n'
     outputStr = outputStr + '\\begin{document}\n'
     outputStr = outputStr + '\\begin{paracol}{3}\n'
@@ -437,14 +468,14 @@ def inject_text_into_place_holders(blocks_to_inject, music_pdf, tmp_dir):
         
         injected_section=f"{section}_extra_text"
                
-        (page, offset, pages) = find_and_remove_place_holder(injected_section, music_pdf)
+        (page, offset, pages) = find_and_remove_place_holder(injected_section, music_pdf, tmp_dir)
         
         if page < 0:
             print(f'Cannot find placeholder for section {section} on the rendered pdf. Skipping text injection')
             return
 
 	# Render a pdf with the text rendered at the position where the placeholder was in the score page
-        outputname = f"stanzas_{section}"
+        outputname = f"stanzas_{section}.pdf"
         contents = get_contents_for_section(section, blocks_to_inject)
         
         first_stanza_end=contents.find("\n\n")
@@ -464,7 +495,7 @@ def inject_text_into_place_holders(blocks_to_inject, music_pdf, tmp_dir):
         
 
 	# Do the overlay operation
-        cmd = [ 'pdftk' , overlay, 'background', f"{tmp_dir}/{outputname}.pdf",  'output', f'{tmp_dir}/music_with_stanzas.pdf' ]
+        cmd = [ 'pdftk' , overlay, 'background', f"{tmp_dir}/{outputname}",  'output', f'{tmp_dir}/music_with_stanzas.pdf' ]
         run_cmd(cmd)
 
 
@@ -526,6 +557,8 @@ def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
     cmd = [ 'sh', '-c', f'rm -f {tmp_dir}/*.svg' ]
     run_cmd(cmd)    
 
+    workaround_verovio_2divs_bug(mei_file)
+
     cmd = [ 'verovio',  '--unit', mei_unit, '--multi-rest-style', 'auto', '--mdiv-all', '-a', '--mm-output', '--mnum-interval', '0',
             '--bottom-margin-header', '2.5', '--page-margin-left', '150', '--page-margin-right', '150', '--page-margin-top', '50',
            '--lyric-height-factor', '1.2', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2', "--no-justification",
@@ -538,9 +571,14 @@ def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
     cmd = [ 'sh', '-c', f'svgs2pdf -m "{output_name}" -o "{tmp_dir}" {tmp_dir}/*.svg' ]
     run_cmd(cmd)    
   
-    f = Path(tmp_dir) / 'output_001.pdf'
-    if f.is_file():
-        f.rename(f'{tmp_dir}/{output_name}')
+    if not Path(output_name).is_file():
+        f = Path(tmp_dir) / 'output_001.pdf'
+        if f.is_file():
+            f.rename(f'{tmp_dir}/{output_name}')
+        else:
+            f = Path(tmp_dir) / 'output.pdf'
+            if f.is_file():
+                f.rename(f'{tmp_dir}/{output_name}')
         
         
         
