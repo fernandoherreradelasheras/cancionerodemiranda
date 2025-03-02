@@ -269,6 +269,10 @@ def run_xmlstarlet(cmd):
 def mei_has_more_than_1verse(file):
     cmd = ['xmlstarlet', 'sel', '-N', 'mei=http://www.music-encoding.org/ns/mei', '-t', '-v', 'count(//mei:verse[@n="2"])', file]
     return int(subprocess.check_output(cmd).decode().strip()) > 0
+
+def mei_count_sections(file):
+    cmd = ['xmlstarlet', 'sel', '-N', 'mei=http://www.music-encoding.org/ns/mei', '-t', '-v', 'count(//mei:section)', file]
+    return int(subprocess.check_output(cmd).decode().strip())
     
 
 
@@ -277,18 +281,11 @@ def insert_title_in_mei(mei_file, section, title):
 
     print(f"Injecting {section} heading {title} into the mei score")
     
-    heading_section = f'{section}_heading'
+    path = f"//mei:section[@label=\"{section}\"]/mei:measure[1]"
+    run_xmlstarlet(f"-s '{path}' -t elem -n 'dir place=\"above\" staff=\"1\" tstamp=\"0\"' {mei_file}")
 
-    path = f"//mei:section[@label=\"{section}\"]" 
-    run_xmlstarlet(f"-i '{path}' -t elem -n 'section label=\"{heading_section}\"' {mei_file}")
-    
-
-    path = f"//mei:section[@label=\"{heading_section}\"]"
-    run_xmlstarlet(f"-s '{path}' -t elem -n 'div type=\"heading\"' {mei_file}")
-
-    path = path + "/mei:div"
+    path = path + "/mei:dir"
     run_xmlstarlet(f"-s '{path}' -t elem -n rend -v '{title}' {mei_file}")
-
 
     path = path + "/mei:rend"
     run_xmlstarlet(f"-i '{path}' -t attr -n fontsize -v large {mei_file}")
@@ -620,23 +617,31 @@ def generate_score(order, data, tmp_dir):
     mei_unit = str(data['mei_unit']) if 'mei_unit' in data else "8.0"
     mei_scale = str(data['mei_scale']) if 'mei_scale' in data else "100"
     tmp_file = f"{tmp_dir}/tmp1.mei"
-    
     generate_mei(data['mei_file'], order, data['text_author'], data['music_author'], data['title'], tmp_dir, tmp_file)
-    add_titles(tmp_file, data['text_transcription'])
+
     shutil.copy(tmp_file, f'{tmp_dir}/final.mei')        
+    
+    sections_count = mei_count_sections(tmp_file)
+    for sectionN in range(1, sections_count + 1):
+        section_mei = f'{tmp_dir}/section_{sectionN}.mei'
+        shutil.copy(tmp_file, section_mei)
+        path = f"//mei:section[position()!=\"{sectionN}\"]"
+        run_xmlstarlet(f"-d '{path}' {section_mei}")
+        add_titles(section_mei, data['text_transcription'])
+        section_pdf = f'section_{sectionN}.pdf'
+        render_mei(section_mei, mei_unit, mei_scale, tmp_dir, section_pdf)
+        generated.append(section_pdf)
+        if mei_has_more_than_1verse(section_mei):
+            path = f"//mei:verse[@n!=\"1\"]"
+            run_xmlstarlet(f"-d '{path}' {section_mei}")
 
-    if mei_has_more_than_1verse(tmp_file):
-        render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "music-all-verses.pdf")
-        generated.append("music-all-verses.pdf")
+            blocks_to_inject = [entry for entry in data['text_transcription'] if 'append_to' in entry and entry['append_to'] != "@none" ]
+            inject_section_place_holders(section_mei, blocks_to_inject)   
+            section_pdf_single_verse = f'section_{sectionN}_single_verse.pdf'
+            render_mei(section_mei, mei_unit, mei_scale, tmp_dir, section_pdf_single_verse)
+            inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/{section_pdf_single_verse}", tmp_dir)
+            generated.append(section_pdf_single_verse)
 
-    path = f"//mei:verse[@n!=\"1\"]"
-    run_xmlstarlet(f"-d '{path}' {tmp_file}")
-
-    blocks_to_inject = [entry for entry in data['text_transcription'] if 'append_to' in entry and entry['append_to'] != "@none" ]
-    inject_section_place_holders(tmp_file, blocks_to_inject)   
-    render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "music-single-verse.pdf")   
-    inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/music-single-verse.pdf", tmp_dir)
-    generated.append("music-single-verse.pdf")
 
     return generated
 
