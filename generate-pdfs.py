@@ -256,19 +256,25 @@ def count_content_for_section(section, blocks_to_inject):
     first_stanza_end=contents.find("\n\n")
     contents = contents[first_stanza_end+2:-1]
 
-    print(contents)
     stanzas = contents.count('\n\n')
     lines = contents.count('\n') - stanzas
     print(f'section {section} -> lines: {lines}  stanzas: {stanzas}')
     return lines, stanzas
 
-def run_xmlstarlet(cmd):
-    cmd = "xmlstarlet ed -L -N mei=\"http://www.music-encoding.org/ns/mei\" " + cmd
+def run_xmlstarlet(args):
+    cmd = "xmlstarlet ed -L -N mei=\"http://www.music-encoding.org/ns/mei\" " + args
     subprocess.check_output(['sh', '-c', cmd]).decode().strip()
 
 def mei_has_more_than_1verse(file):
     cmd = ['xmlstarlet', 'sel', '-N', 'mei=http://www.music-encoding.org/ns/mei', '-t', '-v', 'count(//mei:verse[@n="2"])', file]
-    return int(subprocess.check_output(cmd).decode().strip()) > 0
+    count = int(subprocess.check_output(cmd).decode().strip())
+    return count > 0
+
+def mei_section_has_more_than_1verse(file, sectionN):
+    cmd = ['xmlstarlet', 'sel', '-N', f'mei=http://www.music-encoding.org/ns/mei', '-t', '-v', f'count((//mei:section)[{sectionN}]//mei:verse[@n="2"])', file]
+    count = int(subprocess.check_output(cmd).decode().strip())
+    return count > 0
+
 
 def mei_count_sections(file):
     cmd = ['xmlstarlet', 'sel', '-N', 'mei=http://www.music-encoding.org/ns/mei', '-t', '-v', 'count(//mei:section)', file]
@@ -410,7 +416,6 @@ def build_verses_overlay(offset, contents, section, initialStanzaCount):
     print(f"Buidling overlay for section {section}")
 
     for idx,line in enumerate(lines + [""]):
-        print(line)
         if line == "":
             currentStanzaNumber = currentStanzaNumber + 1
             stanzas.append({'stanzaNumber': currentStanzaNumber, 'verses': verses})
@@ -560,7 +565,7 @@ def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
             '--bottom-margin-header', '2.5', '--page-margin-left', '150', '--page-margin-right', '150', '--page-margin-top', '50',
            '--lyric-height-factor', '1.2', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2', "--no-justification",
             '--bottom-margin-header', '8', '--page-margin-bottom', '50', '--top-margin-pg-footer', '4',  '--header', 'auto', '--footer', 'encoded',
-            '--breaks', 'auto', '--condense', 'none', '--min-last-justification', '0.2', '--scale', mei_scale, '--scale-to-page-size', '--justify-vertically',
+            '--breaks', 'smart', '--breaks-smart-sb', '0.1', '--condense', 'none', '--min-last-justification', '0.2', '--scale', mei_scale, '--scale-to-page-size', '--justify-vertically',
            '-o', f'{tmp_dir}/output.svg', mei_file ]
     print(" ".join(cmd))
     run_cmd(cmd)
@@ -618,29 +623,38 @@ def generate_score(order, data, tmp_dir):
     mei_scale = str(data['mei_scale']) if 'mei_scale' in data else "100"
     tmp_file = f"{tmp_dir}/tmp1.mei"
     generate_mei(data['mei_file'], order, data['text_author'], data['music_author'], data['title'], tmp_dir, tmp_file)
+    add_titles(tmp_file, data['text_transcription'])
 
     shutil.copy(tmp_file, f'{tmp_dir}/final.mei')        
-    
-    sections_count = mei_count_sections(tmp_file)
-    for sectionN in range(1, sections_count + 1):
-        section_mei = f'{tmp_dir}/section_{sectionN}.mei'
-        shutil.copy(tmp_file, section_mei)
-        path = f"//mei:section[position()!=\"{sectionN}\"]"
-        run_xmlstarlet(f"-d '{path}' {section_mei}")
-        add_titles(section_mei, data['text_transcription'])
-        section_pdf = f'section_{sectionN}.pdf'
-        render_mei(section_mei, mei_unit, mei_scale, tmp_dir, section_pdf)
-        generated.append(section_pdf)
-        if mei_has_more_than_1verse(section_mei):
-            path = f"//mei:verse[@n!=\"1\"]"
-            run_xmlstarlet(f"-d '{path}' {section_mei}")
 
-            blocks_to_inject = [entry for entry in data['text_transcription'] if 'append_to' in entry and entry['append_to'] != "@none" ]
-            inject_section_place_holders(section_mei, blocks_to_inject)   
-            section_pdf_single_verse = f'section_{sectionN}_single_verse.pdf'
-            render_mei(section_mei, mei_unit, mei_scale, tmp_dir, section_pdf_single_verse)
-            inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/{section_pdf_single_verse}", tmp_dir)
-            generated.append(section_pdf_single_verse)
+    # Render the full version of all sections
+    print("Generating full score")
+    render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "full-score.pdf")
+    generated.append("full-score.pdf")
+    
+    if mei_has_more_than_1verse(tmp_file):
+        single_verse_mei = f'{tmp_dir}/single-verse-sections.mei'
+        shutil.copy(tmp_file, single_verse_mei)
+        sections_count = mei_count_sections(single_verse_mei)
+        sections_to_keep = []
+        for sectionN in range(1, sections_count + 1):
+            if mei_section_has_more_than_1verse(single_verse_mei, sectionN):
+                sections_to_keep.append(str(sectionN))
+
+        print("Generating score with single verse versions of sections: " + ",".join(sections_to_keep))
+
+        path = '(//mei:section)[position() != "' +  '" and position() != "'.join(sections_to_keep) + '"]'
+        run_xmlstarlet(f"-d '{path}' {single_verse_mei}")
+
+        path = f"//mei:verse[@n!=\"1\"]"
+        run_xmlstarlet(f"-d '{path}' {single_verse_mei}")
+
+        blocks_to_inject = [entry for entry in data['text_transcription'] if 'append_to' in entry and entry['append_to'] != "@none" ]
+        inject_section_place_holders(single_verse_mei, blocks_to_inject)   
+        single_verse_pdf = f'single_verse_sections.pdf'
+        render_mei(single_verse_mei, mei_unit, mei_scale, tmp_dir, single_verse_pdf)
+        inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/{single_verse_pdf}", tmp_dir)
+        generated.append(single_verse_pdf)
 
 
     return generated
