@@ -1,3 +1,1 @@
-que solo[^1] con la vista mata
-
-[^1]: "so" en el original
+**6**: mantenemos la forma arcaica  "so" por solo para respetar el ritmo
