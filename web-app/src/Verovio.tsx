@@ -24,6 +24,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Context } from './Context';
 
 
+let verovio: VerovioToolkit
+
+createVerovioModule().then(VerovioModule => {
+    verovio = new VerovioToolkit(VerovioModule)
+    console.log(verovio.getVersion());
+})
+
+
 const verovioOptions = {
     breaks: "auto",
     footer: "none",
@@ -70,7 +78,6 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
     const [scoreSvg, setScoreSvg] = useState<string>("")
     const [timeMap, setTimeMap] = useState<{} | null>(null)
     const [loadedMeiDoc, setLoadedMeiDoc] = useState<Document | null>(null)
-    const [verovio, setVerovio] = useState<VerovioToolkit | null>(null);
     const [measuresCount, setMeasuresCount] = useState<number|null>(null)
     const [firstMeasureOnPage, setFirstMeasureOnPage] = useState<string|null>(null)
     const [editor, setEditor] = useState <string|null>(null)
@@ -124,16 +131,6 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
         )
     }
 
-
-    useEffect(() => {
-        setTimeout(() => {
-            createVerovioModule().then(VerovioModule => {
-                const verovioToolkit = new VerovioToolkit(VerovioModule);
-                console.log(verovioToolkit.getVersion());
-                setVerovio(verovioToolkit);
-            });
-        });
-    }, []);
 
     const loadScore = (score: string) => {
         const scoreWithTitles = scoreAddTitles(score)
