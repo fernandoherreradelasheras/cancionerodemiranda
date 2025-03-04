@@ -412,13 +412,23 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
                     newPage = pageForPlayingElement
                 }
                 styles += getSvgMidiHighlightStyle(id)
-
             });
         }
         setMidiHiglightElements(newHighlightElements)
         if (styles != null) setMidiHiglightStyles(styles)
         if (newPage != null) setCurrentPageNumber(newPage)
     }
+
+    const onMidiSeek = (nextElement: string) => {
+        // Seek event, reset hightlights and udpate page if needed
+        setMidiHiglightElements([])
+        setMidiHiglightStyles("")
+        const pageForPlayingElement = verovio?.getPageWithElement(nextElement)
+        if (pageForPlayingElement != undefined && pageForPlayingElement != currentPageNumber) {
+            setCurrentPageNumber(pageForPlayingElement)
+        }
+    }
+
 
 
     const updateChoicesWithCurrentOptions = (editorialOverlays: EditorialItem[]) => {
@@ -505,12 +515,11 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
     }, [scoreSvg])
 
     const musicInfo = (
-        <div className="small verovio-topbar-element vertical-list" >
+        <div className="small verovio-topbar-element topbar-right vertical-list" >
             <span>Compases: {measuresCount != null ? measuresCount : ""}</span><br/>
             <span>Editor: {editor != null ? editor : ""}</span><br/>
         </div>
     )
-
 
 
     const svgStyles = SVG_STYLE_RULES + measuresSvgStyles + midiHightlightStyles
@@ -534,9 +543,8 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
 
                 {getVersesAmmountSelector(numVersesAvailable)}
 
-            <div className="verovio-topbar-element">
-
-            </div>
+                <div className="verovio-topbar-element">
+                </div>
 
                 <Pagination
                     className="verovio-topbar-element topbar-center"
@@ -546,12 +554,12 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
 
                 { musicInfo }
 
-                <div className="verovio-topbar-element topbar-right">
-                    {mp3_url != undefined ?
-                        <AudioPlayer src={mp3_url} timeMap={timeMap} onMidiUpdate={onMidiUpdate} enabled={scoreSvg != ""} />
-                         : null }
-                </div>
+
             </div>
+
+
+
+
 
             <Tooltip id="verovio-tooltip" delayShow={500} delayHide={300} anchorSelect={SVG_STAFF_CSS_SELECTOR} render={getStaffTooltipContent}/>
 
@@ -576,6 +584,17 @@ function Verovio({ mei_url, mp3_url, maxHeight, section, style, onNotesUpdated }
                      height={containerRef.current?.getBoundingClientRect().height} editorialOverlays={editorialOverlays}
                      onOptionSelected={onOptionSelected}
                       /> : null }
+            </div>
+
+            <div className="">
+                    {mp3_url != undefined ?
+                        <AudioPlayer
+                            src={mp3_url}
+                            timeMap={timeMap}
+                            onMidiUpdate={onMidiUpdate}
+                            onMidiSeek={onMidiSeek}
+                            enabled={scoreSvg != ""} />
+                         : null }
             </div>
 
             {SVG_FILTERS}
