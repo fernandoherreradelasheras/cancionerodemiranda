@@ -52,7 +52,8 @@ const verovioOptions = {
     lyricHeightFactor: 1.30,
     lyricSize: 5,
     lyricTopMinMargin: 4.0,
-    lyricVerseCollapse: true
+    lyricVerseCollapse: true,
+    smuflTextFont: "none"
 }
 
 library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus, faCog)
