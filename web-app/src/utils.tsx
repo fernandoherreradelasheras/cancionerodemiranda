@@ -32,7 +32,7 @@ export enum MusicStatus {
   "not started" = "not started",
   "raw transcription" = "raw transcription",
   "transcription completed" = "transcription completed",
-  "lost voice reconstructed" = "lost voice reconstructed", 
+  "all voices completed" = "all voices completed",
   "reviewed" = "reviewed",
   "completed" = "completed"
 }

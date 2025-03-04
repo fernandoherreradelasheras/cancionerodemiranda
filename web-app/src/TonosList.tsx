@@ -58,13 +58,13 @@ function tonoHasTextCompleted(tono: TonoDef | null) {
 
 function tonoHasMusicTranscriptionCompleted(tono: TonoDef | null) {
     return (tono?.status_music == "transcription completed" ||
-            tono?.status_music == "lost voice reconstructed" ||
+            tono?.status_music == "all voices completed" ||
             tono?.status_music == "reviewed" ||
             tono?.status_music == "completed")
 }
 
 function tonoHasMusicVoiceReconstructed(tono: TonoDef | null) {
-    return (tono?.status_music == "lost voice reconstructed" ||
+    return (tono?.status_music == "all voices completed"  ||
             tono?.status_music == "reviewed" ||
             tono?.status_music == "completed")
 }

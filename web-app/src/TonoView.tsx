@@ -32,7 +32,7 @@ const getProgressFromMusicStatus = (status: MusicStatus) => {
         case "not started": return { value: 5, text: "sin comenzar" }
         case "raw transcription": return  { value: 20, text: "transcripción en progreso" }
         case "transcription completed": return  { value: 40, text: "transcripción completa" }
-        case "lost voice reconstructed": return { value: 60, text: "voz perdida reconstruida"} 
+        case "all voices completed": return { value: 60, text: "todas las voces completas"}
         case "reviewed": return  { value: 80, text: "revisado" }
     }
     return  { value: 100, text: "completado" }
@@ -49,7 +49,7 @@ const getStatusElement = (title: string, textValue: string, value: number) => (
 const getDefaultSection = (tono: TonoDef) => {
     if (tono.introduction != undefined)
         return "intro"
-    else if (tono.mei_file != undefined) 
+    else if (tono.mei_file != undefined)
         return "music"
     else
         return "images"
@@ -77,7 +77,7 @@ const transcriptionEntryToSection = (entry: TranscriptionEntry) => {
     return null
 }
 
-const getDocument = (e:RefObject<any>) => 
+const getDocument = (e:RefObject<any>) =>
     //@ts-ignore
     e.current.ownerDocument
 
@@ -127,7 +127,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         <ul className="actions tono-swicthes" style={{ flex: 3 }}>
             {tono.introduction != null ? <li>
                 <Link to="#" onClick={showIntro} className={`button tono-action icon primary ${currentLeftPanel == "intro" ? "disabled" : ""}`}>
-                        <span>Introducción</span>                    
+                        <span>Introducción</span>
                     </Link>
             </li> : null}
             {tono.mei_file != null ? <li>
@@ -201,9 +201,9 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                         {tono.text_transcription.map((entry: TranscriptionEntry) => transcriptionEntryToSection(entry))
                         .filter(e => e != null)
                         .map((section, index) => {
-                            if (enableSectionLinks)  
+                            if (enableSectionLinks)
                                 return <li key={index}><Link to="" onClick={() => onSectionClicked(section)}>{section}</Link></li>
-                            else 
+                            else
                                 return <li key={index}>{section}</li>
                         }
                     )}
@@ -280,9 +280,9 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                         setMaxHeight(window.innerHeight - 100)
                     }
                 }
-                
+
             });
-            
+
            observer.observe(getDocument(leftPanelRef).body);
 
             // Cleanup function
@@ -309,7 +309,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
                 <div ref={leftPanelRef} className="tono-left-panel" >
                     {leftPanelElement()}
-                    <TonoRightPanel maxHeight={maxHeight}  panel={currentRightPanel} tono={tono} onPanelClose={() => setCurrentRightPanel("")}/>                                             
+                    <TonoRightPanel maxHeight={maxHeight}  panel={currentRightPanel} tono={tono} onPanelClose={() => setCurrentRightPanel("")}/>
                 </div>
 
             </section>
