@@ -1,3 +1,1 @@
-lucha el más noble alebol[^1]
-
-[^1]: la adaptación moderna a árbol rompería la métrica
+**6** _alebol_: mantenemos el original, pues la adaptación moderna a _árbol_ rompería la métrica.
