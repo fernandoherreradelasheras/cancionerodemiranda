@@ -227,7 +227,8 @@ def format_text_part(transcription, comments, tmp_dir):
         cmd = [ 'pandoc', Path(comments), '-o', f'{tmp_dir}/text_comments.tex']
         run_cmd(cmd)
         print(f'Adding text comments: {comments}')
-        str = str + "\\noindent" 
+        str = str + "\\subsection*{Notas al texto poético}\n"
+        str = str + "\\noindent\n" 
         str = str + "\\input{text_comments.tex}" 
 
     return str
