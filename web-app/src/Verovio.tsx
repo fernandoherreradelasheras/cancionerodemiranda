@@ -24,6 +24,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Context } from './Context';
 import { toolkit } from 'verovio';
 
+type SvgInHtml = HTMLElement & SVGSVGElement
 
 let verovioTk: VerovioToolkit
 
@@ -549,12 +550,13 @@ function Verovio({ mei_url, mp3_url, section, onNotesUpdated }: {
 
     // Render
 
+
     const fullScreen = mainDiv.current != null &&
         (mainDiv.current.ownerDocument.fullscreenElement == mainDiv.current)
 
     const verovioMargin = fullScreen ? 20 : 0
 
-    const svgElement = verovioSvgContainer.current?.firstElementChild
+    const svgElement = verovioSvgContainer.current?.firstElementChild as SvgInHtml
     const svgRect = svgElement?.getBoundingClientRect()
     const svgInternalWidth = svgElement?.width.baseVal?.value
     const svgInternalHeight = svgElement?.height.baseVal?.value
