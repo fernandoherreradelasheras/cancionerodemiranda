@@ -136,7 +136,6 @@ function SvgOverlay( {width, height, style, editorialOverlays, onOptionSelected 
             </div>
         )
     }
-    console.log(`rendering overlay with width=${width} height=${height}  style.height=${style.height}`)
 
     const showingEditorialItem = showingEditorial ? editorialOverlays.find(e => e.id == showingEditorial.id) : null
 
