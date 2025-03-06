@@ -1,5 +1,5 @@
-import { RefObject, useContext, useEffect, useRef, useState } from 'react'
-import { MusicStatus, TextStatus, TonoDef, TranscriptionEntry } from './utils'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { getDocument, MusicStatus, TextStatus, TonoDef, TranscriptionEntry } from './utils'
 import IntroView from './IntroView'
 import MusicView from './MusicView'
 import ImagesView from './ImagesView'
@@ -76,11 +76,6 @@ const transcriptionEntryToSection = (entry: TranscriptionEntry) => {
 
     return null
 }
-
-const getDocument = (e:RefObject<any>) =>
-    //@ts-ignore
-    e.current.ownerDocument
-
 
 
 const TonoView = ({ tono }: { tono: TonoDef }) => {
@@ -229,7 +224,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         if (currentLeftPanel == "intro") {
             return (<IntroView tono={tono} />)
         } else if (currentLeftPanel == "music") {
-            return (<MusicView  tono={tono}  maxHeight={maxHeight} section={currentMusicSection} onNotesUpdated={onNotesUpdated} />)
+            return (<MusicView  tono={tono}  section={currentMusicSection} onNotesUpdated={onNotesUpdated} />)
         } else if (currentLeftPanel == "images") {
             return (<ImagesView tono={tono} />)
         } else if (currentLeftPanel == "pdf") {

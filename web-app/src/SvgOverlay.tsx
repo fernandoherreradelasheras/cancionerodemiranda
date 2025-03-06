@@ -9,9 +9,10 @@ const getBorderColor = (type: string) => {
     else return "rgb(170, 38, 38)"
 }
 
-function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
+function SvgOverlay( {width, height, style, editorialOverlays, onOptionSelected } : {
     width: number,
     height: number,
+    style: any,
     editorialOverlays: EditorialItem[]
     onOptionSelected: (type: string, choice: Choice, index: number) => void
  } ) {
@@ -20,7 +21,7 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
 
     const onEditorialClick = (id: string, e: any) => {
         setShowingEditorial({ id: id,
-            posX:  e?.target?.x?.baseVal?.value + e?.target?.width?.baseVal?.value + 20, 
+            posX:  e?.target?.x?.baseVal?.value + e?.target?.width?.baseVal?.value + 20,
             posY: e?.target?.y?.baseVal?.value + e?.target?.height?.baseVal?.value + 20 })
     }
 
@@ -48,13 +49,13 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
         } else if (type == "lem") {
             return "lectura preferida"
         } else if (type == "rdg") {
-            return "otra lectura"        
+            return "otra lectura"
         } else if (type == "sic") {
-            return "error evidente"     
+            return "error evidente"
         } else if (type == "supplied") {
-            return "parte añadida"     
+            return "parte añadida"
         } else if (type == "reg") {
-            return "Regularización"     
+            return "Regularización"
         } else {
             return `tipo: ${type}`
         }
@@ -73,16 +74,16 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
 
 
 
-    const getChoiceText = (type: string, subtype: string, options: Option[], index: number) => {   
+    const getChoiceText = (type: string, subtype: string, options: Option[], index: number) => {
         if (type == "app") {
             if (subtype == "lem") {
                 return "lectura preferida"
-            }            
+            }
             const rdgs = options.filter(o => o.type == "rdg")
             if (rdgs.length == 1) {
                 return "lectura alternativa"
             }
-            return `lectura alternativa nº${1 + rdgs.findIndex(r => r == options[index])}`                     
+            return `lectura alternativa nº${1 + rdgs.findIndex(r => r == options[index])}`
         } else if (type == "choice") {
             if (subtype == "reg") {
                 return "lectura regularizada"
@@ -102,10 +103,10 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
         const options = choice.options
         const selectedIndex = choice?.selectedOptionIdx
         const nonSelectedOptions = options.map((o, index) => { return { option: o, index: index} } ).filter((_, index) => index != selectedIndex)
-        
+
         return (
             <ul>
-                 { nonSelectedOptions.map((n) => 
+                 { nonSelectedOptions.map((n) =>
                     <li key={n.index}>
                         {getChoiceText(type, n.option.type, options, n.index)}
                         <a onClick={() => onOptionSelected(type, choice, n.index)} className="button small primary">Mostrar</a>
@@ -131,23 +132,22 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
                 <br/>
                 <p>Actualmente se muestra la {getChoiceText(type, subtype, choice.options, choice.selectedOptionIdx) } </p>
                 <p>Opciones disponibles:</p>
-                {options}                
+                {options}
             </div>
         )
     }
+    console.log(`rendering overlay with width=${width} height=${height}  style.height=${style.height}`)
 
     const showingEditorialItem = showingEditorial ? editorialOverlays.find(e => e.id == showingEditorial.id) : null
 
     return (
-        <div>
+        <div className="verovio-overlay-container">
             <svg
-                className="w-10 h-10 text-gray-800 dark:text-white"
-                aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="red"
-                style={{zIndex: 10, position: "absolute" }}
                 width={width}
                 height={height}
+                style={style}
                 onClick={onSvgClick}
                 viewBox={`0 0 ${width} ${height}`}>
                 <defs>
@@ -160,18 +160,18 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
                     </filter>
                 </defs>
 
-                {editorialOverlays.map((overlay, index) => 
+                {editorialOverlays.map((overlay, index) =>
                     <g key={index}  >
                         <rect className="overlay-editorial"
                             x={overlay.boundingBox!!.x}
                             y={overlay.boundingBox!!.y}
                             width={overlay.boundingBox!!.width}
                             height={overlay.boundingBox!!.height}
-                            onClick={(e)=>onEditorialClick(overlay.id, e)}   
+                            onClick={(e)=>onEditorialClick(overlay.id, e)}
                             strokeWidth="2"
                             fillOpacity="0.05"
                             stroke={getBorderColor(overlay.type)}/>
-                        
+
                         <text className="overlay-editorial-tooltip" fill="white"
                         filter="url(#background-filter)"
                         fontSize="1.2em"
@@ -181,9 +181,9 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
                         textAnchor="middle">{overlay.type}</text>
                     </g>
                     )}
-        
+
             </svg>
-            {showingEditorialItem != null ? 
+            {showingEditorialItem != null ?
                 <div onClick={onModalClick} className="overly-modal" style={{
                     zIndex: 10,
                     position: "absolute",
@@ -192,7 +192,7 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
                     width:"100%",
                     height: "100%" }}>
                     <div className="overlay-box" style={{width: "75%" }} >
-                        <h1>{ formatType(showingEditorialItem.type) }</h1>                        
+                        <h1>{ formatType(showingEditorialItem.type) }</h1>
                         { getAnnotationText(showingEditorialItem) }
                         { showingEditorialItem.reason != "" ? <p>{`Razon: ${showingEditorialItem.reason}`}</p> : "" }
                         { showingEditorialItem.resp != "" ? <p>{`Responsable: ${showingEditorialItem.resp}`}</p> : "" }
@@ -201,7 +201,7 @@ function SvgOverlay( {width, height, editorialOverlays, onOptionSelected } : {
                 </div> : null }
 
       </div>
-    ) 
+    )
   }
 
 

@@ -1,3 +1,5 @@
+import { RefObject } from "react"
+
 const VITE_TEST_URLS = import.meta.env.VITE_TEST_URLS
 
 const TESTING = (VITE_TEST_URLS != undefined) ? true : false
@@ -65,6 +67,10 @@ export const getJson = async (url: string) => {
   const response = await fetch(url)
   return response.json()
 };
+
+export const getDocument = (e:RefObject<any>) =>
+  //@ts-ignore
+  e.current.ownerDocument
 
 export const compareArrays = (a: any, b: any) =>
   a.length === b.length && a.every((element: any, index: number) => element === b[index]);
