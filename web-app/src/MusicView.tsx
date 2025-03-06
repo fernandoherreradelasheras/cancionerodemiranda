@@ -2,19 +2,16 @@ import { TonoDef, getTonoUrl } from "./utils"
 import Verovio from "./Verovio"
 
 
-function MusicView({ tono, maxHeight, section, onNotesUpdated }: {
+function MusicView({ tono, section, onNotesUpdated }: {
     tono: TonoDef,
-    maxHeight: number | undefined,
     section: string | undefined,
     onNotesUpdated: (notes: string[]) => void
 }) {
 
     const tonoUrl = getTonoUrl(tono.path, tono.mei_file)
-    
+
     const attributes: any = {
         mei_url: tonoUrl,
-        maxHeight: maxHeight,
-        style: { flex: 1, width: "100%", height: maxHeight },
         onNotesUpdated: onNotesUpdated
     }
 
