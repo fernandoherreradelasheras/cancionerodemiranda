@@ -1,4 +1,1 @@
-que por más que abrase, ase[^1]
-
-[^1]: es complicado ajustar esta repetición a la pornunciación y grafía
-    modernas de hace
+**14** _triaca_: Metafóricamente vale remedio de algun mal prevenido con prudencia, o sacado del mismo daño (Diccionario de Autoridades)
