@@ -1,10 +1,13 @@
 import Pagination from "./Pagination";
 import { TonoDef, repoRoot } from "./utils"
 import { useState, useRef } from 'react'
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons'
+import SimpleIconButton from "./SimpleIconButton";
 
 const zeroPad = (num: number, places: number) => String(num).padStart(places, '0');
 
+library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus)
 
 
 function ImagesView({ tono }: { tono: TonoDef }) {
@@ -25,7 +28,7 @@ function ImagesView({ tono }: { tono: TonoDef }) {
     const [zoom, setZoom] = useState(1.0)
 
     const divRef = useRef(null);
-    
+
     const zoomIn = () => {
         if (zoom < 8) {
             setZoom(zoom + 0.2)
@@ -46,8 +49,14 @@ function ImagesView({ tono }: { tono: TonoDef }) {
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
 
             <ul className="actions small">
-                <li><a className="button icon primary fa-solid fa-magnifying-glass-minus small" onClick={zoomOut}></a></li>
-                <li><a className="button icon primary fa-solid fa-magnifying-glass-plus small" onClick={zoomIn}></a></li>
+                <li>
+                    <SimpleIconButton icon={faMagnifyingGlassMinus}
+                        onClick={zoomOut}/>
+                </li>
+                <li>
+                    <SimpleIconButton icon={faMagnifyingGlassPlus}
+                        onClick={zoomIn}/>
+                </li>
             </ul>
 
             <div className="imgContainer" ref={divRef} style={{ overflow: "scroll", height: "60vh" }}>
@@ -59,7 +68,7 @@ function ImagesView({ tono }: { tono: TonoDef }) {
             <Pagination className="images-pagination" currentPageNumber={pageIdx + 1}
                     totalPages={ imgsUrls.length}
                     onPage={(pageNumber: number) => setCurrentPageNumber(pageNumber)} />
-            
+
         </div>
     )
 }
