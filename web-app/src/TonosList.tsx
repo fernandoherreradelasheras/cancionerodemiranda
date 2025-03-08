@@ -4,40 +4,15 @@ import { Link } from 'react-router-dom';
 import { Context } from './Context';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFileLines, faMarker, faMusic, faHighlighter, faHeadphones, faListCheck } from '@fortawesome/free-solid-svg-icons'
+import { faFileLines, faMarker, faMusic, faHighlighter, faHeadphones, faListCheck, faFeatherPointed, faGuitar } from '@fortawesome/free-solid-svg-icons'
 
-library.add( faFileLines, faMarker, faMusic, faHighlighter, faHeadphones, faListCheck )
+library.add( faFileLines, faMarker, faMusic, faHighlighter, faHeadphones, faListCheck, faFeatherPointed, faGuitar )
 
-
-
-
-function tonoOveralStatus(tono: TonoDef | null) {
-    if (tono == null) {
-        return null;
-    }
-
-    if (tono.status_text == "completed" &&
-        tono.status_music == "completed") {
-        return (
-            <span className="item-completed">completed</span>
-        )
-    } else if (tono.status_text == "not started" &&
-        tono.status_music == "not started") {
-        return (
-            <span className="item-not-started">not started</span>
-        )
-    } else {
-        return (
-            <span className="item-in-progress">in progress</span>
-
-        )
-    }
-}
 
 
 function tonoHasMusic(tono: TonoDef | null) {
     if (tono == null) {
-        return ""
+        return false
     } else {
         return (tono['mei_file'] != undefined && tono['mei_file'] != '');
     }
@@ -45,7 +20,7 @@ function tonoHasMusic(tono: TonoDef | null) {
 
 function tonoHasText(tono: TonoDef | null) {
     if (tono == null) {
-        return ""
+        return false
     } else {
         return (tono.text_transcription != undefined && tono.text_transcription.length > 0)
     }
@@ -73,20 +48,54 @@ function tonoHasAudio(tono: TonoDef | null) {
     return (tono?.mp3_file != undefined && tono?.mp3_file != null)
 }
 
+function getAuthors(tono: TonoDef) {
+    let music
+    let text
+
+    if (tono.music_author && tono.music_author != "Anónimo") {
+        music = <span><FontAwesomeIcon className="author-icon" title="autor de la música" icon={faGuitar} size="sm"/> {tono.music_author}</span>
+    }
+    if (tono.text_author && tono.text_author != "Anónimo") {
+
+        text = <span><FontAwesomeIcon  className="author-icon" title="autor del texto" icon={faFeatherPointed} size="sm"/> {tono.text_author}</span>
+    }
+    return text != undefined || music != undefined ?
+        <>. {music}{text}</>
+        : null
+}
+
 
 
 const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
 
+    const hasText = tonoHasText(tono)
+    const textCompleted = tonoHasTextCompleted(tono)
+    const hasMusic = tonoHasMusic(tono)
+    const musicTranscriptionCompleted = tonoHasMusicTranscriptionCompleted(tono)
+    const voiceReconstructed = tonoHasMusicVoiceReconstructed(tono)
+    const hasAudio = tonoHasAudio(tono)
+
+    const textInfo = hasText ? "texto transcrito" : "texto sin transcribir"
+    const coplasInfo = textCompleted ? "todas las coplas alineadas" : "coplas por alinear"
+    const musicInfo = hasMusic ? "transcripción musical iniciada" : "transcripción musical no comenzada"
+    const transcriptionInfo = musicTranscriptionCompleted ? "transcripción musical finalizada" : "transcripción musical por concluir"
+    const reconstructionInfo = voiceReconstructed ? "voz perdida reconstruida" : "voz perdida no reconstruida"
+    const audioInfo = hasAudio ? "demo audio disponible" : "sin demo de audio"
+
     return (
-        <li className="tono-list-item">
-            <Link  className="item-tono-status" to={`/tono/${index + 1}`} state={{ tono: tono }}>{index + 1}. {tono?.title}:
-                {tonoOveralStatus(tono)}
-                {tonoHasText(tono) ? <FontAwesomeIcon title="transcripción del texto" icon={faFileLines} size="xl"/> : null}
-                {tonoHasTextCompleted(tono) ? <FontAwesomeIcon title="todas las coplas codificadas" icon={faMarker} size="xl"/> : null}
-                {tonoHasMusic(tono) ?  <FontAwesomeIcon title="transcripción musical iniciada" icon={faMusic} size="xl"/> : null}
-                {tonoHasMusicTranscriptionCompleted(tono) ?  <FontAwesomeIcon title="transcripción musical finalizada" icon={faHighlighter} size="xl"/> : null}
-                {tonoHasMusicVoiceReconstructed(tono) ?  <FontAwesomeIcon title="voz perdida reconstruida" icon={faListCheck} size="xl"/> : null}
-                {tonoHasAudio(tono) ?  <FontAwesomeIcon title="demo audio disponible" icon={faHeadphones} size="xl"/> : null}
+        <li className="tono-list-item"  style={{paddingBottom: "1.4em"}}>
+            <Link  className="item-tono-status" to={`/tono/${index + 1}`} state={{ tono: tono }}>
+                <div  style={{marginTop: "0.2em", marginBottom: "0.2em"}}>
+                    <span className="tono-title">{index + 1}. {tono?.title}</span>{getAuthors(tono)}
+                </div>
+                <div style={{display: "flex", flexDirection: "row", alignSelf: "center", fontSize: "1.2em" }}>
+                    <FontAwesomeIcon className="status-icon" opacity={ hasText ? 1.0 : 0.3 } title={textInfo} icon={faFileLines} size="xl"/>
+                    <FontAwesomeIcon className="status-icon" opacity={ textCompleted ? 1.0 : 0.3 } title={coplasInfo} icon={faMarker} size="xl"/>
+                    <FontAwesomeIcon className="status-icon" opacity={ hasMusic ? 1.0 : 0.3 } title={musicInfo} icon={faMusic} size="xl"/>
+                    <FontAwesomeIcon className="status-icon" opacity={ musicTranscriptionCompleted ? 1.0 : 0.3 } title={transcriptionInfo} icon={faHighlighter} size="xl"/>
+                    <FontAwesomeIcon className="status-icon" opacity={ voiceReconstructed ? 1.0 : 0.3 } title={reconstructionInfo} icon={faListCheck} size="xl"/>
+                    <FontAwesomeIcon className="status-icon" opacity={ hasAudio ? 1.0 : 0.3 } title={audioInfo} icon={faHeadphones} size="xl"/>
+                </div>
             </Link>
         </li>
     )
