@@ -7,11 +7,11 @@ import remarkGfm from "remark-gfm";
 
 const getText = async (url: string) => {
     const response = await fetch(url);
-    return response.text();
+    return response.ok ? response.text() : `Error cargango la url con el texto ${url}`
 };
 
 const getTitle = (transcription: TranscriptionEntry) => {
-    if (transcription.name != undefined) 
+    if (transcription.name != undefined)
         return `\n### ${transcription.name}\n\n`
     else if (transcription.type == "estribillo")
         return "\n### Estribillo\n\n"
@@ -27,9 +27,9 @@ function TextView({ tono }: { tono: TonoDef }) {
         const fetchText = async () => {
             var newText = "";
             for (let transcription of tono.text_transcription) {
-                newText += getTitle(transcription) 
+                newText += getTitle(transcription)
                 const url = getTonoUrl(tono.path, transcription.file)
-                const response = await getText(url)                
+                const response = await getText(url)
                 for (let line of response.split('\n')) {
                     if (line == "") {
                         newText = newText.slice(0, -2) + "\n\n"

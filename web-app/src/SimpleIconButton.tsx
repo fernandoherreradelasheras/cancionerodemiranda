@@ -1,17 +1,23 @@
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, theme } from "antd";
+
+
 
 
 function SimpleIconButton({ icon, onClick }: { icon: IconDefinition, onClick: () => void }) {
+    const {
+        token: { colorPrimary },
+      } = theme.useToken();
+
     return (
-        <a className="icon-button" onClick={onClick}>
+        <Button
+            onClick={onClick}>
             <FontAwesomeIcon
-                className='clickable-icon reverse-color'
+                color={colorPrimary}
                 icon={icon}
-                inverse
-                border
-                size="2xl" />
-        </a>
+                size="xl" />
+        </Button>
     )
 }
 

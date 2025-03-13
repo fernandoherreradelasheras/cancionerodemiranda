@@ -6,5 +6,5 @@ export const Context = createContext<{
     setScoreCache: any,
     definitions: any,
     setDefinitions: any,
-    useBreakpoint: any,
-}>({definitions: undefined, setDefinitions: undefined, useBreakpoint: undefined, scoreCache: undefined, setScoreCache: undefined  });
+    verovio: any,
+}>({definitions: undefined, setDefinitions: undefined, scoreCache: undefined, setScoreCache: undefined, verovio: undefined  });

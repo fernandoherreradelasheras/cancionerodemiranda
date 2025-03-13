@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { Choice, EditorialItem, Option } from "./Editorial";
+import { Button, Space } from "antd";
+import useStore, { Choice, EditorialItem, Option } from "./store";
+import { useMeasure } from "react-use";
+
 
 const getBorderColor = (type: string) => {
     if (type == "unclear") return "rgb(187, 172, 39)"
@@ -9,15 +11,28 @@ const getBorderColor = (type: string) => {
     else return "rgb(170, 38, 38)"
 }
 
-function SvgOverlay( {width, height, style, editorialOverlays, onOptionSelected } : {
-    width: number,
-    height: number,
+function EditorialOverlay( { style } : {
     style: any,
-    editorialOverlays: EditorialItem[]
-    onOptionSelected: (type: string, choice: Choice, index: number) => void
  } ) {
 
-    const [showingEditorial, setShowingEditorial] = useState<{id: string, posX: number, posY: number} | null>(null)
+
+    const highlights = useStore.use.highlights()
+    const editorialOverlays = useStore.use.editorialOverlays()
+
+    const showingEditorial = useStore.use.showingEditorial()
+    const setShowingEditorial = useStore.use.setShowingEditorial()
+
+    const appOptions = useStore.use.appOptions()
+    const setAppOptions = useStore.use.setAppOptions()
+
+    const choiceOptions = useStore.use.choiceOptions()
+    const setChoiceOptions = useStore.use.setChoiceOptions()
+
+    const [ containerRef, { height: containerHeight } ] = useMeasure<HTMLDivElement>()
+
+
+    const showingEditorialItem = showingEditorial ? editorialOverlays.find(e => e.id == showingEditorial.id) : null
+
 
     const onEditorialClick = (id: string, e: any) => {
         setShowingEditorial({ id: id,
@@ -97,23 +112,64 @@ function SvgOverlay( {width, height, style, editorialOverlays, onOptionSelected 
         }
     }
 
+    const onOptionSelected = (type: string, choice: Choice, selectedOptionIndex: number) => {
+        const removeEntries = choice.options.filter((_, index) => index != selectedOptionIndex).map(o => o.selector)
+        if (type == "app") {
+            const newOptions = appOptions.filter((o: any) => !removeEntries.includes(o))
+            newOptions.push(choice.options[selectedOptionIndex].selector)
+            setAppOptions(newOptions, true)
+        } else if (type == "choice") {
+            const newOptions = choiceOptions.filter((o: any) => !removeEntries.includes(o))
+            newOptions.push(choice.options[selectedOptionIndex].selector)
+            setChoiceOptions(newOptions, true)
+        }
+
+    }
+
     const getNonSelectedOptionsList = (item: EditorialItem) => {
         const type = item.type
         const choice = item.choice!
         const options = choice.options
-        const selectedIndex = choice?.selectedOptionIdx
+        const selectedIndex = getSelectedOption(type, choice)
         const nonSelectedOptions = options.map((o, index) => { return { option: o, index: index} } ).filter((_, index) => index != selectedIndex)
 
         return (
             <ul>
                  { nonSelectedOptions.map((n) =>
                     <li key={n.index}>
-                        {getChoiceText(type, n.option.type, options, n.index)}
-                        <a onClick={() => onOptionSelected(type, choice, n.index)} className="button small primary">Mostrar</a>
+                        <Space>
+                            {getChoiceText(type, n.option.type, options, n.index)}
+                            <Button color="purple" variant="solid" onClick={() => onOptionSelected(type, choice, n.index)} size="middle">Mostrar</Button>
+                        </Space>
                     </li>
                  )}
             </ul>
         )
+    }
+
+    const getSelectedOption = (type: string, choice: Choice) => {
+        if (type == "app") {
+            const inApp = choice.options.findIndex((option) => Object.values(appOptions).includes(option.selector))
+            if (inApp != -1) {
+                return inApp
+            } else {
+                // Default app order is: 1) lem, 2) if no lem, first rdg
+                const lemIdx = choice.options.findIndex((option) => option.type == "lem")
+                if (lemIdx != -1) {
+                    return lemIdx
+                }
+                return 0
+            }
+        } else if (type == "choice") {
+            const inChoices = choice.options.findIndex((option) => Object.values(choiceOptions).includes(option.selector))
+            if (inChoices != -1) {
+                return inChoices
+            } else {
+                return 0
+            }
+        }
+
+        return 0
     }
 
 
@@ -123,32 +179,57 @@ function SvgOverlay( {width, height, style, editorialOverlays, onOptionSelected 
         if (choice === undefined) {
             return null
         }
-        const subtype = item.choice!.options[choice!.selectedOptionIdx].type
+
+        const selectedOptionIdx = getSelectedOption(type, choice)
+        const subtype = item.choice!.options[selectedOptionIdx].type
 
         const options = getNonSelectedOptionsList(item)
 
         return (
             <div>
                 <br/>
-                <p>Actualmente se muestra la {getChoiceText(type, subtype, choice.options, choice.selectedOptionIdx) } </p>
+                <p>Actualmente se muestra la {getChoiceText(type, subtype, choice.options, selectedOptionIdx) } </p>
                 <p>Opciones disponibles:</p>
                 {options}
             </div>
         )
     }
 
-    const showingEditorialItem = showingEditorial ? editorialOverlays.find(e => e.id == showingEditorial.id) : null
+    const rects = Object.entries(highlights).map(([id, h]) => (
+
+        <g key={id}  >
+            <rect className="overlay-editorial"
+                x={h.x}
+                y={h.y}
+                width={h.width}
+                height={h.height}
+                onClick={(e) => { onEditorialClick(h.editorialId, e) } }
+                strokeWidth="2"
+                fillOpacity="0.05"
+                stroke={getBorderColor("app")} />
+
+
+            <text className="overlay-editorial-tooltip" fill="white"
+            filter="url(#background-filter)"
+            fontSize="1.2em"
+            x={h.x + h.width / 2}
+            y={h.y + h.height}
+            dominantBaseline="hanging"
+            textAnchor="middle">{h.type}</text>
+        </g>
+    )
+    )
+
+
 
     return (
-        <div className="verovio-overlay-container">
+        <div className="verovio-overlay-container" ref={containerRef}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="red"
-                width={width}
-                height={height}
+
                 style={style}
-                onClick={onSvgClick}
-                viewBox={`0 0 ${width} ${height}`}>
+                onClick={onSvgClick}>
                 <defs>
                     <filter x="-0.05" y="0.1" width="1.1" height="1" id="background-filter">
                         <feFlood floodColor="black" result="bg"></feFlood>
@@ -159,37 +240,20 @@ function SvgOverlay( {width, height, style, editorialOverlays, onOptionSelected 
                     </filter>
                 </defs>
 
-                {editorialOverlays.map((overlay, index) =>
-                    <g key={index}  >
-                        <rect className="overlay-editorial"
-                            x={overlay.boundingBox!!.x}
-                            y={overlay.boundingBox!!.y}
-                            width={overlay.boundingBox!!.width}
-                            height={overlay.boundingBox!!.height}
-                            onClick={(e)=>onEditorialClick(overlay.id, e)}
-                            strokeWidth="2"
-                            fillOpacity="0.05"
-                            stroke={getBorderColor(overlay.type)}/>
-
-                        <text className="overlay-editorial-tooltip" fill="white"
-                        filter="url(#background-filter)"
-                        fontSize="1.2em"
-                        x={overlay.boundingBox!!.x + overlay.boundingBox!!.width / 2}
-                        y={overlay.boundingBox!!.y + overlay.boundingBox!!.height}
-                        dominantBaseline="hanging"
-                        textAnchor="middle">{overlay.type}</text>
-                    </g>
-                    )}
+                {rects}
 
             </svg>
-            {showingEditorialItem != null ?
-                <div onClick={onModalClick} className="overly-modal" style={{
+
+
+            {showingEditorialItem != null && showingEditorial != null ?
+                <div onClick={onModalClick} className="overlay-modal" style={{
                     zIndex: 10,
                     position: "absolute",
                     left: "25%",
-                    top: showingEditorial!!.posY < height / 2 ? showingEditorial!!.posY : showingEditorial!!.posY - height / 2,
-                    width:"100%",
-                    height: "100%" }}>
+                    width: "75%",
+                    top: showingEditorial.posY < containerHeight / 2 ?
+                        showingEditorial.posY : showingEditorial.posY - containerHeight / 2,
+                     }}>
                     <div className="overlay-box" style={{width: "75%" }} >
                         <h1>{ formatType(showingEditorialItem.type) }</h1>
                         { getAnnotationText(showingEditorialItem) }
@@ -204,4 +268,4 @@ function SvgOverlay( {width, height, style, editorialOverlays, onOptionSelected 
   }
 
 
-  export default SvgOverlay;
+  export default EditorialOverlay;

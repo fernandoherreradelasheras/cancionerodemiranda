@@ -54,6 +54,11 @@ export interface TonoDef {
   introduction: string;
   mei_file: string;
   mei_unit: number;
+  organic: string;
+  high_clefs: boolean
+  original_armor: string;
+  transposition: string;
+  encoded_armor : string;
   text_transcription: TranscriptionEntry[],
   text_comments_file: string;
   music_comments_file: string;
@@ -87,6 +92,9 @@ export const calcHighlightScaling = (nVerses: number) => {
   }
 }
 
+export type ScoreStats = {
+  notes: string[]
+  measures: number
+  editor?: string
+}
 
-// TODO: modo this to a proper themeing place
-export const PCOLOR = "#f56a6a";
