@@ -1,4 +1,4 @@
-import { act, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { getTonoUrl, MusicStatus, TextStatus, TonoDef } from './utils'
 import IntroView from './IntroView'
 import ImagesView from './ImagesView'
