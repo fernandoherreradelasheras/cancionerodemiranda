@@ -1,9 +1,9 @@
-import Pagination from "./Pagination";
 import { TonoDef, repoRoot } from "./utils"
 import { useState, useRef } from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons'
 import SimpleIconButton from "./SimpleIconButton";
+import { Pagination, Space } from "antd";
 
 const zeroPad = (num: number, places: number) => String(num).padStart(places, '0');
 
@@ -48,16 +48,13 @@ function ImagesView({ tono }: { tono: TonoDef }) {
     return (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
 
-            <ul className="actions small">
-                <li>
-                    <SimpleIconButton icon={faMagnifyingGlassMinus}
-                        onClick={zoomOut}/>
-                </li>
-                <li>
-                    <SimpleIconButton icon={faMagnifyingGlassPlus}
-                        onClick={zoomIn}/>
-                </li>
-            </ul>
+            <Space>
+                <SimpleIconButton icon={faMagnifyingGlassMinus}
+                    onClick={zoomOut}/>
+                <SimpleIconButton icon={faMagnifyingGlassPlus}
+                    onClick={zoomIn}/>
+            </Space>
+
 
             <div className="imgContainer" ref={divRef} style={{ overflow: "scroll", height: "60vh" }}>
                 <img id="facsimil-img" src={imgsUrls[pageIdx]} style={{ width: "auto", height: `${100 * zoom}%`, objectFit:"contain" }}/>
@@ -65,9 +62,10 @@ function ImagesView({ tono }: { tono: TonoDef }) {
 
             <h4 id="facsimil-title">{imgsLabels[pageIdx]}</h4>
 
-            <Pagination className="images-pagination" currentPageNumber={pageIdx + 1}
-                    totalPages={ imgsUrls.length}
-                    onPage={(pageNumber: number) => setCurrentPageNumber(pageNumber)} />
+            { imgsUrls.length > 1 ? <Pagination align="start" current={pageIdx + 1}
+                                            defaultPageSize={1} total={imgsUrls.length} simple={false}
+                                            onChange={(page: number, _: number)  => setCurrentPageNumber(page) }  /> : null }
+
 
         </div>
     )
