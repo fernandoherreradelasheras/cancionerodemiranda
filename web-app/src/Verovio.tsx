@@ -246,14 +246,19 @@ function Verovio({ className = '' }: VerovioProps) {
     }, [midiHighlightElements])
 
 
+    const isFullScreen = () => scoreViewerRef.current != null &&
+        (scoreViewerRef.current.ownerDocument.fullscreenElement == scoreViewerRef.current)
 
     const handleFullScreenToggle = () => {
-        const isFullScreen = scoreViewerRef.current != null &&
-            (scoreViewerRef.current.ownerDocument.fullscreenElement == scoreViewerRef.current)
-
-        if (!isFullScreen) {
+        if (!isFullScreen()) {
             scoreViewerRef.current?.requestFullscreen()
         } else {
+            document.exitFullscreen()
+        }
+    }
+
+    const handleExitFullScreen = () => {
+        if (isFullScreen()) {
             document.exitFullscreen()
         }
     }
@@ -263,8 +268,7 @@ function Verovio({ className = '' }: VerovioProps) {
         <div ref={scoreViewerRef} className={`verovio-score-viewer ${className}`} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
 
             <VerovioControls
-                toggleFullScreen={handleFullScreenToggle}
-                verseSelector={undefined} />
+                toggleFullScreen={handleFullScreenToggle} exitFullScreen={handleExitFullScreen} />
 
             <PlayingNotesStyle />
 

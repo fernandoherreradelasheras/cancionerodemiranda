@@ -131,7 +131,7 @@ function AudioPlayer ({ enabled } : {
 
     return (
         <div className="audio-player" >
-            <Flex gap="small" style={{ alignItems: 'center' }}>
+            <Flex gap="small" style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
 
                 <a className={`play-button${!canPlay || !enabled ? " disabled" : ""}`}
                     onClick={play}>
@@ -142,7 +142,7 @@ function AudioPlayer ({ enabled } : {
                         icon={['fas', isPlaying ? "pause" : "play"]}
                     />
                 </a>
-                <span className="time">{currentTimeStr} / {durationStr}</span>
+                <div style={{ display: "inline" }}>{currentTimeStr} / {durationStr}</div>
                 <Slider
                     style={{ minWidth: "100px" }}
                     min={0}
