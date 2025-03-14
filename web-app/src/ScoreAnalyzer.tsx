@@ -99,7 +99,6 @@ class ScoreAnalyzer {
 
     getEditorialNodesOfType = (type: string) => {
         const items: EditorialItem[] = []
-        //@ts-ignore
         let matches = this.document.evaluate(`//mei:${type}`, this.document, nsResolver, XPathResult.ANY_TYPE, null)
         let node = matches.iterateNext()
         while (node != null) {
@@ -108,7 +107,13 @@ class ScoreAnalyzer {
                 const id = element.getAttribute("xml:id")
                 const reason = element.getAttribute("reason")
                 const resp = element.getAttribute("resp")
-                items.push({ id: id!!, reason: reason || "", resp: resp || "", type: type, boundingBox: null, annotations: new Set() })
+                items.push({
+                    id: id!!,
+                    reason: reason || "",
+                    resp: resp || "",
+                    type: type,
+                    annotations: new Set()
+                })
             }
             node = matches.iterateNext()
         }
@@ -118,7 +123,6 @@ class ScoreAnalyzer {
 
     getChoiceNodesOfType (type: string)  {
         const items: EditorialItem[] = []
-        //@ts-ignore
         let matches = this.document.evaluate(`//mei:${type}`, this.document, nsResolver, XPathResult.ANY_TYPE, null)
         let node = matches.iterateNext()
         while (node != null) {
@@ -134,7 +138,7 @@ class ScoreAnalyzer {
                 choice.options.push({ type: nodeType, selector: `./${nodeType}[@label='${optionLabel}']` })
             }
 
-            items.push({ id: choiceId!!, type: type, resp: "", reason: "", boundingBox: null, choice: choice, annotations: new Set() })
+            items.push({ id: choiceId!!, type: type, resp: "", reason: "", choice: choice, annotations: new Set() })
             node = matches.iterateNext()
         }
         return items
@@ -142,7 +146,6 @@ class ScoreAnalyzer {
 
     getAnnotations()  {
         const annotations: Annotation[] = []
-        //@ts-ignore
         let matches = this.document.evaluate(`//mei:annot`, this.document, nsResolver, XPathResult.ANY_TYPE, null)
         let node = matches.iterateNext()
         while (node != null) {

@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
+import { Image } from 'antd';
 
 const REPO_URL = "https://github.com/fernandoherreradelasheras/cancionerodemiranda"
 
@@ -7,8 +8,8 @@ const About = () => (
         <header className="main">
             <h1>Acerca del proyecto</h1>
         </header>
+        <Image width="70%" src="header1.jpg" preview={false}></Image>
 
-        <span className="image main"><img src="header1.jpg" alt="" /></span>
         <p>Estamos trabajando en la edición del Cancionero de Miranda. Esta edición, al incluir
             la reconstrucción de la voz perdida del alto, require un trabajo superior al habitual.
             Todo este trabajo de transcripción, reconstrucción y edición se está realizando en el
