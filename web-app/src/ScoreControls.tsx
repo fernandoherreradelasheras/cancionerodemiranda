@@ -51,8 +51,6 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
     };
 
 
-
-
     let verseOptions: SelectProps['options'] = Array.from({ length: numVersesAvailable }, (_, key) => 1 + key).map(i => ({
         value: i,
         label: `${i} verso${i > 1 ? "s" : ""}`

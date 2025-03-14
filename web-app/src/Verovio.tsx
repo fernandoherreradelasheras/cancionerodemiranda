@@ -12,6 +12,7 @@ import ScoreAnalyzer from './ScoreAnalyzer';
 import { Context } from './Context';
 import Editorials from './Editorials';
 import { useMeasure } from "react-use";
+import { useSwipeable } from 'react-swipeable';
 
 const MINIMUM_RENDER_SIZE = 300
 const RESIZE_THRESHOLD = 250
@@ -263,6 +264,22 @@ function Verovio({ className = '' }: VerovioProps) {
         }
     }
 
+    const swipeHandlers = useSwipeable({
+        onSwipedLeft: (_) => {
+            if (currentPage < pageCount) {
+                setCurrentPage(currentPage + 1)
+            }
+        },
+        onSwipedRight: (_) => {
+            if (currentPage > 1) {
+                setCurrentPage(currentPage - 1)
+            }
+        },
+        delta: 10,
+        swipeDuration: 300,
+      });
+
+
 
     return (
         <div ref={scoreViewerRef} className={`verovio-score-viewer ${className}`} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -272,17 +289,20 @@ function Verovio({ className = '' }: VerovioProps) {
 
             <PlayingNotesStyle />
 
-            <div
-                className='verovio-container'
-                ref={containerRef}
-                style={{ minHeight: `${MINIMUM_RENDER_SIZE}px`  }}>
+            <div {...swipeHandlers}>
+                <div
+                    className='verovio-container'
+                    ref={containerRef}
+                    style={{ minHeight: `${MINIMUM_RENDER_SIZE}px`  }}
+                    >
 
-                { scoreSvg ? (
-                    <div ref={verovioSvgContainerRef}
-                        className="score-svg-wrapper"
-                        dangerouslySetInnerHTML={{ __html: scoreSvg }}/>
-                ) : null}
+                    { scoreSvg ? (
+                        <div ref={verovioSvgContainerRef}
+                            className="score-svg-wrapper"
+                            dangerouslySetInnerHTML={{ __html: scoreSvg }}/>
+                    ) : null}
 
+                </div>
             </div>
 
 
