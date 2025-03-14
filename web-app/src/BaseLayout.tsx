@@ -5,7 +5,7 @@ import { getJson, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-import { ConfigProvider, Layout, Menu, theme, Typography } from 'antd';
+import { ConfigProvider, Layout, Menu, theme, Typography, Grid } from 'antd';
 
 import mp3_files from "./assets/mp3-files.json"
 import { MenuInfo } from 'rc-menu/lib/interface';
@@ -19,6 +19,7 @@ type Mp3Files = {
 }
 
 const { Header, Content } = Layout;
+const { useBreakpoint } = Grid
 
 library.add(faBars)
 
@@ -33,6 +34,7 @@ function BaseLayout() {
     const location = useLocation()
     const verovio = useVerovio()
 
+    const breakpoint = useBreakpoint()
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -103,9 +105,10 @@ function BaseLayout() {
                         width: '100%',
                         display: 'flex',
                         alignItems: 'center' }}>
-                            <div className="demo-logo" style={{color: "#000000"}}>
-                                <Typography.Title level={2}>El cancionero de Miranda</Typography.Title>
-                            </div>
+                            <Typography.Title level={2}>
+                                {breakpoint.xl || breakpoint.xl || breakpoint.lg ? "Cancionero de Miranda" : "CdM"}
+                            </Typography.Title>
+
                             <Menu
                                 mode="horizontal"
                                 subMenuCloseDelay={0.3}

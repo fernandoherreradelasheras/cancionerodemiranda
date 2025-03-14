@@ -6,7 +6,7 @@ const REPO_URL = "https://github.com/fernandoherreradelasheras/cancionerodemiran
 const About = () => (
     <section className="about">
         <header className="main">
-            <h1>Acerca del proyecto</h1>
+            <h2>Acerca del proyecto</h2>
         </header>
         <Image width="70%" src="header1.jpg" preview={false}></Image>
 

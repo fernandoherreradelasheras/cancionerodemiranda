@@ -16,7 +16,7 @@ function SimpleIconButton({ icon, onClick }: { icon: IconDefinition, onClick: ()
             <FontAwesomeIcon
                 color={colorPrimary}
                 icon={icon}
-                size="xl" />
+                size="sm" />
         </Button>
     )
 }

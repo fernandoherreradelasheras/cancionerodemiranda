@@ -8,7 +8,7 @@ import { Context } from './Context'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Flex, Progress, ProgressProps, Space, Spin, Tabs, TabsProps, Typography } from 'antd'
+import { Col, Progress, ProgressProps, Row, Space, Spin, Tabs, TabsProps, Typography } from 'antd'
 import TextView from './TextView'
 import Verovio from './Verovio'
 
@@ -201,39 +201,52 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
     return (
         <div key={tono.number}>
-            <Flex gap="small">
-                <div>
+        <Row  style={{ justifyContent: "space-between", backgroundColor: "white", padding: "0.2em" }}>
+            <Col xl={{flex: '25%'}}
+                 lg={{ flex: '25%' }}
+                 md={{ flex: '25%' }}
+                 sm={{ flex: '25%' }}
+                 xs={{ flex: '50%' }}>
                     <Typography.Text>Música: {tono.music_author}</Typography.Text><br/>
                     <Typography.Text>Texto: {tono.text_author}</Typography.Text><br/>
                     <Typography.Text>Orgánico: {tono.organic}</Typography.Text>
 
-                </div>
-                <div>
+                </Col>
+                <Col xl={{flex: '25%'}}
+                 lg={{ flex: '25%' }}
+                 md={{ flex: '25%' }}
+                 sm={{ flex: '25%' }}
+                 xs={{ flex: '50%' }}>
                     <div>Música: {musicStatusText}</div>
                     <Progress percent={musicStatusValue} steps={9} showInfo={false} strokeColor={progressColors}  />
                     <div>Texto: {textStatusText}</div>
                     <Progress percent={textStatusValue} steps={9} showInfo={false} strokeColor={progressColors}  />
-                </div>
-                <div>
-                { scoreProperties ? <div>
-                        <Typography.Text>Transcripción: {scoreProperties.editor}</Typography.Text><br/>
-                        <Typography.Text>Num compases: {scoreProperties.numMeasures}</Typography.Text>
-                        <ul>
-                            {scoreProperties.notes?.map((n, index) =>  <li key={index}>{n}</li>)}
-                        </ul>
-                    </div> : null }
-
-                </div>
-
-                <div>
+                </Col>
+                <Col xl={{flex: '25%'}}
+                 lg={{ flex: '25%' }}
+                 md={{ flex: '25%' }}
+                 sm={{ flex: '25%' }}
+                 xs={{ flex: '50%' }}>
+                    { scoreProperties ? <div>
+                            <Typography.Text>Transcripción: {scoreProperties.editor}</Typography.Text><br/>
+                            <Typography.Text>Num compases: {scoreProperties.numMeasures}</Typography.Text>
+                            <ul>
+                                {scoreProperties.notes?.map((n, index) =>  <li key={index}>{n}</li>)}
+                            </ul>
+                        </div> : null }
+                </Col>
+                <Col xl={{flex: '25%'}}
+                 lg={{ flex: '25%' }}
+                 md={{ flex: '25%' }}
+                 sm={{ flex: '25%' }}
+                 xs={{ flex: '50%' }}>
                     <Space direction="vertical">
                         <Typography.Text>Secciones:</Typography.Text>
                         {scoreProperties?.sections?.map((section, index) =>
                             <a key={index} onClick={()=> { onClickSection(section.id)}}> {`${index + 1}. ${section.label}`}</a>)}
                     </Space>
-
-                </div>
-            </Flex>
+                </Col>
+            </Row>
             <Tabs items={tabs} defaultActiveKey={defaultTab} activeKey={activeTab} onChange={(t) => setActiveTab(t)}/>
         </div>
     )
