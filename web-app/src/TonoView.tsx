@@ -76,6 +76,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const scoreProperties = useStore.use.scoreProperties()
     const setScoreProperties = useStore.use.setScoreProperties()
 
+    const setEditorialItems = useStore.use.setEditorialItems()
+
     const isLoading = useStore.use.isLoading()
 
     const setScoreAudioFile = useStore.use.setScoreAudioFile()
@@ -133,9 +135,11 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                 );
                 const analyzer = new ScoreAnalyzer(score)
                 const scoreProperties = analyzer.getScoreProperties()
+                const editorialItems = analyzer.getEditorial()
 
                 setScore(score);
                 setScoreProperties(scoreProperties)
+                setEditorialItems(editorialItems, true)
                 setScoreAudioFile(tono.mp3_file)
             }).catch(error => {
                 console.error("Failed to load MEI score:", error);

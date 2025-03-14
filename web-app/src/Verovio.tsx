@@ -3,14 +3,14 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { VerovioOptions } from 'verovio';
 import VerovioControls from './ScoreControls';
 import { Scale } from './uidefs'
-import useStore, { EditorialItem, Highlight } from "./store";
+import useStore from "./store";
 import ScoreProcessor from './ScoreProcessor';
 import { getVerovioSvgExtraAttributes } from './hooks';
 import PlayingNotesStyle from './PlayingNotesStyle';
 import { SVG_FILTERS } from './svgutils';
 import ScoreAnalyzer from './ScoreAnalyzer';
 import { Context } from './Context';
-import EditorialOverlay from './EditorialOverlay';
+import Editorials from './Editorials';
 import { useMeasure } from "react-use";
 
 const MINIMUM_RENDER_SIZE = 300
@@ -37,7 +37,7 @@ const verovioBaseOptions: VerovioOptions = {
     spacingLinear: 0.25,
     spacingNonLinear: 0.6,
     svgHtml5: false,
-    svgViewBox: true,
+    svgViewBox: false,
     svgRemoveXlink: false,
     svgBoundingBoxes: true,
     lyricElision: "regular",
@@ -81,9 +81,6 @@ function Verovio({ className = '' }: VerovioProps) {
     const scoreAudioFile = useStore.use.scoreAudioFile()
     const setTimeMap = useStore.use.setTimeMap()
     const midiHighlightElements = useStore.use.midiHighlightElements()
-
-    const setEditorialOverlays = useStore.use.setEditorialOverlays()
-    const setHighlights = useStore.use.setHighlights()
 
     const section = useStore.use.section()
     const setSection = useStore.use.setSection()
@@ -248,109 +245,6 @@ function Verovio({ className = '' }: VerovioProps) {
         }
     }, [midiHighlightElements])
 
-    const getBBForSelector = (container: SVGSVGElement, selector: string) => {
-        let svgG = container.querySelector(selector)
-        if (svgG) {
-            return svgG.getBoundingClientRect()
-        } else {
-            return null
-        }
-    }
-
-
-    const buildHighlight = (id: string, type: string, selector: string, editorialId: string,
-                            bb: DOMRect, offsetX: number, offsetY: number) => {
-        return {
-            id: id, selector: selector, editorialId: editorialId, x: bb.x - offsetX,
-            y: bb.y - offsetY, width: bb.width, height: bb.height, type: type
-        }
-    }
-
-    const getHighlightsForEditorials = (editorialItems: EditorialItem[]) => {
-        const highlights: { [key: string] : Highlight } = {}
-        const editorialItemsInPage: EditorialItem[] = []
-
-        const container = document.querySelector((".score-svg-wrapper")) as HTMLElement
-        let svg = container?.children[0] as SVGSVGElement
-        const svgBB = svg.getBoundingClientRect()
-
-        for (const item of editorialItems) {
-            const bb = getBBForSelector(svg, `#${item.id}`)
-            if (bb) {
-                if (bb.width == 0 || bb.height == 0) {
-                    // Some element like measures have empty bounding boxes, so we need to terget the children
-                    /* TODO
-                    const children = getTargettableChildren(state.loadedMeiDoc, item.id)
-                    for (const id of children) {
-                        const cbb = getBBForSelector(svg, `#${id}`)
-                        if (cbb) {
-                            editorialOverlays.push(buildItemWithBB(item, cbb, svgX, svgY))
-                        }
-                    }
-                        */
-                } else {
-                    highlights[item.id] = buildHighlight(item.id, item.type, `#${item.id}`, item.id, bb, svgBB.x, svgBB.y)
-                    editorialItemsInPage.push(item)
-                }
-            }
-
-            if (item.correspIds != undefined) {
-                var found = false
-                item.correspIds.forEach(id => {
-                    const bb = getBBForSelector(svg, `[data-corresp="#${id}"]`)
-                    if (bb) {
-                        highlights[id] = buildHighlight(id, item.type, `[data-corresp="#${id}"]`, item.id, bb, svgBB.x, svgBB.y)
-                        found = true
-                    }
-                })
-                if (found) {
-                    editorialItemsInPage.push(item)
-                }
-            }
-        }
-
-        return { highlights, editorialItemsInPage }
-    }
-
-    useEffect(() => {
-        if (!score || !scoreSvg || !verovioSvgContainerRef) return
-
-
-        const analyzer = new ScoreAnalyzer(score)
-        const editorialItems = analyzer.getEditorial()
-
-        const { highlights, editorialItemsInPage } = getHighlightsForEditorials(editorialItems)
-
-        setHighlights(highlights)
-        setEditorialOverlays(editorialItemsInPage, true)
-
-        const updateHighlightsCallback = () => {
-            const container = document.querySelector((".score-svg-wrapper")) as HTMLElement
-            let svg = container?.children[0] as SVGSVGElement
-            const svgBB = svg.getBoundingClientRect()
-            const newHighlights: { [key: string] : Highlight } = {}
-            Object.entries(highlights).forEach(([id, h]) => {
-                const bb = getBBForSelector(svg, h.selector)
-                if (bb) {
-                    newHighlights[h.id] = buildHighlight(id, h.type, h.selector, h.editorialId, bb, svgBB.x, svgBB.y)
-                }
-            })
-            setHighlights(newHighlights)
-        }
-
-        // Update on resize
-        const resizeObserver = new ResizeObserver(updateHighlightsCallback)
-        if (verovioSvgContainerRef.current) {
-            resizeObserver.observe(verovioSvgContainerRef.current)
-        }
-
-
-        return () => {
-            resizeObserver.disconnect();
-        };
-
-    }, [scoreSvg])
-
 
 
     const handleFullScreenToggle = () => {
@@ -372,7 +266,6 @@ function Verovio({ className = '' }: VerovioProps) {
                 toggleFullScreen={handleFullScreenToggle}
                 verseSelector={undefined} />
 
-
             <PlayingNotesStyle />
 
             <div
@@ -386,12 +279,10 @@ function Verovio({ className = '' }: VerovioProps) {
                         dangerouslySetInnerHTML={{ __html: scoreSvg }}/>
                 ) : null}
 
-                {showEditorial ? /*&& state.editorialOverlays.length > 0 */
-                    <EditorialOverlay
-                        style={{ width: "100%", height: "100%" }}/> : null}
-
-
             </div>
+
+
+            {showEditorial ? <Editorials/> : null}
 
             {SVG_FILTERS}
 

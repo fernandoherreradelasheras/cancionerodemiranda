@@ -17,16 +17,9 @@ export interface EditorialItem {
     type: string
     reason?: string
     resp: string
-    boundingBox:  { x: number, y: number, width: number, height: number } | null
     annotations: Set<Annotation>
     choice?: Choice
     correspIds?: string[]
-}
-
-export interface ShowingEditorial {
-    id: string
-    posX: number
-    posY: number
 }
 
 export interface Option {
@@ -46,19 +39,6 @@ export interface Annotation {
     text: string
     targetIds: string[]
 }
-
-export interface Highlight {
-    id: string,
-    selector: string,
-    type: string,
-    editorialId: string,
-    x: number,
-    y: number,
-    width: number,
-    height: number
-
-}
-
 
 
 
@@ -82,8 +62,8 @@ interface AppState {
     midiHighlightStyles: string
     section: string | null
     isLoading: boolean
-    editorialOverlays: EditorialItem[]
-    showingEditorial: ShowingEditorial | null
+    editorialItems: EditorialItem[]
+    showingEditorial: string | null
 
     appOptions: string[]
     choiceOptions: string[]
@@ -117,8 +97,8 @@ interface AppState {
     setTimeMapIndex: (index: number) => void
     setMidHighlightElements: (elements: string[], replace: boolean) => void
 
-    setEditorialOverlays: (overlays: EditorialItem[], replace: boolean) => void
-    setShowingEditorial: (editorial: ShowingEditorial | null) => void
+    setEditorialItems: (overlays: EditorialItem[], replace: boolean) => void
+    setShowingEditorial: (editorial: string | null) => void
 
     setAppOptions: (options: string[], replace: boolean) => void
     setChoiceOptions: (options: string[], replace: boolean) => void
@@ -154,7 +134,7 @@ const useStoreBase = create<AppState>()((set) => ({
     midiHighlightStyles: '',
     section: null,
     isLoading: false,
-    editorialOverlays: [],
+    editorialItems: [],
     showingEditorial: null,
     appOptions: [],
     choiceOptions: [],
@@ -193,9 +173,9 @@ const useStoreBase = create<AppState>()((set) => ({
         midiHighlightElements: replace ? elements : [...state.midiHighlightElements, ...elements]
     })),
 
-    setEditorialOverlays: (overlays: EditorialItem[], replace: boolean) => set((state) => ({
-        editorialOverlays: replace ? overlays : [...state.editorialOverlays, ...overlays]})),
-    setShowingEditorial: (editorial: ShowingEditorial | null) => set((_) => ({ showingEditorial: editorial })),
+    setEditorialItems: (items: EditorialItem[], replace: boolean) => set((state) => ({
+        editorialItems: replace ? items : [...state.editorialItems, ...items]})),
+    setShowingEditorial: (editorial: string | null) => set((_) => ({ showingEditorial: editorial })),
 
     setAppOptions: (options: string[], replace: boolean) => set((state) => ({
         appOptions: replace ? options :  [...state.appOptions, ...options] })),
@@ -203,7 +183,8 @@ const useStoreBase = create<AppState>()((set) => ({
         choiceOptions: replace ? options: [...state.choiceOptions, ...options] })),
 
     setHighlights: (highlights: { [key: string]: Highlight }) => set((_) => ({ highlights: highlights })),
-    setSection: (section: string | null) => set((_) => ({ section: section }))
+    setSection: (section: string | null) => set((_) => ({ section: section })),
+
 
 }));
 
