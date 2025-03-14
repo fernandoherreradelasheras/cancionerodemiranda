@@ -289,13 +289,12 @@ function Verovio({ className = '' }: VerovioProps) {
 
             <PlayingNotesStyle />
 
-            <div {...swipeHandlers}>
                 <div
                     className='verovio-container'
                     ref={containerRef}
                     style={{ minHeight: `${MINIMUM_RENDER_SIZE}px`  }}
                     >
-
+                <div {...swipeHandlers}>
                     { scoreSvg ? (
                         <div ref={verovioSvgContainerRef}
                             className="score-svg-wrapper"
