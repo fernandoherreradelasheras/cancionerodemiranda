@@ -138,7 +138,10 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                 const editorialItems = analyzer.getEditorial()
 
                 setScore(score);
-                setScoreProperties(scoreProperties)
+                setScoreProperties(
+                    {...scoreProperties,
+                        encodedTransposition: tono.transposition,
+                    })
                 setEditorialItems(editorialItems, true)
                 setScoreAudioFile(tono.mp3_file)
             }).catch(error => {

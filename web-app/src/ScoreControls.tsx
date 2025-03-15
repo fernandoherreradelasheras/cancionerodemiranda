@@ -39,6 +39,9 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
     const scoreAudioFile = useStore.use.scoreAudioFile()
     const scoreSvg = useStore.use.scoreSvg()
 
+    const transposition = useStore.use.transposition()
+    const setTransposition = useStore.use.setTransposition()
+
     const [openDrawer, setOpenDrawer] = useState(false);
 
     const showDrawer = () => {
@@ -59,6 +62,13 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
     const editorialDisabled = scoreProperties == null || !scoreProperties.hasEditorial
     const fictaSwictchDisabled = scoreProperties == null || !scoreProperties.hasFicta
 
+    const getReverseTransposition = (transposition?: string) => {
+        if (transposition == "-P4") {
+            return "P4"
+        }
+        return ""
+    }
+
 
     return (
         <div>
@@ -73,6 +83,16 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
                         <Switch value={normalizeFicta} defaultValue={false} disabled={fictaSwictchDisabled} onChange={() => setNormalizeFicta(!normalizeFicta)} />
                         <span>Normalizar alteraciones ficta</span>
                     </Space>
+                    { scoreProperties?.encodedTransposition ?
+                        <Space>
+                            <Switch value={transposition != null}
+                                defaultValue={false}
+                                disabled={!scoreProperties?.encodedTransposition}
+                                onChange={() => setTransposition(transposition == null ?
+                                                    getReverseTransposition(scoreProperties.encodedTransposition)
+                                                    : null)}/>
+                            <span>Mostrar partitura sin transposición (tranposición codificada: {scoreProperties.encodedTransposition})</span>
+                        </Space> : null }
 
                     {verseOptions.length > 0 ? (
                         <Space>
