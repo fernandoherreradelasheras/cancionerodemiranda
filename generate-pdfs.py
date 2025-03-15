@@ -257,8 +257,8 @@ def count_content_for_section(section, blocks_to_inject):
     first_stanza_end=contents.find("\n\n")
     contents = contents[first_stanza_end+2:-1]
 
-    stanzas = contents.count('\n\n')
-    lines = contents.count('\n') - stanzas
+    stanzas = 1 + contents.count('\n\n')
+    lines = contents.count('\n') - stanzas - 1
     print(f'section {section} -> lines: {lines}  stanzas: {stanzas}')
     return lines, stanzas
 
