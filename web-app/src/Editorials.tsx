@@ -223,8 +223,6 @@ function Editorials() {
         }
     }, [scoreSvg])
 
-
-
     return (
         <div>
 
@@ -238,9 +236,9 @@ function Editorials() {
                         <Button type="primary" onClick={() => setShowingEditorial(null)}>Ok</Button>
                     }>
 
-                    {getAnnotationText(showingEditorialItem!)}
                     {showingEditorialItem!.reason != "" ? <p>{`Razon: ${showingEditorialItem!.reason}`}</p> : ""}
                     {showingEditorialItem!.resp != "" ? <p>{`Responsable: ${showingEditorialItem!.resp}`}</p> : ""}
+                    {getAnnotationText(showingEditorialItem!)}
                     {getChoices(showingEditorialItem!)}
                 </Modal> : null}
 
