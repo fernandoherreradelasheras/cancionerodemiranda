@@ -9,7 +9,8 @@ export type ScoreProperties = {
     editor: string,
     sections: {label: string, id: string}[],
     notes: string[],
-    hasEditorial: boolean
+    hasEditorial: boolean,
+    encodedTransposition?: string
 }
 
 export interface EditorialItem {
@@ -70,7 +71,9 @@ interface AppState {
 
     scoreAudioFile: string | null
 
-    highlights: { [key: string]: Highlight },
+    highlights: { [key: string]: Highlight }
+
+    transposition: string | null
 
     setScore: (score: string | null) => void
     setScoreProperties: (scoreProperties: ScoreProperties|null) => void
@@ -105,6 +108,8 @@ interface AppState {
 
     setHighlights: (highlights: { [key: string]: Highlight }) => void
     setSection: (section: string | null) => void
+
+    setTransposition: (transposition: string | null) => void
 
 }
 
@@ -141,6 +146,8 @@ const useStoreBase = create<AppState>()((set) => ({
 
     scoreAudioFile: null,
     highlights:{} as { [key: string]: Highlight },
+
+    transposition: null,
 
     setScore: (score: string|null) => set((_) => ({ score: score, currentPage: 1, anchorElementId: null })),
     setScoreProperties: (scoreProperties: ScoreProperties|null) => set((_) => ({
@@ -185,6 +192,7 @@ const useStoreBase = create<AppState>()((set) => ({
     setHighlights: (highlights: { [key: string]: Highlight }) => set((_) => ({ highlights: highlights })),
     setSection: (section: string | null) => set((_) => ({ section: section })),
 
+    setTransposition: (transposition: string | null) => set((_) => ({ transposition: transposition })),
 
 }));
 

@@ -87,6 +87,8 @@ function Verovio({ className = '' }: VerovioProps) {
     const section = useStore.use.section()
     const setSection = useStore.use.setSection()
 
+    const transposition = useStore.use.transposition()
+
     const scoreViewerRef = useRef<HTMLDivElement | null>(null)
     const [containerRef, { width: containerWidth, height: containerHeight }] = useMeasure<HTMLDivElement>()
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
@@ -123,7 +125,8 @@ function Verovio({ className = '' }: VerovioProps) {
             choiceXPathQuery: Object.values(choiceOptions) as string[],
             pageHeight: dimensions.height,
             pageWidth: dimensions.width,
-            scale: zoomToVerovioScale(zoom)
+            scale: zoomToVerovioScale(zoom),
+            transpose: transposition != null ? transposition : ""
         }
         verovio.setOptions(options)
         verovio.loadData(score)
@@ -190,7 +193,7 @@ function Verovio({ className = '' }: VerovioProps) {
         }
         renderScore()
 
-    }, [verovio, filteredScore, appOptions, choiceOptions])
+    }, [verovio, filteredScore, appOptions, choiceOptions, transposition])
 
 
     // Effect to trigger rendering on page changed
