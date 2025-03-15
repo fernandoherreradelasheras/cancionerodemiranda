@@ -37,6 +37,7 @@ const verovioBaseOptions: VerovioOptions = {
     shrinkToFit: true,
     spacingLinear: 0.25,
     spacingNonLinear: 0.6,
+    mdivAll: true,
     svgHtml5: false,
     svgViewBox: false,
     svgRemoveXlink: false,
