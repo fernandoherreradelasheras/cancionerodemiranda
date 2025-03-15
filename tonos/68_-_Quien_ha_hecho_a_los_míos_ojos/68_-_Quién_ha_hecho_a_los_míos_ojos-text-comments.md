@@ -1,3 +1,2 @@
-Quién cambió[^1] mi libertad
-
-[^1]: en el original "trocó"
+**5 trocar**: Permútar, o dar una cosa por otra, transfiriendo reciprocamente el dominio de ella. (Diccionario de Autoridades)  
+**16**: _a do_ en el original que adaptamos por donde
