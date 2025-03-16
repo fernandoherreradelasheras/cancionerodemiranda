@@ -29,6 +29,18 @@ Aparece citado en diversas obras teatrales de la época:
 Esta última referencia de la Academia de los Singulares presenta otras conexciones con el Cancionero de Miranda. No solo que uno de sus miembros más destacados fuera Antonio Marques Lesbio de quien el cancionero incluye varias obras, sino que en la misma página donde se cita "Venganza, griegos repite", aparece otro verso, "_dejen morirme de triste_" que estaba escrito en uno de los folios anexos del libro de guión y que encontramos completo en el Cancionero Poético Musical Hispano de Lisboa. Y si no remontamos a la página anterior citan al personaje de Leandro cantando una cuarteta que termina con otro versos de uno de los tonos del Cancionero de Miranda: "_A los encuentros del aire_"
 
 
+Finalmente, constatamos la popularidad de "Venganza, griegos, repite" a través de un villancico cantado en la catedral de Toledo en 1655 con música de Tomás Miciezes (que desgraciadamente no se conserva): ***Tolibiyo, Baltolo***. En él, los protagonistas proponen cantar un _toniyo_ para alegarar a Flasiquiya y estos son los que dan a elegir: 
+
+* Gigante Cristalino[^1] 
+* "Brancos" penachos de escarcha[^2]
+* A los azotes del aire[^3]
+* "Venganza, griegos, Venganza"
+
+
+[^1]: del Libro de Tonos Humanos, de Manuel Correa.
+[^2]:  (probablemente "Altos penachos de escarcha", conservado en la Hispanic Society. HSA, Ms. HC. 380/824a/62)
+[^3]: Con ese título aparece en una comedia de Moreto. Tanto el título como los versos (A los azotes del aire / gemía el cristal de Tormes, / saltando de plata / riza un penacho en cada azote)  parecen ser una variación de uno de los tonos del Cancionero de Miranda, el nº43 ( _A los encuentros del aire / bramava el cristal del Tajo / oponiendo en su defensa / a cada encuentro un peñasco_) 
+
 Textos
 
 Jerónimo Nieto:
