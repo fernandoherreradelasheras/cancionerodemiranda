@@ -24,7 +24,7 @@ const About = () => (
             de voces utilizados.</p>
 
         <p>El <NavLink to="/tonos">listado de tonos</NavLink>, accesible también desde el menú la
-        barra lateral de la izquierda, muestra el estado de cada uno de los tonos y permite acceder
+        barra superior, muestra el estado de cada uno de los tonos y permite acceder
         a textos y partituras, e imágenes de los manuscritos. Además se incluye una versión imprimible
         de todo el contenido, similar en aspecto al de una posible edición en papel.</p>
     </section>
