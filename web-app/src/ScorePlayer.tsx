@@ -15,6 +15,15 @@ const ACTIVE_MEASURE_OPACITY = "1"
 const ALMOST_ACTIVE_MEASURE_OPACITY = "0.6"
 const INACTIVE_MEASURE_OPACITY = "0.3"
 
+type TimeMapEvent = {
+    on?: string[],
+    off?: string[],
+    measureOn?: string,
+    qstamp: number,
+    tstamp: number,
+    tempo?: number,
+}
+
 
 const options: VerovioOptions = {
     breaks: 'auto',
@@ -45,7 +54,7 @@ const options: VerovioOptions = {
     transpose: ""
 }
 
-const getAudioDurationMillis = (timemap: any[]) => {
+const getAudioDurationMillis = (timemap: TimeMapEvent[]) => {
     const ts = timemap.at(-1)?.tstamp || 0
     return ts
 }
@@ -66,7 +75,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
     const [pageWidth, setPageWidth] = useState(10000)
     const [renderedWidth, setRenderedWidth] = useState(10000)
 
-    const [timeMap, setTimeMap] = useState<any[]>([])
+    const [timeMap, setTimeMap] = useState<TimeMapEvent[]>([])
 
     const [svg, setSvg] = useState<string>("")
     const [animationControl, setAnimationControl] = useState<any>(null)
@@ -104,7 +113,6 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
 
         // Create keyframes for WAAPI
         const keyframes: Keyframe[] = []
-        let measuresPending: { id: string, ts: number }[] = []
 
         const measuresOn = timeMap
             .filter((e) => e.measureOn !== undefined)
@@ -123,9 +131,6 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                     transform: `translateX(${xPosition}px)`,
                     offset: measure.ts / audioDuration
                 })
-            } else {
-                console.log(`measure ${measure.id} not found on page `)
-                measuresPending.push({ id: measure.id, ts: measure.ts })
             }
         })
 
@@ -289,20 +294,18 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                 // on a following playingPosition update and it's nice
                 // to have it
                 var i = 0
-                while  ((parseInt(timeMap[i]['tstamp'])) <= event.value) {
+                while  ((timeMap[i].tstamp) <= event.value) {
                     i++
                 }
                 var nextElements = undefined
                 while (nextElements == undefined) {
-                    nextElements = timeMap[i]?.['on']
+                    nextElements = timeMap[i]?.on
                     i++
                 }
                 if (nextElements) {
                     setMidHighlightElements(nextElements)
                 }
             }
-
-
         }
     }
 
@@ -311,8 +314,8 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
         var offElements: string[] = Array()
 
         var i = timeMapIndex
-        while (parseInt(timeMap[i]['tstamp']) <= playMilis && i < timeMap.length - 1) {
-            const off = timeMap[i]['off']
+        while (timeMap[i].tstamp <= playMilis && i < timeMap.length - 1) {
+            const off = timeMap[i].off
             if (off != undefined) {
                 offElements = offElements.concat(off)
                 for (let e of off) {
@@ -322,7 +325,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                     }
                 }
             }
-            const on = timeMap[i]['on']
+            const on = timeMap[i].on
             if (on != undefined) {
                 onElements = onElements.concat(on)
             }
