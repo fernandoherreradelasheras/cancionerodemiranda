@@ -51,16 +51,12 @@ interface AppState {
     currentPage: number
     anchorElementId: string | null
     scoreSvg: string | null
-    timeMap: any[]
-    timeMapIndex: number
     loadedMeiDoc: Document | null
     hoverMeasure: number | null
     selectedMeasure: number | null
     showNVerses: number
     showEditorial: boolean
     normalizeFicta: boolean
-    midiHighlightElements: string[]
-    midiHighlightStyles: string
     section: string | null
     isLoading: boolean
     editorialItems: EditorialItem[]
@@ -69,11 +65,12 @@ interface AppState {
     appOptions: string[]
     choiceOptions: string[]
 
-    scoreAudioFile: string | null
-
     highlights: { [key: string]: Highlight }
 
     transposition: string | null
+
+    playing: boolean
+    playingPosition: number
 
     setScore: (score: string | null) => void
     setScoreProperties: (scoreProperties: ScoreProperties|null) => void
@@ -95,11 +92,6 @@ interface AppState {
     setShowEditorial: (showEditorial: boolean) => void
     setNormalizeFicta: (normalizeFicta: boolean) => void
 
-    setScoreAudioFile: (audioFile: string | null) => void
-    setTimeMap: (timeMap: any[], replace: boolean) => void
-    setTimeMapIndex: (index: number) => void
-    setMidHighlightElements: (elements: string[], replace: boolean) => void
-
     setEditorialItems: (overlays: EditorialItem[], replace: boolean) => void
     setShowingEditorial: (editorial: string | null) => void
 
@@ -110,6 +102,9 @@ interface AppState {
     setSection: (section: string | null) => void
 
     setTransposition: (transposition: string | null) => void
+
+    setPlaying: (playing: boolean) => void
+    setPlayingPosition (position: number): void
 
 }
 
@@ -129,14 +124,10 @@ const useStoreBase = create<AppState>()((set) => ({
     showNVerses: 0,
     showEditorial: false,
     normalizeFicta: false,
-    timeMap: [],
-    timeMapIndex: 0,
     loadedMeiDoc: null,
     anchorElementId: null,
     hoverMeasure: null,
     selectedMeasure: null,
-    midiHighlightElements: [],
-    midiHighlightStyles: '',
     section: null,
     isLoading: false,
     editorialItems: [],
@@ -144,10 +135,12 @@ const useStoreBase = create<AppState>()((set) => ({
     appOptions: [],
     choiceOptions: [],
 
-    scoreAudioFile: null,
     highlights:{} as { [key: string]: Highlight },
 
     transposition: null,
+
+    playing: false,
+    playingPosition: 0,
 
     setScore: (score: string|null) => set((_) => ({ score: score, currentPage: 1, anchorElementId: null })),
     setScoreProperties: (scoreProperties: ScoreProperties|null) => set((_) => ({
@@ -171,15 +164,6 @@ const useStoreBase = create<AppState>()((set) => ({
     setShowEditorial: (showEditorial: boolean) => set((_) => ({ showEditorial: showEditorial })),
     setNormalizeFicta: (normalizeFicta: boolean) => set((_) => ({ normalizeFicta: normalizeFicta })),
 
-    setScoreAudioFile: (audioFile: string | null) => set((_) => ({ scoreAudioFile: audioFile })),
-    setTimeMap: (elements: any[], replace: boolean) => set((state) => ({
-        timeMap: replace ? elements : [...state.timeMap, ...elements],
-        timeMapIndex: 0 })),
-    setTimeMapIndex: (index: number) => set((_) => ({ timeMapIndex: index })),
-    setMidHighlightElements: (elements: string[], replace: boolean) => set((state) => ({
-        midiHighlightElements: replace ? elements : [...state.midiHighlightElements, ...elements]
-    })),
-
     setEditorialItems: (items: EditorialItem[], replace: boolean) => set((state) => ({
         editorialItems: replace ? items : [...state.editorialItems, ...items]})),
     setShowingEditorial: (editorial: string | null) => set((_) => ({ showingEditorial: editorial })),
@@ -193,6 +177,10 @@ const useStoreBase = create<AppState>()((set) => ({
     setSection: (section: string | null) => set((_) => ({ section: section })),
 
     setTransposition: (transposition: string | null) => set((_) => ({ transposition: transposition })),
+
+    setPlaying: (isPlaying: boolean) => set((_) => ({ playing: isPlaying })),
+
+    setPlayingPosition: (position: number) => set((_) => ({ playingPosition: position })),
 
 }));
 

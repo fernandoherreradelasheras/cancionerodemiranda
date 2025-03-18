@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -8,32 +8,48 @@ import { Flex, Slider, SliderSingleProps, theme } from "antd";
 import useStore from "./store";
 
 
+export enum PlayerEventType {
+    ERROR,
+    SEEK
+}
+
+export type PlayerEvent = {
+    type: PlayerEventType,
+    value?: any
+}
 
 const str2padded = (n: number) => (Math.floor(n)).toString().padStart(2, '0')
 
-const formatTime = (secs: number) => `${str2padded(secs / 60)}:${str2padded(secs % 60)}`
+const formatTime = (millis: number) => {
+    const mins = str2padded(millis / 1000 / 60)
+    const secs = str2padded((millis / 1000) % 60)
+    //console.log(`formatTime: ${millis} -> ${mins}:${secs}`)
+    return `${mins}:${secs}`
+ }
 
 const formatter: NonNullable<SliderSingleProps['tooltip']>['formatter'] = (value) => formatTime(value ? value : 0)
 
 library.add(faPause, faPlay)
 
 
-function AudioPlayer ({ enabled } : {
-    enabled: boolean,
+function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
+    audioSrc: string,
+    timeMap: any[],
+    onPlayerEvent: (event: PlayerEvent) => void,
 }) {
 
     const [canPlay, setCanPlay] = useState(false)
-    const [isPlaying, setIsPlaying] = useState(false)
     const [seekValue, setSeekValue] = useState(0)
+    const [timeString, setTimeString] = useState("00:00 / 00:00")
+
+    const playing = useStore.getState().playing
+    const setPlaying = useStore.getState().setPlaying
+    const playingPosition = useStore.getState().playingPosition
+    const setPlayingPosition = useStore.use.setPlayingPosition()
+
 
     const audioRef = useRef<HTMLAudioElement>(null)
 
-    const src = useStore.use.scoreAudioFile()
-    const timeMap = useStore.use.timeMap()
-    const timeMapIndex = useStore.use.timeMapIndex()
-    const setTimeMapIndex = useStore.use.setTimeMapIndex()
-    const midiHighlightElements = useStore.use.midiHighlightElements()
-    const setMidHighlightElements = useStore.use.setMidHighlightElements()
 
     const {
         token: { colorPrimary },
@@ -41,54 +57,37 @@ function AudioPlayer ({ enabled } : {
 
 
 
-    const play = () => {
-        setIsPlaying(!isPlaying)
-    }
-
     const onCanPlay = (_: any) => {
-        setCanPlay(true)
+        if (timeMap.length > 0 && !canPlay) {
+            setCanPlay(true)
+        }
     }
 
     const onTimeUpdate = (e: any)  => {
-        var onElements : string[] = Array()
-        var offElements : string[]  = Array()
-        const playTime = Math.floor(e.target.currentTime * 1000)
-        var i = timeMapIndex
+        if (timeMap == null || timeMap.length == 0) {
+            return
+        }
+        const playSecs = e.target.currentTime
+        const playMilis = playSecs * 1000
 
-        const updatedTimeMap = (i == 0)
-        if (i == 0) {
-            while  (parseInt(timeMap[i]['tstamp']) < playTime) {
-                i++
+
+        if (playMilis > timeMap[timeMap.length - 1]['tstamp']) {
+            console.log(`Got a time update: ${e.target.currentTime} above the last entry in the timemap. Do audio end`)
+            if (audioRef.current) {
+                audioRef.current.pause()
+                audioRef.current.currentTime = 0
             }
+            onAudioEnded(e)
+            return
         }
 
-        while  (parseInt(timeMap[i]['tstamp']) <= playTime) {
-            const off = timeMap[i]['off']
-            if (off != undefined) {
-                offElements = offElements.concat(off)
-                for (e of off) {
-                    const foundInOnElements = onElements.indexOf(e);
-                    if (foundInOnElements > -1) {
-                        onElements.splice(foundInOnElements, 1);
-                    }
-                }
-            }
-            const on = timeMap[i]['on']
-            if (on != undefined) {
-                onElements = onElements.concat(on)
-            }
-            i++
-        }
-        setTimeMapIndex(i)
 
-        const highlightElements = updatedTimeMap ? onElements : midiHighlightElements.filter(e => !offElements.includes(e)).concat(onElements)
-        setMidHighlightElements(highlightElements, true)
+        setPlayingPosition(playMilis)
     }
 
     const onAudioEnded = (_: any) => {
-        setTimeMapIndex(0)
-        setIsPlaying(false)
-        setMidHighlightElements([], true)
+        setPlayingPosition(0)
+        setPlaying(false)
     }
 
     const onSeek = (newSecs: number) => {
@@ -97,65 +96,72 @@ function AudioPlayer ({ enabled } : {
         }
 
         audioRef.current.currentTime = newSecs
-        var i = 0
-        while  (Math.floor(parseInt(timeMap[i]['tstamp']) / 1000) <= newSecs) {
-            i++
-        }
-        setTimeMapIndex(i)
-        let nextElement
-        while ((nextElement = timeMap[i]?.on[0]) == undefined) {
-            i++
-        }
-        if (nextElement) {
-            // We are setting only the first highlight element on seek.
-            // In case we are playing all the element will be set on the next onTimeUpdate callback
-            // but not when we are in pause. But at least we get the viewer to the right page
-            setMidHighlightElements([nextElement], true)
-        }
+
     }
 
-    if (audioRef.current != null) {
-        if (isPlaying && audioRef.current.paused) {
-            audioRef.current.play()
-        } else if (!isPlaying && !audioRef.current.paused) {
-            audioRef.current.pause();
+    useEffect(() => {
+        if (audioRef.current != null) {
+            if (playing && audioRef.current.paused) {
+                audioRef.current.play()
+            } else if (!playing && !audioRef.current.paused) {
+                audioRef.current.pause();
+            }
         }
-    }
+    }, [playing])
 
-    const audioProgress = timeMap != null ? timeMapIndex / timeMap.length  : 0
-    const durationSecs = typeof audioRef.current?.duration == "number" && audioRef.current?.duration >= 0 ? Math.floor(audioRef.current?.duration) : 0
-    const durationStr = formatTime(durationSecs)
-    const currentTimeSecs = Math.floor(durationSecs * audioProgress) || 0
-    const currentTimeStr = formatTime(currentTimeSecs)
+    const durationTimemap = useMemo(() => {
+        const duration = timeMap.length > 0 ? timeMap[timeMap.length - 1]['tstamp'] : 0
+        return duration
+    }, [timeMap])
+
+
+    useEffect(() => {
+        // Use real file player duration to track the % progress
+        // But render to the UI the timemap duration, as that is our source of truth for seeking into elements and so
+        setSeekValue(playingPosition)
+
+        if (durationTimemap > 0) {
+            const durationStr = formatTime(durationTimemap)
+            const currentTimeStr = formatTime(playingPosition)
+
+            setTimeString(`${currentTimeStr} / ${durationStr}`)
+        }
+
+    }, [playingPosition, durationTimemap])
 
 
     return (
         <div className="audio-player" >
+
             <Flex gap="small" style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
 
-                <a className={`play-button${!canPlay || !enabled ? " disabled" : ""}`}
-                    onClick={play}>
+                <a className={`play-button${!canPlay ? " disabled" : ""}`}
+                    onClick={() => setPlaying(!playing) }>
                     <FontAwesomeIcon
                         color={colorPrimary}
                         className='clickable-icon'
                         fixedWidth
-                        icon={['fas', isPlaying ? "pause" : "play"]}
+                        icon={['fas', playing ? "pause" : "play"]}
                     />
                 </a>
-                <div style={{ display: "inline" }}>{currentTimeStr} / {durationStr}</div>
+                <div style={{ display: "inline" }}>{timeString}</div>
                 <Slider
                     style={{ minWidth: "100px" }}
                     min={0}
-                    max={durationSecs}
+                    max={durationTimemap}
                     tooltip={{ formatter }}
                     step={1}
-                    value={currentTimeSecs}
-                    onChange={v => setSeekValue(v) }
-                    onChangeComplete={_ => onSeek(seekValue)}/>
+                    value={seekValue}
+                    onChange={(v) => { console.log(`onChange ${v / 1000}`); setSeekValue(v) } }
+                    onChangeComplete={(v) => {
+                        console.log(`onChange complete seeking to ${v}`)
+                        onPlayerEvent({ type: PlayerEventType.SEEK, value: v })
+                        onSeek(v/1000)
+                    }}/>
             </Flex>
 
-            <audio ref={audioRef} src={src ? src : undefined  }
-                onError={(e)=> { console.log(e); setIsPlaying(false)}}
+            <audio ref={audioRef} src={audioSrc ? audioSrc : undefined  }
+                onError={(e)=> { console.log(e); onPlayerEvent({ type: PlayerEventType.ERROR, value: e })}}
                 onEnded={onAudioEnded}
                 onTimeUpdate={onTimeUpdate}
                 onCanPlayThrough={onCanPlay}/>

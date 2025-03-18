@@ -6,7 +6,7 @@ import Pdf from './Pdf'
 import { Context } from './Context'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
+import { faMusic, faFilePdf, faFileImage, faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Progress, ProgressProps, Row, Space, Spin, Tabs, TabsProps, Typography } from 'antd'
 import TextView from './TextView'
@@ -15,6 +15,8 @@ import Verovio from './Verovio'
 import useStore from "./store";
 import ScoreAnalyzer from './ScoreAnalyzer'
 import ScoreProcessor from './ScoreProcessor'
+import ScorePlayer from './ScorePlayer'
+import { SVG_FILTERS } from './svgutils'
 
 
 
@@ -80,7 +82,10 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
     const isLoading = useStore.use.isLoading()
 
-    const setScoreAudioFile = useStore.use.setScoreAudioFile()
+    const playing = useStore.use.playing()
+    const setPlaying = useStore.use.setPlaying()
+    const setPlayingPosition = useStore.use.setPlayingPosition()
+
 
     const setSection = useStore.use.setSection()
 
@@ -95,9 +100,6 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const mei_url = getTonoUrl(tono.path, tono.mei_file)
 
     const onClickSection = (id: string) => {
-        if (activeTab != "music") {
-            setActiveTab("music")
-        }
         setSection(id)
     }
 
@@ -113,10 +115,10 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
         // Reset state when tono changes
         setScore(null);
+        setPlayingPosition(0);
+        setPlaying(false);
 
         if (!tono.mei_file) return;
-
-
 
         if (scoreCache != undefined && scoreCache[mei_url] != undefined) {
             setScore(scoreCache[mei_url]);
@@ -143,12 +145,17 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                         encodedTransposition: tono.transposition,
                     })
                 setEditorialItems(editorialItems, true)
-                setScoreAudioFile(tono.mp3_file)
             }).catch(error => {
                 console.error("Failed to load MEI score:", error);
             });
         }
     }, [tono, mei_url]);
+
+    useEffect(() => {
+        if (playing && activeTab != "player") {
+            setPlaying(false)
+        }
+    }, [activeTab])
 
     // Music tab content with score loaded indicator
     const musicTabContent = (
@@ -185,6 +192,12 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             label: 'Música',
             icon: <FontAwesomeIcon icon={faMusic} />,
             children: musicTabContent
+        } : null,
+        tono.mp3_file ? {
+            key: 'player',
+            label: 'Player',
+            icon: <FontAwesomeIcon icon={faVolumeHigh} />,
+            children: <ScorePlayer audioSrc={tono.mp3_file} />
         } : null,
         {
             key: 'images',
@@ -251,6 +264,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                 </Col>
             </Row>
             <Tabs items={tabs} defaultActiveKey={defaultTab} activeKey={activeTab} onChange={(t) => setActiveTab(t)}/>
+            {SVG_FILTERS}
         </div>
     )
 }

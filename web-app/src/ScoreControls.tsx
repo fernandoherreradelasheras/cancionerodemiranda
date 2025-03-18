@@ -5,7 +5,6 @@ import SimpleIconButton from './SimpleIconButton';
 import { Scale } from './uidefs';
 import useStore from "./store";
 import { DefaultOptionType } from 'antd/es/select';
-import AudioPlayer from './AudioPlayer';
 
 
 interface ScoreControlProps {
@@ -35,9 +34,6 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
 
     const showEditorial = useStore.use.showEditorial()
     const setShowEditorial = useStore.use.setShowEditorial()
-
-    const scoreAudioFile = useStore.use.scoreAudioFile()
-    const scoreSvg = useStore.use.scoreSvg()
 
     const transposition = useStore.use.transposition()
     const setTransposition = useStore.use.setTransposition()
@@ -110,11 +106,11 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
             </Drawer>
 
         <Row  style={{ justifyContent: "left", backgroundColor: "white", padding: "0.2em" }}>
-            <Col xl={{flex: '30%'}}
-                 lg={{ flex: '30%' }}
-                 md={{ flex: '30%' }}
-                 sm={{ flex: '30%' }}
-                 xs={{ flex: '50%' }}>
+            <Col xl={{flex: '50%'}}
+                 lg={{ flex: '50%' }}
+                 md={{ flex: '50%' }}
+                 sm={{ flex: '50%' }}
+                 xs={{ flex: '100%' }}>
                 <Space direction='horizontal'>
                     <SimpleIconButton icon={faMagnifyingGlassMinus} onClick={zoomOut} />
                     <Slider
@@ -129,30 +125,18 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
                     <Button type="primary" onClick={showDrawer}>Opciones</Button>
                 </Space>
            </Col>
-           <Col xl={{flex: '40%'}}
-                 lg={{ flex: '40%' }}
-                 md={{ flex: '40%' }}
-                 sm={{ flex: '40%' }}
-                 xs={{ flex: '50%' }}>
+           <Col xl={{flex: '50%'}}
+                 lg={{ flex: '50%' }}
+                 md={{ flex: '50%' }}
+                 sm={{ flex: '50%' }}
+                 xs={{ flex: '100%' }}>
                 {pageCount > 1 ? (
                         <Pagination align="start" current={currentPageNumber}
                             defaultPageSize={1} total={pageCount} simple={false}
                             onChange={setPage} />
                     ) : null}
             </Col>
-            <Col xl={{flex: '30%'}}
-                 lg={{ flex: '30%' }}
-                 md={{ flex: '30%' }}
-                 sm={{ flex: '30%' }}
-                 xs={{ flex: '100%' }}>
-                {scoreAudioFile ?
-                    <AudioPlayer
-                        enabled={scoreSvg != null} />
-                    : null}
-            </Col>
         </Row>
-
-
 
         </div>
     );
