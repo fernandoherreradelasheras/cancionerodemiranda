@@ -6,8 +6,6 @@ import { Scale } from './uidefs'
 import useStore from "./store";
 import ScoreProcessor from './ScoreProcessor';
 import { getVerovioSvgExtraAttributes } from './hooks';
-import PlayingNotesStyle from './PlayingNotesStyle';
-import { SVG_FILTERS } from './svgutils';
 import ScoreAnalyzer from './ScoreAnalyzer';
 import { Context } from './Context';
 import Editorials from './Editorials';
@@ -80,10 +78,6 @@ function Verovio({ className = '' }: VerovioProps) {
     const appOptions = useStore.use.appOptions()
     const choiceOptions = useStore.use.choiceOptions()
 
-    const scoreAudioFile = useStore.use.scoreAudioFile()
-    const setTimeMap = useStore.use.setTimeMap()
-    const midiHighlightElements = useStore.use.midiHighlightElements()
-
     const section = useStore.use.section()
     const setSection = useStore.use.setSection()
 
@@ -130,10 +124,6 @@ function Verovio({ className = '' }: VerovioProps) {
         }
         verovio.setOptions(options)
         verovio.loadData(score)
-        if (scoreAudioFile) {
-            const tm = verovio.renderToTimemap({ includeMeasures: true })
-            setTimeMap(tm, true)
-        }
         return
     }
 
@@ -166,6 +156,7 @@ function Verovio({ className = '' }: VerovioProps) {
 
 
     useEffect(() => {
+        console.log("Container dimensions effect")
         if (!containerRef || !containerHeight || !containerWidth) return
         if (containerWidth < MINIMUM_RENDER_SIZE || containerHeight < MINIMUM_RENDER_SIZE) return
 
@@ -239,17 +230,6 @@ function Verovio({ className = '' }: VerovioProps) {
     }, [zoom, dimensions.width, dimensions.height])
 
 
-    useEffect(() => {
-        if (!verovio) return
-        for (let id of midiHighlightElements) {
-            const page = verovio.getPageWithElement(id)
-            if (page != undefined && page > 0 && page != currentPage) {
-                setCurrentPage(page)
-                return
-            }
-        }
-    }, [midiHighlightElements])
-
 
     const isFullScreen = () => scoreViewerRef.current != null &&
         (scoreViewerRef.current.ownerDocument.fullscreenElement == scoreViewerRef.current)
@@ -289,9 +269,7 @@ function Verovio({ className = '' }: VerovioProps) {
         <div ref={scoreViewerRef} className={`verovio-score-viewer ${className}`} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
 
             <VerovioControls
-                toggleFullScreen={handleFullScreenToggle} exitFullScreen={handleExitFullScreen} />
-
-            <PlayingNotesStyle />
+                toggleFullScreen={handleFullScreenToggle} exitFullScreen={handleExitFullScreen}/>
 
                 <div
                     className='verovio-container'
@@ -310,8 +288,6 @@ function Verovio({ className = '' }: VerovioProps) {
 
 
             {showEditorial ? <Editorials/> : null}
-
-            {SVG_FILTERS}
 
         </div>
     )

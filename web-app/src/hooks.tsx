@@ -39,17 +39,11 @@ export const getSvgSelectedMeasureStyle = (measure: number) =>
     `[data-n="${measure}"] .staff.bounding-box rect { fill:red;stroke:orange;stroke-width:50;fill-opacity:0.4;stroke-opacity:0.8; }\n`
 
 
-// Using the filter on the note bouding box gets the whole lyrics and can be quite confusing
-// But stem, is too thin to get really highlight with the svg filter, so...
-export const getSvgMidiHighlightStyle = (id: string) =>
-    `g#${id}.note .notehead { filter: var(--high);   }\n`    +
-    `g#${id}.note g.stem path { color: var(--hgcolor); stroke-width: 50;  }\n`
-
 
 export const getSvgEdirtorialHighlightStyle = (id: string, _: string) =>
     `g#${id}.note > .note.boundingbox > rect { fill:blue;stroke:rga(172, 32, 32);stroke-width:3;fill-opacity:0.1;stroke-opacity:0.9; }\n`
 
-export const getVerovioSvgExtraAttributes = () =>  [ "measure@n", "staff@n", "clef@corresp" ]
+export const getVerovioSvgExtraAttributes = () =>  [ "measure@n", "staff@n", "clef@corresp", "verse@n" ]
 
 export const SVG_STAFF_CSS_SELECTOR = 'svg g.staff.bounding-box'
 export const getStaffTooltipContent = (render: { content: string | null; activeAnchor: HTMLElement | null }) =>
