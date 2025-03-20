@@ -139,7 +139,7 @@ function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
                 </Button>
                 <div style={{ display: "inline" }}>{timeString}</div>
                 <Slider
-                    style={{ minWidth: "250px" }}
+                    style={{ minWidth: "200px" }}
                     min={0}
                     max={durationTimemap}
                     tooltip={{ formatter }}

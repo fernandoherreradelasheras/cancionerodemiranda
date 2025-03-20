@@ -1,8 +1,3 @@
-y[^1] nunca veis los peligros. si la fe la[^2] desconoce decid[^3]
-adónde, deseos,
-
-[^1]: "mas" en CPMHL-71
-
-[^2]: "los" en CPMHL-71
-
-[^3]: "decidme" en CPMHL-71
+**8**: _mas nunca veis_ en CPMHL-71  
+**11**: _los desconoce_ en CPMHL-71  
+**19**: _decidme_ en CPMHL-71
