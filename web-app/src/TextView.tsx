@@ -3,6 +3,7 @@ import { TonoDef, TranscriptionEntry, getTonoUrl } from "./utils"
 import { useEffect, useState } from 'react'
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from 'rehype-raw'
 
 
 const getText = async (url: string) => {
@@ -26,6 +27,7 @@ function TextView({ tono }: { tono: TonoDef }) {
     useEffect(() => {
         const fetchText = async () => {
             var newText = "";
+            var lineNumber = 0
             for (let transcription of tono.text_transcription) {
                 newText += getTitle(transcription)
                 const url = getTonoUrl(tono.path, transcription.file)
@@ -34,7 +36,12 @@ function TextView({ tono }: { tono: TonoDef }) {
                     if (line == "") {
                         newText = newText.slice(0, -2) + "\n\n"
                     } else {
-                        newText += `*${line}*\\\n`
+                        lineNumber += 1
+                        if (lineNumber % 5 == 0) {
+                            newText += `*${line}*<span style="float: right; margin-right: -20px;" > ${lineNumber}</span>\\\n`
+                        } else {
+                            newText += `*${line}*\\\n`
+                        }
                     }
                 }
             }
@@ -49,8 +56,10 @@ function TextView({ tono }: { tono: TonoDef }) {
     }, []);
 
     return (
-        <div>
-            <Markdown remarkPlugins={[remarkGfm]}>{text}</Markdown>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div className="text-view">
+            <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{text}</Markdown>
+        </div>
         </div>
     )
 }

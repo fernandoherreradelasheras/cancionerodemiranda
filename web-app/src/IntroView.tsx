@@ -27,10 +27,10 @@ function IntroView({ tono }: { tono: TonoDef }) {
     }, []);
 
     return (
-        <div>
+        <div style={{ maxWidth: "1200px"}}>
             <Markdown remarkPlugins={[remarkGfm]}>{intro}</Markdown>
         </div>
-        
+
     )
 }
 export default IntroView

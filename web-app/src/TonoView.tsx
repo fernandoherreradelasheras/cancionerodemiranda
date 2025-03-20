@@ -17,6 +17,7 @@ import ScoreAnalyzer from './ScoreAnalyzer'
 import ScoreProcessor from './ScoreProcessor'
 import ScorePlayer from './ScorePlayer'
 import { SVG_FILTERS } from './svgutils'
+import { useOrientation } from 'react-use'
 
 
 
@@ -93,6 +94,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
     const { scoreCache, setScoreCache } = useContext(Context)
 
+    const orientation = useOrientation();
+
 
     const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tono.status_text)
     const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tono.status_music)
@@ -157,7 +160,6 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         }
     }, [activeTab])
 
-    // Music tab content with score loaded indicator
     const musicTabContent = (
         <div style={{
             height: 'calc(100vh - 250px)',
@@ -165,16 +167,10 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             flexDirection: 'column',
             position: 'relative'
         }}>
-
             <Verovio className="score-viewer" />
-
-            {score == null || isLoading ? (
-                <div className="loading-spinner-parent">
-                    <Spin size="large" />
-                </div>
-            ) : null }
         </div>
     );
+
 
     const tabs: TabsProps['items'] = [
         tono.introduction ? {
@@ -197,7 +193,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             key: 'player',
             label: 'Player',
             icon: <FontAwesomeIcon icon={faVolumeHigh} />,
-            children: <ScorePlayer audioSrc={tono.mp3_file} />
+            children: <ScorePlayer key={`${orientation.type}_${orientation.angle}`} audioSrc={tono.mp3_file} />
         } : null,
         {
             key: 'images',
@@ -217,6 +213,11 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
     return (
         <div key={tono.number}>
+        {score == null || isLoading ? (
+        <div className="loading-spinner-parent">
+            <Spin size="large" />
+        </div>
+        ) : null}
         <Row  style={{ justifyContent: "space-between", backgroundColor: "white", padding: "0.2em" }}>
             <Col xl={{flex: '25%'}}
                  lg={{ flex: '25%' }}

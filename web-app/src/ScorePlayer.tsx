@@ -5,11 +5,11 @@ import { getVerovioSvgExtraAttributes } from "./hooks";
 import AudioPlayer, { PlayerEvent, PlayerEventType } from "./AudioPlayer";
 import useVerovio from "./hooks/useVerovio";
 import ScoreProcessor from "./ScoreProcessor";
-import { Spin } from "antd";
 import { SVG_STYLE_RULES } from "./svgutils";
+import { useSize } from 'react-haiku';
+
 
 const RENDERING_WIDTH_LIMIT = 12000
-const DEFAULT_HEIGHT = 1000
 
 const ACTIVE_MEASURE_OPACITY = "1"
 const ALMOST_ACTIVE_MEASURE_OPACITY = "0.6"
@@ -58,7 +58,6 @@ const options: VerovioOptions = {
     lyricVerseCollapse: true,
     smuflTextFont: "none",
     svgAdditionalAttribute: getVerovioSvgExtraAttributes(),
-    pageHeight:  DEFAULT_HEIGHT,
     scale: 100,
     transpose: ""
 }
@@ -73,7 +72,12 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
     const loading = useStore.use.isLoading()
     const setLoading = useStore.use.setIsLoading()
     const playing = useStore.use.playing()
+    const setPlaying = useStore.use.setPlaying()
+
     const playingPosition = useStore.use.playingPosition()
+
+    // We don't re-render on size changes because it's too expensive,
+    // only on screen orientation change
 
     const scopeRef = useRef<HTMLDivElement>(null)
     const animationRef = useRef<Animation | null>(null)
@@ -87,6 +91,8 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
     const [animationControl, setAnimationControl] = useState<any>(null)
 
     const playerViewportRef = useRef<HTMLDivElement>(null)
+    const { height: viewportHeight } = useSize(playerViewportRef)
+
     const svgContainerRef = useRef<HTMLDivElement>(null)
 
     const [activeMeasure, setActiveMeasure] = useState<string | null>(null)
@@ -97,7 +103,6 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
 
     useLayoutEffect(() => {
         // TODO: See what we can move from here to an effect
-
         if (!timeMap || timeMap.length === 0 || !scopeRef.current || !playerViewportRef.current || !svgContainerRef.current) {
             return
         }
@@ -105,8 +110,6 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
         if (!loading)   {
             return
         }
-
-        console.log("Calculating keyframes for page", page)
 
         const viewportBB = playerViewportRef.current.getBoundingClientRect()
 
@@ -141,6 +144,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                 })
             }
         })
+
 
 
         if (page == Object.values(pageMap).length) {
@@ -224,19 +228,29 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
 
 
     // Load and render score
-    useEffect(() => {
-        if (score && verovio) {
+    useLayoutEffect(() => {
+        if (score && verovio && viewportHeight > 0) {
+            setLoading(true)
+
+            if (playing) {
+                setPlaying(false)
+            }
+
             const scoreProcessor = new ScoreProcessor(score)
             scoreProcessor.addNVersesFilter(1)
             const processedScore = scoreProcessor.filterScore()
             setMidHighlightElements([])
 
             const width = RENDERING_WIDTH_LIMIT
-            verovio.setOptions({ ...options, pageWidth: width })
+            verovio.setOptions({ ...options,
+                pageWidth: width,
+                pageHeight: viewportHeight,
+             })
             verovio.loadData(processedScore)
             const pageCount = verovio.getPageCount()
 
-            console.log(`loaded score with width: ${RENDERING_WIDTH_LIMIT}, pageCount: ${pageCount}`)
+
+            console.log(`loaded score with width=${RENDERING_WIDTH_LIMIT}, height=${viewportHeight}, pageCount=${pageCount}`)
 
             const timemap = verovio.renderToTimemap({ includeMeasures: true })
             const pagemap: PageMap = {}
@@ -250,7 +264,6 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                 }
             })
             setTimeMap(timemap)
-
             for (let i = 1; i <= pageCount; i++) {
                 console.log(`pre-rendering page ${i}`)
                 const svgStr = verovio.renderToSVG(i)
@@ -260,14 +273,15 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                 pagemap[i].renderedWidth = renderedWidth
 
             }
-            setLoading(true)
             setPageMap(pagemap)
             setPage(1)
         } else {
             setTimeMap([])
             setPageMap({})
+            setLoading(true)
         }
     }, [score, verovio])
+
 
     // While playing, update page, active measures and midi highlights based on current playback position
     useEffect(() => {
@@ -416,6 +430,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
 
     return (
         <div>
+
           <style>
               {`
                 ${inactiveStyle}
@@ -430,20 +445,12 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                 timeMap={timeMap}
                 onPlayerEvent={handlePlayerEvent}
             />
-
-            {loading ? (
-                <div className="loading-spinner-parent">
-                    <Spin size="large" />
-                </div>
-            ) : null}
-
-            <div ref={playerViewportRef} className="player-viewport" style={{  width: "100%", height: "auto", minHeight: `${DEFAULT_HEIGHT}`, overflow: "clip" }}>
+            <div ref={playerViewportRef} className="player-viewport" style={{ width: "100%",  height: 'min(80vh, 800px)', overflow: "clip" }}>
                 <div className="animating" ref={scopeRef} style={{ willChange: "transform" }}>
                     {page > 0 ? <div className="new-player-container"
                         ref={svgContainerRef}
                         style={{
                             width: `${pageMap[page].renderedWidth}px`,
-                            height: `${DEFAULT_HEIGHT}px`,
                             willChange: "transform",
                             transform: 'translateZ(0)',  // Force GPU acceleration
                         }}
@@ -451,6 +458,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                     /> : null}
                 </div>
             </div>
+
         </div>
     )
 }
