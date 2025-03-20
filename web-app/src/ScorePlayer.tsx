@@ -64,7 +64,7 @@ const options: VerovioOptions = {
 }
 
 const getAudioDurationMillis = (timemap: TimeMapEvent[]) => {
-    const ts = timemap.at(-1)?.tstamp || 0
+    const ts = timemap[timemap.length-1].tstamp || 0
     return ts
 }
 
@@ -147,7 +147,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
             // As timemap does not includes the notesOff for the
             // last notes the last element takes the remaining time.
             // So we just move the last element to the end of the time
-            keyframes.at(-1)!.offset = 1
+            keyframes[keyframes.length - 1]!.offset = 1
         }
         const updatedPageMap = {
             ...pageMap,
@@ -172,7 +172,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
             if (p < Object.values(updatedPageMap).length - 1) {
                 const nextPageOffset = updatedPageMap[p+1].keyframes[0].offset!
                 allKeyFrames.push({
-                    transform: updatedPageMap[p].keyframes.at(-1)?.transform,
+                    transform: updatedPageMap[p].keyframes[updatedPageMap[p].keyframes.length - 1]?.transform,
                     offset:  nextPageOffset - 0.0001
                 })
             }
