@@ -8,7 +8,7 @@ import ScoreProcessor from "./ScoreProcessor";
 import { Spin } from "antd";
 import { SVG_STYLE_RULES } from "./svgutils";
 
-const RENDERING_WIDTH_LIMIT = 22000
+const RENDERING_WIDTH_LIMIT = 12000
 const DEFAULT_HEIGHT = 1000
 
 const ACTIVE_MEASURE_OPACITY = "1"
@@ -23,6 +23,15 @@ type TimeMapEvent = {
     tstamp: number,
     tempo?: number,
 }
+
+type PageMapEntry = {
+    pageStartTimestamp: number
+    svg: string,
+    renderedWidth: number,
+    keyframes: Keyframe[]
+}
+
+type PageMap = { [page:number] : PageMapEntry }
 
 
 const options: VerovioOptions = {
@@ -61,6 +70,8 @@ const getAudioDurationMillis = (timemap: TimeMapEvent[]) => {
 
 function ScorePlayer({ audioSrc }: { audioSrc: string }) {
     const score = useStore.use.score()
+    const loading = useStore.use.isLoading()
+    const setLoading = useStore.use.setIsLoading()
     const playing = useStore.use.playing()
     const playingPosition = useStore.use.playingPosition()
 
@@ -69,33 +80,35 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
 
     const verovio = useVerovio()
 
-    const [lastTimemapEventIdx, setLastTimemapEventIdx] = useState(-1)
-
-    const [loading, setLoading] = useState(true)
-    const [pageWidth, setPageWidth] = useState(10000)
-    const [renderedWidth, setRenderedWidth] = useState(10000)
-
+    const [pageMap, setPageMap] = useState<PageMap>({})
+    const [page, setPage] = useState(0)
     const [timeMap, setTimeMap] = useState<TimeMapEvent[]>([])
 
-    const [svg, setSvg] = useState<string>("")
     const [animationControl, setAnimationControl] = useState<any>(null)
 
+    const playerViewportRef = useRef<HTMLDivElement>(null)
     const svgContainerRef = useRef<HTMLDivElement>(null)
 
     const [activeMeasure, setActiveMeasure] = useState<string | null>(null)
     const [almostActiveMeasures, setAlmostActiveMeasures] = useState<string[]>([])
+    const [lastMidiHighlightEventIndex, setLastMidiHighlightEventIndex] = useState(0)
     const [midiHighlightElements, setMidHighlightElements] = useState<string[]>([])
-
 
 
     useLayoutEffect(() => {
         // TODO: See what we can move from here to an effect
-        const parent = svgContainerRef.current?.parentElement?.parentElement
-        const svgElement = svgContainerRef.current?.firstElementChild as SVGElement | undefined
 
-        if (!parent || !svgElement || !timeMap || timeMap.length === 0 || !scopeRef.current || !svgContainerRef.current) {
+        if (!timeMap || timeMap.length === 0 || !scopeRef.current || !playerViewportRef.current || !svgContainerRef.current) {
             return
         }
+
+        if (!loading)   {
+            return
+        }
+
+        console.log("Calculating keyframes for page", page)
+
+        const viewportBB = playerViewportRef.current.getBoundingClientRect()
 
         // Clear previous animation if exists
         if (animationRef.current) {
@@ -104,14 +117,12 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
         }
 
         const audioDuration = getAudioDurationMillis(timeMap)
-        const parentBB = parent.getBoundingClientRect()
 
         // The initial position that we add to every negative translation: the center of the viewport
         // Taking into account any horizontal borders or space taken by the container elements because
         // we are moving the svg into absolute positions
-        const initialX = parentBB.left + parent.clientWidth / 2 + (parentBB.right - parentBB.width)
+        const initialX = viewportBB.left +  playerViewportRef.current.clientWidth / 2 + (viewportBB.right - viewportBB.width)
 
-        // Create keyframes for WAAPI
         const keyframes: Keyframe[] = []
 
         const measuresOn = timeMap
@@ -120,13 +131,10 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
 
 
         measuresOn.forEach((measure) => {
-            const measureElement = svgElement.querySelector(`#${measure.id}`)
-
+            var measureElement = svgContainerRef.current?.querySelector(`#${measure.id}`)
             if (measureElement) {
                 const bb = measureElement.getBoundingClientRect()
-
                 const xPosition = initialX - Math.floor(bb.left + bb.width / 2)
-
                 keyframes.push({
                     transform: `translateX(${xPosition}px)`,
                     offset: measure.ts / audioDuration
@@ -134,19 +142,54 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
             }
         })
 
-        // As timemap does not includes the notesOff for the
-        // last notes the last element takes the remaining time.
-        // So we just move the last element to the end of the time
-        keyframes.at(-1)!.offset = 1
+
+        if (page == Object.values(pageMap).length) {
+            // As timemap does not includes the notesOff for the
+            // last notes the last element takes the remaining time.
+            // So we just move the last element to the end of the time
+            keyframes.at(-1)!.offset = 1
+        }
+        const updatedPageMap = {
+            ...pageMap,
+            [page]: {
+                ...pageMap[page],
+                keyframes: keyframes
+            }
+        }
+        setPageMap(updatedPageMap)
+
+        // We are not done calculating all pages keyframes
+        if (page < Object.values(pageMap).length) {
+            setPage(page + 1)
+            return
+        }
+
+        setPage(1)
+
+        var allKeyFrames: Keyframe[] = []
+        for (let p = 1; p <= Object.values(updatedPageMap).length; p++) {
+            allKeyFrames = allKeyFrames.concat(updatedPageMap[p].keyframes)
+            if (p < Object.values(updatedPageMap).length - 1) {
+                const nextPageOffset = updatedPageMap[p+1].keyframes[0].offset!
+                allKeyFrames.push({
+                    transform: updatedPageMap[p].keyframes.at(-1)?.transform,
+                    offset:  nextPageOffset - 0.0001
+                })
+            }
+        }
 
         const timing: KeyframeAnimationOptions = {
             duration: audioDuration,
             fill: "forwards",
-            endDelay: 0,
+            endDelay: 3000, // Just to ensure we don't restat the animation is the audio is longer than the timemap
         }
 
-        animationRef.current = scopeRef.current.animate(keyframes, timing)
-        animationRef.current.pause()
+        animationRef.current = scopeRef.current.animate(allKeyFrames, timing)
+        if (!playing) {
+            animationRef.current.pause()
+        } else {
+            animationRef.current.play()
+        }
 
         const controller = {
             pause: () => {
@@ -174,29 +217,11 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
             }
         }
 
+        setLoading(false)
         setAnimationControl(controller)
+    }, [pageMap, page])
 
-    }, [loading, timeMap])
 
-
-    // Handle playback controls
-    useEffect(() => {
-        if (!animationControl) return
-
-        if (playing) {
-            if (!animationControl.playing) {
-                console.log("playing animation")
-                animationControl.play()
-            }
-            if (playingPosition == 0) {
-                console.log("Playing position is 0, resetting animation to initial position")
-                animationControl.time = 0
-            }
-        } else {
-            console.log("pausing")
-            animationControl.pause()
-        }
-    }, [playing, animationControl, playingPosition])
 
     // Load and render score
     useEffect(() => {
@@ -206,114 +231,137 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
             const processedScore = scoreProcessor.filterScore()
             setMidHighlightElements([])
 
+            const width = RENDERING_WIDTH_LIMIT
+            verovio.setOptions({ ...options, pageWidth: width })
+            verovio.loadData(processedScore)
+            const pageCount = verovio.getPageCount()
 
-            let pageCount
-            let width
-            do {
-                width = (width === undefined || pageCount === undefined)
-                    ? pageWidth
-                    : width * pageCount * 0.75
-
-                verovio.setOptions({ ...options, pageWidth: width })
-                verovio.loadData(processedScore)
-                pageCount = verovio.getPageCount()
-                console.log(`width: ${width}, pageCount: ${pageCount}`)
-            } while (pageCount > 1 && width < RENDERING_WIDTH_LIMIT)
-
-            console.log(`Rendering score at width ${width}`)
-            if (pageCount > 1) {
-                console.log(`${pageCount} remaining to render`)
-            }
+            console.log(`loaded score with width: ${RENDERING_WIDTH_LIMIT}, pageCount: ${pageCount}`)
 
             const timemap = verovio.renderToTimemap({ includeMeasures: true })
-            const svgStr = verovio.renderToSVG(1)
-            // a little hackish but it is worth to have the actual width of the svg before rendering it
-            const svgWidth = svgStr.match(/svg viewBox="0 0 (\d+) \d+"/)
-            setRenderedWidth(svgWidth ? parseInt(svgWidth[1]) : width)
-            setSvg(svgStr)
-            setPageWidth(width)
+            const pagemap: PageMap = {}
+            //var timemapIndex = 0
+            timemap.forEach((event: TimeMapEvent) => {
+                if (event.on != undefined) {
+                    const eventPage = verovio.getPageWithElement(event.on[0])
+                    if (eventPage && !pagemap.hasOwnProperty(eventPage)) {
+                        pagemap[eventPage] = { pageStartTimestamp: event.tstamp, svg: "", renderedWidth: 0, keyframes: []}
+                    }
+                }
+            })
             setTimeMap(timemap)
-            setLoading(false)
+
+            for (let i = 1; i <= pageCount; i++) {
+                console.log(`pre-rendering page ${i}`)
+                const svgStr = verovio.renderToSVG(i)
+                const match = svgStr.match(/svg viewBox="0 0 (\d+) \d+"/)
+                const renderedWidth = match ? parseInt(match[1]) : width
+                pagemap[i].svg = svgStr
+                pagemap[i].renderedWidth = renderedWidth
+
+            }
+            setLoading(true)
+            setPageMap(pagemap)
+            setPage(1)
         } else {
             setTimeMap([])
-            setSvg("")
+            setPageMap({})
         }
     }, [score, verovio])
 
-    // Update active measures based on current playback position
+    // While playing, update page, active measures and midi highlights based on current playback position
     useEffect(() => {
-        if (!timeMap || timeMap.length === 0) return
+        if (!timeMap || timeMap.length === 0 || !animationControl) return
 
-        const currentPlayingPosition = Math.round(playingPosition)
-        const currentTimemapEventIdx = timeMap.findIndex((event, idx) => {
-            return (currentPlayingPosition > event.tstamp &&
-                (idx == timeMap.length - 1 || currentPlayingPosition < timeMap[idx + 1]?.tstamp))
-        })
-
-        if (currentTimemapEventIdx == -1 || currentTimemapEventIdx <= lastTimemapEventIdx) {
+        if (!playing) {
+            if (animationControl.playing) {
+                animationControl.pause()
+            }
             return
         }
 
-        const event = timeMap[currentTimemapEventIdx]
-
-        if (event.measureOn) {
-            // don't assume previous measure is the one active before, as we might have seeked
-            const nextMeasure = currentTimemapEventIdx < timeMap.length ?
-                timeMap.slice(currentTimemapEventIdx+1).find((e) => e.measureOn)?.measureOn : null
-            const prevMeasure = currentTimemapEventIdx > 0 ?
-                timeMap.slice(0, currentTimemapEventIdx).reverse().find((e) => e.measureOn)?.measureOn : null
-            setAlmostActiveMeasures([prevMeasure, nextMeasure].filter((e) => e != null))
-            setActiveMeasure(event.measureOn)
+        const currentPlayingPosition = Math.round(playingPosition)
+        if (currentPlayingPosition == 0) {
+            // After we stop playing we don't reset the page to remain
+            // showing the end. So we need to set it here
+            animationControl.time = 0
+            if (page != 1) {
+                setPage(1)
+            }
+        } else {
+            const targetPage = getPageForMillis(currentPlayingPosition)
+            if (targetPage != page) {
+                setPage(targetPage)
+            }
+        }
+        if (!animationControl.playing) {
+            animationControl.play()
         }
 
-        const lastConsumedEventIdx = updateMidiHighlightElements(playingPosition, currentTimemapEventIdx)
-        setLastTimemapEventIdx(lastConsumedEventIdx)
+        const activeEventIdx = timeMap.findIndex((e) => e.tstamp > currentPlayingPosition) - 1
+        if (activeEventIdx < 0) {
+            return
+        }
+        const activeMeasureIdx = timeMap[activeEventIdx].measureOn ? activeEventIdx :
+            activeEventIdx - timeMap.slice(0, activeEventIdx).reverse().findIndex((e) => e.measureOn) - 1
 
+        const currentActiveMeasure = timeMap[activeMeasureIdx].measureOn!
+        const prevActiveMeasure = timeMap.slice(0, activeMeasureIdx).reverse().find((e) => e.measureOn)?.measureOn
+        const nextActiveMeasure = timeMap.slice(activeMeasureIdx+1).find((e) => e.measureOn)?.measureOn
+        if (currentActiveMeasure != activeMeasure) {
+            setAlmostActiveMeasures([prevActiveMeasure, nextActiveMeasure].filter((e) => e != null))
+            setActiveMeasure(currentActiveMeasure)
+        }
+        updateMidiHighlightElements(currentPlayingPosition)
 
-
-    }, [playingPosition, timeMap])
+    }, [playingPosition, playing, timeMap])
 
 
     // Handle player events (seeking)
     const handlePlayerEvent = (event: PlayerEvent) => {
+        if (!animationControl) {
+            return
+        }
         if (event.type == PlayerEventType.SEEK) {
-            if (animationControl) {
-                console.log("Seeking, changing animation time to ", event.value / 1000)
+            // Do not change page neither restart the animation when pause and seek to 0 (audio end)
+            if (event.value > 0) {
                 animationControl.time = event.value / 1000
-
-                if (!playing) {
-                    // Force visual update when paused
-                    animationControl.play()
-                    animationControl.pause()
+                const seekPage = getPageForMillis(event.value)
+                if (seekPage != page) {
+                    // Update page now if paused instead of waiting until next position update
+                    setPage(seekPage)
                 }
             }
-            if (playing) {
-                setMidHighlightElements([])
-            } else {
-                // In case we are pause we wont be highlighting the notes
+            if (!playing) {
+                // In case we are paused we wont be highlighting the notes
                 // on a following playingPosition update and it's nice
-                // to have it
-                var i = 0
-                while  ((timeMap[i].tstamp) <= event.value) {
-                    i++
-                }
-                var nextElements = undefined
-                while (nextElements == undefined) {
-                    nextElements = timeMap[i]?.on
-                    i++
-                }
-                if (nextElements) {
-                    setMidHighlightElements(nextElements)
-                }
+                // to have them show
+                setLastMidiHighlightEventIndex(0)
+                const activeEventIdx = timeMap.findIndex((e) => e.tstamp > event.value) - 1
+                const onElements = timeMap[activeEventIdx].on ?
+                    timeMap[activeEventIdx].on
+                    : timeMap.slice(0, activeEventIdx).reverse().find((e) => e.on)?.on
+                setMidHighlightElements(onElements || [])
             }
         }
     }
 
-    const updateMidiHighlightElements = (playMilis: number, timeMapIndex: number) => {
+    const getPageForMillis = (millis: number) => {
+        const pageCount = Object.entries(pageMap).length
+        for (let i = 1; i <= pageCount; i++) {
+            if (millis >= pageMap[i].pageStartTimestamp && (i == pageCount || millis < pageMap[i+1].pageStartTimestamp)) {
+                return i
+            }
+        }
+        // When a page stars with a rest, the start timestamp is set after the real page start.
+        return page
+    }
+
+    const updateMidiHighlightElements = (playMilis: number) => {
         var onElements: string[] = Array()
         var offElements: string[] = Array()
 
-        var i = timeMapIndex
+        var i = playMilis > 0 ? lastMidiHighlightEventIndex : 0
         while (timeMap[i].tstamp <= playMilis && i < timeMap.length - 1) {
             const off = timeMap[i].off
             if (off != undefined) {
@@ -334,7 +382,9 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
 
         const highlightElements = midiHighlightElements.filter(e => !offElements.includes(e)).concat(onElements)
         setMidHighlightElements(highlightElements)
-        return i - 1
+        setLastMidiHighlightEventIndex(i-1)
+
+        return
     }
 
 
@@ -387,22 +437,19 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                 </div>
             ) : null}
 
-            <div className="player-viewport" style={{  width: "100%", height: "auto", minHeight: `${DEFAULT_HEIGHT}`, overflow: "clip" }}>
-
-               <div className="animating" ref={scopeRef} style={{ willChange: "transform" }}>
-
-                    <div className="new-player-container"
+            <div ref={playerViewportRef} className="player-viewport" style={{  width: "100%", height: "auto", minHeight: `${DEFAULT_HEIGHT}`, overflow: "clip" }}>
+                <div className="animating" ref={scopeRef} style={{ willChange: "transform" }}>
+                    {page > 0 ? <div className="new-player-container"
                         ref={svgContainerRef}
                         style={{
-                            width: `${renderedWidth}px`,
+                            width: `${pageMap[page].renderedWidth}px`,
                             height: `${DEFAULT_HEIGHT}px`,
                             willChange: "transform",
                             transform: 'translateZ(0)',  // Force GPU acceleration
                         }}
-                        dangerouslySetInnerHTML={{ __html: svg }}
-                    />
+                        dangerouslySetInnerHTML={{ __html: pageMap[page].svg }}
+                    /> : null}
                 </div>
-
             </div>
         </div>
     )
