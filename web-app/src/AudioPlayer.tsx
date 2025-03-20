@@ -4,7 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Flex, Slider, SliderSingleProps, theme } from "antd";
+import { Button, Flex, Slider, SliderSingleProps, theme } from "antd";
 import useStore from "./store";
 
 
@@ -42,6 +42,7 @@ function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
     const [seekValue, setSeekValue] = useState(0)
     const [timeString, setTimeString] = useState("00:00 / 00:00")
 
+    const loading = useStore.getState().isLoading
     const playing = useStore.getState().playing
     const setPlaying = useStore.getState().setPlaying
     const playingPosition = useStore.getState().playingPosition
@@ -54,14 +55,6 @@ function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
     const {
         token: { colorPrimary },
       } = theme.useToken();
-
-
-
-    const onCanPlay = (_: any) => {
-        if (timeMap.length > 0 && !canPlay) {
-            setCanPlay(true)
-        }
-    }
 
     const onTimeUpdate = (e: any)  => {
         if (timeMap == null || timeMap.length == 0) {
@@ -86,17 +79,15 @@ function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
     }
 
     const onAudioEnded = (_: any) => {
-        setPlayingPosition(0)
         setPlaying(false)
+        onPlayerEvent({ type: PlayerEventType.SEEK, value: 0 })
     }
 
     const onSeek = (newSecs: number) => {
         if (audioRef.current == null) {
             return
         }
-
         audioRef.current.currentTime = newSecs
-
     }
 
     useEffect(() => {
@@ -129,13 +120,15 @@ function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
 
     }, [playingPosition, durationTimemap])
 
+    const enabled = canPlay && timeMap.length > 0 && !loading
 
     return (
         <div className="audio-player" >
 
             <Flex gap="small" style={{ alignItems: 'center', justifyContent: 'flex-end' }}>
 
-                <a className={`play-button${!canPlay ? " disabled" : ""}`}
+                <Button
+                disabled={!enabled}
                     onClick={() => setPlaying(!playing) }>
                     <FontAwesomeIcon
                         color={colorPrimary}
@@ -143,18 +136,18 @@ function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
                         fixedWidth
                         icon={['fas', playing ? "pause" : "play"]}
                     />
-                </a>
+                </Button>
                 <div style={{ display: "inline" }}>{timeString}</div>
                 <Slider
-                    style={{ minWidth: "100px" }}
+                    style={{ minWidth: "250px" }}
                     min={0}
                     max={durationTimemap}
                     tooltip={{ formatter }}
                     step={1}
+                    disabled={!enabled}
                     value={seekValue}
-                    onChange={(v) => { console.log(`onChange ${v / 1000}`); setSeekValue(v) } }
+                    onChange={(v) => setSeekValue(v) }
                     onChangeComplete={(v) => {
-                        console.log(`onChange complete seeking to ${v}`)
                         onPlayerEvent({ type: PlayerEventType.SEEK, value: v })
                         onSeek(v/1000)
                     }}/>
@@ -164,7 +157,7 @@ function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
                 onError={(e)=> { console.log(e); onPlayerEvent({ type: PlayerEventType.ERROR, value: e })}}
                 onEnded={onAudioEnded}
                 onTimeUpdate={onTimeUpdate}
-                onCanPlayThrough={onCanPlay}/>
+                onCanPlayThrough={(_) => setCanPlay(true)}/>
         </div>
     )
 }
