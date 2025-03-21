@@ -9,7 +9,7 @@ import { SVG_STYLE_RULES } from "./svgutils";
 import { useSize } from 'react-haiku';
 
 
-const RENDERING_WIDTH_LIMIT = 6000
+const RENDERING_WIDTH_LIMIT = 16000
 
 type TimeMapEvent = {
     on?: string[],
