@@ -4,6 +4,7 @@ import './App.css'
 import BaseLayout from './BaseLayout';
 import Tono from './Tono';
 import Tonos from './Tonos';
+import PageTitle from './PageTitle';
 
 /*
 function ErrorChecker() {
@@ -18,13 +19,27 @@ function ErrorChecker() {
 }
   */
 
+const about = (
+  <>
+  <PageTitle title="Acerca del Cancionero de Miranda" />
+  <About />
+  </>
+)
+
+const tonos = (
+  <>
+  <PageTitle title="Cancionero de Miranda: tonos" />
+  <Tonos />
+  </>
+)
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<BaseLayout />}  /*ErrorBoundary={ErrorChecker}*/ >
-      <Route index element={<About />} />
-      <Route path='tonos' element={<Tonos />} />
-      <Route path='tono/:tonoNumber' element={<Tono />} />
-      <Route path='about' element={<About />} />
+      <Route index element={about} />
+      <Route path='tonos' element={tonos} />
+      <Route path='tono/:tonoNumber' element={ <Tono/>} />
+      <Route path='about' element={about} />
   </Route>
   )
 )

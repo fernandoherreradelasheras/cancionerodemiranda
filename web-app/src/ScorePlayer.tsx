@@ -383,13 +383,11 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
         }
         const parent = persistentSvgRef.current
 
-        // Limpiar clases anteriores
         parent.querySelectorAll('.new-player-container svg .measure.active, ' +
             '.new-player-container svg .measure.almost-active').forEach(el => {
                    el.classList.remove('active', 'almost-active')
         })
 
-        // Aplicar nuevas clases
         if (activeMeasure) {
           const element = parent.querySelector(`.new-player-container svg #${activeMeasure}`)
           if (element) element.classList.add('active')
@@ -520,7 +518,6 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                 onPlayerEvent={handlePlayerEvent}
             />
             <div ref={playerViewportRef} className="player-viewport" style={{ width: "100%", height: 'min(80vh, 800px)', overflow: "clip" }}>
-                {/* Contenedor para procesar SVGs durante la inicialización - invisible */}
                 {initializationStage === 'processing' && (
                     <div
                         ref={svgContainerRef}
@@ -533,8 +530,6 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                         }}
                     />
                 )}
-
-                {/* Contenedor animado que contiene el SVG persistente */}
                 <div
                     className="animating"
                     ref={scopeRef}
@@ -556,9 +551,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
                         />
                     )}
                 </div>
-
             </div>
-
         </div>
     )
 }
