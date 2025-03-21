@@ -291,6 +291,10 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
             if (animationControl.playing) {
                 animationControl.pause()
             }
+            for (let staff = 1; staff <= 5; staff++) {
+                const a = document.querySelector(`#radius-${staff}-animation`) as SVGAnimateElement | null
+                a?.endElement()
+            }
             return
         }
 
@@ -394,10 +398,19 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
             i++
         }
 
-        const highlightElements = midiHighlightElements.filter(e => !offElements.includes(e)).concat(onElements)
-        setMidHighlightElements(highlightElements)
+        const highlights = midiHighlightElements.filter(e => !offElements.includes(e)).concat(onElements)
+        for (let highlight of onElements) {
+            if (midiHighlightElements.includes(highlight)) {
+                continue
+            }
+            const staff = document.querySelector(`.staff:has( #${highlight})`)?.getAttribute("data-n")
+            if (staff) {
+                const a = document.querySelector(`#radius-${staff}-animation`) as SVGAnimateElement | null
+                a?.beginElement()
+            }
+        }
+        setMidHighlightElements(highlights)
         setLastMidiHighlightEventIndex(i-1)
-
         return
     }
 
