@@ -2,7 +2,9 @@
 
 const staffHighlightColors = ["#8e0000", "#227710", "#5500aa", "#e9227a", "#fa8072", "#11ddff",]
 
-export const SVG_STYLE_RULES = [1, 2, 3, 4, 5].map(i=> `.staff[data-n="${i}"] { --high: url(#highlighting-${i}); --hgcolor: ${staffHighlightColors[i-1]} }`).join('\n')
+export const SVG_STYLE_RULES = [1, 2, 3, 4, 5].map(i=> `.staff[data-n="${i}"] { \
+    --high: url(#highlighting-${i}); \
+    --hgcolor: ${staffHighlightColors[i-1]} }`).join('\n')
 
 
 
