@@ -137,7 +137,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                 setScoreCache(
                     { ...scoreCache, [mei_url]: score }
                 );
-                const analyzer = new ScoreAnalyzer(score)
+                const analyzer = new ScoreAnalyzer(tono.number, score)
                 const scoreProperties = analyzer.getScoreProperties()
                 const editorialItems = analyzer.getEditorial()
 
@@ -166,7 +166,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             flexDirection: 'column',
             position: 'relative'
         }}>
-            <Verovio className="score-viewer" />
+            <Verovio className="score-viewer" tono={tono} />
         </div>
     );
 
