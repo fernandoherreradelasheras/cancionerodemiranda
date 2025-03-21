@@ -35,6 +35,8 @@ function TextView({ tono }: { tono: TonoDef }) {
                 for (let line of response.split('\n')) {
                     if (line == "") {
                         newText = newText.slice(0, -2) + "\n\n"
+                    } else if (line.startsWith("%")) {
+                        continue
                     } else {
                         lineNumber += 1
                         if (lineNumber % 5 == 0) {
