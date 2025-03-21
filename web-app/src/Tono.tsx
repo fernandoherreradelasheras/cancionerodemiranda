@@ -2,6 +2,7 @@ import TonoView from "./TonoView";
 import { useContext } from "react";
 import { Context } from "./Context";
 import { useParams } from "react-router-dom";
+import PageTitle from "./PageTitle";
 
 const Tono = () => {
 
@@ -17,8 +18,13 @@ const Tono = () => {
         return (<div>Cargando...</div>)
 
     } else {
+        const title = `Cancionero de Miranda - ${tono.title}`
+
         return (
-            <TonoView tono={tono} />
+            <>
+                <PageTitle title={title} />
+                <TonoView tono={tono} />
+            </>
         )
     }
 

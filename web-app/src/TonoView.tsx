@@ -87,7 +87,6 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const setPlaying = useStore.use.setPlaying()
     const setPlayingPosition = useStore.use.setPlayingPosition()
 
-
     const setSection = useStore.use.setSection()
 
     const [activeTab, setActiveTab] = useState("music")
@@ -213,7 +212,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
     return (
         <div key={tono.number}>
-        {score == null || isLoading ? (
+        {(tono.mei_file && score == null) || isLoading ? (
         <div className="loading-spinner-parent">
             <Spin size="large" />
         </div>
