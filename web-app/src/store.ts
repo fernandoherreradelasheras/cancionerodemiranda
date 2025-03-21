@@ -3,6 +3,7 @@ import { StoreApi, UseBoundStore } from "zustand";
 
 
 export type ScoreProperties = {
+    tonoNumber: number,
     hasFicta: boolean,
     numVerses: number,
     numMeasures: number,
@@ -43,6 +44,13 @@ export interface Annotation {
 
 
 
+export interface CommentingElement {
+    type: string
+    id: string
+    label: string
+}
+
+
 interface AppState {
     score: string | null
     scoreProperties: ScoreProperties | null
@@ -71,6 +79,9 @@ interface AppState {
 
     playing: boolean
     playingPosition: number
+
+    showComments: boolean
+    commentingElement: CommentingElement | null
 
     setScore: (score: string | null) => void
     setScoreProperties: (scoreProperties: ScoreProperties|null) => void
@@ -106,6 +117,8 @@ interface AppState {
     setPlaying: (playing: boolean) => void
     setPlayingPosition (position: number): void
 
+    setShowComments: (showComments: boolean) => void
+    setCommentingElement: (element: CommentingElement | null) => void
 }
 
 const MIN_ZOOM = 1
@@ -141,6 +154,9 @@ const useStoreBase = create<AppState>()((set) => ({
 
     playing: false,
     playingPosition: 0,
+
+    showComments: false,
+    commentingElement: null,
 
     setScore: (score: string|null) => set((_) => ({ score: score, currentPage: 1, anchorElementId: null })),
     setScoreProperties: (scoreProperties: ScoreProperties|null) => set((_) => ({
@@ -181,6 +197,10 @@ const useStoreBase = create<AppState>()((set) => ({
     setPlaying: (isPlaying: boolean) => set((_) => ({ playing: isPlaying })),
 
     setPlayingPosition: (position: number) => set((_) => ({ playingPosition: position })),
+
+    setShowComments: (showComments: boolean) => set((_) => ({ showComments: showComments })),
+
+    setCommentingElement: (element: CommentingElement | null) => set((_) => ({ commentingElement: element })),
 
 }));
 

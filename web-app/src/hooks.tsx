@@ -43,7 +43,7 @@ export const getSvgSelectedMeasureStyle = (measure: number) =>
 export const getSvgEdirtorialHighlightStyle = (id: string, _: string) =>
     `g#${id}.note > .note.boundingbox > rect { fill:blue;stroke:rga(172, 32, 32);stroke-width:3;fill-opacity:0.1;stroke-opacity:0.9; }\n`
 
-export const getVerovioSvgExtraAttributes = () =>  [ "measure@n", "staff@n", "clef@corresp", "verse@n" ]
+export const getVerovioSvgExtraAttributes = () =>  [ "measure@n", "staff@n", "clef@corresp", "verse@n", "note@dur" ]
 
 export const SVG_STAFF_CSS_SELECTOR = 'svg g.staff.bounding-box'
 export const getStaffTooltipContent = (render: { content: string | null; activeAnchor: HTMLElement | null }) =>

@@ -3,7 +3,7 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { VerovioOptions } from 'verovio';
 import VerovioControls from './ScoreControls';
 import { Scale } from './uidefs'
-import useStore from "./store";
+import useStore  from "./store";
 import ScoreProcessor from './ScoreProcessor';
 import { getVerovioSvgExtraAttributes } from './hooks';
 import ScoreAnalyzer from './ScoreAnalyzer';
@@ -11,6 +11,8 @@ import { Context } from './Context';
 import Editorials from './Editorials';
 import { useMeasure } from "react-use";
 import { useSwipeable } from 'react-swipeable';
+import CommentSystem from './CommentSystem';
+import { TonoDef } from './utils';
 
 const MINIMUM_RENDER_SIZE = 300
 const RESIZE_THRESHOLD = 250
@@ -18,6 +20,7 @@ const RESIZE_THRESHOLD = 250
 
 interface VerovioProps {
     className?: string
+    tono: TonoDef
 }
 
 // Convert UI scale to Verovio scale
@@ -48,7 +51,7 @@ const verovioBaseOptions: VerovioOptions = {
     smuflTextFont: "none"
 }
 
-function Verovio({ className = '' }: VerovioProps) {
+function Verovio({ className = '', tono }: VerovioProps) {
 
     const { verovio } = useContext(Context)
 
@@ -78,7 +81,12 @@ function Verovio({ className = '' }: VerovioProps) {
     const appOptions = useStore.use.appOptions()
     const choiceOptions = useStore.use.choiceOptions()
 
+    const showComments = useStore.use.showComments()
+    const setCommentingElement = useStore.use.setCommentingElement()
+
+
     const section = useStore.use.section()
+
     const setSection = useStore.use.setSection()
 
     const transposition = useStore.use.transposition()
@@ -89,7 +97,6 @@ function Verovio({ className = '' }: VerovioProps) {
     const isRenderingRef = useRef(false)
 
     const verovioSvgContainerRef = useRef<HTMLDivElement>(null)
-
 
     const filteredScore = useMemo(() => {
         if (!score) return null
@@ -137,11 +144,11 @@ function Verovio({ className = '' }: VerovioProps) {
         }
 
         isRenderingRef.current = true
-        console.log(`Rendering score: w=${dimensions.width}, h=${dimensions.height}, scale=${zoom}`)
+        console.log(`Rendering score: w=${dimensions.width}, h=${dimensions.height}, scale=${zoom}, transposition=${transposition}`)
         try {
             const svgData = verovio.renderToSVG(currentPage)
             setScoreSvg(svgData)
-            const analyzer = new ScoreAnalyzer(verovio.getMEI({ pageNo: currentPage }))
+            const analyzer = new ScoreAnalyzer(tono.number, verovio.getMEI({ pageNo: currentPage }))
             const idForFirstMeasureInPage = analyzer.getFirstMeasureId()
             if (idForFirstMeasureInPage != null) {
                 setAnchorElementId(idForFirstMeasureInPage)
@@ -156,7 +163,6 @@ function Verovio({ className = '' }: VerovioProps) {
 
 
     useEffect(() => {
-        console.log("Container dimensions effect")
         if (!containerRef || !containerHeight || !containerWidth) return
         if (containerWidth < MINIMUM_RENDER_SIZE || containerHeight < MINIMUM_RENDER_SIZE) return
 
@@ -219,7 +225,7 @@ function Verovio({ className = '' }: VerovioProps) {
         if (anchorElementId != null) {
             let pageForMeasureOnView = verovio?.getPageWithElement(anchorElementId)
             if (pageForMeasureOnView != null && pageForMeasureOnView > 0) {
-                    setCurrentPage(pageForMeasureOnView)
+                setCurrentPage(pageForMeasureOnView)
             }
         } else if (loadedPagesCount != pageCount && currentPage > loadedPagesCount) {
             setCurrentPage(loadedPagesCount)
@@ -261,7 +267,46 @@ function Verovio({ className = '' }: VerovioProps) {
         },
         delta: 10,
         swipeDuration: 300,
-      });
+    });
+
+    const noteName = (dur: string | null) => {
+        switch (dur) {
+            case 'long': return 'longa'
+            case 'breve': return 'breve'
+            case '1': return 'semibreve';
+            case '2': return 'mínima'
+            case '4': return 'semimínima'
+            case '8': return 'corchea'
+            case '16': return 'semicorchea'
+            default: return 'nota'
+        }
+    }
+
+
+
+    const handleElementClick = (event: React.MouseEvent<HTMLElement>) => {
+
+        if (!showComments)
+            return
+
+
+        const target = event.target as HTMLElement;
+        if (target.closest('.note:not(.bounding-box)')) {
+            const noteElement = target.closest('.note:not(.bounding-box)') as HTMLElement;
+            const measureElement = target.closest('.measure:not(.bounding-box)') as HTMLElement
+            const measureN = measureElement.getAttribute('data-n')
+            const noteId = noteElement.id;
+            const noteDur = noteElement.getAttribute('data-dur')
+            setCommentingElement({ type: 'note', id: noteId, label: `${noteName(noteDur)} del compás ${measureN}` });
+        }
+        else if (target.closest('.measure:not(.bounding-box)')) {
+            const measureElement = target.closest('.measure:not(.bounding-box)') as HTMLElement
+            const measureN = measureElement.getAttribute('data-n')
+            const measureId = measureElement.id;
+            setCommentingElement({ type: 'measure', id: measureId, label: `compás ${measureN}` });
+        }
+
+    }
 
 
 
@@ -280,6 +325,7 @@ function Verovio({ className = '' }: VerovioProps) {
                     { scoreSvg ? (
                         <div ref={verovioSvgContainerRef}
                             className="score-svg-wrapper"
+                            onClick={handleElementClick}
                             dangerouslySetInnerHTML={{ __html: scoreSvg }}/>
                     ) : null}
 
@@ -288,6 +334,8 @@ function Verovio({ className = '' }: VerovioProps) {
 
 
             {showEditorial ? <Editorials/> : null}
+
+            <CommentSystem scoreId={`${tono.number}`}/>
 
         </div>
     )

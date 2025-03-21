@@ -11,10 +11,12 @@ export interface Option {
 
 class ScoreAnalyzer {
     document: Document
+    tonoNumber: number
 
-    constructor(score: string) {
+    constructor(tonoNumber: number, score: string) {
         const parser = new DOMParser();
         this.document = parser.parseFromString(score, "application/xml")
+        this.tonoNumber = tonoNumber
     }
 
     maxVerseNum() {
@@ -78,6 +80,7 @@ class ScoreAnalyzer {
 
     getScoreProperties(): ScoreProperties {
         return {
+            tonoNumber: this.tonoNumber,
             hasFicta: this.hasFictaElements(),
             numVerses: this.maxVerseNum(),
             numMeasures: this.getNumMeasures(),
@@ -202,11 +205,6 @@ class ScoreAnalyzer {
     }
 
 }
-
-
-
-
-
 
 
 

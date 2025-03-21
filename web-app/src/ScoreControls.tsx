@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Space, Pagination, Slider, SelectProps, Select, Switch, Drawer, Button, Col, Row } from 'antd';
+import { Space, Pagination, Slider, SelectProps, Select, Switch, Drawer, Button, Col, Row, Typography } from 'antd';
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus, faExpand } from '@fortawesome/free-solid-svg-icons';
 import SimpleIconButton from './SimpleIconButton';
 import { Scale } from './uidefs';
@@ -38,6 +38,9 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
     const transposition = useStore.use.transposition()
     const setTransposition = useStore.use.setTransposition()
 
+    const showComments = useStore.use.showComments()
+    const setShowComments = useStore.use.setShowComments()
+
     const [openDrawer, setOpenDrawer] = useState(false);
 
     const showDrawer = () => {
@@ -53,6 +56,7 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
     let verseOptions: SelectProps['options'] = Array.from({ length: numVersesAvailable }, (_, key) => 1 + key).map(i => ({
         value: i,
         label: `${i} verso${i > 1 ? "s" : ""}`
+
     }))
 
     const editorialDisabled = scoreProperties == null || !scoreProperties.hasEditorial
@@ -69,30 +73,86 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
     return (
         <div>
 
-            <Drawer title="Opciones de visualizacion" onClose={onClose} open={openDrawer}>
-                <Space direction='vertical'>
-                    <Space>
+        <Drawer  title="Opciones de visualizacion" onClose={onClose} open={openDrawer}>
+            <Space direction="vertical" size="large">
+                <Row  align={"middle"}>
+                    <Col span={20}>
+                        <Space direction="vertical">
+                            <Typography.Text strong={true} type={showComments ? undefined : "secondary"}>Comentarios de trabajo</Typography.Text>
+                            <Typography.Text style={{ fontWeight: "lighter", fontSize: "0.8em" }} type={showComments ? undefined : "secondary"} >Click sobre una nota o un compás para ver los comentarios o añadir uno nuevo.</Typography.Text>
+                        </Space>
+                    </Col>
+                    <Col span={4} >
+                        <Switch value={showComments} defaultValue={false} onChange={() => setShowComments(!showComments)} />
+                    </Col>
+                </Row>
+                <Row  align={"middle"}>
+                    <Col span={20}>
+                        <Space direction="vertical">
+                            <Typography.Text strong={true} type={showEditorial ? undefined : "secondary"}>
+                                Notas editoriales
+                            </Typography.Text>
+                            <Typography.Text style={{ fontWeight: "lighter", fontSize: "0.8em" }} type={showEditorial ? undefined : "secondary"}>
+                                Muestra una capa con las notas críticas y elección de variantes variantes
+                            </Typography.Text>
+                        </Space>
+                    </Col>
+                    <Col span={4}>
                         <Switch value={showEditorial} defaultValue={false} disabled={editorialDisabled} onChange={() => setShowEditorial(!showEditorial)} />
-                        <span>Mostrar notas editoriales</span>
-                    </Space>
-                    <Space>
+
+                    </Col>
+                </Row>
+                <Row  align={"middle"}>
+                    <Col span={20}>
+                        <Space direction="vertical">
+                            <Typography.Text strong={true} type={normalizeFicta ? undefined : "secondary"}>
+                                Normalizar musica ficta
+                            </Typography.Text>
+                            <Typography.Text style={{ fontWeight: "lighter", fontSize: "0.8em" }} type={normalizeFicta ? undefined : "secondary"} >
+                                Mostrar las alteraciones subintelectas de como las normales prececiendo a la nota
+                            </Typography.Text>
+                        </Space>
+                    </Col>
+                    <Col span={4}>
                         <Switch value={normalizeFicta} defaultValue={false} disabled={fictaSwictchDisabled} onChange={() => setNormalizeFicta(!normalizeFicta)} />
-                        <span>Normalizar alteraciones ficta</span>
-                    </Space>
-                    { scoreProperties?.encodedTransposition ?
-                        <Space>
+
+                    </Col>
+                </Row>
+                {scoreProperties?.encodedTransposition ?
+                <Row  align={"middle"}>
+                        <Col span={20}>
+                            <Space direction="vertical">
+                                <Typography.Text strong={true} type={transposition != null ? undefined : "secondary"}>
+                                    Sin transposición
+                                </Typography.Text>
+                                <Typography.Text style={{ fontWeight: "lighter", fontSize: "0.8em" }} type={transposition != null ? undefined : "secondary"} >
+                                    Muestra la partitura deshaciendo la transposición desde claves altas ({scoreProperties.encodedTransposition})
+                                </Typography.Text>
+                            </Space>
+                        </Col>
+                        <Col span={4}>
                             <Switch value={transposition != null}
                                 defaultValue={false}
                                 disabled={!scoreProperties?.encodedTransposition}
                                 onChange={() => setTransposition(transposition == null ?
-                                                    getReverseTransposition(scoreProperties.encodedTransposition)
-                                                    : null)}/>
-                            <span>Mostrar partitura sin transposición (tranposición codificada: {scoreProperties.encodedTransposition})</span>
-                        </Space> : null }
+                                    getReverseTransposition(scoreProperties.encodedTransposition)
+                                    : null)} />
+                        </Col>
+                    </Row> : null}
 
-                    {verseOptions.length > 0 ? (
-                        <Space>
-                            <span>Versos mostrados: </span>
+                {verseOptions.length > 0 ?
+                <Row  align={"middle"}>
+                        <Col span={16}>
+                            <Space direction="vertical">
+                                <Typography.Text strong={true} type={showNVerses ? undefined : "secondary"}>
+                                    Limitar versos
+                                </Typography.Text>
+                                <Typography.Text style={{ fontWeight: "lighter", fontSize: "0.8em" }} type={showNVerses ? undefined : "secondary"} >
+                                    Elige la cantidad de versos a mostrar en las coplas
+                                </Typography.Text>
+                            </Space>
+                        </Col>
+                        <Col span={8}>
                             <Select size="large"
                                 options={verseOptions}
                                 style={{ width: 120 }}
@@ -100,9 +160,10 @@ const ScoreControls = ({ toggleFullScreen, exitFullScreen } : ScoreControlProps)
                                 defaultValue={numVersesAvailable}
                                 disabled={numVersesAvailable <= 1}
                                 onSelect={(value: number, _?: DefaultOptionType) => { setShowNVerses(value) }} />
-                        </Space>
-                    ) : null}
-                </Space>
+                        </Col>
+                    </Row>
+                    : null}
+            </Space>
             </Drawer>
 
         <Row  style={{ justifyContent: "left", backgroundColor: "white", padding: "0.2em" }}>
