@@ -1,0 +1,6 @@
+El tono ***Nunca acabó de morir*** es otro de los agraciados por la concordancia complementaria entre el Cancionero de Miranda y el Cancionero Poético-Musical Hispano de Lisboa. 
+
+Cuando estos dos cancioneros ayunos de la parte de alto presentan una concordancia complementaria normalmente se debe a una disposición vocal difrente al predominante SSAT que hace que el reparto de voces entre los libros de partes pudiera haber sido diferente en uno y otro cancionero. Sin embargo, en este caso, el tono del CPMHHL conserva las parte de Tiple 1º, Tiple 2º y Tenor, esto es, la configuración habitual con la que normalmente faltaría en el Cancionero de Miranda tambien el Alto. Sin embargo, y para fortuna nuestra, el libro de tenor incluye la parte de alto de este tono. Se descarta la posibilidad de que fuera un tono a 3 voces donde uno y otro cancionero ajustaron la voz baja de diferente modo, pues las líneas de canto de alto del Cancionero de Miranda y del tenor del CPMHL son completamente diferentes. Como sucece en varios tonos concordantes entre ambos cancionero, las voces de Tiple 1º y Tiple 2º están intercambiados en las coplas pero no en el estribillo.
+
+Presentamos por tanto la versión reconstruida con las tres partes del Cancionero de Miranda y la voz de tenor del CPMHL.
+
