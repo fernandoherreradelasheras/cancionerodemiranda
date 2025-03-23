@@ -77,6 +77,10 @@ function Verovio({ className = '', tono }: VerovioProps) {
     const showNVerses = useStore.use.showNVerses()
     const normalizeFicta = useStore.use.normalizeFicta()
     const showEditorial = useStore.use.showEditorial()
+    const setShowingEditorial = useStore.use.setShowingEditorial()
+    const editorialItems = useStore.use.editorialItems()
+
+
 
     const appOptions = useStore.use.appOptions()
     const choiceOptions = useStore.use.choiceOptions()
@@ -282,30 +286,52 @@ function Verovio({ className = '', tono }: VerovioProps) {
         }
     }
 
+    const getEditorialAttached = (elem: HTMLElement) => {
+        const elemCorrespTarget = elem.getAttribute('data-corresp')
+        const elemCorespId = elemCorrespTarget?.replace('#', '')
+
+        return editorialItems.find((item) => elem.id == item.id ||
+            (elemCorespId != null && item.correspIds?.includes(elemCorespId)))
+    }
+
+
 
 
     const handleElementClick = (event: React.MouseEvent<HTMLElement>) => {
 
-        if (!showComments)
+        if (!showComments && !showEditorial)
             return
 
-
         const target = event.target as HTMLElement;
-        if (target.closest('.note:not(.bounding-box)')) {
-            const noteElement = target.closest('.note:not(.bounding-box)') as HTMLElement;
-            const measureElement = target.closest('.measure:not(.bounding-box)') as HTMLElement
-            const measureN = measureElement.getAttribute('data-n')
-            const noteId = noteElement.id;
-            const noteDur = noteElement.getAttribute('data-dur')
-            setCommentingElement({ type: 'note', id: noteId, label: `${noteName(noteDur)} del compás ${measureN}` });
+        console.log(target)
+        if (showEditorial) {
+            const targets = ["note", "rest", "clef", "accid", "app", "choice", "corr", "sic", "unclear", "supplied", "reg", "measure"]
+            for (let e of targets) {
+                const closest = target.closest(`.${e}`) as HTMLElement | null
+                console.log(closest)
+                const editorialForTarget = closest ? getEditorialAttached(closest) : null
+                console.log(editorialForTarget)
+                if (editorialForTarget) {
+                    setShowingEditorial(editorialForTarget.id)
+                    return
+                }
+            }
         }
-        else if (target.closest('.measure:not(.bounding-box)')) {
-            const measureElement = target.closest('.measure:not(.bounding-box)') as HTMLElement
-            const measureN = measureElement.getAttribute('data-n')
-            const measureId = measureElement.id;
-            setCommentingElement({ type: 'measure', id: measureId, label: `compás ${measureN}` });
-        }
+        if (showComments) {
+            const closestNote = target.closest('.note:not(.bounding-box)') as HTMLElement | null
+            const closestMeasure = target.closest('.measure:not(.bounding-box)') as HTMLElement | null
+            const measureN = closestMeasure?.getAttribute('data-n')
+            if (closestNote) {
+                const noteDur = closestNote.getAttribute('data-dur')
+                setCommentingElement({ type: 'note', id: closestNote.id, label: `${noteName(noteDur)} del compás ${measureN}` })
+                return
+            } else if (closestMeasure) {
+                const measureId = closestMeasure.id;
+                setCommentingElement({ type: 'measure', id: measureId, label: `compás ${measureN}` });
+                return
+            }
 
+        }
     }
 
 
