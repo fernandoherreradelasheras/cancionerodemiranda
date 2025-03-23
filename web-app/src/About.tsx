@@ -8,7 +8,7 @@ const About = () => (
         <header className="main">
             <h2>Acerca del proyecto</h2>
         </header>
-        <Image width="70%" src="header1.jpg" preview={false}></Image>
+        <Image width="70%" src="/header1.jpg" preview={false}></Image>
 
         <p>Estamos trabajando en la edición del Cancionero de Miranda. Esta edición, al incluir
             la reconstrucción de la voz perdida del alto, require un trabajo superior al habitual.
