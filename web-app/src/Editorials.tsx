@@ -1,6 +1,5 @@
 import { Button, Modal, Radio } from "antd";
 import useStore, { Choice, EditorialItem, Option } from "./store";
-import { useEffect } from "react";
 
 
 function Editorials() {
@@ -16,14 +15,9 @@ function Editorials() {
     const choiceOptions = useStore.use.choiceOptions()
     const setChoiceOptions = useStore.use.setChoiceOptions()
 
-    const scoreSvg = useStore.use.scoreSvg()
-
 
     const showingEditorialItem = showingEditorial ? editorialItems.find(e => e.id == showingEditorial) : null
 
-    const onEditorialClick = (id: string, _: any) => {
-        setShowingEditorial(id)
-    }
 
 
     const formatType = (type: string) => {
@@ -142,9 +136,9 @@ function Editorials() {
     const getElementSelectorsFromEditorialItems = (editorialItems: EditorialItem[]) => {
         const selectors = new Set<{ selector: string, id: string }>()
         editorialItems.forEach((item) => {
-            selectors.add({ selector: `g#${item.id}:not(.bounding-box)`, id: item.id })
+            selectors.add({ selector: `.verovio-score-viewer g#${item.id}:not(.bounding-box)`, id: item.id })
             item.correspIds?.forEach((correspId) => {
-                selectors.add({ selector: `g[data-corresp="#${correspId}"]:not(.bounding-box)`, id: item.id })
+                selectors.add({ selector: `.verovio-score-viewer g[data-corresp="#${correspId}"]:not(.bounding-box)`, id: item.id })
             })
         })
         return selectors
@@ -153,9 +147,9 @@ function Editorials() {
     const getBBRectSelectorsFromEditorialItems = (editorialItems: EditorialItem[]) => {
         const selectors = new Set<{ selector: string, id: string }>()
         editorialItems.forEach((item) => {
-            selectors.add({ selector: `g#${item.id} .bounding-box rect`, id: item.id })
+            selectors.add({ selector: `.verovio-score-viewer g#${item.id} .bounding-box rect`, id: item.id })
             item.correspIds?.forEach((correspId) => {
-                selectors.add({ selector: `g[data-corresp="#${correspId}"].bounding-box rect`, id: item.id })
+                selectors.add({ selector: `.verovio-score-viewer g[data-corresp="#${correspId}"].bounding-box rect`, id: item.id })
             })
         })
         return selectors
@@ -191,37 +185,6 @@ function Editorials() {
     const highlightStyles = [...elementSelectors].map(e => `${e.selector} { outline: 40px dashed blue; cursor: pointer; pointer-events: auto;  }\n`).join("") +
         [...bbSelectors].map(b => `${b.selector} { fill: red; opacity: 0.3; }\n`).join("")
 
-    useEffect(() => {
-
-
-        const listeners: { element: Element, type: string, handler: (e: Event) => void }[] = []
-
-        const selectors = getElementSelectorsFromEditorialItems(editorialItems)
-        selectors.forEach((selector) => {
-
-            const clickHandler = (e: Event) => onEditorialClick(selector.id, e)
-
-            const elements = document.querySelectorAll(selector.selector)
-            elements.forEach((element) => {
-                element.addEventListener('click', clickHandler)
-                listeners.push({ element: element, type: "click", handler: clickHandler })
-            })
-        })
-
-
-        return () => {
-            listeners.forEach((l) => {
-                // At this point the old svg is still around so we should have access to the slements
-                // just in case, protecting against exceptions
-                try {
-                    l.element.removeEventListener(l.type, l.handler)
-                } catch (e) {
-                    console.error("Failed to remove event listener", e)
-                }
-            })
-
-        }
-    }, [scoreSvg])
 
     return (
         <div>
