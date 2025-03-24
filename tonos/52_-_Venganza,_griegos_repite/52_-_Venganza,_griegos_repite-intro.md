@@ -101,3 +101,20 @@ Coimbra:
 
 
 TODO: Comentar las diferencias entre versiones, incluyendo la configuración de 3 tiples de Coimbra
+
+
+Sobre la atribución a Carlos Patiño o a Manuel Correa hay un empate tácido.
+
+Con atribución directa a Manuel Correa tenemos: 
+
+- El Cancionero de Onteniente, que anota "Correa"
+- La copia conservada en la colegiata de Alquézar
+
+y con atribución directa a Patiño: 
+
+- El Cancionero de Miranda: "Patinho" se repite en las tres partes conservadas
+- El manuscrito que perteneción a Miguel Querol
+
+
+Inclina ligeramente la balanza del lado de Correa la referencia en uno de los índices del Libro de Tonos Humano, en una parte donde se listan obras de Correa.
+
