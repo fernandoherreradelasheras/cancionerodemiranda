@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
    <meiHead>
       <fileDesc>
@@ -494,6 +495,7 @@
                      <staff n="3">
                         <layer n="1">
                            <note dur="2" oct="3" pname="b" xml:id="id29">
+                              <accid accid="f" />
                               <verse n="1">
                                  <syl con="d" wordpos="i">ma</syl>
                               </verse>
@@ -506,7 +508,7 @@
                               <verse n="4">
                                  <syl con="d" wordpos="m">ten</syl>
                               </verse>
-                              </note>
+                           </note>
                            <note dur="1" oct="4" pname="c" xml:id="id30">
                               <verse n="1">
                                  <syl wordpos="t">ta,</syl>
@@ -525,7 +527,9 @@
                      </staff>
                      <staff n="4">
                         <layer n="1">
-                           <note dur="2" oct="2" pname="b" xml:id="id31" />
+                           <note dur="2" oct="2" pname="b" xml:id="id31">
+                              <accid accid="f" />
+                           </note>
                            <note dur="1" oct="3" pname="c" xml:id="id32" />
                         </layer>
                      </staff>
@@ -1112,27 +1116,27 @@
                         <layer n="1">
                            <rest dur="2" xml:id="id76" />
                            <rest dur="2" xml:id="id77" />
-                           <note dur="4" oct="5" pname="c" xml:id="id78">
-                              <verse n="1">
-                                 <syl>quién</syl>
-                              </verse>
-                                  <accid accid="s" />
-                           <verse n="2">
-                                 <syl con="d" wordpos="i">co</syl>
-                              </verse>
-                              <verse n="3">
-                                 <syl>que</syl>
-                              </verse>
-                              <verse n="4">
-                                 <syl con="d" wordpos="i">pe</syl>
-                              </verse>
+                           <corr xml:id="c9820i3">
+                              <note dur="4" oct="5" pname="c" xml:id="id78">
+                                 <verse n="1">
+                                    <syl>quién</syl>
+                                 </verse>
+                                 <verse n="2">
+                                    <syl con="d" wordpos="i">co</syl>
+                                 </verse>
+                                 <verse n="3">
+                                    <syl>que</syl>
+                                 </verse>
+                                 <verse n="4">
+                                    <syl con="d" wordpos="i">pe</syl>
+                                 </verse>
                               </note>
+                           </corr>
                            <note dur="4" oct="5" pname="c" xml:id="id79">
                               <verse n="1">
                                  <syl con="d" wordpos="i">di</syl>
                               </verse>
-                                  <accid accid.ges="s" />
-                           <verse n="2">
+                              <verse n="2">
                                  <syl con="d" wordpos="m">ra</syl>
                               </verse>
                               <verse n="3">
@@ -1142,8 +1146,9 @@
                                  <syl con="b" wordpos="m">ro</syl>
                                  <syl>an</syl>
                               </verse>
-                              </note>
+                         </note>
                         </layer>
+                        <annot plist="#c9820i3">Sostenido en el manuscrito</annot>
                      </staff>
                      <staff n="2">
                         <layer n="1">
