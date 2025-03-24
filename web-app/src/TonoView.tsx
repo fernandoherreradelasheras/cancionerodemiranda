@@ -162,7 +162,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
 
     const musicTabContent = (
         <div style={{
-            height: 'calc(100vh - 250px)',
+            height: 'calc(100vh - 400px)',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative'
