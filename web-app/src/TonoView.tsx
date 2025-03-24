@@ -116,9 +116,10 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         }
 
         // Reset state when tono changes
-        setScore(null);
-        setPlayingPosition(0);
-        setPlaying(false);
+        setScore(null)
+        setScoreProperties(null)
+        setPlayingPosition(0)
+        setPlaying(false)
 
         if (!tono.mei_file) return;
 
