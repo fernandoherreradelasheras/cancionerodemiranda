@@ -1,4 +1,1 @@
-Altiva peña respeitas[^1],
-
-[^1]:  Todo este texto tiene pendiente la revisión y adaptación a la
-    ortografía modenar portuguesa
+**1**: TODO: pendiente confirmar si modernizamos respeitão por respeitam.
