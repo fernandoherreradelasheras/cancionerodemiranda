@@ -52,6 +52,11 @@ class ScoreAnalyzer {
         return name ? name : "<missing>"
     }
 
+    getReconstructionBy() {
+        let name = this.document.evaluate("//mei:respStmt/mei:persName[@role=\"reconstruction\"][1]", this.document, nsResolver, XPathResult.ANY_TYPE, null)?.iterateNext()?.textContent
+        return name ? name : null
+    }
+
     getMeiNotes() {
         let matches = this.document.evaluate("//mei:meiHead//mei:extMeta//mei:pendingIssues", this.document, nsResolver, XPathResult.ANY_TYPE, null)
         const notes = []
@@ -85,6 +90,7 @@ class ScoreAnalyzer {
             numVerses: this.maxVerseNum(),
             numMeasures: this.getNumMeasures(),
             editor: this.getEditor(),
+            reconstructionBy: this.getReconstructionBy(),
             notes: this.getMeiNotes(),
             sections: this.getSections(),
             hasEditorial: this.hasEditorialElements()

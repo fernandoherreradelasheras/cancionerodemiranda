@@ -245,8 +245,10 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                  sm={{ flex: '25%' }}
                  xs={{ flex: '50%' }}>
                     { scoreProperties ? <div>
-                            <Typography.Text>Transcripción: {scoreProperties.editor}</Typography.Text><br/>
-                            <Typography.Text>Num compases: {scoreProperties.numMeasures}</Typography.Text>
+                            <> <Typography.Text>Transcripción: {scoreProperties.editor}</Typography.Text><br/> </>
+                            { scoreProperties.reconstructionBy ? 
+                                <> <Typography.Text>Reconstrucción: {scoreProperties.reconstructionBy}</Typography.Text><br/> </>: null }
+                            <> <Typography.Text>Num compases: {scoreProperties.numMeasures}</Typography.Text> </>
                             <ul>
                                 {scoreProperties.notes?.map((n, index) =>  <li key={index}>{n}</li>)}
                             </ul>
