@@ -8,6 +8,7 @@ export type ScoreProperties = {
     numVerses: number,
     numMeasures: number,
     editor: string,
+    reconstructionBy: string | null,
     sections: {label: string, id: string}[],
     notes: string[],
     hasEditorial: boolean,
