@@ -219,34 +219,34 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         </div>
         ) : null}
         <Row  style={{ justifyContent: "space-between", backgroundColor: "white", padding: "0.2em" }}>
-            <Col xl={{flex: '25%'}}
-                 lg={{ flex: '25%' }}
-                 md={{ flex: '25%' }}
-                 sm={{ flex: '25%' }}
+            <Col xl={{flex: 1 }}
+                 lg={{ flex: 1 }}
+                 md={{ flex: 1 }}
+                 sm={{ flex: 1 }}
                  xs={{ flex: '50%' }}>
                     <Typography.Text>Música: {tono.music_author}</Typography.Text><br/>
                     <Typography.Text>Texto: {tono.text_author}</Typography.Text><br/>
                     <Typography.Text>Orgánico: {tono.organic}</Typography.Text>
 
                 </Col>
-                <Col xl={{flex: '25%'}}
-                 lg={{ flex: '25%' }}
-                 md={{ flex: '25%' }}
-                 sm={{ flex: '25%' }}
+                <Col xl={{flex: 1}}
+                 lg={{ flex: 1 }}
+                 md={{ flex: 1 }}
+                 sm={{ flex: 1 }}
                  xs={{ flex: '50%' }}>
                     <div>Música: {musicStatusText}</div>
                     <Progress percent={musicStatusValue} steps={9} showInfo={false} strokeColor={progressColors}  />
                     <div>Texto: {textStatusText}</div>
                     <Progress percent={textStatusValue} steps={9} showInfo={false} strokeColor={progressColors}  />
                 </Col>
-                <Col xl={{flex: '25%'}}
-                 lg={{ flex: '25%' }}
-                 md={{ flex: '25%' }}
-                 sm={{ flex: '25%' }}
+                <Col xl={{flex: 1}}
+                 lg={{ flex: 1 }}
+                 md={{ flex: 1 }}
+                 sm={{ flex: 1 }}
                  xs={{ flex: '50%' }}>
                     { scoreProperties ? <div>
                             <> <Typography.Text>Transcripción: {scoreProperties.editor}</Typography.Text><br/> </>
-                            { scoreProperties.reconstructionBy ? 
+                            { scoreProperties.reconstructionBy ?
                                 <> <Typography.Text>Reconstrucción: {scoreProperties.reconstructionBy}</Typography.Text><br/> </>: null }
                             <> <Typography.Text>Num compases: {scoreProperties.numMeasures}</Typography.Text> </>
                             <ul>
@@ -254,10 +254,10 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                             </ul>
                         </div> : null }
                 </Col>
-                <Col xl={{flex: '25%'}}
-                 lg={{ flex: '25%' }}
-                 md={{ flex: '25%' }}
-                 sm={{ flex: '25%' }}
+                <Col xl={{flex: 1 }}
+                 lg={{ flex: 1 }}
+                 md={{ flex: 1 }}
+                 sm={{ flex: 1 }}
                  xs={{ flex: '50%' }}>
                     <Space direction="vertical">
                         <Typography.Text>Secciones:</Typography.Text>
