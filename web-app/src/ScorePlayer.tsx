@@ -322,7 +322,7 @@ function ScorePlayer({ audioSrc }: { audioSrc: string }) {
             }
         } else {
             const targetPage = getPageForMillis(currentPlayingPosition)
-            if (targetPage !== currentProcessingPage) {
+            if (targetPage > 0 && targetPage !== currentProcessingPage) {
                 setCurrentProcessingPage(targetPage)
                 svgRenderedRef.current = false
             }
