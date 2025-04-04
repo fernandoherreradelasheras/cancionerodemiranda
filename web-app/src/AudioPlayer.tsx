@@ -153,7 +153,7 @@ function AudioPlayer ({ audioSrc, timeMap, onPlayerEvent } : {
                     }}/>
             </Flex>
 
-            <audio ref={audioRef} src={audioSrc ? audioSrc : undefined  }
+            <audio ref={audioRef} preload="auto" key="audioSrc" src={audioSrc ? audioSrc : undefined  }
                 onError={(e)=> { console.log(e); onPlayerEvent({ type: PlayerEventType.ERROR, value: e })}}
                 onEnded={onAudioEnded}
                 onTimeUpdate={onTimeUpdate}
