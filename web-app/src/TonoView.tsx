@@ -124,7 +124,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         if (!tono.mei_file) return;
 
         if (scoreCache != undefined && scoreCache[mei_url] != undefined) {
-            setScore(scoreCache[mei_url]);
+            setScore(scoreCache[mei_url].score);
+            setScoreProperties(scoreCache[mei_url].properties);
         } else {
             fetch(mei_url).then(response => {
                 return response.text()
@@ -133,18 +134,18 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                 scoreProcessor.addTitlesFilter()
                 scoreProcessor.addEnsureMeasuresIdFilter()
                 scoreProcessor.addEnsureSectionsIdFilter()
-                const score = scoreProcessor.filterScore()
-
-                setScoreCache(
-                    { ...scoreCache, [mei_url]: score }
-                );
-                const analyzer = new ScoreAnalyzer(tono.number, score)
-                const scoreProperties = analyzer.getScoreProperties()
+                const newScore = scoreProcessor.filterScore()
+                const analyzer = new ScoreAnalyzer(tono.number, newScore)
+                const newScoreProperties = analyzer.getScoreProperties()
                 const editorialItems = analyzer.getEditorial()
 
-                setScore(score);
+                setScoreCache(
+                    { ...scoreCache, [mei_url]: { score: newScore, properties: newScoreProperties } }
+                );
+
+                setScore(newScore);
                 setScoreProperties(
-                    {...scoreProperties,
+                    {...newScoreProperties,
                         encodedTransposition: tono.transposition,
                     })
                 setEditorialItems(editorialItems, true)

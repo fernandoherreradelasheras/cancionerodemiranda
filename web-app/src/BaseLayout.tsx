@@ -13,6 +13,7 @@ import { MenuInfo } from 'rc-menu/lib/interface';
 import { isMobile } from 'react-device-detect';
 import useVerovio from './hooks/useVerovio';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ScoreProperties } from './store';
 
 
 type Mp3Files = {
@@ -29,7 +30,7 @@ library.add(faBars, faArrowLeft, faArrowRight)
 function BaseLayout() {
 
     const [definitions, setDefinitions] = useState<TonoDef[]>([])
-    const [scoreCache, setScoreCache] = useState<{[index: string] : string }>({})
+    const [scoreCache, setScoreCache] = useState<{[index: string] : { score: string, properties: ScoreProperties } }>({})
 
     const navigate = useNavigate()
     const location = useLocation()
