@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Outlet, useLocation, useNavigate  } from 'react-router-dom'
 import { Context } from './Context';
 import { getJson, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { ConfigProvider, Layout, Menu, theme, Typography, Grid } from 'antd';
@@ -12,6 +12,7 @@ import { MenuInfo } from 'rc-menu/lib/interface';
 
 import { isMobile } from 'react-device-detect';
 import useVerovio from './hooks/useVerovio';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 type Mp3Files = {
@@ -21,7 +22,7 @@ type Mp3Files = {
 const { Header, Content } = Layout;
 const { useBreakpoint } = Grid
 
-library.add(faBars)
+library.add(faBars, faArrowLeft, faArrowRight)
 
 
 
@@ -54,7 +55,7 @@ function BaseLayout() {
     };
 
     const onMenuClick = (info: MenuInfo) => {
-        navigate(info.key)
+        navigate(info.key.split(":").at(-1)!)
     }
 
 
@@ -64,15 +65,20 @@ function BaseLayout() {
 
 
     const currentPath = location?.pathname
-    const selectedTonoNumber =  currentPath?.startsWith("/tono/") ? parseInt(currentPath.replace("/tono/", "")) : null
+    const showingTono = currentPath?.startsWith("/tono/") || false
+    const selectedTonoNumber =  showingTono ? parseInt(currentPath.replace("/tono/", "")) : null
     const selectorLabel = selectedTonoNumber ?  `Tono ${selectedTonoNumber}: ${definitions.find(t => t.number == selectedTonoNumber)?.title}` : "Selecciona tono"
+    const prevTono = selectedTonoNumber && selectedTonoNumber > 1 ? `/tono/${selectedTonoNumber - 1}` : "/tono/prev"
+    const nextTono = selectedTonoNumber && definitions && selectedTonoNumber < definitions.at(-1)?.number! ? `/tono/${selectedTonoNumber + 1}` : "/tono/next"
 
     const items = [
+        breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ? { key: prevTono, icon: <FontAwesomeIcon size="2xs" icon={faArrowLeft}/>, disabled: !showingTono} : null,
         { key: 'sub1',   label: selectorLabel, style: selectedTonoNumber ?  {fontWeight: "bolder"} :  {},  children:
-            definitions.map(t => ( {  key: `/tono/${t.number}`, label: `Tono ${t.number}: ${t.title}` } )) },
+            definitions.map(t => ( {  key: `sub1:/tono/${t.number}`, label: `Tono ${t.number}: ${t.title}` } )) },
+            breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ? { key: nextTono,  icon: <FontAwesomeIcon icon={faArrowRight}/>, disabled: !showingTono} : null,
         { key: "/tonos", label: "Listado de tonos" },
         { key: "/about", label: "Acerca de" },
-    ]
+    ].filter(i => i !== null) as any
 
     const selectedMenuItemKey = currentPath ? currentPath  : "/about"
 
@@ -106,7 +112,7 @@ function BaseLayout() {
                         display: 'flex',
                         alignItems: 'center' }}>
                             <Typography.Title level={2}>
-                                {breakpoint.xl || breakpoint.xl || breakpoint.lg ? "Cancionero de Miranda" : "CdM"}
+                                {breakpoint.xxl || breakpoint.xl || breakpoint.lg ? "Cancionero de Miranda" : "CdM"}
                             </Typography.Title>
 
                             <Menu
