@@ -11,7 +11,9 @@ export const tonoDefinitionsUrl = TESTING ? "/definitions.json"  : repoRoot + to
 
 export const latestPdfsPath = "/pdfs-release-latest.json"
 
-export const getTonoUrl = (path: string, file: string) => TESTING ? "/" + file : repoRoot + path + "/" + file
+export const getPrefixUrl = (path: string) => TESTING ? "/" : repoRoot + path + "/"
+
+export const getTonoUrl = (path: string, file: string) => getPrefixUrl(path) + file
 
 
 export interface TranscriptionEntry {
