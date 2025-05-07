@@ -13,7 +13,6 @@ const Tono = () => {
     const tonoIndex = params.tonoNumber != undefined ? parseInt(params.tonoNumber) - 1 : -1
     const tono = definitions[tonoIndex]
 
-
     if (tono == null) {
         return (<div>Cargando...</div>)
 

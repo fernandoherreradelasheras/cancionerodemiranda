@@ -11,36 +11,58 @@ import mp3_files from "./assets/mp3-files.json"
 import { MenuInfo } from 'rc-menu/lib/interface';
 
 import { isMobile } from 'react-device-detect';
-import useVerovio from './hooks/useVerovio';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ScoreProperties } from './store';
 
 
 type Mp3Files = {
     [key:string] : string
 }
 
+const PREFIX_URL = "/"
+
 const { Header, Content } = Layout;
 const { useBreakpoint } = Grid
 
 library.add(faBars, faArrowLeft, faArrowRight)
+
+const builldScoreViewerConfig = (tonos: TonoDef[]) => {
+    const config = {
+        settings: {
+            renderTitlesFromMEI: true,
+            showScoreSelector: false,
+            backgroundColor: "#f6eee3"
+        },
+        scores: tonos.map((tono: TonoDef) => {
+            return {
+                title: tono.title,
+                audioUrl: tono.mp3_file,
+                meiUrl: PREFIX_URL + tono.mei_file,
+                encodingProperties: {
+                    encodedTransposition: tono.transposition
+                  }
+            }
+        })
+    }
+    return config
+}
 
 
 
 function BaseLayout() {
 
     const [definitions, setDefinitions] = useState<TonoDef[]>([])
-    const [scoreCache, setScoreCache] = useState<{[index: string] : { score: string, properties: ScoreProperties } }>({})
+    const [scoreViewerConfig, setScoreViewerConfig] = useState<any | null>(null)
 
     const navigate = useNavigate()
     const location = useLocation()
-    const verovio = useVerovio()
 
     const breakpoint = useBreakpoint()
 
     const {
         token: { colorBgContainer, borderRadiusLG },
       } = theme.useToken();
+
+
 
 
     const fetchDefinitions = async () => {
@@ -53,6 +75,7 @@ function BaseLayout() {
         })
 
         setDefinitions(tonos);
+        setScoreViewerConfig(builldScoreViewerConfig(tonos))
     };
 
     const onMenuClick = (info: MenuInfo) => {
@@ -84,7 +107,7 @@ function BaseLayout() {
     const selectedMenuItemKey = currentPath ? currentPath  : "/about"
 
     return (
-        <Context.Provider value={{ definitions, setDefinitions, scoreCache, setScoreCache, verovio }}>
+        <Context.Provider value={{ definitions, setDefinitions, scoreViewerConfig, setScoreViewerConfig }}>
             <ConfigProvider
                 theme={{
                     algorithm: theme.defaultAlgorithm,
@@ -128,7 +151,7 @@ function BaseLayout() {
                         <div style={{
                                 background: colorBgContainer,
                                 minHeight: 280,
-                                padding: "4px 24px 0 24px",
+                                padding: "0px 24px 0 24px",
                                 borderRadius: borderRadiusLG  }}>
 
                             <Outlet />
