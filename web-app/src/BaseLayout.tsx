@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation, useNavigate  } from 'react-router-dom'
 import { Context } from './Context';
-import { getJson, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
+import { getJson, getTonoUrl, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
 import { faBars, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -17,8 +17,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 type Mp3Files = {
     [key:string] : string
 }
-
-const PREFIX_URL = "/"
 
 const { Header, Content } = Layout;
 const { useBreakpoint } = Grid
@@ -36,7 +34,7 @@ const builldScoreViewerConfig = (tonos: TonoDef[]) => {
             return {
                 title: tono.title,
                 audioUrl: tono.mp3_file,
-                meiUrl: PREFIX_URL + tono.mei_file,
+                meiUrl: getTonoUrl(tono.path, tono.mei_file),
                 encodingProperties: {
                     encodedTransposition: tono.transposition
                   }
