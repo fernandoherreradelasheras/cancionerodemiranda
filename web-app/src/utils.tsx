@@ -41,6 +41,16 @@ export enum MusicStatus {
   "completed" = "completed"
 }
 
+export type AudioOverlay = {
+  staff: string,
+  appLabel: string,
+  url: string,
+}
+
+export type Mp3Files = {
+  [key:string] : { base: string, overlays: AudioOverlay[] }
+}
+
 
 export interface TonoDef {
   index: number;
@@ -67,7 +77,8 @@ export interface TonoDef {
   path: string;
   pdf_url: string;
   number: number;
-  mp3_file: string;
+  base_mp3_file: string;
+  mp3_overlays: AudioOverlay[];
 }
 
 export const getJson = async (url: string) => {

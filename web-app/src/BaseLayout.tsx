@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation, useNavigate  } from 'react-router-dom'
 import { Context } from './Context';
-import { getJson, getTonoUrl, latestPdfsPath, TonoDef, tonoDefinitionsUrl } from './utils';
+import { getJson, getTonoUrl, latestPdfsPath, Mp3Files, TonoDef, tonoDefinitionsUrl } from './utils';
 import { faBars, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -14,9 +14,6 @@ import { isMobile } from 'react-device-detect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-type Mp3Files = {
-    [key:string] : string
-}
 
 const { Header, Content } = Layout;
 const { useBreakpoint } = Grid
@@ -33,7 +30,8 @@ const builldScoreViewerConfig = (tonos: TonoDef[]) => {
         scores: tonos.map((tono: TonoDef) => {
             return {
                 title: tono.title,
-                audioUrl: tono.mp3_file,
+                audioUrl: tono.base_mp3_file,
+                audioOverlays: tono.mp3_overlays,
                 meiUrl: getTonoUrl(tono.path, tono.mei_file),
                 encodingProperties: {
                     encodedTransposition: tono.transposition
@@ -66,10 +64,14 @@ function BaseLayout() {
     const fetchDefinitions = async () => {
         const tonos = await getJson(tonoDefinitionsUrl)
         const pdflist = await getJson(latestPdfsPath)
-
+        const mp3 = (mp3_files as Mp3Files)
         tonos.forEach((tono: TonoDef, index: number) => {
             tono.pdf_url = pdflist[index]
-            tono.mp3_file = (mp3_files as Mp3Files)[`${tono.number}`]
+            if (Object.keys(mp3).includes(tono.number.toString())) {
+                const mp3_info = mp3[`${tono.number}`]
+                tono.base_mp3_file = mp3_info.base
+                tono.mp3_overlays = mp3_info.overlays
+            }
         })
 
         setDefinitions(tonos);
