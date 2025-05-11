@@ -45,7 +45,7 @@ function tonoHasMusicVoiceReconstructed(tono: TonoDef | null) {
 }
 
 function tonoHasAudio(tono: TonoDef | null) {
-    return (tono?.mp3_file != undefined && tono?.mp3_file != null)
+    return (tono?.base_mp3_file != undefined && tono?.base_mp3_file != null)
 }
 
 function getAuthors(tono: TonoDef) {
