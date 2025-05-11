@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml version='1.0' encoding='utf-8'?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0+basic">
    <meiHead>
       <fileDesc>
@@ -32,12 +30,17 @@
                            <clef xml:id="xuifui3" shape="G" line="2"/>
                         </staffDef>
                         <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
+                           <label>Alto</label>
+                           <labelAbbr>A.</labelAbbr>
+                           <clef xml:id="xuifui3_1" shape="G" line="2"/>
+                        </staffDef>
+                        <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
                            <clef xml:id="xuifui4" shape="G" line="2" dis="8" dis.place="below"/>
                         </staffDef>
                      </staffGrp>
-                     <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
+                     <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
                         <label>Guion</label>
                         <labelAbbr>G</labelAbbr>
                         <clef xml:id="xuifui5" shape="F" line="4"/>
@@ -62,14 +65,19 @@
                                        <labelAbbr>S. 2</labelAbbr>
                                        <clef copyof="#xuifui3" shape="G" line="2"/>
                                     </staffDef>
+                                    <staffDef n="3" lines="5" keysig="1f" meter.count="3" meter.unit="2">
+                                       <label>Alto</label>
+                                       <labelAbbr>A.</labelAbbr>
+                                       <clef copyof="#xuifui3_1" shape="G" line="2"/>
+                                    </staffDef>
                                  </staffGrp>
-                                 <staffDef n="3" lines="5" keysig="1f" meter.count="3" meter.unit="2">
+                                 <staffDef n="4" lines="5" keysig="1f" meter.count="3" meter.unit="2">
                                     <label>Tenor</label>
                                     <labelAbbr>Tn.</labelAbbr>
                                     <clef corresp="#xuifui4" shape="C" line="3"/>
                                  </staffDef>
                               </staffGrp>
-                              <staffDef n="4" lines="5" keysig="1f" meter.count="3" meter.unit="2">
+                              <staffDef n="5" lines="5" keysig="1f" meter.count="3" meter.unit="2">
                                  <label>Giuon</label>
                                  <labelAbbr>G</labelAbbr>
                                  <clef corresp="#xuifui5" shape="C" line="4"/>
@@ -161,6 +169,60 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r1"/>
+                                 <rest dur="4" xml:id="r2"/>
+                                 <note dur="4" pname="e" oct="4" xml:id="n1">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">A</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>En</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">A</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="i">Mo</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>No</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="n2">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">ma</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>el</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">mor</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="m">rir</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>me</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id10"/>
                            <rest dur="4" xml:id="id11"/>
@@ -200,7 +262,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="c" oct="3" xml:id="id14"/>
                            <note dur="2" pname="b" oct="2" xml:id="id15"/>
@@ -290,6 +352,63 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dots="1" dur="2" pname="e" oct="4" xml:id="n3">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">ri</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">dul</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>se</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">me</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="i">di</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="4" pname="f" oct="4" xml:id="n4">
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">en</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="n5">
+                                    <verse n="1">
+                                       <syl wordpos="t">les</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">ce</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">tró</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="i">se</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl wordpos="t">gas</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note xml:id="nt751ui" dots="1" dur="2" pname="c" oct="4">
                               <verse n="1">
@@ -332,7 +451,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="2" pname="c" oct="3" xml:id="id21"/>
                            <note dur="4" pname="b" oct="2" xml:id="id22"/>
@@ -420,6 +539,58 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="1" pname="d" oct="4" xml:id="n6">
+                                    <verse n="1">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">la</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>por</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">rá</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>que</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="n7">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="m">be</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>los</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>más</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="b" oct="3" xml:id="id29">
                               <verse n="1">
@@ -457,7 +628,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="b" oct="2" xml:id="id31"/>
                            <note dur="2" pname="c" oct="3" xml:id="id32"/>
@@ -542,6 +713,58 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="1" pname="d" oct="4" xml:id="n8">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">pue</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="m">rin</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">o</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="i">fá</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="i">quie</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="n9">
+                                    <verse n="1">
+                                       <syl wordpos="t">do</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">to</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">jos</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">cil</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl wordpos="t">ra,</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="g" oct="3" xml:id="id38">
                               <verse n="1">
@@ -579,7 +802,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="g" oct="3" xml:id="id40"/>
                            <note dur="2" pname="c" oct="3" xml:id="id41"/>
@@ -670,6 +893,61 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r3"/>
+                                 <note dur="2" pname="g" oct="4" xml:id="n10">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">de</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>de</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>has</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>que</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>por</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="d" oct="4" xml:id="n11">
+                                    <verse n="1">
+                                       <syl wordpos="t">jar</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>tus</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="b">ta</syl>
+                                       <syl>el</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="i">lle</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="b">no</syl>
+                                       <syl con="d" wordpos="i">ha</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id47"/>
                            <note dur="2" pname="c" oct="4" xml:id="id48">
@@ -710,7 +988,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <rest dur="2" xml:id="id49"/>
                            <note dur="2" pname="c" oct="3" xml:id="id50"/>
@@ -804,6 +1082,60 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="2" pname="g" oct="4" xml:id="n12"/>
+                                 <note dur="2" pname="f" oct="4" xml:id="n13">
+                                    <verse n="1">
+                                       <syl>de</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">o</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">al</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">gar</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="m">cer</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="n14">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">que</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">jos</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="b">a</syl>
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl wordpos="t">me</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note xml:id="n1oq0l6g" dur="2" pname="g" oct="3"/>
                            <note dur="2" pname="a" oct="3" xml:id="id56">
@@ -843,7 +1175,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note xml:id="na5naop" dur="2" pname="g" oct="2"/>
                            <note dur="2" pname="a" oct="2" xml:id="id58"/>
@@ -929,6 +1261,58 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="2" pname="g" oct="4" xml:id="n15">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">rer</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>me</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>más</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="m">bo</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="i">des</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="g" oct="4" xml:id="n16">
+                                    <verse n="1">
+                                       <syl wordpos="t">te</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">que</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">des</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="m">rre</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="m">cor</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="d" oct="4" xml:id="id65">
                               <verse n="1">
@@ -969,7 +1353,7 @@
                         </layer>
                         <annot plist="#u8298di">semibreve no visible en el manuscrito. Deducida</annot>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="d" oct="3" xml:id="id67"/>
                            <note dur="1" pname="e" oct="3" xml:id="id68"/>
@@ -1055,6 +1439,76 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="2" pname="e" oct="4" xml:id="n17">
+                                    <verse n="1">
+                                       <syl>bien,</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">dé</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">pués</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">cer,</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl wordpos="t">tés,</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="g" oct="4" xml:id="n18">
+                                    <verse n="1">
+                                       <syl>que</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>sin</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>que</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="b">que</syl>
+                                       <syl con="d" wordpos="i">es</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>que</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="d" oct="4" xml:id="n19">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">sa</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">qui</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="m">ti</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="1" pname="a" oct="3" xml:id="id74">
                               <verse n="1">
@@ -1075,7 +1529,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="a" oct="2" xml:id="id75"/>
                            <note dur="2" pname="a" oct="2" xml:id="id76"/>
@@ -1145,6 +1599,60 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r4"/>
+                                 <note dur="2" pname="d" oct="4" xml:id="n20">
+                                    <verse n="1">
+                                       <syl>que</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>sin</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>que</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="b">que</syl>
+                                       <syl con="d" wordpos="i">es</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="d" oct="4" xml:id="n21">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">sa</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">qui</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="m">ti</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="i">pue</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id81"/>
                            <note dur="2" pname="f" oct="3" xml:id="id82">
@@ -1186,7 +1694,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="d" oct="3" xml:id="id84"/>
                            <note dur="1" pname="f" oct="3" xml:id="id85">
@@ -1259,6 +1767,41 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dots="1" dur="1" pname="d" oct="4" xml:id="n22">
+                                    <verse n="1">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">ber</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">se</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="m">de</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="3" xml:id="id90">
                               <verse n="1">
@@ -1279,7 +1822,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="g" oct="3" xml:id="id91"/>
                            <note dur="2" pname="g" oct="3" xml:id="id92"/>
@@ -1384,6 +1927,60 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r5"/>
+                                 <note dur="2" pname="d" oct="4" xml:id="n23">
+                                    <verse n="1">
+                                       <syl>que</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>sin</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>que</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="b">que</syl>
+                                       <syl con="d" wordpos="i">es</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl wordpos="t">que</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="d" oct="4" xml:id="n24">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">sa</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">qui</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="m">ti</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id100"/>
                            <note dur="2" pname="g" oct="3" xml:id="id101">
@@ -1425,7 +2022,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="c" oct="3" xml:id="id103"/>
                            <note dur="1" pname="d" oct="3" xml:id="id104"/>
@@ -1515,6 +2112,60 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="1" pname="e" oct="4" xml:id="n25">
+                                    <verse n="1">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">ber</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">se</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="i">pue</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="n26">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">có</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>por</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="b">a</syl>
+                                       <syl con="d" wordpos="i">o</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="i">me</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="b" wordpos="m">de</syl>
+                                       <syl>ha</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="a" oct="3" xml:id="id110">
                               <verse n="1">
@@ -1554,7 +2205,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="a" oct="2" xml:id="id112"/>
                            <note dur="2" pname="b" oct="2" xml:id="id113"/>
@@ -1645,6 +2296,61 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="2" pname="e" oct="4" xml:id="n27">
+                                    <verse n="1">
+                                       <syl wordpos="t">mo</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>dón</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">jos</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">nos</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl wordpos="t">cer</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="f" oct="4" xml:id="n28">
+                                    <verse n="1">
+                                       <syl>se</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="b" wordpos="t">de</syl>
+                                       <syl con="b">ha</syl>
+                                       <syl con="d" wordpos="i">en</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">ce</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>la</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="b" wordpos="t">le</syl>
+                                       <syl>el</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="c" oct="4" xml:id="id119">
                               <verse n="1">
@@ -1686,7 +2392,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="c" oct="3" xml:id="id121">
                               <accid accid="s"/>
@@ -1774,6 +2480,58 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="1" pname="e" oct="4" xml:id="n29">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">pue</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">tra</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">rra</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>vi</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>gus</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="n30">
+                                    <verse n="1">
+                                       <syl wordpos="t">de</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">do</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">dos</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">da</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl wordpos="t">to</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="a" oct="3" xml:id="id128">
                               <verse n="1">
@@ -1811,7 +2569,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="a" oct="2" xml:id="id130"/>
                            <note dur="2" pname="d" oct="3" xml:id="id131"/>
@@ -1898,6 +2656,59 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r6"/>
+                                 <note dur="2" pname="d" oct="4" xml:id="n31">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">que</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>ni</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>quien</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>quien</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="d" oct="4" xml:id="n32">
+                                    <verse n="1">
+                                       <syl wordpos="t">rer,</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>por</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">su</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>del</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id139"/>
                            <note dur="2" pname="b" oct="3" xml:id="id140">
@@ -1936,7 +2747,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="2" xml:id="id142"/>
                         </layer>
@@ -2029,6 +2840,62 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r7"/>
+                                 <note dur="2" pname="e" oct="4" xml:id="n33">
+                                    <verse n="1">
+                                       <syl>de</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>dón</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">po</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>a</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="b">te</syl>
+                                       <syl>ha</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="n34">
+                                    <verse n="1">
+                                       <syl wordpos="t">jar,</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="b" wordpos="t">de</syl>
+                                       <syl>he</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>por</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">mor</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="b">de</syl>
+                                       <syl>o</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id150"/>
                            <note dur="2" pname="c" oct="4" xml:id="id151">
@@ -2070,7 +2937,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="1" pname="c" oct="3" xml:id="id153"/>
                         </layer>
@@ -2156,6 +3023,59 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r8"/>
+                                 <note dur="2" pname="f" oct="4" xml:id="n35">
+                                    <verse n="1">
+                                       <syl>de</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>de</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">dón</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="i">ha</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="m">be</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="n36">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">que</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">vol</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">de</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl wordpos="t">ce</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl con="d" wordpos="m">de</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id161"/>
                            <note dur="2" pname="f" oct="3" xml:id="id162">
@@ -2194,7 +3114,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="1" pname="f" oct="3" xml:id="id164"/>
                         </layer>
@@ -2244,6 +3164,41 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dots="1" dur="1" pname="d" oct="4" xml:id="n37">
+                                    <verse n="1">
+                                       <syl wordpos="t">rer,</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">ver</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>fue</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>ley</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl wordpos="t">cer</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="3" xml:id="id168">
                               <verse n="1">
@@ -2264,7 +3219,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="3" xml:id="id169"/>
                         </layer>
@@ -2299,11 +3254,47 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r9"/>
+                                 <note dur="1" pname="a" oct="4" xml:id="n38">
+                                    <verse n="1">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>yo</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <mRest/>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="g" oct="3" xml:id="id173"/>
                            <note dur="1" pname="c" oct="3" xml:id="id174"/>
@@ -2372,6 +3363,58 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="2" pname="g" oct="4" xml:id="n39">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="g" oct="4" xml:id="n40">
+                                    <verse n="1">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>sé</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="b" oct="3" xml:id="id180">
                               <verse n="1">
@@ -2409,7 +3452,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="g" oct="2" xml:id="id182"/>
                            <note dur="1" pname="b" oct="2" xml:id="id183"/>
@@ -2478,6 +3521,42 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r10"/>
+                                 <note dur="1" pname="a" oct="4" xml:id="n41">
+                                    <verse n="1">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>yo</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="4" xml:id="id189">
                               <verse n="1">
@@ -2498,7 +3577,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="3" xml:id="id190"/>
                         </layer>
@@ -2566,6 +3645,58 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="2" pname="g" oct="4" xml:id="n42">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="g" oct="4" xml:id="n43">
+                                    <verse n="1">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>sé</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>sé</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="b" oct="3" xml:id="id196">
                               <verse n="1">
@@ -2603,7 +3734,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="g" oct="3" xml:id="id198"/>
                            <note dur="1" pname="c" oct="3" xml:id="id199"/>
@@ -2672,6 +3803,42 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <rest dur="2" xml:id="r11"/>
+                                 <note dur="1" pname="a" oct="4" xml:id="n44">
+                                    <verse n="1">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>yo</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>yo</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="4" xml:id="id205">
                               <verse n="1">
@@ -2692,7 +3859,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="3" xml:id="id206"/>
                         </layer>
@@ -2759,6 +3926,58 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dur="2" pname="g" oct="4" xml:id="n45">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="g" oct="4" xml:id="n46">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>no</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="b" oct="3" xml:id="id211">
                               <verse n="1">
@@ -2796,7 +4015,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="g" oct="3" xml:id="id213"/>
                            <note dur="1" pname="c" oct="3" xml:id="id214"/>
@@ -2847,6 +4066,41 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_3_7">
+                              <layer n="1">
+                                 <note dots="1" dur="1" pname="g" oct="4" xml:id="n47">
+                                    <verse n="1">
+                                       <syl>sé.</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>sé.</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>sé.</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>sé.</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>sé.</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                           <rdg label="reconstruction:3:IA:DeepSeek-DeepSeek-V3-0324">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="3" xml:id="id218">
                               <verse n="1">
@@ -2867,7 +4121,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="1" pname="g" oct="2" xml:id="id219"/>
                         </layer>
