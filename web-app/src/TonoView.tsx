@@ -84,12 +84,12 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const [scoreSectionId, setScoreSectionId] = useState<string | null>(null)
     const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
 
-    const tonoIndex = definitions.findIndex((t: TonoDef) => t.number == tono.number)
+    const tonoIndex = tono ? definitions.findIndex((t: TonoDef) => t.number == tono.number) : -1
 
     const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tono.status_text)
     const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tono.status_music)
 
-    const mei_url = getTonoUrl(tono.path, tono.mei_file)
+    const mei_url = useMemo(() => getTonoUrl(tono.path, tono.mei_file), [tono])
 
     const onClickSection = (section: Section) => {
         setScoreSectionId(section.id)
@@ -110,7 +110,6 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             window.scroll(0, scoreSize.scrollTo)
         }
     }
-
 
 
     useEffect(() => {

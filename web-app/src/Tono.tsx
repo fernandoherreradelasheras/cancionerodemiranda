@@ -1,31 +1,28 @@
 import TonoView from "./TonoView";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { Context } from "./Context";
-import { useParams } from "react-router-dom";
 import PageTitle from "./PageTitle";
 
 const Tono = () => {
 
-    const { definitions } = useContext(Context)
+    const { definitions, currentTonoNumber } = useContext(Context)
 
-    const params = useParams();
+    const tono = useMemo(() => {
+        return currentTonoNumber > 0 ? definitions[currentTonoNumber - 1] : null
+    }, [currentTonoNumber, definitions])
 
-    const tonoIndex = params.tonoNumber != undefined ? parseInt(params.tonoNumber) - 1 : -1
-    const tono = definitions[tonoIndex]
 
     if (tono == null) {
         return (<div>Cargando...</div>)
-
     } else {
         const title = `Cancionero de Miranda - ${tono.title}`
-
         return (
             <>
                 <PageTitle title={title} />
                 <TonoView tono={tono} />
             </>
         )
-    }
+   }
 
 
 }

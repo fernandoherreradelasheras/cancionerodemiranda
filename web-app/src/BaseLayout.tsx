@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Outlet, useLocation, useNavigate  } from 'react-router-dom'
 import { Context } from './Context';
 import { getJson, getTonoUrl, latestPdfsPath, Mp3Files, TonoDef, tonoDefinitionsUrl } from './utils';
 import { faBars, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { Location } from 'react-router-dom'
 
 import { ConfigProvider, Layout, Menu, theme, Typography, Grid } from 'antd';
 
@@ -42,17 +43,38 @@ const builldScoreViewerConfig = (tonos: TonoDef[]) => {
     return config
 }
 
+const menuItemKeyFromLocationAndTono = (location: Location, currentTonoNumber: number|null) => {
+    if (!location.pathname) {
+        return "/about"
+    } else if (location.pathname.startsWith("/tono/") || currentTonoNumber) {
+        return `sub1:/tono/${currentTonoNumber}`
+    } else {
+        return location.pathname
+    }
+}
+
+const tonoNumberFromLocation = (location: Location) => {
+    if (!location.pathname) {
+        return null
+    } else if (location.pathname.startsWith("/tono/") || location.pathname.startsWith("sub1:/tono/")) {
+        return parseInt(location.pathname.replace(/.*tono\//, ""))
+    } else {
+        return null
+    }
+}
 
 
 function BaseLayout() {
-
-    const [definitions, setDefinitions] = useState<TonoDef[]>([])
-    const [scoreViewerConfig, setScoreViewerConfig] = useState<any | null>(null)
-
     const navigate = useNavigate()
     const location = useLocation()
 
     const breakpoint = useBreakpoint()
+
+    const [currentTonoNumber, setCurrentTonoNumber] = useState<number | null>(tonoNumberFromLocation(location))
+    const [definitions, setDefinitions] = useState<TonoDef[]>([])
+    const [scoreViewerConfig, setScoreViewerConfig] = useState<any | null>(null)
+
+
 
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -78,36 +100,61 @@ function BaseLayout() {
         setScoreViewerConfig(builldScoreViewerConfig(tonos))
     };
 
-    const onMenuClick = (info: MenuInfo) => {
-        navigate(info.key.split(":").at(-1)!)
-    }
-
-
     useEffect(() => {
         fetchDefinitions()
     }, []);
 
+    const onMenuSelected = (info: MenuInfo) => {
+        if (info.key.startsWith("sub1:/tono/") || info.key.startsWith("/tono/")) {
+            const tonoNumber = parseInt(info.key.replace(/.*tono\//, ""))
+            if (tonoNumber != currentTonoNumber) {
+                setCurrentTonoNumber(tonoNumber)
+            }
+        } else {
+            setCurrentTonoNumber(null)
+            navigate(info.key)
+        }
+    }
 
-    const currentPath = location?.pathname
-    const showingTono = currentPath?.startsWith("/tono/") || false
-    const selectedTonoNumber =  showingTono ? parseInt(currentPath.replace("/tono/", "")) : null
-    const selectorLabel = selectedTonoNumber ?  `Tono ${selectedTonoNumber}: ${definitions.find(t => t.number == selectedTonoNumber)?.title}` : "Selecciona tono"
-    const prevTono = selectedTonoNumber && selectedTonoNumber > 1 ? `/tono/${selectedTonoNumber - 1}` : "/tono/prev"
-    const nextTono = selectedTonoNumber && definitions && selectedTonoNumber < definitions.at(-1)?.number! ? `/tono/${selectedTonoNumber + 1}` : "/tono/next"
+    useEffect(() => {
+        const tonoPath = currentTonoNumber ? `/tono/${currentTonoNumber}` : null
+        if (tonoPath && tonoPath != location.pathname) {
+            navigate(tonoPath)
+        }
+    }, [currentTonoNumber])
+
+
+    useEffect(() => {
+        const locationTonoNumber = tonoNumberFromLocation(location)
+        if (locationTonoNumber &&  locationTonoNumber != currentTonoNumber) {
+            setCurrentTonoNumber(locationTonoNumber)
+        }
+    }, [location])
+
+
+    const selectorLabel = useMemo(() => {
+        return currentTonoNumber ? `Tono ${currentTonoNumber}: ${definitions.find(t => t.number == currentTonoNumber)?.title}` : "Selecciona tono"
+    }, [definitions, currentTonoNumber])
+
+    const prevTono = currentTonoNumber && currentTonoNumber > 1 ? `/tono/${currentTonoNumber - 1}` : "/tono/prev"
+    const nextTono = currentTonoNumber && definitions && currentTonoNumber < definitions.at(-1)?.number! ? `/tono/${currentTonoNumber + 1}` : "/tono/next"
+
+
 
     const items = [
-        breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ? { key: prevTono, icon: <FontAwesomeIcon size="2xs" icon={faArrowLeft}/>, disabled: !showingTono} : null,
-        { key: 'sub1',   label: selectorLabel, style: selectedTonoNumber ?  {fontWeight: "bolder"} :  {},  children:
+        breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
+            { key: prevTono, icon: <FontAwesomeIcon size="2xs" icon={faArrowLeft}/>, disabled: currentTonoNumber == null || prevTono == "/tono/prev" } : null,
+        { key: 'sub1',   label: selectorLabel, style: currentTonoNumber ?  {fontWeight: "bolder"} :  {},  children:
             definitions.map(t => ( {  key: `sub1:/tono/${t.number}`, label: `Tono ${t.number}: ${t.title}` } )) },
-            breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ? { key: nextTono,  icon: <FontAwesomeIcon icon={faArrowRight}/>, disabled: !showingTono} : null,
-        { key: "/tonos", label: "Listado de tonos" },
-        { key: "/about", label: "Acerca de" },
+        breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
+        { key: nextTono,  icon: <FontAwesomeIcon icon={faArrowRight}/>, disabled: currentTonoNumber == null || nextTono == "/tono/next" } : null,
+        { key: "/tonos", label: "Listado de tonos", style: location.pathname == "/tonos" ?  {fontWeight: "bolder"} :  {} },
+        { key: "/about", label: "Acerca de", style: location.pathname == "/about" ?  {fontWeight: "bolder"} :  {} },
     ].filter(i => i !== null) as any
 
-    const selectedMenuItemKey = currentPath ? currentPath  : "/about"
 
     return (
-        <Context.Provider value={{ definitions, setDefinitions, scoreViewerConfig, setScoreViewerConfig }}>
+        <Context.Provider value={{ definitions, setDefinitions, scoreViewerConfig, setScoreViewerConfig, currentTonoNumber, setCurrentTonoNumber }}>
             <ConfigProvider
                 theme={{
                     algorithm: theme.defaultAlgorithm,
@@ -139,13 +186,14 @@ function BaseLayout() {
                                 {breakpoint.xxl || breakpoint.xl || breakpoint.lg ? "Cancionero de Miranda" : "CdM"}
                             </Typography.Title>
 
-                            <Menu
+                            { definitions.length > 0 ? <Menu
                                 mode="horizontal"
                                 subMenuCloseDelay={0.3}
-                                defaultSelectedKeys={[selectedMenuItemKey]}
+                                defaultSelectedKeys={[ menuItemKeyFromLocationAndTono(location, currentTonoNumber)]}
+                                selectedKeys={[ menuItemKeyFromLocationAndTono(location, currentTonoNumber)]}
                                 items={items}
-                                onClick={onMenuClick}
-                                style={{ flex: 1, minWidth: 0, justifyContent: 'flex-end' }}/>
+                                onSelect={onMenuSelected}
+                                style={{ flex: 1, minWidth: 0, justifyContent: 'flex-end' }}/> : null }
                     </Header>
                     <Content style={{ padding: '0 24px', background: colorBgContainer }}>
                         <div style={{
