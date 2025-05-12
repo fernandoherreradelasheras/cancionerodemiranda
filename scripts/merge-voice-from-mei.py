@@ -42,7 +42,7 @@ def get_staff_rdg_elements(measure, staff_n, rdg_label):
 
 
 def replace_staff_content(
-    rdg_label, main_file_path, replacement_file_path, output_file_path
+    main_file_path, rdg_label, replacement_file_path, output_file_path
 ):
     register_namespaces()
 
@@ -96,13 +96,13 @@ def replace_staff_content(
 if __name__ == "__main__":
     if len(sys.argv) != 5:
         print(
-            f'Usage: python {sys.argv[0]} <main_file.mei> <additional_voice_file.mei> <output_file.mei>'
+            f'Usage: python {sys.argv[0]} [main mei file] [label for rdp] [mei file to merge from] [output]'
         )
         sys.exit(1)
 
-    rdg_label = sys.argv[1]
-    main_file = sys.argv[2]
+    main_file = sys.argv[1]
+    rdg_label = sys.argv[2]
     replacement_file = sys.argv[3]
     output_file = sys.argv[4]
 
-    replace_staff_content(rdg_label, main_file, replacement_file, output_file)
+    replace_staff_content(main_file, rdg_label, replacement_file, output_file)
