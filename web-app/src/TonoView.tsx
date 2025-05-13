@@ -1,10 +1,10 @@
-import { ElementType, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { getTonoUrl, MusicStatus, TextStatus, TonoDef } from './utils'
 import IntroView from './IntroView'
 import ImagesView from './ImagesView'
 import Pdf from './Pdf'
 import { Context } from './Context'
-import { ScoreProperties, ScoreViewer } from 'score-viewer'
+import { ScoreProperties, ScoreViewer, VisualizationOptions, Reconstruction } from 'score-viewer'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -24,8 +24,6 @@ type Section = {
     label: string,
     id: string
 }
-
-
 
 const getProgressFromTextStatus = (status: TextStatus) => {
     switch(status) {
@@ -81,7 +79,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const [activeTab, setActiveTab] = useState("music")
     const [scoreSize, setScoreSize] = useState<{width: string, height: string, scrollTo: number | null} | null>(null)
     const [scoreProperties, setScoreProperties] = useState<ScoreProperties | null>(null)
-    const [scoreSectionId, setScoreSectionId] = useState<string | null>(null)
+    const [visualizationOptions, setVisualizationOptions] = useState<VisualizationOptions | null>(null)
+    const [scoreSectionId, setScoreSectionId] = useState<string | undefined>()
     const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
 
     const tonoIndex = tono ? definitions.findIndex((t: TonoDef) => t.number == tono.number) : -1
@@ -111,6 +110,26 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         }
     }
 
+    const onVisualizationOptionsChanged = (_: number, changedOptions: VisualizationOptions) => {
+        setVisualizationOptions((visualizationOptions : VisualizationOptions) => ({ ...visualizationOptions, ...changedOptions }) )
+    }
+
+    const reconstructionsFromOptions = useMemo(() => {
+        if (!visualizationOptions?.showReconstructions ||
+            Object.values(visualizationOptions.showReconstructions).length <= 0) {
+            return null
+        }
+
+        const activeReconstruction = Object.entries(visualizationOptions.showReconstructions)
+            .filter(([_, label]) => label != null && label != "none")
+
+        const reconstructionTexts = activeReconstruction.map(([staff, label]) => {
+            const voiceName = scoreProperties?.reconstructions.find((r: Reconstruction) => r.staff == staff)?.voiceName
+            const model = (label as string).split(":")[3]
+            return `${voiceName ? voiceName : staff}: ${model}`
+        })
+        return reconstructionTexts.join(", ")
+    }, [visualizationOptions])
 
     useEffect(() => {
         if (activeTab == "music" && !tono.mei_file ||
@@ -118,7 +137,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             activeTab == "text" && tono.text_transcription.length == 0) {
                 setActiveTab(getDefaultSection(tono))
         }
-
+        setVisualizationOptions(null)
+        setScoreSectionId(undefined)
     }, [tono, mei_url]);
 
     useEffect(() => {
@@ -126,7 +146,6 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             const viewPortHeight = window.innerHeight
             const rect = scoreViewerContainerRef.current.getBoundingClientRect()
             const availableHeight = Math.floor(viewPortHeight - rect.top) - 6
-            console.log(`availableHeight: ${availableHeight} rect.top: ${rect.top} viewPortHeight: ${viewPortHeight}`)
             if (availableHeight >= MINIMUM_SCORE_HEIGHT) {
                 setScoreSize({
                     width:  USE_VIRTUAL_UNITS ? "100%" : `${Math.floor(rect.width)}px`,
@@ -168,12 +187,12 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                                 { scoreSize ?
 
                              <ScoreViewer
-                                    className="score-viewer"
                                     width={scoreSize.width}
                                     height={scoreSize.height}
                                     config={scoreViewerConfig}
                                     scoreIndex={tonoIndex}
                                     scoreSectionId={scoreSectionId}
+                                    onVisualizationOptionsChanged={onVisualizationOptionsChanged}
                                     onScoreAnalyzed={onScoreAnalyzed}/>
                                     : null }
                 </div>
@@ -199,12 +218,11 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
    const reconstruction = scoreProperties?.reconstructionBy
    const numMeasures = scoreProperties?.numMeasures
 
-
    const sectionItems = useMemo(() => {
         return scoreProperties?.sections?.map((section: Section, index: number) =>
-             <a onClick={() => { onClickSection(section) }}>{`${index + 1}. ${section.label}`}</a>
-        )
+             <a onClick={() => { onClickSection(section) }}>{`${index + 1}. ${section.label}`}</a>) || null
     }, [scoreProperties])
+
 
     return (
         <div>
@@ -237,8 +255,8 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                  xs={{ flex: '50%' }}>
                     { scoreProperties? <div>
                             <> <Typography.Text>Transcripción: {editor}</Typography.Text><br/> </>
-                            { reconstruction ?
-                                <> <Typography.Text>Reconstrucción: {reconstruction}</Typography.Text><br/> </>: null }
+                            { reconstruction || reconstructionsFromOptions ?
+                                <> <Typography.Text>Reconstrucción: {reconstruction || reconstructionsFromOptions}</Typography.Text><br/> </>: null }
                             <> <Typography.Text>Num compases: {numMeasures}</Typography.Text> </>
                         </div> : null }
                 </Col>
@@ -247,8 +265,7 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                  md={{ flex: 1 }}
                  sm={{ flex: 1 }}
                  xs={{ flex: '50%' }}>
-                    { sectionItems &&  (sectionItems as Array<ElementType>).length > 1
-                     ? <Space direction="vertical">
+                    { sectionItems && sectionItems.length > 1 ? <Space direction="vertical">
                             <Typography.Text>Secciones:</Typography.Text>
                             {sectionItems}
                         </Space> : null }
