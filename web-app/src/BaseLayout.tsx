@@ -44,7 +44,7 @@ const builldScoreViewerConfig = (tonos: TonoDef[]) => {
 }
 
 const menuItemKeyFromLocationAndTono = (location: Location, currentTonoNumber: number|null) => {
-    if (!location.pathname) {
+    if (!location.pathname || location.pathname == "/") {
         return "/about"
     } else if (location.pathname.startsWith("/tono/") || currentTonoNumber) {
         return `sub1:/tono/${currentTonoNumber}`
@@ -79,8 +79,6 @@ function BaseLayout() {
     const {
         token: { colorBgContainer, borderRadiusLG },
       } = theme.useToken();
-
-
 
 
     const fetchDefinitions = async () => {
@@ -149,7 +147,7 @@ function BaseLayout() {
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
         { key: nextTono,  icon: <FontAwesomeIcon icon={faArrowRight}/>, disabled: currentTonoNumber == null || nextTono == "/tono/next" } : null,
         { key: "/tonos", label: "Listado de tonos", style: location.pathname == "/tonos" ?  {fontWeight: "bolder"} :  {} },
-        { key: "/about", label: "Acerca de", style: location.pathname == "/about" ?  {fontWeight: "bolder"} :  {} },
+        { key: "/about", label: "Acerca de", style: location.pathname == "/about" || location.pathname == "/" ?  {fontWeight: "bolder"} :  {} },
     ].filter(i => i !== null) as any
 
 
