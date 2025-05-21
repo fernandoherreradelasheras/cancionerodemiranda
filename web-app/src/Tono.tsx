@@ -5,21 +5,21 @@ import PageTitle from "./PageTitle";
 
 const Tono = () => {
 
-    const { definitions, currentTonoNumber } = useContext(Context)
+    const { scoreViewerConfig, currentTonoNumber } = useContext(Context)
 
-    const tono = useMemo(() => {
-        return currentTonoNumber > 0 ? definitions[currentTonoNumber - 1] : null
-    }, [currentTonoNumber, definitions])
+    const tonoConfig = useMemo(() => {
+        return currentTonoNumber && scoreViewerConfig?.scores ? scoreViewerConfig.scores[currentTonoNumber - 1] : null
+    }, [currentTonoNumber, scoreViewerConfig])
 
 
-    if (tono == null) {
+    if (tonoConfig == null) {
         return (<div>Cargando...</div>)
     } else {
-        const title = `Cancionero de Miranda - ${tono.title}`
+        const title = `Cancionero de Miranda - ${tonoConfig.title}`
         return (
             <>
                 <PageTitle title={title} />
-                <TonoView tono={tono} />
+                <TonoView tonoConfig={tonoConfig} />
             </>
         )
    }

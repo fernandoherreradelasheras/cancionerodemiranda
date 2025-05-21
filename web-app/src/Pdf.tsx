@@ -1,8 +1,8 @@
-import { TonoDef } from "./utils"
+import { TonoStatus } from "./utils"
 
 
 
-function Pdf({ tono } : { tono: TonoDef }) {
+function Pdf({ tono } : { tono: TonoStatus }) {
 
     return (
         <div>

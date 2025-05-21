@@ -1,4 +1,4 @@
-import { TonoDef, TranscriptionEntry, getTonoUrl } from "./utils"
+import { TranscriptionEntry } from "./utils"
 
 import { useEffect, useState } from 'react'
 import Markdown from "react-markdown";
@@ -20,7 +20,7 @@ const getTitle = (transcription: TranscriptionEntry) => {
 }
 
 
-function TextView({ tono }: { tono: TonoDef }) {
+function TextView({ path, textItems, comments }: { path: string, textItems: TranscriptionEntry[], comments: string }) {
 
     const [text, setText] = useState<string>("");
 
@@ -28,10 +28,10 @@ function TextView({ tono }: { tono: TonoDef }) {
         const fetchText = async () => {
             var newText = "";
             var lineNumber = 0
-            for (let transcription of tono.text_transcription) {
+            for (let transcription of textItems) {
                 newText += getTitle(transcription)
-                const url = getTonoUrl(tono.path, transcription.file)
-                const response = await getText(url)
+                const file = path + transcription.file
+                const response = await getText(file)
                 for (let line of response.split('\n')) {
                     if (line == "") {
                         newText = newText.slice(0, -2) + "\n\n"
@@ -47,9 +47,8 @@ function TextView({ tono }: { tono: TonoDef }) {
                     }
                 }
             }
-            if (tono.text_comments_file != null) {
-                const url = getTonoUrl(tono.path ,tono.text_comments_file)
-                const response = await getText(url)
+            if (comments) {
+                const response = await getText(comments)
                 newText += "## Notas al texto\n\n" + response
             }
             setText(newText);
