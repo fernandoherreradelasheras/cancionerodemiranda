@@ -1,17 +1,24 @@
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
+import { ScoreViewerConfig } from 'score-viewer';
+import { TonoStatus } from './utils';
 
 
-export const Context = createContext<{
-    scoreViewerConfig: any,
-    setScoreViewerConfig: any,
-    definitions: any,
-    setDefinitions: any,
-    currentTonoNumber: any
-    setCurrentTonoNumber: any
-}>({ definitions: undefined,
-     setDefinitions: undefined,
-     scoreViewerConfig: undefined,
-     setScoreViewerConfig: undefined,
-     currentTonoNumber: undefined,
+export type GlobalContext = {
+    scoreViewerConfig: ScoreViewerConfig | undefined,
+    setScoreViewerConfig: ((config: ScoreViewerConfig) => void) | undefined,
+    status: TonoStatus[] | undefined,
+    setStatus: ((statuses : TonoStatus[]) => void) | undefined,
+    currentTonoNumber: number | undefined | null,
+    setCurrentTonoNumber: ((tonoNumber: number|null) => void) | undefined
+}
+
+export const Context = createContext<GlobalContext>({
+    status: undefined,
+    setStatus: undefined,
+    scoreViewerConfig: undefined,
+    setScoreViewerConfig: undefined,
+    currentTonoNumber: undefined,
     setCurrentTonoNumber: undefined
 });
+
+export const useGlobalContext = () => useContext(Context)

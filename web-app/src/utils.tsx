@@ -1,19 +1,21 @@
 import { RefObject } from "react"
+import tonosConfig from "./assets/tonos-config.json"
+
+const STATUS_FILE = "status.json"
+
+const TESTING_PATH = "/tonos/"
 
 const VITE_TEST_URLS = import.meta.env.VITE_TEST_URLS
 
 const TESTING = (VITE_TEST_URLS != undefined) ? true : false
 
-export const repoRoot = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/"
-const tonoDefinitionsPath = "tonos/definitions.json"
+export const config = TESTING ?
+         { ...tonosConfig, settings: { ...tonosConfig.settings, basePath: TESTING_PATH } }
+        : tonosConfig
 
-export const tonoDefinitionsUrl = TESTING ? "/definitions.json"  : repoRoot + tonoDefinitionsPath
+export const statusUrl = config.settings.basePath + STATUS_FILE
 
 export const latestPdfsPath = "/pdfs-release-latest.json"
-
-export const getPrefixUrl = (path: string) => TESTING ? "/" : repoRoot + path + "/"
-
-export const getTonoUrl = (path: string, file: string) => getPrefixUrl(path) + file
 
 
 export interface TranscriptionEntry {
@@ -52,33 +54,17 @@ export type Mp3Files = {
 }
 
 
-export interface TonoDef {
+export interface TonoStatus {
   index: number;
-  title: string;
-  text_author: string;
-  music_author: string;
-  s1_pages: number[];
-  s2_pages: number[];
-  t_pages: number[];
-  g_pages: number[];
+  number: number;
   status_text: TextStatus;
   status_music: MusicStatus;
-  introduction: string;
-  mei_file: string;
+  music_author: string; // TODO: this is here so we can cache authors for the list view
+  text_author: string; // TODO: same
   mei_unit: number;
   organic: string;
-  high_clefs: boolean
-  original_armor: string;
-  transposition: string;
-  encoded_armor : string;
-  text_transcription: TranscriptionEntry[],
-  text_comments_file: string;
-  music_comments_file: string;
-  path: string;
   pdf_url: string;
-  number: number;
-  base_mp3_file: string;
-  mp3_overlays: AudioOverlay[];
+
 }
 
 export const getJson = async (url: string) => {

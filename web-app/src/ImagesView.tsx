@@ -1,27 +1,18 @@
-import { TonoDef, repoRoot } from "./utils"
 import { useState, useRef } from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons'
 import SimpleIconButton from "./SimpleIconButton";
 import { Pagination, Space } from "antd";
 
-const zeroPad = (num: number, places: number) => String(num).padStart(places, '0');
 
 library.add(faMagnifyingGlassMinus, faMagnifyingGlassPlus)
 
+export type FacsimileItem = {
+    name: string
+    file: string
+}
 
-function ImagesView({ tono }: { tono: TonoDef }) {
-
-    const imgsUrls = [
-        ...tono['s1_pages'].map(p => `${repoRoot}facsimil-images/S1/image-${zeroPad(p - 1, 3)}.jpg`),
-        ...tono['s2_pages'].map(p => `${repoRoot}facsimil-images/S2/image-${zeroPad(p - 1, 3)}.jpg`),
-        ...tono['t_pages'].map(p => `${repoRoot}facsimil-images/T/image-${zeroPad(p - 1, 3)}.jpg`),
-        ...tono['g_pages'].map(p => `${repoRoot}facsimil-images/G/image-${zeroPad(p - 1, 3)}.jpg`)];
-    const imgsLabels = [
-        ...tono['s1_pages'].map(p => `Tiple 1º p. ${p}`),
-        ...tono['s2_pages'].map(p => `Tiple 2º p. ${p}`),
-        ...tono['t_pages'].map(p => `Tenor p. ${p}`),
-        ...tono['g_pages'].map(p => `Guion p. ${p}`)];
+function ImagesView({ path, imageItems }: { path: string, imageItems: FacsimileItem[] }) {
 
 
     const [pageIdx, setPageIdx] = useState(0)
@@ -57,13 +48,13 @@ function ImagesView({ tono }: { tono: TonoDef }) {
 
 
             <div className="imgContainer" ref={divRef} style={{ overflow: "scroll", height: "60vh" }}>
-                <img id="facsimil-img" src={imgsUrls[pageIdx]} style={{ width: "auto", height: `${100 * zoom}%`, objectFit:"contain" }}/>
+                <img id="facsimil-img" src={path + imageItems[pageIdx].file} style={{ width: "auto", height: `${100 * zoom}%`, objectFit:"contain" }}/>
             </div>
 
-            <h4 id="facsimil-title">{imgsLabels[pageIdx]}</h4>
+            <h4 id="facsimil-title">{imageItems[pageIdx].name}</h4>
 
-            { imgsUrls.length > 1 ? <Pagination align="start" current={pageIdx + 1}
-                                            defaultPageSize={1} total={imgsUrls.length} simple={false}
+            { imageItems.length > 1 ? <Pagination align="start" current={pageIdx + 1}
+                                            defaultPageSize={1} total={imageItems.length} simple={false}
                                             onChange={(page: number, _: number)  => setCurrentPageNumber(page) }  /> : null }
 
 

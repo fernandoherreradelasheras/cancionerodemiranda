@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-import { getTonoUrl, TonoDef } from "./utils"
-
-
 
 
 const getText = async (url: string) => {
@@ -13,14 +10,13 @@ const getText = async (url: string) => {
 };
 
 
-function IntroView({ tono }: { tono: TonoDef }) {
+function IntroView({ introductionFile }: { introductionFile: string }) {
 
     const [intro, setIntro] = useState<string|null>(null);
 
     useEffect(() => {
         const fetchIntro = async () => {
-            const url = getTonoUrl(tono.path , tono.introduction)
-            const text = await getText(url)
+            const text = await getText(introductionFile)
             setIntro("## Introducción\n\n" + text)
         };
         fetchIntro()

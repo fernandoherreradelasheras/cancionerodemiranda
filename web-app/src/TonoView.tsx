@@ -1,10 +1,10 @@
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { getTonoUrl, MusicStatus, TextStatus, TonoDef } from './utils'
+import { MusicStatus, TextStatus } from './utils'
 import IntroView from './IntroView'
 import ImagesView from './ImagesView'
 import Pdf from './Pdf'
 import { Context } from './Context'
-import { ScoreProperties, ScoreViewer, VisualizationOptions, Reconstruction } from 'score-viewer'
+import { ScoreProperties, ScoreViewer, VisualizationOptions, Reconstruction, ScoreViewerConfigScore } from 'score-viewer'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -25,8 +25,9 @@ type Section = {
     id: string
 }
 
-const getProgressFromTextStatus = (status: TextStatus) => {
+const getProgressFromTextStatus = (status?: TextStatus) => {
     switch(status) {
+        case undefined: return { value: 5, text: "sin comenzar" }
         case "not started": return { value: 5, text: "sin comenzar" }
         case "raw transcription": return  { value: 25, text: "transcripción en progreso" }
         case "transcription completed": return  { value: 50, text: "transcripción completa" }
@@ -36,8 +37,9 @@ const getProgressFromTextStatus = (status: TextStatus) => {
 
 }
 
-const getProgressFromMusicStatus = (status: MusicStatus) => {
+const getProgressFromMusicStatus = (status?: MusicStatus) => {
     switch(status) {
+        case undefined: return { value: 5, text: "sin comenzar" }
         case "not started": return { value: 5, text: "sin comenzar" }
         case "raw transcription": return  { value: 20, text: "transcripción en progreso" }
         case "transcription completed": return  { value: 40, text: "transcripción completa" }
@@ -61,10 +63,10 @@ const progressColors: ProgressProps['strokeColor'] = [
 
 
 
-const getDefaultSection = (tono: TonoDef) => {
-    if (tono.introduction != undefined)
+const getDefaultSection = (tonoConfig: ScoreViewerConfigScore) => {
+    if (tonoConfig.introductionFile != undefined)
         return "intro"
-    else if (tono.mei_file != undefined)
+    else if (tonoConfig.meiFile != undefined)
         return "music"
     else
         return "images"
@@ -72,9 +74,9 @@ const getDefaultSection = (tono: TonoDef) => {
 
 
 
-const TonoView = ({ tono }: { tono: TonoDef }) => {
+const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
 
-    const { scoreViewerConfig, definitions } = useContext(Context)
+    const { scoreViewerConfig, status: definitions, currentTonoNumber } = useContext(Context)
 
     const [activeTab, setActiveTab] = useState("music")
     const [scoreSize, setScoreSize] = useState<{width: string, height: string, scrollTo: number | null} | null>(null)
@@ -83,12 +85,11 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     const [scoreSectionId, setScoreSectionId] = useState<string | undefined>()
     const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
 
-    const tonoIndex = tono ? definitions.findIndex((t: TonoDef) => t.number == tono.number) : -1
+    const tonoIndex = (currentTonoNumber || 0) - 1
+    const tonoStatus = definitions ? definitions[tonoIndex] : null
 
-    const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tono.status_text)
-    const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tono.status_music)
-
-    const mei_url = useMemo(() => getTonoUrl(tono.path, tono.mei_file), [tono])
+    const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tonoStatus?.status_text)
+    const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tonoStatus?.status_music)
 
     const onClickSection = (section: Section) => {
         setScoreSectionId(section.id)
@@ -111,7 +112,9 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     }
 
     const onVisualizationOptionsChanged = (_: number, changedOptions: VisualizationOptions) => {
-        setVisualizationOptions((visualizationOptions : VisualizationOptions) => ({ ...visualizationOptions, ...changedOptions }) )
+        setVisualizationOptions(
+            (visualizationOptions : VisualizationOptions | null) => ({ ...visualizationOptions, ...changedOptions })
+        )
     }
 
     const reconstructionsFromOptions = useMemo(() => {
@@ -132,14 +135,14 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
     }, [visualizationOptions])
 
     useEffect(() => {
-        if (activeTab == "music" && !tono.mei_file ||
-            activeTab == "intro" && !tono.introduction ||
-            activeTab == "text" && tono.text_transcription.length == 0) {
-                setActiveTab(getDefaultSection(tono))
+        if (activeTab == "music" && !tonoConfig.meiFile ||
+            activeTab == "intro" && !tonoConfig.introductionFile ||
+            activeTab == "text" && !tonoConfig.text?.length) {
+                setActiveTab(getDefaultSection(tonoConfig))
         }
         setVisualizationOptions(null)
         setScoreSectionId(undefined)
-    }, [tono, mei_url]);
+    }, [tonoConfig]);
 
     useEffect(() => {
         if (activeTab == "music" && scoreViewerContainerRef.current && !scoreSize) {
@@ -163,20 +166,29 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
         }
     }, [activeTab])
 
+    const imagesPath = scoreViewerConfig?.settings.facsimileImagesPath || ""
+    const basePath = scoreViewerConfig?.settings.basePath || ""
+    const tonoPath = basePath + tonoConfig.path + "/"
+    const score = scoreViewerConfig?.scores[tonoIndex]
+    const imageItems = score?.facsimileItems || []
+    const textItems = score?.text || []
+    const commentsFile = tonoPath + score?.textCommentsFile
+    const introductionFile = tonoPath + score?.introductionFile
+
 
 
     const tabs: TabsProps['items'] = [
-        tono.introduction ? {
+        tonoConfig.introductionFile ? {
             key: 'intro',
             label: 'Introducción',
-            children: <IntroView tono={tono} />
+            children: <IntroView introductionFile={introductionFile} />
         } : null,
         {
             key: 'text',
             label: 'Texto',
-            children: <TextView tono={tono} />
+            children: <TextView path={tonoPath} textItems={textItems} comments={commentsFile} />
         },
-        tono.mei_file ? {
+        tonoConfig.meiFile ? {
             key: 'music',
             label: 'Música',
             icon: <FontAwesomeIcon icon={faMusic} />,
@@ -202,17 +214,17 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
             key: 'images',
             label: 'Manuscrito',
             icon: <FontAwesomeIcon icon={faFileImage} />,
-            children: <ImagesView tono={tono} />
+            children: <ImagesView path={imagesPath} imageItems={imageItems} />
         },
         {
             key: 'pdf',
             label: 'PDF',
             icon: <FontAwesomeIcon icon={faFilePdf} />,
-            children: <Pdf tono={tono} />
+            children: <Pdf tono={tonoStatus!} />
         }
     ].filter(t => t != null)
 
-   const defaultTab = getDefaultSection(tono)
+   const defaultTab = getDefaultSection(tonoConfig)
 
    const editor = scoreProperties?.editor
    const reconstruction = scoreProperties?.reconstructionBy
@@ -233,9 +245,9 @@ const TonoView = ({ tono }: { tono: TonoDef }) => {
                  md={{ flex: 1 }}
                  sm={{ flex: 1 }}
                  xs={{ flex: '50%' }}>
-                    <Typography.Text>Música: {tono.music_author}</Typography.Text><br/>
-                    <Typography.Text>Texto: {tono.text_author}</Typography.Text><br/>
-                    <Typography.Text>Orgánico: {tono.organic}</Typography.Text>
+                    <Typography.Text>Música: {tonoStatus?.music_author}</Typography.Text><br/>
+                    <Typography.Text>Texto: {tonoStatus?.text_author}</Typography.Text><br/>
+                    <Typography.Text>Orgánico: {tonoStatus?.organic}</Typography.Text>
 
                 </Col>
                 <Col xl={{flex: 1}}

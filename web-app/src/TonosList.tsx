@@ -1,63 +1,63 @@
-import { useContext } from 'react'
-import { TonoDef } from './utils'
+import { TonoStatus } from './utils'
 import { Link } from 'react-router-dom';
-import { Context } from './Context';
+import { useGlobalContext } from './Context';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFileLines, faMarker, faMusic, faHighlighter, faHeadphones, faListCheck, faFeatherPointed, faGuitar } from '@fortawesome/free-solid-svg-icons'
+import { ScoreViewerConfigScore } from 'score-viewer';
 
 library.add( faFileLines, faMarker, faMusic, faHighlighter, faHeadphones, faListCheck, faFeatherPointed, faGuitar )
 
 
 
-function tonoHasMusic(tono: TonoDef | null) {
-    if (tono == null) {
+function tonoHasMusic(tonoConfig: ScoreViewerConfigScore | null) {
+    if (tonoConfig == null) {
         return false
     } else {
-        return (tono['mei_file'] != undefined && tono['mei_file'] != '');
+        return (tonoConfig.meiFile != undefined && tonoConfig.meiFile != '');
     }
 }
 
-function tonoHasText(tono: TonoDef | null) {
+function tonoHasText(tono: ScoreViewerConfigScore | null) {
     if (tono == null) {
         return false
     } else {
-        return (tono.text_transcription != undefined && tono.text_transcription.length > 0)
+        return (tono.text != undefined && tono.text.length > 0)
     }
 }
 
-function tonoHasTextCompleted(tono: TonoDef | null) {
+function tonoHasTextCompleted(tono: TonoStatus | null) {
         return (tono?.status_text == "transcription completed"  || tono?.status_text == "reviewed"
                 ||  tono?.status_text == "completed")
 }
 
-function tonoHasMusicTranscriptionCompleted(tono: TonoDef | null) {
+function tonoHasMusicTranscriptionCompleted(tono: TonoStatus | null) {
     return (tono?.status_music == "transcription completed" ||
             tono?.status_music == "all voices completed" ||
             tono?.status_music == "reviewed" ||
             tono?.status_music == "completed")
 }
 
-function tonoHasMusicVoiceReconstructed(tono: TonoDef | null) {
+function tonoHasMusicVoiceReconstructed(tono: TonoStatus | null) {
     return (tono?.status_music == "all voices completed"  ||
             tono?.status_music == "reviewed" ||
             tono?.status_music == "completed")
 }
 
-function tonoHasAudio(tono: TonoDef | null) {
-    return (tono?.base_mp3_file != undefined && tono?.base_mp3_file != null)
+function tonoHasAudio(tono: ScoreViewerConfigScore | null) {
+    return (tono?.audioBaseFile != undefined && tono?.audioBaseFile != null)
 }
 
-function getAuthors(tono: TonoDef) {
+function getAuthors(tonoStatus: TonoStatus) {
     let music
     let text
 
-    if (tono.music_author && tono.music_author != "Anónimo") {
-        music = <span><FontAwesomeIcon className="author-icon" title="autor de la música" icon={faGuitar} size="sm"/> {tono.music_author}</span>
+    if (tonoStatus.music_author && tonoStatus.music_author != "Anónimo") {
+        music = <span><FontAwesomeIcon className="author-icon" title="autor de la música" icon={faGuitar} size="sm"/> {tonoStatus.music_author}</span>
     }
-    if (tono.text_author && tono.text_author != "Anónimo") {
+    if (tonoStatus.text_author && tonoStatus.text_author != "Anónimo") {
 
-        text = <span><FontAwesomeIcon  className="author-icon" title="autor del texto" icon={faFeatherPointed} size="sm"/> {tono.text_author}</span>
+        text = <span><FontAwesomeIcon  className="author-icon" title="autor del texto" icon={faFeatherPointed} size="sm"/> {tonoStatus.text_author}</span>
     }
     return text != undefined || music != undefined ?
         <>. {music}{text}</>
@@ -66,14 +66,14 @@ function getAuthors(tono: TonoDef) {
 
 
 
-const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
+const TonoItem = ({ tonoConfig, tonoStatus, index }: { tonoConfig: ScoreViewerConfigScore, tonoStatus: TonoStatus, index: number }) => {
 
-    const hasText = tonoHasText(tono)
-    const textCompleted = tonoHasTextCompleted(tono)
-    const hasMusic = tonoHasMusic(tono)
-    const musicTranscriptionCompleted = tonoHasMusicTranscriptionCompleted(tono)
-    const voiceReconstructed = tonoHasMusicVoiceReconstructed(tono)
-    const hasAudio = tonoHasAudio(tono)
+    const hasText = tonoHasText(tonoConfig)
+    const textCompleted = tonoHasTextCompleted(tonoStatus)
+    const hasMusic = tonoHasMusic(tonoConfig)
+    const musicTranscriptionCompleted = tonoHasMusicTranscriptionCompleted(tonoStatus)
+    const voiceReconstructed = tonoHasMusicVoiceReconstructed(tonoStatus)
+    const hasAudio = tonoHasAudio(tonoConfig)
 
     const textInfo = hasText ? "texto transcrito" : "texto sin transcribir"
     const coplasInfo = textCompleted ? "todas las coplas alineadas" : "coplas por alinear"
@@ -84,9 +84,9 @@ const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
 
     return (
         <li className="tono-list-item"  style={{paddingBottom: "1.4em"}}>
-            <Link  className="item-tono-status" to={`/tono/${index + 1}`} state={{ tono: tono }}>
+            <Link  className="item-tono-status" to={`/tono/${index + 1}`} state={{ tono: tonoConfig }}>
                 <div  style={{marginTop: "0.2em", marginBottom: "0.2em"}}>
-                    <span className="tono-title">{index + 1}. {tono?.title}</span>{getAuthors(tono)}
+                    <span className="tono-title">{index + 1}. {tonoConfig?.title}</span>{getAuthors(tonoStatus)}
                 </div>
                 <div style={{display: "flex", flexDirection: "row", alignSelf: "center", fontSize: "1.2em" }}>
                     <FontAwesomeIcon className="status-icon" opacity={ hasText ? 1.0 : 0.3 } title={textInfo} icon={faFileLines} size="xl"/>
@@ -105,15 +105,17 @@ const TonoItem = ({ tono, index }: { tono: TonoDef, index: number }) => {
 
 const TonosList = () => {
 
+    const { scoreViewerConfig, status: definitions } = useGlobalContext()
 
-    const { definitions } = useContext(Context)
+    const listItems = scoreViewerConfig?.scores && definitions?.length ? scoreViewerConfig?.scores?.map((tonoConfig: ScoreViewerConfigScore, index: number) =>
+        <TonoItem tonoConfig={tonoConfig} tonoStatus={definitions![index]} index={index} key={index}  />)
+     : null
 
-    const listItems = definitions.map((tono: TonoDef, index: number) => <TonoItem tono={tono} index={index} key={index}  />);
 
     return (
 
         <ul className="alt tono-list">
-            {listItems}
+            { listItems}
         </ul>
     );
 };
