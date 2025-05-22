@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMagnifyingGlassMinus, faMagnifyingGlassPlus } from '@fortawesome/free-solid-svg-icons'
 import SimpleIconButton from "./SimpleIconButton";
@@ -20,6 +20,12 @@ function ImagesView({ path, imageItems }: { path: string, imageItems: FacsimileI
 
     const divRef = useRef(null);
 
+    useEffect(() => {
+        console.log("Reseting index")
+        setPageIdx(0)
+        setZoom(1.0)
+    }, [imageItems])
+
     const zoomIn = () => {
         if (zoom < 8) {
             setZoom(zoom + 0.2)
@@ -36,6 +42,11 @@ function ImagesView({ path, imageItems }: { path: string, imageItems: FacsimileI
         setPageIdx(pageNumber - 1)
     }
 
+    const imageName = pageIdx < imageItems.length ? imageItems[pageIdx].name : ""
+    const imageFile = pageIdx < imageItems.length ? path + imageItems[pageIdx].file : null
+
+    console.log("pageIdx", pageIdx)
+
     return (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
 
@@ -48,10 +59,12 @@ function ImagesView({ path, imageItems }: { path: string, imageItems: FacsimileI
 
 
             <div className="imgContainer" ref={divRef} style={{ overflow: "scroll", height: "60vh" }}>
-                <img id="facsimil-img" src={path + imageItems[pageIdx].file} style={{ width: "auto", height: `${100 * zoom}%`, objectFit:"contain" }}/>
+                { imageFile ? <img  id="facsimil-img"
+                                    src={imageFile} style={{ width: "auto", height: `${100 * zoom}%`, objectFit:"contain" }}/>
+                                    : null}
             </div>
 
-            <h4 id="facsimil-title">{imageItems[pageIdx].name}</h4>
+            <h4 id="facsimil-title">{imageName}</h4>
 
             { imageItems.length > 1 ? <Pagination align="start" current={pageIdx + 1}
                                             defaultPageSize={1} total={imageItems.length} simple={false}
