@@ -58,9 +58,22 @@ def workaround_verovio_2divs_bug(mei_file):
     f.close()
 
 
-def add_image(directory, page, caption, title=None):
+def get_entries_from_mei(mei_file):
+    tree = ET.parse(mei_file)
+    root = tree.getroot()
+    composerNode = root.xpath('//mei:composer/mei:persName', namespaces=NSMAP)
+    lyricistNode = root.xpath('//mei:lyricist/mei:persName', namespaces=NSMAP)
+
+    composer = composerNode[0].text if len(composerNode) > 0 else "Anónimo"
+    lyricist = lyricistNode[0].text if len(lyricistNode) > 0 else "Anónimo"
+
+    return composer, lyricist
+
+
+
+
+def add_image(directory, file, caption, title=None):
     """Generate LaTeX code for including an image"""
-    k = f"{page:03d}"
     lines = ["\\begin{figure}[p]"]
     
     if title:
@@ -69,7 +82,7 @@ def add_image(directory, page, caption, title=None):
     lines.extend([
         f"\\caption{{{caption}}}",
         "\\makebox[\\linewidth]{",
-        f"\\includegraphics[width=0.95\\linewidth]{{{directory}/image-{k}.jpg}}",
+        f"\\includegraphics[width=0.95\\linewidth]{{{directory}/{file}}}",
         "}",
         "\\end{figure}"
     ])
@@ -139,23 +152,17 @@ def format_status(data):
     return str
 
 
-def get_images(dir, pages, caption, title=""):
+def get_images(dir, items):
     output = ""
-    print(pages)
-    for page in pages:
-        N = page - 1
-        output = output + add_image(dir, N, caption, title)
-        caption = ""
-        title = ""
+    print(items)
+    for item in items:
+        output = output + add_image(dir, item['file'], item['name'])
     return output
     
     
-def get_facsimil(s1, s2, t, g):
+def get_facsimil(items):
     
-    latexStr = get_images("facsimil-images/S1", s1, "Facsimil tiple 1", "Facsimiles")
-    latexStr = latexStr + get_images("facsimil-images/S2", s2, "Facsimil tiple 2")
-    latexStr = latexStr + get_images("facsimil-images/T", t, "Facsimil tenor")
-    latexStr = latexStr + get_images("facsimil-images/G", g, "Facsimil guión")
+    latexStr = get_images("facsimil-images/", items)
  
     return latexStr
     
@@ -701,11 +708,20 @@ def generate_tono(data, status, tmp_dir):
         
     print(f"** Building tono {data['number']}: {data['title']} **")
 
-    directory = data['path']
+    directory = 'tonos/' + data['path']
         
     # convert filenames to full path        
     data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'textCommentsFile', 'music_comments_file', 'meiFile'] else data[key] for key in data.keys()}
     data['text'] = [{k: directory + "/" + v if k == "file" else v  for k, v in entry.items()}  for entry in data['text'] ]
+
+    composer, lyricist = get_entries_from_mei(data['meiFile'])
+    data['music_author'] = composer
+    data['text_author'] = lyricist
+    data['status_text'] = status['status_text']
+    data['status_music'] = status['status_music']
+    data['organic'] = status['organic']
+    encoding = data['encodingProperties']
+    data['high_clefs']  = encoding['originalArmor'] != encoding['encodedArmor']
         
     valuesLatexStr = ""
         
@@ -746,14 +762,14 @@ def generate_tono(data, status, tmp_dir):
             latexStr = latexStr + Path(data['music_comments_file']).read_text()
         else:
             encoding = data['encodingProperties']
-            json_params = json.dumps({ "organic" : data['organic'], "high_clefs" :  data['high_clefs'], "original_armor" : data['original_armor'], "transposition" : encoding['encodedTransposition'], "encoded_armor" : encoding['encodedArmor'] })
+            json_params = json.dumps({ "organic" : data['organic'], "high_clefs" :  data['high_clefs'], "original_armor" : encoding['originalArmor'], "transposition" : encoding['encodedTransposition'], "encoded_armor" : encoding['encodedArmor'] })
             print(json_params)
             latexStr = latexStr + generate_comments_from_mei_file(data['meiFile'], json_params, tmp_dir)
             
         for score in generated_scores:
             latexStr = latexStr + "\\includepdf[pages=-]{%s}\n" % score
         
-    (Path(tmp_dir) / 'facsimil.tex').write_text(get_facsimil(data['s1_pages'], data['s2_pages'], data['t_pages'], data['g_pages']))
+    (Path(tmp_dir) / 'facsimil.tex').write_text(get_facsimil(data['facsimileItems']))
     latexStr = latexStr + "\\input{facsimil.tex}\n"
         
     
