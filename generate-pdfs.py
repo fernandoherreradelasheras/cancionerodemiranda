@@ -617,14 +617,14 @@ def generate_score(order, data, tmp_dir):
 
     generated = []
     
-    if not 'mei_file' in data:
+    if not 'meiFile' in data:
         return generated
     
     mei_unit = str(data['mei_unit']) if 'mei_unit' in data else "8.0"
     mei_scale = str(data['mei_scale']) if 'mei_scale' in data else "100"
     tmp_file = f"{tmp_dir}/tmp1.mei"
-    generate_mei(data['mei_file'], order, data['text_author'], data['music_author'], data['title'], tmp_dir, tmp_file)
-    add_titles(tmp_file, data['text_transcription'])
+    generate_mei(data['meiFile'], order, data['text_author'], data['music_author'], data['title'], tmp_dir, tmp_file)
+    add_titles(tmp_file, data['text'])
 
     shutil.copy(tmp_file, f'{tmp_dir}/final.mei')        
 
@@ -650,7 +650,7 @@ def generate_score(order, data, tmp_dir):
         path = f"//mei:verse[@n!=\"1\"]"
         run_xmlstarlet(f"-d '{path}' {single_verse_mei}")
 
-        blocks_to_inject = [entry for entry in data['text_transcription'] if 'append_to' in entry and entry['append_to'] != "@none" ]
+        blocks_to_inject = [entry for entry in data['text'] if 'append_to' in entry and entry['append_to'] != "@none" ]
         inject_section_place_holders(single_verse_mei, blocks_to_inject)   
         single_verse_pdf = f'single_verse_sections.pdf'
         render_mei(single_verse_mei, mei_unit, mei_scale, tmp_dir, single_verse_pdf)
@@ -666,21 +666,28 @@ def main():
     # Create temporary directory
     tmp_dir = tempfile.mkdtemp()
 
-    with open(os.path.join("tonos", "definitions.json")) as f:
-        data = json.load(f)
+    with open(os.path.join("tonos", "tonos.json")) as f:
+        config = json.load(f)
+        scores = config['scores']
+        for index,score in enumerate(scores):
+            score['number'] = str(index + 1)
+
+
+    with open(os.path.join("tonos", "status.json")) as f:
+        status = json.load(f)
     
     try:
         if len(sys.argv) == 2:
             tonoIdx = int(sys.argv[1]) - 1
-            if tonoIdx >= 0 and tonoIdx < len(data):
-                generate_tono(data[tonoIdx], tmp_dir)
+            if tonoIdx >= 0 and tonoIdx < len(scores):
+                generate_tono(scores[tonoIdx], status[tonoIdx], tmp_dir)
             else:
                 print(f"No such tono: {sys.argv[1]}")
         else:
             # Process all tonos
-            for tono in data:
+            for tono, tonos_status in zip(scores, status):
                 print(f"Building tono {tono['number']} from dir {tono['path']}\n")
-                generate_tono(tono, tmp_dir)
+                generate_tono(tono, tono_status, tmp_dir)
                 for file in os.listdir(tmp_dir):
                     os.remove(os.path.join(tmp_dir, file))
     
@@ -690,19 +697,19 @@ def main():
         else:
             print(f"Intermediate files kept at {tmp_dir}")
 
-def generate_tono(data, tmp_dir):
+def generate_tono(data, status, tmp_dir):
         
     print(f"** Building tono {data['number']}: {data['title']} **")
 
     directory = data['path']
         
     # convert filenames to full path        
-    data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'text_comments_file', 'music_comments_file', 'mei_file'] else data[key] for key in data.keys()}
-    data['text_transcription'] = [{k: directory + "/" + v if k == "file" else v  for k, v in entry.items()}  for entry in data['text_transcription'] ]
+    data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'textCommentsFile', 'music_comments_file', 'meiFile'] else data[key] for key in data.keys()}
+    data['text'] = [{k: directory + "/" + v if k == "file" else v  for k, v in entry.items()}  for entry in data['text'] ]
         
     valuesLatexStr = ""
         
-    files =  [data[key] for key in [ 'text_comments_file', 'music_comments_file', 'mei_file', 'introduction'] if key in data] + [ entry['file'] for entry in data['text_transcription']]
+    files =  [data[key] for key in [ 'textCommentsFile', 'music_comments_file', 'meiFile', 'introduction'] if key in data] + [ entry['file'] for entry in data['text']]
     vers = get_version_from_git(files)
     print(f"Version baseed on # of git revisions: {vers}")
         
@@ -724,8 +731,8 @@ def generate_tono(data, tmp_dir):
         latexStr = latexStr + "\\input{intro.tex}" 
             
     latexStr = latexStr + format_text_part(
-                            data['text_transcription'],
-                            data['text_comments_file'] if 'text_comments_file' in data else None,
+                            data['text'],
+                            data['textCommentsFile'] if 'textCommentsFile' in data else None,
                             tmp_dir)
         
     generated_scores = generate_score(data['number'], data, tmp_dir)
@@ -738,9 +745,10 @@ def generate_tono(data, tmp_dir):
             print(f"Adding music comments from file {data['music_comments_file']}")
             latexStr = latexStr + Path(data['music_comments_file']).read_text()
         else:
-            json_params = json.dumps({ "organic" : data['organic'], "high_clefs" :  data['high_clefs'], "original_armor" : data['original_armor'], "transposition" : data['transposition'], "encoded_armor" : data['encoded_armor'] })
+            encoding = data['encodingProperties']
+            json_params = json.dumps({ "organic" : data['organic'], "high_clefs" :  data['high_clefs'], "original_armor" : data['original_armor'], "transposition" : encoding['encodedTransposition'], "encoded_armor" : encoding['encodedArmor'] })
             print(json_params)
-            latexStr = latexStr + generate_comments_from_mei_file(data['mei_file'], json_params, tmp_dir)
+            latexStr = latexStr + generate_comments_from_mei_file(data['meiFile'], json_params, tmp_dir)
             
         for score in generated_scores:
             latexStr = latexStr + "\\includepdf[pages=-]{%s}\n" % score
