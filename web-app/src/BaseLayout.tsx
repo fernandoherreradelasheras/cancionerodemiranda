@@ -50,7 +50,7 @@ function BaseLayout() {
 
     const [currentTonoNumber, setCurrentTonoNumber] = useState<number | null>(tonoNumberFromLocation(location))
     const [status, setStatus] = useState<TonoStatus[]>([])
-    const [scoreViewerConfig, setScoreViewerConfig] = useState<ScoreViewerConfig | null>(null)
+    const [scoreViewerConfig, setScoreViewerConfig] = useState<ScoreViewerConfig | undefined>(undefined)
 
 
     const {
@@ -86,7 +86,6 @@ function BaseLayout() {
 
     useEffect(() => {
         const tonoPath = currentTonoNumber ? `/tono/${currentTonoNumber}` : null
-        console.log(`Changed currentTonoNumber: ${currentTonoNumber} Tono path: ${tonoPath}`)
         if (tonoPath && tonoPath != location.pathname) {
             navigate(tonoPath)
         }

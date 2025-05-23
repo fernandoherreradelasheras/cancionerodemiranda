@@ -1,29 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react';
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 
 
-const getText = async (url: string) => {
-    const response = await fetch(url)
-    return response.text()
-};
 
+function IntroView({ introduction }: { introduction: string | null | undefined }) {
 
-function IntroView({ introductionFile }: { introductionFile: string }) {
-
-    const [intro, setIntro] = useState<string|null>(null);
+    const [intro, setIntro] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchIntro = async () => {
-            const text = await getText(introductionFile)
-            setIntro("## Introducción\n\n" + text)
-        };
-        fetchIntro()
-    }, []);
+        if (introduction) {
+            setIntro("## Introducción\n\n" + introduction)
+        }
+    }, [introduction]);
 
     return (
-        <div style={{ maxWidth: "1200px"}}>
+        <div style={{ maxWidth: "1200px" }}>
             <Markdown remarkPlugins={[remarkGfm]}>{intro}</Markdown>
         </div>
 
