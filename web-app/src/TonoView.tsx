@@ -9,7 +9,7 @@ import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Progress, ProgressProps, Row, Space, Tabs, TabsProps, Typography } from 'antd'
 import TextView from './TextView'
-import { ScoreViewerConfigScore, ScoreProperties, VisualizationOptions, LyricItem, Reconstruction, ScoreViewer } from 'score-viewer'
+import { ScoreViewerConfigScore, ScoreProperties, VisualizationOptions, LyricItem, Reconstruction, ScoreViewer, ScoreViewerRef } from 'score-viewer'
 
 
 const MINIMUM_SCORE_HEIGHT = 300
@@ -81,7 +81,6 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
     const [scoreSize, setScoreSize] = useState<{width: string, height: string, scrollTo: number | null} | null>(null)
     const [scoreProperties, setScoreProperties] = useState<ScoreProperties | null>(null)
     const [visualizationOptions, setVisualizationOptions] = useState<VisualizationOptions | null>(null)
-    const [scoreSectionId, setScoreSectionId] = useState<string | undefined>()
     const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
 
     const [currentLyrics, setCurrentLyrics] = useState<LyricItem[]|null|undefined>()
@@ -95,15 +94,15 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
     const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tonoStatus?.status_text)
     const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tonoStatus?.status_music)
 
+    const scoreViewerRef = useRef<ScoreViewerRef>(null);
+
+
     const onClickSection = useCallback((section: Section) => {
-        console.log(`active tab: ${activeTab}`)
         if (activeTab != "music") {
-            console.log(`chaning tab to music when clicking on section ${section.label}`)
             setActiveTab("music")
         }
-        console.log(`setting score section id to ${section.id}`)
-        setScoreSectionId(section.id)
-    }, [activeTab])
+        scoreViewerRef.current?.goToSection(section.id)
+    },[activeTab])
 
     const onScoreAnalyzed = (_: number, scoreProperties: ScoreProperties) => {
         setScoreProperties(scoreProperties)
@@ -150,6 +149,7 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
     }
 
     const onTabChanged = (key: string) => {
+        console.log(`tab changed to ${key}. Current active tab: ${activeTab}. Updating it to ${key}`)
         setActiveTab(key)
     }
 
@@ -180,7 +180,6 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
                 setActiveTab(newTab)
         }
         setVisualizationOptions(null)
-        setScoreSectionId(undefined)
     }, [tonoConfig]);
 
 
@@ -239,8 +238,8 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
                                     width={scoreSize.width}
                                     height={scoreSize.height}
                                     config={scoreViewerConfig}
+                                    ref={scoreViewerRef}
                                     scoreIndex={tonoIndex}
-                                    scoreSectionId={scoreSectionId}
                                     onVisualizationOptionsChanged={onVisualizationOptionsChanged}
                                     onScoreAnalyzed={onScoreAnalyzed}
                                     onTextPartChanged={onTextPartChanged}
@@ -272,7 +271,7 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
    const sectionItems = useMemo(() => {
         return scoreProperties?.sections?.map((section: Section, index: number) =>
              <a onClick={() => { onClickSection(section) }}>{`${index + 1}. ${section.label}`}</a>) || null
-    }, [scoreProperties])
+    }, [scoreProperties, activeTab])
 
 
     return (
