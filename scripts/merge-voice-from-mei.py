@@ -33,16 +33,16 @@ def get_measure_ties(measure):
     return measure.findall(f".//mei:tie", namespace)
 
 
-def get_staff_rdg_elements(measure, staff_n, rdg_label):
+def get_staff_app_elements(measure, staff_n, elem, label):
     namespace = {"mei": "http://www.music-encoding.org/ns/mei"}
     return measure.findall(
-        f'.//mei:staff[@n="{staff_n}"]/mei:app[@type="voice_reconstruction"]/mei:rdg[@label="{rdg_label}"]/mei:layer[@n="1"]',
+        f'.//mei:staff[@n="{staff_n}"]/mei:app[@type="voice_reconstruction"]/mei:{elem}[@label="{label}"]/mei:layer[@n="1"]',
         namespace,
     )
 
 
 def replace_staff_content(
-    main_file_path, rdg_label, replacement_file_path, output_file_path
+    main_file_path, elem, label, replacement_file_path, output_file_path
 ):
     register_namespaces()
 
@@ -63,7 +63,7 @@ def replace_staff_content(
     ):
         measure_num = i + 1
 
-        staff3_elements = get_staff_rdg_elements(main_measure, "3", rdg_label)
+        staff3_elements = get_staff_app_elements(main_measure, "3", elem, label)
         if not staff3_elements:
             print(
                 f"Warning: No staff 3 found in measure {measure_num} of the main file"
@@ -94,15 +94,16 @@ def replace_staff_content(
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
+    if len(sys.argv) != 6:
         print(
-            f'Usage: python {sys.argv[0]} [main mei file] [label for rdp] [mei file to merge from] [output]'
+            f'Usage: python {sys.argv[0]} [main mei file] [lem/rdg] [label] [mei file to merge from] [output]'
         )
         sys.exit(1)
 
     main_file = sys.argv[1]
-    rdg_label = sys.argv[2]
-    replacement_file = sys.argv[3]
-    output_file = sys.argv[4]
+    elem = sys.argv[2]
+    label = sys.argv[3]
+    replacement_file = sys.argv[4]
+    output_file = sys.argv[5]
 
-    replace_staff_content(main_file, rdg_label, replacement_file, output_file)
+    replace_staff_content(main_file, elem, label, replacement_file, output_file)

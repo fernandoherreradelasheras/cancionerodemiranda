@@ -1,23 +1,16 @@
-import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { MusicStatus, TextStatus } from './utils'
-import IntroView from './IntroView'
-import ImagesView from './ImagesView'
-import Pdf from './Pdf'
 import { Context } from './Context'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Progress, ProgressProps, Row, Space, Tabs, TabsProps, Typography } from 'antd'
-import TextView from './TextView'
-import { ScoreViewerConfigScore, ScoreProperties, VisualizationOptions, LyricItem, Reconstruction, ScoreViewer, ScoreViewerRef } from 'score-viewer'
+import { Col, Progress, ProgressProps, Row, Space, Typography } from 'antd'
+import { ScoreViewerConfigScore, ScoreProperties, VisualizationOptions, Reconstruction, ScoreViewer, ScoreViewerRef } from 'score-viewer'
 
 
 const MINIMUM_SCORE_HEIGHT = 300
 const STICKY_HEADER_HEIGHT = 48
 
 const USE_VIRTUAL_UNITS = true
-
-const empty = (s:string | undefined | null) => !s || s == ""
 
 
 library.add(faMusic, faFilePdf, faFileImage )
@@ -63,30 +56,16 @@ const progressColors: ProgressProps['strokeColor'] = [
     '#2E7D32'
 ]
 
-const getDefaultSection = (tonoConfig: ScoreViewerConfigScore) => {
-    if (!empty(tonoConfig.introductionFile))
-        return "intro"
-    else if (!empty(tonoConfig.meiFile))
-        return "music"
-    else
-        return "images"
-}
 
 
 const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
 
     const { scoreViewerConfig, status: definitions, currentTonoNumber } = useContext(Context)
 
-    const [activeTab, setActiveTab] = useState("music")
     const [scoreSize, setScoreSize] = useState<{width: string, height: string, scrollTo: number | null} | null>(null)
     const [scoreProperties, setScoreProperties] = useState<ScoreProperties | null>(null)
     const [visualizationOptions, setVisualizationOptions] = useState<VisualizationOptions | null>(null)
     const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
-
-    const [currentLyrics, setCurrentLyrics] = useState<LyricItem[]|null|undefined>()
-    const [currentLyricsComments, setCurrentLyricsComments] = useState<string|null|undefined>()
-    const [currentIntroduction, setCurrentIntroduction] = useState<string|null|undefined>()
-
 
     const tonoIndex = useMemo(() => (currentTonoNumber || 0) - 1, [currentTonoNumber])
     const tonoStatus = useMemo(() => definitions ? definitions[tonoIndex] : null, [definitions, tonoIndex])
@@ -97,12 +76,9 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
     const scoreViewerRef = useRef<ScoreViewerRef>(null);
 
 
-    const onClickSection = useCallback((section: Section) => {
-        if (activeTab != "music") {
-            setActiveTab("music")
-        }
+    const onClickSection = (section: Section) => {
         scoreViewerRef.current?.goToSection(section.id)
-    },[activeTab])
+    }
 
     const onScoreAnalyzed = (_: number, scoreProperties: ScoreProperties) => {
         setScoreProperties(scoreProperties)
@@ -120,27 +96,6 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
         }
     }
 
-    const onTextPartChanged = (idx: number, name: string, part: LyricItem[]|string|null|undefined) => {
-        if (idx != tonoIndex) {
-            return
-        }
-        if  (name == "lyrics") {
-            const lyrics = part as LyricItem[] | null | undefined
-            setCurrentLyrics(lyrics)
-            if (lyrics === null && activeTab == "text") {
-                setActiveTab("music")
-            }
-        } else if (name == "comments") {
-            const comments = part as string
-            setCurrentLyricsComments(comments)
-        } else if (name == "introduction") {
-            const introduction = part as string
-            setCurrentIntroduction(introduction)
-            if (introduction == null && activeTab == "intro") {
-                setActiveTab("music")
-            }
-        }
-    }
 
     const onVisualizationOptionsChanged = (_: number, changedOptions: VisualizationOptions) => {
         setVisualizationOptions(
@@ -148,10 +103,6 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
         )
     }
 
-    const onTabChanged = (key: string) => {
-        console.log(`tab changed to ${key}. Current active tab: ${activeTab}. Updating it to ${key}`)
-        setActiveTab(key)
-    }
 
     const reconstructionsFromOptions = useMemo(() => {
         if (!visualizationOptions?.showReconstructions ||
@@ -173,18 +124,12 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
 
 
     useEffect(() => {
-        if (activeTab == "music" && empty(tonoConfig.meiFile)  ||
-            activeTab == "intro" && empty(tonoConfig.introductionFile) ||
-            activeTab == "text" && (!tonoConfig.text || tonoConfig.text.length <= 0)) {
-                const newTab = getDefaultSection(tonoConfig)
-                setActiveTab(newTab)
-        }
         setVisualizationOptions(null)
     }, [tonoConfig]);
 
 
     useEffect(() => {
-        if (activeTab == "music" && scoreViewerContainerRef.current && !scoreSize) {
+        if (scoreViewerContainerRef.current && !scoreSize) {
             const viewPortHeight = window.innerHeight
             const rect = scoreViewerContainerRef.current.getBoundingClientRect()
             const availableHeight = Math.floor(viewPortHeight - rect.top) - 6
@@ -203,66 +148,9 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
                 })
             }
         }
-    }, [activeTab])
-
-    const imagesPath = scoreViewerConfig?.settings.facsimileImagesPath || ""
-    const score = useMemo(() => scoreViewerConfig?.scores[tonoIndex], [tonoIndex])
-    const imageItems = useMemo(() =>  score?.facsimileItems || [], [score])
+    }, [])
 
 
-    const tabs: TabsProps['items'] = [
-        {
-            key: 'intro',
-            label: 'Introducción',
-            disabled:  !tonoConfig.introductionFile || currentIntroduction == null,
-            children: <IntroView introduction={currentIntroduction} />
-        },
-        {
-            key: 'text',
-            label: 'Texto',
-            disabled:  !tonoConfig.text?.length || !currentLyrics || currentLyrics.length <= 0,
-            children: <TextView lyricsItems={currentLyrics} comments={currentLyricsComments} />
-        },
-        {
-            key: 'music',
-            label: 'Música',
-            disabled:  !scoreViewerConfig || !tonoConfig.meiFile || score == null,
-            icon: <FontAwesomeIcon icon={faMusic} />,
-            children: <div  ref={scoreViewerContainerRef}
-                            className="score-viewer-container"
-                            style={{ display: "flex", flexDirection: "column",
-                                     height: "100%", width: "100%" }}>
-                                { scoreViewerConfig && scoreSize ?
-
-                             <ScoreViewer
-                                    width={scoreSize.width}
-                                    height={scoreSize.height}
-                                    config={scoreViewerConfig}
-                                    ref={scoreViewerRef}
-                                    scoreIndex={tonoIndex}
-                                    onVisualizationOptionsChanged={onVisualizationOptionsChanged}
-                                    onScoreAnalyzed={onScoreAnalyzed}
-                                    onTextPartChanged={onTextPartChanged}
-                                    />
-                                    : null }
-                </div>
-
-        },
-        {
-            key: 'images',
-            label: 'Manuscrito',
-            icon: <FontAwesomeIcon icon={faFileImage} />,
-            children: <ImagesView path={imagesPath} imageItems={imageItems} />
-        },
-        {
-            key: 'pdf',
-            label: 'PDF',
-            icon: <FontAwesomeIcon icon={faFilePdf} />,
-            children: <Pdf tono={tonoStatus!} />
-        }
-    ].filter(t => t != null)
-
-   const defaultTab = getDefaultSection(tonoConfig)
 
    const editor = scoreProperties?.editor
    const reconstruction = scoreProperties?.reconstructionBy
@@ -271,7 +159,7 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
    const sectionItems = useMemo(() => {
         return scoreProperties?.sections?.map((section: Section, index: number) =>
              <a onClick={() => { onClickSection(section) }}>{`${index + 1}. ${section.label}`}</a>) || null
-    }, [scoreProperties, activeTab])
+    }, [scoreProperties])
 
 
     return (
@@ -321,7 +209,24 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
                         </Space> : null }
                 </Col>
             </Row>
-            <Tabs items={tabs} defaultActiveKey={defaultTab} activeKey={activeTab} onChange={onTabChanged}/>
+            <div ref={scoreViewerContainerRef}
+                className="score-viewer-container"
+                style={{
+                    display: "flex", flexDirection: "column",
+                    height: "100%", width: "100%"
+                }}>
+
+                {scoreSize && scoreViewerConfig ? <ScoreViewer
+                    width={scoreSize.width}
+                    height={scoreSize.height}
+                    config={scoreViewerConfig}
+                    ref={scoreViewerRef}
+                    scoreIndex={tonoIndex}
+                    onVisualizationOptionsChanged={onVisualizationOptionsChanged}
+                    onScoreAnalyzed={onScoreAnalyzed}
+                /> : null}
+
+            </div>
         </div>
     )
 }
