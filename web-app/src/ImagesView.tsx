@@ -21,7 +21,6 @@ function ImagesView({ path, imageItems }: { path: string, imageItems: FacsimileI
     const divRef = useRef(null);
 
     useEffect(() => {
-        console.log("Reseting index")
         setPageIdx(0)
         setZoom(1.0)
     }, [imageItems])
@@ -44,8 +43,6 @@ function ImagesView({ path, imageItems }: { path: string, imageItems: FacsimileI
 
     const imageName = pageIdx < imageItems.length ? imageItems[pageIdx].name : ""
     const imageFile = pageIdx < imageItems.length ? path + imageItems[pageIdx].file : null
-
-    console.log("pageIdx", pageIdx)
 
     return (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>

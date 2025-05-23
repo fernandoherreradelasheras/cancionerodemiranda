@@ -1,21 +1,23 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { MusicStatus, TextStatus } from './utils'
 import IntroView from './IntroView'
 import ImagesView from './ImagesView'
 import Pdf from './Pdf'
 import { Context } from './Context'
-import { ScoreProperties, ScoreViewer, VisualizationOptions, Reconstruction, ScoreViewerConfigScore } from 'score-viewer'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Progress, ProgressProps, Row, Space, Tabs, TabsProps, Typography } from 'antd'
 import TextView from './TextView'
+import { ScoreViewerConfigScore, ScoreProperties, VisualizationOptions, LyricItem, Reconstruction, ScoreViewer } from 'score-viewer'
 
 
 const MINIMUM_SCORE_HEIGHT = 300
 const STICKY_HEADER_HEIGHT = 48
 
 const USE_VIRTUAL_UNITS = true
+
+const empty = (s:string | undefined | null) => !s || s == ""
 
 
 library.add(faMusic, faFilePdf, faFileImage )
@@ -61,17 +63,14 @@ const progressColors: ProgressProps['strokeColor'] = [
     '#2E7D32'
 ]
 
-
-
 const getDefaultSection = (tonoConfig: ScoreViewerConfigScore) => {
-    if (tonoConfig.introductionFile != undefined)
+    if (!empty(tonoConfig.introductionFile))
         return "intro"
-    else if (tonoConfig.meiFile != undefined)
+    else if (!empty(tonoConfig.meiFile))
         return "music"
     else
         return "images"
 }
-
 
 
 const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
@@ -85,15 +84,26 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
     const [scoreSectionId, setScoreSectionId] = useState<string | undefined>()
     const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
 
-    const tonoIndex = (currentTonoNumber || 0) - 1
-    const tonoStatus = definitions ? definitions[tonoIndex] : null
+    const [currentLyrics, setCurrentLyrics] = useState<LyricItem[]|null|undefined>()
+    const [currentLyricsComments, setCurrentLyricsComments] = useState<string|null|undefined>()
+    const [currentIntroduction, setCurrentIntroduction] = useState<string|null|undefined>()
+
+
+    const tonoIndex = useMemo(() => (currentTonoNumber || 0) - 1, [currentTonoNumber])
+    const tonoStatus = useMemo(() => definitions ? definitions[tonoIndex] : null, [definitions, tonoIndex])
 
     const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tonoStatus?.status_text)
     const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tonoStatus?.status_music)
 
-    const onClickSection = (section: Section) => {
+    const onClickSection = useCallback((section: Section) => {
+        console.log(`active tab: ${activeTab}`)
+        if (activeTab != "music") {
+            console.log(`chaning tab to music when clicking on section ${section.label}`)
+            setActiveTab("music")
+        }
+        console.log(`setting score section id to ${section.id}`)
         setScoreSectionId(section.id)
-    }
+    }, [activeTab])
 
     const onScoreAnalyzed = (_: number, scoreProperties: ScoreProperties) => {
         setScoreProperties(scoreProperties)
@@ -111,10 +121,36 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
         }
     }
 
+    const onTextPartChanged = (idx: number, name: string, part: LyricItem[]|string|null|undefined) => {
+        if (idx != tonoIndex) {
+            return
+        }
+        if  (name == "lyrics") {
+            const lyrics = part as LyricItem[] | null | undefined
+            setCurrentLyrics(lyrics)
+            if (lyrics === null && activeTab == "text") {
+                setActiveTab("music")
+            }
+        } else if (name == "comments") {
+            const comments = part as string
+            setCurrentLyricsComments(comments)
+        } else if (name == "introduction") {
+            const introduction = part as string
+            setCurrentIntroduction(introduction)
+            if (introduction == null && activeTab == "intro") {
+                setActiveTab("music")
+            }
+        }
+    }
+
     const onVisualizationOptionsChanged = (_: number, changedOptions: VisualizationOptions) => {
         setVisualizationOptions(
             (visualizationOptions : VisualizationOptions | null) => ({ ...visualizationOptions, ...changedOptions })
         )
+    }
+
+    const onTabChanged = (key: string) => {
+        setActiveTab(key)
     }
 
     const reconstructionsFromOptions = useMemo(() => {
@@ -134,15 +170,19 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
         return reconstructionTexts.join(", ")
     }, [visualizationOptions])
 
+
+
     useEffect(() => {
-        if (activeTab == "music" && !tonoConfig.meiFile ||
-            activeTab == "intro" && !tonoConfig.introductionFile ||
-            activeTab == "text" && !tonoConfig.text?.length) {
-                setActiveTab(getDefaultSection(tonoConfig))
+        if (activeTab == "music" && empty(tonoConfig.meiFile)  ||
+            activeTab == "intro" && empty(tonoConfig.introductionFile) ||
+            activeTab == "text" && (!tonoConfig.text || tonoConfig.text.length <= 0)) {
+                const newTab = getDefaultSection(tonoConfig)
+                setActiveTab(newTab)
         }
         setVisualizationOptions(null)
         setScoreSectionId(undefined)
     }, [tonoConfig]);
+
 
     useEffect(() => {
         if (activeTab == "music" && scoreViewerContainerRef.current && !scoreSize) {
@@ -167,36 +207,33 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
     }, [activeTab])
 
     const imagesPath = scoreViewerConfig?.settings.facsimileImagesPath || ""
-    const basePath = scoreViewerConfig?.settings.basePath || ""
-    const tonoPath = basePath + tonoConfig.path + "/"
-    const score = scoreViewerConfig?.scores[tonoIndex]
-    const imageItems = score?.facsimileItems || []
-    const textItems = score?.text || []
-    const commentsFile = tonoPath + score?.textCommentsFile
-    const introductionFile = tonoPath + score?.introductionFile
-
+    const score = useMemo(() => scoreViewerConfig?.scores[tonoIndex], [tonoIndex])
+    const imageItems = useMemo(() =>  score?.facsimileItems || [], [score])
 
 
     const tabs: TabsProps['items'] = [
-        tonoConfig.introductionFile ? {
+        {
             key: 'intro',
             label: 'Introducción',
-            children: <IntroView introductionFile={introductionFile} />
-        } : null,
+            disabled:  !tonoConfig.introductionFile || currentIntroduction == null,
+            children: <IntroView introduction={currentIntroduction} />
+        },
         {
             key: 'text',
             label: 'Texto',
-            children: <TextView path={tonoPath} textItems={textItems} comments={commentsFile} />
+            disabled:  !tonoConfig.text?.length || !currentLyrics || currentLyrics.length <= 0,
+            children: <TextView lyricsItems={currentLyrics} comments={currentLyricsComments} />
         },
-        tonoConfig.meiFile ? {
+        {
             key: 'music',
             label: 'Música',
+            disabled:  !scoreViewerConfig || !tonoConfig.meiFile || score == null,
             icon: <FontAwesomeIcon icon={faMusic} />,
             children: <div  ref={scoreViewerContainerRef}
                             className="score-viewer-container"
                             style={{ display: "flex", flexDirection: "column",
                                      height: "100%", width: "100%" }}>
-                                { scoreSize ?
+                                { scoreViewerConfig && scoreSize ?
 
                              <ScoreViewer
                                     width={scoreSize.width}
@@ -205,11 +242,13 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
                                     scoreIndex={tonoIndex}
                                     scoreSectionId={scoreSectionId}
                                     onVisualizationOptionsChanged={onVisualizationOptionsChanged}
-                                    onScoreAnalyzed={onScoreAnalyzed}/>
+                                    onScoreAnalyzed={onScoreAnalyzed}
+                                    onTextPartChanged={onTextPartChanged}
+                                    />
                                     : null }
                 </div>
 
-        } : null,
+        },
         {
             key: 'images',
             label: 'Manuscrito',
@@ -283,7 +322,7 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
                         </Space> : null }
                 </Col>
             </Row>
-            <Tabs items={tabs} defaultActiveKey={defaultTab} activeKey={activeTab} onChange={(t) => setActiveTab(t)}/>
+            <Tabs items={tabs} defaultActiveKey={defaultTab} activeKey={activeTab} onChange={onTabChanged}/>
         </div>
     )
 }
