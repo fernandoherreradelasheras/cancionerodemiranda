@@ -15,7 +15,7 @@ ns = {"mei": MEI_NS, "": XML_NS}
 ids_map = {}
 
 
-def insert_staff_with_rests(mei_file_path, output_file_path, label):
+def insert_staff_with_rests(mei_file_path, staff_n, label, output_file_path):
     global ids_map, indent
     if output_file_path is None:
         output_file_path = mei_file_path.rsplit(".", 1)[0] + "_modified.mei"
@@ -43,14 +43,15 @@ def insert_staff_with_rests(mei_file_path, output_file_path, label):
     tree = ET.ElementTree(top)
 
     for score_def in root.findall(".//mei:scoreDef", ns):
-        staff2_def = score_def.find('.//mei:staffDef[@n="2"]', ns)
+        prev_staff_n = int(staff_n) - 1
+        prev_staff_def = score_def.find(f'.//mei:staffDef[@n="{prev_staff_n}"]', ns)
 
-        if staff2_def is None:
-            print("Warning: Could not find staffDef for staff 2 in a scoreDef")
+        if prev_staff_def is None:
+            print(f'Warning: Could not find staffDef for staff {prev_staff_n} in a scoreDef')
             continue
 
-        new_staff_def = deepcopy(staff2_def)
-        new_staff_def.set("n", "3")
+        new_staff_def = deepcopy(prev_staff_def)
+        new_staff_def.set("n", staff_n)
 
         label_elem = new_staff_def.find("mei:label", ns)
         if label_elem is not None:
@@ -72,31 +73,31 @@ def insert_staff_with_rests(mei_file_path, output_file_path, label):
             if ref is not None:
                 clef_elem.set("copyof", "#" + ids_map[ref])
 
-        parent_of_staff2 = None
+        prev_staff_parent = None
         for staffGrp in score_def.findall(".//mei:staffGrp", ns):
             for child in staffGrp:
-                if child is staff2_def or child == staff2_def:
-                    parent_of_staff2 = staffGrp
+                if child is prev_staff_def or child == prev_staff_def:
+                    prev_staff_parent = staffGrp
                     break
-            if parent_of_staff2 is not None:
+            if prev_staff_parent is not None:
                 break
 
-        if parent_of_staff2 is None:
-            print("Warning: Could not find parent of staff 2")
+        if prev_staff_parent is None:
+            print(f"Warning: Could not find parent of staff {staff_n}")
             continue
 
         for staff_def in score_def.findall(".//mei:staffDef", ns):
             n = staff_def.get("n")
-            if n and n.isdigit() and int(n) >= 3:
+            if n and n.isdigit() and int(n) >= int(staff_n):
                 staff_def.set("n", str(int(n) + 1))
 
-        children = list(parent_of_staff2)
-        staff2_index = children.index(staff2_def)
-        parent_of_staff2.insert(staff2_index + 1, new_staff_def)
+        children = list(prev_staff_parent)
+        prev_staff_index = children.index(prev_staff_def)
+        prev_staff_parent.insert(prev_staff_index + 1, new_staff_def)
 
     for measure in root.findall(".//mei:measure", ns):
         new_staff = ET.Element(f"{{{MEI_NS}}}staff")
-        new_staff.set("n", "3")
+        new_staff.set("n", staff_n)
 
         app = ET.SubElement(new_staff, f"{{{MEI_NS}}}app", type="voice_reconstruction")
 
@@ -106,19 +107,19 @@ def insert_staff_with_rests(mei_file_path, output_file_path, label):
 
         for staff in measure.findall("mei:staff", ns):
             n = staff.get("n")
-            if n and n.isdigit() and int(n) >= 3:
+            if n and n.isdigit() and int(n) >= int(staff_n):
                 staff.set("n", str(int(n) + 1))
 
-        staff2 = None
-        staff2_index = -1
+        prev_staff = None
+        prev_staff_index = -1
         for i, child in enumerate(measure):
-            if child.tag.endswith("staff") and child.get("n") == "2":
-                staff2 = child
-                staff2_index = i
+            if child.tag.endswith("staff") and child.get("n") == staff_n:
+                prev_staff = child
+                prev_staff_index = i
                 break
 
-        if staff2 is not None:
-            measure.insert(staff2_index + 1, new_staff)
+        if prev_staff is not None:
+            measure.insert(prev_staff_index + 1, new_staff)
         else:
             measure.append(new_staff)
 
@@ -134,12 +135,13 @@ def insert_staff_with_rests(mei_file_path, output_file_path, label):
 if __name__ == "__main__":
     if len(sys.argv) < 4:
         print(
-            "Usage: python insert_staff.py input_mei_file.mei output_mei_file.mei label1"
+            "Usage: python add-voice-empty-mei.py [input_mei_file.mei] [staff n] [label] [output_mei_file.mei]"
         )
         sys.exit(1)
 
     input_file = sys.argv[1]
-    output_file = sys.argv[2]
+    staff_n = sys.argv[2]
     label = sys.argv[3:]
+    output_file = sys.argv[4]
 
-    insert_staff_with_rests(input_file, output_file, label)
+    insert_staff_with_rests(input_file, staff_n, label, output_file)
