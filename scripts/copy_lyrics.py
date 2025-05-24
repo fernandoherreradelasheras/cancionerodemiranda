@@ -28,23 +28,20 @@ def copy_lyrics(mei_file, source_staff, target_staff, output_file=None):
             continue
             
         source_notes = source_staff_elem.findall('.//mei:note', ns)
-        target_notes = target_staff_elem.findall('.//mei:note', ns)
+        target_notes = target_staff_elem.findall('.//mei:app/mei:lem//mei:note', ns)
         
         if len(source_notes) != len(target_notes):
-            print(f"Warning: Number of notes doesn't match in measure {measure.get('n')}, skipping")
+            print(f"Warning: Number of notes doesn't match in measure {measure.get('n')}: {len(source_notes)} != {len(target_notes)}, skipping")
             continue
             
         for source_note, target_note in zip(source_notes, target_notes):
-            source_verse1 = source_note.find('./mei:verse[@n="1"]', ns)
-            target_verse1 = target_note.find('./mei:verse[@n="1"]', ns)
+            source_verse1 = source_note.find('./mei:verse[@n="1"]/mei:syl', ns)
+            target_verse1 = target_note.find('./mei:verse[@n="1"]/mei:syl', ns)
             
             if source_verse1 is None or target_verse1 is None:
                 continue
                 
-            source_verse1_str = ET.tostring(source_verse1, encoding='unicode').replace(' ', '')
-            target_verse1_str = ET.tostring(target_verse1, encoding='unicode').replace(' ', '')
-            
-            if source_verse1_str == target_verse1_str:
+            if source_verse1.text == target_verse1.text:
                 for source_verse in source_note.findall('./mei:verse', ns):
                     verse_n = source_verse.get('n')
                     if verse_n and int(verse_n) > 1:
@@ -52,9 +49,7 @@ def copy_lyrics(mei_file, source_staff, target_staff, output_file=None):
                         if target_verse is None:
                             target_note.append(copy.deepcopy(source_verse))
             else:
-                print("Content for verse 1 not equal, skipping: ")
-                print(source_verse1_str)
-                print(target_verse1_str)
+                print(f"Content for verse 1 not equal, skipping: {source_verse1.text} != {target_verse1.text}")
     
     if output_file:
         tree.write(output_file, encoding='utf-8', xml_declaration=True)
