@@ -113,7 +113,7 @@ def insert_staff_with_rests(mei_file_path, staff_n, label, output_file_path):
         prev_staff = None
         prev_staff_index = -1
         for i, child in enumerate(measure):
-            if child.tag.endswith("staff") and child.get("n") == staff_n:
+            if child.tag.endswith("staff") and child.get("n") == str((int(staff_n) - 1)):
                 prev_staff = child
                 prev_staff_index = i
                 break
