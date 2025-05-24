@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0+basic">
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
+            <title type="main">Celebrando está el amor</title>
+            <composer>
+               <persName role="composer">Anónimo</persName>
+            </composer>
+            <lyricist>
+               <persName role="lyricist">Anónimo</persName>
+            </lyricist>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -32,12 +39,17 @@
                            <clef shape="G" line="2" xml:id="cjkdud2"/>
                         </staffDef>
                         <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                           <label>Alto</label>
+                           <labelAbbr>A.</labelAbbr>
+                           <clef shape="G" line="2" xml:id="cjkdud2_1"/>
+                        </staffDef>
+                        <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
                            <clef shape="G" line="2" dis="8" dis.place="below" xml:id="cjkdud3"/>
                         </staffDef>
                      </staffGrp>
-                     <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                     <staffDef n="5" lines="5" keysig="1s" meter.count="3" meter.unit="2">
                         <label>Guión</label>
                         <labelAbbr>G</labelAbbr>
                         <clef shape="F" line="4" xml:id="cjkdud4"/>
@@ -62,12 +74,17 @@
                                     <clef shape="G" line="2" copyof="#cjkdud2"/>
                                  </staffDef>
                                  <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                                    <label>Alto</label>
+                                    <labelAbbr>A.</labelAbbr>
+                                    <clef shape="G" line="2" copyof="#cjkdud2_1"/>
+                                 </staffDef>
+                                 <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
                                     <label>Tenor</label>
                                     <labelAbbr>Tn.</labelAbbr>
                                     <clef shape="C" line="3" corresp="#cjkdud3"/>
                                  </staffDef>
                               </staffGrp>
-                              <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                              <staffDef n="5" lines="5" keysig="1s" meter.count="3" meter.unit="2">
                                  <label>Guión</label>
                                  <labelAbbr>G</labelAbbr>
                                  <clef shape="C" line="4" corresp="#cjkdud4"/>
@@ -135,6 +152,45 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <rest dur="2"/>
+                                 <rest dur="4"/>
+                                 <note dur="4" pname="f" oct="4" xml:id="nalt1">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">Ce</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>A</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>El</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt2">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">le</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">to</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">al</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id10"/>
                            <rest dur="4" xml:id="id11"/>
@@ -162,7 +218,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <rest dur="2" xml:id="id14"/>
                            <rest dur="4" xml:id="id15"/>
@@ -227,6 +283,43 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="1" pname="g" oct="4" xml:id="nalt3">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">bran</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">dos</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt4">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="b" wordpos="t">do</syl>
+                                       <syl con="d" wordpos="i">es</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">tie</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="g" oct="3" xml:id="id23">
                               <verse n="1">
@@ -253,7 +346,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="g" oct="2" xml:id="id25"/>
                            <note dur="2" pname="a" oct="2" xml:id="id26"/>
@@ -318,6 +411,43 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="2" pname="g" oct="4" xml:id="nalt5">
+                                    <verse n="1">
+                                       <syl con="b" wordpos="t">tá</syl>
+                                       <syl>el</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">sí</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t" con="b">ne</syl>
+                                       <syl>en</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="g" oct="4" xml:id="nalt6">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>los</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>su</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="b" oct="3" xml:id="id32">
                               <verse n="1">
@@ -346,7 +476,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="b" oct="2" xml:id="id34"/>
                            <note dur="1" pname="c" oct="3" xml:id="id35">
@@ -387,6 +517,31 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dots="1" dur="1" pname="f" oct="4" xml:id="nalt7">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl wordpos="t">mor</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>rinde</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>garbo</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="1" pname="d" oct="4" xml:id="id39">
                               <verse n="1">
@@ -401,7 +556,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="d" oct="3" xml:id="id40"/>
                            <note xml:id="n305cgl" dur="2" pname="g" oct="2"/>
@@ -421,11 +576,25 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <mRest/>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note xml:id="n1v94at9" dur="2" pname="g" oct="2"/>
                            <note dur="1" pname="a" oct="2" xml:id="id42"/>
@@ -490,6 +659,45 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <rest dur="2"/>
+                                 <rest dur="4"/>
+                                 <note dur="4" pname="f" oct="4" xml:id="nalt8">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">Ce</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>A</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>El</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt9">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">le</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">to</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">al</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id50"/>
                            <rest dur="4" xml:id="id51"/>
@@ -517,7 +725,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note xml:id="nbg77cw" dur="1" pname="d" oct="3"/>
                            <note dur="2" pname="d" oct="3" xml:id="id53"/>
@@ -584,6 +792,43 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="1" pname="g" oct="4" xml:id="nalt10">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">bran</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">dos</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt11">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="b" wordpos="t">do</syl>
+                                       <syl con="d" wordpos="i">es</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">tie</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="g" oct="3" xml:id="id59">
                               <verse n="1">
@@ -610,7 +855,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="g" oct="2" xml:id="id61"/>
                            <note dur="2" pname="a" oct="2" xml:id="id62"/>
@@ -675,6 +920,43 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="2" pname="g" oct="4" xml:id="nalt12">
+                                    <verse n="1">
+                                       <syl con="b" wordpos="t">tá</syl>
+                                       <syl>el</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">sí</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t" con="b">ne</syl>
+                                       <syl>en</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="g" oct="4" xml:id="nalt13">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>los</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>su</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="b" oct="3" xml:id="id68">
                               <verse n="1">
@@ -703,7 +985,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="b" oct="2" xml:id="id70"/>
                            <note dur="1" pname="c" oct="3" xml:id="id71">
@@ -746,6 +1028,32 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="1" pname="f" oct="4" xml:id="nalt14">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl wordpos="t">mor</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>rinde</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>garbo</syl>
+                                    </verse>
+                                 </note>
+                                 <rest dur="2"/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="d" oct="4" xml:id="id77">
                               <verse n="1">
@@ -761,7 +1069,7 @@
                            <rest dur="2" xml:id="id78"/>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="d" oct="3" xml:id="id79"/>
                            <note dur="2" pname="d" oct="3" xml:id="id80"/>
@@ -847,6 +1155,54 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dots="1" dur="2" pname="g" oct="4" xml:id="nalt15">
+                                    <verse n="1">
+                                       <syl>Las</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>su</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="b">y</syl>
+                                       <syl>en</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="4" pname="f" oct="4" xml:id="nalt16">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">tra</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">al</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>sus</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="nalt17">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">ve</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">o</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="2" pname="g" oct="3" xml:id="id88">
                               <verse n="1">
@@ -884,7 +1240,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="2" pname="g" oct="2" xml:id="id91"/>
                            <note dur="4" pname="g" oct="2" xml:id="id92"/>
@@ -973,6 +1329,56 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dots="1" dur="2" pname="f" oct="4" xml:id="nalt18">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">su</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>slos</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">jos</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="4" pname="g" oct="4" xml:id="nalt19">
+                                    <verse n="1">
+                                       <syl wordpos="t">ras</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">tie</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt20">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="b">de</syl>
+                                       <syl con="d" wordpos="i">A</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="m">va</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t" con="b">ne</syl>
+                                       <syl>el</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="2" pname="a" oct="3" xml:id="id101">
                               <verse n="1">
@@ -1011,7 +1417,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="2" pname="a" oct="2" xml:id="id104"/>
                            <note dur="4" pname="b" oct="2" xml:id="id105"/>
@@ -1073,6 +1479,41 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="1" pname="g" oct="4" xml:id="nalt21">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">nar</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="m">sa</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">ar</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="g" oct="4" xml:id="nalt22">
+                                    <verse n="1">
+                                       <syl wordpos="t">da</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">lla</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="b" oct="3" xml:id="id112">
                               <verse n="1">
@@ -1098,7 +1539,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="b" oct="2" xml:id="id114"/>
                            <note dur="2" pname="e" oct="3" xml:id="id115"/>
@@ -1117,11 +1558,25 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <mRest/>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="a" oct="2" xml:id="id117"/>
                            <note dur="1" pname="b" oct="2" xml:id="id118"/>
@@ -1208,6 +1663,54 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dots="1" dur="2" pname="g" oct="4" xml:id="nalt23">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">gue</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>a</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>a</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="4" pname="g" oct="4" xml:id="nalt24">
+                                    <verse n="1">
+                                       <syl wordpos="t">rra</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="b">su</syl>
+                                       <syl con="d" wordpos="i">ar</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>sus</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="g" oct="4" xml:id="nalt25">
+                                    <verse n="1">
+                                       <syl con="b">que</syl>
+                                       <syl>a</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">o</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="2" pname="e" oct="4" xml:id="id126">
                               <verse n="1">
@@ -1246,7 +1749,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="e" oct="3" xml:id="id129"/>
                            <note dur="2" pname="d" oct="3" xml:id="id130"/>
@@ -1331,6 +1834,54 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dots="1" dur="2" pname="g" oct="4" xml:id="nalt26">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">to</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">to</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">jos</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="4" pname="g" oct="4" xml:id="nalt27">
+                                    <verse n="1">
+                                       <syl wordpos="t">dos</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">do</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>le</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt28">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl>les</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl>el</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="b">da</syl>
+                                       <syl>el</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="2" pname="c" oct="4" xml:id="id138">
                               <verse n="1">
@@ -1368,7 +1919,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="2" pname="c" oct="3" xml:id="id141"/>
                            <note dur="4" pname="b" oct="2" xml:id="id142"/>
@@ -1430,6 +1981,41 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="1" pname="e" oct="4" xml:id="nalt29">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">to</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">triun</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">lau</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="nalt30">
+                                    <verse n="1">
+                                       <syl wordpos="t">ca</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">fo</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl wordpos="t">ro</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="g" oct="3" xml:id="id149">
                               <verse n="1">
@@ -1456,7 +2042,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="g" oct="2" xml:id="id151">
                               <accid accid="s"/>
@@ -1489,6 +2075,27 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <rest dur="2"/>
+                                 <rest dur="2"/>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt31">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id160"/>
                            <rest dur="2" xml:id="id161"/>
@@ -1499,7 +2106,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="d" oct="3" xml:id="id163"/>
                            <note dur="2" pname="d" oct="3" xml:id="id164"/>
@@ -1536,6 +2143,30 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="1" pname="g" oct="4" xml:id="nalt32">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">lar</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt33">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="c" oct="4" xml:id="id170">
                               <verse n="1">
@@ -1550,7 +2181,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="c" oct="3" xml:id="id172">
                               <accid accid="s"/>
@@ -1603,6 +2234,35 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dots="1" dur="2" pname="e" oct="4" xml:id="nalt34">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="4" pname="e" oct="4" xml:id="nalt35">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">si</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="d" oct="4" xml:id="nalt36">
+                                    <verse n="1">
+                                       <syl con="b" wordpos="t">no</syl>
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dots="1" dur="2" pname="a" oct="3" xml:id="id181">
                               <verse n="1">
@@ -1623,7 +2283,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="2" pname="a" oct="3" xml:id="id184"/>
                            <note dur="4" pname="g" oct="3" xml:id="id185"/>
@@ -1664,6 +2324,30 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="2" pname="e" oct="4" xml:id="nalt37">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">lar</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="f" oct="4" xml:id="nalt38">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="a" oct="3" xml:id="id192">
                               <verse n="1">
@@ -1677,7 +2361,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="a" oct="3" xml:id="id194"/>
                            <note dur="1" pname="d" oct="3" xml:id="id195"/>
@@ -1706,6 +2390,25 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <rest dur="2"/>
+                                 <note dur="1" pname="g" oct="4" xml:id="nalt39">
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id201"/>
                            <note dur="1" pname="c" oct="4" xml:id="id202">
@@ -1716,7 +2419,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <rest dur="2" xml:id="id203"/>
                            <note dur="1" pname="a" oct="2" xml:id="id204"/>
@@ -1745,6 +2448,26 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <rest dur="2"/>
+                                 <note dur="1" pname="f" oct="4" xml:id="nalt40">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl>no</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id210"/>
                            <note dur="1" pname="d" oct="4" xml:id="id211">
@@ -1754,7 +2477,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <rest dur="2" xml:id="id212"/>
                            <note dur="1" pname="d" oct="3" xml:id="id213"/>
@@ -1785,6 +2508,32 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <rest dur="2"/>
+                                 <rest dur="4"/>
+                                 <note dur="4" pname="d" oct="4" xml:id="nalt41">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">si</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="nalt42">
+                                    <verse n="1">
+                                       <syl con="b" wordpos="t">no</syl>
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id219"/>
                            <rest dur="4" xml:id="id220"/>
@@ -1802,7 +2551,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <rest dur="2" xml:id="id223"/>
                            <rest dur="4" xml:id="id224"/>
@@ -1847,6 +2596,30 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="2" pname="e" oct="4" xml:id="nalt43">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">lar</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="1" pname="f" oct="4" xml:id="nalt44">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="2" pname="a" oct="3" xml:id="id234">
                               <verse n="1">
@@ -1860,7 +2633,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="a" oct="3" xml:id="id236"/>
                            <note dur="1" pname="d" oct="3" xml:id="id237"/>
@@ -1902,6 +2675,32 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <rest dur="2"/>
+                                 <rest dur="4"/>
+                                 <note dur="4" pname="d" oct="4" xml:id="nalt45">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">si</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="e" oct="4" xml:id="nalt46">
+                                    <verse n="1">
+                                       <syl con="b" wordpos="t">no</syl>
+                                       <syl con="d" wordpos="i">a</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <rest dur="2" xml:id="id246"/>
                            <rest dur="4" xml:id="id247"/>
@@ -1919,7 +2718,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dots="1" dur="2" pname="d" oct="3" xml:id="id250"/>
                            <note dur="4" pname="f" oct="3" xml:id="id251">
@@ -1963,6 +2762,30 @@
                         </layer>
                      </staff>
                      <staff n="3">
+                        <app type="voice_reconstruction">
+                           <lem label="none">
+                              <layer n="1">
+                                 <mRest/>
+                              </layer>
+                           </lem>
+                           <rdg label="reconstruction:3:IA:claude_sonet_4">
+                              <layer n="1">
+                                 <note dur="1" pname="e" oct="4" xml:id="nalt47">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="m">lar</syl>
+                                    </verse>
+                                 </note>
+                                 <note dur="2" pname="f" oct="4" xml:id="nalt48">
+                                    <accid accid.ges="s"/>
+                                    <verse n="1">
+                                       <syl wordpos="t">ma</syl>
+                                    </verse>
+                                 </note>
+                              </layer>
+                           </rdg>
+                        </app>
+                     </staff>
+                     <staff n="4">
                         <layer n="1">
                            <note dur="1" pname="a" oct="3" xml:id="id258">
                               <verse n="1">
@@ -1976,7 +2799,7 @@
                            </note>
                         </layer>
                      </staff>
-                     <staff n="4">
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="a" oct="3" xml:id="id260"/>
                            <note dur="2" pname="d" oct="3" xml:id="id261"/>
