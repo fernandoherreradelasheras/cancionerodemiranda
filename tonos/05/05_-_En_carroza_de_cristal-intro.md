@@ -1,0 +1,1 @@
+El carácter alegórico del texto parece indicar que formaba parte de una fiesta o celebración real y que, probablemente, tuviera más de las tres cuartetas que se copiaron en el cancionero.

@@ -9,14 +9,14 @@ folio 57r del manuscrito E-Mp II/2802:
 > Celebrando está el amor\
 > las travesuras de Juana,\
 > guerras que a todos les toca\
-> al amor no, sino al alma.\
+> al amor no, sino al alma.
 
 Resulta interesante la transformación entre *al amor no, sino al alma.*
 y *alarma, no sino alarma* por la que el amor y el alma se desplazan
 hasta alarmas y armas.
 
-Sí comparte el nombre de Anarda, además de la idea la belleza como arma
-que embite y avasalla, con uno de los tonos más bellos del del **Libro
+Sí comparte el nombre, Anarda, y la idea la belleza como arma
+que embiste y avasalla con uno de los tonos más bellos del **Libro
 de Tonos humanos**: *A desafiar las flores*
 
 > A desafiar las flores,\
