@@ -1,1 +1,1 @@
-
+El poema ***Triste tórtola que en quejas** desarrolla el tópico clásico del lamento amoroso a través de la prosopopeya de una tórtola viuda. La voz poética se dirige directamente a la tórtola, símbolo de la fidelidad conyugal, en un discurso de carácter consolatorio que resulta en sí una metáfora del amante doliente.
