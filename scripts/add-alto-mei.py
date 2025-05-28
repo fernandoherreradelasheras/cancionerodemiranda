@@ -98,16 +98,20 @@ def insert_staff_with_rests(mei_file_path, output_file_path, labels):
         new_staff = ET.Element(f"{{{MEI_NS}}}staff")
         new_staff.set("n", "3")
 
-        app = ET.SubElement(new_staff, f"{{{MEI_NS}}}app", type="voice_reconstruction")
-
-        lem = ET.SubElement(app, f"{{{MEI_NS}}}lem", label="none")
-        lem_layer = ET.SubElement(lem, f"{{{MEI_NS}}}layer", n="1")
-        lem_rest = ET.SubElement(lem_layer, f"{{{MEI_NS}}}mRest")
-
-        for label in labels:
-            rdg = ET.SubElement(app, f"{{{MEI_NS}}}rdg", label=label)
-            layer = ET.SubElement(rdg, f"{{{MEI_NS}}}layer", n="1")
+        if labels is None:
+            layer = ET.SubElement(new_staff, f"{{{MEI_NS}}}layer", n="1")
             rest = ET.SubElement(layer, f"{{{MEI_NS}}}mRest")
+        else:
+            app = ET.SubElement(new_staff, f"{{{MEI_NS}}}app", type="voice_reconstruction")
+
+            lem = ET.SubElement(app, f"{{{MEI_NS}}}lem", label="none")
+            lem_layer = ET.SubElement(lem, f"{{{MEI_NS}}}layer", n="1")
+            lem_rest = ET.SubElement(lem_layer, f"{{{MEI_NS}}}mRest")
+
+            for label in labels:
+                rdg = ET.SubElement(app, f"{{{MEI_NS}}}rdg", label=label)
+                layer = ET.SubElement(rdg, f"{{{MEI_NS}}}layer", n="1")
+                rest = ET.SubElement(layer, f"{{{MEI_NS}}}mRest")
 
         for staff in measure.findall("mei:staff", ns):
             n = staff.get("n")
@@ -137,14 +141,17 @@ def insert_staff_with_rests(mei_file_path, output_file_path, labels):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 4:
+    if len(sys.argv) < 3:
         print(
-            "Usage: python insert_staff.py input_mei_file.mei output_mei_file.mei label1 [label2] [label3] ..."
+            "Usage: python insert_staff.py input_mei_file.mei output_mei_file.mei [label1] [label2] [label3] ..."
         )
         sys.exit(1)
 
     input_file = sys.argv[1]
     output_file = sys.argv[2]
-    labels = sys.argv[3:]
+    if len(sys.argv) >= 4:
+        labels = sys.argv[3:]
+    else:
+        labels = None
 
     insert_staff_with_rests(input_file, output_file, labels)

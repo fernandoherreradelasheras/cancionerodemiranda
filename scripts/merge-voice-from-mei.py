@@ -72,7 +72,10 @@ def replace_staff_content(
     ):
         measure_num = i + 1
 
-        main_staff_elements = get_staff_app_elements(main_measure, staff_main, elem, label)
+        if elem is None:
+            main_staff_elements = get_staff_elements(main_measure,staff_main)
+        else:
+            main_staff_elements = get_staff_app_elements(main_measure, staff_main, elem, label)
         if not main_staff_elements:
             print(
                 f"Warning: No staff 3 found in measure {measure_num} of the main file"
@@ -107,18 +110,26 @@ def replace_staff_content(
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 8:
+    if len(sys.argv) != 8 and len(sys.argv) != 6:
         print(
-            f'Usage: python {sys.argv[0]} [main mei file] [staff] [lem/rdg] [label] [mei file to merge from] [staff] [output]'
+            f'Usage: python {sys.argv[0]} <main mei file> <staff> [<lem/rdg> <label>] <mei file to merge from> <staff> <output>'
         )
         sys.exit(1)
 
     main_file = sys.argv[1]
     staff_main = sys.argv[2]
-    elem = sys.argv[3]
-    label = sys.argv[4]
-    replacement_file = sys.argv[5]
-    staff_replacement= sys.argv[6]
-    output_file = sys.argv[7]
+    if len(sys.argv) == 8:
+        elem = sys.argv[3]
+        label = sys.argv[4]
+        replacement_file = sys.argv[5]
+        staff_replacement= sys.argv[6]
+        output_file = sys.argv[7]
+    else:
+        elem = None
+        label = None
+        replacement_file = sys.argv[3]
+        staff_replacement= sys.argv[4]
+        output_file = sys.argv[5]
+
 
     replace_staff_content(main_file, staff_main, elem, label, replacement_file, staff_replacement, output_file)
