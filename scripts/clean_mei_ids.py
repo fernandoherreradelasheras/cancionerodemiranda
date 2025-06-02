@@ -30,9 +30,46 @@ print(f'Found {len(idsReferenced)} ids referenced that will be kept: {idsReferen
 idsLinked = {ref[1:] for elem in tree.iter() for name,value in elem.items() for ref in value.split(" ") if name == "plist"}
 print(f'Found {len(idsLinked)} ids linked that will be kept: {idsLinked}')
 idsToKeep = idsReferenced | idsLinked | { "FHH", "OMA" }
+
 for e in [elem for elem in tree.iter() for item in elem.items() if item[0] == ID and item[1] not in idsToKeep]:
     e.attrib.pop(ID, None)
 
+remaining_ids = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not None}
+print(f'Found {len(remaining_ids)} remaining ids in document: {remaining_ids}')
+
+parent_map = {child: parent for parent in tree.iter() for child in parent}
+
+elements_to_remove = []
+for elem in tree.iter():
+    if elem.tag in [f'{{{MEI_NS}}}tie', '{{{MEI_NS}}}slur']:
+        startid = elem.get('startid')
+        endid = elem.get('endid')
+        
+        startid_valid = True
+        endid_valid = True
+        
+        if startid:
+            target_id = startid[1:] if startid.startswith('#') else startid
+            if target_id not in remaining_ids:
+                startid_valid = False
+                
+        if endid:
+            target_id = endid[1:] if endid.startswith('#') else endid
+            if target_id not in remaining_ids:
+                endid_valid = False
+        
+        if not startid_valid or not endid_valid:
+            elements_to_remove.append(elem)
+            print(f'Marking {elem.tag} for removal - startid: {startid} (valid: {startid_valid}), endid: {endid} (valid: {endid_valid})')
+
+removed_count = 0
+for elem in elements_to_remove:
+    parent = parent_map.get(elem)
+    if parent is not None:
+        parent.remove(elem)
+        removed_count += 1
+
+print(f'Removed {removed_count} tie/slur elements with invalid references')
 
 root = tree.getroot()
 root.set("xmlns", MEI_NS)
@@ -46,5 +83,4 @@ ET.indent(tree, space="   ", level=0)
 newtree.write(".tmp-clean.mei", xml_declaration=True, method="xml", encoding="UTF-8")
 
 shutil.move(".tmp-clean.mei", input_file)
-
 
