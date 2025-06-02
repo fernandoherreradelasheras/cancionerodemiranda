@@ -28,7 +28,10 @@ def copy_lyrics(mei_file, source_staff, target_staff, target_elem, target_label,
             continue
             
         source_notes = source_staff_elem.findall('.//mei:note', ns)
-        target_notes = target_staff_elem.findall(f'.//mei:app/mei:{target_elem}[@label="{target_label}"]//mei:note', ns)
+        if target_elem is not None:
+            target_notes = target_staff_elem.findall(f'.//mei:app/mei:{target_elem}[@label="{target_label}"]//mei:note', ns)
+        else:
+            target_notes = target_staff_elem.findall('.//mei:note', ns)
         
         if len(source_notes) != len(target_notes):
             print(f"Warning: Number of notes doesn't match in measure {measure.get('n')}: {len(source_notes)} != {len(target_notes)}, skipping")
@@ -57,19 +60,23 @@ def copy_lyrics(mei_file, source_staff, target_staff, target_elem, target_label,
         print(ET.tostring(root, encoding='unicode'))
 
 def main():
-    if len(sys.argv) < 6:
-        print("Usage: python copy_lyrics.py <mei_file> <source_staff> <target_staff> <lem | rdg> <label> [output_file]")
+    if len(sys.argv) != 5 and len(sys.argv) != 7:
+        print("Usage: python copy_lyrics.py <mei_file> <source_staff> <target_staff> [<lem | rdg> <label>] output_file")
         sys.exit(1)
         
     mei_file = sys.argv[1]
     source_staff = int(sys.argv[2])
     target_staff = int(sys.argv[3])
-    target_elem = sys.argv[4]
-    target_label = sys.argv[5]
-    
-    output_file = None
-    if len(sys.argv) > 6:
+    if len(sys.argv) == 7:
+        target_elem = sys.argv[4]
+        target_label = sys.argv[5]
         output_file = sys.argv[6]
+    else:
+        target_elem = None
+        target_label = None
+        output_file = sys.argv[4]
+
+
         
     copy_lyrics(mei_file, source_staff, target_staff, target_elem, target_label, output_file)
 
