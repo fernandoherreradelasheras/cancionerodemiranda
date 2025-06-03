@@ -1,5 +1,2 @@
-\[Si hay imán que a un duro acero\][^1]
-
-[^1]: Este tono tiene las coplas a solo en la parte perdida de alto.
-    Conocemos el primer verso de estas coplas por su entrada en los
-    índices de CdM-S1 y CdM-S2 así como por su indicación en CdM-G
+**4-5**: Construcción elíptica "cuanto más tierna es un alma, tanto más imán es el amor"\
+**19** _escollo y tronco_: El escollo, una roca que sobresale en el mar, sería donde se ubicaría la flor referida en la segunda estrofa, del mismo modo que sobre el tronco estaría posado el ruiseñor de la tercera estrofa.
