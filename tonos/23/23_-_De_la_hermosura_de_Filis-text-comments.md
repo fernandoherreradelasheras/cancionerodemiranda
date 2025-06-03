@@ -1,1 +1,1 @@
-**10** TODO: resolver ese "achaque" que no encaja
+**10** achaque: Vale tanto como enfermedad, indisposición, o vicio de la naturaleza. (Diccionario de autoridades)
