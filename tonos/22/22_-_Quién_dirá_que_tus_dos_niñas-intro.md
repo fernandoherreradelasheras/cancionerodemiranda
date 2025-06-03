@@ -1,0 +1,1 @@
+El tono ***Quién dirá que tus dos niñas***  despliega un elaborado juego de antítesis en torno a los ojos, las niñas, de la dama. Unos ojos simultáneamente celestiales y delictivos, capaces de "robar almas" y aprisionar libertades desde su belleza divina. Ladrones que actúan con valentía "cara a cara" pero letales cuando la dama "vuelve espaldas".
