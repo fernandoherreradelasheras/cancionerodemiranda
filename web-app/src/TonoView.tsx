@@ -96,13 +96,11 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
         }
     }
 
-
     const onVisualizationOptionsChanged = (_: number, changedOptions: VisualizationOptions) => {
         setVisualizationOptions(
             (visualizationOptions : VisualizationOptions | null) => ({ ...visualizationOptions, ...changedOptions })
         )
     }
-
 
     const reconstructionsFromOptions = useMemo(() => {
         if (!visualizationOptions?.showReconstructions ||
@@ -122,7 +120,6 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
     }, [visualizationOptions])
 
 
-
     useEffect(() => {
         setVisualizationOptions(null)
     }, [tonoConfig]);
@@ -132,7 +129,8 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
         if (scoreViewerContainerRef.current && !scoreSize) {
             const viewPortHeight = window.innerHeight
             const rect = scoreViewerContainerRef.current.getBoundingClientRect()
-            const availableHeight = Math.floor(viewPortHeight - rect.top) - 6
+            const availableHeight =  rect.top >= 0 ? Math.floor(viewPortHeight - rect.top) - 6
+                : Math.floor(viewPortHeight - (window.scrollY + rect.top)) - 6
             if (availableHeight >= MINIMUM_SCORE_HEIGHT) {
                 setScoreSize({
                     width:  USE_VIRTUAL_UNITS ? "100%" : `${Math.floor(rect.width)}px`,
@@ -149,7 +147,6 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
             }
         }
     }, [])
-
 
 
    const editor = scoreProperties?.editor
