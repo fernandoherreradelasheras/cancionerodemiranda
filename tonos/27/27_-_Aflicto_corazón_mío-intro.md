@@ -1,0 +1,1 @@
+El tono ***Aflicto corazón mío*** expresa el tormento amoroso y los celos del yo poético a través de un diálogo con su propio corazón. El empleo de paronomasias (juegos fonéticos entre palabras similares) y quiasmos, crean un efecto de circularidad que refleja la naturaleza obsesiva de los celos.
