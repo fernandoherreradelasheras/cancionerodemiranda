@@ -7,22 +7,19 @@ const Tono = () => {
 
     const { scoreViewerConfig, currentTonoNumber } = useContext(Context)
 
-    const tonoConfig = useMemo(() => {
-        return currentTonoNumber && scoreViewerConfig?.scores ? scoreViewerConfig.scores[currentTonoNumber - 1] : null
+    const tonoIndex = useMemo(() => {
+        return currentTonoNumber ? currentTonoNumber - 1 : null
     }, [currentTonoNumber, scoreViewerConfig])
 
 
-    if (tonoConfig == null) {
-        return (<div>Cargando...</div>)
-    } else {
-        const title = `Cancionero de Miranda - ${tonoConfig.title}`
-        return (
-            <>
-                <PageTitle title={title} />
-                <TonoView tonoConfig={tonoConfig} />
-            </>
-        )
-   }
+    return (
+        <>
+            { tonoIndex == null && <div>Cargando...</div> }
+            { tonoIndex != null && <PageTitle title={ `Cancionero de Miranda - ${scoreViewerConfig?.scores[tonoIndex].title}`} /> }
+            <TonoView tonoIndex={tonoIndex} />
+        </>
+    )
+
 
 
 }
