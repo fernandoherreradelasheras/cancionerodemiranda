@@ -4,7 +4,7 @@ import { Context } from './Context'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
 import { Col, Progress, ProgressProps, Row, Space, Typography } from 'antd'
-import { ScoreViewerConfigScore, ScoreProperties, VisualizationOptions, Reconstruction, ScoreViewer, ScoreViewerRef } from 'score-viewer'
+import { ScoreProperties, VisualizationOptions, Reconstruction, ScoreViewer, ScoreViewerRef } from 'score-viewer'
 
 
 const MINIMUM_SCORE_HEIGHT = 300
@@ -58,17 +58,16 @@ const progressColors: ProgressProps['strokeColor'] = [
 
 
 
-const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
+const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
-    const { scoreViewerConfig, status: definitions, currentTonoNumber } = useContext(Context)
+    const { scoreViewerConfig, status: definitions } = useContext(Context)
 
     const [scoreSize, setScoreSize] = useState<{width: string, height: string, scrollTo: number | null} | null>(null)
     const [scoreProperties, setScoreProperties] = useState<ScoreProperties | null>(null)
     const [visualizationOptions, setVisualizationOptions] = useState<VisualizationOptions | null>(null)
     const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
 
-    const tonoIndex = useMemo(() => (currentTonoNumber || 0) - 1, [currentTonoNumber])
-    const tonoStatus = useMemo(() => definitions ? definitions[tonoIndex] : null, [definitions, tonoIndex])
+    const tonoStatus = useMemo(() => definitions && tonoIndex != null ? definitions[tonoIndex] : null, [definitions, tonoIndex])
 
     const { "value": textStatusValue , "text": textStatusText } = getProgressFromTextStatus(tonoStatus?.status_text)
     const { "value": musicStatusValue , "text": musicStatusText } = getProgressFromMusicStatus(tonoStatus?.status_music)
@@ -96,7 +95,7 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
         }
     }
 
-    const onVisualizationOptionsChanged = (_: number, changedOptions: VisualizationOptions) => {
+    const onVisualizationOptionsChanged = (changedOptions: VisualizationOptions) => {
         setVisualizationOptions(
             (visualizationOptions : VisualizationOptions | null) => ({ ...visualizationOptions, ...changedOptions })
         )
@@ -119,10 +118,15 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
         return reconstructionTexts.join(", ")
     }, [visualizationOptions])
 
+   const editor = scoreProperties?.editor
+   const reconstruction = scoreProperties?.reconstructionBy
+   const numMeasures = scoreProperties?.numMeasures
 
-    useEffect(() => {
-        setVisualizationOptions(null)
-    }, [tonoConfig]);
+   const sectionItems = useMemo(() => {
+        return scoreProperties?.sections?.map((section: Section, index: number) =>
+             <a onClick={() => { onClickSection(section) }}>{`${index + 1}. ${section.label}`}</a>) || null
+    }, [scoreProperties])
+
 
 
     useEffect(() => {
@@ -149,14 +153,22 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
     }, [])
 
 
-   const editor = scoreProperties?.editor
-   const reconstruction = scoreProperties?.reconstructionBy
-   const numMeasures = scoreProperties?.numMeasures
+    const scoreViewer = useMemo(() => scoreSize && scoreViewerConfig ? <ScoreViewer
+        width={scoreSize.width}
+        height={scoreSize.height}
+        config={scoreViewerConfig}
+        ref={scoreViewerRef}
+        onVisualizationOptionsChanged={onVisualizationOptionsChanged}
+        onScoreAnalyzed={onScoreAnalyzed}
+    /> : null, [scoreSize, scoreViewerConfig, scoreViewerRef, onVisualizationOptionsChanged, onScoreAnalyzed])
 
-   const sectionItems = useMemo(() => {
-        return scoreProperties?.sections?.map((section: Section, index: number) =>
-             <a onClick={() => { onClickSection(section) }}>{`${index + 1}. ${section.label}`}</a>) || null
-    }, [scoreProperties])
+
+    useEffect(() => {
+        setVisualizationOptions(null)
+        if (scoreViewerRef.current) {
+            scoreViewerRef.current.selectScore(tonoIndex)
+        }
+    }, [tonoIndex, scoreViewer]);
 
 
     return (
@@ -213,15 +225,7 @@ const TonoView = ({ tonoConfig }: { tonoConfig: ScoreViewerConfigScore }) => {
                     height: "100%", width: "100%"
                 }}>
 
-                {scoreSize && scoreViewerConfig ? <ScoreViewer
-                    width={scoreSize.width}
-                    height={scoreSize.height}
-                    config={scoreViewerConfig}
-                    ref={scoreViewerRef}
-                    scoreIndex={tonoIndex}
-                    onVisualizationOptionsChanged={onVisualizationOptionsChanged}
-                    onScoreAnalyzed={onScoreAnalyzed}
-                /> : null}
+                { scoreViewer }
 
             </div>
         </div>
