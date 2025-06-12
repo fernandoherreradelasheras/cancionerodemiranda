@@ -40,9 +40,15 @@ def copy_lyrics(mei_file, source_staff, target_staff, target_elem, target_label,
         for source_note, target_note in zip(source_notes, target_notes):
             source_verse1 = source_note.find('./mei:verse[@n="1"]/mei:syl', ns)
             target_verse1 = target_note.find('./mei:verse[@n="1"]/mei:syl', ns)
-            
-            if source_verse1 is None or target_verse1 is None:
+
+            if source_verse1 is None:
                 continue
+
+            if target_verse1 is None:
+                target_verse1 = copy.deepcopy(source_verse1)
+                new_verse = ET.SubElement(target_note, f"{{{MEI_NS}}}verse", n="1")
+                new_verse.append(target_verse1)
+
                 
             if source_verse1.text == target_verse1.text:
                 for source_verse in source_note.findall('./mei:verse', ns):
