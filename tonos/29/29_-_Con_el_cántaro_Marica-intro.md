@@ -1,0 +1,1 @@
+El tono ***Con el cántaro Marica*** transforma el bucólico marco pastoril de una pastora que va a la fuente a por agua en una escena dramática. La paradoja central de quien busca agua mientras derrama lágrimas se combina con una narración circular que refuerza temáticamente la imposibilidad de escape del amor.
