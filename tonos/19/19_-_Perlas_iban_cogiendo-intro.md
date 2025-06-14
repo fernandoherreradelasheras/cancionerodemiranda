@@ -1,0 +1,3 @@
+
+En el tono ***Perlas iban cogiendo*** la hipérbole y la metáfora preciosa se conjugan para crear un retrato laudatorio la reina portuguesa que, antentiendo al contexto del tono anterior, sería con toda probabilidad **María Sofía Isabel del Palatinado-Neoburgo**. El autor del texto anónimo emplea el tópico clásico de la superioridad de la belleza humana sobre la natural: las ninfas del Tajo buscan perlas para obsequiar a la soberana, pero descubren que ella misma es la perla más valiosa. Las imágenes petrarquistas culminan con una apoteosis coral que eleva a la reina a la categoría de prodigio natural, digno de admiración eterna.
+

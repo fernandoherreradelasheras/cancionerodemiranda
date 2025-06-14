@@ -17,8 +17,8 @@ Observando los cambios con respecto al romance original encontramos una
 posible explicación a su presencia en el Cancionero de Miranda: la
 reutilización del texto, quitando cualquier referencia a la monarquía
 hispánico, para cantar en Lisboa a otra monarca alemana. Esta situación
-se produciría a partir de 1687 cuando María Sofía Isabel del
-Palatinado-Neoburgo contrajo matrimonio con Pedro. Los versos añadidos
+se produciría a partir de 1687 cuando **María Sofía Isabel del
+Palatinado-Neoburgo** contrajo matrimonio con **Pedro II**. Los versos añadidos
 *Viva el lazo indisoluble // de amor en tu dulce empeño* parecen indicar
 que además de cambiar la reina, se cambió el cumpleaños por la boda. El
 rizo se terminaría de rizar en 1689 cuando, a las dos deidades alemanas
