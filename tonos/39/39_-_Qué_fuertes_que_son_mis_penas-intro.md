@@ -1,0 +1,1 @@
+El tono ***Ni el remedio espera*** compuesto por Fray Felipe de la Madre de Dios presenta la paradoja sin salida de un amante desdeñado: no desea remedio a su dolor ni la muerte como escape. El amante acepta su destino y sufrimiento como una forma de vida aceptable.

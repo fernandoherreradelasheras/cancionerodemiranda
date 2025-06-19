@@ -1,0 +1,3 @@
+**8 grillos**: grilletes  
+**10 arbitrio**: Facultád y poder para obrar libremente y sin dependéncia alguna y lo mismo que Albedrío. (Diccionario de autoridades)  
+**27**: En los tres manuscritos se lee `O dena leyo a la suerte` cuyo encaje sintáctico no está del todo claro. Hemos optado por la coordinada disyuntiva _O de una ley, o a la suerte_ en la que el yo poético justificaría su acción (pedir más cuidados en los peligros) ya sea por sometimiento a una ley (del amor, del honor) o por entrega al destino. Otras opciones implicarían la expresión _leyó a la suerte_ que parcen más extrañas.
