@@ -7,6 +7,11 @@ from lxml import etree
 import argparse
 from collections import defaultdict
 
+PROLOG = '''<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>'''
+
+MEI_VERSION = "5.1"
 
 def separate_prolog_and_content(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
@@ -27,9 +32,8 @@ def separate_prolog_and_content(file_path):
     return prolog, xml_content
 
 
-def normalize_processing_instructions(prolog):
-    normalized = re.sub(r"(\?>)(<\?)", r"\1\n\2", prolog)
-    return normalized
+def get_hardcoded_prolog():
+    return PROLOG
 
 
 def detect_hierarchical_indent(xml_content):
@@ -103,10 +107,27 @@ def extract_comments(xml_content):
     return xml_content, comments
 
 
+def ensure_mei_element_attributes(xml_content):
+    # Pattern to match the opening mei tag
+    mei_pattern = re.compile(r'<mei[^>]*>', re.IGNORECASE)
+
+    match = mei_pattern.search(xml_content)
+    if match:
+        original_tag = match.group(0)
+        new_tag = f'<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="{MEI_VERSION}">'
+        xml_content = xml_content.replace(original_tag, new_tag, 1)
+        print("Updated <mei> element with correct namespace and version")
+    else:
+        print("Warning: No <mei> element found in the XML content")
+
+    return xml_content
+
+
 def reindent_xml(file_path, output_path=None):
     prolog, content = separate_prolog_and_content(file_path)
 
-    normalized_prolog = normalize_processing_instructions(prolog)
+    normalized_prolog = get_hardcoded_prolog()
+    content = ensure_mei_element_attributes(content)
 
     content_without_comments, comments = extract_comments(content)
 
