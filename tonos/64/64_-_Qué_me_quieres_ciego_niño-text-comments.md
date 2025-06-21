@@ -1,3 +1,1 @@
-Qué quieres de\[xxxxx\][^1]
-
-[^1]: ilegible en el original
+**25**: en los manuscritos se lee _Aunque fortuna permitas_ 
