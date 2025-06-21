@@ -1,0 +1,3 @@
+El tono ***Y la tirana, aunque ve la fineza*** explora la superioridad moral del amor callado frente al interesado, estableciendo una jerarquía donde el sufrimiento silencioso se considera más noble. La última estrofa, con su juego conceptista sobre pensamientos contradictorios que "no mueren donde nacen, mas viven donde se mueren", sintetiza la naturaleza paradójica del amor no correspondido.
+
+Existe otro testimonio de este tono, con ligeras variantes en el estribillo, en el Cancionero poético-musical hispano de Lisboa. De este cancionero tomamos adepatado el guión que falta en nuestro testimonio.
