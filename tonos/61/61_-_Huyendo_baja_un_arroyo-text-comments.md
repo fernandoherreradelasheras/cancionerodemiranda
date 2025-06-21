@@ -1,4 +1,1 @@
-Aquí[^1] un día cuando el alba
-
-[^1]: Esta estrofa no figura en la versión del LDTH, que por el
-    contrario tiene 5 estrofas que no aparecen aquí
+**14**: _Lucinda_ en la versión del Libro de Tonos Humanos. Tomando el femenino el poeta no nombraría al pastor protagonista y Lucinda sería un tercer personaje introducido solo para sobreponer la belleza de Filis sobre esta. Mantenemos el masculino _Lucindo_ que otorga mayor coherencia al poema
