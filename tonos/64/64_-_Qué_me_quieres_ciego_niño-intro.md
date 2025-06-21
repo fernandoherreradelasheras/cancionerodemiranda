@@ -1,0 +1,1 @@
+El tono ***Qué me quieres ciego niño*** presenta un diálogo lírico con Cupido donde el yo poético expresa la paradoja del amor barroco: el sufrimiento y la resistencia simultáneos ante la pasión amorosa.
