@@ -1,3 +1,3 @@
-está pintando a lo vivo[^1]
+**2 Betis**: nombre poético del río Guadalquivir  
+**11 pintado a lo vivo**: con gran realismo
 
-[^1]: No está claro en ninguno de los originales.
