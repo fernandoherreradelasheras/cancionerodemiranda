@@ -1,0 +1,1 @@
+**1 prenda**: Se llama también lo que se ama intensamente: como hijos, mujer, amígos. (Diccionario de Autoridades)
