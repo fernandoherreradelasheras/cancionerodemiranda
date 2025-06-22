@@ -63,10 +63,11 @@ def get_orig_clefs(root, partNames):
         return
 
     orig_clefs = []
-    for ref in annot.get("plist").split(" ")[1:]:
-        clef = next((c for c in rdg_clefs if c.get("corresp") == ref), None)
-        if clef is not None:
-            orig_clefs.append(clef)
+    if "plist" in annot.keys():
+        for ref in annot.get("plist").split(" ")[1:]:
+            clef = next((c for c in rdg_clefs if c.get("corresp") == ref), None)
+            if clef is not None:
+                orig_clefs.append(clef)
             
     res = []
     all_clefs = orig_clefs + [clef for clef in rdg_clefs if clef not in orig_clefs]
@@ -94,6 +95,8 @@ orig_clefs = get_orig_clefs(root, partNames)
 
 annots = root.xpath('//mei:annot', namespaces=NSMAP)
 for annot in annots:
+    if "plist" not in annot.keys():
+        continue
     for id in [target[1:] for target in annot.get("plist").split(" ")]:
         res =  root.xpath('//*[@xml:id="%s"]' % id, namespaces=NSMAP)
         if len(res) > 0:

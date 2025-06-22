@@ -692,7 +692,7 @@ def main():
                 print(f"No such tono: {sys.argv[1]}")
         else:
             # Process all tonos
-            for tono, tonos_status in zip(scores, status):
+            for tono, tono_status in zip(scores, status):
                 print(f"Building tono {tono['number']} from dir {tono['path']}\n")
                 generate_tono(tono, tono_status, tmp_dir)
                 for file in os.listdir(tmp_dir):
@@ -705,13 +705,16 @@ def main():
             print(f"Intermediate files kept at {tmp_dir}")
 
 def generate_tono(data, status, tmp_dir):
+
+    if 'meiFile' not in data or data['meiFile'] == "":
+        return
         
     print(f"** Building tono {data['number']}: {data['title']} **")
 
     directory = 'tonos/' + data['path']
         
     # convert filenames to full path        
-    data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'textCommentsFile', 'music_comments_file', 'meiFile'] else data[key] for key in data.keys()}
+    data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'textCommentsFile', 'music_comments_file', 'meiFile'] and data[key] != "" else data[key] for key in data.keys()}
     data['text'] = [{k: directory + "/" + v if k == "file" else v  for k, v in entry.items()}  for entry in data['text'] ]
 
     composer, lyricist = get_entries_from_mei(data['meiFile'])
@@ -798,22 +801,8 @@ def generate_tono(data, status, tmp_dir):
     print(f"Tono generado: {destname}.pdf")
 
 
-        
-        
-                    
-
-
-
-
-    
-    # Extract necessary information from JSON
-    # ... (implement the rest of the generation logic)
-    
-    # Create output directory if it doesn't exist
     os.makedirs("output", exist_ok=True)
     
-    # Generate the final PDF
-    # ... (implement PDF generation logic)
 
 if __name__ == "__main__":
     main()
