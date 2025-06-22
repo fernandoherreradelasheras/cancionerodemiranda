@@ -1,0 +1,3 @@
+El tono a tres voces ***Válgate Dios, por Jacinta*** se conserva completo en el Cancionero de Miranda. El compositor desconocido, o tal vez el compilador del cancionero, hizo una selección extraña de las cuartetas del romance del **Principe de Esquilache** aparecido con el número CCIX en las _Obras en verso de Don Francisco de Borja_ publicadas por primera vez en 1648.
+
+Es interesante ver cómo con el material seleccionado, en el que una cuarteta no se entiende por la omisión de la anterior parece que es el compilador el que intenta cambiar algunos versos para darle coherencia a la narración, cosa que hace en dos de los libretes mientras que en uno mantiene los versos originales.
