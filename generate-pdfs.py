@@ -563,9 +563,16 @@ def generate_mei(input_mei, order, poet, composer, title, tmp_dir, output_mei):
     run_cmd(cmd)
 
 
-def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
+def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name, expand_annotations):
     cmd = [ 'sh', '-c', f'rm -f {tmp_dir}/*.svg' ]
     run_cmd(cmd)    
+
+    if expand_annotations:
+        print("Expanding annotationgs into the score")
+        cmd = [ 'python', './scripts/expand_annots.py', mei_file, f'{tmp_dir}/expanded.mei', f'{tmp_dir}/annotations.json' ]
+        run_cmd(cmd)    
+        f = Path(tmp_dir) / 'expanded.mei'
+        f.rename(mei_file)
 
     workaround_verovio_2divs_bug(mei_file)
 
@@ -574,9 +581,14 @@ def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name):
            '--lyric-height-factor', '1.2', '--lyric-top-min-margin', '2.5', '--lyric-line-thickness', '0.2', "--no-justification",
             '--bottom-margin-header', '8', '--page-margin-bottom', '50', '--top-margin-pg-footer', '4',  '--header', 'auto', '--footer', 'encoded',
             '--breaks', 'smart', '--breaks-smart-sb', '0.02', '--condense', 'none', '--min-last-justification', '0.2', '--scale', mei_scale, '--scale-to-page-size', '--justify-vertically',
+           '--svg-additional-attribute', 'rend@type',
            '-o', f'{tmp_dir}/output.svg', mei_file ]
     print(" ".join(cmd))
     run_cmd(cmd)
+
+    if expand_annotations:
+        cmd = [ 'python', './scripts/annotate_svg.py', tmp_dir, f'{tmp_dir}/annotations.json' ]
+        run_cmd(cmd)    
     
     cmd = [ 'sh', '-c', f'svgs2pdf -m "{output_name}" -o "{tmp_dir}" {tmp_dir}/*.svg' ]
     run_cmd(cmd)    
@@ -637,32 +649,20 @@ def generate_score(order, data, tmp_dir):
 
     # Render the full version of all sections
     print("Generating full score")
-    render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "full-score.pdf")
+    render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "full-score.pdf", False)
     generated.append("full-score.pdf")
     
-    if mei_has_more_than_1verse(tmp_file):
-        single_verse_mei = f'{tmp_dir}/single-verse-sections.mei'
-        shutil.copy(tmp_file, single_verse_mei)
-        sections_count = mei_count_sections(single_verse_mei)
-        sections_to_keep = []
-        for sectionN in range(1, sections_count + 1):
-            if mei_section_has_more_than_1verse(single_verse_mei, sectionN):
-                sections_to_keep.append(str(sectionN))
-
-        print("Generating score with single verse versions of sections: " + ",".join(sections_to_keep))
-
-        path = '(//mei:section)[position() != "' +  '" and position() != "'.join(sections_to_keep) + '"]'
-        run_xmlstarlet(f"-d '{path}' {single_verse_mei}")
-
-        path = f"//mei:verse[@n!=\"1\"]"
-        run_xmlstarlet(f"-d '{path}' {single_verse_mei}")
-
-        blocks_to_inject = [entry for entry in data['text'] if 'append_to' in entry and entry['append_to'] != "@none" ]
-        inject_section_place_holders(single_verse_mei, blocks_to_inject)   
-        single_verse_pdf = f'single_verse_sections.pdf'
-        render_mei(single_verse_mei, mei_unit, mei_scale, tmp_dir, single_verse_pdf)
-        inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/{single_verse_pdf}", tmp_dir)
-        generated.append(single_verse_pdf)
+    print("Generating score with single verse and expanded annotations")
+    single_verse_mei = f'{tmp_dir}/single-verse-sections.mei'
+    shutil.copy(tmp_file, single_verse_mei)
+    path = f"//mei:verse[@n!=\"1\"]"
+    run_xmlstarlet(f"-d '{path}' {single_verse_mei}")
+    blocks_to_inject = [entry for entry in data['text'] if 'append_to' in entry and entry['append_to'] != "@none" ]
+    inject_section_place_holders(single_verse_mei, blocks_to_inject)   
+    single_verse_pdf = f'single_verse_sections.pdf'
+    render_mei(single_verse_mei, mei_unit, mei_scale, tmp_dir, single_verse_pdf, True)
+    inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/{single_verse_pdf}", tmp_dir)
+    generated.append(single_verse_pdf)
 
 
     return generated
