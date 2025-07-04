@@ -35,8 +35,6 @@ def append_annotation(svg_path, annotations):
                 y_val = float(y)
             except ValueError:
                 print('invalid x y in foot-notes tspan')
-    else:
-        print("cannot find foot-notes")
 
     addedAnnotations = 0
 
@@ -53,7 +51,7 @@ def append_annotation(svg_path, annotations):
             "text-anchor": 'start',
             "font-size": f'{FONT_HEIGHT}px'
         })
-        tspan_el.text = f'{annot["n"]}: {annot["annot"]}'
+        tspan_el.text = f'[{annot["n"]}]: {annot["annot"]}'
         pgfoot.append(text_el)
         addedAnnotations = addedAnnotations + 1
         y_val += FONT_HEIGHT
@@ -75,7 +73,6 @@ def main(svg_dir, json_path):
         if filename.lower().endswith('.svg'):
             svg_path = os.path.join(svg_dir, filename)
             append_annotation(svg_path, annotations)
-            print(f"Annotated {svg_path}")
 
 if __name__ == "__main__":
     import sys
