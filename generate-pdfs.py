@@ -13,6 +13,11 @@ import math
 from pathlib import Path
 from lxml import etree as ET
 from copy import deepcopy
+from enum import StrEnum, auto
+
+class EditionType(StrEnum):
+    PERFORMER = auto()
+    SCHOLAR = auto()
 
 
 # Constants
@@ -240,8 +245,9 @@ def format_text_part(transcription, comments, tmp_dir):
 
     return str
 
-def generate_comments_from_mei_file(mei_file, json_params, tmp_dir):
-    cmd = [ 'python',  './scripts/extract_comments_from_mei.py', mei_file, json_params, f'{tmp_dir}/music_comments.tex' ]
+def generate_comments_from_mei_file(mei_file, json_params, tmp_dir, buildType):
+    annotations =  "--extractAnnotations" if buildType is EditionType.PERFORMER else "--noExpandAnnotations"
+    cmd = [ 'python',  './scripts/extract_comments_from_mei.py', mei_file, json_params, annotations, f'{tmp_dir}/music_comments.tex' ]
     run_cmd(cmd)
     return "\\input{music_comments.tex}\n"
 
@@ -632,7 +638,7 @@ def add_titles(mei_file, entries):
             
             
 
-def generate_score(order, data, tmp_dir):
+def generate_score(order, data, tmp_dir, buildType):
 
     generated = []
     
@@ -647,74 +653,38 @@ def generate_score(order, data, tmp_dir):
 
     shutil.copy(tmp_file, f'{tmp_dir}/final.mei')        
 
-    # Render the full version of all sections
-    print("Generating full score")
-    render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "full-score.pdf", False)
-    generated.append("full-score.pdf")
-    
-    print("Generating score with single verse and expanded annotations")
-    single_verse_mei = f'{tmp_dir}/single-verse-sections.mei'
-    shutil.copy(tmp_file, single_verse_mei)
-    path = f"//mei:verse[@n!=\"1\"]"
-    run_xmlstarlet(f"-d '{path}' {single_verse_mei}")
-    blocks_to_inject = [entry for entry in data['text'] if 'append_to' in entry and entry['append_to'] != "@none" ]
-    inject_section_place_holders(single_verse_mei, blocks_to_inject)   
-    single_verse_pdf = f'single_verse_sections.pdf'
-    render_mei(single_verse_mei, mei_unit, mei_scale, tmp_dir, single_verse_pdf, True)
-    inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/{single_verse_pdf}", tmp_dir)
-    generated.append(single_verse_pdf)
+    if buildType is EditionType.PERFORMER:
+        # Render the full version of all sections
+        print("Generating performer full score")
+        render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "full-score.pdf", False)
+        return "full-score.pdf"
+    elif buildType is EditionType.SCHOLAR:
+        print("Generating scholar score with single verse and expanded annotations")
+        single_verse_mei = f'{tmp_dir}/single-verse-sections.mei'
+        shutil.copy(tmp_file, single_verse_mei)
+        path = f"//mei:verse[@n!=\"1\"]"
+        run_xmlstarlet(f"-d '{path}' {single_verse_mei}")
+        blocks_to_inject = [entry for entry in data['text'] if 'append_to' in entry and entry['append_to'] != "@none" ]
+        inject_section_place_holders(single_verse_mei, blocks_to_inject)   
+        single_verse_pdf = f'single_verse_sections.pdf'
+        render_mei(single_verse_mei, mei_unit, mei_scale, tmp_dir, single_verse_pdf, True)
+        inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/{single_verse_pdf}", tmp_dir)
+        return single_verse_pdf
+    else:
+        return None
 
 
-    return generated
-
-
-def main():
- 
-    # Create temporary directory
-    tmp_dir = tempfile.mkdtemp()
-
-    with open(os.path.join("tonos", "tonos.json")) as f:
-        config = json.load(f)
-        scores = config['scores']
-        for index,score in enumerate(scores):
-            score['number'] = str(index + 1)
-
-
-    with open(os.path.join("tonos", "status.json")) as f:
-        status = json.load(f)
-    
-    try:
-        if len(sys.argv) == 2:
-            tonoIdx = int(sys.argv[1]) - 1
-            if tonoIdx >= 0 and tonoIdx < len(scores):
-                generate_tono(scores[tonoIdx], status[tonoIdx], tmp_dir)
-            else:
-                print(f"No such tono: {sys.argv[1]}")
-        else:
-            # Process all tonos
-            for tono, tono_status in zip(scores, status):
-                print(f"Building tono {tono['number']} from dir {tono['path']}\n")
-                generate_tono(tono, tono_status, tmp_dir)
-                for file in os.listdir(tmp_dir):
-                    os.remove(os.path.join(tmp_dir, file))
-    
-    finally:
-        if not debug:
-            shutil.rmtree(tmp_dir)
-        else:
-            print(f"Intermediate files kept at {tmp_dir}")
-
-def generate_tono(data, status, tmp_dir):
+def generate_tono(data, status, tmp_dir, buildType):
 
     if 'meiFile' not in data or data['meiFile'] == "":
         return
         
-    print(f"** Building tono {data['number']}: {data['title']} **")
+    print(f"** Building tono {data['number']}: {data['title']} type: {buildType} **")
 
     directory = 'tonos/' + data['path']
         
     # convert filenames to full path        
-    data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'textCommentsFile', 'music_comments_file', 'meiFile'] and data[key] != "" else data[key] for key in data.keys()}
+    data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'textCommentsFile', 'meiFile'] and data[key] != "" else data[key] for key in data.keys()}
     data['text'] = [{k: directory + "/" + v if k == "file" else v  for k, v in entry.items()}  for entry in data['text'] ]
 
     composer, lyricist = get_entries_from_mei(data['meiFile'])
@@ -728,14 +698,12 @@ def generate_tono(data, status, tmp_dir):
         
     valuesLatexStr = ""
         
-    files =  [data[key] for key in [ 'textCommentsFile', 'music_comments_file', 'meiFile', 'introduction'] if key in data] + [ entry['file'] for entry in data['text']]
+    files =  [data[key] for key in [ 'textCommentsFile', 'meiFile', 'introduction'] if key in data] + [ entry['file'] for entry in data['text']]
     vers = get_version_from_git(files)
     print(f"Version baseed on # of git revisions: {vers}")
         
     valuesLatexStr = valuesLatexStr + format_version(vers)
-        
     valuesLatexStr = valuesLatexStr + format_titles(data['number'], data['title'], data['music_author'], data['text_author']) 
-        
     valuesLatexStr = valuesLatexStr + format_status(data)
     
     if PRE_RELEASE:
@@ -754,23 +722,17 @@ def generate_tono(data, status, tmp_dir):
                             data['textCommentsFile'] if 'textCommentsFile' in data else None,
                             tmp_dir)
         
-    generated_scores = generate_score(data['number'], data, tmp_dir)
+    generated_score = generate_score(data['number'], data, tmp_dir, buildType)
         
     latexStr = latexStr + "\\section*{Edición musical}\n"
     latexStr = latexStr + "\\input{criterios-musicales.tex}" 
         
-    if len(generated_scores) > 0:
-        if 'music_comments_file' in data:
-            print(f"Adding music comments from file {data['music_comments_file']}")
-            latexStr = latexStr + Path(data['music_comments_file']).read_text()
-        else:
-            encoding = data['encodingProperties']
-            json_params = json.dumps({ "organic" : data['organic'], "high_clefs" :  data['high_clefs'], "original_armor" : encoding['originalArmor'], "transposition" : encoding['encodedTransposition'], "encoded_armor" : encoding['encodedArmor'] })
-            print(json_params)
-            latexStr = latexStr + generate_comments_from_mei_file(data['meiFile'], json_params, tmp_dir)
-            
-        for score in generated_scores:
-            latexStr = latexStr + "\\includepdf[pages=-]{%s}\n" % score
+    if generated_score is not None:
+        encoding = data['encodingProperties']
+        json_params = json.dumps({ "organic" : data['organic'], "high_clefs" :  data['high_clefs'], "original_armor" : encoding['originalArmor'], "transposition" : encoding['encodedTransposition'], "encoded_armor" : encoding['encodedArmor'] })
+        print(json_params)
+        latexStr = latexStr + generate_comments_from_mei_file(data['meiFile'], json_params, tmp_dir, buildType)
+        latexStr = latexStr + "\\includepdf[pages=-]{%s}\n" % generated_score
         
     (Path(tmp_dir) / 'facsimil.tex').write_text(get_facsimil(data['facsimileItems']))
     latexStr = latexStr + "\\input{facsimil.tex}\n"
@@ -787,9 +749,9 @@ def generate_tono(data, status, tmp_dir):
     print("Rendering final pdf")
     render_latex(tmp_dir, 'tmp.tex')
         
-    destname =  f'output/{str(data['number']).zfill(2)} - {data['title']}'
+    destname =  f'output/{str(data['number']).zfill(2)} - {data['title']} ({buildType.value})'
         
-    if len(generated_scores) > 0 and (Path(tmp_dir) / 'final.mei').exists():
+    if generated_score is not None and (Path(tmp_dir) / 'final.mei').exists():
         shutil.copy(f'{tmp_dir}/final.mei', f'{destname}.mei')        
         print(f"MEI score: {destname}.mei")
         cmd = [ 'pdftk', f'{tmp_dir}/tmp.pdf', 'attach_files', f'{destname}.mei', 'to_page', 'end',  'output', f'{destname}.pdf']
@@ -797,11 +759,54 @@ def generate_tono(data, status, tmp_dir):
     else:
         shutil.move(f'{tmp_dir}/tmp.pdf', f'{destname}.pdf')      
                 
-        
     print(f"Tono generado: {destname}.pdf")
 
-
     os.makedirs("output", exist_ok=True)
+
+
+def main():
+ 
+    # Create temporary directory
+    tmp_dir = tempfile.mkdtemp()
+
+    with open(os.path.join("tonos", "tonos.json")) as f:
+        config = json.load(f)
+        scores = config['scores']
+        for index,score in enumerate(scores):
+            score['number'] = str(index + 1)
+
+
+    with open(os.path.join("tonos", "status.json")) as f:
+        status = json.load(f)
+    
+    try:
+        if len(sys.argv) == 1:
+            # Process all tonos
+            for tono, tono_status in zip(scores, status):
+                print(f"Building tono {tono['number']} from dir {tono['path']}\n")
+                generate_tono(tono, tono_status, tmp_dir)
+                for file in os.listdir(tmp_dir):
+                    os.remove(os.path.join(tmp_dir, file))
+        elif len(sys.argv) == 2:
+            tonoIdx = int(sys.argv[1]) - 1
+            if tonoIdx >= 0 and tonoIdx < len(scores):
+                for buildType in list(EditionType):
+                    generate_tono(scores[tonoIdx], status[tonoIdx], tmp_dir, buildType)
+            else:
+                print(f"No such tono: {sys.argv[1]}")
+        elif len(sys.argv) == 3:
+            tonoIdx = int(sys.argv[1]) - 1
+            buildType = EditionType(sys.argv[2])
+            if tonoIdx >= 0 and tonoIdx < len(scores):
+                generate_tono(scores[tonoIdx], status[tonoIdx], tmp_dir, buildType)
+            else:
+                print(f"No such tono: {sys.argv[1]}")
+    finally:
+        if not debug:
+            shutil.rmtree(tmp_dir)
+        else:
+            print(f"Intermediate files kept at {tmp_dir}")
+
     
 
 if __name__ == "__main__":
