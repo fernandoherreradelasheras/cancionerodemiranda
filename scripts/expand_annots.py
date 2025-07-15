@@ -25,6 +25,7 @@ id_map = {el.get("{http://www.w3.org/XML/1998/namespace}id"): el
 counter = 1
 output_json = []
 
+error = False
 for annot in root.xpath('//mei:annot[@plist]', namespaces=NSMAP):
     plist = annot.get('plist', '')
     ids = [token.lstrip('#') for token in plist.split()]
@@ -49,6 +50,10 @@ for annot in root.xpath('//mei:annot[@plist]', namespaces=NSMAP):
                     continue
 
             note_id = target.get("{http://www.w3.org/XML/1998/namespace}id")
+            if note_id is None:
+                print(f"Child note of {idval} does not have xml:id!")
+                error = True
+                continue
 
             dir_el = etree.Element('{%s}dir' % MEI_NS, startid='#' + note_id, place="above")
             rend_el = etree.SubElement(dir_el, '{%s}rend' % MEI_NS, fontstyle="normal", color="mediumblue")
@@ -63,6 +68,9 @@ for annot in root.xpath('//mei:annot[@plist]', namespaces=NSMAP):
             })
 
             counter += 1
+
+if error:
+    sys.exit(-1)
 
 # If any annotation has been added, insert notes section to <pgFoot> in every <scoreDef>
 if output_json:
