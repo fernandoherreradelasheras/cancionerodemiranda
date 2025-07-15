@@ -25,7 +25,7 @@ MEI_NS = 'http://www.music-encoding.org/ns/mei'
 NSMAP = {"mei" : MEI_NS}
 MUSE = "MuseScore-Studio.AppImage"
 PRE_RELEASE = 1
-BASE_URL = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda"
+BASE_URL = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/tonos"
 debug=True
 
 ET.register_namespace("mei", MEI_NS)
@@ -131,8 +131,7 @@ def run_cmd(cmd):
     try:
          print(subprocess.check_output(cmd).decode().strip())
     except Exception as e:
-        print("Error running command: ")
-        print(cmd)
+        print(f"Error running command: \n{cmd}\noutput: {e.output}")
         raise(e)
         
     
@@ -244,6 +243,26 @@ def format_text_part(transcription, comments, tmp_dir):
         str = str + "\\input{text_comments.tex}" 
 
     return str
+
+def generate_audio_link(data, buildType):
+    if not 'audioBaseFile' in data:
+        return ''
+
+    audio = data['audioBaseFile']
+    url = f"{BASE_URL}/{data['path']}/{audio}"
+
+    output = "\\subsection*{Recursos online}\n"
+    output = output + "\\noindent\n" 
+    output = output + f"Interpretación de audio generada por software disponible en:\n\n"
+    #{\hypersetup{allcolors=magenta}{\href{stackexchange.com}{do not hide this link}}}
+    output = output + "\\begin{center}\n"
+    output = output + "\\setlength{\\fboxsep}{10pt}\n"
+    output = output + f"\\fbox{{\\hypersetup{{urlcolor=black}}{{\\qrcode[hyperlink,height=2.5cm]{{{url}}}}}}}\n"
+    output = output + "\\end{center}\n"
+
+    return output
+
+
 
 def generate_comments_from_mei_file(mei_file, json_params, tmp_dir, buildType):
     annotations =  "--extractAnnotations" if buildType is EditionType.PERFORMER else "--noExpandAnnotations"
@@ -569,16 +588,23 @@ def generate_mei(input_mei, order, poet, composer, title, tmp_dir, output_mei):
     run_cmd(cmd)
 
 
-def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name, expand_annotations):
+def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name, expand_annotations, normalize_ficta):
     cmd = [ 'sh', '-c', f'rm -f {tmp_dir}/*.svg' ]
     run_cmd(cmd)    
 
     if expand_annotations:
-        print("Expanding annotationgs into the score")
         cmd = [ 'python', './scripts/expand_annots.py', mei_file, f'{tmp_dir}/expanded.mei', f'{tmp_dir}/annotations.json' ]
         run_cmd(cmd)    
         f = Path(tmp_dir) / 'expanded.mei'
         f.rename(mei_file)
+
+    if normalize_ficta:
+        cmd = [ 'python', './scripts/normalize_ficta.py', mei_file, f'{tmp_dir}/normalized.mei' ]
+        run_cmd(cmd)    
+        f = Path(tmp_dir) / 'normalized.mei'
+        f.rename(mei_file)
+
+
 
     workaround_verovio_2divs_bug(mei_file)
 
@@ -594,6 +620,7 @@ def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name, expand_annot
 
     if expand_annotations:
         cmd = [ 'python', './scripts/annotate_svg.py', tmp_dir, f'{tmp_dir}/annotations.json' ]
+        print(f"Injecting annotations as foot notes into svgs: {cmd}")
         run_cmd(cmd)    
     
     cmd = [ 'sh', '-c', f'svgs2pdf -m "{output_name}" -o "{tmp_dir}" {tmp_dir}/*.svg' ]
@@ -656,7 +683,7 @@ def generate_score(order, data, tmp_dir, buildType):
     if buildType is EditionType.PERFORMER:
         # Render the full version of all sections
         print("Generating performer full score")
-        render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "full-score.pdf", False)
+        render_mei(tmp_file, mei_unit, mei_scale, tmp_dir, "full-score.pdf", False, True)
         return "full-score.pdf"
     elif buildType is EditionType.SCHOLAR:
         print("Generating scholar score with single verse and expanded annotations")
@@ -667,7 +694,7 @@ def generate_score(order, data, tmp_dir, buildType):
         blocks_to_inject = [entry for entry in data['text'] if 'append_to' in entry and entry['append_to'] != "@none" ]
         inject_section_place_holders(single_verse_mei, blocks_to_inject)   
         single_verse_pdf = f'single_verse_sections.pdf'
-        render_mei(single_verse_mei, mei_unit, mei_scale, tmp_dir, single_verse_pdf, True)
+        render_mei(single_verse_mei, mei_unit, mei_scale, tmp_dir, single_verse_pdf, True, False)
         inject_text_into_place_holders(blocks_to_inject, f"{tmp_dir}/{single_verse_pdf}", tmp_dir)
         return single_verse_pdf
     else:
@@ -725,13 +752,23 @@ def generate_tono(data, status, tmp_dir, buildType):
     generated_score = generate_score(data['number'], data, tmp_dir, buildType)
         
     latexStr = latexStr + "\\section*{Edición musical}\n"
-    latexStr = latexStr + "\\input{criterios-musicales.tex}" 
+
+    if buildType is EditionType.PERFORMER:
+        latexStr = latexStr + "\\input{criterios-musicales-performer.tex}" 
+    elif buildType is EditionType.SCHOLAR:
+        latexStr = latexStr + "\\input{criterios-musicales-scholar.tex}" 
+
         
     if generated_score is not None:
         encoding = data['encodingProperties']
         json_params = json.dumps({ "organic" : data['organic'], "high_clefs" :  data['high_clefs'], "original_armor" : encoding['originalArmor'], "transposition" : encoding['encodedTransposition'], "encoded_armor" : encoding['encodedArmor'] })
         print(json_params)
+        print("Generating comments from mei file")
         latexStr = latexStr + generate_comments_from_mei_file(data['meiFile'], json_params, tmp_dir, buildType)
+
+    latexStr = latexStr + generate_audio_link(data, buildType)
+
+    if generated_score is not None:
         latexStr = latexStr + "\\includepdf[pages=-]{%s}\n" % generated_score
         
     (Path(tmp_dir) / 'facsimil.tex').write_text(get_facsimil(data['facsimileItems']))
@@ -783,10 +820,11 @@ def main():
         if len(sys.argv) == 1:
             # Process all tonos
             for tono, tono_status in zip(scores, status):
-                print(f"Building tono {tono['number']} from dir {tono['path']}\n")
-                generate_tono(tono, tono_status, tmp_dir)
-                for file in os.listdir(tmp_dir):
-                    os.remove(os.path.join(tmp_dir, file))
+                for buildType in list(EditionType):
+                    print(f"Building tono {tono['number']} from dir {tono['path']}. Buildtype: {buildType}\n")
+                    generate_tono(tono, tono_status, tmp_dir, buildType)
+            for file in os.listdir(tmp_dir):
+                os.remove(os.path.join(tmp_dir, file))
         elif len(sys.argv) == 2:
             tonoIdx = int(sys.argv[1]) - 1
             if tonoIdx >= 0 and tonoIdx < len(scores):

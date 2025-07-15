@@ -19,7 +19,7 @@ def append_annotation(svg_path, annotations):
         return
     pgfoot = pgfoot_g[0]
 
-    # Find the last <text> in this <g>
+    # Find the first empty line in foot-notes placeholder
     notes_span = pgfoot.xpath('.//svg:tspan[contains(@class, "rend") and contains(@data-type, "foot-notes")]', namespaces=NSMAP)
     x_val = 0
     y_val = 0
@@ -33,6 +33,8 @@ def append_annotation(svg_path, annotations):
             try:
                 x_val = float(x)
                 y_val = float(y)
+                print(f"Found y coordinate for first line placeholder: {y_val}")
+                break
             except ValueError:
                 print('invalid x y in foot-notes tspan')
 
