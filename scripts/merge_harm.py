@@ -1,6 +1,7 @@
 import lxml.etree as ET
 import sys
 import argparse
+import re
 
 xml_ns = 'http://www.w3.org/XML/1998/namespace'
 mei_ns = 'http://www.music-encoding.org/ns/mei'
@@ -118,7 +119,6 @@ def process_mei_files(file1_path, file2_path, output_path):
     
     try:
         tree1.write(output_path, encoding='utf-8', xml_declaration=True)
-        print(f"Successfully created output file: {output_path}")
         return True
     except Exception as e:
         print(f"Error writing output file: {e}")
@@ -156,6 +156,17 @@ def process_harm_element(harm, mei_ns):
             rend.set('color', 'red')
 
 
+
+def fix_pis(text):
+    match = re.search(r'<mei\b', text)
+    if not match:
+        return text
+    head = text[:match.start()]
+    body = text[match.start():]
+    head = re.sub(r'(\?>)(?=<\?)', r'\1\n', head)
+    return head + "\n" + body
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Merge harm elements from one MEI file into another applying some tweaks for dissonance visualization'
@@ -165,9 +176,17 @@ def main():
     parser.add_argument('output', help='Output MEI file path')
     
     args = parser.parse_args()
-    
+
     success = process_mei_files(args.file1, args.file2, args.output)
-    sys.exit(0 if success else 1)
+    if success:
+        with open(args.output, 'r', encoding='utf-8') as f:
+            xmltext = f.read()
+        fixed_xmltext = fix_pis(xmltext)
+        with open(args.output, 'w', encoding='utf-8') as f:
+            f.write(fixed_xmltext)
+    else:
+        sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
