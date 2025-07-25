@@ -44,6 +44,38 @@ const getProgressFromMusicStatus = (status?: MusicStatus) => {
     return  { value: 100, text: "completado" }
 }
 
+const get_edition_name = (name: string) => {
+    switch(name) {
+        case "scholar":
+            return "Edición para musicólogos (pdf)"
+        case "performer":
+            return "Edición para intérpretes (pdf)"
+    }
+
+    return name
+}
+
+const get_edition_shortname = (name: string) => {
+    switch(name) {
+        case "scholar":
+            return "musicólogos"
+        case "performer":
+            return "intérpretes"
+    }
+
+    return name
+}
+
+const get_edition_filename = (name: string, tonoIndex: number, title: string) => {
+    const baseName = `Cancionero de Miranda - Tono ${tonoIndex + 1} ${title}`
+    const edition = get_edition_shortname(name)
+
+
+    return `${baseName} (${edition}).pdf`
+}
+
+
+
 const progressColors: ProgressProps['strokeColor'] = [
     '#FF4B4B',
     '#FF8C42',
@@ -121,6 +153,7 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
    const editor = scoreProperties?.editor
    const reconstruction = scoreProperties?.reconstructionBy
    const numMeasures = scoreProperties?.numMeasures
+   const title = tonoIndex ? `${scoreViewerConfig?.scores[tonoIndex].title}` : ""
 
    const sectionItems = useMemo(() => {
         return scoreProperties?.sections?.map((section: Section, index: number) =>
@@ -217,6 +250,18 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                             {sectionItems}
                         </Space> : null }
                 </Col>
+                <Col xl={{flex: 1 }}
+                 lg={{ flex: 1 }}
+                    md={{ flex: 1 }}
+                    sm={{ flex: 1 }}
+                    xs={{ flex: '50%' }}>
+                    {tonoIndex && tonoStatus?.pdfs && tonoStatus.pdfs.length > 0 ? <Space direction="vertical">
+                        <Typography.Text> Versiones para imprimir:</Typography.Text>
+                        {tonoStatus.pdfs.map((pdf, index) =>
+                             pdf.name ? <a key={index}  download={get_edition_filename(pdf.name, tonoIndex, title)} href={pdf.url}>{get_edition_name(pdf.name)}</a> : null
+                        )}
+                    </Space> : null}
+                </Col>
             </Row>
             <div ref={scoreViewerContainerRef}
                 className="score-viewer-container"
@@ -225,7 +270,7 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     height: "100%", width: "100%"
                 }}>
 
-                { scoreViewer }
+                {scoreViewer}
 
             </div>
         </div>

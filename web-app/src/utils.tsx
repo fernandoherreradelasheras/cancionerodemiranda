@@ -54,6 +54,11 @@ export type Mp3Files = {
 }
 
 
+export type Pdf = {
+  name: string,
+  url: string
+}
+
 export interface TonoStatus {
   index: number;
   number: number;
@@ -63,8 +68,7 @@ export interface TonoStatus {
   text_author: string; // TODO: same
   mei_unit: number;
   organic: string;
-  pdf_url: string;
-
+  pdfs: Pdf[];
 }
 
 export const getJson = async (url: string) => {
