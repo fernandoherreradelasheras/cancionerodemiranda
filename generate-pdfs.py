@@ -139,6 +139,13 @@ def run_cmd(cmd):
 def format_version(version):
     return f"\\def\\myversion{{0.{version}}}\n"
 
+def format_edition(buildType):
+    if buildType == EditionType.PERFORMER:
+        return  "\\def\\myedition{Edición para intérpretes}\n"
+    elif buildType == EditionType.SCHOLAR:
+        return  "\\def\\myedition{Edición musicológica}\n"
+
+
 def format_status(data):
     str = ""
     status_text=data['status_text']
@@ -465,6 +472,7 @@ def build_verses_overlay(offset, contents, section, initialStanzaCount):
     outputStr = outputStr + '\\documentclass[a4paper]{memoir}\n'
     outputStr = outputStr + '\\usepackage{paracol}\n'
     outputStr = outputStr + '\\usepackage[utf8]{inputenc}\n'
+    outputStr = outputStr + '\\usepackage[T1]{fontenc}\n'
     outputStr = outputStr + '\\usepackage[layout=a4paper,top=%dcm,bottom=1cm,left=0.25cm,right=0.25cm]{geometry}\n' % math.floor(offset)
     outputStr = outputStr + '\\pagenumbering{gobble}\n'
     outputStr = outputStr + '\\begin{document}\n'
@@ -510,18 +518,18 @@ def inject_text_into_place_holders(blocks_to_inject, music_pdf, tmp_dir):
             return
 
 	# Render a pdf with the text rendered at the position where the placeholder was in the score page
+        texname = f"stanzas_{section}.tex"
         outputname = f"stanzas_{section}.pdf"
         contents = get_contents_for_section(section, blocks_to_inject)
         
         first_stanza_end=contents.find("\n\n")
         contents = contents[first_stanza_end+2:-1]
-        #print(f"contents: |{contents}|")
         
         latexStr = build_verses_overlay(offset, contents, section, 1)
         
-        (Path(tmp_dir) / outputname).write_text(latexStr)
+        (Path(tmp_dir) / texname).write_text(latexStr)
         
-        render_latex(tmp_dir, outputname)
+        render_latex(tmp_dir, texname)
         
 	# Extract the page from the score pdf where we want to overlay the pdf with the coplas
         overlay = f'{tmp_dir}/music_page_to_overlay.pdf'
@@ -731,6 +739,7 @@ def generate_tono(data, status, tmp_dir, buildType):
         
     valuesLatexStr = valuesLatexStr + format_version(vers)
     valuesLatexStr = valuesLatexStr + format_titles(data['number'], data['title'], data['music_author'], data['text_author']) 
+    valuesLatexStr = valuesLatexStr + format_edition(buildType)
     valuesLatexStr = valuesLatexStr + format_status(data)
     
     if PRE_RELEASE:
@@ -786,17 +795,20 @@ def generate_tono(data, status, tmp_dir, buildType):
     print("Rendering final pdf")
     render_latex(tmp_dir, 'tmp.tex')
         
-    destname =  f'output/{str(data['number']).zfill(2)} - {data['title']} ({buildType.value})'
+    pdfname =  f'output/{str(data['number']).zfill(2)} - {data['title']} ({buildType.value}).pdf'
+    meiname =  f'output/{str(data['number']).zfill(2)} - {data['title']}.mei'
         
     if generated_score is not None and (Path(tmp_dir) / 'final.mei').exists():
-        shutil.copy(f'{tmp_dir}/final.mei', f'{destname}.mei')        
-        print(f"MEI score: {destname}.mei")
-        cmd = [ 'pdftk', f'{tmp_dir}/tmp.pdf', 'attach_files', f'{destname}.mei', 'to_page', 'end',  'output', f'{destname}.pdf']
+        shutil.copy(f'{tmp_dir}/final.mei', meiname)        
+        print(f"MEI score: {meiname}")
+        cmd = [ 'pdftk', f'{tmp_dir}/tmp.pdf', 'attach_files', meiname, 'to_page', 'end',  'output', pdfname]
         run_cmd(cmd)    
     else:
-        shutil.move(f'{tmp_dir}/tmp.pdf', f'{destname}.pdf')      
+        shutil.move(f'{tmp_dir}/tmp.pdf', pdfname)      
                 
-    print(f"Tono generado: {destname}.pdf")
+    print("Tono generado: ")
+    print(f"\t{pdfname}")
+    print(f"\t{meiname}")
 
     os.makedirs("output", exist_ok=True)
 

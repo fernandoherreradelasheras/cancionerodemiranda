@@ -64,7 +64,7 @@ function BaseLayout() {
             const statusFile = await getJson(statusUrl)
             const pdflist = await getJson(latestPdfsPath)
             statusFile.forEach((tono: TonoStatus, index: number) => {
-                tono.pdf_url = pdflist[index]
+                tono.pdfs = pdflist[index]
             })
             setStatus(statusFile);
         }
