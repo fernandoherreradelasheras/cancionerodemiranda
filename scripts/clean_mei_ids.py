@@ -10,7 +10,7 @@ PI_SCHEMA2 = 'http://purl.oclc.org/dsdl/schematron'
 
 MEI_NS = 'http://www.music-encoding.org/ns/mei'
 
-annotation_target_tags = [ f'{{{MEI_NS}}}corr', f'{{{MEI_NS}}}supplied', reg ]
+annotation_target_tags = [ f'{{{MEI_NS}}}corr', f'{{{MEI_NS}}}supplied', f'{{{MEI_NS}}}reg' ]
 
 ET.register_namespace('', MEI_NS)
 
