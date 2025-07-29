@@ -255,7 +255,7 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     md={{ flex: 1 }}
                     sm={{ flex: 1 }}
                     xs={{ flex: '50%' }}>
-                    {tonoIndex && tonoStatus?.pdfs && tonoStatus.pdfs.length > 0 ? <Space direction="vertical">
+                    {tonoIndex != null && tonoStatus?.pdfs && tonoStatus.pdfs.length > 0 ? <Space direction="vertical">
                         <Typography.Text> Versiones para imprimir:</Typography.Text>
                         {tonoStatus.pdfs.map((pdf, index) =>
                              pdf.name ? <a key={index}  download={get_edition_filename(pdf.name, tonoIndex, title)} href={pdf.url}>{get_edition_name(pdf.name)}</a> : null
