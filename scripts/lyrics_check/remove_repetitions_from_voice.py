@@ -9,10 +9,18 @@ REMOVE_PATTERNS = [
     "y si le pregunto",
     "que a cada paso",
     "si el amor fuera",
-    "ay",
     "ay ofender yo",
     "ay mi corazón",
-    "ay ay de baldón"
+    "ay ay de baldón",
+    "que no sé",
+    "sin saber",
+    "no sé yo",
+    "no no",
+    "no sé",
+    "que quise",
+    "que estima",
+    "no puede",
+    "yo no sé"
 ]
 
 def remove_repetitions(text, patterns, debug=False):
@@ -23,12 +31,20 @@ def remove_repetitions(text, patterns, debug=False):
         # Escape special regex characters in the pattern
         escaped_pattern = re.escape(pattern)
         
-        # Create regex to match pattern followed by itself (with optional punctuation/spaces between)
-        # This handles cases like "pattern, pattern" or "pattern pattern"
-        repetition_regex = rf"({escaped_pattern})(\s*[,.]?\s*)(\1)"
-        
-        # Replace repetitions with just the pattern once
-        text = re.sub(repetition_regex, r'\1', text, flags=re.IGNORECASE)
+        # Create regex to match pattern repeated 2 or 3 times
+        # This handles cases like "pattern, pattern" or "pattern pattern pattern"
+        # We use a loop to catch all repetitions since regex can be tricky with variable repetitions
+        previous_text = None
+        while previous_text != text:
+            previous_text = text
+            
+            # Match triple repetition first (pattern pattern pattern)
+            triple_regex = rf"({escaped_pattern})(\s*[,.]?\s*)(\1)(\s*[,.]?\s*)(\1)"
+            text = re.sub(triple_regex, r'\1', text, flags=re.IGNORECASE)
+            
+            # Match double repetition (pattern pattern)
+            double_regex = rf"({escaped_pattern})(\s*[,.]?\s*)(\1)"
+            text = re.sub(double_regex, r'\1', text, flags=re.IGNORECASE)
         
         if debug and text != original_text:
             print(f"  Removed repetition of: '{pattern}'", file=sys.stderr)
@@ -54,11 +70,12 @@ def process_line(line, patterns, debug=False):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Remove repetitions of specified patterns from text',
+        description='Remove repetitions of specified patterns from text (handles double and triple repetitions)',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
   echo "y sus memorias y sus memorias me rinden" | python repetition_filter.py
+  echo "y sus memorias y sus memorias y sus memorias" | python repetition_filter.py
   python repetition_filter.py < input.txt > output.txt
   python repetition_filter.py --debug < input.txt
   python repetition_filter.py --add-pattern "nuevo patrón" < input.txt
