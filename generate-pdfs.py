@@ -26,6 +26,9 @@ NSMAP = {"mei" : MEI_NS}
 MUSE = "MuseScore-Studio.AppImage"
 PRE_RELEASE = 1
 BASE_URL = "https://raw.githubusercontent.com/fernandoherreradelasheras/cancionerodemiranda/main/tonos"
+LATEX_RENDERED = "pdflatex"
+FACSIMILE_RESIZE = "50"
+
 debug=True
 
 ET.register_namespace("mei", MEI_NS)
@@ -79,6 +82,15 @@ def get_entries_from_mei(mei_file):
 
 def add_image(directory, file, caption, title=None):
     """Generate LaTeX code for including an image"""
+
+    orig_path = f'{directory}/{file}'
+    resized_path = orig_path if FACSIMILE_RESIZE == "100" else f'{orig_path}_{FACSIMILE_RESIZE}.jpg'
+    path = Path(resized_path)
+    if not path.is_file():
+        print(f'Resizing image {orig_path} {FACSIMILE_RESIZE}%')
+        resize_cmd = [ 'magick', orig_path, '-resize', f'{FACSIMILE_RESIZE}%', resized_path]
+        run_cmd(resize_cmd)
+
     lines = ["\\begin{figure}[p]"]
     
     if title:
@@ -87,7 +99,7 @@ def add_image(directory, file, caption, title=None):
     lines.extend([
         f"\\caption{{{caption}}}",
         "\\makebox[\\linewidth]{",
-        f"\\includegraphics[width=0.95\\linewidth]{{{directory}/{file}}}",
+        f"\\includegraphics[width=0.95\\linewidth]{{{resized_path}}}",
         "}",
         "\\end{figure}"
     ])
@@ -123,7 +135,7 @@ def get_version_from_git(files):
     
     
 def render_latex(dir, file):
-    cmd = ["pdflatex", "-interaction=batchmode", f"-output-directory={dir}", f"{dir}/{file}" ]
+    cmd = [LATEX_RENDERED, "-interaction=batchmode", f"-output-directory={dir}", f"{dir}/{file}" ]
     run_cmd(cmd)
 
     
@@ -173,7 +185,7 @@ def get_images(dir, items):
     
 def get_facsimil(items):
     
-    latexStr = get_images("facsimil-images/", items)
+    latexStr = get_images("facsimil-images", items)
  
     return latexStr
     
@@ -677,9 +689,6 @@ def generate_score(order, data, tmp_dir, buildType):
 
     generated = []
     
-    if not 'meiFile' in data:
-        return generated
-    
     mei_unit = str(data['mei_unit']) if 'mei_unit' in data else "8.0"
     mei_scale = str(data['mei_scale']) if 'mei_scale' in data else "100"
     tmp_file = f"{tmp_dir}/tmp1.mei"
@@ -711,7 +720,7 @@ def generate_score(order, data, tmp_dir, buildType):
 
 def generate_tono(data, status, tmp_dir, buildType):
 
-    if 'meiFile' not in data or data['meiFile'] == "":
+    if 'meiFile' not in data or data['meiFile'] == "" or  data['meiFile'] == "null":
         return
         
     print(f"** Building tono {data['number']}: {data['title']} type: {buildType} **")
@@ -719,7 +728,7 @@ def generate_tono(data, status, tmp_dir, buildType):
     directory = 'tonos/' + data['path']
         
     # convert filenames to full path        
-    data = {key: directory + "/" + data[key]  if key in [ 'introduction', 'textCommentsFile', 'meiFile'] and data[key] != "" else data[key] for key in data.keys()}
+    data = {key: directory + "/" + data[key]  if key in [ 'introductionFile', 'textCommentsFile', 'meiFile'] and data[key] != "" else data[key] for key in data.keys()}
     data['text'] = [{k: directory + "/" + v if k == "file" else v  for k, v in entry.items()}  for entry in data['text'] ]
 
     composer, lyricist = get_entries_from_mei(data['meiFile'])
@@ -733,7 +742,7 @@ def generate_tono(data, status, tmp_dir, buildType):
         
     valuesLatexStr = ""
         
-    files =  [data[key] for key in [ 'textCommentsFile', 'meiFile', 'introduction'] if key in data] + [ entry['file'] for entry in data['text']]
+    files =  [data[key] for key in [ 'textCommentsFile', 'meiFile', 'introductionFile'] if key in data] + [ entry['file'] for entry in data['text']]
     vers = get_version_from_git(files)
     print(f"Version baseed on # of git revisions: {vers}")
         
@@ -746,9 +755,9 @@ def generate_tono(data, status, tmp_dir, buildType):
         valuesLatexStr = valuesLatexStr + "\\def\\prerelease{true}\n"
             
     latexStr = format_init()
-    if 'introduction' in data:
+    if 'introductionFile' in data and data['introductionFile'] != "" and data['introductionFile'] != "null":
 
-        cmd = [ 'pandoc', Path(data['introduction']), '-o', f'{tmp_dir}/intro.tex']
+        cmd = [ 'pandoc', Path(data['introductionFile']), '-o', f'{tmp_dir}/intro.tex']
         run_cmd(cmd)
         latexStr = latexStr + "\\section*{\\centering\\LARGE{Introducción}}\n"
         latexStr = latexStr + "\\input{intro.tex}" 
@@ -778,7 +787,7 @@ def generate_tono(data, status, tmp_dir, buildType):
     latexStr = latexStr + generate_audio_link(data, buildType)
 
     if generated_score is not None:
-        latexStr = latexStr + "\\includepdf[pages=-]{%s}\n" % generated_score
+        latexStr = latexStr + "\\includepdf[pages=-]{%s/%s}\n" % (tmp_dir,generated_score)
         
     (Path(tmp_dir) / 'facsimil.tex').write_text(get_facsimil(data['facsimileItems']))
     latexStr = latexStr + "\\input{facsimil.tex}\n"

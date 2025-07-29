@@ -24,4 +24,5 @@ De las nueve cuartetas presentes en el manuscrito de la Biblioteca de
 Ajuda, la versión del Arquivo Torre do Tombo toma cinco (1ª, 2ª, 3ª, 6ª,
 7ª y 8ª) y cuatro el tono humano (1ª, 2ª, 3ª y 9ª).
 
-[^1]: Disponible en https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03
+[^1]: Disponible en [https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03](https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03)
+

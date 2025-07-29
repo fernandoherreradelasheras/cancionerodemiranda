@@ -19,6 +19,6 @@ Hemos de señalar también como concordancia musical de este tono la musicalizac
 
 > _El mismo Lope parece sentir una especie de complejo de inferioridad ante el compromiso de escribir en prosa y llena la narración con infinidad de poemas que parecen protestar contra la letra impresa y sienten hambre de música_
 
-[^4]: Disponible en https://www.rtve.es/play/videos/teatro-en-el-archivo-de-rtve/hora-11-prudente-venganza/5496056/ La versión musical de *Deseos de un imposible* cantada por Eusebio Poncela comienza en el minuto 31, segundo 11.
+[^4]: Disponible en [https://www.rtve.es/play/videos/teatro-en-el-archivo-de-rtve/hora-11-prudente-venganza/5496056/](https://www.rtve.es/play/videos/teatro-en-el-archivo-de-rtve/hora-11-prudente-venganza/5496056/) La versión musical de *Deseos de un imposible* cantada por Eusebio Poncela comienza en el minuto 31, segundo 11.
 
 
