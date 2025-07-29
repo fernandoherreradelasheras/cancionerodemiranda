@@ -12,6 +12,8 @@ import os
 from collections import defaultdict, OrderedDict
 import re
 
+DEBUG = False
+
 def parse_mei_file(mei_file_path):
     """Parse the MEI file and return the root element."""
     try:
@@ -78,10 +80,6 @@ def extract_lyrics_for_staff_and_verse(root, ns, staff_n, verse_n):
                     wordpos = syl.get('wordpos', '')
                     con = syl.get('con', '')
                     
-                    # Skip if con="u" (can be ignored)
-                    if con == 'u':
-                        continue
-                    
                     # Handle syllable based on wordpos
                     if wordpos == 'i':  # initial syllable
                         # Start new word - complete any previous word first
@@ -116,6 +114,7 @@ def extract_lyrics_for_staff_and_verse(root, ns, staff_n, verse_n):
                             current_word = []
                     
                     # Note: con="d" is ignored - we don't add hyphens in text extraction
+                    # Note: con="u" is ignored - we don't add underscores in text extraction
     
     # Complete any remaining word
     if current_word:
@@ -160,8 +159,9 @@ def main():
         print("No verses found in the MEI file")
         return 1
     
-    print(f"Found {len(staves)} staves: {', '.join(staves)}")
-    print(f"Found {len(verses)} verses: {', '.join(verses)}")
+    if DEBUG:
+        print(f"Found {len(staves)} staves: {', '.join(staves)}")
+        print(f"Found {len(verses)} verses: {', '.join(verses)}")
     
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
@@ -185,11 +185,13 @@ def main():
                         f.write('\n')  # Extra line between verses
         
         if has_lyrics:
-            print(f"Created lyrics file for staff {staff_n}: {output_file}")
+            if DEBUG:
+                print(f"Created lyrics file for staff {staff_n}: {output_file}")
         else:
             # Remove empty file
             os.remove(output_file)
-            print(f"No lyrics found for staff {staff_n}")
+            if DEBUG:
+                print(f"No lyrics found for staff {staff_n}")
     
     return 0
 
