@@ -4,7 +4,7 @@ Lisboa. El tercero de los testimonio conservados, en la colección de
 villancicos de la Biblioteca Pública de Évora, es el que nos informa de
 su autor mediante la anotación del apellido *Marques* en la parte del
 guión y luego su nombre completo en la carpetilla (de época posterior):
-*Ant^$\infty$^ Marques Lesbio*. Fue cantado en la Capilla Real de Lisboa
+*Ant&infin; Marques Lesbio*. Fue cantado en la Capilla Real de Lisboa
 en la Navidad de 1681, cuyo pliego impreso lo recoge no como villancico
 sino como "MISSA".
 
@@ -82,7 +82,7 @@ de Pedro II:
 > fuentecillas, vuestras corrientes,\
 > no le despierten.\
 
-[^1]: http://bdh-rd.bne.es/viewer.vm?id=0000060876
+[^1]: [http://bdh-rd.bne.es/viewer.vm?id=0000060876](http://bdh-rd.bne.es/viewer.vm?id=0000060876)
 
 [^2]: Editada por Mariano Lambea y Lola Josa en
-    https://digital.csic.es/handle/10261/156526
+    [https://digital.csic.es/handle/10261/156526](https://digital.csic.es/handle/10261/156526)

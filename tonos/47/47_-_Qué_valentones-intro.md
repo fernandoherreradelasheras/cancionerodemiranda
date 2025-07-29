@@ -18,4 +18,4 @@ cuarteta del tono. No tiene estribillo la versión de Ajuda.
 
 [^1]: LAMBEA, Mariano y JOSA, Lola: "Señas de una belleza superior" o
     las representaciones del cuerpo en el tono humano barroco. 2009
-    http://hdl.handle.net/10261/22355
+    [http://hdl.handle.net/10261/22355](http://hdl.handle.net/10261/22355)

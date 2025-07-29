@@ -17,4 +17,4 @@ redacción de este texto (Mayo 2025), la British Library aún no ha
 reestablecido los servicios de consulta y reproducción de manuscritos
 tras el ciberataque recibido en Octubre de 2023.
 
-[^1]: Disponible en https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03
+[^1]: Disponible en [https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03](https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03)
