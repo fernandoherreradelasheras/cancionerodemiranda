@@ -111,17 +111,19 @@ function BaseLayout() {
 
     const items = [
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
-            { key: prevTono, icon: <FontAwesomeIcon size="2xs" icon={faArrowLeft}/>, disabled: currentTonoNumber == null || prevTono == "/tono/prev" } : null,
-        { key: 'sub1',   label: selectorLabel, style: currentTonoNumber ?  {fontWeight: "bolder"} :  {},  children:
-            scoreViewerConfig?.scores.map((s: ScoreViewerConfigScore, index: number) => {
-                const tonoNumber = `${index + 1}`
-                return {  key: `sub1:/tono/${tonoNumber}`, label: `Tono ${tonoNumber}: ${s.title}` }
-            })
+            { key: prevTono, icon: <FontAwesomeIcon size="2xs" icon={faArrowLeft} />, disabled: currentTonoNumber == null || prevTono == "/tono/prev" } : null,
+        {
+            key: 'sub1', label: selectorLabel, style: currentTonoNumber ? { fontWeight: "bolder" } : {}, children:
+                scoreViewerConfig?.scores.map((s: ScoreViewerConfigScore, index: number) => {
+                    const tonoNumber = `${index + 1}`
+                    return { key: `sub1:/tono/${tonoNumber}`, label: `Tono ${tonoNumber}: ${s.title}` }
+                })
         },
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
-        { key: nextTono,  icon: <FontAwesomeIcon icon={faArrowRight}/>, disabled: currentTonoNumber == null || nextTono == "/tono/next" } : null,
-        { key: "/tonos", label: "Listado de tonos", style: location.pathname == "/tonos" ?  {fontWeight: "bolder"} :  {} },
-        { key: "/about", label: "Acerca de", style: location.pathname == "/about" || location.pathname == "/" ?  {fontWeight: "bolder"} :  {} },
+            { key: nextTono, icon: <FontAwesomeIcon icon={faArrowRight} />, disabled: currentTonoNumber == null || nextTono == "/tono/next" } : null,
+        { key: "/tonos", label: "Listado de tonos", style: location.pathname == "/tonos" ? { fontWeight: "bolder" } : {} },
+        { key: "/progreso", label: "Progreso", style: location.pathname == "/progreso" ? { fontWeight: "bolder" } : {} },
+        { key: "/about", label: "Acerca de", style: location.pathname == "/about" || location.pathname == "/" ? { fontWeight: "bolder" } : {} }
     ].filter(i => i !== null) as any
 
 

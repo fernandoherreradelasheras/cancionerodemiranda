@@ -9,66 +9,22 @@ import {
     faAlignJustify, faStamp
 } from '@fortawesome/free-solid-svg-icons'
 import { ScoreViewerConfigScore } from 'score-viewer';
+import {
+    tonoHasMusic,
+    tonoHasIntro,
+    tonoHasText,
+    tonoHasTextCompleted,
+    tonoHasTextValidated,
+    tonoHasMusicTranscriptionCompleted,
+    tonoHasMusicVoiceReconstructed,
+    tonoHasAudio,
+    tonoHasMusicValidated
+} from './utils';
 
 
 library.add(faFileLines, faMarker, faMusic, faHighlighter,
     faHeadphones, faListCheck, faFeatherPointed,
     faGuitar, faPersonBooth, faAlignJustify, faStamp)
-
-function tonoHasMusic(tonoConfig: ScoreViewerConfigScore | null) {
-    if (tonoConfig == null) {
-        return false
-    } else {
-        return (tonoConfig.meiFile != undefined && tonoConfig.meiFile != '');
-    }
-}
-
-function tonoHasIntro(tono: ScoreViewerConfigScore | null) {
-    if (tono == null) {
-        return false
-    } else {
-        return (tono.introductionFile != undefined && tono.introductionFile.length > 0)
-    }
-}
-
-function tonoHasText(tono: ScoreViewerConfigScore | null) {
-    if (tono == null) {
-        return false
-    } else {
-        return (tono.text != undefined && tono.text.length > 0)
-    }
-}
-
-function tonoHasTextCompleted(tono: TonoStatus | null) {
-        return (tono?.status_text == "transcription completed"  || tono?.status_text == "reviewed"
-                ||  tono?.status_text == "completed")
-}
-
-function tonoHasTextValidated(tono: TonoStatus | null) {
-    return (tono?.status_text == "reviewed")
-}
-
-function tonoHasMusicTranscriptionCompleted(tono: TonoStatus | null) {
-    return (tono?.status_music == "transcription completed" ||
-            tono?.status_music == "all voices completed" ||
-            tono?.status_music == "reviewed" ||
-            tono?.status_music == "completed")
-}
-
-function tonoHasMusicVoiceReconstructed(tono: TonoStatus | null) {
-    return (tono?.status_music == "all voices completed"  ||
-            tono?.status_music == "reviewed" ||
-            tono?.status_music == "completed")
-}
-
-function tonoHasAudio(tono: ScoreViewerConfigScore | null) {
-    return (tono?.audioBaseFile != undefined && tono?.audioBaseFile != null)
-}
-
-function tonoHasMusicValidated(tono: TonoStatus | null) {
-    return (tono?.status_music == "reviewed")
-}
-
 
 function getAuthors(tonoStatus: TonoStatus) {
     let music

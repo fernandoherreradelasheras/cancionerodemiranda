@@ -1,4 +1,5 @@
 import { RefObject } from "react"
+import { ScoreViewerConfigScore } from 'score-viewer';
 import tonosConfig from "./assets/tonos-config.json"
 
 const STATUS_FILE = "status.json"
@@ -100,4 +101,130 @@ export type ScoreStats = {
   measures: number
   editor?: string
 }
+
+
+/**
+ * Utility functions for checking tono (musical work) status
+ * These functions are used across components to determine completion status
+ */
+
+export function tonoHasMusic(tonoConfig: ScoreViewerConfigScore | null): boolean {
+    if (tonoConfig == null) {
+        return false;
+    } else {
+        return (tonoConfig.meiFile != undefined && tonoConfig.meiFile != '');
+    }
+}
+
+export function tonoHasIntro(tono: ScoreViewerConfigScore | null): boolean {
+    if (tono == null) {
+        return false;
+    } else {
+        return (tono.introductionFile != undefined && tono.introductionFile.length > 0);
+    }
+}
+
+export function tonoHasText(tono: ScoreViewerConfigScore | null): boolean {
+    if (tono == null) {
+        return false;
+    } else {
+        return (tono.text != undefined && tono.text.length > 0);
+    }
+}
+
+export function tonoHasTextCompleted(tono: TonoStatus | null): boolean {
+    return (tono?.status_text == "transcription completed" || tono?.status_text == "reviewed"
+        || tono?.status_text == "completed");
+}
+
+export function tonoHasTextValidated(tono: TonoStatus | null): boolean {
+    return (tono?.status_text == "reviewed");
+}
+
+export function tonoHasMusicTranscriptionCompleted(tono: TonoStatus | null): boolean {
+    return (tono?.status_music == "transcription completed" ||
+        tono?.status_music == "all voices completed" ||
+        tono?.status_music == "reviewed" ||
+        tono?.status_music == "completed");
+}
+
+export function tonoHasMusicVoiceReconstructed(tono: TonoStatus | null): boolean {
+    return (tono?.status_music == "all voices completed" ||
+        tono?.status_music == "reviewed" ||
+        tono?.status_music == "completed");
+}
+
+export function tonoHasAudio(tono: ScoreViewerConfigScore | null): boolean {
+    return (tono?.audioBaseFile != undefined && tono?.audioBaseFile != null);
+}
+
+export function tonoHasMusicValidated(tono: TonoStatus | null): boolean {
+    return (tono?.status_music == "reviewed");
+}
+
+/**
+ * Utility type for aggregating status statistics
+ */
+export interface TonoStatusStats {
+    hasIntro: number;
+    hasText: number;
+    textCompleted: number;
+    textValidated: number;
+    hasMusic: number;
+    musicTranscriptionCompleted: number;
+    voiceReconstructed: number;
+    hasAudio: number;
+    musicValidated: number;
+    completed: number;
+    incompleted: number;
+}
+
+/**
+ * Calculate statistics for an array of tonos and their status
+ * @param scores Array of score configurations
+ * @param statuses Array of status objects
+ * @returns Object with aggregated statistics
+ */
+export function calculateTonoStats(
+    scores: ScoreViewerConfigScore[],
+    statuses: TonoStatus[]
+): TonoStatusStats {
+    const stats: TonoStatusStats = {
+        hasIntro: 0,
+        hasText: 0,
+        textCompleted: 0,
+        textValidated: 0,
+        hasMusic: 0,
+        musicTranscriptionCompleted: 0,
+        voiceReconstructed: 0,
+        hasAudio: 0,
+        musicValidated: 0,
+        completed: 0,
+        incompleted: 0
+    };
+
+    scores.forEach((tonoConfig, index) => {
+        const tonoStatus = statuses[index];
+
+        if (tonoHasIntro(tonoConfig)) stats.hasIntro++;
+        if (tonoHasText(tonoConfig)) stats.hasText++;
+        if (tonoHasTextCompleted(tonoStatus)) stats.textCompleted++;
+        if (tonoHasTextValidated(tonoStatus)) stats.textValidated++;
+        if (tonoHasMusic(tonoConfig)) stats.hasMusic++;
+        if (tonoHasMusicTranscriptionCompleted(tonoStatus)) stats.musicTranscriptionCompleted++;
+        if (tonoHasMusicVoiceReconstructed(tonoStatus)) stats.voiceReconstructed++;
+        if (tonoHasAudio(tonoConfig)) stats.hasAudio++;
+        if (tonoHasMusicValidated(tonoStatus)) stats.musicValidated++;
+        if (tonoHasMusicValidated(tonoStatus) && tonoHasTextValidated(tonoStatus)) {
+            stats.completed++
+        } else {
+            stats.incompleted++;
+        }
+
+
+    });
+
+    return stats;
+}
+
 
