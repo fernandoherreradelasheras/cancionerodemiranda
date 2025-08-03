@@ -45,6 +45,7 @@ const About = () => (
         a textos y partituras, e imágenes de los manuscritos. Además se incluye una versión imprimible
         de todo el contenido, similar en aspecto al de una posible edición en papel.</p>
         </div>
+
     </section>
 )
 
