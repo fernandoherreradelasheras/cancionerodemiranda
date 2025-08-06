@@ -58,16 +58,15 @@ function BaseLayout() {
       } = theme.useToken();
 
 
-
     useEffect(() => {
         const fetchDefinitions = async () => {
-            const statusFile = await getJson(statusUrl)
-            const pdflist = await getJson(latestPdfsPath)
+            const [statusFile, pdflistFile] = await Promise.all([getJson(statusUrl), getJson(latestPdfsPath)])
             statusFile.forEach((tono: TonoStatus, index: number) => {
-                tono.pdfs = pdflist[index]
+                tono.pdfs = pdflistFile[index]
             })
             setStatus(statusFile);
         }
+
         setScoreViewerConfig(config)
         fetchDefinitions()
     }, []);
@@ -106,10 +105,12 @@ function BaseLayout() {
     }, [scoreViewerConfig, currentTonoNumber])
 
 
-    const prevTono = currentTonoNumber && currentTonoNumber > 1 ? `/tono/${currentTonoNumber - 1}` : "/tono/prev"
-    const nextTono = currentTonoNumber && status && currentTonoNumber < status.at(-1)?.number! ? `/tono/${currentTonoNumber + 1}` : "/tono/next"
+    const prevTono = useMemo(() => currentTonoNumber && currentTonoNumber > 1 ? `/tono/${currentTonoNumber - 1}` : "/tono/prev"
+    , [currentTonoNumber])
+    const nextTono = useMemo(() => currentTonoNumber && status && currentTonoNumber < status.at(-1)?.number! ? `/tono/${currentTonoNumber + 1}` : "/tono/next"
+    , [currentTonoNumber, status])
 
-    const items = [
+    const items = useMemo(() => [
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
             { key: prevTono, icon: <FontAwesomeIcon size="2xs" icon={faArrowLeft} />, disabled: currentTonoNumber == null || prevTono == "/tono/prev" } : null,
         {
@@ -125,6 +126,11 @@ function BaseLayout() {
         { key: "/progreso", label: "Progreso", style: location.pathname == "/progreso" ? { fontWeight: "bolder" } : {} },
         { key: "/about", label: "Acerca de", style: location.pathname == "/about" || location.pathname == "/" ? { fontWeight: "bolder" } : {} }
     ].filter(i => i !== null) as any
+    ,[breakpoint, prevTono, nextTono, selectorLabel, scoreViewerConfig, currentTonoNumber, location.pathname])
+
+    const selectedKeys = useMemo(() => {
+        return [menuItemKeyFromLocationAndTono(location, currentTonoNumber)]
+    }, [location, currentTonoNumber])
 
 
     return (
@@ -163,8 +169,7 @@ function BaseLayout() {
                             { status.length > 0 ? <Menu
                                 mode="horizontal"
                                 subMenuCloseDelay={0.3}
-                                defaultSelectedKeys={[ menuItemKeyFromLocationAndTono(location, currentTonoNumber)]}
-                                selectedKeys={[ menuItemKeyFromLocationAndTono(location, currentTonoNumber)]}
+                                selectedKeys={selectedKeys}
                                 items={items}
                                 onSelect={onMenuSelected}
                                 style={{ flex: 1, minWidth: 0, justifyContent: 'flex-end' }}/> : null }
