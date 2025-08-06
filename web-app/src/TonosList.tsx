@@ -21,6 +21,7 @@ import {
     tonoHasAudio,
     tonoHasMusicValidated
 } from './utils';
+import { List } from 'antd';
 
 
 library.add(faFileLines, faMarker, faMusic, faHighlighter,
@@ -42,7 +43,6 @@ function getAuthors(tonoStatus: TonoStatus) {
         <>. {music}{text}</>
         : null
 }
-
 
 const createFaStatusIcon = (
     condition: boolean,
@@ -75,8 +75,6 @@ const createCustomStatusIcon = (
 }
 
 
-
-
 const StatusIcons = ({ tonoConfig, tonoStatus }: { tonoConfig: ScoreViewerConfigScore, tonoStatus: TonoStatus }) =>
     <div className="icon-list" style={{ display: "flex", flexDirection: "row", alignSelf: "center", fontSize: "1.2em" }}>
         {createFaStatusIcon(tonoHasIntro(tonoConfig), "introducción", "sin introducción", faPersonBooth)}
@@ -95,14 +93,14 @@ const StatusIcons = ({ tonoConfig, tonoStatus }: { tonoConfig: ScoreViewerConfig
 const TonoItem = ({ tonoConfig, tonoStatus, index }: { tonoConfig: ScoreViewerConfigScore, tonoStatus: TonoStatus, index: number }) => {
 
     return (
-        <li className="tono-list-item" style={{ paddingBottom: "1.4em" }}>
+        <List.Item className="tono-list-item" style={{ paddingBottom: "1.4em" }}>
             <Link className="item-tono-status" to={`/tono/${index + 1}`} state={{ tono: tonoConfig }}>
                 <div style={{ marginTop: "0.2em", marginBottom: "0.2em" }}>
                     <span className="tono-title">{index + 1}. {tonoConfig?.title}</span>{getAuthors(tonoStatus)}
                 </div>
                 <StatusIcons tonoConfig={tonoConfig} tonoStatus={tonoStatus} />
             </Link>
-        </li>
+        </List.Item>
     )
 }
 
@@ -115,11 +113,11 @@ const TonosList = () => {
     }
 
     return (
-        <ul className="alt tono-list">
+        <List className="alt tono-list" >
             {scoreViewerConfig?.scores?.map((tonoConfig: ScoreViewerConfigScore, index: number) =>
                 <TonoItem tonoConfig={tonoConfig} tonoStatus={definitions![index]} index={index} key={index} />
             )}
-        </ul>
+        </List>
     );
 };
 
