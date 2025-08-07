@@ -1,4 +1,4 @@
-import { use, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { MusicStatus, TextStatus } from './utils'
 import { Context } from './Context'
 import { library } from '@fortawesome/fontawesome-svg-core'
