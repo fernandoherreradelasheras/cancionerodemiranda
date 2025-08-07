@@ -107,7 +107,7 @@ function BaseLayout() {
 
     const prevTono = useMemo(() => currentTonoNumber && currentTonoNumber > 1 ? `/tono/${currentTonoNumber - 1}` : "/tono/prev"
     , [currentTonoNumber])
-    const nextTono = useMemo(() => currentTonoNumber && status && currentTonoNumber < status.at(-1)?.number! ? `/tono/${currentTonoNumber + 1}` : "/tono/next"
+    const nextTono = useMemo(() => currentTonoNumber && status && currentTonoNumber < status[status.length - 1]?.number! ? `/tono/${currentTonoNumber + 1}` : "/tono/next"
     , [currentTonoNumber, status])
 
     const items = useMemo(() => [
