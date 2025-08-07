@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { use, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { MusicStatus, TextStatus } from './utils'
 import { Context } from './Context'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -186,22 +186,18 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
     }, [])
 
 
-    const scoreViewer = useMemo(() => scoreSize && scoreViewerConfig ? <ScoreViewer
-        width={scoreSize.width}
-        height={scoreSize.height}
-        config={scoreViewerConfig}
-        ref={scoreViewerRef}
-        onVisualizationOptionsChanged={onVisualizationOptionsChanged}
-        onScoreAnalyzed={onScoreAnalyzed}
-    /> : null, [scoreSize, scoreViewerConfig, scoreViewerRef, onVisualizationOptionsChanged, onScoreAnalyzed])
-
-
     useEffect(() => {
         setVisualizationOptions(null)
         if (scoreViewerRef.current) {
             scoreViewerRef.current.selectScore(tonoIndex)
         }
-    }, [tonoIndex, scoreViewer]);
+    }, [tonoIndex]);
+
+    useEffect(() => {
+        if (scoreViewerRef.current) {
+            scoreViewerRef.current.selectScore(tonoIndex)
+        }
+    }, [scoreViewerConfig, scoreSize])
 
 
     return (
@@ -270,8 +266,14 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     height: "100%", width: "100%"
                 }}>
 
-                {scoreViewer}
-
+                { scoreViewerConfig && scoreSize ?
+                    <ScoreViewer
+                        width={scoreSize?.width}
+                        height={scoreSize?.height}
+                        config={scoreViewerConfig}
+                        ref={scoreViewerRef}
+                        onVisualizationOptionsChanged={onVisualizationOptionsChanged}
+                        onScoreAnalyzed={onScoreAnalyzed} /> : null }
             </div>
         </div>
     )
