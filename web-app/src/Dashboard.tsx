@@ -18,7 +18,7 @@ interface StatusCardProps {
     description: string;
 }
 
-function StatusCard({ title, icon, completed, total, color, description } : StatusCardProps) {
+function StatusCard({ title, icon, completed, total, color, description }: StatusCardProps) {
     const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
 
     return (
@@ -40,7 +40,7 @@ function StatusCard({ title, icon, completed, total, color, description } : Stat
     );
 };
 
-function Dashboard()  {
+function Dashboard() {
     const { scoreViewerConfig, status: definitions } = useGlobalContext();
 
     if (!scoreViewerConfig?.scores || !definitions) {
@@ -57,7 +57,7 @@ function Dashboard()  {
 
     const overallCompletion = Math.round(
         ((stats.textValidated + stats.musicValidated) / (totalWorks * 2)) * 100
-    );    return (
+    ); return (
         <div className="dashboard" style={{ margin: '2em 0' }}>
             <Title level={3} style={{ textAlign: 'start', marginBottom: '1.5em' }}>
                 Informe de progreso
@@ -76,6 +76,9 @@ function Dashboard()  {
                             suffix="%"
                             valueStyle={{ color: overallCompletion > 50 ? '#3f8600' : '#cf1322' }}
                         />
+                    </Col>
+                    <Col xs={12} sm={6} md={4}>
+                        <Statistic title="Voz perdida reconstruida" value={stats.voiceReconstructed} suffix={`/${stats.needsReconstruction}`} />
                     </Col>
                     <Col xs={12} sm={6} md={4}>
                         <Statistic title="Textos poéticos validados" value={stats.textValidated} suffix={`/${totalWorks}`} />
@@ -112,7 +115,7 @@ function Dashboard()  {
                 </Col>
             </Row>
             <Row gutter={[8, 8]}>
-                    <Divider orientation="left">Texto poético</Divider>
+                <Divider orientation="left">Texto poético</Divider>
             </Row>
             <Row gutter={[16, 16]}>
                 <Col xs={24} sm={12} lg={8}>
@@ -174,12 +177,13 @@ function Dashboard()  {
                     />
                 </Col>
 
+
                 <Col xs={24} sm={12} lg={8}>
                     <StatusCard
-                        title="Todas las voces disponibles"
+                        title="Voces reconstruidas"
                         icon={faListCheck}
                         completed={stats.voiceReconstructed}
-                        total={totalWorks}
+                        total={stats.needsReconstruction}
                         color="#f5222d"
                         description="Tonos con reconstrucción de la voz perdida (o sin voz perdida)"
                     />
@@ -214,84 +218,84 @@ function Dashboard()  {
             </Row>
 
             <Row gutter={24} justify="center" align="middle">
-                    <Col xs={24} md={12}>
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                            minHeight: '200px'
-                        }}>
-                            <div className="pie-chart" style={{ position: 'relative', marginBottom: '1em' }}>
-                                <div
-                                    style={{
-                                        width: '150px',
-                                        height: '150px',
-                                        borderRadius: '50%',
-                                        background: `conic-gradient(
+                <Col xs={24} md={12}>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        minHeight: '200px'
+                    }}>
+                        <div className="pie-chart" style={{ position: 'relative', marginBottom: '1em' }}>
+                            <div
+                                style={{
+                                    width: '150px',
+                                    height: '150px',
+                                    borderRadius: '50%',
+                                    background: `conic-gradient(
                                             #ff4d4f 0deg ${stats.incompleted / totalWorks * 360}deg,
                                             #52c41a ${stats.completed / totalWorks * 360}deg 360deg
                                         )`,
-                                        position: 'relative',
-                                        border: '4px solid #f0f0f0'
+                                    position: 'relative',
+                                    border: '4px solid #f0f0f0'
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        backgroundColor: 'white',
+                                        borderRadius: '50%',
+                                        width: '100px',
+                                        height: '100px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexDirection: 'column',
+                                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                                     }}
                                 >
-                                    <div
-                                        style={{
-                                            position: 'absolute',
-                                            top: '50%',
-                                            left: '50%',
-                                            transform: 'translate(-50%, -50%)',
-                                            backgroundColor: 'white',
-                                            borderRadius: '50%',
-                                            width: '100px',
-                                            height: '100px',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            flexDirection: 'column',
-                                            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                                        }}
-                                    >
-                                        <Text strong style={{ fontSize: '1.2em', color: '#2c3e50' }}>
-                                            {overallCompletion}%
-                                        </Text>
-                                        <Text type="secondary" style={{ fontSize: '0.8em' }}>
-                                            Completado
-                                        </Text>
-                                    </div>
+                                    <Text strong style={{ fontSize: '1.2em', color: '#2c3e50' }}>
+                                        {overallCompletion}%
+                                    </Text>
+                                    <Text type="secondary" style={{ fontSize: '0.8em' }}>
+                                        Completado
+                                    </Text>
                                 </div>
                             </div>
-
-                            {/* Legend */}
-                            <Space direction="vertical" size="small" style={{ textAlign: 'center' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <div
-                                        style={{
-                                            width: '12px',
-                                            height: '12px',
-                                            backgroundColor: '#52c41a',
-                                            borderRadius: '2px',
-                                            marginRight: '8px'
-                                        }}
-                                    />
-                                    <Text>Tonos Completados: {stats.completed} / {totalWorks}</Text>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <div
-                                        style={{
-                                            width: '12px',
-                                            height: '12px',
-                                            backgroundColor: '#ff4d4f',
-                                            borderRadius: '2px',
-                                            marginRight: '8px'
-                                        }}
-                                    />
-                                    <Text>Tonos Pendientes: {stats.incompleted} / {totalWorks}</Text>
-                                </div>
-                            </Space>
                         </div>
-                    </Col>
+
+                        {/* Legend */}
+                        <Space direction="vertical" size="small" style={{ textAlign: 'center' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <div
+                                    style={{
+                                        width: '12px',
+                                        height: '12px',
+                                        backgroundColor: '#52c41a',
+                                        borderRadius: '2px',
+                                        marginRight: '8px'
+                                    }}
+                                />
+                                <Text>Tonos Completados: {stats.completed} / {totalWorks}</Text>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <div
+                                    style={{
+                                        width: '12px',
+                                        height: '12px',
+                                        backgroundColor: '#ff4d4f',
+                                        borderRadius: '2px',
+                                        marginRight: '8px'
+                                    }}
+                                />
+                                <Text>Tonos Pendientes: {stats.incompleted} / {totalWorks}</Text>
+                            </div>
+                        </Space>
+                    </div>
+                </Col>
 
             </Row>
 
