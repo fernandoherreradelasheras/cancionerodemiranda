@@ -1,1 +1,5 @@
-El carácter alegórico del texto parece indicar que formaba parte de una fiesta o celebración real y que, probablemente, tuviera más de las tres cuartetas que se copiaron en el cancionero.
+El tono ***En carroza de cristal*** presenta un elaborado ejercicio de poesía cortesana donde el carácter alegórico del texto indica que formaba parte de una fiesta o celebración real.
+
+La alegoría se construye mediante una hipérbole sostenida: el sol, habitualmente majestuoso, se presenta más temprano y alegre más que otros días para participar en el festejo. La prosopopeya alcanza su clímax con uno de los tópico laudatorios de la poesía cortesana barroca: el astro, deslumbrado por la celebración, se olvida del mundo. La descripción de la carroza solar está en consonancia con el aparato escénico de las fiestas palatinas. La amplitud geográfica del asombro, de la Etiopía a la Escitia, es característica de la retórica imperial que solía acompañar las celebraciones de las casas reales europeas.
+
+El carácter breve del texto (solo tres cuartetas) sugiere que originalmente formaba parte de una composición más amplia de la que el compilador del cancionero seleccionó únicamente la sección musical que le interesaba, descontextualizándola de su marco ceremonial original.
