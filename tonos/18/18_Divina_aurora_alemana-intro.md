@@ -1,4 +1,4 @@
-El texto del tono **Divina Aurora alemana** esta tomado, de manera
+El texto del tono **Divina Aurora alemana** está tomado, de manera
 parcial, de un romance de Agustín Salazar y Torres que apareció
 publicado de forma póstuma en el primer volumen de la **Citara de
 Apolo**: *A los felices años de la reina nuestra señora Doña Mariana de
