@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import sys
 import shutil
+import re
 
 ID = '{http://www.w3.org/XML/1998/namespace}id'
 
@@ -85,6 +86,12 @@ ET.indent(newtree, space="", level=1)
 ET.indent(tree, space="   ", level=0)
 
 newtree.write(".tmp-clean.mei", xml_declaration=True, method="xml", encoding="UTF-8")
+
+with open(".tmp-clean.mei", 'r', encoding='utf-8') as f:
+    content = f.read()
+content = re.sub(r'\s+/>', '/>', content)
+with open(".tmp-clean.mei", 'w', encoding='utf-8') as f:
+    f.write(content)
 
 shutil.move(".tmp-clean.mei", input_file)
 
