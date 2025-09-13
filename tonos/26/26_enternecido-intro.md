@@ -1,3 +1,3 @@
-El tono ***Enternecido un peñasco*** está presente también en el Cancionero poetico-musical hispano de Lisboa. Se da la feliz circunstancia de que las voces perdidas en ambos cancioneros no coinciden y, por tanto, entre ambas fuentes tenemos el tono completo.
+El tono ***Enternecido un peñasco*** está presente también en el Cancionero Poético-Musical Hispano de Lisboa. Se da la feliz circunstancia de que al ser un tono para tiple, dos altos y tenor, la parte de alto incluida en el librete del tiple segundo de cada cancionero son complementarias. De este modo, la parte del Superior Secundus del Cancionero de Miranda es el alto 1º (escrito en clave de Do en segunda) y tomando la voz del segundo librete del CPMHL (P-La 47-VI-11) como alto 2º tenemos el tono completo.
 
 En el aspecto musical destaca este tono por la ausencia de pasajes de textura homofónica, desarrollando una textura imitativa a lo largo de ambas secciones.
