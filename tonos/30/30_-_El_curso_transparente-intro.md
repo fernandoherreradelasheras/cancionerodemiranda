@@ -1,9 +1,8 @@
-El tono *El curso transparente* aparece cantado en la comedia de 1673
-*Los Juegos Olímpicos* escrita por **Agustín Salazar y Torres**. La
-música de este tono a cuatro del Cancionero de Miranda no es la misma
-que la del tono a solo **Juan Hidalgo**. El de Hidalgo tuvo que ver
-bastante popular en su tiempo, a tenor de la cantidad de testimonnios
-musicales diferentes que nos han llegado:
+El texto ***El curso transparente*** aparece cantado en la comedia *Los Juegos Olímpicos* escrita por **Agustín Salazar y Torres** e interpretada por primera vez en la corte madrileña para celebrar los años de la reina Mariana de Austria en 1673.
+Gozó de gran popularidad a tenor de los diferentes  testimonios poéticos y musicales conservados.
+
+De un tono a solo con este texto y música de **Juan de Hidalgo**, probablmente el encargado de la música para la representación palaciega de la comedia de Salazar y Torres, 
+se conservan hasta seis copias:
 
 -   Manuscrito de la Biblioteca de Catalunya E-Bc M 759/15, con
     acompañamiento para guitarra en cifra.
@@ -21,11 +20,13 @@ musicales diferentes que nos han llegado:
 
 -   Manuscrito de la Catedral de Burgos E-BU 61/22
 
-Existe otra versión musical incompleta copiada en el folio 113r del
-manuscrito Gayangos-Barbieri que si bien recuerda en sus ocho compases a
-la melodía de Hidalgo, las diferencias son suficientes como para
-considerarlo el bosquejo de una obra diferente. Son también testimonio
-de la existencia del tono cantado su presencia en obras poéticas que
+Existe, además, otra versión musical a solo incompleta copiada en el folio 113r del
+manuscrito Gayangos-Barbieri.
+
+En el tono a 4 del Cancionero de Miranda, se pueden reconocer en las coplas patrones rítmicos que podrían recordar 
+al solo de Hidalgo, aunque estos patrones vienen, en cierta forma dictados por la métrica y acentuación del texto. No parece por tanto que el tono de Hidalgo y el del Cancionero de Miranda fueran reelaboración el uno del otro o de un modelo anterior sino más bien versiones musicales diferentes de un texto de gran popularidad que emplean patrones métricos similares.
+
+Son también testimonio de la existencia del tono cantado su presencia en obras poéticas que
 recopilaban letras de tonos cantados como son el *Libro de tonos de
 Jeronimo Nieto* o la segunda parte del Libro de tonos puestos en cifra
 para arpa E-Mn M/2478. Este último manuscrito incluye también una
@@ -33,7 +34,5 @@ parodia en clave escatológica de las coplas originales: *El culo
 transparente // de tu ceñida braga*.
 
 El tono a 4 del Cancionero de Miranda omite una de las coplas incluidas
-en la versión de Hidalgo (la cuarta). Para el primer verso del
-estribillo, *peces, fieras, aves*, las tres primeras voces cantan cada
-una una palabra diferente al unísono mientras el tenor permanece en
-silencio.
+en el texto de la comedia y que sí aparece en el tono de Hidalgo (la cuarta).
+
