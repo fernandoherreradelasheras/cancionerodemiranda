@@ -1,6 +1,7 @@
 import sys
 import xml.etree.ElementTree as ET
 from copy import deepcopy
+import argparse
 
 MEI_NS = "http://www.music-encoding.org/ns/mei"
 XML_NS = "http://www.w3.org/XML/1998/namespace"
@@ -25,6 +26,17 @@ def get_measures(tree):
     return root.findall(".//mei:measure", ns)
 
 
+def get_sections(tree):
+    """Get all section elements from the MEI file"""
+    root = tree.getroot()
+    return root.findall(".//mei:section", ns)
+
+
+def get_measures_in_section(section):
+    """Get all measures within a specific section"""
+    return section.findall(".//mei:measure", ns)
+
+
 def get_staff_elements(measure, staff_n):
     return measure.findall(f'.//mei:staff[@n="{staff_n}"]/mei:layer[@n="1"]', ns)
 
@@ -39,8 +51,6 @@ def get_measure_notes(measure, staff_n):
     return measure.findall(f'.//mei:staff[@n="{staff_n}"]/mei:layer[@n="1"]/mei:note', ns)
 
 
-
-
 def get_staff_app_elements(measure, staff_n, elem, label):
     return measure.findall(
         f'.//mei:staff[@n="{staff_n}"]/mei:app[@type="voice_reconstruction"]/mei:{elem}[@label="{label}"]/mei:layer[@n="1"]',
@@ -51,21 +61,42 @@ def any_element_has_id(elems, xml_id):
     return xml_id and any(f'{{{XML_NS}}}id' in e.attrib and e.attrib[f'{{{XML_NS}}}id'] == xml_id for e in elems)
 
 def replace_staff_content(
-    main_file_path, staff_main, elem, label, replacement_file_path, staff_replacement, output_file_path
+    main_file_path, staff_main, elem, label, replacement_file_path, staff_replacement, output_file_path, section_num=None
 ):
     register_namespaces()
 
     main_tree = parse_mei_file(main_file_path)
     replacement_tree = parse_mei_file(replacement_file_path)
 
-    main_measures = get_measures(main_tree)
-    replacement_measures = get_measures(replacement_tree)
+    if section_num is not None:
+        # Section-based merging
+        main_sections = get_sections(main_tree)
+        
+        if section_num < 1 or section_num > len(main_sections):
+            print(f"Error: Section {section_num} not found. Available sections: 1-{len(main_sections)}")
+            sys.exit(1)
+        
+        target_section = main_sections[section_num - 1]  # Convert to 0-based index
+        main_measures = get_measures_in_section(target_section)
+        replacement_measures = get_measures(replacement_tree)
+        
+        if len(main_measures) != len(replacement_measures):
+            print(
+                f"Error: Number of measures doesn't match. Section {section_num}: {len(main_measures)} measures, Replacement file: {len(replacement_measures)} measures"
+            )
+            sys.exit(1)
+            
+        print(f"Merging into section {section_num} ({len(main_measures)} measures)")
+    else:
+        # Original behavior - merge entire file
+        main_measures = get_measures(main_tree)
+        replacement_measures = get_measures(replacement_tree)
 
-    if len(main_measures) != len(replacement_measures):
-        print(
-            f"Error: Number of measures doesn't match. Main file: {len(main_measures)}, Replacement file: {len(replacement_measures)}"
-        )
-        sys.exit(1)
+        if len(main_measures) != len(replacement_measures):
+            print(
+                f"Error: Number of measures doesn't match. Main file: {len(main_measures)}, Replacement file: {len(replacement_measures)}"
+            )
+            sys.exit(1)
 
     for i, (main_measure, replacement_measure) in enumerate(
         zip(main_measures, replacement_measures)
@@ -73,12 +104,13 @@ def replace_staff_content(
         measure_num = i + 1
 
         if elem is None:
-            main_staff_elements = get_staff_elements(main_measure,staff_main)
+            main_staff_elements = get_staff_elements(main_measure, staff_main)
         else:
             main_staff_elements = get_staff_app_elements(main_measure, staff_main, elem, label)
+        
         if not main_staff_elements:
             print(
-                f"Warning: No staff 3 found in measure {measure_num} of the main file"
+                f"Warning: No staff {staff_main} found in measure {measure_num}"
             )
             continue
 
@@ -87,6 +119,7 @@ def replace_staff_content(
         ties = get_measure_ties(replacement_measure)
         slurs = get_measure_slurs(replacement_measure)
         notes = get_measure_notes(replacement_measure, staff_replacement)
+        
         for element in [*ties, *slurs]:
             startId = element.attrib['startid'][1:]
             if startId and any_element_has_id(notes, startId):
@@ -110,26 +143,66 @@ def replace_staff_content(
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 8 and len(sys.argv) != 6:
-        print(
-            f'Usage: python {sys.argv[0]} <main mei file> <staff> [<lem/rdg> <label>] <mei file to merge from> <staff> <output>'
-        )
-        sys.exit(1)
+    parser = argparse.ArgumentParser(
+        description="Merge voice from one MEI file into another",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Merge entire file
+  python merge-voice-from-mei.py main.mei 3 source.mei 1 output.mei
+  
+  # Merge with app elements
+  python merge-voice-from-mei.py main.mei 3 lem default source.mei 1 output.mei
+  
+  # Merge into specific section
+  python merge-voice-from-mei.py main.mei 3 source.mei 1 output.mei -s 2
+  
+  # Merge into specific section with app elements
+  python merge-voice-from-mei.py main.mei 3 lem default source.mei 1 output.mei -s 2
+        """
+    )
+    
+    parser.add_argument("main_file", help="Main MEI file")
+    parser.add_argument("staff_main", help="Staff number in main file")
+    parser.add_argument("elem_or_replacement", help="Element type (lem/rdg) or replacement file")
+    parser.add_argument("label_or_staff", help="Label for app element or staff number in replacement file")
+    parser.add_argument("replacement_or_output", help="Replacement file or output file")
+    parser.add_argument("staff_or_output", nargs="?", help="Staff number in replacement file or output file")
+    parser.add_argument("output_file", nargs="?", help="Output file")
+    parser.add_argument("-s", "--section", type=int, help="Section number to merge into (1-based)")
+    
+    args = parser.parse_args()
 
-    main_file = sys.argv[1]
-    staff_main = sys.argv[2]
-    if len(sys.argv) == 8:
-        elem = sys.argv[3]
-        label = sys.argv[4]
-        replacement_file = sys.argv[5]
-        staff_replacement= sys.argv[6]
-        output_file = sys.argv[7]
-    else:
+    # Parse arguments based on number provided
+    if args.staff_or_output is None:
+        # 5 arguments: main_file staff_main replacement_file staff_replacement output_file
+        main_file = args.main_file
+        staff_main = args.staff_main
         elem = None
         label = None
-        replacement_file = sys.argv[3]
-        staff_replacement= sys.argv[4]
-        output_file = sys.argv[5]
+        replacement_file = args.elem_or_replacement
+        staff_replacement = args.label_or_staff
+        output_file = args.replacement_or_output
+    elif args.output_file is None:
+        # 6 arguments: main_file staff_main replacement_file staff_replacement output_file
+        main_file = args.main_file
+        staff_main = args.staff_main
+        elem = None
+        label = None
+        replacement_file = args.elem_or_replacement
+        staff_replacement = args.label_or_staff
+        output_file = args.replacement_or_output
+    else:
+        # 7 arguments: main_file staff_main elem label replacement_file staff_replacement output_file
+        main_file = args.main_file
+        staff_main = args.staff_main
+        elem = args.elem_or_replacement
+        label = args.label_or_staff
+        replacement_file = args.replacement_or_output
+        staff_replacement = args.staff_or_output
+        output_file = args.output_file
 
+    replace_staff_content(
+        main_file, staff_main, elem, label, replacement_file, staff_replacement, output_file, args.section
+    )
 
-    replace_staff_content(main_file, staff_main, elem, label, replacement_file, staff_replacement, output_file)
