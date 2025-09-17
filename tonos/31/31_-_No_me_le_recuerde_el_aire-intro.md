@@ -4,7 +4,10 @@ Lisboa. El tercero de los testimonio conservados, en la colección de
 villancicos de la Biblioteca Pública de Évora, es el que nos informa de
 su autor mediante la anotación del apellido *Marques* en la parte del
 guión y luego su nombre completo en la carpetilla (de época posterior):
-*Ant&infin; Marques Lesbio*. Fue cantado en la Capilla Real de Lisboa
+
+> Ant&infin; Marques Lesbio
+
+Fue cantado en la Capilla Real de Lisboa
 en la Navidad de 1681, cuyo pliego impreso lo recoge no como villancico
 sino como "MISSA".
 
@@ -30,13 +33,13 @@ XVII en diversas encarnaciones a lo humano y a lo divino. Así, los
 versos del estribillo:
 
 > paso, quedito,\
-> que duerme mi niño\
+> que duerme mi niño
 
 recuerdan aquellos que canten los músicos en la tercera jornada de *El
 ruiseñor de Sevilla* de Lope de Vega, escrita entre 1603 y 1606:
 
 > quedito, pasito, amor,\
-> no espantéis al ruiseñor\
+> no espantéis al ruiseñor
 
 En un villancico cantado en la Capilla Real de Madrid en 1651[^1]
 encontramos tanto el *paso quedito* como los *airecillos* y *no
@@ -49,7 +52,7 @@ recuerde*:
 > ni le desveléis\
 > ventecillos no\
 > pajarillos no\
-> que harto desveladico me le tengo yo\
+> que harto desveladico me le tengo yo
 
 Es probable que este villancico de 1651 fuera compuesto por Carlo
 Patiño, pues esa autoría consta en una readaptación para el Santísimo
@@ -62,7 +65,7 @@ Calderón Ni amor se libra de amor, donde se canta:
 > Quedito, pasito,\
 > que duerme mi dueño,\
 > quedito, pasito,\
-> que duerme mi amor.\
+> que duerme mi amor.
 
 La cancioncilla de la comedia de Calderón fue puesta en música por Juan
 Hidalgo (conservada en el manuscrito Gayangos-Barbieri). Este tono de
@@ -80,7 +83,7 @@ de Pedro II:
 > Quedo, paso, que el sol se duerme,\
 > avecillas vuestros gorjeos,\
 > fuentecillas, vuestras corrientes,\
-> no le despierten.\
+> no le despierten.
 
 [^1]: [http://bdh-rd.bne.es/viewer.vm?id=0000060876](http://bdh-rd.bne.es/viewer.vm?id=0000060876)
 
