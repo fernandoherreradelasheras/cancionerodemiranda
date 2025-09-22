@@ -12,7 +12,7 @@ python3 -m converter21 -f mei -t humdrum $TMP/filtered.mei  $TMP/filtered.krn
 echo '!!!filter: dissonant' > $TMP/dissonant-analysis.krn
 cat $TMP/filtered.krn | extract -i '**kern' >> $TMP/dissonant-analysis.krn
 
-verovio $TMP/dissonant-analysis.krn  -t mei -o $TMP/dissonant-analysis.mei
+verovio -a $TMP/dissonant-analysis.krn  -t mei -o $TMP/dissonant-analysis.mei
 java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:$TMP/dissonant-analysis.mei "-xsl:$SCRIPTDIR/fix_mei_measure_ns.xsl" -o:$TMP/dissonant-analysis-with-n.mei
 
 python "$SCRIPTDIR/merge_harm.py" "$TMP/clean.mei" "$TMP/dissonant-analysis-with-n.mei" "$TMP/merged_analysis"
