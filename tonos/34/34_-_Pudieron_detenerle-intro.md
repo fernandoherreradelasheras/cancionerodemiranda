@@ -1,1 +1,5 @@
-TODO: faltan los versos que le corresponden cantar a solo al alto. Por el guion sabemos que empiezan "Mas no se canse // otra vez afirma"
+El extenso tono ***Ay, que me llevan suspiros*** alterna en sus coplas secciones a solo con secciones a cuatro voces. Faltan, por tanto, los versos que de cada copla canta el alto, voz perdida del cancionero, a solo. Por la anotación del guion sabemos que en la primera copla los versos del alto comenzaban por *Mas no se canse*. A partir de esto, planteamos una reconstrucción del texto poético de las coplas suponiendo que el alto cantaba en los 17 compases de su parte a solo dos versos: un heptasílabo y una pentasílabo.
+
+En la reconstrucción de la primera copla continuamos la metáfora del viento. En la segunda extendemos el concepto náutico central de la copla. Para la tercea rematamos la paradoja barroca del ardor helado. Para la copla final optamos por preparar la conclusión.
+
+Pese a que el tono no está escrito en claves altas lo hemos transpuesto una cuarta justa hacia abajo siguiendo la indicación del comienzo del estribillo en el guion: `e tãbem se dis 4a abaixo`. Así mismo en la sección de coplas el guion aclara: `solos por quinto tom, os altos, os tiples, os tenores, os altos`.
