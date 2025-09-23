@@ -5,13 +5,14 @@ import tonosConfig from "./assets/tonos-config.json"
 const STATUS_FILE = "status.json"
 
 const TESTING_PATH = "/tonos/"
+const TESTING_IMAGES_PATH = "/facsimil-images/"
 
 const VITE_TEST_URLS = import.meta.env.VITE_TEST_URLS
 
 const TESTING = (VITE_TEST_URLS != undefined) ? true : false
 
 export const config = TESTING ?
-  { ...tonosConfig, settings: { ...tonosConfig.settings, basePath: TESTING_PATH } }
+  { ...tonosConfig, settings: { ...tonosConfig.settings, basePath: TESTING_PATH, facsimileImagesPath: TESTING_IMAGES_PATH } }
   : tonosConfig
 
 export const statusUrl = config.settings.basePath + STATUS_FILE
