@@ -9,7 +9,10 @@ Del tono musical se conservan hasta 6 versiones:
 * Colección personal de Miguel Querol
 * Colegiata de Alquézar
 
-junto con la mención de su existencia en el índice del Libro de Tonos Humanos
+junto con la mención de su existencia en el índice del Libro de Tonos Humanos.
+
+Para completar el tono del Cancionero de Miranda no podemos usar ni el Cancionero Poético Musical Hispano de Lisboa ni el Cancionero de Onteniente, pues no conservan la parte de alto. Al no haber podido consultar el manuscrito que estuvo en poder de Miguel Querol ni el archivo musical de la Colegiata de Alquézar solo podemos recurrir al testimonio conservado en el Cartapacio de Coimbra P-Cug MM 234. Aunque el tono de Coimbra tiene la peculiadirad de ser *para tres tiples* (más el tenor) como el resto de voces son prácticamente idénticas a las del Cancionero de Miranda podemos deducir que la adaptación de la parte, suponemos original, de alto a tiple se limita a subir una octava los grupos de notas más bajos para acomodarla a la tesitura de un tiple. Bajando esos grupos de notas una octava queda toda la parte dentro del rango de alto. 
+
 
 En recopilaciones poéticas de diversos tonos lo encontramos en:
 
@@ -41,7 +44,8 @@ Finalmente, constatamos la popularidad de "Venganza, griegos, repite" a través 
 [^2]:  (probablemente "Altos penachos de escarcha", conservado en la Hispanic Society. HSA, Ms. HC. 380/824a/62)
 [^3]: Con ese título aparece en una comedia de Moreto. Tanto el título como los versos (A los azotes del aire / gemía el cristal de Tormes, / saltando de plata / riza un penacho en cada azote)  parecen ser una variación de uno de los tonos del Cancionero de Miranda, el nº43 ( _A los encuentros del aire / bramava el cristal del Tajo / oponiendo en su defensa / a cada encuentro un peñasco_) 
 
-Textos
+
+## TODO: Redactar estudio de variantes de los diferentes testimonios poéticos.
 
 Jerónimo Nieto:
 
@@ -100,7 +104,10 @@ Coimbra:
 - Copla 1: Venganza
 
 
-TODO: Comentar las diferencias entre versiones, incluyendo la configuración de 3 tiples de Coimbra
+## TODO: Añadir el guión del CPMHL
+
+
+## TODO: Sección acerca de la atribución de la música
 
 
 Sobre la atribución a Carlos Patiño o a Manuel Correa hay un empate tácido.
@@ -117,4 +124,5 @@ y con atribución directa a Patiño:
 
 
 Inclina ligeramente la balanza del lado de Correa la referencia en uno de los índices del Libro de Tonos Humano, en una parte donde se listan obras de Correa.
+
 
