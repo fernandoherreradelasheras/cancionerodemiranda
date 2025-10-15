@@ -13,7 +13,8 @@ echo '!!!filter: dissonant' > $TMP/dissonant-analysis.krn
 cat $TMP/filtered.krn | extract -i '**kern' >> $TMP/dissonant-analysis.krn
 
 verovio -a $TMP/dissonant-analysis.krn  -t mei -o $TMP/dissonant-analysis.mei
-java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:$TMP/dissonant-analysis.mei "-xsl:$SCRIPTDIR/fix_mei_measure_ns.xsl" -o:$TMP/dissonant-analysis-with-n.mei
+python $SCRIPTDIR/filter-mei-dup-ties.py  $TMP/dissonant-analysis.mei --output $TMP/dissonant-analysis-fixed.mei
+java -cp /usr/share/java/saxon/saxon-he.jar net.sf.saxon.Transform -s:$TMP/dissonant-analysis-fixed.mei "-xsl:$SCRIPTDIR/fix_mei_measure_ns.xsl" -o:$TMP/dissonant-analysis-with-n.mei
 
 python "$SCRIPTDIR/merge_harm.py" "$TMP/clean.mei" "$TMP/dissonant-analysis-with-n.mei" "$TMP/merged_analysis"
 if [ $? != 0 ]; then
