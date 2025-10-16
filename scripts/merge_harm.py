@@ -93,8 +93,12 @@ def process_mei_files(file1_path, file2_path, output_path):
         if n_attr:
             measures2_dict[n_attr] = measure
     
-    if set(measures1_dict.keys()) != set(measures2_dict.keys()):
+    keys1 = sorted(list(set(measures1_dict.keys())))
+    keys2 = sorted(list(set(measures2_dict.keys())))
+    if keys1 != keys2:
         print("Error: Measure numbers don't match between files")
+        print(f"measure n's for file 1: {keys1}")
+        print(f"measure n's for file 2: {keys2}")
         return False
     
     for measure_n in measures1_dict.keys():
