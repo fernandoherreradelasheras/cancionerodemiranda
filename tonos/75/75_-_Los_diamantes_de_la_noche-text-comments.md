@@ -1,3 +1,4 @@
+**2**: _cubrían_ en el manuscrito. Tomamos el singular de la versión impresa, pues tiene más sentido: en el amanecer es la Aurora las que cubre las estrellas  
 **3**: en el romance impreso _tornasoles dorados_  
 **5**: _cabellos_ en el manuscrito que corregimos con _caballos_ del romance impreso  
 **8**: _hacia el Oriente_ en el romance impreso  
