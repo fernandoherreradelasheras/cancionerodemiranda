@@ -180,7 +180,7 @@ function Dashboard() {
 
                 <Col xs={24} sm={12} lg={8}>
                     <StatusCard
-                        title="Voces reconstruidas"
+                        title="Reconstrucción completada"
                         icon={faListCheck}
                         completed={stats.voiceReconstructed}
                         total={stats.needsReconstruction}
@@ -188,6 +188,20 @@ function Dashboard() {
                         description="Tonos con reconstrucción de la voz perdida (o sin voz perdida)"
                     />
                 </Col>
+
+
+                <Col xs={24} sm={12} lg={8}>
+                    <StatusCard
+                        title="Reconstrucción en progreso"
+                        icon={faListCheck}
+                        completed={stats.voiceReconstructionInProgress}
+                        total={stats.needsReconstruction - stats.voiceReconstructed}
+                        color="#bf15c5ff"
+                        description="Tonos con reconstrucción de la voz perdida (o sin voz perdida)"
+                    />
+                </Col>
+
+
 
                 <Col xs={24} sm={12} lg={8}>
                     <StatusCard
