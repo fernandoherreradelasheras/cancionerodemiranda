@@ -38,7 +38,7 @@ const getProgressFromMusicStatus = (status?: MusicStatus) => {
         case "not started": return { value: 5, text: "sin comenzar" }
         case "raw transcription": return { value: 20, text: "transcripción en progreso" }
         case "transcription completed": return { value: 40, text: "transcripción completa" }
-        case "reconstruction started": return { value: 60, text: "todas las voces completas" }
+        case "reconstruction started": return { value: 60, text: "reconstrucción en progreso" }
         case "music completed": return { value: 70, text: "música completa" }
         case "reviewed": return { value: 80, text: "revisado" }
     }
