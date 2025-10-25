@@ -157,6 +157,12 @@ export function tonoHasMusicCompleted(tono: TonoStatus | null): boolean {
     tono?.status_music == "completed");
 }
 
+export function tonoHasMusicVoiceReconstructionInprogress(tono: TonoStatus | null): boolean {
+  return tonoNeedReconstruction(tono) && (tono?.status_music == "reconstruction started" ||
+    tono?.status_music == "reviewed" ||
+    tono?.status_music == "completed");
+}
+
 export function tonoHasMusicVoiceReconstructed(tono: TonoStatus | null): boolean {
   return tonoNeedReconstruction(tono) && tonoHasMusicCompleted(tono);
 }
@@ -186,6 +192,7 @@ export interface TonoStatusStats {
   hasMusic: number;
   musicTranscriptionCompleted: number;
   voiceReconstructed: number;
+  voiceReconstructionInProgress: number;
   needsReconstruction: number;
   musicCompleted: number
   hasAudio: number;
@@ -212,6 +219,7 @@ export function calculateTonoStats(
     hasMusic: 0,
     musicTranscriptionCompleted: 0,
     voiceReconstructed: 0,
+    voiceReconstructionInProgress: 0,
     needsReconstruction: 0,
     musicCompleted: 0,
     hasAudio: 0,
@@ -230,6 +238,7 @@ export function calculateTonoStats(
     if (tonoHasMusic(tonoConfig)) stats.hasMusic++;
     if (tonoHasMusicTranscriptionCompleted(tonoStatus)) stats.musicTranscriptionCompleted++;
     if (tonoHasMusicVoiceReconstructed(tonoStatus)) stats.voiceReconstructed++;
+    if (tonoHasMusicVoiceReconstructionInprogress(tonoStatus)) stats.voiceReconstructionInProgress++;
     if (tonoNeedReconstruction(tonoStatus)) stats.needsReconstruction++;
     if (tonoHasMusicCompleted(tonoStatus)) stats.musicCompleted++;
     if (tonoHasAudio(tonoConfig)) stats.hasAudio++;
