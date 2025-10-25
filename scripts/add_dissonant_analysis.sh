@@ -12,6 +12,7 @@ python3 -m converter21 -f mei -t humdrum $TMP/filtered.mei  $TMP/filtered.krn
 
 echo '!!!filter: dissonant' > $TMP/dissonant-analysis.krn
 cat $TMP/filtered.krn | extract -i '**kern' >> $TMP/dissonant-analysis.krn
+wl-copy -t text/plain <  $TMP/dissonant-analysis.krn
 
 verovio --mdiv-all -a $TMP/dissonant-analysis.krn  -t mei -o $TMP/dissonant-analysis.mei
 python $SCRIPTDIR/filter-mei-dup-ties.py  $TMP/dissonant-analysis.mei --output $TMP/dissonant-analysis-fixed.mei
