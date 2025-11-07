@@ -45,7 +45,8 @@ Finalmente, constatamos la popularidad de "Venganza, griegos, repite" a través 
 [^3]: Con ese título aparece en una comedia de Moreto. Tanto el título como los versos (A los azotes del aire / gemía el cristal de Tormes, / saltando de plata / riza un penacho en cada azote)  parecen ser una variación de uno de los tonos del Cancionero de Miranda, el nº43 ( _A los encuentros del aire / bramava el cristal del Tajo / oponiendo en su defensa / a cada encuentro un peñasco_) 
 
 
-## TODO: Redactar estudio de variantes de los diferentes testimonios poéticos.
+**TODO: Redactar estudio de variantes de los diferentes testimonios poéticos.**
+
 
 Jerónimo Nieto:
 
@@ -104,10 +105,10 @@ Coimbra:
 - Copla 1: Venganza
 
 
-## TODO: Añadir el guión del CPMHL
+**TODO: Añadir el guión del CPMHL**
 
 
-## TODO: Sección acerca de la atribución de la música
+**TODO: Sección acerca de la atribución de la música**
 
 
 Sobre la atribución a Carlos Patiño o a Manuel Correa hay un empate tácido.
