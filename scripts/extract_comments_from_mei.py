@@ -1,4 +1,5 @@
 from lxml import etree as ET
+from pylatex.utils import escape_latex
 import json
 import sys
 
@@ -236,9 +237,10 @@ if output_file:
         f.write("\\subsection*{Notas a la edición musical}\n\n")
         f.write("\\noindent")
         for note in editorial_notes:
+            text = escape_latex(note['annotText'])
             f.write("\\textbf{Compás %s%s}: %s\\\\\n" % (note['measure'] if 'measure' in note else "0",
                                                         f', {note['partName']}' if note['partName'] != "" else "",
-                                                        note['annotText']))
+                                                        text))
     f.write("\n\n")
     f.close()
 else:

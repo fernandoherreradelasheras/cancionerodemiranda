@@ -10,10 +10,12 @@ import re
 import sys
 import fitz
 import math
+import unicodedata
 from pathlib import Path
 from lxml import etree as ET
 from copy import deepcopy
 from enum import StrEnum, auto
+from pylatex.utils import escape_latex
 
 class EditionType(StrEnum):
     PERFORMER = auto()
@@ -219,7 +221,8 @@ def txt_to_tex(txt):
                     ignore_until_next = False
             if not ignore_until_next:
                 result.append(" ")
-                result.append(f"{line} \\\\")
+                escaped_line = escape_latex(line)
+                result.append(f"{escaped_line} \\\\")
     
     return "\n".join(result)
 
@@ -501,7 +504,8 @@ def build_verses_overlay(offset, contents, section, initialStanzaCount):
         for verse_idx,verse in enumerate(stanza['verses']):
             if verse_idx == 0:
                 outputStr = outputStr + '\\textbf{%d.}\\\\\n' % stanza['stanzaNumber']
-            outputStr = outputStr + '%s\\\\\n' % verse
+            escaped_verse = escape_latex(verse)
+            outputStr = outputStr + '%s\\\\\n' % escaped_verse
         outputStr = outputStr + '\\end{verse}\n'
 
     outputStr = outputStr + '\\end{paracol}\n'
@@ -804,8 +808,11 @@ def generate_tono(data, status, tmp_dir, buildType):
     print("Rendering final pdf")
     render_latex(tmp_dir, 'tmp.tex')
         
-    pdfname =  f'output/{str(data['number']).zfill(2)} - {data['title']} ({buildType.value}).pdf'
-    meiname =  f'output/{str(data['number']).zfill(2)} - {data['title']}.mei'
+    normalized_title = unicodedata.normalize('NFKD', data['title']).encode('ascii', 'ignore').decode('ascii').replace(' ', '_')
+    edition_type = buildType.value.capitalize()
+
+    pdfname =  f'output/{str(data['number']).zfill(2)}_{normalized_title}_{edition_type}_edition.pdf'
+    meiname =  f'output/{str(data['number']).zfill(2)}_{normalized_title}.mei'
         
     if generated_score is not None and (Path(tmp_dir) / 'final.mei').exists():
         shutil.copy(f'{tmp_dir}/final.mei', meiname)        
