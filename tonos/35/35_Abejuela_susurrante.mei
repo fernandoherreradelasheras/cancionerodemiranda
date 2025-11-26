@@ -1,8 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
-
-<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<mei meiversion="5.1" xmlns="http://www.music-encoding.org/ns/mei">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
@@ -36,12 +35,12 @@
                         <staffDef n="3" lines="5" keysig="1f" meter.count="3" meter.unit="2">
                            <label>Alto</label>
                            <labelAbbr>A.</labelAbbr>
-                           <clef shape="G" line="2"/>
+                           <clef shape="G" line="2" xml:id="cjkdud3"/>
                         </staffDef>
                         <staffDef n="4" lines="5" keysig="1f" meter.count="3" meter.unit="2">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
-                           <clef shape="G" line="2" dis="8" dis.place="below" xml:id="cjkdud3"/>
+                           <clef shape="G" line="2" dis="8" dis.place="below" xml:id="cjkdud4"/>
                         </staffDef>
                      </staffGrp>
                   </staffGrp>
@@ -66,12 +65,12 @@
                                  <staffDef n="3" lines="5" keysig="1f" meter.count="3" meter.unit="2">
                                     <label>Alto</label>
                                     <labelAbbr>A.</labelAbbr>
-                                    <clef shape="C" line="1" corresp="#cjkdud2"/>
+                                    <clef shape="G" line="2" corresp="#cjkdud3"/>
                                  </staffDef>
                                  <staffDef n="4" lines="5" keysig="1f" meter.count="3" meter.unit="2">
                                     <label>Tenor</label>
                                     <labelAbbr>Tn.</labelAbbr>
-                                    <clef shape="C" line="4" corresp="#cjkdud3"/>
+                                    <clef shape="C" line="4" corresp="#cjkdud4"/>
                                  </staffDef>
                               </staffGrp>
                            </staffGrp>
@@ -210,10 +209,10 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1.5" n="8">
                               <rend label="bordadura inferior">n</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="8">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -250,17 +249,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <rest dur="2"/>
-                           <note dots="1" dur="2" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">A</syl>
-                              </verse>
-                           </note>
-                           <note dur="4" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">be</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -282,17 +271,11 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="bordadura superior acentuada">W</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.000000" n="8">
-                              <rend label="nota de paso ascendente acentuada">V</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3" n="8">
                               <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.500000" n="8">
-                              <rend label="échappée inferior inversa">j</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -337,15 +320,15 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="e" oct="4">
+                           <rest dur="2"/>
+                           <note dots="1" dur="2" oct="4" pname="g">
                               <verse n="1">
-                                 <syl con="d" wordpos="m">jue</syl>
+                                 <syl con="d" wordpos="i">A</syl>
                               </verse>
-                              <accid accid="f"/>
                            </note>
-                           <note dur="1" pname="c" oct="4">
+                           <note dur="4" oct="4" pname="g">
                               <verse n="1">
-                                 <syl wordpos="t">la</syl>
+                                 <syl con="d" wordpos="m">be</syl>
                               </verse>
                            </note>
                         </layer>
@@ -369,10 +352,10 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.500000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1.5" n="6">
                               <rend label="bordadura inferior">n</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.500000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2.5" n="6">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -409,25 +392,16 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
-                                 <syl con="d" wordpos="i">su</syl>
+                                 <syl con="d" wordpos="m">jue</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="f" oct="4"/>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="1" oct="4" pname="f">
                               <verse n="1">
-                                 <syl con="d" wordpos="m">su</syl>
+                                 <syl wordpos="t">la</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="a" oct="4"/>
-                           <note dur="4" pname="b" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">ran</syl>
-                              </verse>
-                              <accid accid.ges="f"/>
-                           </note>
-                           <note dur="4" pname="g" oct="4"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -439,14 +413,14 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.500000" n="4">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1.5" n="6">
                               <rend label="bordadura inferior">n</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.500000" n="6">
-                              <rend label="bordadura inferior">n</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.500000" n="4">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2.5" n="6">
                               <rend label="nota de paso ascendente">P</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="2" tstamp="3" n="6">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -488,17 +462,13 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="c" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">te</syl>
-                              </verse>
-                           </note>
-                           <note dots="1" dur="2" pname="a" oct="4">
+                           <rest dur="2"/>
+                           <note dots="1" dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="i">su</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="a" oct="4">
+                           <note dur="4" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="m">su</syl>
                               </verse>
@@ -552,13 +522,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="b" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="m">rran</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
-                           <note dur="1" pname="g" oct="4">
+                           <note dur="1" oct="4" pname="f">
                               <verse n="1">
                                  <syl wordpos="t">te</syl>
                               </verse>
@@ -582,13 +551,10 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
-                              <rend label="agente de suspensión binaria">g</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
                         </rdg>
@@ -617,7 +583,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <rest dur="2"/>
+                           <note dots="1" dur="2" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">a</syl>
+                              </verse>
+                           </note>
+                           <note dur="4" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">be</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -643,7 +619,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.500000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="2.5" n="2">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -669,19 +645,28 @@
                            <rest dur="2"/>
                            <note dots="1" dur="2" pname="d" oct="5">
                               <verse n="1">
-                                 <syl>ma</syl>
+                                 <syl con="d" wordpos="i">ma</syl>
                               </verse>
                            </note>
                            <note dur="4" pname="d" oct="5">
                               <verse n="1">
-                                 <syl con="d" wordpos="i">ri</syl>
+                                 <syl con="d" wordpos="m">ri</syl>
                               </verse>
                            </note>
                         </layer>
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="2" oct="4" pname="d">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">jue</syl>
+                              </verse>
+                           </note>
+                           <note dur="1" oct="4" pname="d">
+                              <verse n="1">
+                                 <syl wordpos="t">la</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -702,19 +687,25 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="bordadura superior acentuada">W</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.000000" n="2">
+                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="4">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="4" tstamp="1.5" n="2">
+                              <rend label="bordadura inferior">n</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="4" tstamp="2" n="2">
                               <rend label="nota de paso ascendente acentuada">V</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.500000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="2.5" n="2">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="3" n="2">
                               <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.500000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="3.5" n="2">
                               <rend label="échappée inferior inversa">j</rend>
                            </harm>
                         </rdg>
@@ -748,14 +739,14 @@
                      <staff n="3">
                         <layer n="1">
                            <rest dur="2"/>
-                           <note dots="1" dur="2" pname="g" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="e">
                               <verse n="1">
-                                 <syl con="d" wordpos="i">sa</syl>
+                                 <syl con="d" wordpos="i">ma</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="e" oct="4">
+                           <note dur="4" oct="4" pname="f">
                               <verse n="1">
-                                 <syl con="d" wordpos="m">la</syl>
+                                 <syl con="d" wordpos="m">ri</syl>
                               </verse>
                            </note>
                         </layer>
@@ -779,6 +770,14 @@
                            </note>
                         </layer>
                      </staff>
+                     <app>
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="3" tstamp="3.5" n="4">
+                              <rend label="bordadura superior">N</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="12">
                      <staff n="1">
@@ -806,14 +805,14 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
-                                 <syl con="d" wordpos="m">man</syl>
+                                 <syl con="d" wordpos="m">po</syl>
                               </verse>
                            </note>
-                           <note dur="1" pname="e" oct="4">
+                           <note dur="1" oct="4" pname="d">
                               <verse n="1">
-                                 <syl wordpos="t">dra</syl>
+                                 <syl wordpos="t">sa</syl>
                               </verse>
                            </note>
                         </layer>
@@ -835,13 +834,13 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
                         </rdg>
@@ -929,7 +928,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.500000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="3.5" n="2">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
                         </rdg>
@@ -994,13 +993,13 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="8">
                               <rend label="bordadura superior">N</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="3.500000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="3.5" n="6">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3.5" n="8">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
                         </rdg>
@@ -1049,12 +1048,12 @@
                      <staff n="3">
                         <layer n="1">
                            <rest dur="2"/>
-                           <note dots="1" dur="2" pname="d" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="i">ma</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="d" oct="4">
+                           <note dur="4" oct="4" pname="e">
                               <verse n="1">
                                  <syl con="d" wordpos="m">ri</syl>
                               </verse>
@@ -1076,7 +1075,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.500000" n="2">
+                           <harm type="rdiss" place="above" staff="3" tstamp="3.5" n="4">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
                         </rdg>
@@ -1114,19 +1113,18 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">po</syl>
                               </verse>
-                              <accid accid="f"/>
                            </note>
-                           <note dur="2" pname="d" oct="4">
+                           <note dur="2" oct="4" pname="c">
                               <verse n="1">
-                                 <syl con="b">sa</syl>
+                                 <syl con="b" wordpos="t">sa</syl>
                                  <syl con="d" wordpos="i">e</syl>
                               </verse>
                            </note>
-                           <note xml:id="n1858jn0" dur="2" pname="f" oct="4">
+                           <note xml:id="notijrq2" dur="2" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="d" wordpos="m">na</syl>
                               </verse>
@@ -1157,37 +1155,26 @@
                      <tie startid="#nsqu8mk" endid="#n1b0t7sm"/>
                      <tie startid="#n1858jn0" endid="#nthxlh5"/>
                      <tie startid="#n1858jn0" endid="#nthxlh5"/>
+                     <tie endid="#nvc5cq61" staff="3" startid="#notijrq2"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="agente de suspensión ternaria">G</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
-                              <rend label="agente de suspensión ternaria">G</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="suspensión ternaria">S</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión ternaria">G</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.000000" n="4">
-                              <rend label="échappée inferior">e</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
-                              <rend label="suspensión falsa abordada por grado descendente">f</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="3" n="2">
                               <rend label="agente de suspensión ternaria">G</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="3.000000" n="4">
-                              <rend label="agente de suspensión ternaria">G</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="3.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="3" n="6">
                               <rend label="suspensión ternaria">S</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3" n="8">
                               <rend label="anticipación descendente">a</rend>
                            </harm>
                         </rdg>
@@ -1217,18 +1204,16 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="nthxlh5" dur="2" pname="f" oct="4"/>
-                           <note dur="2" pname="e" oct="4">
+                           <note xml:id="nvc5cq61" dur="2" oct="4" pname="c"/>
+                           <note accid.ges="f" dur="2" oct="3" pname="b">
                               <verse n="1">
                                  <syl con="d" wordpos="m">mo</syl>
                               </verse>
-                              <accid accid="f"/>
                            </note>
-                           <note xml:id="n1yj4rv8" dur="2" pname="e" oct="4">
+                           <note xml:id="n36w1vg1" dur="2" oct="3" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="m">ra</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
                         </layer>
                      </staff>
@@ -1253,20 +1238,15 @@
                      <tie startid="#n7l2paq" endid="#n1f77m2x"/>
                      <tie startid="#n1yj4rv8" endid="#n1ncst8v"/>
                      <tie startid="#n1yj4rv8" endid="#n1ncst8v"/>
+                     <tie endid="#nk4jc0e" staff="3" startid="#n36w1vg1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="suspensión ternaria">S</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión ternaria">G</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.000000" n="4">
-                              <rend label="anticipación descendente">a</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
-                              <rend label="solo disonante contra disonancia conocida desc.">y</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -1289,10 +1269,8 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n1ncst8v" dur="2" pname="e" oct="4">
-                              <accid accid.ges="f"/>
-                           </note>
-                           <note dur="1" pname="c" oct="4">
+                           <note xml:id="nk4jc0e" dur="2" oct="3" pname="g"/>
+                           <note dur="1" oct="3" pname="a">
                               <verse n="1">
                                  <syl wordpos="t">da</syl>
                               </verse>
@@ -1351,17 +1329,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl>y</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="i">sa</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="m">la</syl>
                               </verse>
@@ -1390,7 +1368,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2" n="6">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -1439,23 +1417,21 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="m">man</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="a" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="b">dra</syl>
                                  <syl con="d" wordpos="i">en</syl>
                               </verse>
-                              <accid accid="f"/>
                            </note>
-                           <note dur="2" pname="a" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="m">cen</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
                         </layer>
                      </staff>
@@ -1514,12 +1490,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl con="d" wordpos="m">di</syl>
                               </verse>
                            </note>
-                           <note dur="1" pname="g" oct="4">
+                           <note dur="1" oct="4" pname="d">
                               <verse n="1">
                                  <syl wordpos="t">da</syl>
                               </verse>
@@ -1546,13 +1522,10 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="anticipación ascendente">A</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
-                              <rend label="anticipación descendente">a</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="anticipación descendente">a</rend>
                            </harm>
                         </rdg>
@@ -1626,7 +1599,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="3.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="3" n="6">
                               <rend label="nota de paso ascendente acentuada">V</rend>
                            </harm>
                         </rdg>
@@ -1650,17 +1623,14 @@
                      <staff n="3">
                         <layer n="1">
                            <rest dur="2"/>
-                           <note xml:id="n128b0gz" dur="4" pname="b" oct="4">
+                           <note xml:id="a123jif225_n1" dur="4" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="i">Mi</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
-                           <note dur="4" pname="f" oct="4"/>
-                           <note dur="4" pname="g" oct="4"/>
-                           <note xml:id="n1746xel" dur="4" pname="a" oct="4">
-                              <accid accid="f"/>
-                           </note>
+                           <note dur="4" oct="4" pname="d"/>
+                           <note dur="4" oct="4" pname="e"/>
+                           <note xml:id="a123jif225_n2" dur="4" oct="4" pname="f"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -1670,11 +1640,12 @@
                      </staff>
                      <slur startid="#n128b0gz" endid="#n1746xel"/>
                      <slur startid="#n128b0gz" endid="#n1746xel"/>
+                     <slur endid="#a123jif225_n2" startid="#a123jif225_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="3.500000" n="4">
-                              <rend label="bordadura superior">N</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="3" n="4">
+                              <rend label="nota de paso ascendente acentuada">V</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -1700,7 +1671,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="g" oct="4">
+                           <note dots="1" dur="1" oct="4" pname="e" accid="f">
                               <verse n="1">
                                  <syl wordpos="t">ra</syl>
                               </verse>
@@ -1725,10 +1696,16 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.500000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="2.5" n="2">
+                              <rend label="échappée inferior inversa">j</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="8">
+                              <rend label="échappée inferior inversa">j</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="4" tstamp="3.5" n="2">
                               <rend label="bordadura superior">N</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3.5" n="8">
                               <rend label="bordadura superior">N</rend>
                            </harm>
                         </rdg>
@@ -1768,14 +1745,14 @@
                      <staff n="3">
                         <layer n="1">
                            <rest dur="2"/>
-                           <note dur="4" pname="d" oct="4">
+                           <note xml:id="a123jif227_n1" dur="4" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="i">mi</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="e" oct="4"/>
-                           <note dur="4" pname="f" oct="4"/>
-                           <note dur="4" pname="e" oct="4"/>
+                           <note dur="4" oct="4" pname="c"/>
+                           <note dur="4" oct="4" pname="d"/>
+                           <note xml:id="a123jif227_n2" dur="4" oct="4" pname="e"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -1786,26 +1763,24 @@
                      </staff>
                      <slur startid="#n133fm3g" endid="#n4cm370"/>
                      <slur startid="#nufk9wi" endid="#n15ev6dx"/>
+                     <slur endid="#a123jif227_n2" startid="#a123jif227_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.500000" n="4">
-                              <rend label="nota de paso ascendente">P</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="3.000000" n="4">
-                              <rend label="bordadura superior acentuada">W</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="3.000000" n="6">
+                           <harm type="rdiss" place="above" staff="3" tstamp="3" n="4">
                               <rend label="nota de paso ascendente acentuada">V</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.000000" n="8">
+                           <harm type="rdiss" place="above" staff="2" tstamp="3" n="6">
                               <rend label="nota de paso ascendente acentuada">V</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="3.500000" n="4">
-                              <rend label="nota de paso descendente">p</rend>
+                           <harm type="rdiss" place="above" staff="1" tstamp="3" n="8">
+                              <rend label="nota de paso ascendente acentuada">V</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="3.500000" n="6">
-                              <rend label="solo disonante contra disonancia conocida asc.">Y</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="3.5" n="4">
+                              <rend label="bordadura superior">N</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="2" tstamp="3.5" n="6">
+                              <rend>L</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -1841,14 +1816,14 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="d" oct="4">
+                           <note dur="1" oct="4" pname="d">
                               <verse n="1">
-                                 <syl con="d" wordpos="m">ra</syl>
+                                 <syl wordpos="t">ra</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="c">
                               <verse n="1">
-                                 <syl con="d" wordpos="m">a</syl>
+                                 <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
                         </layer>
@@ -1904,12 +1879,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="c" oct="4">
+                           <note dur="1" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="m">que</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl wordpos="t">lla</syl>
                               </verse>
@@ -1934,7 +1909,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.500000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2.5" n="6">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -1977,17 +1952,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="2" pname="a" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="a">
                               <verse n="1">
                                  <syl con="d" wordpos="i">cán</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="b" accid="n">
                               <verse n="1">
                                  <syl con="d" wordpos="m">di</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="b" accid.ges="n">
                               <verse n="1">
                                  <syl wordpos="t">da</syl>
                               </verse>
@@ -2016,28 +1991,25 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="agente de suspensión ternaria">G</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.000000" n="4">
-                              <rend label="suspensión ternaria">S</rend>
+                           <harm type="rdiss" place="above" staff="2" tstamp="2" n="6">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
-                              <rend label="agente de suspensión ternaria">G</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="2.5" n="4">
+                              <rend label="solo disonante contra disonancia conocida asc.">Y</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.500000" n="4">
-                              <rend label="anticipación descendente">a</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="8">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3" n="8">
                               <rend label="bordadura superior acentuada">W</rend>
                            </harm>
                         </rdg>
@@ -2074,14 +2046,14 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="g" oct="4">
+                           <note dur="1" oct="4" pname="g">
                               <verse n="1">
                                  <syl>flor</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
-                                 <syl>a</syl>
+                                 <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
                         </layer>
@@ -2137,12 +2109,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="f" oct="4">
+                           <note dur="1" oct="4" pname="f">
                               <verse n="1">
-                                 <syl wordpos="t">que</syl>
+                                 <syl con="d" wordpos="m">que</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl wordpos="t">lla</syl>
                               </verse>
@@ -2172,7 +2144,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.500000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2.5" n="6">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -2215,17 +2187,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="2" pname="a" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl>luz</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="e">
                               <verse n="1">
                                  <syl con="d" wordpos="i">mi</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="b" oct="4" accid.ges="f">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">la</syl>
                               </verse>
@@ -2249,25 +2221,16 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="échappée inferior">e</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.000000" n="2">
-                              <rend label="agente de suspensión ternaria">G</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.000000" n="4">
-                              <rend label="suspensión ternaria">S</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
-                              <rend label="agente de suspensión ternaria">G</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3" n="8">
                               <rend label="bordadura superior acentuada">W</rend>
                            </harm>
                         </rdg>
@@ -2316,17 +2279,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="m">gro</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl wordpos="t">sa</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl con="b">y</syl>
                                  <syl con="d" wordpos="i">a</syl>
@@ -2391,12 +2354,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="c" oct="4">
+                           <note dur="1" oct="4" pname="f">
                               <verse n="1">
                                  <syl wordpos="t">quel</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="i">so</syl>
                               </verse>
@@ -2425,7 +2388,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.500000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2.5" n="6">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -2469,17 +2432,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="2" pname="g" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="m">be</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="e">
                               <verse n="1">
-                                 <syl con="d" wordpos="m">na</syl>
+                                 <syl con="d" wordpos="m">ra</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="b">no</syl>
                                  <syl con="d" wordpos="i">ar</syl>
@@ -2505,19 +2468,16 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="échappée inferior">e</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="3.000000" n="4">
-                              <rend label="bordadura inferior acentuada">w</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3" n="8">
                               <rend label="bordadura superior acentuada">W</rend>
                            </harm>
                         </rdg>
@@ -2544,7 +2504,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="g" oct="4">
+                           <note dots="1" dur="1" oct="4" pname="g">
                               <verse n="1">
                                  <syl wordpos="t">dor</syl>
                               </verse>
@@ -2588,7 +2548,21 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="2" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">vi</syl>
+                              </verse>
+                           </note>
+                           <note dots="1" dur="2" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl wordpos="t">ve</syl>
+                              </verse>
+                           </note>
+                           <note dur="4" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl>en</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -2624,7 +2598,21 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="2" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl>el</syl>
+                              </verse>
+                           </note>
+                           <note dots="1" dur="2" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">sa</syl>
+                              </verse>
+                           </note>
+                           <note dur="4" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">la</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -2649,7 +2637,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.500000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="2.5" n="2">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
                         </rdg>
@@ -2673,7 +2661,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="1" oct="4" pname="d">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">man</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="d"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -2718,7 +2711,11 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dots="1" dur="1" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl wordpos="t">dra</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -2733,7 +2730,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3.5" n="8">
                               <rend label="échappée superior inversa">J</rend>
                            </harm>
                         </rdg>
@@ -2766,7 +2763,21 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="2" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl>él</syl>
+                              </verse>
+                           </note>
+                           <note dots="1" dur="2" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">ma</syl>
+                              </verse>
+                           </note>
+                           <note dur="4" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">ri</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -2791,7 +2802,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.500000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="2.5" n="2">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
                         </rdg>
@@ -2815,7 +2826,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="1" oct="4" pname="d">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">po</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="d"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -2846,22 +2862,10 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="c" oct="5">
+                           <note dots="1" dur="1" oct="4" pname="g">
                               <verse n="1">
-                                 <syl con="d" wordpos="i">mué</syl>
+                                 <syl wordpos="t">sa</syl>
                               </verse>
-                           </note>
-                           <note dots="1" dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">re</syl>
-                              </verse>
-                           </note>
-                           <note dur="4" pname="b" oct="4">
-                              <verse n="1">
-                                 <syl con="b" wordpos="t">te</syl>
-                                 <syl>en</syl>
-                              </verse>
-                              <accid accid.ges="f"/>
                            </note>
                         </layer>
                      </staff>
@@ -2874,14 +2878,6 @@
                            </note>
                         </layer>
                      </staff>
-                     <app>
-                        <lem/>
-                        <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="3.500000" n="4">
-                              <rend label="échappée superior inversa">J</rend>
-                           </harm>
-                        </rdg>
-                     </app>
                   </measure>
                   <measure n="45">
                      <staff n="1">
@@ -2896,21 +2892,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="a" oct="4">
-                              <verse n="1">
-                                 <syl>él</syl>
-                              </verse>
-                           </note>
-                           <note dots="1" dur="2" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">a</syl>
-                              </verse>
-                           </note>
-                           <note dur="4" pname="a" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">be</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -2932,14 +2914,6 @@
                      </staff>
                      <slur startid="#n14v2j8s" endid="#n1wq131r"/>
                      <slur startid="#n1mjgz4u" endid="#neusvmy"/>
-                     <app>
-                        <lem/>
-                        <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.500000" n="2">
-                              <rend label="nota de paso descendente">p</rend>
-                           </harm>
-                        </rdg>
-                     </app>
                   </measure>
                   <measure n="46">
                      <staff n="1">
@@ -2954,12 +2928,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n6z477a" dur="1" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">jue</syl>
-                              </verse>
-                           </note>
-                           <note xml:id="n1fs4jbb" dur="2" pname="f" oct="4"/>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -2987,11 +2956,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">la</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3044,17 +3009,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
-                                 <syl con="d" wordpos="i">pi</syl>
+                                 <syl con="d" wordpos="i">pí</syl>
                               </verse>
                            </note>
-                           <note dots="1" dur="2" pname="e" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl wordpos="t">que</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="b">la</syl>
                                  <syl con="d" wordpos="i">a</syl>
@@ -3087,10 +3052,10 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="8">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3.5" n="8">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
                         </rdg>
@@ -3133,17 +3098,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">be</syl>
                               </verse>
                            </note>
-                           <note dots="1" dur="2" pname="c" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="c">
                               <verse n="1">
                                  <syl wordpos="t">ja</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="c" oct="4">
+                           <note dur="4" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="b">tu</syl>
                                  <syl con="d" wordpos="i">ar</syl>
@@ -3171,6 +3136,14 @@
                            </note>
                         </layer>
                      </staff>
+                     <app>
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="4">
+                              <rend label="apoyatura abordada desde abajo">T</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="50">
                      <staff n="1">
@@ -3201,14 +3174,9 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="e" oct="4">
+                           <note xml:id="a123jif250_n1" dots="1" dur="1" oct="4" pname="d">
                               <verse n="1">
                                  <syl wordpos="t">pón</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
                         </layer>
@@ -3230,13 +3198,14 @@
                      <slur startid="#n1e1t5nh" endid="#n1wtc8b7"/>
                      <slur startid="#n1a68lyx" endid="#nqt3zug"/>
                      <tie startid="#n1b8tlzv" endid="#n1g9lh54"/>
+                     <tie endid="#a123jif251_n1" startid="#a123jif250_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="8">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3.5" n="8">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -3276,17 +3245,8 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="c" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">be</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="d" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">ja</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="a" oct="4">
+                           <note xml:id="a123jif251_n1" dur="2" oct="4" pname="d"/>
+                           <note dur="1" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="b">tu</syl>
                                  <syl con="d" wordpos="i">ar</syl>
@@ -3317,7 +3277,10 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.500000" n="8">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="3.5" n="8">
                               <rend label="échappée superior inversa">J</rend>
                            </harm>
                         </rdg>
@@ -3344,7 +3307,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="g" oct="4">
+                           <note dots="1" dur="1" oct="4" pname="d">
                               <verse n="1">
                                  <syl wordpos="t">pón</syl>
                               </verse>
@@ -3462,7 +3425,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <rest dur="2"/>
+                           <note dur="2" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">ma</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">ri</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3502,7 +3475,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note xml:id="a123jif256_n1" dur="2" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">po</syl>
+                              </verse>
+                           </note>
+                           <note xml:id="a123jif256_n2" dur="1" oct="4" pname="f"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3516,13 +3494,14 @@
                         </layer>
                      </staff>
                      <slur startid="#n1m4qk3f" endid="#n1fagzsa"/>
+                     <slur endid="#a123jif256_n2" startid="#a123jif256_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
                         </rdg>
@@ -3555,7 +3534,21 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="2" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl wordpos="t">sa</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl>la</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">muer</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3567,6 +3560,14 @@
                            </note>
                         </layer>
                      </staff>
+                     <app>
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="3" tstamp="3" n="4">
+                              <rend label="bordadura superior">N</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="58">
                      <staff n="1">
@@ -3591,7 +3592,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="2" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl con="b" wordpos="t">te</syl>
+                                 <syl>en</syl>
+                              </verse>
+                           </note>
+                           <note xml:id="a123jif258_n1" dur="1" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">vi</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3615,6 +3626,7 @@
                         </layer>
                      </staff>
                      <tie startid="#n1pdm44u" endid="#n52gzu7"/>
+                     <tie endid="#a123jif259_n1" startid="#a123jif258_n1"/>
                   </measure>
                   <measure n="59">
                      <staff n="1">
@@ -3639,7 +3651,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note xml:id="a123jif259_n1" dur="2" oct="4" pname="f"/>
+                           <note dur="2" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl wordpos="t">da</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">gus</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3662,6 +3684,14 @@
                            </note>
                         </layer>
                      </staff>
+                     <app>
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
+                              <rend label="nota de paso ascendente">P</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="60">
                      <staff n="1">
@@ -3680,7 +3710,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note xml:id="a123jif260_n1" dur="2" oct="4" pname="d">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">to</syl>
+                              </verse>
+                           </note>
+                           <note xml:id="a123jif260_n2" dur="1" oct="4" pname="c"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3694,13 +3729,17 @@
                         </layer>
                      </staff>
                      <slur startid="#n1eojqcb" endid="#n13xx8ek"/>
+                     <slur endid="#a123jif260_n2" startid="#a123jif260_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="4">
+                              <rend label="apoyatura abordada desde abajo">T</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
                         </rdg>
@@ -3733,7 +3772,21 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="2" oct="4" pname="d">
+                              <verse n="1">
+                                 <syl wordpos="t">sa</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="a">
+                              <verse n="1">
+                                 <syl>la</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">muer</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3770,7 +3823,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note dur="2" oct="4" pname="a">
+                              <verse n="1">
+                                 <syl con="b" wordpos="t">te</syl>
+                                 <syl>en</syl>
+                              </verse>
+                           </note>
+                           <note xml:id="a123jif262_n1" dur="1" oct="4" pname="b" accid="f">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">vi</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3794,6 +3857,7 @@
                         </layer>
                      </staff>
                      <tie startid="#no4h2tu" endid="#n1u3me99"/>
+                     <tie endid="#a123jif263_n1" startid="#a123jif262_n1"/>
                   </measure>
                   <measure n="63">
                      <staff n="1">
@@ -3818,7 +3882,18 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note xml:id="a123jif263_n1" dur="2" oct="4" pname="b" accid="f"/>
+                           <note accid.ges="f" dur="2" oct="4" pname="b">
+                              <verse n="1">
+                                 <syl con="b">da</syl>
+                                 <syl con="d" wordpos="i">a</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">mor</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3841,6 +3916,14 @@
                            </note>
                         </layer>
                      </staff>
+                     <app>
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
+                              <rend label="nota de paso ascendente">P</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="64">
                      <staff n="1">
@@ -3865,7 +3948,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <mRest/>
+                           <note xml:id="a123jif264_n1" dur="2" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl con="d" wordpos="m">ro</syl>
+                              </verse>
+                           </note>
+                           <note xml:id="a123jif264_n2" dur="1" oct="4" pname="f"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3879,13 +3967,17 @@
                         </layer>
                      </staff>
                      <slur startid="#n1ypn8d2" endid="#nbs779w"/>
+                     <slur endid="#a123jif264_n2" startid="#a123jif264_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="4">
+                              <rend label="suspensión binaria">s</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
                         </rdg>
@@ -3923,17 +4015,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
+                           <note dur="1" oct="4" pname="f">
+                              <verse n="1">
+                                 <syl wordpos="t">sa</syl>
+                              </verse>
+                           </note>
                            <rest dur="2"/>
-                           <note dur="2" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl>Que</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">lo</syl>
-                              </verse>
-                           </note>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -3971,21 +4058,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">gra</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">rás</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">sa</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4011,16 +4084,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="m">la</syl>
-                              </verse>
-                           </note>
-                           <note dur="1" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">man</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4056,11 +4120,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">dra</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4092,21 +4152,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">me</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="a" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">jor</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="a" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">vi</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4139,22 +4185,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="a" oct="4">
-                              <verse n="1">
-                                 <syl con="b" wordpos="t">da</syl>
-                                 <syl>en</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">me</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">jor</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4180,11 +4211,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">lla</syl>
-                              </verse>
-                           </note>
+                           <mRest/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4220,17 +4247,13 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">ma</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="e" oct="4">
+                           <rest dur="2"/>
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl con="d" wordpos="i">por</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl wordpos="t">que</syl>
                               </verse>
@@ -4256,10 +4279,10 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="3" n="2">
                               <rend label="anticipación ascendente">A</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3" n="8">
                               <rend label="anticipación descendente">a</rend>
                            </harm>
                         </rdg>
@@ -4287,12 +4310,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="i">ve</syl>
                               </verse>
                            </note>
-                           <note xml:id="n1jjzu2h" dur="1" pname="c" oct="4">
+                           <note xml:id="a123jif273_n1" dur="1" oct="4" pname="g">
                               <verse n="1">
                                  <syl wordpos="t">rás</syl>
                               </verse>
@@ -4317,20 +4340,18 @@
                      <tie startid="#nx52495" endid="#nqkdn21"/>
                      <tie startid="#nnxjczg" endid="#nqbbd7x"/>
                      <tie startid="#n1jjzu2h" endid="#n1uk8l23"/>
+                     <tie endid="#a123jif274_n1" startid="#a123jif273_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="nota de paso ascendente acentuada">V</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
-                              <rend label="suspensión falsa abordada por grado descendente">f</rend>
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.000000" n="4">
-                              <rend label="agente de suspensión binaria">g</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.000000" n="8">
-                              <rend label="suspensión binaria">s</rend>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2" n="8">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -4358,13 +4379,13 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n1uk8l23" dur="2" pname="c" oct="4"/>
-                           <note dur="2" pname="f" oct="4">
+                           <note xml:id="a123jif274_n1" dur="2" oct="4" pname="g"/>
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="d" wordpos="m">be</syl>
                               </verse>
@@ -4405,11 +4426,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="d" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">jue</syl>
                               </verse>
                            </note>
+                           <note dur="1" oct="4" pname="c"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4425,20 +4447,14 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
-                              <rend label="suspensión falsa abordada por grado ascendente">F</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="4">
+                              <rend label="bordadura superior">N</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.000000" n="2">
-                              <rend label="agente de suspensión ternaria">G</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.000000" n="4">
-                              <rend label="suspensión ternaria">S</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -4470,17 +4486,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="c" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl wordpos="t">la</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="c" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl>en</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="c" oct="4">
+                           <note accid.ges="f" dur="2" oct="3" pname="b">
                               <verse n="1">
                                  <syl con="d" wordpos="i">u</syl>
                               </verse>
@@ -4510,10 +4526,10 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="3" n="2">
                               <rend label="anticipación ascendente">A</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="3.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="3" n="6">
                               <rend label="anticipación descendente">a</rend>
                            </harm>
                         </rdg>
@@ -4541,12 +4557,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="d" oct="4">
+                           <note accid.ges="f" dur="2" oct="3" pname="b">
                               <verse n="1">
                                  <syl wordpos="t">na</syl>
                               </verse>
                            </note>
-                           <note xml:id="na18291" dur="1" pname="c" oct="4">
+                           <note xml:id="a123jif277_n1" dur="1" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="d" wordpos="i">blan</syl>
                               </verse>
@@ -4571,16 +4587,17 @@
                      <tie startid="#n1akm53n" endid="#n17sg49c"/>
                      <tie startid="#na18291" endid="#na18292"/>
                      <tie startid="#n16nuzue" endid="#nyso85q"/>
+                     <tie endid="#a123jif278_n1" startid="#a123jif277_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="nota de paso ascendente acentuada">V</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
-                              <rend label="bordadura superior">N</rend>
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2" n="6">
                               <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
                            </harm>
                         </rdg>
@@ -4610,19 +4627,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="na18292" dur="2" pname="c" oct="4"/>
-                           <note dur="2" pname="b" oct="3">
+                           <note xml:id="a123jif278_n1" dur="2" oct="4" pname="c"/>
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="b">ca</syl>
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
-                           <note dur="2" pname="b" oct="3">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">zu</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
                         </layer>
                      </staff>
@@ -4661,13 +4676,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="b" oct="3">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">ce</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
-                           <note dur="1" pname="a" oct="3"/>
+                           <note dur="1" oct="4" pname="c"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4683,13 +4697,13 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
+                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="4">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
                         </rdg>
@@ -4732,18 +4746,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="b" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl wordpos="t">na</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl>de</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl>más</syl>
                               </verse>
@@ -4772,7 +4785,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="3.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="3" n="2">
                               <rend label="anticipación ascendente">A</rend>
                            </harm>
                         </rdg>
@@ -4809,12 +4822,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl con="d" wordpos="i">di</syl>
                               </verse>
                            </note>
-                           <note xml:id="nry1t6h" dur="1" pname="g" oct="4">
+                           <note xml:id="a123jif281_n1" dur="1" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="m">vi</syl>
                               </verse>
@@ -4839,6 +4852,7 @@
                      <tie startid="#n1kb8sa2" endid="#n9cudmc"/>
                      <tie startid="#n1jlvqzr" endid="#ncqwqml"/>
                      <tie startid="#nry1t6h" endid="#nyq323r"/>
+                     <tie endid="#a123jif282_n1" startid="#a123jif281_n1"/>
                   </measure>
                   <measure n="82">
                      <staff n="1">
@@ -4873,13 +4887,13 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="nyq323r" dur="2" pname="g" oct="4"/>
-                           <note dur="2" pname="g" oct="4">
+                           <note xml:id="a123jif282_n1" dur="2" oct="4" pname="f"/>
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl wordpos="t">no</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="g" oct="4">
+                           <note xml:id="a123jif282_n2" dur="2" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="d" wordpos="i">can</syl>
                               </verse>
@@ -4902,14 +4916,18 @@
                         </layer>
                      </staff>
                      <slur startid="#n1vl1un1" endid="#n17j9zbq"/>
+                     <slur endid="#a123jif283_n2" startid="#a123jif282_n2"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.000000" n="2">
-                              <rend label="solo disonante contra disonancia conocida asc.">Y</rend>
+                           <harm type="rdiss" place="above" staff="4" tstamp="2" n="2">
+                              <rend label="anticipación ascendente">A</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.000000" n="8">
-                              <rend label="nota de paso descendente">p</rend>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2" n="8">
+                              <rend label="solo disonante contra disonancia conocida desc.">y</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="3" n="4">
+                              <rend label="apoyatura abordada desde arriba">t</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -4937,16 +4955,8 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">dor</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">can</syl>
-                              </verse>
-                           </note>
+                           <note dur="2" oct="4" pname="d"/>
+                           <note xml:id="a123jif283_n2" accid="s" dur="1" oct="4" pname="f"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -4985,11 +4995,10 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="b" oct="4">
+                           <note dots="1" dur="1" oct="4" pname="g">
                               <verse n="1">
                                  <syl wordpos="t">dor</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
                         </layer>
                      </staff>
@@ -5030,17 +5039,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="2" pname="f" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl>si</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="g">
                               <verse n="1">
                                  <syl>la</syl>
                               </verse>
                            </note>
-                           <note xml:id="nitzx0o" dur="2" pname="a" oct="4">
+                           <note xml:id="a123jif285_n1" accid.ges="s" dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="i">sa</syl>
                               </verse>
@@ -5055,6 +5064,7 @@
                      <tie startid="#n10l8ih" endid="#n7r1mm"/>
                      <tie startid="#nitzx0o" endid="#nmra7bk"/>
                      <tie startid="#nitzx0o" endid="#nmra7bk"/>
+                     <tie endid="#a123jif286_n1" startid="#a123jif285_n1"/>
                   </measure>
                   <measure n="86">
                      <staff n="1">
@@ -5095,18 +5105,18 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="nmra7bk" dur="4" pname="a" oct="4"/>
-                           <note dur="4" pname="a" oct="4">
+                           <note xml:id="a123jif286_n1" accid.ges="s" dur="4" oct="4" pname="f"/>
+                           <note accid.ges="s" dur="4" oct="4" pname="f">
                               <verse n="1">
                                  <syl con="d" wordpos="m">la</syl>
                               </verse>
                            </note>
-                           <note dots="1" dur="2" pname="g" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="m">man</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="b" wordpos="t">dra</syl>
                                  <syl>en</syl>
@@ -5156,12 +5166,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="c" oct="4">
+                           <note dur="1" oct="4" pname="e">
                               <verse n="1">
                                  <syl con="d" wordpos="i">fue</syl>
                               </verse>
                            </note>
-                           <note xml:id="n1ljkmah" dur="2" pname="e" oct="4">
+                           <note xml:id="a123jif287_n1" dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl wordpos="t">go</syl>
                               </verse>
@@ -5192,14 +5202,18 @@
                      <tie startid="#nlwnl1k" endid="#ny3ra1t"/>
                      <tie startid="#n1ljkmah" endid="#n16u5kei"/>
                      <tie startid="#n1ljkmah" endid="#n16u5kei"/>
+                     <tie endid="#a123jif288_n1" startid="#a123jif287_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="2.500000" n="2">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="4" tstamp="2.5" n="2">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.500000" n="6">
-                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
+                           <harm type="rdiss" place="above" staff="2" tstamp="2.5" n="6">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -5227,7 +5241,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n16u5kei" dur="2" pname="e" oct="4"/>
+                           <note xml:id="a123jif288_n1" dur="2" oct="4" pname="e"/>
                            <rest dur="1"/>
                         </layer>
                      </staff>
@@ -5290,17 +5304,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="2" pname="f" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="f">
                               <verse n="1">
                                  <syl>si</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="e">
                               <verse n="1">
                                  <syl>la</syl>
                               </verse>
                            </note>
-                           <note xml:id="n1ynpm58" dur="2" pname="a" oct="4">
+                           <note xml:id="a123jif289_n1" dur="2" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="d" wordpos="i">sa</syl>
                               </verse>
@@ -5319,13 +5333,11 @@
                      <tie startid="#nb3drto" endid="#n1fjxxy"/>
                      <tie startid="#n1ynpm58" endid="#npl9720"/>
                      <tie startid="#n1ynpm58" endid="#npl9720"/>
+                     <tie endid="#a123jif290_n1" startid="#a123jif289_n1"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.500000" n="4">
-                              <rend label="nota de paso ascendente">P</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="8">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
@@ -5365,18 +5377,18 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="npl9720" dur="4" pname="a" oct="4"/>
-                           <note xml:id="nstnt9m" dur="4" pname="a" oct="4">
+                           <note xml:id="a123jif290_n1" dur="4" oct="4" pname="c"/>
+                           <note dur="4" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="d" wordpos="m">la</syl>
                               </verse>
                            </note>
-                           <note dots="1" dur="2" pname="g" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">man</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="b" wordpos="t">dra</syl>
                                  <syl>en</syl>
@@ -5394,28 +5406,25 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
-                              <rend label="suspensión binaria">s</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.500000" n="8">
+                           <harm type="rdiss" place="above" staff="3" tstamp="1.5" n="4">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="1.5" n="8">
                               <rend label="suspensión con nota repetida">r</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="3.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="3" n="6">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="3.500000" n="4">
-                              <rend label="solo disonante contra disonancia conocida desc.">y</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="3.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="3.5" n="8">
                               <rend label="solo disonante contra disonancia conocida desc.">y</rend>
                            </harm>
                         </rdg>
@@ -5447,12 +5456,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="c" oct="4">
+                           <note dur="2" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="d" wordpos="i">fue</syl>
                               </verse>
                            </note>
-                           <note dur="1" pname="c" oct="4">
+                           <note dur="1" oct="4" pname="c">
                               <verse n="1">
                                  <syl wordpos="t">go</syl>
                               </verse>
@@ -5493,12 +5502,12 @@
                      <staff n="3">
                         <layer n="1">
                            <rest dur="2"/>
-                           <note dots="1" dur="2" pname="d" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl>si</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="e" oct="4">
+                           <note dur="4" oct="4" pname="e">
                               <verse n="1">
                                  <syl>la</syl>
                               </verse>
@@ -5562,17 +5571,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="2" pname="d" oct="4">
+                           <note dots="1" dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="i">ma</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">ri</syl>
                               </verse>
                            </note>
-                           <note xml:id="naiuo12" dur="2" pname="a" oct="4">
+                           <note xml:id="a123jif293_n1" dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">po</syl>
                               </verse>
@@ -5603,6 +5612,15 @@
                      <tie startid="#naiuo12" endid="#naiuo13"/>
                      <tie startid="#n1flq82l" endid="#nzi4xea"/>
                      <tie startid="#naiuo12" endid="#naiuo13"/>
+                     <tie endid="#a123jif294_n1" startid="#a123jif293_n1"/>
+                     <app>
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="2" tstamp="3" n="6">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="94">
                      <staff n="1">
@@ -5638,14 +5656,14 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="naiuo13" dur="4" pname="a" oct="4"/>
-                           <note dur="4" pname="g" oct="4">
+                           <note xml:id="a123jif294_n1" dur="4" oct="4" pname="d"/>
+                           <note dur="4" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="b" wordpos="t">sa</syl>
                                  <syl>en</syl>
                               </verse>
                            </note>
-                           <note xml:id="nhqam2a" dur="1" pname="f" oct="4">
+                           <note xml:id="a123jif294_n2" dur="1" oct="4" pname="c">
                               <verse n="1">
                                  <syl con="d" wordpos="i">lu</syl>
                               </verse>
@@ -5673,6 +5691,7 @@
                      <tie startid="#n1e23b1w" endid="#n1yrj0u"/>
                      <tie startid="#nhqam2a" endid="#n3sqyug"/>
                      <tie startid="#nhqam2a" endid="#n3sqyug"/>
+                     <tie endid="#a123jif295_n1" startid="#a123jif294_n2"/>
                   </measure>
                   <measure n="95">
                      <staff n="1">
@@ -5703,15 +5722,15 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n3sqyug" dur="2" pname="f" oct="4"/>
-                           <note dur="2" pname="e" oct="4">
+                           <note xml:id="a123jif295_n1" dur="2" oct="4" pname="c"/>
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl wordpos="t">ces</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note xml:id="a123jif295_n2" dur="2" oct="4" pname="d">
                               <verse n="1">
-                                 <syl>en</syl>
+                                 <syl con="d" wordpos="i">lu</syl>
                               </verse>
                            </note>
                         </layer>
@@ -5733,6 +5752,8 @@
                      </staff>
                      <slur startid="#nd40odf" endid="#n1jo5drz"/>
                      <tie startid="#nd40odf" endid="#n1hwgoj3"/>
+                     <tie endid="#a123jif296_n1" startid="#a123jif295_n2"/>
+                     <slur endid="#a123jif296_n2" startid="#a123jif295_n2"/>
                   </measure>
                   <measure n="96">
                      <staff n="1">
@@ -5752,11 +5773,8 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="d" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">lu</syl>
-                              </verse>
-                           </note>
+                           <note xml:id="a123jif296_n1" dur="2" oct="4" pname="d"/>
+                           <note xml:id="a123jif296_n2" dur="1" oct="4" pname="c"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -5771,17 +5789,20 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
-                              <rend label="agente de suspensión binaria">g</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="agente de suspensión binaria">g</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="2" n="4">
+                              <rend label="bordadura inferior">n</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="2" tstamp="2" n="6">
+                              <rend>l</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -5807,7 +5828,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="g" oct="4">
+                           <note dots="1" dur="1" oct="4" pname="d">
                               <verse n="1">
                                  <syl wordpos="t">ces</syl>
                               </verse>
@@ -5860,17 +5881,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl>tú</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="a">
                               <verse n="1">
                                  <syl>de</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="a">
                               <verse n="1">
                                  <syl>las</syl>
                               </verse>
@@ -5930,17 +5951,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="a" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl con="d" wordpos="i">flo</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl wordpos="t">res</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="g" oct="4">
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl>la</syl>
                               </verse>
@@ -5966,6 +5987,14 @@
                            </note>
                         </layer>
                      </staff>
+                     <app>
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="4">
+                              <rend label="anticipación descendente">a</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="100">
                      <staff n="1">
@@ -5999,11 +6028,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="1" pname="f" oct="4">
+                           <note dur="2" oct="4" pname="f">
                               <verse n="1">
-                                 <syl>más</syl>
+                                 <syl con="u">más</syl>
                               </verse>
                            </note>
+                           <note dur="1" oct="4" pname="c"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -6019,7 +6049,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="nota de paso descendente acentuada">v</rend>
                            </harm>
                         </rdg>
@@ -6061,12 +6091,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl>más</syl>
+                              </verse>
+                           </note>
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="i">be</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" oct="4" pname="d">
                               <verse n="1">
                                  <syl wordpos="t">lla</syl>
                               </verse>
@@ -6090,13 +6125,13 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="4" tstamp="1.000000" n="2">
+                           <harm type="rdiss" place="above" staff="4" tstamp="1" n="2">
                               <rend label="agente de suspensión ternaria">G</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="6">
                               <rend label="agente de suspensión ternaria">G</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
                               <rend label="suspensión ternaria">S</rend>
                            </harm>
                         </rdg>
@@ -6123,7 +6158,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n18ou9ed" dots="1" dur="1" pname="e" oct="4">
+                           <note xml:id="a123jif2102_n1" dots="1" dur="1" oct="4" pname="e">
                               <verse n="1">
                                  <syl>flor</syl>
                               </verse>
@@ -6144,6 +6179,7 @@
                      <tie startid="#nc1uvj2" endid="#n26ady2"/>
                      <tie startid="#n18ou9ed" endid="#nj1x42e"/>
                      <tie startid="#n18ou9ed" endid="#nj1x42e"/>
+                     <tie endid="#a123jif2103_n1" startid="#a123jif2102_n1"/>
                   </measure>
                   <measure n="103" right="end">
                      <staff n="1">
@@ -6158,7 +6194,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="nj1x42e" dots="1" dur="1" pname="e" oct="4"/>
+                           <note xml:id="a123jif2103_n1" dots="1" dur="1" oct="4" pname="e"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -6188,7 +6224,7 @@
                                  <staffDef n="3" lines="5" keysig="1f" meter.sym="common">
                                     <label>Alto</label>
                                     <labelAbbr>A.</labelAbbr>
-                                    <clef shape="G" line="2" corresp="#cjkdud2"/>
+                                    <clef shape="G" line="2" corresp="#cjkdud3"/>
                                  </staffDef>
                               </staffGrp>
                            </staffGrp>
@@ -6211,7 +6247,7 @@
                                  <staffDef n="3" lines="5" keysig="1f" meter.sym="common">
                                     <label>Alto</label>
                                     <labelAbbr>A.</labelAbbr>
-                                    <clef shape="C" line="1" corresp="#cjkdud2"/>
+                                    <clef shape="G" line="2" corresp="#cjkdud3"/>
                                  </staffDef>
                               </staffGrp>
                            </staffGrp>
@@ -6275,7 +6311,7 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.750000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.75" n="8">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
                         </rdg>
@@ -6444,7 +6480,7 @@
                                  <syl con="d" wordpos="m">la</syl>
                               </verse>
                            </note>
-                           <note dur="8" pname="d" oct="4">
+                           <note dur="8" pname="f" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="m">jue</syl>
                               </verse>
@@ -6455,7 +6491,7 @@
                                  <syl con="d" wordpos="m">man</syl>
                               </verse>
                            </note>
-                           <note dur="8" pname="c" oct="4">
+                           <note dur="8" pname="e" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">la</syl>
                               </verse>
@@ -6466,7 +6502,7 @@
                                  <syl wordpos="t">dra</syl>
                               </verse>
                            </note>
-                           <note dur="8" pname="c" oct="4">
+                           <note dur="8" pname="d" oct="4">
                               <verse n="1">
                                  <syl>si</syl>
                               </verse>
@@ -6478,7 +6514,7 @@
                                  <syl>es</syl>
                               </verse>
                            </note>
-                           <note dur="8" pname="d" oct="4">
+                           <note dur="8" pname="c" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">pre</syl>
                               </verse>
@@ -6497,17 +6533,35 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.250000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1.25" n="6">
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.250000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1.25" n="8">
                               <rend label="échappée inferior inversa">j</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.500000" n="4">
-                              <rend label="bordadura inferior acentuada">w</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="2" n="4">
+                              <rend label="bordadura superior acentuada">W</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2" n="8">
+                              <rend label="bordadura superior acentuada">W</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="2.25" n="4">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.25" n="8">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="2.5" n="4">
                               <rend label="nota de paso descendente acentuada">v</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="8">
+                              <rend label="nota de paso descendente acentuada">v</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="2.75" n="4">
+                              <rend label="échappée inferior">e</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.75" n="8">
+                              <rend label="solo disonante contra disonancia conocida desc.">y</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -6593,7 +6647,7 @@
                      <staff n="3">
                         <layer n="1">
                            <beam>
-                              <note dur="8" pname="c" oct="4">
+                              <note dur="4" pname="f" oct="4">
                                  <verse n="1">
                                     <syl con="d" wordpos="m">ten</syl>
                                  </verse>
@@ -6604,11 +6658,9 @@
                                     <syl con="d" wordpos="i">vi</syl>
                                  </verse>
                               </note>
-                              <note dur="8" pname="d" oct="4"/>
-                              <note dur="8" pname="e" oct="4"/>
-                              <note dur="8" pname="f" oct="4"/>
+                              <note dur="4" pname="g" oct="4"/>
                            </beam>
-                           <note dur="4" pname="f" oct="4">
+                           <note dur="4" pname="a" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">des,</syl>
                               </verse>
@@ -6619,7 +6671,7 @@
                                  <syl wordpos="t">ves</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="b" oct="4">
+                           <note dur="4" pname="f" oct="4">
                               <verse n="1">
                                  <syl>la</syl>
                               </verse>
@@ -6629,30 +6681,17 @@
                               <verse n="3">
                                  <syl>en</syl>
                               </verse>
-                              <accid accid="f"/>
                            </note>
                         </layer>
                      </staff>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.000000" n="4">
-                              <rend label="solo disonante contra disonancia conocida desc.">y</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="4">
+                              <rend label="apoyatura abordada desde arriba">t</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.000000" n="6">
-                              <rend label="suspensión binaria">s</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.000000" n="8">
-                              <rend label="agente de suspensión binaria">g</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.250000" n="4">
-                              <rend label="nota de paso ascendente">P</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.750000" n="4">
-                              <rend label="anticipación ascendente">A</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.750000" n="8">
-                              <rend label="nota de paso descendente">p</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="1.5" n="4">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -6822,7 +6861,7 @@
                                  <syl>el</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="e" oct="4">
+                           <note dur="4" pname="g" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">so</syl>
                               </verse>
@@ -6832,7 +6871,6 @@
                               <verse n="3">
                                  <syl con="d" wordpos="i">cen</syl>
                               </verse>
-                              <accid accid="f"/>
                            </note>
                            <beam>
                               <note dur="8" pname="g" oct="4">
@@ -6846,9 +6884,7 @@
                                     <syl con="u" wordpos="t">tro</syl>
                                  </verse>
                               </note>
-                              <note dur="8" pname="e" oct="4">
-                                 <accid accid.ges="f"/>
-                              </note>
+                              <note dur="8" pname="f" oct="4"/>
                            </beam>
                            <note dur="8" pname="f" oct="4">
                               <verse n="1">
@@ -6871,7 +6907,6 @@
                               <verse n="3">
                                  <syl con="d" wordpos="i">ar</syl>
                               </verse>
-                              <accid accid.ges="f"/>
                            </note>
                         </layer>
                      </staff>
@@ -6879,14 +6914,23 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.250000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1.25" n="8">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.750000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1.75" n="6">
                               <rend label="nota de paso descendente">p</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.000000" n="8">
-                              <rend label="apoyatura abordada desde abajo">T</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="2" n="4">
+                              <rend label="suspensión binaria">s</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2" n="8">
+                              <rend label="agente de suspensión binaria">g</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="2.25" n="4">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2.25" n="8">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -7072,16 +7116,16 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.500000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1.5" n="8">
                               <rend label="suspensión falsa abordada por grado descendente">f</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.000000" n="4">
+                           <harm type="rdiss" place="above" staff="3" tstamp="2" n="4">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2" n="6">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2" n="8">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
                         </rdg>
@@ -7225,7 +7269,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dots="1" dur="4" pname="g" oct="4">
+                           <note dots="1" dur="4" pname="d" oct="4">
                               <verse n="1">
                                  <syl>flor</syl>
                               </verse>
@@ -7236,7 +7280,7 @@
                                  <syl wordpos="t">dor</syl>
                               </verse>
                            </note>
-                           <note dur="8" pname="c" oct="4">
+                           <note dur="8" pname="d" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
@@ -7246,9 +7290,8 @@
                               <verse n="3">
                                  <syl>en</syl>
                               </verse>
-                              <accid accid="s"/>
                            </note>
-                           <note dur="4" pname="d" oct="4">
+                           <note dur="4" pname="c" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">quel</syl>
                               </verse>
@@ -7290,11 +7333,14 @@
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.750000" n="4">
-                              <rend label="échappée inferior inversa">j</rend>
+                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="8">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1.750000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="1.75" n="8">
                               <rend label="nota de paso ascendente">P</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="1" tstamp="2" n="8">
+                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -7392,7 +7438,7 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
-                           <note dur="8" pname="a" oct="4">
+                           <note dur="8" pname="g" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">di</syl>
                               </verse>
@@ -7403,7 +7449,7 @@
                                  <syl wordpos="t">mor</syl>
                               </verse>
                            </note>
-                           <note dur="8" pname="a" oct="4">
+                           <note dur="8" pname="f" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="m">ri</syl>
                               </verse>
@@ -7428,6 +7474,17 @@
                            </note>
                         </layer>
                      </staff>
+                     <app>
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="3" tstamp="1.5" n="4">
+                              <rend label="nota de paso descendente acentuada">v</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="1.75" n="4">
+                              <rend label="bordadura inferior">n</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="111">
                      <staff n="1">
@@ -7525,7 +7582,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="8" pname="f" oct="4">
+                           <note dur="8" pname="a" oct="4">
                               <verse n="1">
                                  <syl>le</syl>
                               </verse>
@@ -7537,7 +7594,7 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
-                           <note dur="8" pname="e" oct="4">
+                           <note dur="8" pname="g" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">di</syl>
                               </verse>
@@ -7548,7 +7605,7 @@
                                  <syl wordpos="t">mor</syl>
                               </verse>
                            </note>
-                           <note xml:id="note-L70F3" dur="2" pname="f" oct="4">
+                           <note xml:id="na231L70F3" dur="2" pname="f" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="m">ri</syl>
                               </verse>
@@ -7559,27 +7616,27 @@
                                  <syl con="d" wordpos="i">cen</syl>
                               </verse>
                            </note>
-                           <note xml:id="note-L73F3" dur="4" pname="e" oct="4"/>
+                           <note xml:id="na231L73F3" dur="4" pname="e" oct="4"/>
                         </layer>
                      </staff>
                      <slur startid="#nekg65v" endid="#n37xdw"/>
-                     <slur startid="#note-L70F3" endid="#note-L73F3"/>
+                     <slur startid="#na231L70F3" endid="#na231L73F3"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="1.250000" n="4">
-                              <rend label="bordadura inferior">n</rend>
+                           <harm type="rdiss" place="above" staff="3" tstamp="1.25" n="4">
+                              <rend label="nota de paso descendente">p</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="1.500000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1.5" n="6">
                               <rend label="bordadura superior acentuada">W</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.000000" n="4">
+                           <harm type="rdiss" place="above" staff="3" tstamp="2" n="4">
                               <rend label="suspensión binaria">s</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2" n="6">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.500000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2.5" n="6">
                               <rend label="bordadura superior acentuada">W</rend>
                            </harm>
                         </rdg>
@@ -7918,7 +7975,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="note-L88F3" dur="4" pname="f" oct="4">
+                           <note xml:id="na231L88F3" dur="4" pname="a" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">ar</syl>
                               </verse>
@@ -7931,21 +7988,18 @@
                            </note>
                            <note dur="4" pname="g" oct="4"/>
                            <note dots="1" dur="4" pname="f" oct="4"/>
-                           <note xml:id="note-L93F3" dur="8" pname="g" oct="4"/>
+                           <note xml:id="na231L93F3" dur="8" pname="f" oct="4"/>
                         </layer>
                      </staff>
-                     <slur startid="#note-L88F3" endid="#note-L93F3"/>
+                     <slur startid="#na231L88F3" endid="#na231L93F3"/>
                      <app>
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="2.000000" n="6">
+                           <harm type="rdiss" place="above" staff="2" tstamp="2" n="6">
                               <rend label="agente de suspensión binaria">g</rend>
                            </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2.000000" n="8">
+                           <harm type="rdiss" place="above" staff="1" tstamp="2" n="8">
                               <rend label="suspensión binaria">s</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="3" tstamp="2.750000" n="4">
-                              <rend label="nota de paso ascendente">P</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -7985,7 +8039,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="a" oct="4">
+                           <note dur="2" pname="g" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">pón</syl>
                               </verse>
