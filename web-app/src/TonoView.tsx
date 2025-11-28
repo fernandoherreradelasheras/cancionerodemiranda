@@ -4,7 +4,7 @@ import { Context } from './Context'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
 import { Col, Progress, ProgressProps, Row, Space, Typography } from 'antd'
-import { ScoreProperties, VisualizationOptions, Reconstruction, ScoreViewer, ScoreViewerRef } from 'score-viewer'
+import { ScoreProperties, ScoreViewer, ScoreViewerRef } from 'score-viewer'
 
 
 const MINIMUM_SCORE_HEIGHT = 300
@@ -97,7 +97,6 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
     const [scoreSize, setScoreSize] = useState<{ width: string, height: string, scrollTo: number | null } | null>(null)
     const [scoreProperties, setScoreProperties] = useState<ScoreProperties | null>(null)
-    const [visualizationOptions, setVisualizationOptions] = useState<VisualizationOptions | null>(null)
     const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
 
     const tonoStatus = useMemo(() => definitions && tonoIndex != null ? definitions[tonoIndex] : null, [definitions, tonoIndex])
@@ -128,28 +127,6 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
         }
     }
 
-    const onVisualizationOptionsChanged = (changedOptions: VisualizationOptions) => {
-        setVisualizationOptions(
-            (visualizationOptions: VisualizationOptions | null) => ({ ...visualizationOptions, ...changedOptions })
-        )
-    }
-
-    const reconstructionsFromOptions = useMemo(() => {
-        if (!visualizationOptions?.showReconstructions ||
-            Object.values(visualizationOptions.showReconstructions).length <= 0) {
-            return null
-        }
-
-        const activeReconstruction = Object.entries(visualizationOptions.showReconstructions)
-            .filter(([_, label]) => label != null && label != "none")
-
-        const reconstructionTexts = activeReconstruction.map(([staff, label]) => {
-            const voiceName = scoreProperties?.reconstructions.find((r: Reconstruction) => r.staff == staff)?.voiceName
-            const model = (label as string).split(":")[3]
-            return `${voiceName ? voiceName : staff}: ${model}`
-        })
-        return reconstructionTexts.join(", ")
-    }, [visualizationOptions])
 
     const editor = scoreProperties?.editor
     const reconstruction = scoreProperties?.reconstructionBy
@@ -188,7 +165,6 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
 
     useEffect(() => {
-        setVisualizationOptions(null)
         if (scoreViewerRef.current) {
             scoreViewerRef.current.selectScore(tonoIndex)
         }
@@ -232,8 +208,8 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     xs={{ flex: '50%' }}>
                     {scoreProperties ? <div>
                         <> <Typography.Text>Transcripción: {editor}</Typography.Text><br /> </>
-                        {reconstruction || reconstructionsFromOptions ?
-                            <> <Typography.Text>Reconstrucción: {reconstruction || reconstructionsFromOptions}</Typography.Text><br /> </> : null}
+                        {reconstruction ?
+                            <> <Typography.Text>Reconstrucción: {reconstruction}</Typography.Text><br /> </> : null}
                         <> <Typography.Text>Num compases: {numMeasures}</Typography.Text> </>
                     </div> : null}
                 </Col>
@@ -273,7 +249,6 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                         height={scoreSize?.height}
                         config={scoreViewerConfig}
                         ref={scoreViewerRef}
-                        onVisualizationOptionsChanged={onVisualizationOptionsChanged}
                         onScoreAnalyzed={onScoreAnalyzed} /> : null}
             </div>
         </div>
