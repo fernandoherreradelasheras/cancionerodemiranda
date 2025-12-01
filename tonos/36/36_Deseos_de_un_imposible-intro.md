@@ -1,4 +1,6 @@
-El Romance ***Deseos de un imposible*** fue publicado por primera vez en la ***Primavera y flor de los mejores romances*** compilada por el licenciado Pedro Arias Perez de 1621. Aparece cantado en *La desdicha por la honra*, una de las cuatro novelas cortas que **Lope de Vega** escribiera a Marcia Leonarda y que fue publicada por primera vez en las *Novelas de La Circe* en 1624. Encontramos también el texto en el cancionero del Duque de Alba I-Nn MS XVII.30, compilado entre 1623 y 1632 en Nápoles[^1].
+El Romance ***Deseos de un imposible*** fue publicado por primera vez en la ***Primavera y flor de los mejores romances*** compilada por el licenciado Pedro Arias Perez de 1621. Aparece cantado en *La desdicha por la honra*, una de las cuatro novelas cortas que **Lope de Vega** escribiera a Marcia Leonarda y que fue publicada por primera vez en las *Novelas de La Circe* en 1624.
+
+Encontramos también el texto en dos cancioneros manuscritos: el cancionero del Duque de Alba I-Nn MS XVII.30, compilado entre 1623 y 1632 en Nápoles[^1] y el cancionero E-Bbc Ms 4158. Ambos cancioneros contienen alfabeto y cifras para el acompañamiento con guitarra de algunos de sus poemas, aunque ninguno incluye para _Deseos de un imposible_.
 
 En el manuscrito MSS/3700 de la Biblioteca Nacional de España, aparece atribuído al Príncipe de Esquilache (Francisco de Borja y Aragón) un romance que comienza con los dos mismos versos. El mismo íncipit aparece en el manuscrito US-NYhsa B2477 de la Hispanic Society de Nueva York cuya descripción en el catálogo de Rodríguez-Moñino transcribe una nota adjunta de Carolina Coronado: 
 
@@ -9,7 +11,7 @@ TODO: Pendiente de consultar este manuscrito.
 [^1]: RUBIO ÁRQUEZ, Marcial: El cancionero del Duquie de Alba (Ms. XVII.30 de la Biblioteca Nazionale de Nápoles)
 [^2]: RODRÍGUEZ-MONIÑO, Antonio: Catálogo de los manuscritos poéticos castellanos existentes en la biblioteca de The Hispanic Society of America. Manuscrito XXIX.
 
-El texto del Cancionero de Miranda concuerda al completo con el la *Primavera y flor de los mejores romance* mientras que el usado por Lope añade al final tres estrofas más (Hermoso dueño deseo / Tanto le estimo, que creo / Para su belleza quiero). La versión del cancionero del Duque de Alba concuerda con el resto de versiones en las tres primeras estrofas pero las cinco siguientes con únicas. 
+El texto del Cancionero de Miranda concuerda al completo con el la *Primavera y flor de los mejores romance* mientras que el usado por Lope añade al final tres estrofas más (Hermoso dueño deseo / Tanto le estimo, que creo / Para su belleza quiero). La versión del cancionero del Duque de Alba concuerda con el resto de versiones en las tres primeras estrofas pero las cinco siguientes con únicas. Así mismo, la versión del E-Bbc Ms 4158 comparte las cuatro primeras coplas con el resto de versiones y añade siete diferentes.
 
 Existe un testimonio musical de este romance (únicamente la primera copla) en el ***Libro de música de Louise de la Font***, anterior al Cancionero de Miranda según la datación ofrecida por Francisco Valdivia (ca. 1643)[^3]
 
