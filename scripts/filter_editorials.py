@@ -15,7 +15,7 @@ def process_mei_file(input_file):
         root = tree.getroot()
 
         # editorial elements: move their children one level up and remove them
-        for element_name in ['corr', 'sic', 'unclear', 'supplied', 'reg', 'ending']:
+        for element_name in ['corr', 'sic', 'unclear', 'supplied', 'reg']:
             xpath_query = f'.//mei:{element_name}'
             elements = root.xpath(xpath_query, namespaces=NSMAP)
             for element in reversed(elements):
