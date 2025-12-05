@@ -39,7 +39,9 @@ idsForApp = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not None an
 print(f'Found {len(idsForApp)} ids from app elements that will be kepts: {idsForApp}')
 idsForExpansion = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not None and elem.tag == f'{{{MEI_NS}}}expansion'}
 print(f'Found {len(idsForExpansion)} ids from expansion elements that will be kepts: {idsForExpansion}')
-idsToKeep = idsReferenced | idsLinked | idsWithParentAnnot | idsForApp | idsForExpansion | { "FHH", "OMA" }
+idsForSource = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not None and elem.tag == f'{{{MEI_NS}}}source'}
+print(f'Found {len(idsForSource)} ids from source elements that will be kepts: {idsForSource}')
+idsToKeep = idsReferenced | idsLinked | idsWithParentAnnot | idsForApp | idsForExpansion | idsForSource | { "FHH", "OMA", "JJM" }
 
 for e in [elem for elem in tree.iter() for item in elem.items() if item[0] == ID and item[1] not in idsToKeep]:
     e.attrib.pop(ID, None)
