@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -281,7 +281,7 @@
                                  <syl wordpos="t">ma</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" pname="f" oct="4" accid.ges="s">
                               <verse n="1">
                                  <syl con="b" wordpos="t">do</syl>
                                  <syl con="d" wordpos="i">es</syl>
@@ -336,6 +336,9 @@
                            </harm>
                            <harm type="rdiss" place="above" staff="4" tstamp="3" n="4">
                               <rend label="nota de paso ascendente">P</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="3" n="6">
+                              <rend label="bordadura inferior">n</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -528,8 +531,12 @@
                      <staff n="5">
                         <layer n="1">
                            <note dur="1" pname="d" oct="3"/>
-                           <note xml:id="n305cgl" dur="2" pname="g" oct="2"/>
+                           <sic xml:id="s910283">
+                              <note xml:id="n305cgl" dur="2" pname="g" oct="2"/>
+                           </sic>
                         </layer>
+                        <annot plist="#s910283">El Sol del guión introduce una breve disonancia con el La y el Fa# que aún sostienen el Tiple 2º y el Alto.
+                                       Consideramos esta disonancia intencionada, habida cuenta de que se repite el pasaje en pp. acortando esta vez las notas finales donde se producía la disonancia. Un madrigalismo de una celebración ruidosa (como el grito de "¡alarma!" que cierra cada copla) que se trata de contener.</annot>
                      </staff>
                      <tie startid="#n305cgl" endid="#n1v94at9"/>
                      <app>
@@ -761,7 +768,7 @@
                                  <syl wordpos="t">ma</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" pname="f" oct="4" accid.ges="s">
                               <verse n="1">
                                  <syl con="b" wordpos="t">do</syl>
                                  <syl con="d" wordpos="i">es</syl>
@@ -816,6 +823,9 @@
                            </harm>
                            <harm type="rdiss" place="above" staff="4" tstamp="3" n="4">
                               <rend label="nota de paso ascendente">P</rend>
+                           </harm>
+                           <harm type="rdiss" place="above" staff="3" tstamp="3" n="6">
+                              <rend label="bordadura inferior">n</rend>
                            </harm>
                         </rdg>
                      </app>
@@ -2637,7 +2647,7 @@
                         </layer>
                      </staff>
                      <bracketSpan func="coloration" lwidth="0.5vu" staff="1" startid="#id254" endid="#id255"/>
-               </measure>
+                  </measure>
                </section>
             </score>
          </mdiv>
