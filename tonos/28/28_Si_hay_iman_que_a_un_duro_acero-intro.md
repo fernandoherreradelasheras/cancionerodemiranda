@@ -9,7 +9,7 @@ Poético-Musical Hispano de Lisboa cuya parte de alto conservada, en parcialment
 a la conservada en el Cancionero de Miranda. Esto es: la parte de alto allí conservada es la encargada
 de cantar la parte solista pero luego en la responsión a cuatro resulta ser la misma voz que la del
 Cancionero de Miranda. No es infrecuente esta situación ya que en otras concordancias entre ambos cancioneros
-las partes de los timples aparencen intercambiadas entre coplas y estribillo.
+las partes de los tiples aparencen intercambiadas entre coplas y estribillo.
  
 Para esta edición tomamos para el alto primero la sección a solo de la voz del alto conservada en el Cancionero poético-musical
 Hispano de Lisboa junto con la sección correpondiente de aquel guion, pues 
