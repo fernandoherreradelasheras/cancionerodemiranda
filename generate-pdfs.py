@@ -761,7 +761,7 @@ def generate_tono(data, status, tmp_dir, buildType):
     latexStr = format_init()
     if 'introductionFile' in data and data['introductionFile'] != "" and data['introductionFile'] != "null":
 
-        cmd = [ 'pandoc', Path(data['introductionFile']), '-o', f'{tmp_dir}/intro.tex']
+        cmd = [ 'pandoc', Path(data['introductionFile']), '-o', f'{tmp_dir}/intro.tex', '--from', 'markdown+autolink_bare_uris']
         run_cmd(cmd)
         latexStr = latexStr + "\\section*{\\centering\\LARGE{Introducción}}\n"
         latexStr = latexStr + "\\input{intro.tex}\n"
