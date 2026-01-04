@@ -73,7 +73,7 @@ del texto de Vicente Sánchez. Este villancico toma la primera
 de las coplas del primer grupo a modo de sección de introducción, y las
 coplas del segundo grupo (aunque Vermell solo copia la letra de la
 primera). Lo curioso es el único estribillo que elige Torices, ***Despertad zagalejos***, es el mismo
-que aparece en este primer tono del Cancionero de Miranda y que no aparecía en los villancicos anteriores: 
+que aparece en el primero de los tonos "hermanos" del Cancionero de Miranda y que no aparecía en los villancicos anteriores: 
 
 - **Introducción**: *Su hielo esgrime la noche*
 - **Estribillo**: *Despertad zagalejos*
@@ -107,7 +107,7 @@ de Barbastro** en la Navidad de **1677**[^5]. Este villancico, consta de estribi
 
 
 Completar el rompecabezas de estos dos tonos del Cancionero de Miranda nos lleva
-de nuevo al mundo de *lo humano* y al terreno teatral. El estribillo del segundo tono:
+de nuevo al mundo de lo humano y al terreno teatral. El estribillo del segundo tono:
 
 > Pajarillo que cantas amante,\
 > ¡calla, no cantes! ¡No cantes detente!\
