@@ -262,7 +262,7 @@ def format_text_part(transcription, comments, tmp_dir):
         print(f'Adding text comments: {comments}')
         str = str + "\\subsection*{Notas al texto poético}\n"
         str = str + "\\noindent\n" 
-        str = str + "\\input{text_comments.tex}" 
+        str = str + "\\input{text_comments.tex}\n"
 
     return str
 
@@ -764,7 +764,7 @@ def generate_tono(data, status, tmp_dir, buildType):
         cmd = [ 'pandoc', Path(data['introductionFile']), '-o', f'{tmp_dir}/intro.tex']
         run_cmd(cmd)
         latexStr = latexStr + "\\section*{\\centering\\LARGE{Introducción}}\n"
-        latexStr = latexStr + "\\input{intro.tex}" 
+        latexStr = latexStr + "\\input{intro.tex}\n"
             
     latexStr = latexStr + format_text_part(
                             data['text'],
@@ -776,9 +776,9 @@ def generate_tono(data, status, tmp_dir, buildType):
     latexStr = latexStr + "\\section*{Edición musical}\n"
 
     if buildType is EditionType.PERFORMER:
-        latexStr = latexStr + "\\input{criterios-musicales-performer.tex}" 
+        latexStr = latexStr + "\\input{criterios-musicales-performer.tex}\n"
     elif buildType is EditionType.SCHOLAR:
-        latexStr = latexStr + "\\input{criterios-musicales-scholar.tex}" 
+        latexStr = latexStr + "\\input{criterios-musicales-scholar.tex}\n"
 
         
     if generated_score is not None:
