@@ -38,6 +38,13 @@
     }
 }
 
+
+% Remove subsection numbers (sections are created in the generate script with "*", so they don't need this)
+\let\oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}{\oldsubsubsection*}
+
+
+
 % Header/Footer Customization
 \pagestyle{fancy}
 \fancyhf{} % Clear defaults
@@ -49,10 +56,16 @@
 % Section Titles with Identity Colors
 \titleformat{\section}[block]
     {\normalfont\scshape\LARGE\color{iberianRed}}
-    {\thesection.}{}{}
+    {\thesection.}{1em}{}
 \titleformat{\subsection}[block]
     {\normalfont\scshape\Large\color{iberianRed}}
-    {\thesubsection.}{}{}
+    {\thesubsection.}{1em}{}
+\titleformat{\subsubsection}[block]
+    {\normalfont\scshape\large\color{iberianRed}}
+    {\thesubsubsection.}{1em}{}
+
+
+
 
 % Title Page Customization
 \newcommand{\customtitlepage}[1]{
@@ -112,6 +125,7 @@
 }
 
 % Typography Adjustments
+\renewcommand{\footnotesize}{\fontsize{8}{10}\selectfont} % Footnotes and figure captions
 \renewcommand{\normalsize}{\fontsize{12}{14}\selectfont} % Body text
 \renewcommand{\large}{\fontsize{14}{16}\selectfont}      % Subsection titles
 \renewcommand{\Large}{\fontsize{16}{18}\selectfont}      % Section titles

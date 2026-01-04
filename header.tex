@@ -32,11 +32,16 @@
 \usepackage{etoolbox}
 \preto\subsection{\FloatBarrier}
 
+% Force figures to be in-place
+\usepackage{float}
+\floatplacement{figure}{H}
+
+
 %Captions
 % Figure caption customization
 \RequirePackage{caption}
 \captionsetup[figure]{
-    font=small,           % Makes caption text smaller
+    font=footnotesize,           % Makes caption text smaller
     labelfont=normalfont, % Makes "Figure X:" not bold
     textfont=normalfont   % Makes caption text not bold
 }
@@ -47,13 +52,13 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 % pandoc generates images wrapped in the pandocbounded, so we need this macro
-% updated from the original to limite the image size at 70%
+% updated from the original to limite the image size at 40%
 \makeatletter
 \newsavebox\pandoc@box
-\newcommand*\pandocbounded[1]{% scales image to fit in text 50% of the height/width
+\newcommand*\pandocbounded[1]{% scales image to fit in text 40% of the height/width
   \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{0.5\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
-  \Gscale@div\@tempb{0.5\linewidth}{\wd\pandoc@box}%
+  \Gscale@div\@tempa{0.4\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{0.4\linewidth}{\wd\pandoc@box}%
   \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
   \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
   \else\usebox{\pandoc@box}%
