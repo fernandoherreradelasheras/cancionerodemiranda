@@ -9,3 +9,7 @@ for i in {1..77}; do
   mkdir dist/tono/$i
   cp dist/index.html dist/tono/$i/index.html
 done
+
+echo "Copying image assets"
+mkdir -p dist/assets
+cp -v ../assets/* dist/assets
