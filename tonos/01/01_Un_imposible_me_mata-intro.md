@@ -12,3 +12,6 @@ de sus coplas, *Triste el corazón se queja*, aparece en la *Colección de
 las mejores coplas, de seguidillas, tiranas y polos que se han compuesto
 para cantar a la guitarra* recopilada por *Juan Antonio de Iza Zamácola* y
 publicada por primera vez en 1799.
+
+![Página 174 de la edición de 1799 de Colección de las mejores coplas, de seguidillas, tiranas y polos...](assets/01_coplas_tiranas.jpg)
+

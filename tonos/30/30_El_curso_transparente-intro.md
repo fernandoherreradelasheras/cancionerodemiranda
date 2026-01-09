@@ -23,6 +23,8 @@ se conservan hasta seis copias:
 Existe, además, otra versión musical a solo incompleta copiada en el folio 113r del
 manuscrito Gayangos-Barbieri.
 
+![El tono de Hidalgo y otra versión anónima de "El curso transparente" en diferentes fuentes musicales](assets/30_music_souces.jpg)
+
 En el tono a 4 del Cancionero de Miranda, se pueden reconocer en las coplas patrones rítmicos que podrían recordar 
 al solo de Hidalgo, aunque estos patrones vienen, en cierta forma dictados por la métrica y acentuación del texto. No parece por tanto que el tono de Hidalgo y el del Cancionero de Miranda fueran reelaboración el uno del otro o de un modelo anterior sino más bien versiones musicales diferentes de un texto de gran popularidad que emplean patrones métricos similares.
 

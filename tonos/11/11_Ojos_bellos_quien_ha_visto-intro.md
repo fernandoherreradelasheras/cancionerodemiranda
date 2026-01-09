@@ -9,6 +9,8 @@ António das Chagas antes de ser religioso*, P-Lant PT/TT/MSLIV/1726[^1]
 se incluyen romances líricos castellanos de Antonio da Fonseca Soares*,
 conservada en la Biblioteca de Ajuda, P-La 49-III-79 (p. 98-99).
 
+![Páginas 452-453 del manuscritoP-Lant PT/TT/MSLIV/172](assets/11_PT-TT-MSLIV-1726_m0247.jpg)
+
 Un tercer manuscrito, *Poesías Varias, Portuguesas y Castellanas. Obras del
 insigne Fr. Antonio das Chagas*, GB-Lbl Egerton 660, parece contener
 también una versión de este romance según la descripción realizada por
