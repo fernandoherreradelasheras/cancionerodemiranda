@@ -11,6 +11,8 @@ Fue cantado en la Capilla Real de Lisboa
 en la Navidad de 1681, cuyo pliego impreso lo recoge no como villancico
 sino como "MISSA".
 
+![Comienzo de Airecillos mansos en el pliego de villancicos de la Capilla Real de Lisboa de la Navidad de 1681](assets/31_pliego.jpg)
+
 La parte del libro de tenor de *Airecillos mansos* en el Cancionero de
 Miranda no lleva ninguna indicación específica pero su equivalente en el
 Cancionero poético-musical hispano de Lisboa está anotada como Alto. La

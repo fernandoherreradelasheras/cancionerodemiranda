@@ -4,6 +4,8 @@ publicado de forma póstuma en el primer volumen de la **Citara de
 Apolo**: *A los felices años de la reina nuestra señora Doña Mariana de
 Austria* (p. 118).
 
+![Página 118 del primer volumen de la Cítara de Apolo de Salazar y Torres](assets/18_citara_de_apolo.jpg)
+
 El tratado de Lisboa puso fin en 1668 a casi los casi 30 años de
 conflicto bélico entre Portugal y España. Sin embargo, las relaciones
 entre ambos países tardaron bastante tiempo en normalizarse. Por eso

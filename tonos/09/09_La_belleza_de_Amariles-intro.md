@@ -6,3 +6,6 @@ portugués. Barrios incluyó el romance La belleza de Amarilis en su
 **Flor de Apolo**, cuya primera edición vio la luz en Bruselas en 1665.
 La versión de tono cambia el nombre a la forma más infrecuente
 *Amariles*.
+
+![Página 104 de la Flor de Apolo de Miguel de Barrios](assets/09_flor_de_apolo.jpg)
+
