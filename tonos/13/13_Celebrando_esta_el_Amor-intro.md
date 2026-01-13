@@ -9,11 +9,13 @@ folio 57r del manuscrito E-Mp II/2802:
 > Celebrando está el amor\
 > las travesuras de Juana,\
 > guerras que a todos les toca\
-> al amor no, sino al alma.
+> al amar no, sino al alma.
 
-Resulta interesante la transformación entre *al amor no, sino al alma.*
-y *alarma, no sino alarma* por la que el amor y el alma se desplazan
+Resulta interesante la transformación de *al amar no, sino al alma*
+a *alarma, no sino alarma* por la que el amor y el alma se desplazan
 hasta alarmas y armas.
+
+![Romance de Antonio Hurtado de Mendoza. Real Biblioteca de Palacio, Madrid, Patrimonio Nacional, II/2802, f. 57r.](assets/13_RB_II2802_57r.jpg)
 
 Sí comparte el nombre, Anarda, y la idea la belleza como arma
 que embiste y avasalla con uno de los tonos más bellos del **Libro
@@ -29,3 +31,6 @@ de Tonos humanos**: *A desafiar las flores*
 > que las armas de Anarda\
 > el campo reconoce,\
 > y ya embisten sus soles!
+
+
+![Tiple primero de A desafiar las flores del Libro de Tonos Humanos. E-Mn M/1262 f. 153v.](assets/13_a_desafiar_LTH.jpg)
