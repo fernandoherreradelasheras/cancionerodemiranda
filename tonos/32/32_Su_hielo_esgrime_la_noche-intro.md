@@ -31,7 +31,7 @@ recopilan en la ***Lyra poética*** de **Vicente Sánchez**[^1]:
 
 Al año siguiente, en **1669** parte de la letra del villancico de Sánchez se incorpora en un
 villancico cantado en las celebraciones de la Navidad de la **Catedral de Córdoba**[^2]. Este villancico
-manteniendo los dos primeros grupos de coplas y el primer estribillo del original de Sáncheza los que añade otros dos grupos de copas y dos estribillos:
+manteniendo los dos primeros grupos de coplas y el primer estribillo del original de Sánchez a los que añade otros dos grupos de copas y dos estribillos:
 
 - **Coplas**:
   - *Su hielo esgrime la noche*
@@ -67,12 +67,44 @@ manteniendo los dos primeros grupos de coplas y el primer estribillo del origina
 
 [^2]: Letras de los villancicos que se contaron en la ... Yglesia de Cordoba, en la Kalenda, Noche, y Dias de la Natiuidad de ... Iesu Christo, este año de 1669. Ejemplar conservado en la Biblioteca Nacional de España con signatura E-Mn VE/127/61 disponible online en: https://bnedigital.bne.es/bd/es/viewer?id=a9a6026e-63d8-44f6-9236-fab4a1ab9435
 
-En el manuscrito ***Musica de varios autores escogida por el maestro Geronimo Vermell***[^3], cuya compilación se inició en 1690 pero recoge también obras posteriores[^4], aparece un villancico de **Benito Bello de Torices** que vuelve a utilizar parte
-del texto de Vicente Sánchez. Este villancico toma la primera
-de las coplas del primer grupo a modo de sección de introducción, y las
-coplas del segundo grupo (aunque Vermell solo copia la letra de la
-primera). Lo curioso es el único estribillo que elige Torices, ***Despertad zagalejos***, es el mismo
-que aparece en el primero de los tonos "hermanos" del Cancionero de Miranda y que no aparecía en los villancicos anteriores: 
+En 1671, en las celebraciones de Navidad de la Catedral de Huesca, encontramos otra encarnación del villancico dividido en romance, estribillo y coplas. El estribillo que aparece aquí por primera vez, ***Despertad zagalejos***, es el mismo que aparece en el primero de los tonos "hermanos" del Cancionero de Miranda.
+
+- **Romance**:
+  - *Su hielo esgrime la noche*
+  - *Con la más villana sombra*
+  - *Contra amor que arroja perlas*
+  - *De hombre y Dios, hacer compuesto*
+- **Estribillo**: *Despertad zagalejos*
+- **Coplas**:
+    - *Helado sol en llamas*
+    - *En brazos del alba*
+    - *Mucho dices callando*
+    - *Si mucho te explicas*
+    - *Hoy es de tu fineza*
+    - *Que suelen finezas*
+
+El tercero de los villancicos cantados en la Navidad de 1673 en la Catedral de Barbastro[^3] presenta la misma configuración que el cantado dos años antes en Huesca pero como estribillo mantiene uno de los originales de Sánchez:
+- **Romance**:
+  - *Su hielo esgrime la noche*
+  - *Con la más villana sombra*
+  - *Contra amor que arroja perlas*
+  - *De hombre y Dios, hacer compuesto*
+- **Estribillo**: *Desnudo amor, dulce flechero*
+- **Coplas**:
+    - *Helado sol en llamas*
+    - *En brazos del alba*
+    - *Mucho dices callando*
+    - *Si mucho te explicas*
+    - *Hoy es de tu fineza*
+    - *Que suelen finezas*
+
+[^3]: Se conservan en un volumen facticio GB-Lb 11450.dd.8.
+
+![Cuarta página del pliego de villancicos cantados en la Catedral de Huesva en 1671](assets/32_huesca.jpg)
+
+
+
+En el manuscrito ***Musica de varios autores escogida por el maestro Geronimo Vermell***[^4], cuya compilación se inició en 1690 pero recoge también obras posteriores[^5], aparece un villancico de **Benito Bello de Torices** que sigue el esquema del cantado en Huesca en 1671. La parte que allí se llamaba romance se indica aquí como introdución y Vermell solo copia la primera copla. En las coplas finales se desvía un poco del esquema de Huesca ya que incluye *Rendidos tres monarcas* que solo aparecía en el villancico primero de Sánchez.
 
 - **Introducción**: *Su hielo esgrime la noche*
 - **Estribillo**: *Despertad zagalejos*
@@ -84,13 +116,13 @@ que aparece en el primero de los tonos "hermanos" del Cancionero de Miranda y qu
 ![f.105v de la Música de varios autores de Gerónimo Vermell con el comienzo de Su yelo esgrime la noche](assets/33_vermell.jpg)
 
 
-[^3]: Musica de varios autores escogida por el maestro Geronimo Vermell : 1690 : se escrivia en la ciudad de Borja. E-Bbc M/927 ff. 105v-106r. Copia digitalizada disponible en https://mdc.csuc.cat/digital/collection/partiturBC/id/73573
-[^4]: ANGULO, Raúl: Sebastián Duron (1660-1716). Obras sacras en romance vol. 3. pp. 8-9
+[^4]: Musica de varios autores escogida por el maestro Geronimo Vermell : 1690 : se escrivia en la ciudad de Borja. E-Bbc M/927 ff. 105v-106r. Copia digitalizada disponible en https://mdc.csuc.cat/digital/collection/partiturBC/id/73573
+[^5]: ANGULO, Raúl: Sebastián Duron (1660-1716). Obras sacras en romance vol. 3. pp. 8-9
 
 El estribillo *Despertad zagalejos* que comparten el tono del Cancionero
-de Miranda y el villancico de Torices lo encontramos no muy lejos de
+de Miranda, el villancico de Huesca de 1671 y el sin fecha establecida de Torices lo encontramos, de nuevo, no muy lejos de
 Zaragoza: es el estribillo de en los villancicos cantados en la **Catedral
-de Barbastro** en la Navidad de **1677**[^5]. Este villancico, consta de estribillo y coplas en anáfora:
+de Barbastro** en la Navidad de **1677**[^6]. Este villancico, consta de estribillo y coplas en anáfora:
 
 - **Estribillo**: *Despertad zagalejos*
 - **Coplas**:
@@ -102,7 +134,7 @@ de Barbastro** en la Navidad de **1677**[^5]. Este villancico, consta de estribi
 
 ![Último villancico de los cantado en la Navidad de 1677 en la Catedral de Barbastro](assets/33_barbastro_1677.jpg)
 
-[^5]: Villancicos, que se han de cantar en la ... Cathedral de Barbastro, la noche del Nacimiento de ... Iesu Christo, este año de 1677. Ejemplar E-Mn R/34981/8 disponible online: https://bnedigital.bne.es/bd/es/viewer?id=33ba60da-e85e-4973-9c71-63d728c10c22
+[^6]: Villancicos, que se han de cantar en la ... Cathedral de Barbastro, la noche del Nacimiento de ... Iesu Christo, este año de 1677. Ejemplar E-Mn R/34981/8 disponible online: https://bnedigital.bne.es/bd/es/viewer?id=33ba60da-e85e-4973-9c71-63d728c10c22
 
 
 Completar el rompecabezas de estos dos tonos del Cancionero de Miranda nos lleva
@@ -130,12 +162,12 @@ estrenada en Madrid en **1643** y repuesta en **1655**:
 > pues puso Amor en el llanto\
 > la música del dolor.
 
-La escena en la que Orfeo canta esta canción no aparece en las sucesivas ediciones impresas de la comedia aparecidas de los años 1662, 1681, 1716, 1750 y 1765. Sí aparece la escena en el manuscrito E-Mn MSS/16419[^6], que según se correspondería con la puesta en escena de 1655, frente a las ediciones impresas que recogerían la versión de 1643[^7].
+La escena en la que Orfeo canta esta canción no aparece en las sucesivas ediciones impresas de la comedia aparecidas de los años 1662, 1681, 1716, 1750 y 1765. Sí aparece la escena en el manuscrito E-Mn MSS/16419[^7], que según se correspondería con la puesta en escena de 1655, frente a las ediciones impresas que recogerían la versión de 1643[^8].
 
 ![f. 9v del manuscrito E-Mn MSS/16419 que incluye la canción Pajarillo que cantas ausente](assets/33_orfeo.jpg)
 
-[^6]: Copia digital de este manuscrito disponible online en https://bnedigital.bne.es/bd/es/viewer?id=7fbccbbd-3611-49d8-ad84-89da3e19623f
-[^7]: PUCHAU, Maria del Mar: El arte dramático de Antonio de Solís y sus relaciones con la música: sus comedias mitológicas. pp. 215-217. Así mismo la autora es la responsable de la edición cŕitica de la comedia para Clásicos Hispánicos bajo licencia Creative Commons BY-NC disponible online en https://clasicoshispanicos.com/ebook/euridice-y-orfeo/
+[^7]: Copia digital de este manuscrito disponible online en https://bnedigital.bne.es/bd/es/viewer?id=7fbccbbd-3611-49d8-ad84-89da3e19623f
+[^8]: PUCHAU, Maria del Mar: El arte dramático de Antonio de Solís y sus relaciones con la música: sus comedias mitológicas. pp. 215-217. Así mismo la autora es la responsable de la edición cŕitica de la comedia para Clásicos Hispánicos bajo licencia Creative Commons BY-NC disponible online en https://clasicoshispanicos.com/ebook/euridice-y-orfeo/
 
 Aún conociendo la fuente poética de cada una las partes de este complejo tono,
 solo podemos conjeturar acerca de los procesos de reelaboración que
@@ -161,18 +193,15 @@ peso al contraste hombre/Dios:
 Y del segundo grupo, directamente no se incluyen las dos últimas que
 hace referencia a los Reyes Magos.
 
-Por otro lado, que nuestro primer tono y el
-villancico de Torices complementen las coplas de Sánchez con un mismo
-estribillo, algo improbable que ocurriera de manera independiente,
-sugiere la existencia de un texto humano anterior, que incluyera el
-estribillo *Despertad zagalejos*, del que habrían derivado los textos
-del Cancionero de Miranda y del villancico de Torices y, por otro lado,
-se habrían divinizado en los villancicos cantados en Zaragoza y Cordoba.
-Este hipotético texto podría incluir también una variación de *Pajarillo que cantas amante*, del que conocemos numerosas derivaciones[^8], aunque cualquier otra combinación sería posible. En cualquier caso, resulta interesante la
-coincidencia entre el *no cantéis, llorar es mejor* del primer
-estribillo con el *no cantes detente, llorar es mejor* del segundo.
+La inclusión en el tono del Cancionero de Miranda del estribillo *Despertad zagalejos*,
+lo emparenta directamente con el villancico de Huesca de 1671 y con el de Torices. 
+Pese a su estética pastoril, este estribillo es muy propio de la devoción barroca lo que parece
+indicar que la dirección de la transmisión habría sido, en este caso, de lo divino a lo humano.
 
-[^8]: Entre ellas "Pajarillo que cantas alegre" de Juan Hidalgo del manuscrito E-Mn MC/5001/15, "Pajarillo que cantas amores" de Matías Veana en el manuscrito Gayangos-Barbieri E-Mn MSS/13622, "Pajarillo que cantas en un monte" de Salvador García (cantados en la fiesta de la Transfiguración de Cristo en la Iglesia de San Salvador de Sevilla en 1700)
+El estribillo del otro tono hermano del Cancionero de Miranda, *Pajarillo que cantas amante*, es, en un principio, netamente humano. De él conocemos numerosas derivaciones humanas y alguna divina[^9]. Aunque no podemos conectarlo con la transmisión de ninguno de los otros bloques poéticos que componen el este par de tonos, resulta interesante la
+coincidencia entre el *no cantéis, llorar es mejor* del primer estribillo con el *no cantes detente, llorar es mejor* del este segundo.
+
+[^9]: Entre ellas "Pajarillo que cantas alegre" de Juan Hidalgo del manuscrito E-Mn MC/5001/15, "Pajarillo que cantas amores" de Matías Veana en el manuscrito Gayangos-Barbieri E-Mn MSS/13622, "Pajarillo que cantas en un monte" de Salvador García (cantados en la fiesta de la Transfiguración de Cristo en la Iglesia de San Salvador de Sevilla en 1700)
 
 Nuestra decisión de editar este grupo de coplas y estribillos como dos tonos diferentes y no como
 un tono doble a modo del villancico de 1668 obedece a que en el Cancionero de Miranda aparecen con dos entradas diferentes en 
