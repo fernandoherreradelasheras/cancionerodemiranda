@@ -24,6 +24,10 @@ for i in {1..77}; do
 done
 echo '</urlset>' >> $SITEMAP
 
+echo "Generating Bing site validation files"
+echo '<?xml version="1.0"?><users><user>DB232364EC2AD3FD0DEE89466109C874</user></users>' > dist/BingSiteAuth.xml
+echo '62907ae0b0c546dc991f2d8d67d8b151' > dist/62907ae0b0c546dc991f2d8d67d8b151.txt
+
 echo "Copying image assets"
 mkdir -p dist/assets
 cp -v ../assets/* dist/assets
