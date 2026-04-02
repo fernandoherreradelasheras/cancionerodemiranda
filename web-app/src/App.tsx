@@ -40,10 +40,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<BaseLayout />}  /*ErrorBoundary={ErrorChecker}*/ >
       <Route index element={about} />
-      <Route path='tonos' element={tonos} />
-      <Route path='tono/:tonoNumber' element={ <Tono/>} />
-      <Route path='about' element={about} />
-      <Route path='progreso' element={<Dashboard />} />
+      <Route path='tonos/' element={tonos} />
+      <Route path='tono/:tonoNumber/' element={ <Tono/>} />
+      <Route path='about/' element={about} />
+      <Route path='progreso/' element={<Dashboard />} />
 
   </Route>
   )

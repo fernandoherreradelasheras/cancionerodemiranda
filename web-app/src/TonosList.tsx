@@ -94,7 +94,7 @@ const TonoItem = ({ tonoConfig, tonoStatus, index }: { tonoConfig: ScoreViewerCo
 
     return (
         <List.Item className="tono-list-item" style={{ paddingBottom: "1.4em" }}>
-            <Link className="item-tono-status" to={`/tono/${index + 1}`} state={{ tono: tonoConfig }}>
+            <Link className="item-tono-status" to={`/tono/${index + 1}/`} state={{ tono: tonoConfig }}>
                 <div style={{ marginTop: "0.2em", marginBottom: "0.2em" }}>
                     <span className="tono-title">{index + 1}. {tonoConfig?.title}</span>{getAuthors(tonoStatus)}
                 </div>

@@ -23,9 +23,9 @@ library.add(faBars, faArrowLeft, faArrowRight)
 
 const menuItemKeyFromLocationAndTono = (location: Location, currentTonoNumber: number | null) => {
     if (!location.pathname || location.pathname == "/") {
-        return "/about"
+        return "/about/"
     } else if (location.pathname.startsWith("/tono/") || currentTonoNumber) {
-        return `sub1:/tono/${currentTonoNumber}`
+        return `sub1:/tono/${currentTonoNumber}/`
     } else {
         return location.pathname
     }
@@ -84,7 +84,7 @@ function BaseLayout() {
     }
 
     useEffect(() => {
-        const tonoPath = currentTonoNumber ? `/tono/${currentTonoNumber}` : null
+        const tonoPath = currentTonoNumber ? `/tono/${currentTonoNumber}/` : null
         if (tonoPath && tonoPath != location.pathname) {
             navigate(tonoPath)
         }
@@ -105,9 +105,9 @@ function BaseLayout() {
     }, [scoreViewerConfig, currentTonoNumber])
 
 
-    const prevTono = useMemo(() => currentTonoNumber && currentTonoNumber > 1 ? `/tono/${currentTonoNumber - 1}` : "/tono/prev"
+    const prevTono = useMemo(() => currentTonoNumber && currentTonoNumber > 1 ? `/tono/${currentTonoNumber - 1}/` : "/tono/prev"
     , [currentTonoNumber])
-    const nextTono = useMemo(() => currentTonoNumber && status && currentTonoNumber < status[status.length - 1]?.number! ? `/tono/${currentTonoNumber + 1}` : "/tono/next"
+    const nextTono = useMemo(() => currentTonoNumber && status && currentTonoNumber < status[status.length - 1]?.number! ? `/tono/${currentTonoNumber + 1}/` : "/tono/next"
     , [currentTonoNumber, status])
 
     const items = useMemo(() => [
@@ -117,14 +117,14 @@ function BaseLayout() {
             key: 'sub1', label: selectorLabel, style: currentTonoNumber ? { fontWeight: "bolder" } : {}, children:
                 scoreViewerConfig?.scores.map((s: ScoreViewerConfigScore, index: number) => {
                     const tonoNumber = `${index + 1}`
-                    return { key: `sub1:/tono/${tonoNumber}`, label: `Tono ${tonoNumber}: ${s.title}` }
+                    return { key: `sub1:/tono/${tonoNumber}/`, label: `Tono ${tonoNumber}: ${s.title}` }
                 })
         },
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
             { key: nextTono, icon: <FontAwesomeIcon icon={faArrowRight} />, disabled: currentTonoNumber == null || nextTono == "/tono/next" } : null,
-        { key: "/tonos", label: "Listado de tonos", style: location.pathname == "/tonos" ? { fontWeight: "bolder" } : {} },
-        { key: "/progreso", label: "Progreso", style: location.pathname == "/progreso" ? { fontWeight: "bolder" } : {} },
-        { key: "/about", label: "Acerca de", style: location.pathname == "/about" || location.pathname == "/" ? { fontWeight: "bolder" } : {} }
+        { key: "/tonos/", label: "Listado de tonos", style: location.pathname == "/tonos/" ? { fontWeight: "bolder" } : {} },
+        { key: "/progreso/", label: "Progreso", style: location.pathname == "/progreso/" ? { fontWeight: "bolder" } : {} },
+        { key: "/about/", label: "Acerca de", style: location.pathname == "/about/" || location.pathname == "/" ? { fontWeight: "bolder" } : {} }
     ].filter(i => i !== null) as any
     ,[breakpoint, prevTono, nextTono, selectorLabel, scoreViewerConfig, currentTonoNumber, location.pathname])
 
