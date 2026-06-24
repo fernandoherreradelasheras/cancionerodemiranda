@@ -102,6 +102,21 @@ El tercero de los villancicos cantados en la Navidad de 1673 en la Catedral de B
 
 ![Cuarta página del pliego de villancicos cantados en la Catedral de Huesva en 1671](assets/32_huesca.jpg)
 
+En los villancicos que cantaron en la Iglesia de San Justo y Pasto de Alcalá de Henares la Navidad de 1681 el quinto villancico sigue prácticamente el esquema del de Huesca de 1671 salvo una copla de la introducción omitida y un error "mucho" -> "mudo":
+
+- **Introducción**:
+  - *Su hielo esgrime la noche*
+  - *Contra amor que arroja perlas*
+  - *De hombre y Dios, hacer compuesto*
+- **Estribillo**: *Despertad zagalejos*
+- **Coplas**:
+  - *Helado sol en llamas*
+  - *En brazos del alba*
+  - *Mucho dices callando*
+  - *Si mudo te explicas*
+  - *Oy es de tu fineza*
+  - *Que suelen finezas*
+ 
 
 
 En el manuscrito ***Musica de varios autores escogida por el maestro Geronimo Vermell***[^4], cuya compilación se inició en 1690 pero recoge también obras posteriores[^5], aparece un villancico de **Benito Bello de Torices** que sigue el esquema del cantado en Huesca en 1671. La parte que allí se llamaba romance se indica aquí como introdución y Vermell solo copia la primera copla. En las coplas finales se desvía un poco del esquema de Huesca ya que incluye *Rendidos tres monarcas* que solo aparecía en el villancico primero de Sánchez.
@@ -114,6 +129,10 @@ En el manuscrito ***Musica de varios autores escogida por el maestro Geronimo Ve
   - *Rendidos tres monarcas*
   
 ![f.105v de la Música de varios autores de Gerónimo Vermell con el comienzo de Su yelo esgrime la noche](assets/33_vermell.jpg)
+
+
+
+
 
 
 [^4]: Musica de varios autores escogida por el maestro Geronimo Vermell : 1690 : se escrivia en la ciudad de Borja. E-Bbc M/927 ff. 105v-106r. Copia digitalizada disponible en https://mdc.csuc.cat/digital/collection/partiturBC/id/73573
