@@ -1,75 +1,83 @@
-span.text-not-started, .item-not-started {
-    color: #990000 !important;
-  }
+span.text-not-started,
+.item-not-started {
+  color: #990000 !important;
+}
 
-  span.text-in-progress, .item-in-progress {
-    color: #994d00 !important;
-  }
+span.text-in-progress,
+.item-in-progress {
+  color: #994d00 !important;
+}
 
-  span.text-completed, .item-completed {
-    color: #006600 !important;
-  }
+span.text-completed,
+.item-completed {
+  color: #006600 !important;
+}
 
-  .tono-list {
-    font-size: 1.2em;
-    list-style: none;
-  }
+.tono-list {
+  font-size: 1.2em;
+  list-style: none;
+}
 
-  .tono-list span.tono-title {
-    font-weight: bold;
-  }
+.tono-list span.tono-title {
+  font-weight: bold;
+}
 
-.tono-list li:nth-child(odd) { background-color: #e0dfd97e; }
-.tono-list li:nth-child(even) { background-color: #f8f0db; }
+.tono-list li:nth-child(odd) {
+  background-color: #e0dfd97e;
+}
 
-  .tono-list svg.author-icon  {
-    color: #d08c0f;
-  }
+.tono-list li:nth-child(even) {
+  background-color: #f8f0db;
+}
 
-  .tono-list svg.status-icon  {
-    color: #706558;
-    margin-left: 0.5em;
-  }
+.tono-list svg.author-icon {
+  color: #d08c0f;
+}
 
-  .loading-spinner {
-    top: 30%;
-    left: 50%;
-    position: absolute;
-    z-index: 3;
-  }
+.tono-list svg.status-icon {
+  color: #706558;
+  margin-left: 0.5em;
+}
 
-
-
-  span.poem-type {
-    font-weight: bolder !important;
-  }
-
-  .item-tono-status {
-    color: black !important;
-  }
+.loading-spinner {
+  top: 30%;
+  left: 50%;
+  position: absolute;
+  z-index: 3;
+}
 
 
-  .actions.tono-swicthes span {
-    margin-left: 0.2em;
-    vertical-align: 0.3em;
-  }
 
-  .actions.right-panel {
-    flex: 1;
-    align-self: flex-start;
-    justify-content: end;
-  }
+span.poem-type {
+  font-weight: bolder !important;
+}
 
-  .panel-close-button {
-    flex: 0;
-    align-self: flex-end;
-    margin-right: 5px;
-    margin-top: 5px;
-  }
+.item-tono-status {
+  color: black !important;
+}
 
-  .measure-link {
-    cursor: pointer;
-  }
+
+.actions.tono-swicthes span {
+  margin-left: 0.2em;
+  vertical-align: 0.3em;
+}
+
+.actions.right-panel {
+  flex: 1;
+  align-self: flex-start;
+  justify-content: end;
+}
+
+.panel-close-button {
+  flex: 0;
+  align-self: flex-end;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.measure-link {
+  cursor: pointer;
+}
 
 
 
@@ -106,6 +114,7 @@ g:has(> rect.overlay-editorial:hover) text {
   text-align: center;
   margin: 0px;
 }
+
 .overlay-box p {
   width: 100%;
   text-align: left;
@@ -163,18 +172,18 @@ span.toggle-text {
   color: #f56a6a;
 }
 
-.toggle-button-element  span {
+.toggle-button-element span {
   color: #7f888f;
   margin-left: 0.2em;
   align-self: center;
 }
 
 
-.icon-button .clickable-icon  {
+.icon-button .clickable-icon {
   cursor: pointer;
 }
 
-.toggle-button-element:not(.disabled) .clickable-icon  {
+.toggle-button-element:not(.disabled) .clickable-icon {
   cursor: pointer;
 }
 
@@ -221,3 +230,30 @@ body {
   margin: 0px;
 }
 
+
+/* Tables. TODO: This should be in score-view probably*/
+.text-view table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: auto;
+}
+
+.text-view th,
+.text-view td {
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.text-view thead th {
+  border-bottom: 2px solid #999;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Overrida also the rehype-image style="max-width: 40%;" */
+.text-view figure img {
+  max-height: 500px;
+  max-width: 100% !important;
+  width: auto;
+  height: auto;
+}
