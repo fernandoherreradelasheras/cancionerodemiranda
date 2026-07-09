@@ -1,6 +1,7 @@
-El tono "_«Venganza, griegos», repite_" fue extramadamente popular a finales del siglo XVIEl ´I como lo atestiguan las numerosas trazas poéticas y musicales que encontramos hoy día. Y aún así, no somos capaces de estableder definitivamente su autoría.
 
-Del tono musical se conservan hasta 6 versiones:
+## Testimonios musicales
+
+Del tono “Venganza, griegos repite” se conservan hasta seis testimonios musicales:
 
 * Cancionero de Miranda
 * Cancionero Poético Musical Hispano de Lisboa
@@ -9,19 +10,79 @@ Del tono musical se conservan hasta 6 versiones:
 * Colección personal de Miguel Querol
 * Colegiata de Alquézar
 
-junto con la mención de su existencia en el índice del Libro de Tonos Humanos.
-
-Para completar el tono del Cancionero de Miranda no podemos usar ni el Cancionero Poético Musical Hispano de Lisboa ni el Cancionero de Onteniente, pues no conservan la parte de alto. Al no haber podido consultar el manuscrito que estuvo en poder de Miguel Querol ni el archivo musical de la Colegiata de Alquézar solo podemos recurrir al testimonio conservado en el Cartapacio de Coimbra P-Cug MM 234. Aunque el tono de Coimbra tiene la peculiadirad de ser para *tres tiples* y tenor, como las dos voces superiores y la inferior son prácticamente idénticas a las del Cancionero de Miranda podemos suponer que ese tercer tiple habría sido adaptado del alto original del tono. Efectivamente, la escritura de esa parte evidencia bloques de notas que han sido subidas una octava para acomodarlas a la tesitura de tiple. Tras bajar una octava esas notas obtenemos a partir del tercer tiple de Coimbra una parte encuadrada cómodamente en en el rango vocal de un alto. 
+además del testimonio perdido mencionado el índice del Libro de Tonos Humanos.
 
 
-En recopilaciones poéticas de diversos tonos lo encontramos en:
 
-* Colección de opúsculos sobre Teología, Moral, Sagrada Escritura, poesías, sermones y otros asuntos” E-Mn MSS/6620 (f.413)
-* Tonos a lo divino y a lo humano de Jerónimo Nieto (p. 31)
 
-Como todo buen tono popular, conoció versiones vueltas a lo divino, como por ejemplo la de León Marchante publicada en sus obras póstumas: _"Venganza, poder repite"
+## Testimonios poéticos
+ 
 
-Aparece citado en diversas obras teatrales de la época:
+La difusión del tono *¡Venganza, griegos!* revela una transmisión marcadamente abierta, en la que solo la primera copla permanece invariable como núcleo fijo, mientras que las restantes fluctúan sin cesar de un testimonio a otro: se intercambian (Paris y Helena permutan su orden), se añaden o se suprimen, y varían tanto en número como en disposición, según la selección propia de cada cancionero. 
+
+Tonos a lo divino y a lo humano de Jerónimo Nieto (p. 31):
+
+- Copla 1: “¡Venganza, griegos!” repite
+- Copla 2: Arda Paris y arda Helena
+- Copla 3: Troya entonces que estaba 
+- Copla 4: Aquel pájaro de Juno
+- Copla 5: Los troyanos se entregaron
+- Copla 6: Cuando del griego caballo
+- Copla 7: Ya Troya infeliz fluctúa
+- Copla 8: Agua y el aire sirven
+- Copla 9: Los miserables troyanos
+- Copla 10: Tú Venus, pues infundiste
+[Sin estribillo]
+
+Cancionero de Onteniente:
+
+- Copla 1: “¡Venganza, griegos!” repite
+- Copla 2: Arda Helena y arda Paris
+- Copla 3: Troya entonces que estaba 
+- Copla 4: Aquel pájaro  de Juno
+- Copla 5: Aquella envidia de Grecia
+- Copla 6: Ya el fuego encendiendo al aire
+- Estribillo: Piedad, favor ... cielos sordos
+
+CPMHL:
+
+- Estribillo: Piedad, favor ... cielos sordos
+- Copla 1: “¡Venganza, griegos!” repite
+- Copla 2: En tus rayos y en mis ondas
+- Copla 3: Si de las llamas me libro
+- Copla 4: En mi llanto y en mi fuego
+
+Colección de opúsculos sobre Teología, Moral, Sagrada Escritura, poesías, sermones y otros asuntos” E-Mn MSS/6620 (f.413):
+
+- Copla 1: “¡Venganza, griegos!” repite
+- Copla 2: Arda Paris y adre Troya
+- Copla 3: Cada relincho es un trueno
+- Copla 4: Troya que entonces estaba 
+- Copla 5: Traición, traición apellidan
+- Copla 6: Trémulo el aire bramaba
+- Copla 7: En fin quedó destruida
+[Sin estribillo]
+
+
+Cancionero de Miranda:
+
+- Estribillo: Piedad, favor ... y blasones locos
+- Copla 1: “¡Venganza, griegos!” repite
+- Copla 2: Arda Helena y arda Paris
+- Copla 3: Y al fuego encendiendo al aire
+- Copla 4: Aquel pájaro difunto
+
+P-Cug MM 234:
+
+- Estribillo: Piedad, favor ... cielos sordos
+- Copla 1: “¡Venganza, griegos!” repite
+
+
+Las coplas 5-10 del testimonio de Jerónimo Nieto las podemos rastrear hasta el romance *Al incendio de Troya* de Jerónimo Cáncer y Velasco, impreso en sus *Obras varias* (1651). Se trata, con toda probabilidad, de un añadido del compilador ajeno a la tradición cantada del tono, que difícilmente mezclaría coplas de asonancias diferentes (las del tono son en o-o y el romance de Cancer en o-e).  
+
+En el CPMHL tres de las cuatro coplas son únicas a ese testimonio, mientras que en MSS/6620 lo son cinco de siete. En el cancionero de Miranda, algunas coplas de la tradición común tienen lecturas curiosas (pájaro de Juno -> pájaro defunto) y el estribillo, consistente en todos los demás testimonios, se revela como una *lectio singularis* que reorienta el pasaje hacia el desengaño de la vanidad mundana.
+
+Queda como constante la copla que abre todos los testimonios,  cuyo primer versos "¡Venganza, griegos! repite" llegó a funcionar como una suerte de *meme* barroco glosado y evocado una y otra vez. Así, por ejemplo, aparece citado en diversas obras teatrales de la época:
 
 * _Los Amantes de Teruel_ de Suárez de Deza. El personaje de Doña Elena exclama “Venganza, griegos repite” en un aparte de la tercera jornada.
 * _Lucrecia y Tarquino_. El vejete pronuncia los dos primeros versos “Venganza, griegos, repite / Aquiles, blasón de todos”
@@ -29,85 +90,25 @@ Aparece citado en diversas obras teatrales de la época:
 * _Amor, ingenio y mujer, en la discreta venganza_ se canta una parodia de la primera cuarteta donde Aquiles no es blasón _de todos_ sino _de Arganda_ y en vez de blandir _un rayo por asta_ blande _un asta por rayo cuando otro rayo por asta_. Después los personajes de Don Cual y Don Fulano comentan la letra y acaban: “_a fe que no es / su composición bastarda, / sino legítima, pues / tan bien suena a la venganza_"
 * En el relato inicial de la XV reunión de la Academia de los Singulares de Lisboa (1664), ponen en boca de Elena los versos "_He de hallarme en el convite / de los planetas veloces, / a pesar de quien a voces/ venganza griegos repite"
 
-Esta última referencia de la Academia de los Singulares presenta otras conexciones con el Cancionero de Miranda. No solo que uno de sus miembros más destacados fuera Antonio Marques Lesbio de quien el cancionero incluye varias obras, sino que en la misma página donde se cita "Venganza, griegos repite", aparece otro verso, "_dejen morirme de triste_" que estaba escrito en uno de los folios anexos del libro de guión y que encontramos completo en el Cancionero Poético Musical Hispano de Lisboa. Y si no remontamos a la página anterior citan al personaje de Leandro cantando una cuarteta que termina con otro versos de uno de los tonos del Cancionero de Miranda: "_A los encuentros del aire_"
+Esta última referencia de la Academia de los Singulares presenta otras conexiones con el Cancionero de Miranda. No solo que uno de sus miembros más destacados fuera Antonio Marques Lesbio de quien el cancionero incluye varias obras, sino que en la misma página donde se cita "Venganza, griegos repite", aparece otro verso, "_dejen morirme de triste_" que estaba escrito en uno de los folios anexos del libro de guión y que encontramos completo en el Cancionero Poético Musical Hispano de Lisboa. Y si no remontamos a la página anterior citan al personaje de Leandro cantando una cuarteta que termina con otro versos de uno de los tonos del Cancionero de Miranda: "_A los encuentros del aire_"
+
+Como todo buen tono popular, conoció versiones vueltas a lo divino (como la de León Marchante publicada en sus obras póstumas: "Venganza, poder repite") y fue citado en villancicos de "tonos antiguos" (Tolibiyo, Baltolo de Miciezes) 
 
 
-**TODO: Redactar estudio de variantes de los diferentes testimonios poéticos.**
 
-
-Jerónimo Nieto:
-
-- Copla 1: Venganza
-- Copla 2: Arda Paris
-- Copla 3: Troya entonces
-- Copla 4: Aquel pájaro
-- Copla 5: Los troyanos
-- Copla 6: Cuando el griego
-- Copla 7: Ya Troya
-- Copla 8: Agua y el aire
-- Copla 9: Los miserables
-- Copla 10: tú Venus
-
-Onteniente:
-
-- Copla 1: Venganza
-- Copla 2: Arda Paris
-- Copla 3: Troya entonces
-- Copla 4: Aquel pájaro
-- Copla 5: Aquella envidia
-- Copla 6: Ya el fuego
-- Estribillo: Piedad, favor...
-
-Lisboa:
-
-- Estribillo: Piedad, favor
-- Copla 1: Venganza
-- Copla 2: En tus rayos
-- Copla 3: Si de las llamas
-- Copla 4: En mi llanto
-
-MSS/6620:
-
-- Copla 1: Venganza
-- Copla 2: Arda Paris
-- Copla 3: Cada relincho
-- Copla 4: Troya entonces
-- Copla 5: Traición
-- Copla 6: Trémulo el aire
-- Copla 7: En fin cuando
-- Copla 4: Aquel pájaro
-- Copla 5: Los troyanos
-
-Miranda:
-
-- Estribillo: Piedad, favor + pensar que ha de vencer
-- Copla 1: Venganza
-- Copla 2: Arda Helena
-- Copla 3: Y al fuego
-- Copla 4: Aquel pájaro
-
-Coimbra:
-
-- Estribillo: Piedad, favor
-- Copla 1: Venganza
-
-
-**TODO: Añadir el guión del CPMHL**
 
 
 ## La atribución de la música
 
 La autoría del tono está disputada entre Manuel Correa y Carlos Patiño en los testimonios conservados. Las fuentes se reparten de la siguiente manera: lo asignan a Correa el *Cancionero de Onteniente* (que anota "Correa") y la copia de la Colegiata de Alquézar; lo asignan a Patiño el *Cancionero de Miranda* (donde "Patinho" se repite en las tres partes conservadas) y el manuscrito que perteneció al archivo personal de Miguel Querol; lo transmite como anónimo el Cancionero Poético Musical Hispano de Lisboa; y el testimonio del Cartapacio de Coimbra P-Cug MM 234 no resulta concluyente[^coimbra]. Existe, además, un testimonio indirecto que lo atribuye a Manuel Correa: la tabla *Otros tonos sueltos* del *Libro de Tonos Humanos*. «“¡Venganza, griegos!” repite» aparece en esta tabla con la indicación "cartapacios [de Correa]". Esta indicación, cuando aparece en otras tablas o en el contenido musical del Libro de Tonos Humanos, es interpretada por los musicólogos que han estudiado a fondo esta fuente como indicación fiable de la autoría de Manuel Correa. Así, dice Alejandro Vera[^veralth]:
   
-> El hecho de que un tono de Fray Manuel Correa (Venganza Griegos Repite) conservado en dos cancioneros de la época (Onteniente y Lisboa) se halle también en un manuscrito de Miguel Querol pero atribuido a Carlos Patiño, maestro de la Real Capilla, podría explicarse por este intercambio de obras, ya que al parecer había también una copia de este tono en el Carmen de Madrid [nota: Figura el incipit en el indice 3 de Pizarro con la indicación «cartapacios [de CorreaJ» —cf. tabla 3, nº23
+> El hecho de que un tono de Fray Manuel Correa (Venganza Griegos Repite) conservado en dos cancioneros de la época (Onteniente y Lisboa) se halle también en un manuscrito de Miguel Querol pero atribuido a Carlos Patiño, maestro de la Real Capilla, podría explicarse por este intercambio de obras, ya que al parecer había también una copia de este tono en el Carmen de Madrid [nota: Figura el incipit en el indice 3 de Pizarro con la indicación «cartapacios [de Correa]» —cf. tabla 3, nº23
 
-[^coimbra]: En la versión para tres tiples de *Venganza, griegos, repite* en P-Cug MM 234, unas letras sobre el pentagrama podrían leerse como "Pat". El problema de forzar esta lectura y asumir que Pat = Patinho es que en todo el conjunto de tonos y villancicos de estos cartapacios procedentes del Santa Cruz de Coimbra no hay una sola indicación de autoría; las indicaciones se refieren solo a las fiestas para las que estaba destinada cada pieza, a su ciudad de procedencia o a algún aspecto interno.
+[^coimbra]: En la versión de *Venganza, griegos, repite* en P-Cug MM 234, unas letras sobre el pentagrama podrían leerse como "Pat". El problema de forzar esta lectura y asumir que Pat = Patinho es que en todo el conjunto de tonos y villancicos de estos cartapacios procedentes del Santa Cruz de Coimbra no hay una sola indicación de autoría; las indicaciones se refieren solo a las fiestas para las que estaba destinada cada pieza, a su ciudad de procedencia o a algún aspecto interno.
 [^veralth]: VERA, Alejandro: Música vocal profana en el Madrid de Felipe IV: El libro de tonos humanos (1656). p. 67
 
 
-
-
-A nivel cuantitativo, la atribución a Correa se sustenta con tres testimonios por encima de la atribución a Patiño que cuenta con solo dos. Adenmás, tres argumentos terminan de inclinar la balanza del lado de Correa.
+A nivel cuantitativo, la atribución a Correa se sustenta con tres testimonios por encima de la atribución a Patiño que cuenta con solo dos. Además, tres argumentos terminan de inclinar la balanza del lado de Correa.
 
 En primer lugar, la atribución del *Cancionero de Onteniente* merece mayor confianza, ya que esta fuente contiene otras 22 atribuciones a Correa, algunas confirmadas por otras fuentes y ninguna rebatida. Este argumento, junto al testimonio indirecto del Libro de tonos humanos, lo utilizan Mariano Lambea y Lola Josa, en su edición del Cancionero poético-musical hispánico de Lisboa, para atribuior el testimonio de «“¡Venganza, griegos!” repite» de dicho cancionero a Manuel Correa[^lambeacpmhl]: 
 
@@ -135,3 +136,12 @@ Como curiosidad y sin valor ni pretensión probatoria, existe un precedente de a
 [^capitan]: Incluido en el *Cancionero de la Sablonara*. D-Mbs M Cod. Hisp 2, ff. 33v-34r.
 
 
+
+## Fuentes empleadas para completar la parte perdida
+
+Para completar la parte perdida del librete de Alto del Cancionero de Miranda no se han podido consultar dos de las fuentes que se consideran completas: el manuscrito que estuvo en poder de Miguel Querol y el testimonio conservado en el archivo musical de la Colegiata de Alquézar. El Cancionero de Onteniente conserva solo una voz que ya tenemos y por tanto no puede aportar nada. Sí resulta de utilidad el Cancionero Poético Musical Hispano de Lisboa que, aunque también tiene perdida la parte de alto, al ser un tono para tres tiples la parte que fue al librete de alto de ese cancionero no fue la misma que la que se recogió en el librete correspondiente del Cancionero de Miranda. Así el tiple 1º de ambos cancioneros coincide pero el tiple 2º sería el 3º del otro. Esta extraña configuración de tres tiples y tenor se confirma en el testimonio conservado en el Cartapacio de Coimbra P-Cug MM 234 que ademas remarca este hecho con una nota: `de tres Tip.`. 
+
+
+Por ello, la presente edición toma el segundo tiple del CPMHL como fuente principal para completar la voz perdida del Cancionero de Miranda, tanto en el estribillo como en las coplas. Esta lectura se ha cotejado con el tercer tiple del Cartapacio de Coimbra P-Cug MM 234 para aplicar algunas correcciones al texto del CPMHL, fundamentalmente en el tratamiento de la musica ficta.
+
+Del mismo modo, el guión que transmite el CPMHL, ausente en el Cancionero de Miranda, y del manuscrito de Coimbra se ha incorporado a la presente edición.
