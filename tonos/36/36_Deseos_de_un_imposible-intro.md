@@ -52,14 +52,14 @@ La macroestructura de los diferentes testimonios es:
 | *LC* | C1–C6 + C7, C8, C10 | ×3 (tras C3, tras C6 y al final) |
 | *N* | C1–C6 + C7, C8, C9 (propia), C10 | ×1 (al final) |
 
-![E-Mn MSS/3700 (N) con el comienzo de *Deseos de un imposible* bajo la rúbrica «Lope de Bega».](/assets/36_EMn_3700_91.png)
+![E-Mn MSS/3700 (N) con el comienzo de *Deseos de un imposible* bajo la rúbrica «Lope de Bega».](assets/36_EMn_3700_91.png)
 
 
 Se distinguen una **redacción larga**, con la serie del «hermoso dueño» (C7, C8, C10), que solo conservan *LC* y *N*, y una **redacción breve** de seis coplas (C1–C6) en *Bc*, *M* y *PF*. *A* presenta un caso aparte: conserva solo cuatro de las coplas compartidas (C1, C2, C3 y C6) y las amplía con cinco coplas exclusivas (C11–C15), de modo que combina reducción en el material común y amplificación con texto propio. El estribillo se conserva de modo decreciente en los testimonios poéticos: triple en *LC*, doble en *PF* y único en *N*; se pierde en *A* y *Bc*. *M* queda fuera de la comparación de la posición y las repeticiones del estribillo ya que, como en la mayoría de las fuentes musicales de su género, el texto del estribillo se copia debajo de la música sin más indicaciones, y queda en manos de los intérpretes la decisión de cada cuántas coplas repetirlo.
 
 En *A* el romance se dispone a dos columnas. La columna izquierda lleva al margen las cifras 1, 3, 4, 2, que restituyen el orden C1, C2, C3, C6; la derecha prosigue, sin rúbrica ni numeración, con las cuatro coplas exclusivas (C11–C14). Al pie, en letra más pequeña y con tinta más intensa que la de ambas columnas, una mano posterior añadió la quinta (C15), «Mi atrevido pensamiento», que cierra el conjunto a modo de envío sentencioso. Su factura de añadido tardío, posterior a la copia de las dos columnas, descarta que se trate de una quinta copla de la serie exclusiva copiada en columna y la sitúa como remate del poema.
 
-![Cancionero del Duque de Alba I-Nn MS XVII.30 p.60 con *Deseos de un imposible*](/assets/36_cancionero_duque_alba-p60.png)
+![Cancionero del Duque de Alba I-Nn MS XVII.30 p.60 con *Deseos de un imposible*](assets/36_cancionero_duque_alba-p60.png)
 
 Distinguimos un total de nueve variantes:
 
@@ -82,7 +82,7 @@ Las variantes sustantivas de C2 y C3 trazan una bipartición nítida:
   - **β1 = {*Bc*, *PF*}**, unidos por «no hallando remedio» (C1).
   - **β2 = {*LC*, *M*}**, unidos por «toda es aire» (C2) y «menor mal» (C3).
 
-![Folios 111r y 111v de la edición de 1624 de *La Circe* donde cantan *Deseos de un imposible*](/assets/36_circe-111r-111v.png)
+![Folios 111r y 111v de la edición de 1624 de *La Circe* donde cantan *Deseos de un imposible*](assets/36_circe-111r-111v.png)
 
 
 La serie del «hermoso dueño» (C7, C8, C10) aparece en *N* (α) y en *LC* (β2) con texto casi idéntico, lo que apunta a un origen único y no a dos amplificaciones independientes. La explicación más económica es que esa serie remonta al arquetipo y que las redacciones breves (*Bc*, *PF*, *M* y *A*) la abreviaron por separado; la estructura bipartita del poema, cerrada cada sección por el estribillo, favorece el corte justo tras C6, que es donde se detienen los testimonios breves.
@@ -122,7 +122,7 @@ La vida de *Deseos de un imposible* como tono cantado está atestiguada, por un 
 [^salelsol]: Las cifras para guitarra de *Sale el sol con rayos de oro* del E-Bbc Ms 4158 son una reducción acordal para rasgueado del tono a 3 voces del Cancionero de Olot E-OL Ms. I-VIII (f. 45v), compuesto por Joan Pau Pujol.
 
 
-![E-Bbc Ms 4158. (a) f. 140v y f. 141r. Comienzo del bloque englobado bajo la rúbrica «Canción / Otra», con *Deseos de un imposible* al final de f. 141r. (b) Detalle del f. 143r con las cifras para guitarra de *Sale el sol con rayos de oro*, englobado en el mismo bloque.](/assets/36_E-Bbc_4158.png)
+![E-Bbc Ms 4158. (a) f. 140v y f. 141r. Comienzo del bloque englobado bajo la rúbrica «Canción / Otra», con *Deseos de un imposible* al final de f. 141r. (b) Detalle del f. 143r con las cifras para guitarra de *Sale el sol con rayos de oro*, englobado en el mismo bloque.](assets/36_E-Bbc_4158.png)
 
 
 *Deseos de un imposible* se incluye en *La desdicha por la honra* como una serenata nocturna, mandada cantar no por el galán favorecido, sino por Alejandro, el rival celoso de Felisardo. Una noche, Alejandro reúne excelentes músicos con varios instrumentos y hace que dos de las mejores voces lo canten ante las rejas de la dama. Estos detalles refuerzan la dimensión musical del romance, pero no los podemos tomar como reflejo de su práctica interpretativa. En una obra dramática, indicar que un romance se canta a determinadas voces con ciertos instrumentos tiene una consecuencia interpretativa: cada representación obliga a que unos cantantes y unos instrumentistas lo ejecuten de verdad, ya sea porque la escena lo impone, ya sea porque existe un tono real, escrito para ese número de voces, que el dramaturgo consigna para que sea el que suene. En una obra narrativa no hay tal consecuencia. La serenata solo existe en la imaginación del autor y del lector, sin que nadie deba cantarla ni escribir música para ella, de modo que Lope puede situar dos voces, un trío o determinados instrumentos según convenga a su relato, sin que lo condicione la existencia de esa música. Mientras que la acotación y los diálogos teatrales plasman lo que efectivamente se cantaba en escena, los detalles de esta serenata novelística no tienen por qué corresponder a ninguna ejecución real, y, por tanto, no documentan cómo se interpretaba la pieza. Esta autonomía respecto de la ejecución no implica, sin embargo, que el romance fuera ajeno a la música en la mente del lector. En su producción escénica, Lope solía incorporar romances que el público ya conocía, porque habían circulado cantados por la corte, de modo que texto y música apelaban juntos a la memoria de la audiencia. En la narrativa puede repetir el procedimiento: al insertar un romance que ya corría cantado, y sin necesidad de que unos actores lo entonen, el texto apela a la memoria del lector, que conoce los versos y puede recrear mentalmente la melodía con que se cantaban. Esa evocación, con todo, confirma que el romance vivía asociado a una música, pero no fija cuál era ni permite identificarla con ninguna de las versiones conservadas.

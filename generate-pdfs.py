@@ -219,6 +219,7 @@ def txt_to_tex(txt):
                     ignore_until_next = True
                 else:
                     ignore_until_next = False
+                    continue
             if not ignore_until_next:
                 result.append(" ")
                 escaped_line = escape_latex(line)
