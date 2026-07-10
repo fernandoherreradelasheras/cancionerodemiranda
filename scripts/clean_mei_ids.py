@@ -33,6 +33,30 @@ idsReferenced = {value[1:] for elem in tree.iter() for name,value in elem.items(
 print(f'Found {len(idsReferenced)} ids referenced that will be kept: {idsReferenced}')
 idsLinked = {ref[1:] for elem in tree.iter() for name,value in elem.items() for ref in value.split(" ") if name == "plist"}
 print(f'Found {len(idsLinked)} ids linked that will be kept: {idsLinked}')
+
+# expand_annots.py resolves each id in a plist and, if the pointed-to element
+# is not a <note>, it uses the first descendant <note> as the real target of the
+# annotation. Therefore, the xml:id of that note must also be preserved,
+# even if it does not appear literally in any plist.
+id_map = {elem.get(ID): elem for elem in tree.iter() if elem.get(ID) is not None}
+NOTE_TAG = f'{{{MEI_NS}}}note'
+
+def first_descendant_note(elem):
+    if elem.tag == NOTE_TAG:
+        return elem
+    for note in elem.iter(NOTE_TAG):
+        return note
+    return None
+
+idsChildNoteOfLinked = set()
+for idval in idsLinked:
+    target = id_map.get(idval)
+    if target is None:
+        continue
+    note = first_descendant_note(target)
+    if note is not None and note.get(ID) is not None:
+        idsChildNoteOfLinked.add(note.get(ID))
+print(f'Found {len(idsChildNoteOfLinked)} ids of descendant notes of plist-linked elements that will be kept: {idsChildNoteOfLinked}')
 idsWithParentAnnot = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not None and parent_map.get(elem) is not None and parent_map.get(elem).tag in annotation_target_tags}
 print(f'Found {len(idsWithParentAnnot)} ids that could be target of expanded annotations and will be kepts: {idsWithParentAnnot}')
 idsForApp = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not None and elem.tag == f'{{{MEI_NS}}}app'}
@@ -41,7 +65,7 @@ idsForExpansion = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not N
 print(f'Found {len(idsForExpansion)} ids from expansion elements that will be kepts: {idsForExpansion}')
 idsForSource = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not None and elem.tag == f'{{{MEI_NS}}}source'}
 print(f'Found {len(idsForSource)} ids from source elements that will be kepts: {idsForSource}')
-idsToKeep = idsReferenced | idsLinked | idsWithParentAnnot | idsForApp | idsForExpansion | idsForSource | { "FHH", "OMA", "JJM" }
+idsToKeep = idsReferenced | idsLinked | idsChildNoteOfLinked | idsWithParentAnnot | idsForApp | idsForExpansion | idsForSource | { "FHH", "OMA", "JJM" }
 
 for e in [elem for elem in tree.iter() for item in elem.items() if item[0] == ID and item[1] not in idsToKeep]:
     e.attrib.pop(ID, None)
