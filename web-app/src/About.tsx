@@ -15,20 +15,20 @@ const About = () => (
                 estudio, redacción, transcripción y reconstrucción de este cancionero se está
                 realizando en abierto en el repositorio público del proyecto <a href={REPO_URL}>{REPO_URL}</a>.</p>
 
-            <p>El proyecto ya ha alcanzado los dos primeros hitos:
-                <ul>
-                    <li><strong>Transcripción en bruto de textos y música de todos los tonos</strong>.</li>
-                    <li><strong>Reconstrucción de la voz perdida del primer bloque de 22 tonos</strong>.</li>
-                </ul>
-            </p>
+            El proyecto ya ha alcanzado los dos primeros hitos:
+            <ul>
+                <li><strong>Transcripción en bruto de textos y música de todos los tonos</strong>.</li>
+                <li><strong>Reconstrucción de la voz perdida del primer bloque de 22 tonos</strong>.</li>
+            </ul>
 
-            <p>Quedan por completar:
-                <ul>
-                    <li>Reconstrucción de la voz perdida del resto de los tonos.</li>
-                    <li>Revisión y validación de todos los textos poéticos.</li>
-                    <li>Revisión y validación de todas las partes musicales.</li>
-                </ul>
-            </p>
+
+            Quedan por completar:
+            <ul>
+                <li>Reconstrucción de la voz perdida del resto de los tonos.</li>
+                <li>Revisión y validación de todos los textos poéticos.</li>
+                <li>Revisión y validación de todas las partes musicales.</li>
+            </ul>
+
 
 
             <p>Para la edición del cancionero estamos utilizando y desarrollando diferentes herramientas con el fin de ofrecer
