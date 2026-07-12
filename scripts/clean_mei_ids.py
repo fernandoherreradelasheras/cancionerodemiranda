@@ -5,13 +5,21 @@ import re
 
 ID = '{http://www.w3.org/XML/1998/namespace}id'
 
-PI_HREF = 'https://music-encoding.org/schema/5.0/mei-basic.rng'
+PI_HREF = 'https://music-encoding.org/schema/5.1/mei-all.rng'
 PI_SCHEMA1 = 'http://relaxng.org/ns/structure/1.0'
 PI_SCHEMA2 = 'http://purl.oclc.org/dsdl/schematron'
 
 MEI_NS = 'http://www.music-encoding.org/ns/mei'
 
 annotation_target_tags = [ f'{{{MEI_NS}}}corr', f'{{{MEI_NS}}}supplied', f'{{{MEI_NS}}}reg', f'{{{MEI_NS}}}unclear' ]
+
+# Control elements that span two events via a startid/endid pair. If either
+# endpoint references an id that no longer exists (e.g. the other reference is
+# valid but this one is dangling), the element is invalid and must be removed.
+span_tags = { f'{{{MEI_NS}}}{tag}' for tag in (
+    'tie', 'slur', 'bracketSpan', 'hairpin', 'phrase',
+    'gliss', 'tupletSpan', 'beamSpan', 'octave',
+) }
 
 ET.register_namespace('', MEI_NS)
 
@@ -74,25 +82,23 @@ remaining_ids = {elem.get(ID) for elem in tree.iter() if elem.get(ID) is not Non
 print(f'Found {len(remaining_ids)} remaining ids in document: {remaining_ids}')
 
 
+def reference_valid(ref):
+    if not ref:
+        return True
+    target_id = ref[1:] if ref.startswith('#') else ref
+    return target_id in remaining_ids
+
 elements_to_remove = []
 for elem in tree.iter():
-    if elem.tag in [f'{{{MEI_NS}}}tie', f'{{{MEI_NS}}}slur']:
+    if elem.tag in span_tags:
         startid = elem.get('startid')
         endid = elem.get('endid')
-        
-        startid_valid = True
-        endid_valid = True
-        
-        if startid:
-            target_id = startid[1:] if startid.startswith('#') else startid
-            if target_id not in remaining_ids:
-                startid_valid = False
-                
-        if endid:
-            target_id = endid[1:] if endid.startswith('#') else endid
-            if target_id not in remaining_ids:
-                endid_valid = False
-        
+
+        startid_valid = reference_valid(startid)
+        endid_valid = reference_valid(endid)
+
+        # Remove if either endpoint dangles (covers the case where one
+        # reference is valid but the other points to a non-existent id).
         if not startid_valid or not endid_valid:
             elements_to_remove.append(elem)
             print(f'Marking {elem.tag} for removal - startid: {startid} (valid: {startid_valid}), endid: {endid} (valid: {endid_valid})')
@@ -104,7 +110,34 @@ for elem in elements_to_remove:
         parent.remove(elem)
         removed_count += 1
 
-print(f'Removed {removed_count} tie/slur elements with invalid references')
+print(f'Removed {removed_count} span elements with invalid references')
+
+
+# Remove duplicated span elements. MuseScore may emit the same slur/tie twice,
+# sometimes with the attributes in a different order (e.g. startid/endid
+# swapped), so a textual comparison misses them. Two span elements are
+# considered identical when they share the same tag and the same set of
+# attribute name/value pairs, regardless of attribute order. Deduplication is
+# restricted to siblings under the same parent, so identical spans that live in
+# different <rdg> readings are preserved.
+def span_key(elem):
+    return (elem.tag, frozenset(elem.attrib.items()))
+
+dup_removed = 0
+for parent in tree.iter():
+    seen = set()
+    for child in list(parent):
+        if child.tag not in span_tags:
+            continue
+        key = span_key(child)
+        if key in seen:
+            parent.remove(child)
+            dup_removed += 1
+            print(f'Removing duplicate {child.tag} {dict(child.attrib)}')
+        else:
+            seen.add(key)
+
+print(f'Removed {dup_removed} duplicate span elements')
 
 root = tree.getroot()
 root.set("xmlns", MEI_NS)
@@ -120,6 +153,21 @@ newtree.write(".tmp-clean.mei", xml_declaration=True, method="xml", encoding="UT
 with open(".tmp-clean.mei", 'r', encoding='utf-8') as f:
     content = f.read()
 content = re.sub(r'\s+/>', '/>', content)
+# ElementTree writes the XML declaration with single quotes; use double quotes.
+content = content.replace(
+    "<?xml version='1.0' encoding='UTF-8'?>",
+    '<?xml version="1.0" encoding="UTF-8"?>',
+)
+# Drop the blank line ElementTree inserts between the XML declaration and the
+# first processing instruction.
+content = re.sub(r'(<\?xml[^>]*\?>)\n\s*\n', r'\1\n', content)
+# ElementTree appends xmlns after meiversion; restore the canonical order with
+# the namespace declaration first.
+content = re.sub(
+    r'<mei meiversion="([^"]*)" xmlns="([^"]*)">',
+    r'<mei xmlns="\2" meiversion="\1">',
+    content,
+)
 with open(".tmp-clean.mei", 'w', encoding='utf-8') as f:
     f.write(content)
 
