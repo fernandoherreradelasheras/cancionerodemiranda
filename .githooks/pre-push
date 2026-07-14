@@ -1,0 +1,139 @@
+#!/bin/bash
+
+# This hook validates all modified MEI files against the MEI 5.1 schema before pushing
+
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# MEI schema URL
+MEI_SCHEMA_URL="https://music-encoding.org/schema/5.1/mei-all.rng"
+
+print_status() {
+    echo -e "${GREEN}[MEI Validator]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[MEI Validator]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[MEI Validator]${NC} $1"
+}
+
+download_schema() {
+    local temp_dir="$1"
+    local schema_file="$temp_dir/mei-all.rng"
+    
+    
+    curl -s -L -o "$schema_file" "$MEI_SCHEMA_URL"
+    
+    if [ ! -f "$schema_file" ] || [ ! -s "$schema_file" ]; then
+        print_error "Failed to download MEI schema or file is empty."
+        return 1
+    fi
+    
+    echo "$schema_file"
+}
+
+get_modified_mei_files() {
+    local remote="$1"
+    local url="$2"
+    
+    local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null || echo "origin/main")
+    
+    if [ -z "$remote_branch" ] || [ "$remote_branch" = "origin/main" ]; then
+        # Try to find the default branch
+        local default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || echo "main")
+        remote_branch="origin/$default_branch"
+    fi
+    
+    # Get list of modified files (added, modified, renamed) that are MEI files
+    git diff --name-only --diff-filter=AMR "$remote_branch"...HEAD | grep -i '\.mei$' || true
+}
+
+validate_mei_file() {
+    local schema_file="$1"
+    local mei_file="$2"
+    local temp_dir="$3"
+
+    print_status "Validating $mei_file..."
+
+    local staged_copy="$temp_dir/$(echo "$mei_file" | tr '/' '_')"
+    if ! git show "HEAD:$mei_file" > "$staged_copy" 2>/dev/null; then
+        print_error "No se pudo extraer $mei_file desde HEAD."
+        return 1
+    fi
+
+    if xmllint --noout --relaxng "$schema_file" "$staged_copy" 2>/dev/null; then
+        print_status "✓ $mei_file is valid"
+        return 0
+    else
+        print_error "✗ $mei_file failed validation"
+        xmllint --noout --relaxng "$schema_file" "$staged_copy" 2>&1 | sed 's/^/    /'
+        return 1
+    fi
+}
+
+main() {
+    
+    # Read the push details from stdin
+    local remote="$1"
+    local url="$2"
+    
+    print_status "Starting MEI file validation for push to $remote ($url)"
+    
+    local mei_files
+    mei_files=$(get_modified_mei_files "$remote" "$url")
+    
+    if [ -z "$mei_files" ]; then
+        print_status "No MEI files modified. Skipping validation."
+        exit 0
+    fi
+    
+    print_status "Found MEI files to validate:"
+    echo "$mei_files" | sed 's/^/  - /'
+    
+    local temp_dir
+    temp_dir=$(mktemp -d)
+    trap "rm -rf '$temp_dir'" EXIT
+    
+    local schema_file
+    schema_file=$(download_schema "$temp_dir")
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+    
+    local validation_failed=0
+    local total_files=0
+    local valid_files=0
+    
+    while IFS= read -r mei_file; do
+        if [ -n "$mei_file" ]; then
+            total_files=$((total_files + 1))
+            if validate_mei_file "$schema_file" "$mei_file" "$temp_dir"; then
+                valid_files=$((valid_files + 1))
+            else
+                validation_failed=1
+            fi
+            echo # Add blank line for readability
+        fi
+    done <<< "$mei_files"
+    
+    # Summary
+    print_status "Validation complete: $valid_files/$total_files files passed"
+    
+    if [ $validation_failed -eq 1 ]; then
+        print_error "MEI validation failed. Push aborted."
+        print_error "Please fix the validation errors and try again."
+        exit 1
+    else
+        print_status "All MEI files are valid. Push allowed."
+        exit 0
+    fi
+}
+
+main "$@"
