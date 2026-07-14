@@ -1,2 +1,0 @@
-**11 impeler**: Dar o comunicar impulso a alguna cosa para el movimiento. (Diccionario de Autoridades)  
-**15 desayudar**: Embarazar, hacer oposición a alguno en la pretensión o negócio (Diccionario de Autoridades)

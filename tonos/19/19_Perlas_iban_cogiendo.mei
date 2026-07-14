@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Perlas iban cogiendo</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2025-02-10T05:30:27"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3029,5 +3042,48 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Perlas iban cogiendo,</l>
+                  <l>las ninfas por el Tajo;</l>
+                  <l>para dar a la reina,</l>
+                  <l>de Portugal sol claro.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Pero en la reina hermosa</l>
+                  <l>más rica perla hallaron:</l>
+                  <l>de precio más subido</l>
+                  <l>y de valor más alto.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Y tal que el gran monarca</l>
+                  <l>del reino lusitano</l>
+                  <l>la tiene en su corona</l>
+                  <l>por un prodigio claro.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Es perla rica y bella,</l>
+                  <l>y por mejor del campo,</l>
+                  <l>tal que a la rosa vence</l>
+                  <l>en hermosura y garbo.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Por maravilla hermosa</l>
+                  <l>los ojos la juzgaron;</l>
+                  <l xml:id="t19_l19">y flor perpetua sea</l>
+                  <l>por infinitos años.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>A las estrellas todas</l>
+                  <l>la palma le da el lauro;</l>
+                  <l>y todos la siguieron</l>
+                  <l>con vivas y aplausos.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t19_l19">_lauro_: Lo mismo que laurel. Úsase solo en el sentido metafórico, por premio, triumfo o alabanza. (Diccionario de autoridades)</annot>
+         </div>
+      </back>
    </music>
 </mei>

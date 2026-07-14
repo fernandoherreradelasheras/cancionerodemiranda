@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Aquella deidad del tajo</title>
             <lyricist>
                <persName role="lyricist">António da Fonseca Soares (Frei António das Chagas)</persName>
             </lyricist>
@@ -18,6 +18,19 @@
          </titleStmt>
          <pubStmt/>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -54,7 +67,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3512,5 +3525,45 @@ repiten idénticas alturas en los cc. 17-18.</annot>
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Aquella deidad del Tajo,</l>
+                  <l>a quién, cortés, esta selva,</l>
+                  <l>Venus de su espuma, adora;</l>
+                  <l>abril, de sus montes precia.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Aquel basilisco hermoso,</l>
+                  <l>en cuyas divinas prendas,</l>
+                  <l>puede tanto lo entendido</l>
+                  <l>que anda ociosa la belleza.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>De enero en una mañana,</l>
+                  <l>se permitió ver tan bella,</l>
+                  <l>que el valle entre sus injurias,</l>
+                  <l xml:id="t10_l12">las juzgó su primavera.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l xml:id="t10_l13">De humos y de esplendores,</l>
+                  <l xml:id="t10_l14">que brilan y brujulean,</l>
+                  <l xml:id="t10_l15">dos soles recata en nubes</l>
+                  <l>un cielo en glorias ostenta.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Corriendo entonces las almas,</l>
+                  <l>a besar sus plantas bellas,</l>
+                  <l>subieron tanto en postrarse,</l>
+                  <l>que la humildad fue soberbia.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t10_l12">"su" en el tono y en el texto de Torre do Tombo, mientras que el texto de Ajuda escribe "ser". Ambas opciones son válidas.</annot>
+            <annot type="text-note" corresp="#t10_l13">añadimos el "y" presente en las otras dos versiones y evita tener que romper una sinalefa.</annot>
+            <annot type="text-note" corresp="#t10_l14">*brujulear*: Andar sin rumbo fijo. (Diccionario de la lengua española de la RAE, 2001)</annot>
+            <annot type="text-note" corresp="#t10_l15">*recatar*: Encubrir o ocultar alguna cosa que no se quiere se vea o sepa. (Diccionario de autoridades)</annot>
+         </div>
+      </back>
    </music>
 </mei>

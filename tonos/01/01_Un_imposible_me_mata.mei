@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -21,7 +21,7 @@
             <date isodate="2024-12-31T01:58:04"/>
             <publisher>
                <corpName role="publisher">Humano y divino<identifier type="URI">https://humanoydivino.com</identifier>
-                     </corpName>
+               </corpName>
             </publisher>
             <availability>
                <useRestrict>In the event that this encoding is subject to copyright protection in any jurisdiction under applicable laws, it is licensed under CC BY-SA 4.0. Otherwise, it's in the public domain</useRestrict>
@@ -59,6 +59,19 @@
             </source>
          </sourceDesc>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -95,7 +108,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="a9823">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2580,5 +2593,36 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Un imposible me mata,</l>
+                  <l>y sus memorias me rinden;</l>
+                  <l>quién dirá qué yo me muero,</l>
+                  <l>siendo mi muerte imposible.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Triste el corazón se queja,</l>
+                  <l>y si le pregunto, triste:</l>
+                  <l>corazón, ¿por qué me has muerto?</l>
+                  <l>me responde: porque quise.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Doradas flechas de fuego,</l>
+                  <l>que a cada paso me embisten,</l>
+                  <l>que cuando muerto me veis,</l>
+                  <l>vuelve su rigor a herirme.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Yo padeciera contento,</l>
+                  <l xml:id="t01_l14">si el amor fuera despique,</l>
+                  <l>pero andar penando siempre,</l>
+                  <l>es un padecer terrible.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t01_l14">despique: Satisfacción o venganza que se toma de alguna ofensa o desprécio que se ha recibido. (Diccionario de autoridades, 1732)</annot>
+         </div>
+      </back>
    </music>
 </mei>

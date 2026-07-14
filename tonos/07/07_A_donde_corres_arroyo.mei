@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">A dónde corres arroyo</title>
             <lyricist>
                <persName role="lyricist">Antonio Barbosa</persName>
             </lyricist>
@@ -20,6 +20,19 @@
             <date isodate="2024-09-25T10:42:13"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -56,7 +69,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3333,5 +3346,41 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>A dónde corres arroyo,</l>
+                  <l>con precipitado afán,</l>
+                  <l>si es quien tu muerte fabrica</l>
+                  <l>esa ambición de ser más.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Por te aumentar te despeñas</l>
+                  <l>dando a un valle tu caudal,</l>
+                  <l>dime, ¿qué aumentos esperas</l>
+                  <l>de quien te hace despeñar?</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Si a grande del mar aspiras,</l>
+                  <l>cómo no ve tu caudal</l>
+                  <l>que aquello que a muchos robas,</l>
+                  <l>él también te robará.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Sirvan de espejo a tus furias</l>
+                  <l>esos cristales, que van</l>
+                  <l>corriendo porque los miras,</l>
+                  <l>corridos por te mirar.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Prende en tu misma corriente</l>
+                  <l>este furioso caudal,</l>
+                  <l>pues para no mal pararte</l>
+                  <l>te debes de reparar.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

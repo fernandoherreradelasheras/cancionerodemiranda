@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Quién dira que tus dos niñas</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2025-02-26T05:46:16"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3869,5 +3882,41 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Quién dirá que tus dos niñas,</l>
+                  <l>Clori, se tengan tal traza</l>
+                  <l>que ambas, a vista de todos,</l>
+                  <l>se anden robando las almas.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Quién presumiera que fuesen,</l>
+                  <l>siendo tan buenas, tan malas,</l>
+                  <l>pues el delito cometen</l>
+                  <l>desde el cielo de su casa.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Son llaves del albedrío,</l>
+                  <l>esas doradas pestañas,</l>
+                  <l>y siendo tan prohibidas,</l>
+                  <l>no se halla que fuesen falsas.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Quien sola busca la noche,</l>
+                  <l>y ellas son tan arrojadas</l>
+                  <l>que lo hacen al medio día</l>
+                  <l>pues no hay noche con dos albas.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Son valerosas, pues siempre</l>
+                  <l>que roban es cara a cara,</l>
+                  <l>y si matar solicitan,</l>
+                  <l>es cuando vuelven espaldas.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

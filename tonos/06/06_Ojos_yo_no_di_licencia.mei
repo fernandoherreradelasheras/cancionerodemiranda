@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Ojos, yo no di licencia</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -20,6 +20,19 @@
             <date isodate="2024-09-25T10:22:05"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -56,7 +69,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3997,5 +4010,50 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Ojos: yo no di licencia</l>
+                  <l xml:id="t06_l2">para llorar mi desdicha;</l>
+                  <l>que lágrimas sin remedio</l>
+                  <l xml:id="t06_l4">son, más que alivio, porfía.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Qué importa llorar desgracias,</l>
+                  <l>si, no siendo merecidas,</l>
+                  <l>el alma que las acuerda</l>
+                  <l>más la pena resuscita.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Si a lo imposible aspiráis,</l>
+                  <l>no desmayeis; que las dichas,</l>
+                  <l>aún los mismos venturosos,</l>
+                  <l>no alcanzan con cobardías.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Si queréis morir de todo</l>
+                  <l>no lloréis; porque es la vida,</l>
+                  <l>siendo imposible la causa,</l>
+                  <l>enmudecer la desdicha.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Quien vive muriendo tanto</l>
+                  <l>solo en morir se amplifica,</l>
+                  <l>porque es de tristes remedio,</l>
+                  <l>perder de todo la vida.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l xml:id="t06_l21">Si en merecer os fundáis,</l>
+                  <l>no merezcáis; que es desdicha</l>
+                  <l>porque, hoy, los merecimientos</l>
+                  <l>se premian con tiranía.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t06_l2">:"mis desdichas" en el manuscrito de la Biblioteca de Ajuda</annot>
+            <annot type="text-note" corresp="#t06_l4">: de nuevo la versión de la Biblioteca de Ajuda utiliza el plural</annot>
+            <annot type="text-note" corresp="#t06_l21">: esta cuarteta no está copiada en la parte del tiple 1º</annot>
+         </div>
+      </back>
    </music>
 </mei>

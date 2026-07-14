@@ -1,0 +1,19 @@
+#!/bin/sh
+# Ensure tonos/index.json stays in sync with the MEIs (Fase 2).
+# If a committed MEI would change the derived index, abort and ask to regenerate.
+
+# Only bother if a tracked MEI or the generator is staged.
+if git diff --cached --name-only | grep -qE '^(tonos/.*\.mei|scripts/build_index\.py)$'; then
+    tmp=$(mktemp)
+    if ! python scripts/build_index.py --stdout > "$tmp" 2>/dev/null; then
+        echo "pre-commit: no se pudo generar el índice (build_index.py falló)." >&2
+        rm -f "$tmp"; exit 1
+    fi
+    if ! diff -q "$tmp" tonos/index.json >/dev/null 2>&1; then
+        echo "pre-commit: tonos/index.json está desactualizado respecto a los MEIs." >&2
+        echo "  Regenera y añade el índice:" >&2
+        echo "    python scripts/build_index.py && git add tonos/index.json" >&2
+        rm -f "$tmp"; exit 1
+    fi
+    rm -f "$tmp"
+fi

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Ay, que me llevan suspiros</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,19 @@
             <date isodate="2025-03-06T23:25:31"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -48,7 +61,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -8337,7 +8350,7 @@
                      </staff>
                   </measure>
                </section>
-               <section restart="true" label="coplas">
+               <section xml:id="coplas" restart="true" label="coplas">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.000000">
@@ -13528,5 +13541,81 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ay, que me llevan suspiros,</l>
+                  <l>al aire, al bien de mis males</l>
+                  <l>Ay Dios y qué crueldades</l>
+                  <l>pues suspiros, debían pararle</l>
+                  <l>a mi amante.</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <label>Coplas a 4 y a solo</label>
+               <lg type="copla" n="1">
+                  <l>Pudieron detenerle</l>
+                  <l>suspiros, a mi amante</l>
+                  <l>pero para que huyan</l>
+                  <l>ellos le dan el aire.</l>
+                  <l>Porque son tales</l>
+                  <l>que le soplan los vuelos</l>
+                  <l>para ausentarse.</l>
+                  <l>Mas no se canse</l>
+                  <l>[de seguir su viaje</l>
+                  <l>hasta alcanzarle]</l>
+                  <l>Antes no paren</l>
+                  <l>pues le hacen tan presentado</l>
+                  <l>cuando distante.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Del pecho los suspìros</l>
+                  <l>y de los ojos los mares</l>
+                  <l>hacen que amor o vuelva</l>
+                  <l>o también que se embarque</l>
+                  <l>Las olas y los aires</l>
+                  <l>no son para que huyan</l>
+                  <l>mas porque paren.</l>
+                  <l>[Que se levanten</l>
+                  <l>y empujen inconstantes</l>
+                  <l>sobre los mares]</l>
+                  <l>velas y naves.</l>
+                  <l>si llevan mis riquezas</l>
+                  <l>glorias me traen.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Del amor los suspiros</l>
+                  <l>que de volcanes nacen</l>
+                  <l>en llamas que se encienden,</l>
+                  <l>porque no se acaben.</l>
+                  <l>Suspiros que arden</l>
+                  <l>a los que más consumen</l>
+                  <l>más fríos hacen.</l>
+                  <l>[Mas no se espanten</l>
+                  <l>que llamas celestiales</l>
+                  <l>si se comparten]</l>
+                  <l>pueden constantes</l>
+                  <l>hacer que amor que huye</l>
+                  <l>al pecho abrase.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Al fin que estos suspiros</l>
+                  <l>y estas finezas grandes</l>
+                  <l>no pueden detenerle</l>
+                  <l>los vuelos inefables</l>
+                  <l>más que dejalde</l>
+                  <l>que ellos harán que amor</l>
+                  <l>se haga constante.</l>
+                  <l>[Aunque le falten</l>
+                  <l>fuerzas para quedarse</l>
+                  <l>en esta parte.]</l>
+                  <l>Pero más vale</l>
+                  <l>que al amor que hoy se ausenta</l>
+                  <l>solo lo acompañen.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

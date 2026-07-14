@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Campos del Tajo Amariles</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,19 @@
             <date isodate="2025-03-06T12:59:19"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -50,7 +63,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2559,7 +2572,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4503,5 +4516,49 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Campos del Tajo Amariles,</l>
+                  <l>aquella hermosa deidad</l>
+                  <l>que os debió tantas lisonjas,</l>
+                  <l>lástimas os deba ya.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Nació sol y al occidente,</l>
+                  <l>llevan su luz tan igual</l>
+                  <l>que sin declinar los rayos,</l>
+                  <l>los rayos pudo ocultar.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Destinada a perfecciones,</l>
+                  <l>era cierto lo fatal</l>
+                  <l>lo preciso de su muerte,</l>
+                  <l>no habiendo más que lograr.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Astro se traslada hermoso,</l>
+                  <l>llevando bien desigual</l>
+                  <l>muchos siglos de entendida,</l>
+                  <l>en pocos años de edad.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>En sus riberas el Tajo,</l>
+                  <l>en lágrimas de cristal</l>
+                  <l>llora estas memorias tristes,</l>
+                  <l>y aún las conserva el mar.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Y él sea testigo,</l>
+                  <l>cuántas veces sus caudales</l>
+                  <l>retrocedió porque el fuego</l>
+                  <l>de mi llanto no estorbase</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

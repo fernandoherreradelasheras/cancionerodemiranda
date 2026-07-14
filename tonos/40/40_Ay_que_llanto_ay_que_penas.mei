@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Ay qué llanto, ay qué penas</title>
             <composer>
                <persName role="composer">Fray Felipe de la Madre de Dios</persName>
             </composer>
@@ -18,6 +20,18 @@
             <date isodate="2024-10-04T03:03:59"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -49,7 +63,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2676,7 +2690,7 @@
                      <tie startid="#n1q2k40j" endid="#n19lecil"/>
                      <tie startid="#n4x52ue" endid="#nvb81i0"/>
                      <tie startid="#alto_m46" endid="#alto_m47"/>
-                     </measure>
+                  </measure>
                   <measure n="47" right="end">
                      <staff n="1">
                         <layer n="1">
@@ -2701,7 +2715,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section restart="true" label="coplas">
+               <section xml:id="coplas" restart="true" label="coplas">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef>
@@ -3927,7 +3941,7 @@
                      <tie startid="#nf9yjki" endid="#n627qpb"/>
                      <tie startid="#na123oi2" endid="#na123oi3"/>
                      <tie startid="#n16dfqdc" endid="#n6hap3d"/>
-                     </measure>
+                  </measure>
                   <measure n="57">
                      <staff n="1">
                         <layer n="1">
@@ -4244,7 +4258,7 @@
                      <tie startid="#njlyteu" endid="#nejqpzp"/>
                      <tie startid="#nrga8mh" endid="#ncgoaki"/>
                      <tie startid="#nas1l231" endid="#nas1l232"/>
-                     </measure>
+                  </measure>
                   <measure n="59">
                      <staff n="1">
                         <layer n="1">
@@ -5245,7 +5259,7 @@
                      <tie startid="#n1m0ygk2" endid="#nlywnz7"/>
                      <tie startid="#na1fieu1" endid="#na1fieu2"/>
                      <tie startid="#n14cw8lx" endid="#nwd4uoj"/>
-                     </measure>
+                  </measure>
                   <measure n="65">
                      <staff n="1">
                         <layer n="1">
@@ -6033,5 +6047,50 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>¡Ay, qué llanto!,</l>
+                  <l>¡Ay, qué penas!,</l>
+                  <l>¡Ay, qué hermosas que son</l>
+                  <l>siendo tristezas!</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Las lágrimas con que Lices</l>
+                  <l>da de su tormento señas,</l>
+                  <l>bien parecen que son suyas,</l>
+                  <l>en ser graves y en ser bellas.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l xml:id="t40_l9">Porque tan divina llora,</l>
+                  <l>que, en la razón de la pena,</l>
+                  <l>se ve solo que su llanto,</l>
+                  <l>no es adorno de su queja.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Suspira, llora y padece</l>
+                  <l>dejando a un tiempo desechas,</l>
+                  <l>como a sus rayos las almas,</l>
+                  <l>a sus ternuras las penas.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Su traje con sus acciones,</l>
+                  <l>entendidamente muestran,</l>
+                  <l>la aflicción de sus memorias,</l>
+                  <l>lo caro de sus finezas.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Mas puesto que los pesares</l>
+                  <l>no la dejan, la respetan,</l>
+                  <l>porque el ser de divino en Lices,</l>
+                  <l>nunca falta, siempre reina.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t40_l9">: En los tres manuscrito aparece este verso como "porque tan divinamente llora". Si bien el endecasílabo encaja bien en las repeticiones que realizan el tiple primero (_porque tan divinamente, divinamente llora_) y el tiple segundo (_porque tan divinamente llora, llora_) no hay encaje posible con las únicas ocho notas de la parte de tenor. Tomamos pues el testimonio poético del manuscrito de la Biblioteca de Ajuda y ajustamos las repeticiones de tiple 1º y tiple 2º en la parte musical.</annot>
+         </div>
+      </back>
    </music>
 </mei>

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Para vos y para mi</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,17 @@
             <date isodate="2025-03-13T18:30:26"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Bajo</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -40,7 +51,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2661,7 +2672,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkj33">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4332,5 +4343,48 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Para vos y para mi,</l>
+                  <l>los desengaños se hicieron,</l>
+                  <l>para vos porque los dais,</l>
+                  <l>para mí porque los quiero.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Si en darlos os desveláis</l>
+                  <l>yo en servirlos me desvelo</l>
+                  <l>y pues no teméis el daño</l>
+                  <l>es justo estime el provecho.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Hacéis bien pues que no amáis</l>
+                  <l>discreta sois en quereros</l>
+                  <l>mas la propia quietud,</l>
+                  <l>es el amor más discreto.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Hay cuidados bien nacidos</l>
+                  <l>Hay amados pensamientos</l>
+                  <l>a donde habéis de ganaros</l>
+                  <l>si a donde nacéis os pierdo.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Indigno de vuestra vista</l>
+                  <l>y a vuestra muerte padezco</l>
+                  <l>pues falta la esperanza,</l>
+                  <l>el alma de los deseos.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ay grave sentimiento,</l>
+                  <l>pasad aprisa,</l>
+                  <l>pues que veis que muero.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

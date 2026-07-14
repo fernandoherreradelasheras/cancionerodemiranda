@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Sembrando estaba papeles un labrador afligido</title>
             <lyricist>
                <persName role="lyricist">¿Lope de Vega?</persName>
             </lyricist>
@@ -17,6 +17,17 @@
             <date isodate="2024-11-27T18:19:57"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -43,7 +54,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -1455,7 +1466,7 @@
                      </staff>
                   </measure>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkjiu">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="90.0">
@@ -2739,5 +2750,35 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Sembrando estaba papeles</l>
+                  <l>un labrador afligido,</l>
+                  <l>después de haber bien arado</l>
+                  <l>los campos con mil suspiros.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Con el agua que sus ojos</l>
+                  <l>vertieron, al principio</l>
+                  <l>del mas desdichado octubre</l>
+                  <l>que por año esteril vino.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Rompiendo palabras tiernas</l>
+                  <l>de unos papeles fingidos,</l>
+                  <l>arrojándolos al aire,</l>
+                  <l>estas palabras dijo:</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>«¿Qué fruto esperan los engaños míos</l>
+                  <l>sembrando celos y cogiendo olvidos?»</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

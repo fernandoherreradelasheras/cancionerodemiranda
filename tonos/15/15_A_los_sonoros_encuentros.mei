@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">A los sonoros encuentros</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2024-10-03T06:05:18"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3994,5 +4007,42 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>A los sonoros encuentros,</l>
+                  <l>de cristalinas escuadras;</l>
+                  <l>orgullosas las espumas,</l>
+                  <l>del mar han tocado: alarma.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Disparan balas de nieve</l>
+                  <l>las cerúleas ondas bravas</l>
+                  <l>contra sí mismas diciendo</l>
+                  <l>al cristal bruñido: avanza.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Repite el nevado encuentro,</l>
+                  <l>tiros de mentida plata</l>
+                  <l>cuando por el blanco argento,</l>
+                  <l xml:id="t15_l12">sale amor diciendo: aparta.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Que pues el sol siempre hermoso,</l>
+                  <l>de la deidad alemana</l>
+                  <l>ha pisado vuestras huellas</l>
+                  <l>vuestra dicha al mundo aclama.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Destiérrense las zozobras,</l>
+                  <l>depónganse las borrascas</l>
+                  <l>pero el iris de los cielos,</l>
+                  <l>puso en vos sus regias plantas.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t15_l12">: Superius secundus repite *sale amor* por error y omite la última copla.</annot>
+         </div>
+      </back>
    </music>
 </mei>

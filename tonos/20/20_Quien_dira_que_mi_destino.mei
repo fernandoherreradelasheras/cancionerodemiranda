@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -17,13 +17,27 @@
          <pubStmt>
             <date isodate="2025-06-02T01:58:04"/>
             <publisher>
-               <corpName role="publisher">Humano y divino<identifier type="URI">https://humanoydivino.com</identifier></corpName>
+               <corpName role="publisher">Humano y divino<identifier type="URI">https://humanoydivino.com</identifier>
+               </corpName>
             </publisher>
             <availability>
                <useRestrict>In the event that this encoding is subject to copyright protection in any jurisdiction under applicable laws, it is licensed under CC BY-SA 4.0. Otherwise, it's in the public domain</useRestrict>
             </availability>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -43,8 +57,8 @@
                            <clef shape="G" line="2" xml:id="cjkdud2"/>
                         </staffDef>
                         <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                           <label>Alto</label>
-                           <labelAbbr>A.</labelAbbr>
+                           <label>[Alto]</label>
+                           <labelAbbr>[A.]</labelAbbr>
                            <clef shape="G" line="2" xml:id="cjkdud2_1"/>
                         </staffDef>
                         <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
@@ -60,7 +74,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3175,5 +3189,48 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>¿Quién dirá que mi destino</l>
+                  <l>me lleva tras un desdén,</l>
+                  <l>sin que merézcalo fino,</l>
+                  <l>porque no obliga el querer?</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>¿Quién dirá que puede un alma</l>
+                  <l>contrastar tal esquivez,</l>
+                  <l>pues no acaba de un desprecio</l>
+                  <l>y se anima en lo cruel?</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>¿Quién dirá que no es fineza</l>
+                  <l>seguir, amante, una fe</l>
+                  <l>sin más premio que la dicha</l>
+                  <l>de adorar sin merecer?</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>¿Quién dirá que no es la muerte</l>
+                  <l>de morir por querer bien,</l>
+                  <l>vida de un amor que solo</l>
+                  <l>el morir su vida es?</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>¿Quién dirá que la esperanza</l>
+                  <l>quita a la fineza el ser,</l>
+                  <l>que amor que espera envidioso</l>
+                  <l>no es amor, es interés?</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>¿Quién dirá que puede tanto</l>
+                  <l>afecto que no se ve,</l>
+                  <l>siendo antes incendio a voces</l>
+                  <l>y áspid oculto después?</l>
+               </lg>
+            </lg>
+            <annot type="text-note">En el librete de superior secundus no están copiadas las dos últimas estrofas.</annot>
+         </div>
+      </back>
    </music>
 </mei>

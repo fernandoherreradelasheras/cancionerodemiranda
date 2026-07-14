@@ -5,7 +5,7 @@
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Ola, tened que marica</title>
             <composer>
                <persName role="composer">Antonio Marques Lésbio</persName>
             </composer>
@@ -20,6 +20,18 @@
             <date isodate="2025-02-03T00:59:46"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -51,7 +63,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2028,19 +2040,19 @@
                   </measure>
                   <sb/>
                </section>
-               <section restart="true" label="estribillo">
+               <section xml:id="estribillo" restart="true" label="estribillo">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef optimize="false" midi.bpm="200.0">
                            <staffGrp>
                               <staffGrp symbol="bracket">
                                  <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Tiple 1</label>
+                                    <label>Tiple 1º</label>
                                     <labelAbbr>T. 1</labelAbbr>
                                     <clef shape="G" line="2" copyof="#cjkdud1"/>
                                  </staffDef>
                                  <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Tiple 2</label>
+                                    <label>Tiple 2º</label>
                                     <labelAbbr>T. 2</labelAbbr>
                                     <clef shape="G" line="2" copyof="#cjkdud2"/>
                                  </staffDef>
@@ -6186,5 +6198,44 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Hola, tened, que Marica,</l>
+                  <l>fulminando sus donaires,</l>
+                  <l>hoy, de cansada de estrellas,</l>
+                  <l>sobre las flores se cae.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Ardan todas, porque todas</l>
+                  <l>le deben lo mismo que arden,</l>
+                  <l>en tanta salud luciente,</l>
+                  <l>de tanto florido achaque.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l xml:id="t42_l9">Mas juran que corteses,</l>
+                  <l>volarán ceniza fácil</l>
+                  <l>del aire, con que ha caído,</l>
+                  <l>que no ha sido cosa del aire.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Corrido va el Amor, corrido va,</l>
+                  <l>no volverá, el Amor, no volverá.</l>
+                  <l>Ay, ay, ay, que va corrido,</l>
+                  <l>y corriendo sangre del,</l>
+                  <l>cuánta el el muchacho cruel</l>
+                  <l>nos ha del alma bebido.</l>
+                  <l>Vino a matar y va herido,</l>
+                  <l>yo sé que no vuelve acá.</l>
+                  <l>Corrido va el Amor, corrido va,</l>
+                  <l>no volverá el Amor, no volverá.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t42_l9">Más en el cancionero. Preferimos el original publicado por Melo que mantiene la metrica.</annot>
+         </div>
+      </back>
    </music>
 </mei>

@@ -1,1 +1,0 @@
-**25**: en los manuscritos se lee _Aunque fortuna permitas_ 

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">En ti hallé querida Filis</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,17 @@
             <date isodate="2024-12-04T19:40:09"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes>Bajo</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -38,7 +49,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2079,7 +2090,7 @@
                      </staff>
                   </measure>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkjcc">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4417,5 +4428,55 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>En ti hallé, querida Filis,</l>
+                  <l>lo que del tiempo esperaba;</l>
+                  <l>que es más cierto en la mujer</l>
+                  <l>que en el tiempo la mudanza.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Tuve principios queridos</l>
+                  <l>cuando, por querer, mostrabas</l>
+                  <l>que eran dulces mis razones;</l>
+                  <l>siendo toscas te agradaban.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Eran tus conversaciones</l>
+                  <l>solo de mis alabanzas;</l>
+                  <l>presencias a mis servicios,</l>
+                  <l>te mostrabas obligada.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Prometiste dulce fruto</l>
+                  <l>coger de mis esperanzas,</l>
+                  <l>pero del tiempo y mujer</l>
+                  <l>el que se fía, se engaña.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Serviste sin merecer,</l>
+                  <l>porque el servicio no basta</l>
+                  <l>a agradar la voluntad</l>
+                  <l>cuando el alma no le agrada.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>Fieme de tus promesas,</l>
+                  <l>creíme de tus palabras,</l>
+                  <l xml:id="t71_l23">que es fácil donde hay beldad</l>
+                  <l xml:id="t71_l24">creer que verdad le tratan.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>¡Ay, servicios de amor que mala paga</l>
+                  <l>os da tiempo y fortuna y mujer falsa!</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t71_l23">: en el original "a dó"</annot>
+            <annot type="text-note" corresp="#t71_l24">: _crer_ en las partes de Tiple 1º y Bajo y corregido debajo con _creer_ en la parte de Tiple 2º</annot>
+         </div>
+      </back>
    </music>
 </mei>

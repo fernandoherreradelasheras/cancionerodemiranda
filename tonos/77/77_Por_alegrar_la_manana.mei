@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-
 <?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.0/mei-basic.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<mei meiversion="5.1" xmlns="http://www.music-encoding.org/ns/mei">
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Por alegrar la mañana</title>
             <lyricist>
                <persName role="lyricist">¿Lope de Vega?</persName>
             </lyricist>
@@ -18,6 +17,17 @@
             <date isodate="2025-03-22T09:01:30"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -44,7 +54,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2176,7 +2186,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkjee">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4796,5 +4806,44 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Por alegrar la mañana,</l>
+                  <l>oh qué lisonjeros corren</l>
+                  <l>entre las ramas el aire</l>
+                  <l>y cristal entre las flores.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Mas despierto aguarda el sol</l>
+                  <l xml:id="t77_l6">a que risueñas se borden</l>
+                  <l>los verdes campos de perlas</l>
+                  <l>y los cielos de árboles.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l xml:id="t77_l9">Qué enamoradas las aves</l>
+                  <l>entre las ramas de un bosque</l>
+                  <l>venganza daban al día</l>
+                  <l>el silencio de la noche.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Cuando Lisardo, pensando</l>
+                  <l>que entre sus dulces canciones</l>
+                  <l xml:id="t77_l15">imitar quieren sus celos</l>
+                  <l>de esta manera responden:</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Pajarillos suaves: templad las voces,</l>
+                  <l>que parecen penas y son amores.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t77_l6">: en ambos libretes del cancionero aparece *enseñas* que aunque podría ser válido parece alejado del contexto del poema. Tomamos versión *risueñas* del E-Mn MSS/3700.</annot>
+            <annot type="text-note" corresp="#t77_l9">: El E-Mn MSS/3700 omite el *Que* inicial. Tanto la parte de tiple como la de tenor escriben "*q[ue] namoradas*", lo que apunta a un copista o autor lusófono.</annot>
+            <annot type="text-note" corresp="#t77_l15">: *a los cielos* en el Cancionero de Miranda. Tomamos la opción delE-Mn MSS/3700 por coherencia temática.</annot>
+         </div>
+      </back>
    </music>
 </mei>

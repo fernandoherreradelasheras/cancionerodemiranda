@@ -1,1 +1,0 @@
-**29 saudade**: Voz Portuguesa, que seg´un su diccionario significa finísimo sentimiento del bien ausente, con deseo de posseerlo. (Diccionario de Autoridades)

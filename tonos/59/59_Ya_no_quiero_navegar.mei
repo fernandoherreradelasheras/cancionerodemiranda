@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Ya no quiero navegar</title>
             <composer>
                <persName role="composer">João Lorenzo Rebello</persName>
             </composer>
@@ -17,6 +17,18 @@
             <date isodate="2025-02-08T06:56:01"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -46,7 +58,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3255,7 +3267,7 @@
                      </staff>
                   </measure>
                </section>
-               <section label="coplas" restart="true">
+               <section xml:id="coplas" label="coplas" restart="true">
                   <app xml:id="acdkjs2">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="190.0">
@@ -4818,5 +4830,27 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ya no quiero navegar,</l>
+                  <l>en el fiero mar de amor;</l>
+                  <l>porque hay tempestad mayor,</l>
+                  <l>en el amor,que no en la mar.</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla">
+                  <l>Enbarcome la esperanza,</l>
+                  <l>con la fe y el pensamiento,</l>
+                  <l>a breves soplos del viento,</l>
+                  <l>dio al través de una mudança.</l>
+                  <l>Si en lugar de la bonanza,</l>
+                  <l>borrascas vengo a topar.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

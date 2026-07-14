@@ -1,17 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Al compás de un arroyuelo</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
          </titleStmt>
          <pubStmt/>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>Guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -46,7 +59,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -4962,7 +4975,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -9485,5 +9498,53 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Al compás de un arroyuelo,</l>
+                  <l xml:id="t38_l2">en el facistol de un sauce,</l>
+                  <l>dulcemente un jilguerillo</l>
+                  <l>sus ecos esparce al aire.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>De repetidas lisonjas,</l>
+                  <l>trinando acentos suaves,</l>
+                  <l xml:id="t38_l7">sin divertir, divertirse</l>
+                  <l>su alada consorte amable.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l xml:id="t38_l9">De requiebros y ternezas</l>
+                  <l>compone el tono agradable,</l>
+                  <l>hechizando lo sonoro</l>
+                  <l>y obligando lo elegante.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Acorde y concorde a un tiempo,</l>
+                  <l>la voz y el amor aplauden,</l>
+                  <l>si uniformes los afectos,</l>
+                  <l>conformes las voluntades.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Dichosos alivios goza</l>
+                  <l>la vecindad de las aves;</l>
+                  <l>todo el bosque es armonía,</l>
+                  <l>todo suspensión el valle.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Pajarillo, que al son de un arroyo</l>
+                  <l>entonas finezas, publicas amores;</l>
+                  <l>no suspendas el canto, ¡prosigue!</l>
+                  <l>¡Hechicen tus ecos, eleven tus voces!</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t38_l2">facistol: Atril grande donde se colocan los libros de coro en las iglesias.</annot>
+            <annot type="text-note" corresp="#t38_l7">modernizamos el _devertir devertirse_ original</annot>
+            <annot type="text-note" corresp="#t38_l9">requiebros: Palabras cariñosas, piropos, expresiones amorosas</annot>
+            <annot type="text-note" corresp="#t38_l9">ternezas: afecto, cariño, y sentimiento explicado con palabras, o acciones atractivas, y suaves. (Diccionario de autoridades)</annot>
+         </div>
+      </back>
    </music>
 </mei>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -17,6 +17,17 @@
             <date isodate="2025-05-24T08:36:02"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -41,7 +52,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3101,5 +3112,54 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>¿Qué me quieres ciego niño?</l>
+                  <l>¿por qué me persigues tanto?</l>
+                  <l>¿No basta, en tus devaneos,</l>
+                  <l>gastar la flor de mis años?</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>¿Qué quieres de nuevo ahora</l>
+                  <l>en un pecho lastimado?</l>
+                  <l>Déjame vivir en paz,</l>
+                  <l>pues conozco tus engaños.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Si con unos ojos bellos,</l>
+                  <l>dulce perdición de tantos,</l>
+                  <l>quiere cautivarme el alma,</l>
+                  <l>borrarle cierto retrato.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Mas, ¿cómo será posible</l>
+                  <l>en algún tiempo borrarlo,</l>
+                  <l>porque mi alma lo adora</l>
+                  <l>y el corazón es su esclavo?</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>No te canses, ciego amor,</l>
+                  <l>ni pierdas flechas en vano,</l>
+                  <l>que antes perderé la vida</l>
+                  <l>que mis soles soberanos.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>En su clara luz divina</l>
+                  <l>me requemo y me abraso;</l>
+                  <l>no pienses que tus quimeras</l>
+                  <l>den fin a un amor tan largo.</l>
+               </lg>
+               <lg type="copla" n="7">
+                  <l xml:id="t64_l25">Aunque Fortuna permita</l>
+                  <l>sea yo tan mal pagado,</l>
+                  <l>quitar no puedes la gloria</l>
+                  <l>que tengo solo de amarlos.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t64_l25">: en los manuscritos se lee _Aunque fortuna permitas_</annot>
+         </div>
+      </back>
    </music>
 </mei>

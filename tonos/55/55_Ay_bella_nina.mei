@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Ay bella niña</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,19 @@
             <date isodate="2025-03-13T10:23:59"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes type="lost">Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="lost">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>Guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -40,7 +53,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -1792,7 +1805,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="coplas" restart="true">
+               <section xml:id="coplas" label="coplas" restart="true">
                   <app xml:id="acdkjdd">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -3542,5 +3555,45 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ay, bella niña,</l>
+                  <l>si la fe no desprecias,</l>
+                  <l>¿cómo cautivas?</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Como a mis ojos te quiero,</l>
+                  <l>hechizo de las Juanillas</l>
+                  <l>que en mí ya son cosas viejas,</l>
+                  <l xml:id="t55_l7">el querer bien a las niñas.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Bellos piratas, tus ojos</l>
+                  <l>tan dulcemente cautivan,</l>
+                  <l>que no les pido mercedes,</l>
+                  <l>temiendo no me rediman.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>No sé por Dios cómo tienes,</l>
+                  <l>la condición de una tía,</l>
+                  <l>siendo de todo lo hermoso,</l>
+                  <l xml:id="t55_l15">por excelencia la prima.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>A una fuente de cristal,</l>
+                  <l xml:id="t55_l17">quisiste dejar corrida,</l>
+                  <l>y en ella viendo que jugabas,</l>
+                  <l>se fue muriendo de risa.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t55_l7">_niñas_: juego de palabras entre jovenes y ojos. El viejo que desea a la joven y la admiración por sus ojos.</annot>
+            <annot type="text-note" corresp="#t55_l15">_prima_: primera. De nuevo otro juego de palabras con el significado de relación familiar, en referencia a _tía_</annot>
+            <annot type="text-note" corresp="#t55_l17">_dejar corrida_: juego de palabras entre dejar correr el agua de la fuente y dejarla avergonzada.</annot>
+         </div>
+      </back>
    </music>
 </mei>

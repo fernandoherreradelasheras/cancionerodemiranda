@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Laurelia del alma mía</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,17 @@
             <date isodate="2024-12-05T00:31:04"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -38,7 +49,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3449,7 +3460,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkjcc">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4833,5 +4844,62 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Laurelia del alma mía,</l>
+                  <l>tan discreta, como hermosa;</l>
+                  <l>tu semblante es del cielo,</l>
+                  <l>tienes la color de rosa.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>¿Qué tiene tu parecer?,</l>
+                  <l xml:id="t72_l6">que so con la vista mata,</l>
+                  <l>al que duerme sin sentido,</l>
+                  <l>pues solo el tuyo le falta.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>No pienses, señora mía,</l>
+                  <l>que soy amante ingrato,</l>
+                  <l>pues solo nombrarme tuyo</l>
+                  <l>mis esperanzas rescato.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Toda la Sierra Morena,</l>
+                  <l>de lo mucho que te quiero,</l>
+                  <l>bien murmura, pues te amo</l>
+                  <l>con amor tan verdadero.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Las aves que van volando,</l>
+                  <l>con los peces por la mar</l>
+                  <l>y las fieras por las selvas</l>
+                  <l>huyendo de par en par.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>Es de verme enmudecido,</l>
+                  <l>por tus amores, ingrata;</l>
+                  <l>vuelve pues, Laurelia mía,</l>
+                  <l>ya que tu amor me mata.</l>
+               </lg>
+               <lg type="copla" n="7">
+                  <l>Duélete de tu pastor,</l>
+                  <l>pues cansa de ya cantar</l>
+                  <l>estos versos desiguales,</l>
+                  <l>que le sirven de llorar.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Canto si me miras,</l>
+                  <l>lloro si te escondes.</l>
+                  <l>Ay Laurelia mía,</l>
+                  <l>por qué no respondes.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t72_l6">: mantenemos la forma arcaica "so" por solo para respetar el ritmo</annot>
+         </div>
+      </back>
    </music>
 </mei>

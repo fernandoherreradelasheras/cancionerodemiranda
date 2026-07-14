@@ -1,19 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Su hielo esgrime la noche</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
+            <lyricist>
+               <persName role="lyricist">Vicente Sánchez (coplas) / Anónimo (estribillo)</persName>
+            </lyricist>
          </titleStmt>
          <pubStmt>
             <date isodate="2025-02-12T12:17:57"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -43,7 +58,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2243,7 +2258,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section restart="true" label="estribillo">
+               <section xml:id="estribillo" restart="true" label="estribillo">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -6490,5 +6505,48 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Su hielo esgrime la noche,</l>
+                  <l>el sol fulmina su ardor</l>
+                  <l>que lo abrasa, aquí del hielo,</l>
+                  <l>que lo hiela, aquí del sol.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Con la más villana sombra,</l>
+                  <l xml:id="t32_l6">lucha el más noble alebol</l>
+                  <l>que ciega, aquí de su luz,</l>
+                  <l>que alumbra, aquí de su error.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Contra Amor, que arroja perlas,</l>
+                  <l>de hielo el desdén se armó</l>
+                  <l>que llora, aquí de un desdén</l>
+                  <l>que ofende, aquí del amor.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Dos contrarios nun sujeto,</l>
+                  <l>hoy quiere unir el amor</l>
+                  <l>que lo alaba, aquí de un ciego</l>
+                  <l>que lo humilla, aquí de un Dios.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Despertad zagalejos,</l>
+                  <l>cantad al amor,</l>
+                  <l>pero no cantéis,</l>
+                  <l>llorar es mejor</l>
+                  <l>que al compás</l>
+                  <l>de su llanto</l>
+                  <l>llora el alba</l>
+                  <l>y suspira el sol</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t32_l6">_alebol_: mantenemos el original, pues la adaptación moderna a _árbol_ rompería la métrica.</annot>
+         </div>
+      </back>
    </music>
 </mei>

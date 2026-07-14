@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Amariles yo no puedo</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2024-09-25T03:55:52"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="apsod093">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -84,7 +97,7 @@
                                  </staffDef>
                               </staffGrp>
                               <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Giuon</label>
+                                 <label>Guion</label>
                                  <labelAbbr>G</labelAbbr>
                                  <clef corresp="#xuifui5" shape="C" line="4"/>
                               </staffDef>
@@ -3830,5 +3843,47 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l xml:id="t03_l1">Amariles, yo no puedo,</l>
+                  <l>dejar de quererte bien</l>
+                  <l>que no sé cómo se puede</l>
+                  <l>querer dejar de querer.</l>
+                  <l>Yo no sé...</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>En el dulce laberinto,</l>
+                  <l>de tus ojos me quedé,</l>
+                  <l>sin saber por dónde ha entrado,</l>
+                  <l>ni por dónde he de volver.</l>
+                  <l>Yo no sé...</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Amor se entró por los ojos,</l>
+                  <l>hasta el alma; más después,</l>
+                  <l>que quiso a ojos cerrados,</l>
+                  <l>no supo por dónde fue.</l>
+                  <l>Yo no sé...</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Morirme será más fácil,</l>
+                  <l>que llegar a aborrecer;</l>
+                  <l>que estima menos la vida</l>
+                  <l>quien del amor hace ley.</l>
+                  <l>Yo no sé...</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>No me digas que no quiera,</l>
+                  <l>por no hacerme descortés;</l>
+                  <l>que no puede hacerte el gusto</l>
+                  <l>quien no te ha de obedecer.</l>
+                  <l>Yo no sé...</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t03_l1">En tiple 2º es "Amariles, yo pretendo"</annot>
+         </div>
+      </back>
    </music>
 </mei>

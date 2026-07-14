@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<mei meiversion="5.1" xmlns="http://www.music-encoding.org/ns/mei">
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Querido imposible mío</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -48,6 +48,19 @@
             </source>
          </sourceDesc>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -84,7 +97,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="akdoie">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3381,5 +3394,37 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Querido imposible mío,</l>
+                  <l>cese ya vuestro rigor;</l>
+                  <l xml:id="t02_l3">pues os quiero cuanto puedo,</l>
+                  <l>y no os quiero ofender yo.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Amaros es conveniencia,</l>
+                  <l>y desagradaros no;</l>
+                  <l>que más os quiero gustosa,</l>
+                  <l>que el oro que engendra el sol.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Yo no pretendo enojaros,</l>
+                  <l>porque fuera mucho error;</l>
+                  <l>que más allá de lo humano,</l>
+                  <l>os quiere mi corazón.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Dadle alivio a mis pesares,</l>
+                  <l>os dará voces mi amor;</l>
+                  <l>que no es justo que se queje,</l>
+                  <l xml:id="t02_l16">y de ingrata os dé baldón.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t02_l3">El texto de tiple primero usa la voz portuguesa "pois" en vez de pues</annot>
+            <annot type="text-note" corresp="#t02_l16">baldón: Opróbrio, denuesto y palabra afrentosa con que se dá en rostro à alguno, se le injúria, menosprécia, y tiene en poco. (Diccionario de autoridades, 1732)</annot>
+         </div>
+      </back>
    </music>
 </mei>

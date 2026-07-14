@@ -1,1 +1,0 @@
-**14**: _Lucinda_ en la versión del Libro de Tonos Humanos. Tomando el femenino el poeta no nombraría al pastor protagonista y Lucinda sería un tercer personaje introducido solo para sobreponer la belleza de Filis sobre esta. Mantenemos el masculino _Lucindo_ que otorga mayor coherencia al poema

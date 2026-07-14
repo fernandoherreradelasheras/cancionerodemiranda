@@ -34,7 +34,7 @@ def process_mei_file(input_file, output_file):
         
         print(f"Modified {modifications_count} <accid> elements")
         
-    except e:
+    except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
 

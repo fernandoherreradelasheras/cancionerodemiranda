@@ -5,15 +5,31 @@
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Aunque diga que vivo</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
+            <composer>
+               <persName role="composer">Fray Felipe de la Madre de Dios</persName>
+            </composer>
          </titleStmt>
          <pubStmt>
             <date isodate="2025-03-13T13:55:23"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>Guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -48,7 +64,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -4654,7 +4670,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="coplas" restart="true">
+               <section xml:id="coplas" label="coplas" restart="true">
                   <scoreDef midi.bpm="90.0" meter.sym="common"/>
                   <app xml:id="acdkjee">
                      <lem label="app_clefs">
@@ -8405,5 +8421,54 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Aunque diga que vivo,</l>
+                  <l>no me crea nadie,</l>
+                  <l>pues lo cierto es que muero</l>
+                  <l>de soledades.</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Soledades importunas,</l>
+                  <l>en vano intentáis matarme,</l>
+                  <l xml:id="t57_l7">pues quien tiene mis deseos</l>
+                  <l>no muere de soledades.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Porque como vivo solo</l>
+                  <l>de tenerlas muy constantes,</l>
+                  <l xml:id="t57_l11">mientras que ellas no me dejen,</l>
+                  <l>no hay destierro que me mate.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Vosotras la causa sois</l>
+                  <l>de que tantas me acompañen,</l>
+                  <l xml:id="t57_l15">pues soledad sin deseos</l>
+                  <l>no la ha padecido nadie.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Con ellas hago dichosos</l>
+                  <l>a mis pensamientos graves,</l>
+                  <l>pues me enseñan lo que amo,</l>
+                  <l xml:id="t57_l20">no el rigor mas lo agradable.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Sabed, en fin, que de Lises,</l>
+                  <l>quien con fe quererla sabe,</l>
+                  <l>a pesar de estar ausente,</l>
+                  <l xml:id="t57_l24">no está solo ni distante.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t57_l7">: _que quien tiene mis desdichas_ en el testimonio del CPMHL</annot>
+            <annot type="text-note" corresp="#t57_l11">: _dejan_ en el CPMHL</annot>
+            <annot type="text-note" corresp="#t57_l15">: en plural en el CPMHL: _soledades sin deseos / no las ha padecido nadie_</annot>
+            <annot type="text-note" corresp="#t57_l20">: el testimonbio del CPMHL omite el _lo_ y el _más_ se toma como advervio de cantidad. En nuestra versión funciona como conjunción adversativa.</annot>
+            <annot type="text-note" corresp="#t57_l24">: _sola_ en el CPMHL y por tanto en referencia a Lises. Nuestra versión se refiere al yo poético</annot>
+         </div>
+      </back>
    </music>
 </mei>

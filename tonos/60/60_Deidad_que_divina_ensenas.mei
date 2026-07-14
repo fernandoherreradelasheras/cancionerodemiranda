@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Deidad, que divina enseñas</title>
             <composer>
                <persName role="composer">Fray Felipe de la Madre de Dios</persName>
             </composer>
@@ -19,6 +19,19 @@
             <date isodate="2025-02-03T08:47:08"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes type="reconstructed">Guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -55,7 +68,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="akofi93">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -4087,7 +4100,7 @@ ci</syl>
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="aiud87cg">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -9771,5 +9784,58 @@ ci</syl>
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Deidad, que divina enseñas</l>
+                  <l>por lo apacible y sereno,</l>
+                  <l>cuándo es bien que llore el sol,</l>
+                  <l>cuándo es bien que ría el cielo.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>¿Cómo no han de abrasar todo,</l>
+                  <l>esos lindos ojos negros,</l>
+                  <l>si nunca les falta el aire</l>
+                  <l>y siempre les sobra el fuego?</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>¿Quién, oyendo tus palabras,</l>
+                  <l>no reconoce que, siendo</l>
+                  <l>dichas sin cuidado todas,</l>
+                  <l>todas encierran misterios?</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>De lo fragante y lúcido</l>
+                  <l>de tu peregrino aseo</l>
+                  <l>tienen las flores envidia,</l>
+                  <l>tienen las estrellas celos.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Cuando a dar al prado sales,</l>
+                  <l>mil gracias con un paseo,</l>
+                  <l>por seguirte a pie se olvidan</l>
+                  <l>de volar los pensamientos.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>Esto las voces decían</l>
+                  <l>de unos ruiseñores tiernos</l>
+                  <l>a la divina lisonja</l>
+                  <l>de los males sin remedio.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ruiseñores que libres cantáis,</l>
+                  <l>cantad, cantad, no paréis,</l>
+                  <l>pues tanta dicha lográis</l>
+                  <l>que sale a escucharos</l>
+                  <l>la aurora que veis,</l>
+                  <l>¡Ay, ay de quien es solo su canto,</l>
+                  <l>prisiones, suspiros, memorias y llanto!</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

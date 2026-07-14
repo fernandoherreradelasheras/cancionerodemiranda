@@ -1,16 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Donde volais, pensamientos</title>
             <lyricist>
-               <persName role="lyricist">Gabriel Bocángel y Unzueta</persName>
-            </lyricist>
-            <lyricist>
-               <persName role="lyricist">Antonio Hurtado de Mendoza</persName>
+               <persName role="lyricist">Gabriel Bocángel y Unzueta (coplas) / Antonio Hurtado de Mendoza (estribillo)</persName>
             </lyricist>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
@@ -20,6 +17,19 @@
             <date isodate="2025-03-08T11:04:50"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>Guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -54,7 +64,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3642,7 +3652,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -6532,5 +6542,43 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>- ¿Dónde voláis, pensamientos?</l>
+                  <l>- A una gloria y a un martirio.</l>
+                  <l>- Pues, ¿dónde está vuestro acuerdo?</l>
+                  <l>- De parte del precipicio.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>- ¿Cómo, si voláis a un cielo,</l>
+                  <l>quedo yo en las penas fijo?</l>
+                  <l>- Porque Amor nos dio a nosotros</l>
+                  <l>su gloria y a ti, su abismo.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>- Mi pecho, que ayer fue yelo,</l>
+                  <l>¿cómo es hoy incendio altivo?</l>
+                  <l>- Porque nacen los afectos</l>
+                  <l>de causas, que no de siglos.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>-No importa, que en bien tan alto</l>
+                  <l>el premio será el castigo,</l>
+                  <l xml:id="t37_l15">y honrados expiraremos</l>
+                  <l>por culpas de bien nacidos.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Cogí lágrimas y quejas;</l>
+                  <l>la tierra no me engañó,</l>
+                  <l>que lo mismo sembré yo.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t37_l15">: esperaremos en el Cancionero de Miranda y CPMHL. Tomamos expiraremos de la edición impresa del romance de Bocángel.</annot>
+         </div>
+      </back>
    </music>
 </mei>

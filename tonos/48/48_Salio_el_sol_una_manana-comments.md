@@ -1,1 +1,0 @@
-**4 Cintia**: Con este nombre se referían a veces a Selene, la personificación mitológica griega de la Luna.

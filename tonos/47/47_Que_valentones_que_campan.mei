@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Qué valentones que campan</title>
             <composer>
                <persName role="composer">Fray Felipe de la Madre de Dios</persName>
             </composer>
@@ -17,6 +17,18 @@
             <date isodate="2025-01-31T16:01:13"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -48,7 +60,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2753,7 +2765,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section restart="true" label="estribillo">
+               <section xml:id="estribillo" restart="true" label="estribillo">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef optimize="false" midi.bpm="180.0">
@@ -8555,5 +8567,57 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Qué valentones que campan</l>
+                  <l>los lindos pies de Jacinta,</l>
+                  <l>cuando, con belleza andante,</l>
+                  <l>retan a toda la villa.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>No hay ventura difícil</l>
+                  <l>a sus dos tersas cuchillas,</l>
+                  <l xml:id="t47_l7">pues al alma más isenta,</l>
+                  <l>aún envainadas castigan.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Si las saca con desgarro,</l>
+                  <l xml:id="t47_l10">porque lo descubre, indicia</l>
+                  <l>en el nácar de sus medias,</l>
+                  <l xml:id="t47_l12">la sangre de mil heridas.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Su candidez es su crimen,</l>
+                  <l>y obscura cárcel habitan,</l>
+                  <l>donde, presos por pequeños,</l>
+                  <l>no les vale su justicia.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Tal vez se econden, y burlan</l>
+                  <l>de la atención más prevista</l>
+                  <l>que como son tan chiquitos,</l>
+                  <l>andan siempre en niñerías.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Huid zagales,</l>
+                  <l>de encontrar a Jacinta.</l>
+                  <l xml:id="t47_l23">Con dijes de azabache,</l>
+                  <l>y azules tintas,</l>
+                  <l>porque dan cuchilladas</l>
+                  <l>con valentía</l>
+                  <l>a las más libres almas,</l>
+                  <l>siempre acuchillan.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t47_l7">: isenta en el original.</annot>
+            <annot type="text-note" corresp="#t47_l10">indiciar: Dar o ocasionar indicios de alguna cosa, por donde se venga en conocimiento de ella. (Diccionario de autoridades)</annot>
+            <annot type="text-note" corresp="#t47_l12">: mis heridas en el tono. Tomamos la variante del manuscrito poético que encaja más con el resto del texto donde no se hace referencia al yo poético.</annot>
+            <annot type="text-note" corresp="#t47_l23">dije: Joya, relicario o alhaja pequeña que se usa como adorno. (Diccionario de la lengua española)</annot>
+         </div>
+      </back>
    </music>
 </mei>

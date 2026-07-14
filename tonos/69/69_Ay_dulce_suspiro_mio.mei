@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Ay dulce suspiro mío</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,17 @@
             <date isodate="2025-03-15T04:17:50"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -40,7 +51,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -1617,7 +1628,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="coplas" restart="true">
+               <section xml:id="coplas" label="coplas" restart="true">
                   <app xml:id="acdkjee">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -2988,5 +2999,38 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ay dulce suspiro mío</l>
+                  <l>cuando te apartas de mí,</l>
+                  <l>no quisiera más de ti</l>
+                  <l xml:id="t69_l4">que hallarte a donde te envío</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Ay mensajero qué envía,</l>
+                  <l>la fuerza de mi dolor.</l>
+                  <l>ay prenda del alma mía,</l>
+                  <l xml:id="t69_l8">rayo que mi pecho herido</l>
+                  <l xml:id="t69_l9">somete a que no hay desvío</l>
+                  <l>sin atormentarme a mí. </l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Ay correo del amor</l>
+                  <l>y de los cielos espía</l>
+                  <l>ay prenda del alma mía,</l>
+                  <l>rayo que mi pecho hirió</l>
+                  <l>somete a que no hay desvío</l>
+                  <l>sin atormentarme a mí.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t69_l4">: ```do``` en el original.</annot>
+            <annot type="text-note" corresp="#t69_l8">: ```herio``` en el original que interpretamos como herido</annot>
+            <annot type="text-note" corresp="#t69_l9">: La primera palabra es ilegible en una de las partes y en la otra aparece abreviada sin que se pueda discernir su significado. Optamos por ```somete``` sin tenerlo del todo claro.</annot>
+         </div>
+      </back>
    </music>
 </mei>

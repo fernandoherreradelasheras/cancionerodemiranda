@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Deseos de un imposible</title>
             <lyricist>
                <persName role="lyricist">Lope de Vega</persName>
             </lyricist>
@@ -17,6 +17,18 @@
             <date isodate="2025-03-08T09:33:56"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -48,7 +60,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3990,7 +4002,7 @@
                      <sb/>
                   </measure>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -5655,5 +5667,57 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Deseos de un imposible</l>
+                  <l>me han traído a tiempos tales,</l>
+                  <l>que no teniendo remedio</l>
+                  <l>solicitan remediarme.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Dando voy pasos perdidos</l>
+                  <l>por tierra que toda es aire,</l>
+                  <l>que sigo mi pensamiento,</l>
+                  <l>y no es posible alcanzarle.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Desengáñanme los tiempos,</l>
+                  <l>y pídoles que me engañen,</l>
+                  <l>que es tan alto el bien que adoro,</l>
+                  <l xml:id="t36_l12">que es menor mal que matarme.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Busco un fin que no le tiene,</l>
+                  <l>y con saber que en buscarle</l>
+                  <l>pierdo pasos y deseos,</l>
+                  <l>no es posible que me canse.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Vivo en mis males alegre,</l>
+                  <l>y con ser tantos mis males,</l>
+                  <l>la mayor pena que tengo</l>
+                  <l xml:id="t36_l20">es que la pena me falte.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>Contento estoy de estar triste,</l>
+                  <l>no hay peligro que me espante,</l>
+                  <l>que, como sigo imposibles,</l>
+                  <l>todo me parece fácil</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>¡Ay Dios, qué loco amor!,</l>
+                  <l>mas tan suave,</l>
+                  <l>que me disculpa,</l>
+                  <l>quien la causa sabe.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t36_l12">: En el original de Lope _"que me maten"_</annot>
+            <annot type="text-note" corresp="#t36_l20">: En plural en el original de Lope</annot>
+         </div>
+      </back>
    </music>
 </mei>

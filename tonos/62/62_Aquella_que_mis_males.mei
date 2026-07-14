@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Aquella que mis males</title>
             <composer>
                <persName role="composer">Gonçalo Mendes Saldanha</persName>
             </composer>
@@ -17,6 +17,18 @@
             <date isodate="2025-02-08T09:49:56"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -46,7 +58,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -5060,7 +5072,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkjcc">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -8514,5 +8526,62 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Aquella que mis males</l>
+                  <l>a mi dolor dan treguas,</l>
+                  <l>darle quiero el alivio</l>
+                  <l>que tiene el que se queja.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Y tú, Belisa mía,</l>
+                  <l xml:id="t62_l6">ahora veles o duermas,</l>
+                  <l>¡oh tierna, oh rigurosa!,</l>
+                  <l>escucha mis endechas.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Si oportunos temores</l>
+                  <l>soñar me destierrean,</l>
+                  <l>enemigos los causan,</l>
+                  <l>y mi suerte lo ordena.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Ya quedarán vengados,</l>
+                  <l>mas si lo están, adviertan</l>
+                  <l>que es con traición venganza,</l>
+                  <l>victoria con afrenta.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Vite soñar un día</l>
+                  <l>-¡ah quien nunca te viera!-</l>
+                  <l>que me prendieron luego</l>
+                  <l>grillos de tus madejas.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>Vi tus hermosos ojos,</l>
+                  <l>-miento, que eran estrellas</l>
+                  <l>que brillaban piadosas,</l>
+                  <l xml:id="t62_l24">que centillaban tiernas-.</l>
+               </lg>
+               <lg type="copla" n="7">
+                  <l>Si mi fuego te abrasa,</l>
+                  <l>si agradeces mis penas,</l>
+                  <l>si tu voluntad rindo,</l>
+                  <l>si gozo de tus prendas.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>¡Oh gloria de tu ser, Belisa bella,</l>
+                  <l>que vuelves bien mi mal,</l>
+                  <l>gloria mi pena!</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t62_l6">_veles_: del verbo velar, estar despierto.</annot>
+            <annot type="text-note" corresp="#t62_l24">_centillaban_: adaptamos el original _sentillaban_ no al moderno _centelleaban_ que rompería la métrica del verso sino a una solución de compromiso con este _centillaban_.</annot>
+         </div>
+      </back>
    </music>
 </mei>

@@ -5,7 +5,7 @@
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Enternecido un peñasco</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -46,6 +46,19 @@
             </source>
          </sourceDesc>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes>Alto 1º</perfRes>
+                  <perfRes>Alto 2º</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -82,7 +95,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3752,7 +3765,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -7033,5 +7046,42 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Enternecido un peñasco,</l>
+                  <l>pajarillo a tus gemidos,</l>
+                  <l>por dos ojos de esmeralda</l>
+                  <l>vierte lágrimas de vidrio.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Compadecido a tu queja,</l>
+                  <l>lisonja hace a tus suspiros,</l>
+                  <l>que hacen piedosas, las peñas</l>
+                  <l>mal merecidos castigos.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>A tus suspiros su llanto,</l>
+                  <l>cortesía es, sino alivio,</l>
+                  <l>que es la vista de una peña</l>
+                  <l>es la obstinación delirio.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Acusar pueden a Lizes,</l>
+                  <l>más que tu dolor los riscos,</l>
+                  <l>porque sienten los peñascos</l>
+                  <l>lo que deben a sus oídos.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ay, triste pajarillo,</l>
+                  <l xml:id="t26_l18">al que no le aprovechan suspiros!</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t26_l18">"o" en los manuscritos del Cancionero de Miranda y "a" en los del CPMHL. Adptamos la solución de Lola Josa y Mariano Lambea para su edición de este último</annot>
+         </div>
+      </back>
    </music>
 </mei>

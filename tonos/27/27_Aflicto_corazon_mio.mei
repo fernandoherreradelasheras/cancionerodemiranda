@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Aflicto corazón mío</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,19 @@
             <date isodate="2025-03-06T17:16:04"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes>Alto 1º</perfRes>
+                  <perfRes type="reconstructed">Alto 2º</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -50,7 +63,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2822,7 +2835,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4928,5 +4941,46 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l xml:id="t27_l1">Aflicto corazón mío,</l>
+                  <l>¡qué llama es una que fuego,</l>
+                  <l xml:id="t27_l3">que, por más que abrase, ase,</l>
+                  <l>hace de mí desaliento!</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Es dolor y no es dolor,</l>
+                  <l>es incendio y no es incendio,</l>
+                  <l>cuando, en fin, desdigo digo,</l>
+                  <l>y, cuando desmiento, miento.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Si le conoces el daño,</l>
+                  <l>¿por qué no busca tu ingenio,</l>
+                  <l>para tu locura cura,</l>
+                  <l>cura para mi remedio?</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>No, que es la cura el achaque,</l>
+                  <l xml:id="t27_l14">la triaca, es el veneno;</l>
+                  <l xml:id="t27_l15">lo mismo que infamo amo,</l>
+                  <l>lo que desapruebo apruebo.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>¡Ay, corazón mío, cómo temo</l>
+                  <l>que por más que calles, halles</l>
+                  <l>que son tus recelos, celos!</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t27_l1">_aflicto_: Lo mismo que Afligido. (Diccionario de Autoridades)</annot>
+            <annot type="text-note" corresp="#t27_l3">_ase_: Aquí la paronomasia entre _abrase_ y _hace_ funciona solo en contextos seseantes. Mantenemos la grafía original significando únicamente la repetición del sonido.</annot>
+            <annot type="text-note" corresp="#t27_l14">_triaca_: Metafóricamente vale remedio de algun mal prevenido con prudencia, o sacado del mismo daño. (Diccionario de Autoridades)</annot>
+            <annot type="text-note" corresp="#t27_l15">_infamar_: Quitar la fama, crédito o honra a otro, con acciones o palabras. (Diccionario de Autoridades)</annot>
+         </div>
+      </back>
    </music>
 </mei>

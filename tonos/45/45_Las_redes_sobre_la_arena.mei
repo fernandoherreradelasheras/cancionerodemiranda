@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Las redes sobre la arena</title>
             <lyricist>
                <persName role="lyricist">[Luis de Góngora]</persName>
             </lyricist>
@@ -17,6 +17,18 @@
             <date isodate="2025-03-24T17:38:50"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -51,7 +63,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2966,7 +2978,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="70.0">
@@ -5825,5 +5837,49 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Las redes sobre la arena</l>
+                  <l>y la barquilla ligada</l>
+                  <l>a una roca, que las ondas</l>
+                  <l>convierten la piedra en agoa.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>El pobre Alción se queja</l>
+                  <l>por ver la hermosa Laura,</l>
+                  <l>fuego de los pescadores</l>
+                  <l>y gloria de aquella playa.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Venía la ninfa bella</l>
+                  <l>por la ribera descalza,</l>
+                  <l>dando cuerda a los anzuelos</l>
+                  <l>y recogiendo las nasas.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>El rubio cabello al viento</l>
+                  <l>de tal suerte que quedaban,</l>
+                  <l>más que en los anzuelos peces,</l>
+                  <l>entre sus cabellos almas.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Mas la hermosa pescadora</l>
+                  <l>que estas voces escuchaba</l>
+                  <l>no pudo sufrirlas más,</l>
+                  <l>que fue burla harto pesada.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>¡Qué poco importan quejas,</l>
+                  <l>qué poco valen ansias!,</l>
+                  <l>que siempre las finezas</l>
+                  <l>nacieron desdichadas.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

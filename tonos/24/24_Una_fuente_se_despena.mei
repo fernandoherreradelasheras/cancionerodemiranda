@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Una fuente se despeña</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2024-09-25T00:16:57"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2872,7 +2885,7 @@
                      </staff>
                   </measure>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4711,5 +4724,42 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Una fuente se despeña</l>
+                  <l>de aquel escollo soberbio,</l>
+                  <l>y, de verme a mí llorando,</l>
+                  <l>ella camina riendo.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>En su risa cristalina,</l>
+                  <l>una lisonja le debo,</l>
+                  <l>porque gusto de estar triste</l>
+                  <l>a la sombra de un contento.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Si de mi mal hace burla</l>
+                  <l>con murmullos y gorjeos,</l>
+                  <l>ella pagará, lozana,</l>
+                  <l>su locura en escarmiento.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>En el imperio del mar</l>
+                  <l>sean sus cristales tiernos</l>
+                  <l>efímera de las aguas</l>
+                  <l>y de las otras, ejemplo.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>No bajes tan ligera, fuente,</l>
+                  <l>que hallarás precipicio</l>
+                  <l>en tu carrera.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

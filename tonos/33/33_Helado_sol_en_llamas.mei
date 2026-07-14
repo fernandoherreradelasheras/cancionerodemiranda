@@ -1,19 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Helado sol en llamas</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
+            <lyricist>
+               <persName role="lyricist">Vicente Sánchez (coplas) / Antonio de Solís (estribillo)</persName>
+            </lyricist>
          </titleStmt>
          <pubStmt>
             <date isodate="2025-02-12T12:17:57"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -43,7 +58,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app>
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2403,7 +2418,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section restart="true" label="estribillo">
+               <section xml:id="estribillo" restart="true" label="estribillo">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -6528,5 +6543,58 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Helado sol en llamas,</l>
+                  <l>nieve abrasada en hielo</l>
+                  <l>fuego que estás temblando,</l>
+                  <l>cristal que estáis ardiendo.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>En brazos del alba</l>
+                  <l>te alivien del tiempo</l>
+                  <l>rigores tan duros,</l>
+                  <l>halagos tan tiernos.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Mucho dices callando,</l>
+                  <l>cuando callas sintiendo,</l>
+                  <l>¡quién vio, en palabra muda,</l>
+                  <l>silencio tan parlero!</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Si mucho te explicas,</l>
+                  <l>mirando te entiendo,</l>
+                  <l>que escuchan los ojos,</l>
+                  <l>cuando habla el silencio.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Hoy es de tu fineza,</l>
+                  <l>mi ingratitud el premio</l>
+                  <l>pues fueras menos fino,</l>
+                  <l>a ser yo más atento.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>Que suelen finezas,</l>
+                  <l>nacer de desprecios</l>
+                  <l>y en medio de agravios,</l>
+                  <l>amor, es extremos.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Pajarillo que cantas amante,</l>
+                  <l>calla no cantes, no cantes detente.</l>
+                  <l>Llorar es mejor que no cabe</l>
+                  <l>en tus voces el gozo de oír llorar</l>
+                  <l>suspende el canto</l>
+                  <l>pues tiene amor en el llanto</l>
+                  <l>más cariñosa canción.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

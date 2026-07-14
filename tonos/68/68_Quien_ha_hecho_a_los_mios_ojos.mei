@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Quién ha hecho a los míos ojos</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,17 @@
             <date isodate="2025-03-14T23:12:24"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -40,7 +51,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2484,7 +2495,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <scoreDef midi.bpm="180.0">
                      <staffGrp>
                         <staffGrp symbol="bracket">
@@ -3833,5 +3844,41 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Quién ha hecho a los míos ojos</l>
+                  <l>cobardes para mirar</l>
+                  <l>y quién me los tiene tristes</l>
+                  <l>hechos fuentes de llorar.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l xml:id="t68_l5">Quién trocó mi libertad</l>
+                  <l>en deseos tan cobardes</l>
+                  <l>y cuando el alma se arde</l>
+                  <l>ley pone a la voluntad.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Qué no entendida verdad,</l>
+                  <l>me impide poder mirar</l>
+                  <l>y tiene mis ojos tristes,</l>
+                  <l>hechos fuentes de llorar.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Quién me anima al empleo</l>
+                  <l>de que es razón que resista</l>
+                  <l>pues no se atreve la vista</l>
+                  <l xml:id="t68_l16">a donde se atrevió el deseo</l>
+                  <l>que los males que poseo</l>
+                  <l>me hacen hoy el desear</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t68_l5">_trocar_: Permútar, o dar una cosa por otra, transfiriendo reciprocamente el dominio de ella. (Diccionario de Autoridades)</annot>
+            <annot type="text-note" corresp="#t68_l16">: _a do_ en el original que adaptamos por donde</annot>
+         </div>
+      </back>
    </music>
 </mei>

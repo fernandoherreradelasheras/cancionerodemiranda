@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Nunca acabó de morir</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -54,6 +54,18 @@
             </source>
          </sourceDesc>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -90,7 +102,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -4096,7 +4108,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="coplas" restart="true">
+               <section xml:id="coplas" label="coplas" restart="true">
                   <app xml:id="acdkjf10">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -6791,5 +6803,39 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Nunca acabó de morir</l>
+                  <l>quien vive para penar,</l>
+                  <l>que es la dicha el acabar</l>
+                  <l>y la desdicha el vivir</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Es tan inmortal la pena</l>
+                  <l>con que se halla el sufrimiento</l>
+                  <l>que nace del sentimiento</l>
+                  <l>la vida que me condena.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Muérome sin me morir</l>
+                  <l>por ser más muerte el penar.</l>
+                  <l>Es tan injusta la suerte</l>
+                  <l>con que nace un desdichado</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>que la muerte le ha quitado,</l>
+                  <l xml:id="t46_l14">por ser remedio, la suerte.</l>
+                  <l xml:id="t46_l15">¿Cómo dejaré el vivir,</l>
+                  <l>si en la vida está el penar?</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t46_l14">: muerte en el CPMHL</annot>
+            <annot type="text-note" corresp="#t46_l15">: en el CPMHL es sufrir en vez de vivir</annot>
+         </div>
+      </back>
    </music>
 </mei>

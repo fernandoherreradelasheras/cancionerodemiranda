@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Abejuela susurrante</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,18 @@
             <date isodate="2025-03-08T01:27:50"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -45,7 +57,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -6191,7 +6203,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="coplas" restart="true">
+               <section xml:id="coplas" label="coplas" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="80.0">
@@ -8041,5 +8053,56 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Abejuela susurrante,</l>
+                  <l>mariposa enamorada</l>
+                  <l>y salamandra encendida:</l>
+                  <l>mira aquella cándida flor,</l>
+                  <l>aquella luz milagrosa</l>
+                  <l>y aquel soberano ardor.</l>
+                  <l>Vive en él, salamandra;</l>
+                  <l>muerete en él, mariposa;</l>
+                  <l>muérete en él, abejuela.</l>
+                  <l>Pique la abeja tu arpón,</l>
+                  <l>porque tendrás, mariposa</l>
+                  <l>la muerte en vida gustosa,</l>
+                  <l>la muerte en vida amorosa,</l>
+                  <l>que lograrás, salamandra,</l>
+                  <l>mejor vida en mejor llama,</l>
+                  <l>porque verás, abejuela,</l>
+                  <l>en una blanca azucena</l>
+                  <l>de más divino candor,</l>
+                  <l>si la salamadra en fuego,</l>
+                  <l>si la mariposa en luces,</l>
+                  <l>tu de las flores,</l>
+                  <l>la más bella flor.</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <label>Coplas a 3</label>
+               <lg type="copla" n="1">
+                  <l>Abejuela, si pretendes,</l>
+                  <l>la más soberana flor,</l>
+                  <l>aquel jazmín le dirige</l>
+                  <l>el más penetrante arpón.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Si enamorar, mariposa,</l>
+                  <l>quieres al farol mejor,</l>
+                  <l>busca oculta en esa nube,</l>
+                  <l>la luz más clara que el sol.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Salamandra, si es que vives</l>
+                  <l>en el centro del ardor,</l>
+                  <l>en aquel que es de amor centro,</l>
+                  <l>vida mejor tendrás hoy.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

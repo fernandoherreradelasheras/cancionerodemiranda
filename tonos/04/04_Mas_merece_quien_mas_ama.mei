@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -55,6 +55,19 @@
             </source>
          </sourceDesc>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -91,7 +104,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="aps234d">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2880,5 +2893,41 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Más merece quien más ama</l>
+                  <l>en mi lo veo al revés,</l>
+                  <l>porque cuanto más te adoro</l>
+                  <l>te experimento más cruel.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Como si fueran favores,</l>
+                  <l>solicito tu desdén,</l>
+                  <l>ni refiero por fineza</l>
+                  <l>lo que todo deuda es.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Objeto de mis finezas,</l>
+                  <l>otro no pudiera ser</l>
+                  <l>aun contra mi conjurados</l>
+                  <l>tu esquineza y tu altivez.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Si te ofende el adorarte,</l>
+                  <l>el verte la causa fue,</l>
+                  <l>no es, luego mía la culpa</l>
+                  <l>tiénela mi parecer.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Amarte por solo amarte</l>
+                  <l>fineza es mía también,</l>
+                  <l>pero adorarte ofendido</l>
+                  <l>es fineza de mi fe.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">El curso transparente</title>
             <lyricist>
                <persName role="lyricist">Agustín Salazar y Torres</persName>
             </lyricist>
@@ -17,6 +17,19 @@
             <date isodate="2024-10-02T22:39:11"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>Guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3362,7 +3375,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -6228,5 +6241,67 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>El curso transparente</l>
+                  <l>de tu corriente clara,</l>
+                  <l>para para,</l>
+                  <l>oh presurosa fuente,</l>
+                  <l>si acaso puede tanto</l>
+                  <l>triste voz, dulce queja y tierno llanto.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Y pues no hay imposible,</l>
+                  <l>en lo que amor intenta,</l>
+                  <l>sienta sienta,</l>
+                  <l>a un todo lo insensible</l>
+                  <l>muévase al dolor mío</l>
+                  <l>tierna flor, duro escollo y sordo río.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>En mis ansias fatales,</l>
+                  <l>porque mejor se crean</l>
+                  <l>sean sean,</l>
+                  <l>testigos de mis males,</l>
+                  <l>y eco de mi cuidado</l>
+                  <l>verde valle, alto monte y humilde prado.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>A{ú}n el bruto más fiero,</l>
+                  <l>humilde mueve a llanto,</l>
+                  <l>tanto tanto,</l>
+                  <l>puede el dolor severo,</l>
+                  <l>que gimen en su esfera,</l>
+                  <l>mudo pez, ave dulce y ruda fiera.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Ay Paris fementido,</l>
+                  <l>si mis ansias supieras,</l>
+                  <l>vieras, vieras,</l>
+                  <l>a pesar de tu olvido,</l>
+                  <l>que con la pena mía,</l>
+                  <l>muere el sol, nace el alba y vive el día.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Peces, fieras, aves:</l>
+                  <l>sentid mis males;</l>
+                  <l>plantas, flores, peñas:</l>
+                  <l>llorad mis quejas,</l>
+                  <l>montes, valles, ríos:</l>
+                  <l>oid mis suspiros,</l>
+                  <l>oid, sentid, llorad</l>
+                  <l>pues Amor reina</l>
+                  <l>en riscos y flores,</l>
+                  <l>en plantas y peñas,</l>
+                  <l>en montes y ríos</l>
+                  <l>en aves y fieras.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

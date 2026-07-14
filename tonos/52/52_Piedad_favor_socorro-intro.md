@@ -1,5 +1,5 @@
 
-## Testimonios musicales
+### Testimonios musicales
 
 Del tono “Venganza, griegos repite” se conservan hasta seis testimonios musicales:
 
@@ -15,7 +15,7 @@ además del testimonio perdido mencionado el índice del Libro de Tonos Humanos.
 
 
 
-## Testimonios poéticos
+### Testimonios poéticos
  
 
 La difusión del tono *¡Venganza, griegos!* revela una transmisión marcadamente abierta, en la que solo la primera copla permanece invariable como núcleo fijo, mientras que las restantes fluctúan sin cesar de un testimonio a otro: se intercambian (Paris y Helena permutan su orden), se añaden o se suprimen, y varían tanto en número como en disposición, según la selección propia de cada cancionero. 
@@ -98,7 +98,7 @@ Como todo buen tono popular, conoció versiones vueltas a lo divino (como la de 
 
 
 
-## La atribución de la música
+### La atribución de la música
 
 La autoría del tono está disputada entre Manuel Correa y Carlos Patiño en los testimonios conservados. Las fuentes se reparten de la siguiente manera: lo asignan a Correa el *Cancionero de Onteniente* (que anota "Correa") y la copia de la Colegiata de Alquézar; lo asignan a Patiño el *Cancionero de Miranda* (donde "Patinho" se repite en las tres partes conservadas) y el manuscrito que perteneció al archivo personal de Miguel Querol; lo transmite como anónimo el Cancionero Poético Musical Hispano de Lisboa; y el testimonio del Cartapacio de Coimbra P-Cug MM 234 no resulta concluyente[^coimbra]. Existe, además, un testimonio indirecto que lo atribuye a Manuel Correa: la tabla *Otros tonos sueltos* del *Libro de Tonos Humanos*. «“¡Venganza, griegos!” repite» aparece en esta tabla con la indicación "cartapacios [de Correa]". Esta indicación, cuando aparece en otras tablas o en el contenido musical del Libro de Tonos Humanos, es interpretada por los musicólogos que han estudiado a fondo esta fuente como indicación fiable de la autoría de Manuel Correa. Así, dice Alejandro Vera[^veralth]:
   
@@ -137,7 +137,7 @@ Como curiosidad y sin valor ni pretensión probatoria, existe un precedente de a
 
 
 
-## Fuentes empleadas para completar la parte perdida
+### Fuentes empleadas para completar la parte perdida
 
 Para completar la parte perdida del librete de Alto del Cancionero de Miranda no se han podido consultar dos de las fuentes que se consideran completas: el manuscrito que estuvo en poder de Miguel Querol y el testimonio conservado en el archivo musical de la Colegiata de Alquézar. El Cancionero de Onteniente conserva solo una voz que ya tenemos y por tanto no puede aportar nada. Sí resulta de utilidad el Cancionero Poético Musical Hispano de Lisboa que, aunque también tiene perdida la parte de alto, al ser un tono para tres tiples la parte que fue al librete de alto de ese cancionero no fue la misma que la que se recogió en el librete correspondiente del Cancionero de Miranda. Así el tiple 1º de ambos cancioneros coincide pero el tiple 2º sería el 3º del otro. Esta extraña configuración de tres tiples y tenor se confirma en el testimonio conservado en el Cartapacio de Coimbra P-Cug MM 234 que ademas remarca este hecho con una nota: `de tres Tip.`. 
 

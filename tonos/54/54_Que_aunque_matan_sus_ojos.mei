@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Que aunque matan sus ojos</title>
             <composer>
                <persName role="composer">Fray Felipe de la Madre de Dios</persName>
             </composer>
@@ -17,6 +17,19 @@
             <date isodate="2025-03-08T19:57:02"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="lost">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>Guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -48,7 +61,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2709,7 +2722,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="coplas" restart="true">
+               <section xml:id="coplas" label="coplas" restart="true">
                   <app xml:id="acdkjee">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -5015,5 +5028,50 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Que aunque matan sus ojos</l>
+                  <l xml:id="t54_l2">a quien los mira,</l>
+                  <l>quien se muere por ellos,</l>
+                  <l>tiene más vida.</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l xml:id="t54_l5">Venid, pastores, al valle;</l>
+                  <l>mirar que sale Lucinda</l>
+                  <l>a triunfar de lo bizarro</l>
+                  <l xml:id="t54_l8">con los rayos de su vista.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l xml:id="t54_l9">El sol, helado, la venera</l>
+                  <l xml:id="t54_l10">porque, a sus luces divinas,</l>
+                  <l xml:id="t54_l11">no está segura del hielo</l>
+                  <l>la deidad más escondida.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>La luz ya tiembla del mundo,</l>
+                  <l>pues, cuando más escogida,</l>
+                  <l>los mejores rayos rinde</l>
+                  <l>a la sombra de sus iras.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l xml:id="t54_l17">Venid al llano, pastores,</l>
+                  <l>llegad llegad aprisa:</l>
+                  <l>veréis de mejor esfera,</l>
+                  <l>en una tarde, dos días.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t54_l2">: *Belilla* en US-NYhsa B2543</annot>
+            <annot type="text-note" corresp="#t54_l5">: *Helado el sol* en US-NYhsa B2543</annot>
+            <annot type="text-note" corresp="#t54_l8">: *la beldad más peregrina* en US-NYhsa B2543</annot>
+            <annot type="text-note" corresp="#t54_l9">: *Ya tiembla la luz del mundo* en US-NYhsa B2543</annot>
+            <annot type="text-note" corresp="#t54_l10">: *y cuanto* en US-NYhsa B2543</annot>
+            <annot type="text-note" corresp="#t54_l11">: *sus mejores* en US-NYhsa B2543</annot>
+            <annot type="text-note" corresp="#t54_l17">: *al llano venid* en US-NYhsa B2543</annot>
+         </div>
+      </back>
    </music>
 </mei>

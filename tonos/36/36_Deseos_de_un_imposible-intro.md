@@ -1,5 +1,5 @@
 
-## Fuentes poético-musicales
+### Fuentes poético-musicales
 
 El romance *Deseos de un imposible* se publicó por primera vez, de forma anónima, en la *Primavera y flor de los mejores romances*, compilada por el licenciado Pedro Arias Pérez en 1621 (*PF*)[^primaveras]. Aparece cantado en *La desdicha por la honra*, una de las cuatro novelas que **Lope de Vega** dirigió a Marcia Leonarda, impresa por primera vez en *La Circe* en 1624 (*LC*). Además, el romance se recoge en varios manuscritos poéticos. El manuscrito de la Biblioteca Nacional de España E-Mn MSS/3700 (*N*) lo incluye en el f. 91 bajo la rúbrica «Lope de Bega». Una nota adjunta a otro de los manuscritos que transmiten el texto, el US-NYhsa B2477 de la Hispanic Society de Nueva York, atribuye los versos recogidos en este manuscrito al Príncipe de Esquilache[^esquilache]. El poema se conserva, además, en el Cancionero del Duque de Alba I-Nn MS XVII.30 (*A*), p. 60, compilado en Nápoles en la década de 1620 y ampliado en la siguiente, y en el cancionero de la Biblioteca de Catalunya E-Bbc Ms 4158 (*Bc*), f. 141, datado en el último tercio del siglo XVII.
 
@@ -18,7 +18,7 @@ Otro testimonio poético de *Deseos de un imposible* aparece abriendo el *Cancio
 La única fuente musical conservada es el tono a 4 del Cancionero de Miranda (*M*).
 
 
-## Transmisión y variantes
+### Transmisión y variantes
 
 
 Entre todos los testimonios se reúnen quince coplas diferentes, cada una de cuatro octosílabos con rima asonante en los pares, que citamos por su primer verso:
@@ -90,7 +90,7 @@ La serie del «hermoso dueño» (C7, C8, C10) aparece en *N* (α) y en *LC* (β2
 Algunos cruces (el plural «las penas me falten» en *LC* y *N*, la lectura aislada de *A* en C2 v. 4, o el reparto del estribillo) atraviesan estas familias. Son variantes triviales y fácilmente poligenéticas, o producto de contaminación, fenómeno habitual en la lírica de cancionero. Por eso describimos agrupaciones seguras antes que un *stemma* cerrado y bifurcante.
 
 
-## Datación y cronología relativa
+### Datación y cronología relativa
 
 Los dos impresos fechan su propia aparición, *PF* en 1621 y *LC* en 1624, y son por tanto los testimonios de datación más precisa. Entre los manuscritos, *A* se compiló en Nápoles en los años veinte y treinta[^napoles]. Para *Bc* no hay fecha explícita, pero sí una datación codicológica segura: Sogues lo sitúa en el último tercio del siglo XVII (c. 1667-1700)[^bcfecha], a partir de las cartas de Fontanella que copia[^fontanella]. Es la horquilla más amplia de las cuatro, pero firme, y hace innecesario cualquier cálculo conjetural de un *terminus post quem*. Esa cota vale para *Bc* y no para el Cancionero de Miranda, pues los poemas de Fontanella se localizan en el ms. 4158; la datación de *M* habrá de apoyarse en otros indicios codicológicos, de repertorio o de manos.
 
@@ -100,7 +100,7 @@ Estas fechas ordenan cronológicamente los testimonios datables en dos extremos.
 [^bcfecha]: Marc Sogues, en su tesis sobre las cartas poéticas de Francesc Fontanella, data el ms. 4158 de la Biblioteca de Catalunya (sigla B13) en el último tercio del siglo XVII (c. 1667-1700), en consonancia con las descripciones de Rossich (2006) y Valsalobre (2015b). Véase SOGUES, Marc. *Les cartes poètiques de Francesc Fontanella: estudi i edició crítica*. Tesi doctoral, Universitat de Girona, 2018.
 [^fontanella]: El ms. 4158 contiene siete composiciones de Fontanella, las cartas VIII a XIV del ciclo dels Àngels, y no cinco, como había indicado Rossich. Su producción está documentada desde el comienzo de la década de 1640, por lo que cualquier *terminus post quem* fundado solo en la presencia de obra suya se situaría hacia esa fecha y no hacia 1652, año de su exilio y del giro religioso de su poesía.
 
-## Autoría del texto poético
+### Autoría del texto poético
 
 
 
@@ -109,13 +109,13 @@ Las tres señales de autoría presentes en el conjunto de los testimonios tienen
 La filiación aporta el argumento decisivo a la atribución a Lope, que aflora de forma independiente en las dos ramas más alejadas del *stemma*: *La Circe* pertenece a la familia β2 y MSS/3700 a la familia α, los extremos opuestos de la bipartición. Una atribución impresa y autorizada por un lado, y una atribución manuscrita por otro, coinciden en señalar a Lope a través de canales de transmisión distintos. Al tratarse de dos líneas separadas que concuerdan, esa convergencia tiene una fuerza probatoria superior a las dos atribuciones por separado. La cronología confirma este cuadro: que el testimonio anónimo (1621) preceda al autorizado (1624) responde al patrón habitual de un romance que se difunde primero anónimo y cantado en la corte y que el autor recupera después en una colección propia. Esta atribución cuenta hoy con el respaldo de la edición crítica de referencia: Antonio Sánchez Jiménez edita el romance, con el número LXXIX, en los *Romances de senectud* (Madrid, Cátedra, 2018), primera edición crítica conjunta de los romances de la última etapa del Fénix, reunidos a partir de sus obras finales, entre ellas las novelas a Marcia Leonarda incluidas en *La Filomena* y *La Circe*.
 
 
-## El texto de *Deseos de un imposible* en el Cancionero de Miranda 
+### El texto de *Deseos de un imposible* en el Cancionero de Miranda 
 
 El Cancionero de Miranda transmite la redacción breve, de seis coplas (C1–C6), y un estribillo sin indicación de cada cuántas coplas se ha de repetir. Por sus lecciones se adscribe a la familia de *La Circe* (β2): comparte con *LC* las dos innovaciones diagnósticas «toda es aire» y «menor mal», que no se dan en ningún otro testimonio. No deriva, sin embargo, directamente de *LC*, pues carece de las coplas del «dueño», lee «que matarme» donde *LC* innova «que me maten» y conserva el singular «la pena me falte». *M* y *LC* son testimonios hermanos de β2; *M* ofrece un texto abreviado y en algún punto más conservador que *LC*, que mantiene la redacción larga y el estribillo completo. *M* queda netamente separado tanto de la subfamilia *Bc*–*PF*, ya que no comparte «no hallando remedio», como de la familia α. Para constituir el texto de *M*, *LC* es el testimonio de control más próximo; *Bc* y *PF* confirman la fisonomía de la redacción breve; *N* documenta la rama α y la redacción larga del arquetipo, y *A*, con cautela, aporta el testimonio de α en su redacción reducida y amplificada con coplas propias.
 
 
 
-## Rastro del tono *Deseos de un imposible*
+### Rastro del tono *Deseos de un imposible*
 
 La vida de *Deseos de un imposible* como tono cantado está atestiguada, por un lado, por la música conservada en el Cancionero de Miranda y, por otro, por su presencia en dos manuscritos que recogen letras cantadas, con cifras para acompañar algunas de ellas a la guitarra: el Cancionero del Duque de Alba y el E-Bbc Ms 4158. El Cancionero del Duque de Alba se formó, además, en el círculo de las cantantes Adriana Basile y Leonora Baroni, lo que refuerza su orientación hacia el repertorio para el canto. En el E-Bbc Ms 4158, el romance aparece bajo la rúbrica «Otra», que remite anafóricamente a la precedente, «Canción». Dos de los textos agrupados bajo la misma rúbrica remisiva de *Deseos de un imposible* incluyen cifras para guitarra: *Partirme quiero de vos* y *Sale el sol con rayos de oro*[^salelsol]. Este contexto confirma que *Deseos de un imposible* existía como tono cantado y que su popularidad y difusión lo llevaron a ser incluido en estos dos manuscritos. 
 

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Del silencio de este valle</title>
             <lyricist>
                <persName role="lyricist">Don Francisco de Borja</persName>
             </lyricist>
@@ -17,6 +17,17 @@
             <date isodate="2024-12-04T10:42:14"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes>Bajo</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -43,7 +54,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2266,7 +2277,7 @@
                      </staff>
                   </measure>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkjdd">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -3624,5 +3635,51 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Del silencio de este valle,</l>
+                  <l xml:id="t65_l2">no vuelvo a verte, Amariles</l>
+                  <l>porque entristece, si falta,</l>
+                  <l>la soledad a los tristes.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Mis agravios, a mis ojos,</l>
+                  <l>más soledades les piden;</l>
+                  <l>que enferma con alegrías,</l>
+                  <l>el que de tristezas vive.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>No pretendo verme alegre,</l>
+                  <l>pues tantos males me dicen</l>
+                  <l>que si por dichas los tengo,</l>
+                  <l>será, el durar, imposible.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Aquí, donde mis cuidados</l>
+                  <l>tan dulcemente me afligen,</l>
+                  <l>que en la prisión de estos montes</l>
+                  <l>¡lloro ausente y muero libre!</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Mucho de tristezas sabe</l>
+                  <l xml:id="t65_l18">el que ofendido y humilde;</l>
+                  <l xml:id="t65_l19">lo que hay de la ausencia al miedo,</l>
+                  <l>con pasos discretos mide.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ay, silencio apacible,</l>
+                  <l>no viva alegre,</l>
+                  <l>quien te llama triste.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t65_l2">: Mantenemos la variante "Amariles" del manuscrito frente a "Amarilis" de la versión publicada en las Obras en verso de Don Francisco de Borja que parece un error pues rompe la rima.</annot>
+            <annot type="text-note" corresp="#t65_l18">: En el manuscrito "ofendido es humilde". Tomamos la versión publicada del romance.</annot>
+            <annot type="text-note" corresp="#t65_l19">: En el manuscrito "de ausencia al miedo". Tomamos la versión publicada del romance con el artículo "al" que no fuerza a romper la sinalefa.</annot>
+         </div>
+      </back>
    </music>
 </mei>

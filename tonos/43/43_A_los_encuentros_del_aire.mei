@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">A los encuentros del aire</title>
             <lyricist>
                <persName role="lyricist">Alvaro Soares</persName>
             </lyricist>
@@ -17,6 +17,18 @@
             <date isodate="2025-03-16T02:39:48"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -48,7 +60,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2771,7 +2783,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -6513,5 +6525,48 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>A los encuentros del aire</l>
+                  <l>bramaba el cristal del Tajo,</l>
+                  <l>oponiendo en su defensa,</l>
+                  <l>a cada encuentro, un peñasco.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l xml:id="t43_l5">El que bajo de los montes</l>
+                  <l xml:id="t43_l6">guerra pregona al salado;</l>
+                  <l xml:id="t43_l7">en ejércitos de aljófar,</l>
+                  <l>se da batalla entre ambos.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Los arroyos que al socorro</l>
+                  <l>vienen penetrando el campo,</l>
+                  <l>al mar ufanos le arrojan,</l>
+                  <l>donde no mueren despacio.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Rompió Anarda su golfo,</l>
+                  <l>y viendo el peligro Fabio,</l>
+                  <l>desde la tierra pretende</l>
+                  <l>librar con voces el barco.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Retírate barquero,</l>
+                  <l>repara, y mira</l>
+                  <l>que peligrando Anarda</l>
+                  <l>todos peligran</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t43_l5">_bajo_: _baja_ en los manuscritos del cancionero de Miranda. Tomamos _bajo_ de la edición impresa del romance.</annot>
+            <annot type="text-note" corresp="#t43_l6">_pregona_: _apresenta_ en la edición impresa</annot>
+            <annot type="text-note" corresp="#t43_l6">_salado_: el mar</annot>
+            <annot type="text-note" corresp="#t43_l7">: en el librete del tiple 1º el verso comienza con _y_, igual que en la edición impresa (_E_). Esta última también usa el plurar ejércitos frente a los tres testimonios del cancionero donde aparece en singular. Adoptamos la forma plural que refuerza la imagen de multitud y conflicto del poema</annot>
+            <annot type="text-note" corresp="#t43_l7">_aljófar_ : Espécie de perla, que segun Covarruvias se llaman así las que son menudas pero el dia de hoy lo que entendémos por aljófar son aquellos granos menos finos y desiguales; a distinción de la perla, que es mas clara y redonda. (Diccionario de autoridades)</annot>
+         </div>
+      </back>
    </music>
 </mei>

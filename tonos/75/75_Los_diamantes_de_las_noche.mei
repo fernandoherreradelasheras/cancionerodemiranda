@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Los diamantes de las noche</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,17 @@
             <date isodate="2025-03-15T21:01:33"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -40,7 +51,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2452,7 +2463,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkjee">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -5003,5 +5014,55 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Los diamantes de la noche</l>
+                  <l xml:id="t75_l2">la blanca Aurora cubría</l>
+                  <l xml:id="t75_l3">con dorados tornasoles</l>
+                  <l>y con doradas cortinas.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l xml:id="t75_l5">Ya los caballos de fuego</l>
+                  <l>luceros de nieve pisan,</l>
+                  <l>y el niño Sol, entre sueños,</l>
+                  <l xml:id="t75_l8">hoy al Oriente los guía.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l xml:id="t75_l9">Ya las flores y jazmines</l>
+                  <l>a saludarte salían:</l>
+                  <l xml:id="t75_l11">ellos vestidos de plata</l>
+                  <l>ellas de nieve vestidas.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Ya sus amorosas quejas</l>
+                  <l>cantaban las avecillas,</l>
+                  <l>porque se duerma la noche</l>
+                  <l>y porque despierte el día.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Viola el pastor que la adora</l>
+                  <l>dando vida a cuanto pisa,</l>
+                  <l>y porque el sol la envidiase</l>
+                  <l>esto cantó en su lira:</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>«No me den airados vida a tus ojos,</l>
+                  <l>que si alegres me matan, yo les perdono.</l>
+                  <l>Mucho desdén, Flora, al sol las flores</l>
+                  <l>pero más a tus ojos, que son dos soles».</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t75_l2">: _cubrían_ en el manuscrito. Tomamos el singular de la versión impresa, pues tiene más sentido: en el amanecer es la Aurora las que cubre las estrellas</annot>
+            <annot type="text-note" corresp="#t75_l3">: en el romance impreso _tornasoles dorados_</annot>
+            <annot type="text-note" corresp="#t75_l5">: _cabellos_ en el manuscrito que corregimos con _caballos_ del romance impreso</annot>
+            <annot type="text-note" corresp="#t75_l8">: _hacia el Oriente_ en el romance impreso</annot>
+            <annot type="text-note" corresp="#t75_l9">: _rosas_ en el romance impreso</annot>
+            <annot type="text-note" corresp="#t75_l11">: _ellos de nieve vestidos_ en el manuscrito. En el romance impreso es _y ellas de nácar vestidas_, por lo que tomamos la solución intermedia de mantener la figura de nuestro manuscrito pero pasandola al femenino pues la reiteración del masculino parece un error.</annot>
+         </div>
+      </back>
    </music>
 </mei>

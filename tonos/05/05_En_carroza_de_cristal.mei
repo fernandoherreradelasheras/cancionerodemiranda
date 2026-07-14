@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">En carroza de cristal</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2024-09-25T09:23:20"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="ad89vkj">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2095,5 +2108,31 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>En carroza de cristal,</l>
+                  <l xml:id="t05_l2">que tiran volantes pías,</l>
+                  <l>de oro bruñido las ruedas</l>
+                  <l>y de rayos guarnecidas.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Sale más temprano el sol,</l>
+                  <l>y alegre más que otros días,</l>
+                  <l>como su mismo brillante</l>
+                  <l>todo gala y lozanía.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Por celebrar el festejo,</l>
+                  <l>de su curso el sol se olvida,</l>
+                  <l>y deja suspenso al mundo</l>
+                  <l xml:id="t05_l12">de la Etiopía a la Escitia.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t05_l2">pía: El caballo o yegua, cuya piel es manchada de varios colores, como a remiendos. (Diccionario de autoridades, 1737)</annot>
+            <annot type="text-note" corresp="#t05_l12">Ecitia: término usado en la Antigüedad Clásica para referirse a la región euroasiática habitada por los pueblos escitas.</annot>
+         </div>
+      </back>
    </music>
 </mei>

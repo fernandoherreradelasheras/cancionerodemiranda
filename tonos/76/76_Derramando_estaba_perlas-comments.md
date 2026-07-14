@@ -1,1 +1,0 @@
-**21**: _desdichado_ en el librete de tiple 2º y _desdichada_ en el de tenor. 

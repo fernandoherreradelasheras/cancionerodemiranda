@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Junto a un arroyo de plata</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,17 @@
             <date isodate="2025-08-07T00:26:28"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -40,7 +51,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2778,7 +2789,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkj33">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4528,5 +4539,56 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Junto a un arroyo de plata</l>
+                  <l>que por peñascos corría,</l>
+                  <l>así sentado, Ricello</l>
+                  <l>le cantaba sus desdichas:</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>"Escucha diré mis penas,</l>
+                  <l>no corras por no oírlas,</l>
+                  <l>que suele parecer menos</l>
+                  <l>el mal si se comunica.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Sed alivio de mis males,</l>
+                  <l>pues fuiste mi alegría,</l>
+                  <l>testigo cuando a estos prados</l>
+                  <l>almas le daba Belisa.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Cuántas veces, como amante</l>
+                  <l>sus plantas no fugitivas,</l>
+                  <l>bajaste volviendo en flores</l>
+                  <l>vuestras aguas cristalinas."</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Ya podéis correr, Ricello</l>
+                  <l>si mi dolor no os lastima,</l>
+                  <l xml:id="t73_l19">de verme muriendo ayer</l>
+                  <l>y hoy llorando noche y día.</l>
+               </lg>
+               <lg type="copla" n="6">
+                  <l>Más que mis ojos te quiero,</l>
+                  <l>Ricello del alma mía,</l>
+                  <l xml:id="t73_l23">así jamás te olvidaré</l>
+                  <l xml:id="t73_l24">fálteme luego la vida.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Ay, Belisa, si sigo tu crueldad,</l>
+                  <l>amor me obliga a morir.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t73_l19">: *de ver moriendo* en ambos manuscritos. La construcción con el reflexivo parece mas sensata y encaja métricamente.</annot>
+            <annot type="text-note" corresp="#t73_l23">: *asê* y *ese* en cada uno de los manuscritos.</annot>
+            <annot type="text-note" corresp="#t73_l24">: *logo* en los manuscritos. Puede tratarse tanto de un lusismo como de un arcaísmo que en cualquier caso adaptamos al castellano moderno.</annot>
+         </div>
+      </back>
    </music>
 </mei>

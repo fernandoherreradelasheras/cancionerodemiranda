@@ -2,7 +2,7 @@ import { RefObject } from "react"
 import { ScoreViewerConfigScore } from 'score-viewer';
 import tonosConfig from "./assets/tonos-config.json"
 
-const STATUS_FILE = "status.json"
+const STATUS_FILE = "index.json"
 
 const TESTING_PATH = "/tonos/"
 const TESTING_IMAGES_PATH = "/facsimil-images/"
@@ -65,12 +65,17 @@ export type Pdf = {
 export interface TonoStatus {
   index: number;
   number: number;
+  path: string;
   status_text: TextStatus;
   status_music: MusicStatus;
-  music_author: string; // TODO: this is here so we can cache authors for the list view
-  text_author: string; // TODO: same
-  mei_unit: number;
+  // Derived from each tono's MEI and cached in tonos/index.json (see
+  // scripts/build_index.py). The MEI is the source of truth.
+  music_author: string;
+  text_author: string;
   organic: string;
+  reconstructed: boolean;  // has editorially reconstructed voices
+  incomplete: boolean;     // has voices that are part of the organic but lost
+  mei_unit: number;
   pdfs: Pdf[];
 }
 
@@ -170,7 +175,7 @@ export function tonoHasMusicVoiceReconstructed(tono: TonoStatus | null): boolean
 
 
 export function tonoNeedReconstruction(tono: TonoStatus | null): boolean {
-  return (tono?.organic?.includes("[") && tono?.organic?.includes("]") || false);
+  return tono?.reconstructed ?? false;
 }
 
 export function tonoHasAudio(tono: ScoreViewerConfigScore | null): boolean {

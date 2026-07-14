@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">En pedazos va cayendo</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2025-02-26T04:45:18"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3231,5 +3244,36 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>En pedazos va cayendo,</l>
+                  <l>un arroyo cuyos pasos,</l>
+                  <l>los mide su precipicio</l>
+                  <l>y los encuentra un peñasco.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>No corras tan presuroso,</l>
+                  <l>ni te desvanezcas tanto,</l>
+                  <l>muchos que nacieron ríos</l>
+                  <l>si mueren fuentes llorando.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>No desperdicies tus perlas,</l>
+                  <l>que te vas precipitando,</l>
+                  <l>que si te las dio el invierno</l>
+                  <l>te las quitará el verano.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Si ayer naciste en el monte,</l>
+                  <l xml:id="t21_l14">quien te libró de villano,</l>
+                  <l>las presunciones de río,</l>
+                  <l>no son las que hacen hidalgos.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t21_l14">villano: El vecino, o habitador del estado llano de alguna villa o aldea, a distincion del noble o hidalgo. (Diccionario de Autoridades).</annot>
+         </div>
+      </back>
    </music>
 </mei>

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Esperava en su barquilla</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -14,6 +14,17 @@
             <date isodate="2025-03-15T07:17:42"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -38,7 +49,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -3085,7 +3096,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <scoreDef midi.bpm="180.0">
                      <staffGrp symbol="bracket">
                         <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
@@ -4634,5 +4645,52 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Esperaba en su barquilla</l>
+                  <l xml:id="t70_l2">Lucio, un pescador del Betis,</l>
+                  <l>a su dulcísima Laura,</l>
+                  <l>a quien ama eternamente.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Y por que el morir ingrato</l>
+                  <l>lo que un triste sufrir puede,</l>
+                  <l>hace que ella más se olvide</l>
+                  <l>cuando de llamas se acuerde.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Tristes imaginaciones,</l>
+                  <l>mil imposibles, parecen,</l>
+                  <l xml:id="t70_l11">están pintando a lo vivo</l>
+                  <l>dichosas y amargas suertes.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>El pescador desdichado,</l>
+                  <l>que en sus amores no duerme,</l>
+                  <l>ahora entiende que lo ve,</l>
+                  <l>ahora quimeras parece.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Y viendo ya que de todo</l>
+                  <l>su bella ingrata no viene,</l>
+                  <l>empezó triste a quejarse</l>
+                  <l>a las aguas y a los peces.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Voyme desterrando</l>
+                  <l>de estas orillas.</l>
+                  <l>!Ay de mí!</l>
+                  <l>Si mudando tierra,</l>
+                  <l>mudaré desdicha.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t70_l2">_Betis_: nombre poético del río Guadalquivir</annot>
+            <annot type="text-note" corresp="#t70_l11">_pintado a lo vivo_: con gran realismo</annot>
+         </div>
+      </back>
    </music>
 </mei>

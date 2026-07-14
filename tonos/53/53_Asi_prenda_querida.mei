@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Así, prenda querida</title>
             <composer>
                <persName role="composer">Antonio Marques Lésbio</persName>
             </composer>
@@ -17,6 +17,19 @@
             <date isodate="2025-03-13T07:51:18"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="lost">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>Guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -46,7 +59,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="estribillo">
+               <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -1964,7 +1977,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="coplas" restart="true">
+               <section xml:id="coplas" label="coplas" restart="true">
                   <app xml:id="acdkjff">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="90.0">
@@ -3611,5 +3624,43 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l xml:id="t53_l1">Así, prenda querida,</l>
+                  <l>que no temo rigores</l>
+                  <l>cuando sois mía.</l>
+               </lg>
+            </lg>
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Mi querida, hermosa prenda,</l>
+                  <l>prenda que solo dais vida,</l>
+                  <l>altiva luz de los cielos,</l>
+                  <l>de la tierra la delicia.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Admirada de las aves,</l>
+                  <l>por más que toda lucida</l>
+                  <l>más gallarda que Diana</l>
+                  <l>por lo que tenéis de ninfa.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>En vuestros divinos ojos</l>
+                  <l>vive presa el alma mía,</l>
+                  <l>venturosa porque asiste</l>
+                  <l>en tan bello ángel cautiva.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>De mirarme con agrado,</l>
+                  <l>los rayos de vuestra vista</l>
+                  <l>nacieron todas mis glorias,</l>
+                  <l>salieron todas mis dichas.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t53_l1">_prenda_: Se llama también lo que se ama intensamente: como hijos, mujer, amígos. (Diccionario de Autoridades)</annot>
+         </div>
+      </back>
    </music>
 </mei>

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Alarma, alarma, luceros</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2024-09-25T12:20:27"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2535,5 +2548,41 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Alarma, alarma, luceros,</l>
+                  <l>que aquesta hermosa deidad,</l>
+                  <l>tiene contra vuestro rayos,</l>
+                  <l>muchos truenos de cristal.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Prevenid los escuadrones;</l>
+                  <l>no para guerra empezar,</l>
+                  <l>sino para que os reduzca</l>
+                  <l>poca guerra a mucha paz.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>No penséis, rayos soberbios,</l>
+                  <l>de lucidos, blasonar;</l>
+                  <l>que los del sol han salido,</l>
+                  <l>a oscurecer los demás.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Viene tan bello y donoso,</l>
+                  <l>que ha parecido, al llegar,</l>
+                  <l>todo de Francia en el traje,</l>
+                  <l>siendo sol de Portugal.</l>
+               </lg>
+               <lg type="copla" n="5">
+                  <l>Los astros más soberanos</l>
+                  <l>de la Europa, en un compás,</l>
+                  <l>cuando su hermosura admiran,</l>
+                  <l>la desean coronar.</l>
+               </lg>
+            </lg>
+         </div>
+      </back>
    </music>
 </mei>

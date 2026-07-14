@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Filis yo por ti me muero</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2024-09-25T13:22:18"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2569,5 +2582,36 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Filis, yo por ti me muero,</l>
+                  <l>y que muera no te admire,</l>
+                  <l>pues para matar de amores</l>
+                  <l xml:id="t12_l4">solo tiene Filis, Filis.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>En mí no pones los ojos</l>
+                  <l>y llego, amante, a pedirte,</l>
+                  <l>que lo mucho que te adoro,</l>
+                  <l>para que me mires, mires.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Si no mirando das muerte,</l>
+                  <l>a quien de adorarte vive,</l>
+                  <l>para qué un amante matas,</l>
+                  <l>cuando esto te dice, dice.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Mas antes que tus rigores</l>
+                  <l>de los alientos me priven,</l>
+                  <l>para que lo sepa el mundo</l>
+                  <l>decir que te quise, quise.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t12_l4">El manuscrito repite Filis, Filis que no cumple la rima en asonante -ie que le corresponde, se podría sustituir por Nice, también frecuente en la poesía del siglo de oro y que cumpliría la rima, pero al usarse el nombre en el primer verso que da título al tono podría ser un cambio demasiado atrevido.</annot>
+         </div>
+      </back>
    </music>
 </mei>

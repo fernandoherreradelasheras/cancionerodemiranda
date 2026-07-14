@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Qué bien siente Manzanares</title>
             <lyricist>
                <persName role="lyricist">Alonso del Castillo Solorzano</persName>
             </lyricist>
@@ -15,6 +17,17 @@
             <date isodate="2025-02-13T01:28:26"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -41,7 +54,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -1600,5 +1613,39 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Qué bien siente Manzanares,</l>
+                  <l>que pisa alguna deidad</l>
+                  <l xml:id="t63_l3">las bordas de sus orillas</l>
+                  <l>lo blanco de su cristal.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Las aves con mayor salva</l>
+                  <l>avisos ciertos le dan</l>
+                  <l xml:id="t63_l7">que otro sol muestra el campo</l>
+                  <l>con superior claridad.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l xml:id="t63_l9">Las corrientes vigorosas,</l>
+                  <l xml:id="t63_l10">suspensas en su caudal</l>
+                  <l>ya son líquidos espejos,</l>
+                  <l>vuelto aplauso el murmurar.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Las ninfas a cuatro coros,</l>
+                  <l>la pretenden celebrar</l>
+                  <l>y al son de sus instrumentos</l>
+                  <l>de quien siguen al compás.</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t63_l3">: Lo verde de sus orillas en _El amor por la piedad_</annot>
+            <annot type="text-note" corresp="#t63_l7">: _ilustra_ en vez de _muestra_ en _El amor por la piedad_</annot>
+            <annot type="text-note" corresp="#t63_l9">: _corrientes cristalinas_ en _El amor por la piedad_</annot>
+            <annot type="text-note" corresp="#t63_l10">: _raudal_ en vez de _caudal_ en _El amor por la piedad_</annot>
+         </div>
+      </back>
    </music>
 </mei>

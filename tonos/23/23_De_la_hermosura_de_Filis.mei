@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">De la hermosura de Filis</title>
             <respStmt>
                <persName xml:id="FHH" role="transcriber">Fernando Herrera</persName>
             </respStmt>
@@ -17,6 +17,19 @@
             <date isodate="2024-09-25T00:16:57"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Tenor</perfRes>
+                  <perfRes>guion</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -53,7 +66,7 @@
                      </staffDef>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2452,7 +2465,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section restart="true" label="estribillo">
+               <section xml:id="estribillo" restart="true" label="estribillo">
                   <app>
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -4642,5 +4655,44 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>De la hermosura de Filis</l>
+                  <l>mi amor muriéndose está,</l>
+                  <l>que es un cielo su hermosura</l>
+                  <l>y una estrella su beldad.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Tan donairosa es la niña</l>
+                  <l>que, igualando a su beldad,</l>
+                  <l>el donaire y la hermosura,</l>
+                  <l>decirse no puede más.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Pero tiene un no sé qué,</l>
+                  <l xml:id="t23_l10">de achaque, siendo sin parar</l>
+                  <l>ser ingrata en su donaire,</l>
+                  <l>y esquiva en su voluntad.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>Es, al fin, Filis divina</l>
+                  <l>tan hermosa y sin disfraz,</l>
+                  <l>que admirarse puede en ella,</l>
+                  <l>más que estrella y cielo más.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>Hoy de Filis divina</l>
+                  <l>miren la beldad,</l>
+                  <l>que no hay más en su objeto,</l>
+                  <l>que ver y admirar</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t23_l10">achaque: Vale tanto como enfermedad, indisposición, o vicio de la naturaleza. (Diccionario de autoridades)</annot>
+         </div>
+      </back>
    </music>
 </mei>

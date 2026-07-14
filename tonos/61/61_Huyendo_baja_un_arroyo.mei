@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
    <meiHead>
       <fileDesc>
          <titleStmt>
-            <title/>
+            <title type="main">Huyendo baja un arroyo</title>
             <composer>
                <persName role="composer">Mateo Romero</persName>
             </composer>
@@ -17,6 +17,18 @@
             <date isodate="2025-03-13T15:44:56"/>
          </pubStmt>
       </fileDesc>
+      <workList>
+         <work>
+            <perfMedium>
+               <perfResList>
+                  <perfRes>Tiple 1º</perfRes>
+                  <perfRes>Tiple 2º</perfRes>
+                  <perfRes type="reconstructed">Alto</perfRes>
+                  <perfRes>Bajo</perfRes>
+               </perfResList>
+            </perfMedium>
+         </work>
+      </workList>
    </meiHead>
    <music>
       <body>
@@ -48,7 +60,7 @@
                      </staffGrp>
                   </staffGrp>
                </scoreDef>
-               <section label="coplas">
+               <section xml:id="coplas" label="coplas">
                   <app xml:id="acdkjf9">
                      <lem label="app_clefs"/>
                      <rdg label="app_clefs">
@@ -2632,7 +2644,7 @@
                   </measure>
                   <sb/>
                </section>
-               <section label="estribillo" restart="true">
+               <section xml:id="estribillo" label="estribillo" restart="true">
                   <app xml:id="acdkjee">
                      <lem label="app_clefs">
                         <scoreDef midi.bpm="180.0">
@@ -5813,5 +5825,44 @@
             </score>
          </mdiv>
       </body>
+      <back>
+         <div type="poem">
+            <lg type="coplas" corresp="#coplas">
+               <lg type="copla" n="1">
+                  <l>Huyendo baja un arroyo</l>
+                  <l>de la aspereza de un monte,</l>
+                  <l>suspendiéndose en un valle</l>
+                  <l>lisonjeado de sus flores.</l>
+               </lg>
+               <lg type="copla" n="2">
+                  <l>Alegre y agradecido,</l>
+                  <l>presurosamente corre,</l>
+                  <l>porque siempre los halagos</l>
+                  <l>son dulcísimas prisiones.</l>
+               </lg>
+               <lg type="copla" n="3">
+                  <l>Aquí un día cuando el alba</l>
+                  <l>con celestiales colores</l>
+                  <l>de la noche fugitiva</l>
+                  <l>desterró las sombras torpes.</l>
+               </lg>
+               <lg type="copla" n="4">
+                  <l>En la cabaña de Filis</l>
+                  <l xml:id="t61_l14">Lucindo los ojos pone,</l>
+                  <l>porque, de nuevo, rendidos,</l>
+                  <l>la veneren y la adoren.</l>
+               </lg>
+            </lg>
+            <lg type="estribillo" decls="#estribillo">
+               <lg>
+                  <l>No hay consuelo, pastores,</l>
+                  <l>para mi dolor,</l>
+                  <l>que al salir el alba</l>
+                  <l>se me puso el sol</l>
+               </lg>
+            </lg>
+            <annot type="text-note" corresp="#t61_l14">: _Lucinda_ en la versión del Libro de Tonos Humanos. Tomando el femenino el poeta no nombraría al pastor protagonista y Lucinda sería un tercer personaje introducido solo para sobreponer la belleza de Filis sobre esta. Mantenemos el masculino _Lucindo_ que otorga mayor coherencia al poema</annot>
+         </div>
+      </back>
    </music>
 </mei>
