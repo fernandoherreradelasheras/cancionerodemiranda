@@ -21,7 +21,6 @@ from lxml import etree as ET
 
 MEI_NS = 'http://www.music-encoding.org/ns/mei'
 NSMAP = {'mei': MEI_NS}
-XML_ID = '{http://www.w3.org/XML/1998/namespace}id'
 
 
 @dataclass
@@ -72,7 +71,10 @@ def _resolve_label(root, corresp):
 
 
 def _lines_of(g):
-    return [(l.text or '') for l in g.findall('mei:l', NSMAP)]
+    # A verse line's text is l.text (everything before its optional child
+    # <annot> text note); strip the trailing whitespace that putting the annot
+    # on its own indented line introduces into l.text.
+    return [(l.text or '').strip() for l in g.findall('mei:l', NSMAP)]
 
 
 def _stanza(g, section):
@@ -131,26 +133,22 @@ def overlay_groups(poem):
     return [(section, groups[section]) for section in order]
 
 
-def _line_numbers(div):
-    """xml:id of every <l> -> its 1-based position in the poem (the verse
-    number a text note refers to)."""
-    return {l.get(XML_ID): i + 1
-            for i, l in enumerate(div.xpath('.//mei:l', namespaces=NSMAP))}
-
-
 def extract_notes(mei):
     """Text notes as (display, text), ordered by verse (source-wide notes last).
-    Each <annot> carries @corresp -> the #xml:id of the <l> it annotates; the
-    display number is that <l>'s 1-based position, or an explicit @n (ranges).
-    A note with no @corresp is a source-wide note (display None)."""
+    Each note is an <annot> nested inside the <l> it annotates (the containment
+    is the link -- no @corresp needed); the display number is that <l>'s 1-based
+    position in the poem, or an explicit @n for a note spanning a verse range. An
+    <annot> not inside an <l> (directly under the poem <div>) is a source-wide
+    note (display None)."""
     root = _root(mei)
     div = _poem_div(root)
     if div is None:
         return []
-    nums = _line_numbers(div)
+    positions = {l: i + 1
+                 for i, l in enumerate(div.xpath('.//mei:l', namespaces=NSMAP))}
     notes = []
-    for a in div.findall('mei:annot', NSMAP):
-        pos = nums.get((a.get('corresp') or '').lstrip('#'))  # None = source-wide
+    for a in div.xpath('.//mei:annot', namespaces=NSMAP):
+        pos = positions.get(a.getparent())  # None when not inside an <l>
         display = a.get('n') or (str(pos) if pos is not None else None)
         text = ' '.join(''.join(a.itertext()).split())
         notes.append((pos, display, text))
