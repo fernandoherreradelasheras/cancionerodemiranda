@@ -12,6 +12,7 @@ PROLOG = '''<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>'''
 
 MEI_VERSION = "5.1"
+MEI_NAMESPACE = "http://www.music-encoding.org/ns/mei"
 
 def separate_prolog_and_content(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
@@ -123,6 +124,25 @@ def ensure_mei_element_attributes(xml_content):
     return xml_content
 
 
+def normalize_line_notes(root, indent_str):
+    """Re-break the verse text notes so they stay readable and stable.
+
+    A text note is an <annot> nested inside the <l> it annotates, so the <l> is
+    mixed content (verse text + child element). etree.indent deliberately leaves
+    mixed content untouched, which means the whitespace sitting inside l.text
+    (between the verse and the <annot>) is neither normalized nor removed -- and
+    a naive pretty-printer lets it snowball on every run. Here we set that break
+    explicitly: the verse stays on the <l>'s opening line and the <annot> goes on
+    its own line, indented one level deeper. etree.indent already placed the
+    closing </l> (the annot's tail), so this is idempotent."""
+    l_tag = f"{{{MEI_NAMESPACE}}}l"
+    annot_tag = f"{{{MEI_NAMESPACE}}}annot"
+    for line in root.iter(l_tag):
+        if line.find(annot_tag) is not None and (line.text or "").strip():
+            depth = sum(1 for _ in line.iterancestors())
+            line.text = line.text.rstrip() + "\n" + indent_str * (depth + 1)
+
+
 def reindent_xml(file_path, output_path=None):
     prolog, content = separate_prolog_and_content(file_path)
 
@@ -138,24 +158,18 @@ def reindent_xml(file_path, output_path=None):
         parser = etree.XMLParser(remove_blank_text=True)
         root = etree.fromstring(content_without_comments.encode("utf-8"), parser)
 
-        pretty_xml = etree.tostring(root, encoding="unicode", pretty_print=True)
+        # etree.indent lays out the whole tree at the detected width in one pass
+        # (and, unlike pretty_print + rescaling, does not blow up the whitespace
+        # embedded in mixed-content elements). normalize_line_notes then fixes up
+        # the one mixed-content case we have: verse text notes.
+        etree.indent(root, space=indent_str)
+        normalize_line_notes(root, indent_str)
+        pretty_xml = etree.tostring(root, encoding="unicode", pretty_print=False)
 
         for placeholder, comment in comments:
             pretty_xml = pretty_xml.replace(placeholder, comment)
 
-        lines = pretty_xml.split("\n")
-        indented_lines = []
-        for line in lines:
-            if line.strip():
-                leading_spaces = len(line) - len(line.lstrip())
-                indent_level = leading_spaces // 2
-                new_line = line.lstrip()
-                new_line = (indent_str * indent_level) + new_line
-                indented_lines.append(new_line)
-            else:
-                indented_lines.append(line)
-
-        final_xml = normalized_prolog + "\n" + "\n".join(indented_lines)
+        final_xml = normalized_prolog + "\n" + pretty_xml + "\n"
 
     except etree.XMLSyntaxError as e:
         print(f"Error parsing XML: {e}")
