@@ -2,6 +2,8 @@ from lxml import etree
 import json
 import sys
 
+import footnote_wrap
+
 if len(sys.argv) != 4:
     print(f"Usage: python {sys.argv[0]} <input.mei> <output.mei> <json output>")
     sys.exit(1)
@@ -85,7 +87,15 @@ if output_json:
             pgfoot.insert(0, rend1)
 
         rend1.text = "Notas:"
-        for i in range(1+len(output_json)):
+        # Reserve one line for "Notas:" plus the exact number of lines each note
+        # wraps to. This uses the same footnote_wrap as annotate_svg.py, so the
+        # space reserved here matches the text injected there line for line: a
+        # single-line note reserves exactly one line (no extra gap), a long note
+        # reserves exactly what it needs (no overflow).
+        reserved_lines = 1 + sum(
+            len(footnote_wrap.wrap(f'[{o["n"]}]: {o["annot"]}'))
+            for o in output_json)
+        for i in range(reserved_lines):
             lb1 = etree.SubElement(rend1, '{%s}lb' % MEI_NS)
             lb1.tail = " " # Invisible space
 

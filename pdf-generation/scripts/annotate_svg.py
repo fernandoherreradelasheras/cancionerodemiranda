@@ -2,6 +2,8 @@ import os
 import json
 from lxml import etree
 
+import footnote_wrap
+
 SVG_NS = "http://www.w3.org/2000/svg"
 NSMAP = {"svg": SVG_NS}
 
@@ -40,6 +42,11 @@ def append_annotation(svg_path, annotations):
 
     addedAnnotations = 0
 
+    # SVG text does not wrap and neither does verovio's pgFoot, so break each note
+    # into fixed-width lines (footnote_wrap, shared with the <lb> space reserved in
+    # expand_annots.py so the two passes agree). Each line is its own <tspan>; y
+    # advances one FONT_HEIGHT per line.
+    #
     # For each annotation, add a new <text> — but only if this SVG actually
     # contains the annotated element. Match the id exactly (verovio keeps the
     # MEI xml:id; a stray suffix would be "-…"), not a loose substring, so an
@@ -52,16 +59,17 @@ def append_annotation(svg_path, annotations):
             continue
         print(f'Adding annotation for {annot["xml:id"]}')
         text_el = etree.Element('{%s}text' % SVG_NS, {"font-size": "0px"})
-        tspan_el = etree.SubElement(text_el, '{%s}tspan' % SVG_NS, {
-            "x": str(x_val),
-            "y": str(y_val),
-            "text-anchor": 'start',
-            "font-size": f'{FONT_HEIGHT}px'
-        })
-        tspan_el.text = f'[{annot["n"]}]: {annot["annot"]}'
+        for line in footnote_wrap.wrap(f'[{annot["n"]}]: {annot["annot"]}'):
+            tspan_el = etree.SubElement(text_el, '{%s}tspan' % SVG_NS, {
+                "x": str(x_val),
+                "y": str(y_val),
+                "text-anchor": 'start',
+                "font-size": f'{FONT_HEIGHT}px'
+            })
+            tspan_el.text = line
+            y_val += FONT_HEIGHT
         pgfoot.append(text_el)
         addedAnnotations = addedAnnotations + 1
-        y_val += FONT_HEIGHT
 
     if addedAnnotations == 0:
         foot_notes_rend = pgfoot.xpath('.//svg:tspan[contains(@data-type, "foot-notes") and contains(@class, "rend")]', namespaces=NSMAP)

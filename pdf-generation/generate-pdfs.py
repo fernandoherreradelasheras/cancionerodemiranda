@@ -93,7 +93,7 @@ SHARED_ASSETS = [
     "pdf-generation/latex/criterios-musicales-scholar.tex",
     "pdf-generation/xslt/pgHead.xsl", "pdf-generation/xslt/coplas-placeholder.xsl",
     "pdf-generation/scripts/extract_comments_from_mei.py",
-    "pdf-generation/scripts/expand_annots.py",
+    "pdf-generation/scripts/expand_annots.py", "pdf-generation/scripts/footnote_wrap.py",
     "pdf-generation/scripts/annotate_svg.py", "scripts/normalize_ficta.py",
 ]
 
