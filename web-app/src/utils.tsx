@@ -179,7 +179,7 @@ export function tonoNeedReconstruction(tono: TonoStatus | null): boolean {
 }
 
 export function tonoHasAudio(tono: ScoreViewerConfigScore | null): boolean {
-  return (tono?.audioFiles != undefined && tono.audioFiles.length >= 1 && tono.audioFiles[0].file);
+  return (tono?.audioFiles != undefined && tono.audioFiles.length >= 1 && tono.audioFiles[0].file != undefined);
 }
 
 export function tonoHasMusicValidated(tono: TonoStatus | null): boolean {
