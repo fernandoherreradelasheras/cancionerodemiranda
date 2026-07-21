@@ -436,10 +436,10 @@ def format_text_part(poem, out_dir):
 
 
 def generate_audio_link(data, buildType):
-    if 'audioBaseFile' not in data:
+    if 'audioFiles' not in data or len(data['audioFiles']) < 1 or 'file' not in data['audioFiles'][0]:
         return ''
 
-    url = f"{CONFIG.base_url}/{data['path']}/{data['audioBaseFile']}"
+    url = f"{CONFIG.base_url}/{data['path']}/{data['audioFiles'][0]['file']}"
 
     tex = Latex()
     tex.subsection("Recursos online").line("\\noindent")
