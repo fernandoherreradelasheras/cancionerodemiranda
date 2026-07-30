@@ -70,11 +70,18 @@ def _resolve_label(root, corresp):
     return els[0].get('label') if els else xmlid
 
 
+def _text_without_annots(el):
+    parts = [el.text or '']
+    for child in el:
+        if child.tag != f'{{{MEI_NS}}}annot':
+            parts.append(_text_without_annots(child))
+        parts.append(child.tail or '')
+    return ''.join(parts)
+
+
 def _lines_of(g):
-    # A verse line's text is l.text (everything before its optional child
-    # <annot> text note); strip the trailing whitespace that putting the annot
-    # on its own indented line introduces into l.text.
-    return [(l.text or '').strip() for l in g.findall('mei:l', NSMAP)]
+    return [' '.join(_text_without_annots(l).split())
+            for l in g.findall('mei:l', NSMAP)]
 
 
 def _stanza(g, section):
@@ -148,7 +155,8 @@ def extract_notes(mei):
                  for i, l in enumerate(div.xpath('.//mei:l', namespaces=NSMAP))}
     notes = []
     for a in div.xpath('.//mei:annot', namespaces=NSMAP):
-        pos = positions.get(a.getparent())  # None when not inside an <l>
+        enclosing = a.xpath('ancestor::mei:l[1]', namespaces=NSMAP)
+        pos = positions.get(enclosing[0]) if enclosing else None  # None si no va en un <l>
         display = a.get('n') or (str(pos) if pos is not None else None)
         text = ' '.join(''.join(a.itertext()).split())
         notes.append((pos, display, text))

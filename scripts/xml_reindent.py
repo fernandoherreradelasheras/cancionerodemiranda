@@ -37,6 +37,48 @@ def get_hardcoded_prolog():
     return PROLOG
 
 
+def parse_indent_pattern(pattern):
+    """Turn the --patern value into the literal string used for one indent level.
+
+    Accepted forms:
+      "3", "4"        -> that many spaces
+      "tab", "\\t"     -> a single tab character
+      "2t", "2tabs"   -> that many tabs
+      "   "           -> used verbatim (must be whitespace only)
+    """
+    if pattern is None:
+        return None
+
+    value = pattern.strip().lower()
+
+    if value in ("tab", "tabs", "t", "\\t"):
+        return "\t"
+
+    if value.isdigit():
+        count = int(value)
+        if count < 1:
+            raise ValueError("the indent width must be at least 1")
+        return " " * count
+
+    match = re.fullmatch(r"(\d+)\s*(tabs?|t|spaces?|s)", value)
+    if match:
+        count = int(match.group(1))
+        if count < 1:
+            raise ValueError("the indent width must be at least 1")
+        unit = "\t" if match.group(2).startswith("t") else " "
+        return unit * count
+
+    literal = pattern.replace("\\t", "\t").replace("\\s", " ")
+    if literal and literal.strip() == "":
+        return literal
+
+    raise ValueError(
+        f"unrecognized indentation pattern: {pattern!r}. "
+        "Use a number of spaces (e.g. 3), 'tab', '2tabs' or a literal "
+        "whitespace string."
+    )
+
+
 def detect_hierarchical_indent(xml_content):
     lines = xml_content.split("\n")
 
@@ -143,7 +185,11 @@ def normalize_line_notes(root, indent_str):
             line.text = line.text.rstrip() + "\n" + indent_str * (depth + 1)
 
 
-def reindent_xml(file_path, output_path=None):
+def describe_indent(indent_str):
+    return indent_str.replace(" ", "␣").replace("\t", "⇥")
+
+
+def reindent_xml(file_path, output_path=None, indent_pattern=None):
     prolog, content = separate_prolog_and_content(file_path)
 
     normalized_prolog = get_hardcoded_prolog()
@@ -151,8 +197,12 @@ def reindent_xml(file_path, output_path=None):
 
     content_without_comments, comments = extract_comments(content)
 
-    indent_str = detect_hierarchical_indent(content)
-    print(f"Detected indentation pattern: '{indent_str.replace(' ', '␣')}'")
+    if indent_pattern is not None:
+        indent_str = indent_pattern
+        print(f"Using requested indentation pattern: '{describe_indent(indent_str)}'")
+    else:
+        indent_str = detect_hierarchical_indent(content)
+        print(f"Detected indentation pattern: '{describe_indent(indent_str)}'")
 
     try:
         parser = etree.XMLParser(remove_blank_text=True)
@@ -224,6 +274,18 @@ def main():
     parser.add_argument(
         "-o", "--output", help="Output file (defaults to overwriting the input)"
     )
+    parser.add_argument(
+        "-p",
+        "--patern",
+        "--pattern",
+        dest="patern",
+        default=None,
+        help=(
+            "Indentation pattern for one level: a number of spaces (e.g. 3), "
+            "'tab', '2tabs', or a literal whitespace string. "
+            "If omitted, the pattern is detected from the input file."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -231,7 +293,13 @@ def main():
         print(f"Error: File {args.file} not found.")
         return 1
 
-    success = reindent_xml(args.file, args.output)
+    try:
+        indent_pattern = parse_indent_pattern(args.patern)
+    except ValueError as e:
+        print(f"Error: {e}")
+        return 1
+
+    success = reindent_xml(args.file, args.output, indent_pattern)
     return 0 if success else 1
 
 

@@ -61,7 +61,7 @@ def any_element_has_id(elems, xml_id):
     return xml_id and any(f'{{{XML_NS}}}id' in e.attrib and e.attrib[f'{{{XML_NS}}}id'] == xml_id for e in elems)
 
 def replace_staff_content(
-    main_file_path, staff_main, elem, label, replacement_file_path, staff_replacement, output_file_path, 
+    main_file_path, staff_main, elem, label, replacement_file_path, staff_replacement, output_file_path,
     section_num=None, measure_start=None, measure_end=None
 ):
     register_namespaces()
@@ -69,49 +69,58 @@ def replace_staff_content(
     main_tree = parse_mei_file(main_file_path)
     replacement_tree = parse_mei_file(replacement_file_path)
 
+    merging_range = measure_start is not None and measure_end is not None
+
     if section_num is not None:
         # Section-based merging
         main_sections = get_sections(main_tree)
-        
+
         if section_num < 1 or section_num > len(main_sections):
             print(f"Error: Section {section_num} not found. Available sections: 1-{len(main_sections)}")
             sys.exit(1)
-        
+
         target_section = main_sections[section_num - 1]  # Convert to 0-based index
         main_measures = get_measures_in_section(target_section)
         replacement_measures = get_measures(replacement_tree)
-        
-        if len(main_measures) != len(replacement_measures):
+
+        if not merging_range and len(main_measures) != len(replacement_measures):
             print(
                 f"Error: Number of measures doesn't match. Section {section_num}: {len(main_measures)} measures, Replacement file: {len(replacement_measures)} measures"
             )
             sys.exit(1)
-            
+
         print(f"Merging into section {section_num} ({len(main_measures)} measures)")
     else:
         # Original behavior - merge entire file
         main_measures = get_measures(main_tree)
         replacement_measures = get_measures(replacement_tree)
 
-        if len(main_measures) != len(replacement_measures):
+        if not merging_range and len(main_measures) != len(replacement_measures):
             print(
                 f"Error: Number of measures doesn't match. Main file: {len(main_measures)}, Replacement file: {len(replacement_measures)}"
             )
             sys.exit(1)
 
     # Determine measure range to process
-    if measure_start is not None and measure_end is not None:
-        # Validate measure range
+    if merging_range:
+        # Validate measure range against the main file
         if measure_start < 1 or measure_start > len(main_measures):
-            print(f"Error: Start measure {measure_start} is out of range (1-{len(main_measures)})")
+            print(f"Error: Start measure {measure_start} is out of range for main file (1-{len(main_measures)})")
             sys.exit(1)
         if measure_end < 1 or measure_end > len(main_measures):
-            print(f"Error: End measure {measure_end} is out of range (1-{len(main_measures)})")
+            print(f"Error: End measure {measure_end} is out of range for main file (1-{len(main_measures)})")
             sys.exit(1)
         if measure_start > measure_end:
             print(f"Error: Start measure ({measure_start}) must be less than or equal to end measure ({measure_end})")
             sys.exit(1)
-        
+
+        # Validate measure range against the replacement file
+        if measure_start > len(replacement_measures) or measure_end > len(replacement_measures):
+            print(
+                f"Error: Measure range {measure_start}-{measure_end} is out of range for replacement file (1-{len(replacement_measures)})"
+            )
+            sys.exit(1)
+
         start_idx = measure_start - 1  # Convert to 0-based
         end_idx = measure_end  # End is inclusive, so we don't subtract 1
         print(f"Merging measures {measure_start} to {measure_end}")
@@ -132,7 +141,7 @@ def replace_staff_content(
             main_staff_elements = get_staff_elements(main_measure, staff_main)
         else:
             main_staff_elements = get_staff_app_elements(main_measure, staff_main, elem, label)
-        
+
         if not main_staff_elements:
             print(
                 f"Warning: No staff {staff_main} found in measure {measure_num}"
@@ -144,7 +153,7 @@ def replace_staff_content(
         ties = get_measure_ties(replacement_measure)
         slurs = get_measure_slurs(replacement_measure)
         notes = get_measure_notes(replacement_measure, staff_replacement)
-        
+
         for element in [*ties, *slurs]:
             startId = element.attrib['startid'][1:]
             if startId and any_element_has_id(notes, startId):
@@ -175,24 +184,24 @@ if __name__ == "__main__":
 Examples:
   # Merge entire file
   python merge-voice-from-mei.py main.mei 3 source.mei 1 output.mei
-  
+
   # Merge with app elements
   python merge-voice-from-mei.py main.mei 3 lem default source.mei 1 output.mei
-  
+
   # Merge into specific section
   python merge-voice-from-mei.py main.mei 3 source.mei 1 output.mei -s 2
-  
+
   # Merge into specific section with app elements
   python merge-voice-from-mei.py main.mei 3 lem default source.mei 1 output.mei -s 2
-  
+
   # Merge measures 5 to 10
   python merge-voice-from-mei.py main.mei 3 source.mei 1 output.mei -m 5 10
-  
+
   # Merge measures 5 to 10 with app elements
   python merge-voice-from-mei.py main.mei 3 lem default source.mei 1 output.mei -m 5 10
         """
     )
-    
+
     parser.add_argument("main_file", help="Main MEI file")
     parser.add_argument("staff_main", help="Staff number in main file")
     parser.add_argument("elem_or_replacement", help="Element type (lem/rdg) or replacement file")
@@ -201,9 +210,9 @@ Examples:
     parser.add_argument("staff_or_output", nargs="?", help="Staff number in replacement file or output file")
     parser.add_argument("output_file", nargs="?", help="Output file")
     parser.add_argument("-s", "--section", type=int, help="Section number to merge into (1-based)")
-    parser.add_argument("-m", "--measures", nargs=2, type=int, metavar=("START", "END"), 
+    parser.add_argument("-m", "--measures", nargs=2, type=int, metavar=("START", "END"),
                        help="Measure range to merge (1-based, inclusive). Incompatible with -s option.")
-    
+
     args = parser.parse_args()
 
     # Check for incompatible options
@@ -245,6 +254,6 @@ Examples:
     measure_end = args.measures[1] if args.measures else None
 
     replace_staff_content(
-        main_file, staff_main, elem, label, replacement_file, staff_replacement, output_file, 
+        main_file, staff_main, elem, label, replacement_file, staff_replacement, output_file,
         args.section, measure_start, measure_end
     )
