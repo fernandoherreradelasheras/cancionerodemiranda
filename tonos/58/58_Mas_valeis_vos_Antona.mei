@@ -36,33 +36,33 @@
       <body>
          <mdiv>
             <score>
-               <scoreDef midi.bpm="200.0" optimize="false">
+               <scoreDef xml:id="sd.initial" midi.bpm="200.0" optimize="false" keysig="1s" meter.count="3" meter.unit="2">
                   <staffGrp>
                      <staffGrp symbol="bracket">
                         <staffGrp symbol="bracketsq">
-                           <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                           <staffDef n="1" lines="5">
                               <label>Tiple 1º</label>
                               <labelAbbr>T. 1</labelAbbr>
                               <clef shape="G" line="2" xml:id="cjkdud1"/>
                            </staffDef>
-                           <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                           <staffDef n="2" lines="5">
                               <label>Tiple 2º</label>
                               <labelAbbr>T. 2</labelAbbr>
                               <clef shape="G" line="2" xml:id="cjkdud2"/>
                            </staffDef>
-                           <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                              <label>Alto</label>
-                              <labelAbbr>A.</labelAbbr>
+                           <staffDef n="3" lines="5">
+                              <label>[Alto]</label>
+                              <labelAbbr>[A.]</labelAbbr>
                               <clef shape="G" line="2" xml:id="cjkdud2_1"/>
                            </staffDef>
                         </staffGrp>
-                        <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="4" lines="5">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
                            <clef shape="G" line="2" dis="8" dis.place="below" xml:id="cjkdud3"/>
                         </staffDef>
                      </staffGrp>
-                     <staffDef n="5" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                     <staffDef n="5" lines="5">
                         <label>Guion</label>
                         <labelAbbr>G.</labelAbbr>
                         <clef shape="F" line="4" xml:id="cjkdud4"/>
@@ -71,37 +71,16 @@
                </scoreDef>
                <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
-                     <lem label="app_clefs"/>
+                     <lem label="app_clefs" corresp="#sd.initial"/>
                      <rdg label="app_clefs">
-                        <scoreDef midi.bpm="200.0" optimize="false">
+                        <scoreDef>
                            <staffGrp>
-                              <staffGrp symbol="bracket">
-                                 <staffGrp symbol="bracketsq">
-                                    <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Tiple 1º</label>
-                                       <labelAbbr>T. 1</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud1"/>
-                                    </staffDef>
-                                    <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Tiple 2º</label>
-                                       <labelAbbr>T. 2</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud2"/>
-                                    </staffDef>
-                                    <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Alto</label>
-                                       <labelAbbr>A.</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud2_1"/>
-                                    </staffDef>
-                                 </staffGrp>
-                                 <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Tenor</label>
-                                    <labelAbbr>Tn.</labelAbbr>
+                              <staffGrp>
+                                 <staffDef n="4">
                                     <clef shape="C" line="3" corresp="#cjkdud3"/>
                                  </staffDef>
                               </staffGrp>
-                              <staffDef n="5" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                 <label>Guion</label>
-                                 <labelAbbr>G.</labelAbbr>
+                              <staffDef n="5">
                                  <clef shape="C" line="4" corresp="#cjkdud4"/>
                               </staffDef>
                            </staffGrp>
@@ -5825,72 +5804,45 @@
                   <sb/>
                </section>
                <section xml:id="coplas_a4" label="coplas_a4" restart="true">
-                  <app xml:id="acdkjcc">
-                     <lem label="app_clefs">
-                        <scoreDef midi.bpm="180.0" optimize="false">
-                           <staffGrp>
-                              <staffGrp symbol="bracket">
-                                 <staffGrp symbol="bracketsq">
-                                    <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Tiple 1º</label>
-                                       <labelAbbr>T. 1</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud1"/>
-                                    </staffDef>
-                                    <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Tiple 2º</label>
-                                       <labelAbbr>T. 2</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud2"/>
-                                    </staffDef>
-                                    <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Alto</label>
-                                       <labelAbbr>A.</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud2_1"/>
-                                    </staffDef>
-                                 </staffGrp>
-                                 <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Tenor</label>
-                                    <labelAbbr>Tn.</labelAbbr>
-                                    <clef shape="G" line="2" dis="8" dis.place="below" corresp="#cjkdud3"/>
-                                 </staffDef>
-                              </staffGrp>
-                              <staffDef n="5" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                 <label>Guion</label>
-                                 <labelAbbr>G.</labelAbbr>
-                                 <clef shape="F" line="4" corresp="#cjkdud4"/>
+                  <scoreDef xml:id="sd.coplas_a4" midi.bpm="180.0" optimize="false" keysig="1s" meter.count="3" meter.unit="2">
+                     <staffGrp>
+                        <staffGrp symbol="bracket">
+                           <staffGrp symbol="bracketsq">
+                              <staffDef n="1" lines="5">
+                                 <label>Tiple 1º</label>
+                                 <labelAbbr>T. 1</labelAbbr>
+                              </staffDef>
+                              <staffDef n="2" lines="5">
+                                 <label>Tiple 2º</label>
+                                 <labelAbbr>T. 2</labelAbbr>
+                              </staffDef>
+                              <staffDef n="3" lines="5">
+                                 <label>[Alto]</label>
+                                 <labelAbbr>[A.]</labelAbbr>
                               </staffDef>
                            </staffGrp>
-                        </scoreDef>
-                     </lem>
+                           <staffDef n="4" lines="5">
+                              <label>Tenor</label>
+                              <labelAbbr>Tn.</labelAbbr>
+                           </staffDef>
+                        </staffGrp>
+                        <staffDef n="5" lines="5">
+                           <label>Guion</label>
+                           <labelAbbr>G.</labelAbbr>
+                        </staffDef>
+                     </staffGrp>
+                  </scoreDef>
+                  <app xml:id="acdkjcc">
+                     <lem label="app_clefs" corresp="#sd.coplas_a4"/>
                      <rdg label="app_clefs">
-                        <scoreDef midi.bpm="180.0" optimize="false">
+                        <scoreDef>
                            <staffGrp>
-                              <staffGrp symbol="bracket">
-                                 <staffGrp symbol="bracketsq">
-                                    <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Tiple 1º</label>
-                                       <labelAbbr>T. 1</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud1"/>
-                                    </staffDef>
-                                    <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Tiple 2º</label>
-                                       <labelAbbr>T. 2</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud2"/>
-                                    </staffDef>
-                                    <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                       <label>Alto</label>
-                                       <labelAbbr>A.</labelAbbr>
-                                       <clef shape="G" line="2" copyof="#cjkdud2_1"/>
-                                    </staffDef>
-                                 </staffGrp>
-                                 <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Tenor</label>
-                                    <labelAbbr>Tn.</labelAbbr>
+                              <staffGrp>
+                                 <staffDef n="4">
                                     <clef shape="C" line="3" corresp="#cjkdud3"/>
                                  </staffDef>
                               </staffGrp>
-                              <staffDef n="5" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                 <label>Guion</label>
-                                 <labelAbbr>G.</labelAbbr>
+                              <staffDef n="5">
                                  <clef shape="C" line="4" corresp="#cjkdud4"/>
                               </staffDef>
                            </staffGrp>
@@ -8246,14 +8198,14 @@
                   <sb/>
                </section>
                <section xml:id="coplas_solo_T1" label="coplas_solo_T1" restart="true">
-                  <scoreDef midi.bpm="180.0">
+                  <scoreDef midi.bpm="180.0" keysig="1s" meter.count="3" meter.unit="2">
                      <staffGrp symbol="bracket">
-                        <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="1" lines="5">
                            <label>Tiple 1º</label>
                            <labelAbbr>T. 1</labelAbbr>
                            <clef shape="G" line="2" xml:id="c89789"/>
                         </staffDef>
-                        <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="2" lines="5">
                            <label>Guion</label>
                            <labelAbbr>G.</labelAbbr>
                            <clef shape="F" line="4" xml:id="c89790"/>
@@ -8770,14 +8722,14 @@
                   <sb/>
                </section>
                <section xml:id="coplas_solo_A" label="coplas_solo_A" restart="true">
-                  <scoreDef midi.bpm="180.0">
+                  <scoreDef midi.bpm="180.0" keysig="1s" meter.count="3" meter.unit="2">
                      <staffGrp symbol="bracket">
-                        <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                           <label>Alto</label>
-                           <labelAbbr>A.</labelAbbr>
+                        <staffDef n="1" lines="5">
+                           <label>[Alto]</label>
+                           <labelAbbr>[A.]</labelAbbr>
                            <clef shape="G" line="2" xml:id="co292a"/>
                         </staffDef>
-                        <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="2" lines="5">
                            <label>Guion</label>
                            <labelAbbr>G.</labelAbbr>
                            <clef shape="F" line="4" xml:id="c12452a"/>
@@ -9279,14 +9231,14 @@
                   </measure>
                </section>
                <section xml:id="coplas_solo_T2" label="coplas_solo_T2" restart="true">
-                  <scoreDef midi.bpm="180.0">
+                  <scoreDef midi.bpm="180.0" keysig="1s" meter.count="3" meter.unit="2">
                      <staffGrp symbol="bracket">
-                        <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="1" lines="5">
                            <label>Tiple 2º</label>
                            <labelAbbr>T. 2</labelAbbr>
                            <clef shape="G" line="2" xml:id="cx8293"/>
                         </staffDef>
-                        <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="2" lines="5">
                            <label>Guion</label>
                            <labelAbbr>G.</labelAbbr>
                            <clef shape="F" line="4" xml:id="c1222"/>
@@ -9796,14 +9748,14 @@
                   </measure>
                </section>
                <section xml:id="coplas_solo_Tn" label="coplas_solo_Tn" restart="true">
-                  <scoreDef midi.bpm="180.0">
+                  <scoreDef midi.bpm="180.0" keysig="1s" meter.count="3" meter.unit="2">
                      <staffGrp symbol="bracket">
-                        <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="1" lines="5">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
                            <clef shape="G" line="2" dis="8" dis.place="below" xml:id="co2923"/>
                         </staffDef>
-                        <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="2" lines="5">
                            <label>Guion</label>
                            <labelAbbr>G.</labelAbbr>
                            <clef shape="F" line="4" xml:id="c12452"/>

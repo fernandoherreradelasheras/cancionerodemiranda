@@ -36,25 +36,25 @@
       <body>
          <mdiv>
             <score>
-               <scoreDef midi.bpm="180.0">
+               <scoreDef xml:id="sd.initial" midi.bpm="180.0" meter.count="3" meter.unit="2">
                   <staffGrp symbol="bracket">
-                     <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
+                     <staffDef n="1" lines="5">
                         <label>Tiple 1º</label>
                         <clef shape="G" line="2" xml:id="cjkdud1"/>
                      </staffDef>
-                     <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
+                     <staffDef n="2" lines="5">
                         <label>Tiple 2º</label>
                         <clef shape="G" line="2" xml:id="cjkdud2"/>
                      </staffDef>
-                     <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
-                        <label>Tiple 3º</label>
+                     <staffDef n="3" lines="5">
+                        <label>[Tiple 3º]</label>
                         <clef shape="G" line="2" xml:id="cjkdud2_1"/>
                      </staffDef>
-                     <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
+                     <staffDef n="4" lines="5">
                         <label>Tenor</label>
                         <clef shape="G" line="2" dis="8" dis.place="below" xml:id="cjkdud3"/>
                      </staffDef>
-                     <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
+                     <staffDef n="5" lines="5">
                         <label>Guion</label>
                         <clef shape="F" line="4" xml:id="cjkdud4"/>
                      </staffDef>
@@ -62,29 +62,18 @@
                </scoreDef>
                <section xml:id="estribillo" label="estribillo">
                   <app xml:id="acdkjf9">
-                     <lem label="app_clefs"/>
+                     <lem label="app_clefs" corresp="#sd.initial"/>
                      <rdg label="app_clefs">
-                        <scoreDef midi.bpm="180.0">
-                           <staffGrp symbol="bracket">
-                              <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 1º</label>
+                        <scoreDef>
+                           <staffGrp>
+                              <staffDef n="1">
                                  <clef shape="C" line="1" copyof="#cjkdud1"/>
                               </staffDef>
-                              <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 2º</label>
+                              <staffDef n="2">
                                  <clef shape="C" line="1" copyof="#cjkdud2"/>
                               </staffDef>
-                              <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 3º</label>
-                                 <clef shape="C" line="1" copyof="#cjkdud2_1"/>
-                              </staffDef>
-                              <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tenor</label>
+                              <staffDef n="4">
                                  <clef shape="C" line="4" copyof="#cjkdud3"/>
-                              </staffDef>
-                              <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Guion</label>
-                                 <clef shape="F" line="4" copyof="#cjkdud4"/>
                               </staffDef>
                            </staffGrp>
                         </scoreDef>
@@ -5204,55 +5193,38 @@
                   <sb/>
                </section>
                <section xml:id="coplas" label="coplas" restart="true">
+                  <scoreDef xml:id="sd.coplas" midi.bpm="180.0" meter.count="3" meter.unit="2">
+                     <staffGrp symbol="bracket">
+                        <staffDef n="1" lines="5">
+                           <label>Tiple 1º</label>
+                        </staffDef>
+                        <staffDef n="2" lines="5">
+                           <label>Tiple 2º</label>
+                        </staffDef>
+                        <staffDef n="3" lines="5">
+                           <label>[Tiple 3º]</label>
+                        </staffDef>
+                        <staffDef n="4" lines="5">
+                           <label>Tenor</label>
+                        </staffDef>
+                        <staffDef n="5" lines="5">
+                           <label>Guion</label>
+                        </staffDef>
+                     </staffGrp>
+                  </scoreDef>
                   <app xml:id="acdkjcc">
-                     <lem label="app_clefs">
-                        <scoreDef midi.bpm="180.0">
-                           <staffGrp symbol="bracket">
-                              <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 1º</label>
-                                 <clef shape="G" line="2" copyof="#cjkdud1"/>
-                              </staffDef>
-                              <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 2º</label>
-                                 <clef shape="G" line="2" copyof="#cjkdud2"/>
-                              </staffDef>
-                              <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 3º</label>
-                                 <clef shape="G" line="2" copyof="#cjkdud2_1"/>
-                              </staffDef>
-                              <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tenor</label>
-                                 <clef shape="G" line="2" dis="8" dis.place="below" copyof="#cjkdud3"/>
-                              </staffDef>
-                              <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Guion</label>
-                                 <clef shape="F" line="4" copyof="#cjkdud4"/>
-                              </staffDef>
-                           </staffGrp>
-                        </scoreDef>
-                     </lem>
+                     <lem label="app_clefs" corresp="#sd.coplas"/>
                      <rdg label="app_clefs">
-                        <scoreDef midi.bpm="180.0">
-                           <staffGrp symbol="bracket">
-                              <staffDef n="1" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 1º</label>
+                        <scoreDef>
+                           <staffGrp>
+                              <staffDef n="1">
                                  <clef shape="C" line="1" copyof="#cjkdud1"/>
                               </staffDef>
-                              <staffDef n="2" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 2º</label>
+                              <staffDef n="2">
                                  <clef shape="C" line="1" copyof="#cjkdud2"/>
                               </staffDef>
-                              <staffDef n="3" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tiple 3º</label>
-                                 <clef shape="C" line="1" copyof="#cjkdud2_1"/>
-                              </staffDef>
-                              <staffDef n="4" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Tenor</label>
+                              <staffDef n="4">
                                  <clef shape="C" line="4" copyof="#cjkdud3"/>
-                              </staffDef>
-                              <staffDef n="5" lines="5" meter.count="3" meter.unit="2">
-                                 <label>Guion</label>
-                                 <clef shape="F" line="4" copyof="#cjkdud4"/>
                               </staffDef>
                            </staffGrp>
                         </scoreDef>

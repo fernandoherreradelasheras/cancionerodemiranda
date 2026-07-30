@@ -32,25 +32,25 @@
       <body>
          <mdiv>
             <score>
-               <scoreDef midi.bpm="210.0">
+               <scoreDef xml:id="sd.initial" midi.bpm="210.0" keysig="1s" meter.count="3" meter.unit="2">
                   <staffGrp>
                      <staffGrp symbol="bracket">
-                        <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="1" lines="5">
                            <label>Tiple 1º</label>
                            <labelAbbr>T. 1</labelAbbr>
                            <clef shape="G" line="2" xml:id="cjkdud1"/>
                         </staffDef>
-                        <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="2" lines="5">
                            <label>Tiple 2º</label>
                            <labelAbbr>T. 2</labelAbbr>
                            <clef shape="G" line="2" xml:id="cjkdud2"/>
                         </staffDef>
-                        <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                           <label>Alto</label>
-                           <labelAbbr>A.</labelAbbr>
+                        <staffDef n="3" lines="5">
+                           <label>[Alto]</label>
+                           <labelAbbr>[A.]</labelAbbr>
                            <clef shape="G" line="2" xml:id="cjkdud3"/>
                         </staffDef>
-                        <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
+                        <staffDef n="4" lines="5">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
                            <clef shape="G" line="2" dis="8" dis.place="below" xml:id="cjkdud4"/>
@@ -60,29 +60,12 @@
                </scoreDef>
                <section>
                   <app xml:id="acdkjf9">
-                     <lem label="app_clefs"/>
+                     <lem label="app_clefs" corresp="#sd.initial"/>
                      <rdg label="app_clefs">
                         <scoreDef>
                            <staffGrp>
-                              <staffGrp symbol="bracket">
-                                 <staffDef n="1" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Tiple 1º</label>
-                                    <labelAbbr>T. 1</labelAbbr>
-                                    <clef shape="G" line="2" copyof="#cjkdud1"/>
-                                 </staffDef>
-                                 <staffDef n="2" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Tiple 2º</label>
-                                    <labelAbbr>T. 2</labelAbbr>
-                                    <clef shape="G" line="2" copyof="#cjkdud2"/>
-                                 </staffDef>
-                                 <staffDef n="3" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Alto</label>
-                                    <labelAbbr>A.</labelAbbr>
-                                    <clef shape="G" line="2" copyof="#cjkdud3"/>
-                                 </staffDef>
-                                 <staffDef n="4" lines="5" keysig="1s" meter.count="3" meter.unit="2">
-                                    <label>Tenor</label>
-                                    <labelAbbr>Tn.</labelAbbr>
+                              <staffGrp>
+                                 <staffDef n="4">
                                     <clef shape="C" line="3" corresp="#cjkdud4"/>
                                  </staffDef>
                               </staffGrp>
