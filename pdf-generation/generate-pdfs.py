@@ -918,10 +918,23 @@ def generate_tono(data, status, tmp_dir, buildType):
     if generated_score is not None and (Path(tmp_dir) / 'final.mei').exists():
         shutil.copy(f'{tmp_dir}/final.mei', meiname)
         print(f"MEI score: {meiname}")
+
+        # MuseScore and other importers choke on the critical apparatus.
+        basicname = meiname.replace('.mei', '-basic.mei')
+        attachments = [meiname]
+        try:
+            run(['python', str(REPO_ROOT / 'scripts' / 'simplify_to_mei_basic.py'),
+                 meiname, '-o', basicname, '-q'])
+            attachments.append(basicname)
+            print(f"MEI basic: {basicname}")
+        except CommandError as exc:
+            print(f"AVISO: no se pudo generar el MEI Basic: {exc}")
+
         # Embed the MEI as a document-level attachment (replaces pdftk attach_files).
         doc = fitz.open(f'{tmp_dir}/tmp.pdf')
-        doc.embfile_add(os.path.basename(meiname), Path(meiname).read_bytes(),
-                        filename=os.path.basename(meiname))
+        for attachment in attachments:
+            doc.embfile_add(os.path.basename(attachment), Path(attachment).read_bytes(),
+                            filename=os.path.basename(attachment))
         doc.save(pdfname, garbage=3, deflate=True)
         doc.close()
     else:
