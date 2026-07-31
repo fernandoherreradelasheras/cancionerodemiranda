@@ -11,4 +11,4 @@ Es en _Todas las obras de Don Luis de Góngora en varios poemas recogidos por Do
 
 Es sobre esta última versión de 16 estrofas del romance de la que el poeta-compositor extra cinco para el tono ***Las redes sobre la arena*** al que añade un estribillo cuya procedencia no hemos podido determinar.
 
-Existe otro testimonio poético musical de este tono en el Cancionero poético-musical hispano de Lisboa donde si se conserva la parte de guión/acompañamiento que tomamos para completar nuestra edición.
+Existe otro testimonio poético musical de este tono en el Cancionero poético-musical hispano de Lisboa donde si se conserva la parte de guion/acompañamiento que tomamos para completar nuestra edición.

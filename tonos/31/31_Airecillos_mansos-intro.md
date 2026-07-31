@@ -3,7 +3,7 @@ Cancionero de Miranda como en el Cancionero poético-musical hispano de
 Lisboa. El tercero de los testimonio conservados, en la colección de
 villancicos de la Biblioteca Pública de Évora, es el que nos informa de
 su autor mediante la anotación del apellido *Marques* en la parte del
-guión y luego su nombre completo en la carpetilla (de época posterior):
+guion y luego su nombre completo en la carpetilla (de época posterior):
 
 > Ant&infin; Marques Lesbio
 
