@@ -3,15 +3,16 @@ import { MusicStatus, TextStatus } from './utils'
 import { Context } from './Context'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
-import { Col, Progress, ProgressProps, Row, Space, Typography } from 'antd'
+import { Col, Collapse, Grid, Progress, ProgressProps, Row, Space, Typography } from 'antd'
 import { ScoreProperties, ScoreViewer, ScoreViewerRef } from 'score-viewer'
+import { isMobile, useMobileOrientation } from 'react-device-detect'
 
 
+/* Viewer floor: if the header grows so much that this room is not left (very short
+   screens), the page grows and scrolls instead of squashing the score. */
 const MINIMUM_SCORE_HEIGHT = 300
-const STICKY_HEADER_HEIGHT = 48
 
-const USE_VIRTUAL_UNITS = true
-
+const { useBreakpoint } = Grid
 
 library.add(faMusic, faFilePdf, faFileImage)
 
@@ -95,9 +96,26 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
     const { scoreViewerConfig, status: definitions } = useContext(Context)
 
-    const [scoreSize, setScoreSize] = useState<{ width: string, height: string, scrollTo: number | null } | null>(null)
     const [scoreProperties, setScoreProperties] = useState<ScoreProperties | null>(null)
-    const scoreViewerContainerRef = useRef<HTMLDivElement>(null)
+    const scoreContainerRef = useRef<HTMLDivElement>(null)
+
+    /* On mobile landscape the tono header and the score do not fit together: we give the
+       viewer the full height of the content area and scroll the header out of sight, so that
+       only the top bar remains. This is the same signal score-viewer uses internally to
+       decide its own layout. */
+    const { isLandscape } = useMobileOrientation()
+    const fullHeightScore = isMobile && isLandscape
+
+    /* The data row is meant for landscape: on narrow screens the five columns stack up and
+       eat half the screen, so there it goes collapsed behind a one line summary. */
+    const screens = useBreakpoint()
+    const collapsibleHeader = !screens.md
+
+    const scrollScoreIntoView = () => {
+        if (fullHeightScore) {
+            scoreContainerRef.current?.scrollIntoView({ block: "start" })
+        }
+    }
 
     const tonoStatus = useMemo(() => definitions && tonoIndex != null ? definitions[tonoIndex] : null, [definitions, tonoIndex])
 
@@ -113,18 +131,8 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
     const onScoreAnalyzed = (_: number, scoreProperties: ScoreProperties) => {
         setScoreProperties(scoreProperties)
-        if (scoreSize?.scrollTo) {
-            const currentY = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
-            const maxY = Math.max(
-                document.body.scrollHeight || 0,
-                document.documentElement.scrollHeight || 0,
-                document.body.offsetHeight || 0,
-                document.documentElement.offsetHeight || 0,
-                document.body.clientHeight || 0,
-                document.documentElement.clientHeight || 0)
-            console.log(`scrolling to ${scoreSize.scrollTo}. win currentY: ${currentY} maxY: ${maxY}`)
-            window.scroll(0, scoreSize.scrollTo)
-        }
+        // The header just grew with the score data: reposition
+        scrollScoreIntoView()
     }
 
 
@@ -141,46 +149,17 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
 
     useEffect(() => {
-        if (scoreViewerContainerRef.current && !scoreSize) {
-            const viewPortHeight = window.innerHeight
-            const rect = scoreViewerContainerRef.current.getBoundingClientRect()
-            const availableHeight = rect.top >= 0 ? Math.floor(viewPortHeight - rect.top) - 6
-                : Math.floor(viewPortHeight - (window.scrollY + rect.top)) - 6
-            if (availableHeight >= MINIMUM_SCORE_HEIGHT) {
-                setScoreSize({
-                    width: USE_VIRTUAL_UNITS ? "100%" : `${Math.floor(rect.width)}px`,
-                    height: USE_VIRTUAL_UNITS ? `${Math.round(availableHeight / viewPortHeight * 100) - 4}vh` : `${availableHeight}px`,
-                    scrollTo: null
-                })
-            } else {
-                const height = viewPortHeight - STICKY_HEADER_HEIGHT - 6
-                setScoreSize({
-                    width: USE_VIRTUAL_UNITS ? "100%" : `${Math.floor(rect.width)}px`,
-                    height: USE_VIRTUAL_UNITS ? `${height / viewPortHeight * 100}vh` : `${viewPortHeight - STICKY_HEADER_HEIGHT - 6}px`,
-                    scrollTo: rect.top + 6,
-                })
-            }
-        }
-    }, [])
-
-
-    useEffect(() => {
         if (scoreViewerRef.current) {
             scoreViewerRef.current.selectScore(tonoIndex)
         }
-    }, [tonoIndex]);
+    }, [tonoIndex, scoreViewerConfig]);
 
-    useEffect(() => {
-        if (scoreViewerRef.current) {
-            scoreViewerRef.current.selectScore(tonoIndex)
-        }
-    }, [scoreViewerConfig, scoreSize])
+    // On mount, when changing tono and when rotating the device
+    useEffect(scrollScoreIntoView, [fullHeightScore, tonoIndex])
 
 
-    return (
-        <div>
-
-            <Row style={{ justifyContent: "space-between", backgroundColor: "white", padding: "0.2em" }}>
+    const tonoDataRow = (
+            <Row style={{ flex: "none", justifyContent: "space-between", backgroundColor: "white", padding: "0.2em" }}>
                 <Col xl={{ flex: 1 }}
                     lg={{ flex: 1 }}
                     md={{ flex: 1 }}
@@ -236,17 +215,42 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     </Space> : null}
                 </Col>
             </Row>
-            <div ref={scoreViewerContainerRef}
+    )
+
+    // Summary shown when the header is collapsed. Short: it has to fit one mobile line
+    const tonoDataSummary = [
+        "Datos del tono",
+        numMeasures ? `${numMeasures} compases` : null
+    ].filter(Boolean).join(" · ")
+
+    return (
+        <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+
+            {collapsibleHeader ?
+                <Collapse
+                    ghost
+                    size="small"
+                    className="tono-data-collapse"
+                    style={{ flex: "none", backgroundColor: "white" }}
+                    items={[{
+                        key: "tono-data",
+                        label: <Typography.Text strong ellipsis>{tonoDataSummary}</Typography.Text>,
+                        children: tonoDataRow
+                    }]} />
+                : tonoDataRow}
+
+            <div ref={scoreContainerRef}
                 className="score-viewer-container"
                 style={{
-                    display: "flex", flexDirection: "column",
-                    height: "100%", width: "100%"
+                    flex: 1,
+                    minHeight: fullHeightScore ? "100%" : MINIMUM_SCORE_HEIGHT,
+                    width: "100%"
                 }}>
 
-                {scoreViewerConfig && scoreSize ?
+                {scoreViewerConfig ?
                     <ScoreViewer
-                        width={scoreSize?.width}
-                        height={scoreSize?.height}
+                        width="100%"
+                        height="100%"
                         config={scoreViewerConfig}
                         ref={scoreViewerRef}
                         onScoreAnalyzed={onScoreAnalyzed} /> : null}

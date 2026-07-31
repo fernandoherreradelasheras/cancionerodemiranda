@@ -6,7 +6,7 @@ import { faBars, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-i
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { Location } from 'react-router-dom'
 
-import { ConfigProvider, Layout, Menu, theme, Typography, Grid } from 'antd';
+import { ConfigProvider, Layout, Menu, MenuProps, theme, Typography, Grid } from 'antd';
 
 import { MenuInfo } from 'rc-menu/lib/interface';
 
@@ -71,29 +71,27 @@ function BaseLayout() {
         fetchDefinitions()
     }, []);
 
+    /* Navigation happens here, in the handler, and not in an effect watching
+       currentTonoNumber: otherwise state and URL sync both ways and any re-run of the
+       effect below reverts the page change */
     const onMenuSelected = (info: MenuInfo) => {
         if (info.key.startsWith("sub1:/tono/") || info.key.startsWith("/tono/")) {
             const tonoNumber = parseInt(info.key.replace(/.*tono\//, ""))
-            if (tonoNumber != currentTonoNumber) {
-                setCurrentTonoNumber(tonoNumber)
+            if (isNaN(tonoNumber)) {
+                return
             }
+            setCurrentTonoNumber(tonoNumber)
+            navigate(`/tono/${tonoNumber}/`)
         } else {
             setCurrentTonoNumber(null)
             navigate(info.key)
         }
     }
 
-    useEffect(() => {
-        const tonoPath = currentTonoNumber ? `/tono/${currentTonoNumber}/` : null
-        if (tonoPath && tonoPath != location.pathname) {
-            navigate(tonoPath)
-        }
-    }, [currentTonoNumber])
-
-
+    // One way sync only: the URL drives the state
     useEffect(() => {
         const locationTonoNumber = tonoNumberFromLocation(location)
-        if (locationTonoNumber &&  locationTonoNumber != currentTonoNumber) {
+        if (locationTonoNumber) {
             setCurrentTonoNumber(locationTonoNumber)
         }
     }, [location])
@@ -107,10 +105,11 @@ function BaseLayout() {
 
     const prevTono = useMemo(() => currentTonoNumber && currentTonoNumber > 1 ? `/tono/${currentTonoNumber - 1}/` : "/tono/prev"
     , [currentTonoNumber])
-    const nextTono = useMemo(() => currentTonoNumber && status && currentTonoNumber < status[status.length - 1]?.number! ? `/tono/${currentTonoNumber + 1}/` : "/tono/next"
-    , [currentTonoNumber, status])
+    const lastTonoNumber = useMemo(() => status[status.length - 1]?.number ?? 0, [status])
+    const nextTono = useMemo(() => currentTonoNumber && currentTonoNumber < lastTonoNumber ? `/tono/${currentTonoNumber + 1}/` : "/tono/next"
+    , [currentTonoNumber, lastTonoNumber])
 
-    const items = useMemo(() => [
+    const items = useMemo<MenuProps['items']>(() => [
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
             { key: prevTono, icon: <FontAwesomeIcon size="2xs" icon={faArrowLeft} />, disabled: currentTonoNumber == null || prevTono == "/tono/prev" } : null,
         {
@@ -125,12 +124,17 @@ function BaseLayout() {
         { key: "/tonos/", label: "Listado de tonos", style: location.pathname == "/tonos/" ? { fontWeight: "bolder" } : {} },
         { key: "/progreso/", label: "Progreso", style: location.pathname == "/progreso/" ? { fontWeight: "bolder" } : {} },
         { key: "/about/", label: "Acerca de", style: location.pathname == "/about/" || location.pathname == "/" ? { fontWeight: "bolder" } : {} }
-    ].filter(i => i !== null) as any
+    ].filter(i => i !== null)
     ,[breakpoint, prevTono, nextTono, selectorLabel, scoreViewerConfig, currentTonoNumber, location.pathname])
 
     const selectedKeys = useMemo(() => {
         return [menuItemKeyFromLocationAndTono(location, currentTonoNumber)]
     }, [location, currentTonoNumber])
+
+    /* The Content and the content div have their own padding and they add up: 48px per side
+       on desktop. On narrow screens that eats a quarter of the width, so there it is
+       reduced to 8 + 8 */
+    const horizontalPadding = breakpoint.md ? 24 : 8
 
 
     return (
@@ -154,10 +158,9 @@ function BaseLayout() {
                       },
                 }}>
 
-                <Layout>
+                <Layout style={{ height: '100dvh' }}>
                     <Header style={{
-                        position: 'sticky',
-                        top: 0,
+                        flex: 'none',
                         zIndex: 1,
                         width: '100%',
                         display: 'flex',
@@ -174,11 +177,21 @@ function BaseLayout() {
                                 onSelect={onMenuSelected}
                                 style={{ flex: 1, minWidth: 0, justifyContent: 'flex-end' }}/> : null }
                     </Header>
-                    <Content style={{ padding: '0 24px', background: colorBgContainer }}>
+                    <Content style={{
+                            flex: 1,
+                            minHeight: 0,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            padding: `0 ${horizontalPadding}px`,
+                            background: colorBgContainer }}>
+                        {/* The app shell is not scrollable: this is the only scrolling area, and
+                            it has a definite height, so pages can fill it with height: 100% */}
                         <div style={{
                                 background: colorBgContainer,
-                                minHeight: 280,
-                                padding: "0px 24px 0 24px",
+                                flex: 1,
+                                minHeight: 0,
+                                overflow: "auto",
+                                padding: `0px ${horizontalPadding}px 0 ${horizontalPadding}px`,
                                 borderRadius: borderRadiusLG  }}>
 
                             <Outlet />

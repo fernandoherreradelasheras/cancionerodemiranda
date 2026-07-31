@@ -75,8 +75,7 @@ def describe(element):
 
 
 def build_app_note(app, measure, partName, annotText):
-    label =  app.xpath('./mei:lem/@label', namespaces=NSMAP)
-    if label and label[0] == "app_clefs":
+    if app.get("type") == "app_clefs":
         print("Ignoring app_clefs")
         return None
 
@@ -138,7 +137,7 @@ def get_part_names(root):
     return map
 
 def get_orig_clefs(root, partNames):
-    res = root.xpath('(//mei:mdiv//mei:section//mei:rdg[@label="app_clefs"])[1]//ancestor::mei:app/@xml:id', namespaces=NSMAP)
+    res = root.xpath('(//mei:mdiv//mei:section//mei:rdg[@type="app_clefs"])[1]//ancestor::mei:app/@xml:id', namespaces=NSMAP)
     if res is None or len(res) <= 0:
         return
     appId = res[0]
@@ -148,7 +147,7 @@ def get_orig_clefs(root, partNames):
         return
     annot = res[0]
     
-    rdg_clefs = root.xpath('(//mei:mdiv//mei:section//mei:rdg[@label="app_clefs"])[1]//mei:clef', namespaces=NSMAP)
+    rdg_clefs = root.xpath('(//mei:mdiv//mei:section//mei:rdg[@type="app_clefs"])[1]//mei:clef', namespaces=NSMAP)
     if rdg_clefs is None or len(rdg_clefs) <= 0:
         return
 

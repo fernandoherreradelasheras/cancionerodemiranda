@@ -108,8 +108,12 @@ def process_mei_files(file1_path, file2_path, output_path):
         harm_elements = measure2.findall(f".//{{{mei_ns}}}harm")
         
         if harm_elements:
+            # The apparatus is selected by @type, both on the <app> and on the
+            # reading: without it on the <app> score-viewer lists the analysis as
+            # an editorial choice instead of handling it as a display option
             app = ET.Element(f"{{{mei_ns}}}app")
-            
+            app.set('type', 'dissonant_analysis')
+
             lem = ET.SubElement(app, f"{{{mei_ns}}}lem")
             rdg = ET.SubElement(app, f"{{{mei_ns}}}rdg")
             rdg.set('type', 'dissonant_analysis')

@@ -45,19 +45,22 @@ for clef in clefsCopied:
     clef.set(f'copyof', f'#cjkdud{C}')
     C = C + 1
 
+# The global apparatus is selected by @type, on the <app> and on every reading:
+# @label is a display string and verovio renders it as a tooltip
 app = ET.Element(f"app")
 app.set(f'{{{XML_NS}}}id', "acdkjf9")
+app.set(f'type', "app_clefs")
 app.text = section.text + "   "
 app.tail = section.tail + "      "
 section.insert(0,app)
 
 lem = ET.Element(f"lem")
-lem.set(f'label', "app_clefs")
+lem.set(f'type', "app_clefs")
 lem.tail = app.text
 app.append(lem)
 
 rdg = ET.Element(f"rdg")
-rdg.set(f'label', "app_clefs")
+rdg.set(f'type', "app_clefs")
 rdg.text = app.text + "   "
 rdg.tail = app.tail
 app.append(rdg)

@@ -13,7 +13,8 @@ const About = () => (
 
             <p>Esta es la web del proyecto de edición del Cancionero de Miranda. El
                 estudio, redacción, transcripción y reconstrucción de este cancionero se está
-                realizando en abierto en el repositorio público del proyecto <a href={REPO_URL}>{REPO_URL}</a>.</p>
+                realizando en abierto en el repositorio público del proyecto <a href={REPO_URL}
+                    style={{ overflowWrap: "anywhere" }}>{REPO_URL}</a>.</p>
 
             El proyecto ya ha alcanzado los dos primeros hitos:
             <ul>
