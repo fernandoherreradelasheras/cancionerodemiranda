@@ -58,37 +58,9 @@
                </normalization>
             </editorialDecl>
          </encodingDesc>
-         <sourceDesc>
-            <source>
-               <bibl>
-                  <title>Miscelânea de Tonos "de vários autores, a 4.ª do padre Domingos de Miranda da Costa, capelão cantor da Capela Real</title>
-                  <title type="alternative">Cancionero de Miranda</title>
-                  <contributor>
-                     <persName role="compilator">Domingos de Miranda da Costa</persName>
-                  </contributor>
-                  <physLoc>
-                     <repository>
-                        <identifier auth="RISM">P-Ln</identifier>
-                        <corpName role="holding institution">
-                           <name type="organization">Biblioteca Nacional de Portugal</name>
-                        </corpName>
-                     </repository>
-                     <identifier type="shelfmark">M.M. 4802/1</identifier>
-                     <identifier type="shelfmark">M.M. 4802/2</identifier>
-                     <identifier type="shelfmark">M.M. 4802/3</identifier>
-                  </physLoc>
-                  <physLoc>
-                     <repository>
-                        <identifier auth="RISM">P-Lant</identifier>
-                        <corpName role="holding institution">
-                           <name type="organization">Arquivo Nacional da Torre do Tombo</name>
-                        </corpName>
-                     </repository>
-                     <identifier type="shelfmark">PT/TT/MUS/L122</identifier>
-                  </physLoc>
-               </bibl>
-            </source>
-         </sourceDesc>
+         <!-- Each MEI states its own sources: which partbooks carry the tono
+              varies with its scoring and with what was taken from elsewhere. -->
+         <xsl:apply-templates select="mei:sourceDesc"/>
     </xsl:element>
   </xsl:template>
 
