@@ -3,6 +3,7 @@ import { MusicStatus, TextStatus } from './utils'
 import { Context } from './Context'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Col, Collapse, Grid, Progress, ProgressProps, Row, Space, Typography } from 'antd'
 import { ScoreProperties, ScoreViewer, ScoreViewerRef } from 'score-viewer'
 import { isMobile, useMobileOrientation } from 'react-device-detect'
@@ -141,9 +142,23 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
     const numMeasures = scoreProperties?.numMeasures
     const title = tonoIndex ? `${scoreViewerConfig?.scores[tonoIndex].title}` : ""
 
-    const sectionItems = useMemo(() => {
-        return scoreProperties?.sections?.map((section: Section, index: number) =>
-            <a onClick={() => { onClickSection(section) }}>{`${index + 1}. ${section.label}`}</a>) || null
+    /* The sections used to be a fifth column of vertically stacked links, one line each.
+       They live next to the score now: it is score navigation, and the header no longer
+       grows with the number of sections (the corpus reaches six) */
+    const sectionLinks = useMemo(() => {
+        const sections = scoreProperties?.sections
+        if (!sections || sections.length < 2) {
+            return null
+        }
+        return (
+            <Space wrap size={[12, 0]} style={{ flex: "none", padding: "0 0 0.2em 0" }}>
+                <Typography.Text type="secondary">Secciones:</Typography.Text>
+                {sections.map((section: Section, index: number) =>
+                    <a key={section.id} onClick={() => { onClickSection(section) }}>
+                        {`${index + 1}. ${section.label}`}
+                    </a>)}
+            </Space>
+        )
     }, [scoreProperties])
 
 
@@ -197,22 +212,22 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     md={{ flex: 1 }}
                     sm={{ flex: 1 }}
                     xs={{ flex: '50%' }}>
-                    {sectionItems && sectionItems.length > 1 ? <Space direction="vertical">
-                        <Typography.Text>Secciones:</Typography.Text>
-                        {sectionItems}
-                    </Space> : null}
-                </Col>
-                <Col xl={{ flex: 1 }}
-                    lg={{ flex: 1 }}
-                    md={{ flex: 1 }}
-                    sm={{ flex: 1 }}
-                    xs={{ flex: '50%' }}>
-                    {tonoIndex != null && tonoStatus?.pdfs && tonoStatus.pdfs.length > 0 ? <Space direction="vertical">
-                        <Typography.Text> Versiones para imprimir:</Typography.Text>
-                        {tonoStatus.pdfs.map((pdf, index) =>
-                            pdf.name ? <a key={index} download={get_edition_filename(pdf.name, tonoIndex, title)} href={pdf.url}>{get_edition_name(pdf.name)}</a> : null
-                        )}
-                    </Space> : null}
+                    {/* One line per edition would push the header down as editions are added:
+                        the short name carries the distinction, the full one stays in the
+                        tooltip and in the name of the downloaded file */}
+                    {tonoIndex != null && tonoStatus?.pdfs && tonoStatus.pdfs.length > 0 ? <>
+                        <div><Typography.Text>Versiones para imprimir:</Typography.Text></div>
+                        <Space wrap size={[12, 0]}>
+                            {tonoStatus.pdfs.map((pdf, index) =>
+                                pdf.name ? <a key={index}
+                                    title={get_edition_name(pdf.name)}
+                                    download={get_edition_filename(pdf.name, tonoIndex, title)}
+                                    href={pdf.url}>
+                                    <FontAwesomeIcon icon={faFilePdf} /> {get_edition_shortname(pdf.name)}
+                                </a> : null
+                            )}
+                        </Space>
+                    </> : null}
                 </Col>
             </Row>
     )
@@ -239,21 +254,29 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     }]} />
                 : tonoDataRow}
 
+            {/* Inside the container, so that the mobile landscape scroll keeps the section
+                links on screen together with the score */}
             <div ref={scoreContainerRef}
                 className="score-viewer-container"
                 style={{
                     flex: 1,
                     minHeight: fullHeightScore ? "100%" : MINIMUM_SCORE_HEIGHT,
-                    width: "100%"
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column"
                 }}>
 
-                {scoreViewerConfig ?
-                    <ScoreViewer
-                        width="100%"
-                        height="100%"
-                        config={scoreViewerConfig}
-                        ref={scoreViewerRef}
-                        onScoreAnalyzed={onScoreAnalyzed} /> : null}
+                {sectionLinks}
+
+                <div style={{ flex: 1, minHeight: 0 }}>
+                    {scoreViewerConfig ?
+                        <ScoreViewer
+                            width="100%"
+                            height="100%"
+                            config={scoreViewerConfig}
+                            ref={scoreViewerRef}
+                            onScoreAnalyzed={onScoreAnalyzed} /> : null}
+                </div>
             </div>
         </div>
     )
