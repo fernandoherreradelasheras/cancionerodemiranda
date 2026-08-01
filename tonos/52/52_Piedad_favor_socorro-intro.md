@@ -63,6 +63,15 @@ Colección de opúsculos sobre Teología, Moral, Sagrada Escritura, poesías, se
 - Copla 7: En fin quedó destruida
 [Sin estribillo]
 
+Manuscrito de la Biblioteca Estense Universitaria de Módena, Est. 199 = ε.32.3.6 (ff. 131v-132r)1:
+
+- Copla 1: “Venganzas, griegos”, repiten
+- Copla 2: Arda Paris y arda Elena
+- Copla 3: Troya entonces que estaba
+- Copla 4: Cada relincho es un trueno
+[Sin estribillo]
+
+
 
 Cancionero de Miranda:
 
@@ -80,7 +89,9 @@ P-Cug MM 234:
 
 Las coplas 5-10 del testimonio de Jerónimo Nieto las podemos rastrear hasta el romance *Al incendio de Troya* de Jerónimo Cáncer y Velasco, impreso en sus *Obras varias* (1651). Se trata, con toda probabilidad, de un añadido del compilador ajeno a la tradición cantada del tono, que difícilmente mezclaría coplas de asonancias diferentes (las del tono son en o-o y el romance de Cancer en o-e).  
 
-En el CPMHL tres de las cuatro coplas son únicas a ese testimonio, mientras que en MSS/6620 lo son cinco de siete. En el cancionero de Miranda, algunas coplas de la tradición común tienen lecturas curiosas (pájaro de Juno -> pájaro defunto) y el estribillo, consistente en todos los demás testimonios, se revela como una *lectio singularis* que reorienta el pasaje hacia el desengaño de la vanidad mundana.
+En el CPMHL tres de las cuatro coplas son únicas a ese testimonio, mientras que en MSS/6620 lo son cuatro de siete. En el cancionero de Miranda, algunas coplas de la tradición común tienen lecturas curiosas (pájaro de Juno -> pájaro defunto) y el estribillo, consistente en todos los demás testimonios, se revela como una *lectio singularis* que reorienta el pasaje hacia el desengaño de la vanidad mundana.
+
+El testimonio de la Biblioteca Estense confirma este panorama de transmisión abierta. Copia cuatro coplas sin estribillo, igual que los otros dos testimonios exclusivamente poéticos (Nieto y MSS/6620). Las tres primeras coinciden con el núcleo común y siguen el mismo orden que Nieto (con Paris antes que Elena), mientras que la cuarta, “Cada relincho es un trueno”, lo conecta con MSS/6620, único otro testimonio que la transmite, si bien allí precede a “Troya que entonces estaba” en lugar de seguirla. Presenta, además, lecturas propias: el íncipit en plural (“Venganzas, griegos, repiten”) y, en el segundo verso, “Aquiles, blasón heroico”, donde la tradición común y las citas teatrales leen “blasón de todos”.
 
 Queda como constante la copla que abre todos los testimonios,  cuyo primer versos "¡Venganza, griegos! repite" llegó a funcionar como una suerte de *meme* barroco glosado y evocado una y otra vez. Así, por ejemplo, aparece citado en diversas obras teatrales de la época:
 
