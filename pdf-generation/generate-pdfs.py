@@ -83,10 +83,13 @@ VEROVIO_FLAGS = ["--mdiv-all", "-a", "--mm-output", "--no-justification",
 
 # Incremental builds: manifest file and the shared assets whose contents affect
 # every tono's output (a change to any of them invalidates all cached builds).
+# tonos/index.json is deliberately not here: it holds one entry per tono, and
+# each entry goes into that tono's own fingerprint (see compute_job_fingerprint),
+# so editing one tono's entry rebuilds that tono instead of all 77.
 BUILD_MANIFEST = "output/.build-manifest.json"
 SHARED_ASSETS = [
     "pdf-generation/generate-pdfs.py", "pdf-generation/coplas_overlay.py",
-    "pdf-generation/poem_from_mei.py", "tonos/index.json",
+    "pdf-generation/poem_from_mei.py",
     "pdf-generation/latex/header.tex", "pdf-generation/latex/iberianpolyphony.sty",
     "pdf-generation/latex/acerca.tex",
     "pdf-generation/latex/criterios-musicales-performer.tex",
@@ -1033,13 +1036,18 @@ def tool_versions_hash():
     return h.hexdigest()
 
 
-def compute_job_fingerprint(data, tono_status, buildType, shared_hash, tool_hash):
+def compute_job_fingerprint(data, tono_status, index_entry, buildType, shared_hash, tool_hash):
+    """index_entry is this tono's entry in tonos/index.json. Only the organic is
+    read from it at build time, but the whole entry is fingerprinted: it is
+    derived from the MEI and status.json (scripts/build_index.py), so a change
+    there means the tono's data moved and its PDFs are stale."""
     h = hashlib.sha256()
     h.update(shared_hash.encode())
     h.update(tool_hash.encode())
     h.update(str(buildType).encode())
     h.update(json.dumps(data, sort_keys=True, ensure_ascii=True).encode())
     h.update(json.dumps(tono_status, sort_keys=True, ensure_ascii=True).encode())
+    h.update(json.dumps(index_entry, sort_keys=True, ensure_ascii=True).encode())
     _hash_paths(h, tono_input_files(data))
     return h.hexdigest()
 
@@ -1174,7 +1182,9 @@ def main():
 
     # Organic is derived from each MEI's perfMedium and cached in tonos/index.json
     # (see scripts/build_index.py). Merge it into the status entries so the rest
-    # of the pipeline keeps reading data['organic'] unchanged.
+    # of the pipeline keeps reading data['organic'] unchanged. The entries are
+    # also kept around per tono, to fingerprint each one with its own (below).
+    index_by_path = {}
     try:
         with open(os.path.join("tonos", "index.json")) as f:
             index_by_path = {e['path']: e for e in json.load(f)}
@@ -1211,7 +1221,8 @@ def main():
     to_build = []
     for tono, tono_status, buildType in jobs:
         label = f"tono {tono['number']} [{buildType}]"
-        fingerprint = compute_job_fingerprint(tono, tono_status, buildType, shared_hash, tool_hash)
+        fingerprint = compute_job_fingerprint(tono, tono_status, index_by_path.get(tono['path'], {}),
+                                              buildType, shared_hash, tool_hash)
         pdf_path = output_pdf_path(tono, buildType)
         if not args.force and manifest.get(pdf_path) == fingerprint and os.path.exists(pdf_path):
             print(f"=== Skipping {label} (sin cambios) ===")
