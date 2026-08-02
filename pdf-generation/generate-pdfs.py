@@ -98,6 +98,8 @@ SHARED_ASSETS = [
     "pdf-generation/scripts/extract_comments_from_mei.py",
     "pdf-generation/scripts/expand_annots.py", "pdf-generation/scripts/footnote_wrap.py",
     "pdf-generation/scripts/annotate_svg.py", "scripts/normalize_ficta.py",
+    # The MEI Basic derivative is embedded in the PDF, so its generator counts.
+    "scripts/simplify_to_mei_basic.py", "scripts/mei_resolve_editorial.py",
 ]
 
 # Dependencies checked by --doctor / the preflight (see run_doctor).

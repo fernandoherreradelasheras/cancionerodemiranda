@@ -44,6 +44,12 @@ NOTE = ("Derivado automatico en MEI Basic. La fuente de verdad es el MEI "
         "maestro; aqui no estan el aparato critico, el texto poetico ni las "
         "marcas de coloracion, que MEI Basic no puede expresar.")
 
+LAYOUT = ("pgHead", "pgHead2", "pgFoot", "pgFoot2")
+
+STRUCTURAL = frozenset(("mei", "music", "body", "mdiv", "score", "scoreDef",
+                        "staffGrp", "staffDef", "section", "measure", "staff",
+                        "layer"))
+
 
 def local(el):
     return etree.QName(el).localname if isinstance(el.tag, str) else None
@@ -127,7 +133,7 @@ def prune(tree, vocabulary):
         name = local(el)
         if name is None or el.getparent() is None:
             continue
-        if name not in vocabulary:
+        if name not in vocabulary or name in LAYOUT:
             dropped[name] = dropped.get(name, 0) + 1
             el.getparent().remove(el)
             continue
@@ -162,6 +168,10 @@ def find_by_name(tree, name, line):
 def offending_node(tree, error):
     match = EXTRA_CONTENT.search(error.message)
     if match:
+        child = find_by_name(tree, match.group(2), error.line)
+        parent = child.getparent() if child is not None else None
+        if parent is not None and local(parent) == match.group(1):
+            return "element", child, match.group(2)
         parent = find_by_name(tree, match.group(1), error.line)
         if parent is not None:
             for child in parent:
@@ -180,12 +190,30 @@ def offending_node(tree, error):
     return None
 
 
-def enforce_schema(tree, schema, max_rounds=40):
-    """Drop what the schema rejects by position rather than by vocabulary.
+def offends(tree, schema, node):
+    """Is `node` still what the schema is complaining about? (Reads the error
+    log of the last validate() call, so validate first.)"""
+    for error in schema.error_log:
+        target = offending_node(tree, error)
+        if target and target[1] is node:
+            return True
+    return False
 
-    <pgHead> is the usual one: MEI Basic admits it, but not inside a <scoreDef>,
-    which is where the PDF pipeline puts it.
-    """
+
+def empty_structural(tree, schema, node):
+    undo = []
+    for child in [c for c in node
+                  if isinstance(c.tag, str) and local(c) not in STRUCTURAL]:
+        undo.append((node.index(child), child))
+        node.remove(child)
+        if schema.validate(tree) or not offends(tree, schema, node):
+            return ["<%s>" % local(c) for _, c in undo]
+    for position, child in reversed(undo):
+        node.insert(position, child)
+    return []
+
+
+def enforce_schema(tree, schema, max_rounds=40):
     removed = {}
     for _ in range(max_rounds):
         if schema.validate(tree):
@@ -201,6 +229,13 @@ def enforce_schema(tree, schema, max_rounds=40):
         if kind == "element":
             if node.getparent() is None:
                 return removed, False
+            if name in STRUCTURAL:
+                keys = empty_structural(tree, schema, node)
+                if not keys:
+                    return removed, False
+                for key in keys:
+                    removed[key] = removed.get(key, 0) + 1
+                continue
             node.getparent().remove(node)
             key = "<%s>" % name
         else:
