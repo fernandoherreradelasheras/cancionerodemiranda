@@ -54,11 +54,30 @@ disonancias_map = {
 }
 
 
-def process_mei_files(file1_path, file2_path, output_path):
-    
+def measures_of(root, mdiv=None):
+    """The measures to merge, restricted to a single <mdiv> when asked for.
+
+    mdivs are numbered 1-based over those that hold measures, the same set the
+    caller (add_dissonant_analysis.sh) analyses one at a time. Returns None when
+    the index is out of range; falls back to the whole document for scores with
+    no <mdiv>."""
+    if mdiv is None:
+        return root.findall(f".//{{{mei_ns}}}measure")
+    mdivs = [md for md in root.findall(f".//{{{mei_ns}}}body/{{{mei_ns}}}mdiv")
+             if md.find(f".//{{{mei_ns}}}measure") is not None]
+    if not mdivs:
+        return root.findall(f".//{{{mei_ns}}}measure")
+    if not 1 <= mdiv <= len(mdivs):
+        print(f"Error: no mdiv {mdiv} in the base file ({len(mdivs)} found)")
+        return None
+    return mdivs[mdiv - 1].findall(f".//{{{mei_ns}}}measure")
+
+
+def process_mei_files(file1_path, file2_path, output_path, mdiv=None):
+
     ET.register_namespace('mei', mei_ns)
     ET.register_namespace('xml', xml_ns)
-    
+
     try:
         tree1 = ET.parse(file1_path)
         tree2 = ET.parse(file2_path)
@@ -68,45 +87,26 @@ def process_mei_files(file1_path, file2_path, output_path):
     except FileNotFoundError as e:
         print(f"File not found: {e}")
         return False
-    
+
     root1 = tree1.getroot()
     root2 = tree2.getroot()
-    
-    measures1 = root1.findall(f".//{{{mei_ns}}}measure")
+
+    measures1 = measures_of(root1, mdiv)
+    if measures1 is None:
+        return False
     measures2 = root2.findall(f".//{{{mei_ns}}}measure")
-    
+
     if len(measures1) != len(measures2):
+        where = f" (mdiv {mdiv})" if mdiv else ""
         print(f"Error: Files have different number of measures. "
-              f"File1: {len(measures1)}, File2: {len(measures2)}")
+              f"File1{where}: {len(measures1)}, File2: {len(measures2)}")
         return False
-    
-    measures1_dict = {}
-    measures2_dict = {}
-    
-    for measure in measures1:
-        n_attr = measure.get('n')
-        if n_attr:
-            measures1_dict[n_attr] = measure
-    
-    for measure in measures2:
-        n_attr = measure.get('n')
-        if n_attr:
-            measures2_dict[n_attr] = measure
-    
-    keys1 = sorted(list(set(measures1_dict.keys())))
-    keys2 = sorted(list(set(measures2_dict.keys())))
-    if keys1 != keys2:
-        print("Error: Measure numbers don't match between files")
-        print(f"measure n's for file 1: {keys1}")
-        print(f"measure n's for file 2: {keys2}")
-        return False
-    
-    for measure_n in measures1_dict.keys():
-        measure1 = measures1_dict[measure_n]
-        measure2 = measures2_dict[measure_n]
-        
+
+    # Paired by position, not by @n: fix_mei_measure_ns.xsl numbers the analysis
+    # from 1, so the numbering only coincides for the first mdiv of a score.
+    for measure1, measure2 in zip(measures1, measures2):
         harm_elements = measure2.findall(f".//{{{mei_ns}}}harm")
-        
+
         if harm_elements:
             # The apparatus is selected by @type, both on the <app> and on the
             # reading: without it on the <app> score-viewer lists the analysis as
@@ -182,10 +182,14 @@ def main():
     parser.add_argument('file1', help='First MEI file (base file)')
     parser.add_argument('file2', help='Second MEI file (harm elements source)')
     parser.add_argument('output', help='Output MEI file path')
-    
+    parser.add_argument('--mdiv', type=int, default=None,
+                        help='Merge into this mdiv of the base file (1-based, '
+                             'counting only mdivs with measures). By default '
+                             'the whole file is matched at once.')
+
     args = parser.parse_args()
 
-    success = process_mei_files(args.file1, args.file2, args.output)
+    success = process_mei_files(args.file1, args.file2, args.output, args.mdiv)
     if success:
         with open(args.output, 'r', encoding='utf-8') as f:
             xmltext = f.read()
