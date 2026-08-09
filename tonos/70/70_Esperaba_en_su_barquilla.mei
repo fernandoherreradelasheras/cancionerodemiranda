@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -73,12 +73,12 @@
                      <staffDef n="1" lines="5">
                         <label>Tiple</label>
                         <labelAbbr>T.</labelAbbr>
-                        <clef shape="G" line="2" xml:id="cjkdud1"/>
+                        <clef shape="G" line="2"/>
                      </staffDef>
                      <staffDef n="2" lines="5">
                         <label>[Alto]</label>
                         <labelAbbr>[A.]</labelAbbr>
-                        <clef shape="G" line="2" xml:id="cjkdud1_1"/>
+                        <clef shape="G" line="2"/>
                      </staffDef>
                      <staffDef n="3" lines="5">
                         <label>Bajo</label>
@@ -163,7 +163,7 @@
                                  <syl>Y</syl>
                               </verse>
                            </note>
-                           <note dur="8" oct="4" pname="c">
+                           <note dur="8" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="m">pe</syl>
                               </verse>
@@ -1191,7 +1191,7 @@
                                  <syl wordpos="t">ne</syl>
                               </verse>
                            </note>
-                           <note accid="s" dur="4" oct="4" pname="f">
+                           <note accid.ges="s" dur="4" oct="4" pname="f">
                               <verse n="1">
                                  <syl>a</syl>
                               </verse>
@@ -1208,7 +1208,7 @@
                                  <syl con="d" wordpos="i">em</syl>
                               </verse>
                            </note>
-                           <note dur="4" oct="3" pname="b">
+                           <note dur="4" oct="4" pname="e">
                               <verse n="1">
                                  <syl>su</syl>
                               </verse>
@@ -1226,7 +1226,7 @@
                                  <syl con="d" wordpos="m">pe</syl>
                               </verse>
                            </note>
-                           <note dur="4" oct="4" pname="c">
+                           <note dur="4" oct="4" pname="d">
                               <verse n="1">
                                  <syl con="d" wordpos="i">dul</syl>
                               </verse>
@@ -1636,7 +1636,7 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
-                           <note dur="4" oct="3" pname="b">
+                           <note dur="4" oct="4" pname="d">
                               <verse n="1">
                                  <syl wordpos="t">ra</syl>
                               </verse>
@@ -1650,7 +1650,7 @@
                                  <syl wordpos="t">se</syl>
                               </verse>
                            </note>
-                           <note dur="4" oct="4" pname="d">
+                           <note dur="4" oct="4" pname="f" accid.ges="s">
                               <verse n="1">
                                  <syl>a</syl>
                               </verse>
@@ -2965,7 +2965,7 @@
                                  <syl con="d" wordpos="i">pe</syl>
                               </verse>
                            </note>
-                           <note dots="1" dur="2" oct="3" pname="b"/>
+                           <note xml:id="nscl1ie1" dots="1" dur="2" oct="3" pname="b"/>
                         </layer>
                      </staff>
                      <staff n="3">
@@ -2993,6 +2993,7 @@
                      <tie startid="#neb80a1" endid="#n1a1785k"/>
                      <tie startid="#n1xche3x" endid="#n1pttzuq"/>
                      <slur endid="#n301081" staff="2" startid="#n839879"/>
+                     <tie endid="#ncbhren1" staff="2" startid="#nscl1ie1"/>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -3013,9 +3014,8 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
-                           <note dur="4" oct="4" pname="d"/>
-                           <note dur="4" oct="3" pname="b"/>
-                           <note xml:id="n301081" dur="2" oct="3" pname="a"/>
+                           <note xml:id="ncbhren1" dur="4" oct="3" pname="b"/>
+                           <note xml:id="n301081" dots="1" dur="2" oct="3" pname="a"/>
                         </layer>
                      </staff>
                      <staff n="3">
@@ -3026,9 +3026,6 @@
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="4">
-                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
-                           </harm>
                            <harm type="rdiss" place="above" staff="1" tstamp="2.5" n="6">
                               <rend label="bordadura inferior">n</rend>
                            </harm>
