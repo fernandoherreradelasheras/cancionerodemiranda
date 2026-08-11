@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -1721,7 +1721,9 @@
                                  <syl>un</syl>
                               </verse>
                            </note>
-                           <note dur="1" pname="d" oct="5">
+                           <choice xml:id="ch2938">
+                              <corr xml:id="co239203">
+                                 <note xml:id="n2398293" dur="1" pname="c" oct="5">
                               <verse n="1">
                                  <syl wordpos="t">los</syl>
                               </verse>
@@ -1744,7 +1746,35 @@
                                  <syl con="d" wordpos="i">ce</syl>
                               </verse>
                            </note>
+                              </corr>
+                              <sic xml:id="si921839">
+                                 <note xml:id="n2398294" dur="1" pname="d" oct="5">
+                                    <verse n="1">
+                                       <syl wordpos="t">los</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl con="d" wordpos="i">con</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl con="d" wordpos="i">pri</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl con="d" wordpos="i">ma</syl>
+                                    </verse>
+                                    <verse n="5">
+                                       <syl>su</syl>
+                                    </verse>
+                                    <verse n="6">
+                                       <syl con="d" wordpos="i">in</syl>
+                                    </verse>
+                                    <verse n="7">
+                                       <syl con="d" wordpos="i">ce</syl>
+                                    </verse>
+                                 </note>
+                              </sic>
+                           </choice>
                         </layer>
+                        <annot plist="#ch2938">Re5 en el manuscrito. Corregimos a Do5 para evitar el choque con el Mi3 del bajo y siguiendo el pasaje paralelo del c.47</annot>
                      </staff>
                      <staff n="2">
                         <layer n="1">
@@ -1852,17 +1882,6 @@
                            </note>
                         </layer>
                      </staff>
-                     <app type="dissonant_analysis">
-                        <lem/>
-                        <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="2" n="2">
-                              <rend label="agente de suspensión ternaria">G</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="2" n="6">
-                              <rend label="suspensión ternaria">S</rend>
-                           </harm>
-                        </rdg>
-                     </app>
                   </measure>
                   <measure n="11">
                      <staff n="1">
@@ -2493,8 +2512,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <corr xml:id="cor20392">
-                              <note xml:id="n293890" dots="1" dur="2" pname="f" oct="3">
+                           <note xml:id="n293890" dots="1" dur="2" pname="g" oct="3">
                                  <verse n="1">
                                     <syl>tus</syl>
                                  </verse>
@@ -2517,7 +2535,6 @@
                                     <syl>te</syl>
                                  </verse>
                               </note>
-                           </corr>
                            <note dur="4" pname="c" oct="3">
                               <verse n="1">
                                  <syl con="d" wordpos="i">do</syl>
@@ -2566,7 +2583,6 @@
                               </verse>
                            </note>
                         </layer>
-                        <annot plist="#cor20392">Mi en el original</annot>
                      </staff>
                      <tie startid="#ni485h4" endid="#nmys613"/>
                      <tie startid="#n3u13ps" endid="#n135e9lh"/>
@@ -2574,6 +2590,9 @@
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
+                           <harm type="rdiss" place="above" staff="2" tstamp="1" n="4">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
+                           </harm>
                            <harm type="rdiss" place="above" staff="1" tstamp="1" n="6">
                               <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
                            </harm>
@@ -4254,7 +4273,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n8mf4hj" dur="2" pname="c" oct="3" accid.ges="f"/>
+                           <note xml:id="n8mf4hj" dur="2" pname="c" oct="3"/>
                            <note dur="2" pname="d" oct="3">
                               <verse n="1">
                                  <syl wordpos="t">da</syl>
