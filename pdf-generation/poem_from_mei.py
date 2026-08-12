@@ -71,10 +71,21 @@ def _resolve_label(root, corresp):
 
 
 def _text_without_annots(el):
+    """The text of a line, with the editorial markup resolved.
+
+    `<supplied>` is what the editor restored where the source is lost or
+    illegible, and it is printed between square brackets -- the usual convention,
+    and the only way the reader can tell it apart from what the manuscript
+    actually transmits. Everything else contributes its text as it stands;
+    `<annot>` is a note *about* the line, not part of it.
+    """
     parts = [el.text or '']
     for child in el:
         if child.tag != f'{{{MEI_NS}}}annot':
-            parts.append(_text_without_annots(child))
+            inner = _text_without_annots(child)
+            if child.tag == f'{{{MEI_NS}}}supplied' and inner.strip():
+                inner = f'[{inner.strip()}]'
+            parts.append(inner)
         parts.append(child.tail or '')
     return ''.join(parts)
 

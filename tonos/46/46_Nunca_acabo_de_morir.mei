@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -464,11 +464,11 @@
                         <layer n="1">
                            <choice>
                               <corr xml:id="corr.m7.ti1" resp="#FHH">
-                                 <note dur="2" pname="e" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">nar,</syl>
-                              </verse>
-                           </note>
+                                 <note xml:id="genid-1" dur="2" pname="e" oct="4">
+                                    <verse n="1">
+                                       <syl wordpos="t">nar,</syl>
+                                    </verse>
+                                 </note>
                               </corr>
                               <sic>
                                  <note dur="2" pname="g" oct="4"/>
@@ -2292,7 +2292,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n.m34.alto.la" dur="2" pname="a" oct="3">
+                           <note dur="2" pname="a" oct="3">
                               <verse n="1">
                                  <syl wordpos="t">vir</syl>
                               </verse>
@@ -2303,7 +2303,6 @@
                               </verse>
                            </note>
                         </layer>
-                        <annot plist="#n.m34.alto.la">Se restaura el La original: las 5as son con el guion, toleradas por criterio editorial. TODO: confirmar octava en la fuente.</annot>
                      </staff>
                      <staff n="4">
                         <layer n="1">
@@ -2385,13 +2384,13 @@
                            </note>
                            <choice>
                               <corr xml:id="corr.m35.alto" resp="#FHH">
-                           <note dur="2" pname="a" oct="3">
+                                 <note xml:id="genid-2" dur="2" pname="a" oct="3">
                                     <accid accid="n" func="edit" enclose="paren"/>
-                              <verse n="1">
-                                 <syl con="b">que</syl>
-                                 <syl>es</syl>
-                              </verse>
-                           </note>
+                                    <verse n="1">
+                                       <syl con="b">que</syl>
+                                       <syl>es</syl>
+                                    </verse>
+                                 </note>
                               </corr>
                               <sic>
                                  <note dur="2" pname="a" accid="s" oct="3"/>
@@ -2403,7 +2402,7 @@
                               </verse>
                            </note>
                         </layer>
-                        <annot plist="#corr.m35.alto">La# contradice la dominante de La (guion La, Tenor Do#, Ti2 La) que resuelve en Re menor (c.36). Sostenido probablemente contaminado del Do# del Tenor.</annot>
+                        <annot plist="#corr.m35.alto">El La# del manuscrito contradice la dominante de La (guion La, Tenor Do#, Ti2 La) que resuelve en Re menor (c.36). Eliminamos el sostenido probablemente contaminado del Do# del Tenor.</annot>
                      </staff>
                      <staff n="4">
                         <layer n="1">
@@ -3009,13 +3008,12 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n.m44.alto.d" dur="1" dots="1" pname="d" oct="4">
+                           <note dur="1" dots="1" pname="d" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">vir</syl>
                               </verse>
                            </note>
                         </layer>
-                        <annot plist="#n.m44.alto.d">Re tenido = 9a sin resolver sobre el bajo de lamento Re-Do-Sib. Se conserva como disonancia expresiva (cf. c.8). Alternativa estricta: Re semibreve + Do minima en melisma.</annot>
                      </staff>
                      <staff n="4">
                         <layer n="1">
@@ -5623,23 +5621,25 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n75alto.la" dur="2" pname="g" oct="4"/>
-                           <note dur="2" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">vi</syl>
-                              </verse>
-                              <verse n="2">
-                                 <syl>ser</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl wordpos="t">da</syl>
-                              </verse>
-                              <verse n="2">
-                                 <syl con="d" wordpos="i">re</syl>
-                              </verse>
-                           </note>
+                           <corr xml:id="corr.m75.alto">
+                              <note xml:id="n75alto.la" dur="2" pname="g" oct="4"/>
+                              <note dur="2" pname="f" oct="4">
+                                 <verse n="1">
+                                    <syl con="d" wordpos="i">vi</syl>
+                                 </verse>
+                                 <verse n="2">
+                                    <syl>ser</syl>
+                                 </verse>
+                              </note>
+                              <note dur="2" pname="g" oct="4">
+                                 <verse n="1">
+                                    <syl wordpos="t">da</syl>
+                                 </verse>
+                                 <verse n="2">
+                                    <syl con="d" wordpos="i">re</syl>
+                                 </verse>
+                              </note>
+                           </corr>
                         </layer>
                         <annot plist="#corr.m75.alto">Letra retrasada una mínima; transcripción original: «vi/ser», «da/re», «que/me». La primera nota queda ligada al Sol del c. 74 sobre «la/por», en homofonía con el Tiple 2º.</annot>
                      </staff>
@@ -5738,30 +5738,32 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl>que</syl>
-                              </verse>
-                              <verse n="2">
-                                 <syl con="d" wordpos="i">me</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="g" oct="4">
-                              <verse n="1">
-                                 <syl>me</syl>
-                              </verse>
-                              <verse n="2">
-                                 <syl>dio,</syl>
-                              </verse>
-                           </note>
-                           <note dur="2" pname="f" oct="4">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">con</syl>
-                              </verse>
-                              <verse n="2">
-                                 <syl wordpos="t">la</syl>
-                              </verse>
-                           </note>
+                           <corr xml:id="corr.m76.alto">
+                              <note xml:id="n27389uhj2" dur="2" pname="g" oct="4">
+                                 <verse n="1">
+                                    <syl>que</syl>
+                                 </verse>
+                                 <verse n="2">
+                                    <syl con="d" wordpos="i">me</syl>
+                                 </verse>
+                              </note>
+                              <note dur="2" pname="g" oct="4">
+                                 <verse n="1">
+                                    <syl>me</syl>
+                                 </verse>
+                                 <verse n="2">
+                                    <syl>dio,</syl>
+                                 </verse>
+                              </note>
+                              <note dur="2" pname="f" oct="4">
+                                 <verse n="1">
+                                    <syl con="d" wordpos="i">con</syl>
+                                 </verse>
+                                 <verse n="2">
+                                    <syl wordpos="t">la</syl>
+                                 </verse>
+                              </note>
+                           </corr>
                         </layer>
                         <annot plist="#corr.m76.alto">Letra retrasada una mínima; transcripción original: «me/dio,», «con/la», «de/suer».</annot>
                      </staff>
@@ -6875,7 +6877,6 @@
                            <rest dur="2"/>
                            <rest dur="2"/>
                         </layer>
-                        <annot plist="#supplied.m90.alto">Compás ausente en la voz del alto (última entrada del estrecho): se completa por analogía con las demás voces con blanca final Re4 ligada desde el c. 89, prolongando «nar» hasta el acorde final, y dos silencios de blanca. Restituye además el ancla nd1983 del Dal segno.</annot>
                      </staff>
                      <staff n="4">
                         <layer n="1">

@@ -52,9 +52,13 @@ def append_annotation(svg_path, annotations):
     # MEI xml:id; a stray suffix would be "-…"), not a loose substring, so an
     # annotation never lands on the wrong page because one id contains another.
     for annot in annotations:
-        aid = annot["xml:id"]
+        # A note may apply to several voices at once and carry the same number
+        # on each of them (expand_annots.py); the text belongs on every page
+        # that shows one of those markers, so any of the ids is a match.
+        aids = annot.get("xml:ids") or [annot["xml:id"]]
         element_with_id = root.xpath(
-            f'.//svg:g[@id="{aid}" or starts-with(@id, "{aid}-")]', namespaces=NSMAP)
+            " | ".join(f'.//svg:g[@id="{aid}" or starts-with(@id, "{aid}-")]'
+                       for aid in aids), namespaces=NSMAP)
         if not element_with_id:
             continue
         print(f'Adding annotation for {annot["xml:id"]}')
