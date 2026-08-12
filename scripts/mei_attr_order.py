@@ -26,6 +26,11 @@ Usage:
 
 With no file arguments the file list is taken from get-tonos-mei.sh, which
 lives next to this script.
+
+Exit status (--check turns divergence into a failure, for use in hooks and CI):
+    0  everything analysed complies
+    1  at least one tag diverges (only reported as a failure with --check)
+    2  at least one file could not be processed
 """
 
 import argparse
@@ -542,6 +547,12 @@ def main():
     parser.add_argument('--no-verify', action='store_true',
                         help="skip the canonical-XML check that --update "
                              "changed nothing but attribute order")
+    parser.add_argument('--check', action='store_true',
+                        help="exit with status 1 if any tag diverges "
+                             "(for git hooks and CI)")
+    parser.add_argument('--quiet', '-q', action='store_true',
+                        help="suppress the report; only warnings and errors "
+                             "are printed")
     args = parser.parse_args()
 
     check_spec()
@@ -573,7 +584,7 @@ def main():
         total.merge(stats)
         per_file.append((path, stats))
 
-        if examples:
+        if examples and not args.quiet:
             print(f"\n{path}")
             for elem, line, before, after in examples:
                 print(f"  line {line} <{elem}>")
@@ -590,56 +601,61 @@ def main():
             write_text(path, new_text)
             updated.append((path, stats.total_divergent))
 
-    print()
-    print("=" * 74)
-    print("MEI ATTRIBUTE ORDER" + (" -- UPDATED" if args.update else ""))
-    print("=" * 74)
-    print(f"Files analysed: {len(per_file)}")
-    print()
-    print_element_table(total, args.min_instances)
-
     orderable = total.total_orderable
     divergent = total.total_divergent
-    print()
-    print(f"Compliance : {orderable - divergent} / {orderable} tags "
-          f"({pct(orderable - divergent, orderable):.1f}%)")
-    print(f"Divergence : {divergent} / {orderable} tags "
-          f"({pct(divergent, orderable):.1f}%)")
-    print("(tags with fewer than two attributes cannot diverge and are "
-          "excluded)")
 
-    if total.unknown:
+    if not args.quiet:
         print()
-        print("Attributes not covered by the spec (left in their original "
-              "relative order):")
-        for (elem, attr), count in total.unknown.most_common():
-            print(f"  {elem}@{attr:<20} {count}")
+        print("=" * 74)
+        print("MEI ATTRIBUTE ORDER" + (" -- UPDATED" if args.update else ""))
+        print("=" * 74)
+        print(f"Files analysed: {len(per_file)}")
+        print()
+        print_element_table(total, args.min_instances)
 
-    if args.by_file:
         print()
-        print("PER FILE")
-        print('-' * 74)
-        rows = sorted(per_file, key=lambda r: r[1].total_divergent,
-                      reverse=True)
-        for path, stats in rows:
-            o, d = stats.total_orderable, stats.total_divergent
-            print(f"  {os.path.basename(path):<48}"
-                  f"{o - d:>7}/{o:<7}{pct(o - d, o):>7.1f}%")
+        print(f"Compliance : {orderable - divergent} / {orderable} tags "
+              f"({pct(orderable - divergent, orderable):.1f}%)")
+        print(f"Divergence : {divergent} / {orderable} tags "
+              f"({pct(divergent, orderable):.1f}%)")
+        print("(tags with fewer than two attributes cannot diverge and are "
+              "excluded)")
 
-    if args.update:
-        print()
-        if updated:
-            print(f"Updated {len(updated)} file(s), "
-                  f"{sum(n for _, n in updated)} tag(s) reordered.")
-        else:
-            print("Nothing to update: every file already complies.")
-    elif divergent:
-        print()
-        print("Run with --update to apply the preferred order.")
+        if total.unknown:
+            print()
+            print("Attributes not covered by the spec (left in their original "
+                  "relative order):")
+            for (elem, attr), count in total.unknown.most_common():
+                print(f"  {elem}@{attr:<20} {count}")
+
+        if args.by_file:
+            print()
+            print("PER FILE")
+            print('-' * 74)
+            rows = sorted(per_file, key=lambda r: r[1].total_divergent,
+                          reverse=True)
+            for path, stats in rows:
+                o, d = stats.total_orderable, stats.total_divergent
+                print(f"  {os.path.basename(path):<48}"
+                      f"{o - d:>7}/{o:<7}{pct(o - d, o):>7.1f}%")
+
+        if args.update:
+            print()
+            if updated:
+                print(f"Updated {len(updated)} file(s), "
+                      f"{sum(n for _, n in updated)} tag(s) reordered.")
+            else:
+                print("Nothing to update: every file already complies.")
+        elif divergent:
+            print()
+            print("Run with --update to apply the preferred order.")
 
     if failed:
-        print(f"\n{len(failed)} file(s) could not be processed.",
+        print(f"{len(failed)} file(s) could not be processed.",
               file=sys.stderr)
+        return 2
+    # --update leaves the files compliant, so only a plain check can fail.
+    if args.check and not args.update and divergent:
         return 1
     return 0
 

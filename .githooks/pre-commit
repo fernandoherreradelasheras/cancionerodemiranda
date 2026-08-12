@@ -1,19 +1,54 @@
 #!/bin/sh
-# Ensure tonos/index.json stays in sync with the MEIs (Fase 2).
+# Ensure tonos/index.json stays in sync with the MEIs (Phase 2).
 # If a committed MEI would change the derived index, abort and ask to regenerate.
 
 # Only bother if a tracked MEI or the generator is staged.
 if git diff --cached --name-only | grep -qE '^(tonos/.*\.mei|scripts/build_index\.py)$'; then
     tmp=$(mktemp)
     if ! python scripts/build_index.py --stdout > "$tmp" 2>/dev/null; then
-        echo "pre-commit: no se pudo generar el índice (build_index.py falló)." >&2
+        echo "pre-commit: could not generate the index (build_index.py failed)." >&2
         rm -f "$tmp"; exit 1
     fi
     if ! diff -q "$tmp" tonos/index.json >/dev/null 2>&1; then
-        echo "pre-commit: tonos/index.json está desactualizado respecto a los MEIs." >&2
-        echo "  Regenera y añade el índice:" >&2
+        echo "pre-commit: tonos/index.json is out of date with respect to the MEIs." >&2
+        echo "  Regenerate and stage the index:" >&2
         echo "    python scripts/build_index.py && git add tonos/index.json" >&2
         rm -f "$tmp"; exit 1
     fi
     rm -f "$tmp"
+fi
+
+# Ensure the MEIs going into the commit follow the preferred attribute order.
+# The *staged* content is checked (git cat-file :file), not the working tree,
+# since that is what is actually about to be committed.
+mei_staged=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.mei$')
+if [ -n "$mei_staged" ]; then
+    tmp=$(mktemp --suffix=.mei) || exit 1
+    unordered=""
+    broken=""
+    for f in $mei_staged; do
+        git cat-file blob ":$f" > "$tmp" 2>/dev/null || continue
+        python scripts/mei_attr_order.py --check --quiet "$tmp" 2>/dev/null
+        case $? in
+            0) ;;
+            1) unordered="$unordered $f" ;;
+            *) broken="$broken $f" ;;
+        esac
+    done
+    rm -f "$tmp"
+
+    if [ -n "$broken" ]; then
+        echo "pre-commit: these MEI files could not be analysed:" >&2
+        for f in $broken; do echo "    $f" >&2; done
+        exit 1
+    fi
+
+    if [ -n "$unordered" ]; then
+        echo "pre-commit: attribute order is not the preferred one in:" >&2
+        for f in $unordered; do echo "    $f" >&2; done
+        echo "  Fix it and stage the files again:" >&2
+        echo "    python scripts/mei_attr_order.py --update$unordered && git add$unordered" >&2
+        echo "  (python scripts/mei_attr_order.py --spec prints the expected order)" >&2
+        exit 1
+    fi
 fi
