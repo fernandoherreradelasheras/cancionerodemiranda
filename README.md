@@ -9,6 +9,8 @@ The cancionero de Miranda is a previously unknown polyphonic profane songbook in
 ## Repository
 This repository is the playground for the cancionero de Miranda study and transcription work in progress.
 
+The encoding conventions of the MEI files — sources, organic, clefs, critical apparatus, poem and the tooling that checks them — are documented in [GUIDELINES.md](GUIDELINES.md).
+
 So far we have completed only an inital raw transcription of the texts at [text-transcriptions](text-transcriptions/)
 
 The script [generate-pdfs.sh](generate-pdfs.sh) generates a pdf for each of the tonos in the Cancionero the will include:

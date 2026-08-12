@@ -844,13 +844,25 @@ def _armor_str(v):
 
 def derive_armor(mei_file, transposition):
     """(originalArmor, encodedArmor) from the MEI. encodedArmor is the first
-    scoreDef's staffDef @keysig (or 'n' when there is none); originalArmor is it
-    un-transposed by the editorial transposition."""
+    scoreDef's key signature; originalArmor is it un-transposed by the editorial
+    transposition.
+
+    The signature is read from the scoreDef's own @keysig -- where the corpus
+    declares it, one signature for the whole score (see GUIDELINES.md) -- and
+    from its staffDefs only when a staff carries one of its own. Looking at the
+    staffDefs alone made every score with a signature read as 'n', so the
+    "Armadura" line of the 42 tonos that have one was wrong."""
     root = ET.parse(mei_file).getroot()
+    score_defs = root.xpath('(//mei:scoreDef)[1]', namespaces=NSMAP)
     sigs = {sd.get('keysig')
             for sd in root.xpath('(//mei:scoreDef)[1]//mei:staffDef', namespaces=NSMAP)
             if sd.get('keysig')}
-    encoded = next(iter(sigs)) if len(sigs) == 1 else 'n'
+    if len(sigs) == 1:
+        encoded = next(iter(sigs))
+    elif score_defs and score_defs[0].get('keysig'):
+        encoded = score_defs[0].get('keysig')
+    else:
+        encoded = 'n'
     if transposition not in _ARMOR_UNTRANSPOSE:
         print(f"  WARNING: unknown transposition {transposition!r}; originalArmor=encodedArmor")
     original = _armor_str(_armor_signed(encoded) + _ARMOR_UNTRANSPOSE.get(transposition, 0))

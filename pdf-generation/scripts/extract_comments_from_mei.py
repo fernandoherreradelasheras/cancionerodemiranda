@@ -44,13 +44,22 @@ def get_part_name_for_clef(partNames, clef):
     return partNames[get_staffN_for_clef(clef)]
 
 
+NUMERALS = ["", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete"]
+
+
 def format_keysig(keysig):
-    if keysig == "1f":
-        return "un bemol"
-    elif keysig == "1s":
-        return "un sostenido"
-    else:
+    """'1f' -> 'un bemol', '2s' -> 'dos sostenidos', 'n'/'' -> 'sin alteraciones'.
+    Counts above one do occur once a signature is un-transposed by the editorial
+    fourth, and used to fall through to 'sin alteraciones'."""
+    if not keysig or keysig == "n" or keysig == "0":
         return "sin alteraciones"
+    count, kind = keysig[:-1], keysig[-1]
+    if not count.isdigit() or kind not in "fs":
+        return "sin alteraciones"
+    count = int(count)
+    singular, plural = ("bemol", "bemoles") if kind == "f" else ("sostenido", "sostenidos")
+    number = NUMERALS[count] if count < len(NUMERALS) else str(count)
+    return f'{number} {singular}' if count == 1 else f'{number} {plural}'
 
 
 def get_orig_clefs(root, partNames):
