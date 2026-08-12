@@ -254,6 +254,26 @@ def reserialize(raw, tree):
     return raw[:start] + etree.tostring(tree.getroot(), encoding="UTF-8")
 
 
+SCHEMA_PI = re.compile(rb"schema/[\w.+-]+/mei-basic\.rng")
+
+
+def stamp_version(tree, raw, version):
+    """Make the derived file claim the MEI version it is actually validated
+    against, on the root and in the <?xml-model?> prologue.
+
+    Verovio stamps the version *it* was built against -- 6.3.0-dev writes
+    meiversion="6.0-dev+basic" and points the model PIs at schema/dev/ -- which
+    is a property of the tool, not of the document: the content is the Basic
+    reduction of a 5.1 master and validates against mei-basic 5.1 unchanged.
+    Left alone it fails validation on the root element, and enforce_schema
+    cannot repair that (its patterns match misplaced elements and bad
+    attributes, not "Element mei failed to validate attributes"), so the whole
+    conversion was abandoned and the PDFs lost their second attachment.
+    """
+    tree.getroot().set("meiversion", "%s+basic" % version)
+    return SCHEMA_PI.sub(("schema/%s/mei-basic.rng" % version).encode(), raw)
+
+
 def run_verovio(src, dest):
     cmd = [VEROVIO]
     if VEROVIO_RESOURCES:
@@ -289,6 +309,7 @@ def simplify(path, output, cache_dir, reconstruction="", verbose=True):
         with open(serialized, "rb") as fh:
             raw = fh.read()
         result = etree.parse(serialized)
+        raw = stamp_version(result, raw, version)
         note = etree.Comment(" " + NOTE + " ")
         note.tail = result.getroot().text
         result.getroot().insert(0, note)
