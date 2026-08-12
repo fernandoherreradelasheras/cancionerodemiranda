@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -77,12 +77,12 @@
                         <staffDef n="1" lines="5">
                            <label>Tiple</label>
                            <labelAbbr>T.</labelAbbr>
-                           <clef shape="G" line="2" xml:id="cjkdud1"/>
+                           <clef shape="G" line="2"/>
                         </staffDef>
                         <staffDef n="2" lines="5">
                            <label>[Alto]</label>
                            <labelAbbr>[A.]</labelAbbr>
-                           <clef shape="G" line="2" xml:id="cjkdud1_1"/>
+                           <clef shape="G" line="2"/>
                         </staffDef>
                         <staffDef n="3" lines="5">
                            <label>Tenor</label>
@@ -1433,7 +1433,6 @@
                      <tie startid="#noo8vea" endid="#nolh92w"/>
                      <tie startid="#nzeu1fs" endid="#n1ibobih"/>
                      <tie startid="#alto_m10_tie" endid="#alto_m11_tie"/>
-                     <tie endid="#alto_m11_tie" startid="#alto_m10_tie"/>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -1805,7 +1804,7 @@
                                  <syl wordpos="t">den</syl>
                               </verse>
                            </note>
-                           <note dur="2" oct="4" pname="e">
+                           <note dur="2" oct="4" pname="g">
                               <verse n="1">
                                  <syl>y</syl>
                               </verse>
@@ -1921,7 +1920,7 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
-                           <note dur="2" oct="4" pname="f">
+                           <note dur="1" oct="4" pname="f">
                               <verse n="1">
                                  <syl wordpos="t">tal</syl>
                               </verse>
@@ -1933,21 +1932,6 @@
                               </verse>
                               <verse n="4">
                                  <syl con="d" wordpos="i">ma</syl>
-                              </verse>
-                           </note>
-                           <rest dur="4"/>
-                           <note xml:id="alto_m15_tie" dur="4" oct="4" pname="a">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">en</syl>
-                              </verse>
-                              <verse n="2">
-                                 <syl>de</syl>
-                              </verse>
-                              <verse n="3">
-                                 <syl>de</syl>
-                              </verse>
-                              <verse n="4">
-                                 <syl con="d" wordpos="m">ne</syl>
                               </verse>
                            </note>
                         </layer>
@@ -1971,8 +1955,6 @@
                         </layer>
                      </staff>
                      <tie startid="#nhnz1vv" endid="#n190mag5"/>
-                     <tie startid="#alto_m15_tie" endid="#alto_m16_tie"/>
-                     <tie endid="#alto_m16_tie" startid="#alto_m15_tie"/>
                   </measure>
                   <measure n="16">
                      <staff n="1">
@@ -2019,7 +2001,21 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
-                           <note xml:id="alto_m16_tie" dur="8" oct="4" pname="a"/>
+                           <rest dur="4"/>
+                           <note xml:id="alto_m15_tie" dots="1" dur="4" oct="4" pname="g">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">en</syl>
+                              </verse>
+                              <verse n="2">
+                                 <syl>de</syl>
+                              </verse>
+                              <verse n="3">
+                                 <syl>de</syl>
+                              </verse>
+                              <verse n="4">
+                                 <syl con="d" wordpos="m">ne</syl>
+                              </verse>
+                           </note>
                            <note dur="8" oct="4" pname="g">
                               <verse n="1">
                                  <syl wordpos="t">tre</syl>
@@ -2034,7 +2030,7 @@
                                  <syl wordpos="t">ra</syl>
                               </verse>
                            </note>
-                           <note dur="4" oct="4" pname="g">
+                           <note dur="4" oct="4" pname="f">
                               <verse n="1">
                                  <syl>las</syl>
                               </verse>
@@ -2042,21 +2038,6 @@
                                  <syl con="d" wordpos="i">res</syl>
                               </verse>
                            </note>
-                           <note dur="4" oct="4" pname="g" xml:id="n43931">
-                              <verse n="1">
-                                 <syl con="d" wordpos="i">flo</syl>
-                              </verse>
-                              <verse n="2">
-                                 <syl con="d" wordpos="m">bo</syl>
-                              </verse>
-                              <verse n="3">
-                                 <syl con="d" wordpos="i">no</syl>
-                              </verse>
-                              <verse n="4">
-                                 <syl con="d" wordpos="m">pon</syl>
-                              </verse>
-                           </note>
-                           <note dur="4" oct="4" pname="f"/>
                         </layer>
                      </staff>
                      <staff n="3">
@@ -2101,7 +2082,6 @@
                         </layer>
                      </staff>
                      <slur startid="#id100" endid="#id106" staff="1"/>
-                     <slur staff="2" startid="#n43931" endid="#n933694"/>
                   </measure>
                   <measure n="17">
                      <staff n="1">
@@ -2111,7 +2091,20 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
-                           <note dur="1" oct="4" pname="e" xml:id="n933694"/>
+                           <note xml:id="n933694" dur="1" oct="4" pname="e">
+                              <verse n="1">
+                                 <syl con="d" wordpos="i">flo</syl>
+                              </verse>
+                              <verse n="2">
+                                 <syl con="d" wordpos="m">bo</syl>
+                              </verse>
+                              <verse n="3">
+                                 <syl con="d" wordpos="i">no</syl>
+                              </verse>
+                              <verse n="4">
+                                 <syl con="d" wordpos="m">pon</syl>
+                              </verse>
+                           </note>
                         </layer>
                      </staff>
                      <staff n="3">
@@ -2190,7 +2183,6 @@
                      </staff>
                      <tie startid="#nvr45l3" endid="#n9eyduw"/>
                      <tie startid="#n14lsyky" endid="#nvxtj82"/>
-                     <tie startid="#alto_m18_tie" endid="#alto_m19_tie"/>
                      <tie endid="#alto_m19_tie" startid="#alto_m18_tie"/>
                   </measure>
                   <measure n="19" right="end">
@@ -2412,7 +2404,6 @@
                      <tie startid="#n718905" endid="#n634019" staff="2"/>
                      <tie startid="#nfyrr7x" endid="#n1whadzt"/>
                      <tie startid="#n1hvr8lc" endid="#n1ogdks"/>
-                     <tie endid="#n634019" staff="2" startid="#n718905"/>
                   </measure>
                   <measure n="23">
                      <staff n="1">
@@ -2448,7 +2439,6 @@
                      <tie startid="#n237059" endid="#n227827" staff="2"/>
                      <tie startid="#n1b20s2o" endid="#n12a2ew0"/>
                      <tie startid="#nntuq1j" endid="#nfplaig"/>
-                     <tie endid="#n227827" staff="2" startid="#n237059"/>
                   </measure>
                   <measure n="24">
                      <staff n="1">
@@ -2528,7 +2518,7 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
-                           <note dur="1" oct="4" pname="d">
+                           <note dur="1" oct="4" pname="e">
                               <verse n="1">
                                  <syl wordpos="t">ces</syl>
                               </verse>
@@ -2557,18 +2547,6 @@
                      <tie startid="#n379752" endid="#n418569" staff="2"/>
                      <tie startid="#n44e9mx" endid="#n78dc3m"/>
                      <tie startid="#n1y97u8w" endid="#n1neqeq0"/>
-                     <tie endid="#n418569" staff="2" startid="#n379752"/>
-                     <app type="dissonant_analysis">
-                        <lem/>
-                        <rdg type="dissonant_analysis">
-                           <harm type="rdiss" place="above" staff="3" tstamp="1" n="2">
-                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
-                           </harm>
-                           <harm type="rdiss" place="above" staff="1" tstamp="1" n="6">
-                              <rend label="échappée inferior">e</rend>
-                           </harm>
-                        </rdg>
-                     </app>
                   </measure>
                   <measure n="27">
                      <staff n="1">
@@ -2899,7 +2877,6 @@
                      <tie startid="#n208450" endid="#n538901" staff="2"/>
                      <tie startid="#n2n66dr" endid="#n1pe3pyd"/>
                      <tie startid="#n1t0bfus" endid="#nz3pvcd"/>
-                     <tie endid="#n538901" staff="2" startid="#n208450"/>
                   </measure>
                   <measure n="35">
                      <staff n="1">
@@ -2934,7 +2911,6 @@
                      </staff>
                      <tie startid="#n302320" endid="#n863080" staff="2"/>
                      <tie startid="#n16ds8qh" endid="#nxcpunx"/>
-                     <tie endid="#n863080" staff="2" startid="#n302320"/>
                   </measure>
                   <measure n="36">
                      <staff n="1">
@@ -3063,7 +3039,6 @@
                      <tie startid="#n268245" endid="#n822384" staff="2"/>
                      <tie startid="#n1awz7cw" endid="#n1rj78j"/>
                      <tie startid="#n1wkac1z" endid="#n19od98d"/>
-                     <tie endid="#n822384" staff="2" startid="#n268245"/>
                   </measure>
                   <measure n="39">
                      <staff n="1">
@@ -3234,7 +3209,6 @@
                      <tie startid="#n682643" endid="#n743900" staff="2"/>
                      <tie startid="#n13okcv4" endid="#n1ylui47"/>
                      <tie startid="#n15cjlyj" endid="#n11zqyx6"/>
-                     <tie endid="#n743900" staff="2" startid="#n682643"/>
                   </measure>
                   <measure n="43">
                      <staff n="1">
@@ -3385,7 +3359,6 @@
                      <tie startid="#n159214" endid="#n632185" staff="2"/>
                      <tie startid="#nxkm16y" endid="#nyfi29w"/>
                      <tie startid="#nwbj0mp" endid="#n49kzzg"/>
-                     <tie endid="#n632185" staff="2" startid="#n159214"/>
                   </measure>
                   <measure n="47">
                      <staff n="1">
@@ -3526,7 +3499,6 @@
                      <tie startid="#n745286" endid="#n93806" staff="2"/>
                      <tie startid="#n1hmbxqv" endid="#n128ebi"/>
                      <tie startid="#n16ivb4a" endid="#nuoy22j"/>
-                     <tie endid="#n93806" staff="2" startid="#n745286"/>
                   </measure>
                   <measure n="51">
                      <staff n="1">
@@ -3820,7 +3792,7 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
-                           <note dur="1" oct="4" pname="a">
+                           <note dur="1" oct="4" pname="f">
                               <verse n="1">
                                  <syl wordpos="t">mo</syl>
                               </verse>
@@ -3976,7 +3948,6 @@
                      </staff>
                      <tie startid="#n741248" endid="#n202244" staff="2"/>
                      <tie startid="#nj4trdd" endid="#nsp10wo"/>
-                     <tie endid="#n202244" staff="2" startid="#n741248"/>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -4316,7 +4287,6 @@
                      <tie startid="#n988649" endid="#n184985" staff="2"/>
                      <tie startid="#n1x61iis" endid="#n1wzdthx"/>
                      <tie startid="#njfxsut" endid="#ncplub9"/>
-                     <tie endid="#n184985" staff="2" startid="#n988649"/>
                   </measure>
                   <measure n="70">
                      <staff n="1">
@@ -4386,7 +4356,6 @@
                      </staff>
                      <tie startid="#n298792" endid="#n900649" staff="2"/>
                      <tie startid="#n1mfzct4" endid="#n4jw5gl"/>
-                     <tie endid="#n900649" staff="2" startid="#n298792"/>
                   </measure>
                   <measure n="72">
                      <staff n="1">
@@ -4455,7 +4424,6 @@
                      <tie startid="#n807784" endid="#n201706" staff="2"/>
                      <tie startid="#nz3gq5f" endid="#n1enq93t"/>
                      <tie startid="#n1chlw0j" endid="#nk19ls4"/>
-                     <tie endid="#n201706" staff="2" startid="#n807784"/>
                   </measure>
                   <measure n="74">
                      <staff n="1">
@@ -4508,7 +4476,7 @@
                      <staff n="2">
                         <layer n="1">
                            <rest dur="2"/>
-                           <note dur="2" oct="4" pname="g">
+                           <note dur="2" oct="4" pname="e">
                               <verse n="1">
                                  <syl>que</syl>
                               </verse>
@@ -4678,7 +4646,6 @@
                      <tie startid="#n359246" endid="#n410748" staff="2"/>
                      <tie startid="#n1wa5zdh" endid="#n1ezy80y"/>
                      <tie startid="#nqrayvs" endid="#n2ke0sd"/>
-                     <tie endid="#n410748" staff="2" startid="#n359246"/>
                   </measure>
                   <measure n="79">
                      <staff n="1">
@@ -4724,7 +4691,7 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
-                           <note xml:id="n57834" dots="1" dur="1" oct="4" pname="d">
+                           <note xml:id="n57834" dots="1" dur="1" oct="3" pname="b">
                               <verse n="1">
                                  <syl con="d" wordpos="m">mo</syl>
                               </verse>
@@ -4743,7 +4710,6 @@
                      <tie startid="#n57834" endid="#n87234" staff="2"/>
                      <tie startid="#n1ahnk12" endid="#nm44hqd"/>
                      <tie startid="#nolo4ye" endid="#n1ozi1z4"/>
-                     <tie endid="#n87234" staff="2" startid="#n57834"/>
                   </measure>
                   <measure n="81">
                      <staff n="1">
@@ -4753,7 +4719,7 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
-                           <note xml:id="n87234" dots="1" dur="1" oct="4" pname="d"/>
+                           <note xml:id="n87234" dots="1" dur="1" oct="3" pname="b"/>
                         </layer>
                      </staff>
                      <staff n="3">
@@ -4793,7 +4759,6 @@
                      <tie startid="#n788004" endid="#n861382" staff="2"/>
                      <tie startid="#n1us4vco" endid="#nmfdyqk"/>
                      <tie startid="#nxlimd" endid="#ny0lbbq"/>
-                     <tie endid="#n861382" staff="2" startid="#n788004"/>
                   </measure>
                   <measure right="end" n="83">
                      <staff n="1">
