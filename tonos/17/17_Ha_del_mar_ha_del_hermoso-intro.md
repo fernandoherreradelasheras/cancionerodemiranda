@@ -7,11 +7,6 @@ cuartetas octosílabas con asonancia á-e sostenida en los versos pares
 libretes de voces y en el de guion, y sólo falta, como en la mayor parte del
 cancionero, la parte de alto.
 
-No se ha localizado ningún otro testimonio, poético ni musical, de este tono. Su
-texto no aparece en los repertorios impresos ni en las compilaciones manuscritas
-consultadas, y no se conoce concordancia musical alguna fuera del Cancionero de
-Miranda.
-
 El poema está construido sobre una fórmula de llamada. *¡Ha del mar!* es el grito
 con que se interpela desde lejos, y de él nace la anáfora que abre las tres primeras
 coplas: se llama al mar, después al *palacio de Tetis* y por último al
@@ -35,7 +30,7 @@ los sonoros encuentros*) y el 18 (*Divina aurora alemana*), que dan la bienvenid
 una deidad alemana, y el 19 (*Perlas iban cogiendo*), retrato laudatorio de la
 reina entre las ninfas del Tajo. La vecindad hace verosímil que el tono 17
 pertenezca también a esa serie de piezas de circunstancia regia, aunque el texto no
-ofrece ninguna referencia concreta —ni un nombre, ni un río, ni un reino— que
+ofrece ninguna referencia concreta, ni un nombre, ni un río, ni un reino, que
 permita identificar a la homenajeada ni la ocasión.
 
 Musicalmente el tono es de una sencillez extrema, acorde con su brevedad.
