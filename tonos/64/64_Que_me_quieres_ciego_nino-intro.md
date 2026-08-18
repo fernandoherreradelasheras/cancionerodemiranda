@@ -18,14 +18,13 @@ nada que conquistar. Aunque la fortuna permita que sea tan mal pagado, la gloria
 amar es suya y nadie se la quita.
 
 La antigüedad que la forma sugiere no encuentra, en cambio, apoyo en la lengua del
-poema. El rastro léxico es aquí bastante más pobre que en el tono 68, pues no
-aparece nada tan neto como los *trocar*, *do* o *empleyo* de aquel. El único
-candidato es el *que tengo solo de amarlos* del verso final, con la perífrasis de
-obligación *tener de* en lugar de *tener que*, que a estas alturas del siglo iba
-quedando anticuada; pero el verso admite igualmente la lectura de *de* como
-preposición de causa, «la gloria que tengo sólo por amarlos», y en ese caso no hay
-arcaísmo ninguno. Los indicios de antigüedad de este tono son, por tanto, formales y
-musicales antes que lingüísticos.
+poema. No aparece ninguna de las formas anticuadas que en otros tonos del bloque
+respaldan la datación temprana. El único candidato es el *que tengo solo de amarlos*
+del verso final, con la perífrasis de obligación *tener de* en lugar de *tener que*,
+que a estas alturas del siglo iba quedando anticuada; pero el verso admite igualmente
+la lectura de *de* como preposición de causa, «la gloria que tengo sólo por amarlos»,
+y en ese caso no hay arcaísmo ninguno. Los indicios de antigüedad de este tono son,
+por tanto, formales y musicales antes que lingüísticos.
 
 Musicalmente el tono es de una llaneza notable, incluso para el bloque al que
 pertenece. Veinticinco compases de ritmo ternario, armadura de un bemol y final en

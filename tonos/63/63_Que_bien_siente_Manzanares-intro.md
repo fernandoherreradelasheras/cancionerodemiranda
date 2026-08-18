@@ -7,10 +7,17 @@ cinco tonos, al prescindir del alto, se conservan completos en las fuentes que h
 sobrevivido. Ninguno de los quince tonos tiene acompañamiento codificado en el
 librete del guion.
 
-Además de esta agrupación formal, el tono 68 plantea, a partir de otros indicios, que
-el origen de buena parte de este bloque final sería bastante anterior al del grueso
-de la compilación. Esto es compatible con la datación que podemos hacer de los textos
-de este bloque de los que conocemos fuentes o concordancias.
+Varios indicios convergentes sitúan el origen de buena parte de este bloque en fecha
+bastante anterior a la del grueso de la compilación. Los textos conservan formas que a
+finales del siglo XVII estaban ya anticuadas o habían quedado como rústicas, y que se
+señalan en la introducción de cada tono que las presenta. A ello se suman rasgos
+formales que remiten a una etapa previa del género, como la repetición de los dos
+últimos versos de la copla al final del estribillo, que conserva el tono 68 cuando el
+esquema lineal se había impuesto ya en villancicos y tonos humanos. Y apunta en la
+misma dirección la datación de los siete textos del bloque cuya fuente poética se ha
+localizado, todos ellos del primer tercio o de la primera mitad del siglo, desde la
+canción de Gregorio Silvestre que está detrás del tono 69 hasta el romance del 63, que
+se imprime en 1629.
 
 Tanto este tono como el siguiente están compuestos por una sección única sin estribillo.
 Esto podría verse como un rasgo arcaizante que también apuntara a un origen pretérito de
