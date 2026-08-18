@@ -1,49 +1,62 @@
-Con el tono ***Qué bien siente Manzanares*** comienza el bloque final del Cancionero de Miranda compuesto por quince tonos a tres voces. En este caso, al estar estrito para Tiple, Alto y Tenor, tenemos solo dos de las voces.
+Con el tono ***Qué bien siente Manzanares*** se abre el bloque final del Cancionero de
+Miranda constituido por quince tonos a tres voces. La configuración de voces en este
+bloque aprovecha casi todas las posibilidades orgánicas que la plantilla original de
+cuatro voces ofrece: diez tonos prescinden del segundo tiple (nueve SAT y uno SAB)
+y cinco mantienen los dos tiples y dejan fuera al alto (tres SSB y dos SST). Estos
+cinco tonos, al prescindir del alto, se conservan completos en las fuentes que han
+sobrevivido. Ninguno de los quince tonos tiene acompañamiento codificado en el
+librete del guion.
 
-El librete de del tiple primero y del tenor incluyen al final del tono una anotación en grande:
+Además de esta agrupación formal, el tono 68 plantea, a partir de otros indicios, que
+el origen de buena parte de este bloque final sería bastante anterior al del grueso
+de la compilación. Esto es compatible con la datación que podemos hacer de los textos
+de este bloque de los que conocemos fuentes o concordancias.
 
-```
-que bien siente d[oñ]a. afima
-```
+Tanto este tono como el siguiente están compuestos por una sección única sin estribillo.
+Esto podría verse como un rasgo arcaizante que también apuntara a un origen pretérito de
+este bloque de tonos a tres voces. En cualquier caso, estos dos tonos seguidos sin estribillo
+permiten ver otra agrupación interna del cancionero: todos los tonos de sección única aparecen
+de manera conjunta en bloques: el inicial de veintidós tonos breves, uno a mitad del cancionero
+(tonos 28 y 29) y estos dos primeros tonos a 3 voces (tonos 63 y 64).
 
-cuyo significado no hemos podido desentrañar.
 
-El texto del tono está tomado de ***El amor por la piedad*** de **Alonso del Castillo Solorzano**, publicada dentro de _Huerta de Valencia_ en 1629. En la parte final de la novela, Solorzano encadena dos romances cantados:
+
+El texto de ***Qué bien siente Manzanares*** es un romance en coplas octosílabas con asonancia aguda en á en los versos pares. Este romance aparece en la novela ***El amor por la piedad*** de **Alonso del Castillo Solórzano**, publicada dentro de _Huerta de Valencia_ en 1629. En la parte final de la novela, Solórzano encadena dos romances cantados:
 
 > Quiso una noche Don Fernando darla una música, que entre las graciás que tenía era una el tener excelente voz, y con ella muy grande destreza, y asi mismo tal vez era favorecido de las Musas con muy gallardo natural de poeta.  Previno, pues, los mejores músicos de la Corte, que es adonde se canta lo más fino y airoso de toda España, porque allí asiste la flor de los mejores hombres de este arte. Avisó a Doña Estefanía, y pasada la media noche, cuando todos están en quieto silencio fue con los cuatro músicos a la calle, donde después de haber avisado con los sonoros, y bien templados instrumentos cantaron a cuatro voces este romance:
 
 > _A las violencias del arco_  
-_treguas pone el niño Dios,_  
-_porque en los ojos de Estela_  
-_labra su poder mayor._
+> _treguas pone el niño Dios,_  
+> _porque en los ojos de Estela_  
+> _labra su poder mayor._
 
 > _Breves asaltos emprende,_  
-_que la fuerte munición_  
-_es alivio en el cuidado_  
-_y descanso en el dolor._
+> _que la fuerte munición_  
+> _es alivio en el cuidado_  
+> _y descanso en el dolor._
 
 > _Mal se alabará de libre_  
-_quien con experiencias vió_  
-_difícil la resistencia_  
-_y fácil la sujeción._
+> _quien con experiencias vió_  
+> _difícil la resistencia_  
+> _y fácil la sujeción._
 
 > _Guerra, guerra,guerra, publica el amor,_  
-_a la batalla avisa de la caja el son,_  
-_ánimo sentidos, y mostrad valor._  
-_No hay fuerza que no se rinda,_  
-_que el recato y el temor_  
-_son perdidas centinelas_  
-_del mas libre corazón._
+> _a la batalla avisa de la caja el son,_  
+> _ánimo sentidos, y mostrad valor._  
+> _No hay fuerza que no se rinda,_  
+> _que el recato y el temor_  
+> _son perdidas centinelas_  
+> _del mas libre corazón._
 
 > _Quien blasonaba de altivo_  
-_humilde parias rindió,_  
-_y a los pies de la belleza_  
-_ya es trofeo su blasón._
+> _humilde parias rindió,_  
+> _y a los pies de la belleza_  
+> _ya es trofeo su blasón._
 
 > _Contra las fuerzas de Estela_  
-_(si hace guerra su primor)_  
-_ocioso vive el cuidado,_  
-_dormida la prevención._
+> _(si hace guerra su primor)_  
+> _ocioso vive el cuidado,_  
+> _dormida la prevención._
 
 
 > Después de haber cantado este romance los cuatro músicos con grande destreza y sonoros pasos de garganta, tomó Don Fernando una bien templada guitarra, y a ella cantó este romance que había escrito a la venida de su dama a Madrid:
@@ -72,3 +85,16 @@ _Poco valen tus flechas de oro,_
 _niño Amor, cieguezuelo rapaz,_  
 _que en los ojos de Estela divina_  
 _Arpones, flechas yrayos hay._
+
+
+
+El tono está escrito para Tiple, Alto y Tenor, lo que hace necesaria la reconstrucción editorial de la voz perdida del Alto. Una reconstrucción que difiere poco metodológicamente de las realizadas para los tonos a cuatro voces. Por un lado, las partes homofónicas (que son las más abundantes en este bloque de tonos) podrían presentar menos incertidumbre a la hora de completar la armonía de las otras dos voces. Pero por otro, la ausencia de guion reduce algunas certezas que la parte instrumental aclaraba cuando presentaba diferencias con la voz más grave.
+
+El librete del tiple primero y del tenor incluyen al final del tono una anotación en grande:
+
+```
+que bien siente d[oñ]a. afima
+```
+
+cuyo significado no hemos podido desentrañar.
+
