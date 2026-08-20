@@ -11,7 +11,7 @@ El tono no se identifica en el manuscrito por el íncipit con que aquí lo titul
 Las tablas de los tres libretes de voces (superius primus, superius secundus y tenor)
 no lo registran por el comienzo de su primera sección, sino por el de la segunda:
 *Qué fuertes que son mis penas*. La elección se entiende atendiendo a la disposición
-de la pieza, que, como se verá, antepone el estribillo a las coplas.
+de la pieza, que antepone el estribillo a las coplas.
 
 El poema, del que no se conoce ningún otro testimonio poético, consiste en un
 estribillo seguido de seis coplas que desarrolla una paradoja sin salida:
