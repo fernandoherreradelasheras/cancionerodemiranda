@@ -80,6 +80,11 @@ VEROVIO_OPTIONS = {
 # Value-less verovio flags.
 VEROVIO_FLAGS = ["--mdiv-all", "-a", "--mm-output", "--no-justification",
                  "--scale-to-page-size", "--justify-vertically"]
+# Spreading the systems over the full page height is right when the page is only
+# music. The scholar edition also carries the reserved <pgFoot> block, and a page
+# left with one system then has it stretched across the whole free height instead
+# of the footnotes taking that room, so it is engraved unjustified.
+VEROVIO_FLAGS_MUSIC_ONLY = []
 
 # Incremental builds: manifest file and the shared assets whose contents affect
 # every tono's output (a change to any of them invalidates all cached builds).
@@ -581,14 +586,52 @@ def generate_mei(input_mei, order, tmp_dir, output_mei):
     result.write(output_mei, encoding="utf-8", xml_declaration=True)
 
 
-def verovio_cmd(mei_file, mei_unit, mei_scale, out_svg):
+def verovio_cmd(mei_file, mei_unit, mei_scale, out_svg, footnotes=False):
     """Build the verovio command from the named VEROVIO_OPTIONS/FLAGS."""
     cmd = ["verovio", "--unit", mei_unit, "--scale", mei_scale]
     for key, value in VEROVIO_OPTIONS.items():
         cmd += [f"--{key}", value]
     cmd += VEROVIO_FLAGS
+    if not footnotes:
+        cmd += VEROVIO_FLAGS_MUSIC_ONLY
     cmd += ["-o", out_svg, mei_file]
     return cmd
+
+
+# How many times the reserve/pagination loop may go round before settling for
+# the safe upper bound. Two passes are enough for every tono of the cancionero;
+# the cap only stops a pathological oscillation.
+MAX_FOOTNOTE_PASSES = 4
+
+
+def _render_pass(mei_file, source_mei, mei_unit, mei_scale, tmp_dir, reserved,
+                 normalize_ficta=False):
+    """One rendering of the scholar edition reserving `reserved` lines of
+    footnotes (None = every note of the tono). Returns the lines the busiest
+    page of the result actually needs."""
+    for svg in glob.glob(os.path.join(tmp_dir, '*.svg')):
+        os.remove(svg)
+    shutil.copyfile(source_mei, mei_file)
+
+    cmd = ['python', str(PIPELINE_SCRIPTS_DIR / 'expand_annots.py'), mei_file,
+           f'{tmp_dir}/expanded.mei', f'{tmp_dir}/annotations.json']
+    if reserved is not None:
+        cmd += ['--reserved-lines', str(reserved)]
+    run(cmd)
+    (Path(tmp_dir) / 'expanded.mei').rename(mei_file)
+
+    if normalize_ficta:
+        run(['python', str(REPO_ROOT / 'scripts' / 'normalize_ficta.py'), mei_file,
+             f'{tmp_dir}/normalized.mei'])
+        (Path(tmp_dir) / 'normalized.mei').rename(mei_file)
+
+    workaround_verovio_2divs_bug(mei_file)
+    run(verovio_cmd(mei_file, mei_unit, mei_scale, f'{tmp_dir}/output.svg', footnotes=True))
+
+    measured = Path(tmp_dir) / 'footnote-lines.txt'
+    run(['python', str(PIPELINE_SCRIPTS_DIR / 'annotate_svg.py'), '--measure',
+         tmp_dir, f'{tmp_dir}/annotations.json', str(measured)])
+    return int(measured.read_text().strip() or 0)
 
 
 def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name, expand_annotations, normalize_ficta):
@@ -596,20 +639,40 @@ def render_mei(mei_file, mei_unit, mei_scale, tmp_dir, output_name, expand_annot
         os.remove(svg)
 
     if expand_annotations:
-        run(['python', str(PIPELINE_SCRIPTS_DIR / 'expand_annots.py'), mei_file,
-             f'{tmp_dir}/expanded.mei', f'{tmp_dir}/annotations.json'])
-        (Path(tmp_dir) / 'expanded.mei').rename(mei_file)
+        # `<pgFoot func="all">` reserves the same room on every page, so the
+        # reserve has to cover the busiest page -- and which page is the busiest
+        # is only known once the score is paginated, which the reserve itself
+        # changes. So: render, measure, render again with what was measured, and
+        # stop as soon as what is reserved covers what the rendering needs. The
+        # loop only ever ends on a reserve that is enough, never on one that
+        # would let the notes overflow the page.
+        source_mei = Path(tmp_dir) / 'pre-annots.mei'
+        shutil.copyfile(mei_file, source_mei)
+        reserved = 0
+        for _ in range(MAX_FOOTNOTE_PASSES):
+            needed = _render_pass(mei_file, source_mei, mei_unit, mei_scale, tmp_dir,
+                                  reserved, normalize_ficta)
+            if needed <= reserved:
+                break
+            reserved = needed
+        else:
+            # Never settled: fall back to reserving every note, the pre-two-pass
+            # behaviour, which is wasteful but cannot come up short.
+            log(f'las notas al pie no se estabilizan en {MAX_FOOTNOTE_PASSES} pasadas;'
+                f' se reserva el aparato completo')
+            _render_pass(mei_file, source_mei, mei_unit, mei_scale, tmp_dir,
+                         None, normalize_ficta)
+        log(f'notas al pie: {reserved} línea(s) reservadas por página')
 
-    if normalize_ficta:
-        run(['python', str(REPO_ROOT / 'scripts' / 'normalize_ficta.py'), mei_file, f'{tmp_dir}/normalized.mei'])
-        (Path(tmp_dir) / 'normalized.mei').rename(mei_file)
-
-    workaround_verovio_2divs_bug(mei_file)
-    run(verovio_cmd(mei_file, mei_unit, mei_scale, f'{tmp_dir}/output.svg'))
-
-    if expand_annotations:
         print("Injecting annotations as foot notes into svgs")
         run(['python', str(PIPELINE_SCRIPTS_DIR / 'annotate_svg.py'), tmp_dir, f'{tmp_dir}/annotations.json'])
+    else:
+        if normalize_ficta:
+            run(['python', str(REPO_ROOT / 'scripts' / 'normalize_ficta.py'), mei_file, f'{tmp_dir}/normalized.mei'])
+            (Path(tmp_dir) / 'normalized.mei').rename(mei_file)
+
+        workaround_verovio_2divs_bug(mei_file)
+        run(verovio_cmd(mei_file, mei_unit, mei_scale, f'{tmp_dir}/output.svg'))
 
     svgs = sorted(glob.glob(os.path.join(tmp_dir, '*.svg')))
     run(['svgs2pdf', '-m', output_name, '-o', tmp_dir] + svgs)

@@ -298,6 +298,36 @@ def _source_names(root):
     return names
 
 
+def _categories(root):
+    """{xml:id: desc} for the variant groups declared in <classDecls>.
+
+    A `<category>` is the editorial decision a set of `<app>` belongs to. Its
+    `<desc>` is the part of the note that is true of the whole group, so it is
+    written once there instead of being repeated in every annot -- see
+    `collect()`, which puts it back at the head of the first note of the group.
+    """
+    out = {}
+    for category in root.xpath('//mei:classDecls//mei:category', namespaces=NSMAP):
+        cid = category.get(XML_ID)
+        desc = category.find("mei:desc", NSMAP)
+        if cid and desc is not None:
+            text = " ".join(("".join(desc.itertext())).split())
+            if text:
+                out[cid] = text
+    return out
+
+
+def _classes_of(el):
+    """The variant groups the readings of an <app> classify under."""
+    out = []
+    for branch in el:
+        for ref in (branch.get("class") or "").split():
+            cid = ref.lstrip('#')
+            if cid not in out:
+                out.append(cid)
+    return out
+
+
 def _sources_of(el, source_names):
     return [source_names.get(ref.lstrip('#'), ref.lstrip('#'))
             for ref in (el.get("source") or "").split() if ref]
@@ -352,6 +382,7 @@ class Annotation:
     anchors: list                    # target elements, in document order
     unresolved: list                 # @plist ids that match no element
     order: int                       # document position, for sorting
+    categories: list = field(default_factory=list)   # variant groups of its apps
 
     @property
     def location(self):
@@ -541,6 +572,7 @@ def collect(root, warn=None):
     order = {el: i for i, el in enumerate(root.iter())}
     names = part_names(root)
     source_names = _source_names(root)
+    category_descs = _categories(root)
 
     out = []
     for annot in root.xpath('//mei:annot[@plist]', namespaces=NSMAP):
@@ -602,12 +634,28 @@ def collect(root, warn=None):
             anchors=targets,
             unresolved=unresolved,
             order=min((order.get(t, order[annot]) for t in located), default=order[annot]),
+            categories=[c for e in editorial for c in _classes_of(e)],
         ))
 
     # Musical order: the document position of what each note points at. Sorting
     # by @n would shuffle sections that restart their numbering, and sorting by
     # the annots themselves leaves the section-level ones ahead of everything.
     out.sort(key=lambda a: a.order)
+
+    # What a `<category>` says is true of every <app> of the group, so it is
+    # written once, at the head of the group's first note. Repeating it on each
+    # one would say the same thing five times in the list of notes; dropping it
+    # would lose it, since only the web viewer reads the taxonomy.
+    seen = set()
+    for annotation in out:
+        for cid in annotation.categories:
+            if cid in seen:
+                continue
+            seen.add(cid)
+            desc = category_descs.get(cid)
+            if desc:
+                annotation.text = f'{desc} {annotation.text}'.strip()
+
     return out
 
 

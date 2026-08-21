@@ -270,6 +270,13 @@ For a variant between witnesses, give each branch its source and a shared
 An empty `<lem/>` is a legitimate reading: it means the adopted text omits what
 the other witness has.
 
+**Where variants live.** Every divergence between witnesses is recorded here, anchored
+to the note or the syllable it concerns. A tono's introduction may summarise what a
+collation shows, and may single out a divergence that matters for understanding the
+piece, but it never enumerates the variants bar by bar: that list is what this apparatus
+is for. If a paragraph of an introduction could be rewritten as a table of bars and
+voices, it belongs here instead.
+
 ### 4.2 The `<annot>`
 
 An editorial element becomes a *note in the edition* when an `<annot>` points at

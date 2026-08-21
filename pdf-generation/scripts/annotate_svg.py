@@ -9,6 +9,49 @@ NSMAP = {"svg": SVG_NS}
 
 FONT_HEIGHT = 360
 
+def lines_of(annot):
+    """How many lines this note takes once wrapped, text and number included."""
+    return len(footnote_wrap.wrap(f'[{annot["n"]}]: {annot["annot"]}'))
+
+
+def annotations_of_page(root, annotations):
+    """The notes whose markers this page shows, in order.
+
+    A note may apply to several voices at once and carry the same number on each
+    of them (expand_annots.py); the text belongs on every page that shows one of
+    those markers, so any of the ids is a match. Match the id exactly (verovio
+    keeps the MEI xml:id; a stray suffix would be "-…"), not a loose substring,
+    so a note never lands on the wrong page because one id contains another.
+    """
+    out = []
+    for annot in annotations:
+        aids = annot.get("xml:ids") or [annot["xml:id"]]
+        if root.xpath(" | ".join(f'.//svg:g[@id="{aid}" or starts-with(@id, "{aid}-")]'
+                                 for aid in aids), namespaces=NSMAP):
+            out.append(annot)
+    return out
+
+
+def max_lines_per_page(svg_dir, annotations):
+    """Lines of footnote text the busiest page of this rendering needs.
+
+    `expand_annots.py` reserves room in `<pgFoot func="all">`, and that reserve
+    is the same on every page. Reserving the sum of every note in the tono costs
+    each page the height of notes it does not print -- in one tono of 18 notes
+    that was 39 lines on all 14 pages, a third of the height, which left one
+    system per page where three fitted. The busiest page is what the reserve has
+    to cover, so that is what this measures; generate-pdfs renders once to find
+    it and renders again with it. See render_mei().
+    """
+    worst = 0
+    for filename in sorted(os.listdir(svg_dir)):
+        if not filename.lower().endswith('.svg'):
+            continue
+        root = etree.parse(os.path.join(svg_dir, filename)).getroot()
+        worst = max(worst, sum(lines_of(a) for a in annotations_of_page(root, annotations)))
+    return worst
+
+
 def append_annotation(svg_path, annotations):
     parser = etree.XMLParser(remove_blank_text=True)
     tree = etree.parse(svg_path, parser)
@@ -47,20 +90,10 @@ def append_annotation(svg_path, annotations):
     # expand_annots.py so the two passes agree). Each line is its own <tspan>; y
     # advances one FONT_HEIGHT per line.
     #
-    # For each annotation, add a new <text> — but only if this SVG actually
-    # contains the annotated element. Match the id exactly (verovio keeps the
-    # MEI xml:id; a stray suffix would be "-…"), not a loose substring, so an
-    # annotation never lands on the wrong page because one id contains another.
-    for annot in annotations:
-        # A note may apply to several voices at once and carry the same number
-        # on each of them (expand_annots.py); the text belongs on every page
-        # that shows one of those markers, so any of the ids is a match.
-        aids = annot.get("xml:ids") or [annot["xml:id"]]
-        element_with_id = root.xpath(
-            " | ".join(f'.//svg:g[@id="{aid}" or starts-with(@id, "{aid}-")]'
-                       for aid in aids), namespaces=NSMAP)
-        if not element_with_id:
-            continue
+    # For each annotation, add a new <text> — but only on the pages that show
+    # its markers (annotations_of_page, shared with max_lines_per_page so the
+    # room reserved and the text written are measured the same way).
+    for annot in annotations_of_page(root, annotations):
         print(f'Adding annotation for {annot["xml:id"]}')
         text_el = etree.Element('{%s}text' % SVG_NS, {"font-size": "0px"})
         for line in footnote_wrap.wrap(f'[{annot["n"]}]: {annot["annot"]}'):
@@ -93,10 +126,23 @@ def main(svg_dir, json_path):
             svg_path = os.path.join(svg_dir, filename)
             append_annotation(svg_path, annotations)
 
+def measure(svg_dir, json_path, out_path):
+    """Write to `out_path` the lines the busiest page needs. Used between the
+    two rendering passes, so it must not touch the SVGs."""
+    with open(json_path, encoding="utf-8") as f:
+        annotations = json.load(f)
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(str(max_lines_per_page(svg_dir, annotations)))
+
+
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) != 3:
-        print("Usage: python annotate_svg.py <svg_dir> <annotations.json>")
+    if len(sys.argv) == 5 and sys.argv[1] == "--measure":
+        measure(sys.argv[2], sys.argv[3], sys.argv[4])
+    elif len(sys.argv) == 3:
+        main(sys.argv[1], sys.argv[2])
+    else:
+        print("Usage: python annotate_svg.py <svg_dir> <annotations.json>\n"
+              "       python annotate_svg.py --measure <svg_dir> <annotations.json> <out.txt>")
         sys.exit(1)
-    main(sys.argv[1], sys.argv[2])
 

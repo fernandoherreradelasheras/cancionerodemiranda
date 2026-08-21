@@ -12,8 +12,13 @@ sorts by the position of the annotated music), not the order the `<annot>`
 elements happen to appear in the file -- an annot written under `<section>`
 used to take a low number and point into the middle of the piece.
 
+The room reserved in `<pgFoot>` is `--reserved-lines`, the lines the busiest
+page needs, which generate-pdfs measures with a first rendering pass. Without
+the flag the reserve is every note of the tono, which is what the busiest page
+needs only when the whole apparatus lands on one page.
+
 Usage:
-    expand_annots.py <input.mei> <output.mei> <annotations.json>
+    expand_annots.py <input.mei> <output.mei> <annotations.json> [--reserved-lines N]
 """
 
 import json
@@ -41,7 +46,7 @@ def marker_text(annotation):
     return (annotation.text + tail).strip()
 
 
-def main(input_path, output_path, json_path):
+def main(input_path, output_path, json_path, reserved_lines=None):
     tree = etree.parse(input_path)
     root = tree.getroot()
 
@@ -111,15 +116,22 @@ def main(input_path, output_path, json_path):
                 pgfoot.insert(0, rend1)
 
             rend1.text = "Notas:"
-            # Reserve one line for "Notas:" plus the exact number of lines each note
-            # wraps to. This uses the same footnote_wrap as annotate_svg.py, so the
-            # space reserved here matches the text injected there line for line: a
-            # single-line note reserves exactly one line (no extra gap), a long note
-            # reserves exactly what it needs (no overflow).
-            reserved_lines = 1 + sum(
+            # Reserve one line for "Notas:" plus the lines the notes take. The
+            # count comes from the same footnote_wrap as annotate_svg.py, so the
+            # space reserved here matches the text injected there line for line:
+            # a single-line note reserves exactly one line (no extra gap), a long
+            # note reserves exactly what it needs (no overflow).
+            #
+            # `<pgFoot func="all">` reserves the same room on every page, so what
+            # it has to cover is the busiest page, not the whole tono. The caller
+            # measures that with a first rendering pass and passes it in; with no
+            # measurement, fall back to every note of the tono, which is safe
+            # (never too little) but costs every page the height of notes it does
+            # not print.
+            needed = reserved_lines if reserved_lines is not None else sum(
                 len(footnote_wrap.wrap(f'[{o["n"]}]: {o["annot"]}'))
                 for o in output_json)
-            for i in range(reserved_lines):
+            for i in range(1 + needed):
                 lb1 = etree.SubElement(rend1, '{%s}lb' % MEI_NS)
                 # A NO-BREAK SPACE (U+00A0), written as an escape so no editor or
                 # whitespace-tidying pass can turn it back into a plain space:
@@ -136,7 +148,17 @@ def main(input_path, output_path, json_path):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print(f"Usage: python {sys.argv[0]} <input.mei> <output.mei> <json output>")
+    argv, reserved = sys.argv[1:], None
+    if "--reserved-lines" in argv:
+        i = argv.index("--reserved-lines")
+        try:
+            reserved = int(argv[i + 1])
+        except (IndexError, ValueError):
+            print("--reserved-lines needs a number")
+            sys.exit(1)
+        del argv[i:i + 2]
+    if len(argv) != 3:
+        print(f"Usage: python {sys.argv[0]} <input.mei> <output.mei> <json output>"
+              f" [--reserved-lines N]")
         sys.exit(1)
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
+    main(argv[0], argv[1], argv[2], reserved)

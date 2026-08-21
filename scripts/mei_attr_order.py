@@ -161,8 +161,8 @@ ELEMENT_ORDER = {
 
     # --- editorial apparatus ----------------------------------------------
     'app': ['xml:id', 'type'],
-    'lem': ['xml:id', 'type', 'label', 'corresp', 'source', 'resp', 'cert'],
-    'rdg': ['xml:id', 'type', 'label', 'corresp', 'source', 'resp', 'cert'],
+    'lem': ['xml:id', 'type', 'label', 'n', 'class', 'corresp', 'source', 'resp', 'cert'],
+    'rdg': ['xml:id', 'type', 'label', 'n', 'class', 'corresp', 'source', 'resp', 'cert'],
     'choice': ['xml:id', 'type'],
     'annot': ['xml:id', 'type', 'n', 'plist', 'resp'],
     # <corr>, <sic> and friends share one rule: what it is, why, and who says so
