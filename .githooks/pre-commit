@@ -2,6 +2,13 @@
 # Ensure tonos/index.json stays in sync with the MEIs (Phase 2).
 # If a committed MEI would change the derived index, abort and ask to regenerate.
 
+# Git runs hooks from the repository root, but the user may have invoked
+# `git commit` from a subdirectory (git records it in GIT_PREFIX). Every path
+# printed in a message goes through rel() so it can be pasted straight into
+# the shell from wherever the user is.
+top=$(pwd)
+rel() { realpath -m --relative-to="$top/${GIT_PREFIX:-}" "$top/$1"; }
+
 # Only bother if a tracked MEI or the generator is staged.
 if git diff --cached --name-only | grep -qE '^(tonos/.*\.mei|scripts/build_index\.py)$'; then
     tmp=$(mktemp)
@@ -10,9 +17,9 @@ if git diff --cached --name-only | grep -qE '^(tonos/.*\.mei|scripts/build_index
         rm -f "$tmp"; exit 1
     fi
     if ! diff -q "$tmp" tonos/index.json >/dev/null 2>&1; then
-        echo "pre-commit: tonos/index.json is out of date with respect to the MEIs." >&2
+        echo "pre-commit: $(rel tonos/index.json) is out of date with respect to the MEIs." >&2
         echo "  Regenerate and stage the index:" >&2
-        echo "    python scripts/build_index.py && git add tonos/index.json" >&2
+        echo "    python $(rel scripts/build_index.py) && git add $(rel tonos/index.json)" >&2
         rm -f "$tmp"; exit 1
     fi
     rm -f "$tmp"
@@ -31,8 +38,8 @@ if [ -n "$mei_staged" ]; then
         python scripts/mei_attr_order.py --check --quiet "$tmp" 2>/dev/null
         case $? in
             0) ;;
-            1) unordered="$unordered $f" ;;
-            *) broken="$broken $f" ;;
+            1) unordered="$unordered $(rel "$f")" ;;
+            *) broken="$broken $(rel "$f")" ;;
         esac
     done
     rm -f "$tmp"
@@ -47,8 +54,9 @@ if [ -n "$mei_staged" ]; then
         echo "pre-commit: attribute order is not the preferred one in:" >&2
         for f in $unordered; do echo "    $f" >&2; done
         echo "  Fix it and stage the files again:" >&2
-        echo "    python scripts/mei_attr_order.py --update$unordered && git add$unordered" >&2
-        echo "  (python scripts/mei_attr_order.py --spec prints the expected order)" >&2
+        attr_order=$(rel scripts/mei_attr_order.py)
+        echo "    python $attr_order --update$unordered && git add$unordered" >&2
+        echo "  (python $attr_order --spec prints the expected order)" >&2
         exit 1
     fi
 fi
