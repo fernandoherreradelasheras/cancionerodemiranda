@@ -255,6 +255,51 @@ def sort_attrs(elem, attrs):
 
 
 # ---------------------------------------------------------------------------
+# lxml helpers, for scripts that create or modify elements
+# ---------------------------------------------------------------------------
+#
+# lxml writes attributes in the order they were set, and element.set() always
+# appends. Scripts that build MEI with lxml call these before writing, so that
+# what they add already follows the preferred order.
+
+XML_NS = 'http://www.w3.org/XML/1998/namespace'
+
+
+def _written_name(element, name):
+    """'{uri}local', as lxml reports it, to 'prefix:local' as in the file."""
+    if not name.startswith('{'):
+        return name
+    uri, local = name[1:].split('}', 1)
+    if uri == XML_NS:
+        return 'xml:' + local
+    for prefix, ns in element.nsmap.items():
+        if prefix and ns == uri:
+            return f'{prefix}:{local}'
+    return local
+
+
+def order_element_attrs(element):
+    """Rewrite the attributes of an lxml element in the preferred order."""
+    items = list(element.attrib.items())
+    if len(items) < 2:
+        return
+    elem = etree.QName(element).localname
+    wanted = sorted(items,
+                    key=lambda a: rank(elem, _written_name(element, a[0])))
+    if wanted != items:
+        element.attrib.clear()
+        for name, value in wanted:
+            element.set(name, value)
+
+
+def order_tree_attrs(root):
+    """order_element_attrs() on root and every element below it."""
+    for element in root.iter():
+        if isinstance(element.tag, str):
+            order_element_attrs(element)
+
+
+# ---------------------------------------------------------------------------
 # Start-tag scanner
 # ---------------------------------------------------------------------------
 #

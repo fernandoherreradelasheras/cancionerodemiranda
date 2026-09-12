@@ -56,5 +56,13 @@ done
 
 python $SCRIPTDIR/xml_reindent.py "$BASE" -o "$1"
 
+# The <harm> elements come from verovio, which writes their attributes in its
+# own order: put them, and anything else, in the one the project uses.
+python3 "$SCRIPTDIR/mei_attr_order.py" --update --quiet "$1"
+if [ $? != 0 ]; then
+	echo "error normalising the attribute order of '$1'. Kept temporal files at $TMP"
+	exit 1
+fi
+
 #rm -rf $TMP
 echo "New file with merged analysis as <harm> elements: '$1'"

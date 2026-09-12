@@ -7,6 +7,8 @@ import argparse
 import random
 from lxml import etree
 
+from mei_attr_order import order_element_attrs
+
 # MEI namespace
 MEI_NS = "http://www.music-encoding.org/ns/mei"
 XML_NS = "http://www.w3.org/XML/1998/namespace"
@@ -22,6 +24,8 @@ def get_or_create_note_id(note_elem):
         # Generate random ID
         note_id = f"n{random.randint(1000, 999999)}"
         note_elem.set(f"{{{XML_NS}}}id", note_id)
+        # set() appends, but xml:id goes first (see mei_attr_order.py)
+        order_element_attrs(note_elem)
     return note_id
 
 
@@ -103,18 +107,17 @@ def add_slur_or_tie(mei_file, element_type, staff_n, start_measure_n,
     start_id = get_or_create_note_id(start_note)
     end_id = get_or_create_note_id(end_note)
     
-    # Create the appropriate element
-    if element_type == 'bracketSpan':
-        element = etree.Element(f"{{{MEI_NS}}}bracketSpan", nsmap=NSMAP)
-        element.set("func", "coloration")
-        element.set("lwidth", "0.5vu")
-    else:
-        element = etree.Element(f"{{{MEI_NS}}}{element_type}", nsmap=NSMAP)
-
+    # Create the appropriate element, with its attributes in the order set by
+    # mei_attr_order.py: where it attaches first, then what it is
+    element = etree.Element(f"{{{MEI_NS}}}{element_type}", nsmap=NSMAP)
     element.set("staff", f"{staff_n}")
     element.set("startid", f"#{start_id}")
     element.set("endid", f"#{end_id}")
-    
+    if element_type == 'bracketSpan':
+        element.set("func", "coloration")
+        element.set("lwidth", "0.5vu")
+    order_element_attrs(element)
+
     # Formatting
     element.tail = start_measure.tail
     if start_measure[-1:]:
