@@ -154,7 +154,7 @@ printing them.
 - The metre is `@meter.count` / `@meter.unit` (plus `@meter.sym` where a
   mensural sign is wanted).
 - The first `scoreDef` carries `xml:id="sd.initial"`: the original-clefs
-  apparatus points at it (§3).
+  apparatus points at it (§3), and its `<rdg>` must repeat the `@keysig`.
 
 ### 2.3 `staffDef` — parts and clefs
 
@@ -192,7 +192,7 @@ placed at the head of the first section:
 <app xml:id="akofi93" type="app_clefs">
    <lem type="app_clefs" corresp="#sd.initial"/>
    <rdg type="app_clefs">
-      <scoreDef>
+      <scoreDef keysig="1s">
          <staffGrp>
             <staffGrp>
                <staffDef n="1">
@@ -218,6 +218,14 @@ Rules:
   is the score's own definition, so nothing is duplicated.
 - `<rdg>` lists **only the staves whose clef differs**, each `<clef>` pointing
   back with `@corresp` at the modern clef it replaces.
+- **The `<rdg>`'s `<scoreDef>` repeats the `@keysig` in force.** A `scoreDef`
+  inside an `<app>` does not inherit the signature of the one it varies; when the
+  score has a signature and an encoded transposition (`tonos.json`), a `<rdg>`
+  `scoreDef` without `@keysig` renders the redefined staves wrongly as soon as
+  the transposition is switched off to show the original clefs. If the score
+  has no signature, the `<rdg>` `scoreDef` carries none either.
+- A later `scoreDef` (`sd.coplas`, `sd.estribillo`…) gets its own
+  `<app type="app_clefs">` whose `<lem>` points at it, with the same rules.
 - The accompanying `<annot>` lists the `app` first and then the modern clefs of
   the staves that were in high clefs, in that order. The pipeline uses that
   order to decide which parts to report first.
