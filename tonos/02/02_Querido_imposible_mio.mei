@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -510,7 +510,7 @@
                                  <syl>a</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="e" oct="4">
+                           <note dur="4" pname="f" accid.ges="s" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="m">si</syl>
                               </verse>
@@ -1594,6 +1594,7 @@
                      </staff>
                      <staff n="2">
                         <layer n="1">
+                           <choice xml:id="c98283f2">
                            <corr xml:id="c9829ikd" resp="#FHH">
                               <note xml:id="n1c9829ikd" dur="2" pname="c" oct="5">
                                  <verse n="1">
@@ -1609,7 +1610,25 @@
                                     <syl>que</syl>
                                  </verse>
                               </note>
-                              <note xml:id="n673583" dur="1" pname="c" oct="5">
+                              </corr>
+                              <sic>
+                                 <note xml:id="n239gf82" dur="2" pname="d" oct="5">
+                                    <verse n="1">
+                                       <syl con="d" wordpos="i">cuan</syl>
+                                    </verse>
+                                    <verse n="2">
+                                       <syl wordpos="t">ro</syl>
+                                    </verse>
+                                    <verse n="3">
+                                       <syl>de</syl>
+                                    </verse>
+                                    <verse n="4">
+                                       <syl>que</syl>
+                                    </verse>
+                                 </note>
+                              </sic>
+                           </choice>
+                           <note xml:id="n673583" dur="1" pname="d" oct="5">
                                  <verse n="1">
                                     <syl wordpos="t">to</syl>
                                  </verse>
@@ -1624,9 +1643,8 @@
                                     <syl>se</syl>
                                  </verse>
                               </note>
-                           </corr>
                         </layer>
-                        <annot plist="#c9829ikd">Ambas notas, sol en el orginal (re en la transposición)</annot>
+                        <annot plist="#c98283f2">El manuscrito trae sol5 sol5 (re5 re5 en la transposición). Se corrige la primera nota a do5, que hace consonancia con el la menor del primer tiempo; el re5 de los tiempos 2 y 3 se mantiene: es la séptima de la dominante atacada sin preparación sobre el sol sostenido del tenor y del guion, a una segunda del mi5 del tiple 1º, con el mismo ritmo de hemiola con que aparece en el c. 7 de este tono y en los tonos 15 (c. 6) y 20 (c. 8), y resuelve en el do sostenido del c. 12.</annot>
                      </staff>
                      <staff n="3">
                         <layer n="1">
@@ -1704,17 +1722,6 @@
                      <bracketSpan startid="#n860389" endid="#n517404" func="coloration" lwidth="0.5vu"/>
                      <bracketSpan startid="#n741595" endid="#n775718" func="coloration" lwidth="0.5vu"/>
                      <bracketSpan startid="#n468989" endid="#n92218" func="coloration" lwidth="0.5vu"/>
-                     <app type="dissonant_analysis">
-                        <lem/>
-                        <rdg type="dissonant_analysis">
-                           <harm type="rdiss" n="2" staff="5" tstamp="2" place="above">
-                              <rend label="bordadura inferior acentuada">w</rend>
-                           </harm>
-                           <harm type="rdiss" n="4" staff="4" tstamp="2" place="above">
-                              <rend label="disonancia no clasificada, intervalo de 4ª" color="red">z</rend>
-                           </harm>
-                        </rdg>
-                     </app>
                   </measure>
                   <measure n="12">
                      <staff n="1">
@@ -1785,7 +1792,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n34802" dur="2" dots="1" pname="e" oct="4">
+                           <note xml:id="nom72prh" dur="1" pname="e" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">pue</syl>
                               </verse>
@@ -1799,7 +1806,6 @@
                                  <syl con="d" wordpos="i">que</syl>
                               </verse>
                            </note>
-                           <note xml:id="n585927" dur="4" pname="d" oct="4"/>
                            <note dur="2" pname="e" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">do,</syl>
@@ -1854,13 +1860,12 @@
                            <note dur="1" dots="1" pname="a" oct="3"/>
                         </layer>
                      </staff>
+                     <slur startid="#n1cppjwx" endid="#nye8rmo"/>
+                     <slur staff="4" startid="#nuxgmtr" endid="#n24639"/>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
                            <harm type="rdiss" n="4" staff="4" tstamp="2.5" place="above">
-                              <rend label="bordadura inferior">n</rend>
-                           </harm>
-                           <harm type="rdiss" n="6" staff="3" tstamp="2.5" place="above">
                               <rend label="bordadura inferior">n</rend>
                            </harm>
                            <harm type="rdiss" n="8" staff="2" tstamp="2.5" place="above">
@@ -1868,9 +1873,6 @@
                            </harm>
                         </rdg>
                      </app>
-                     <slur startid="#n1cppjwx" endid="#nye8rmo"/>
-                     <slur staff="3" startid="#n34802" endid="#n585927"/>
-                     <slur staff="4" startid="#nuxgmtr" endid="#n24639"/>
                   </measure>
                   <measure n="13">
                      <staff n="1">
