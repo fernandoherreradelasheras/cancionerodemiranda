@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -87,12 +87,12 @@
                         <staffDef n="1" lines="5">
                            <label>Tiple 1º</label>
                            <labelAbbr>T. 1</labelAbbr>
-                           <clef xml:id="cjkdud1" shape="G" line="2"/>
+                           <clef shape="G" line="2"/>
                         </staffDef>
                         <staffDef n="2" lines="5">
                            <label>Tiple 2º</label>
                            <labelAbbr>T. 2</labelAbbr>
-                           <clef xml:id="cjkdud2" shape="G" line="2"/>
+                           <clef shape="G" line="2"/>
                         </staffDef>
                         <staffDef n="3" lines="5">
                            <label>Tenor</label>
@@ -599,7 +599,7 @@
                            </note>
                            <note dur="8" pname="e" oct="5">
                               <verse n="1">
-                                 <syl con="d" wordpos="i">fli</syl>
+                                 <syl con="d" wordpos="m">fli</syl>
                               </verse>
                               <verse n="2">
                                  <syl con="d" wordpos="i">prin</syl>
@@ -867,7 +867,7 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">do</syl>
+                                 <syl con="b" wordpos="t">do</syl>
                                  <syl con="d" wordpos="i">Oc</syl>
                               </verse>
                               <verse n="3">
@@ -928,7 +928,7 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">do</syl>
+                                 <syl con="b" wordpos="t">do</syl>
                                  <syl con="d" wordpos="i">Oc</syl>
                               </verse>
                               <verse n="3">
@@ -989,7 +989,7 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">do</syl>
+                                 <syl con="b" wordpos="t">do</syl>
                                  <syl con="d" wordpos="i">Oc</syl>
                               </verse>
                               <verse n="3">
@@ -1135,7 +1135,7 @@
                                  <syl>con</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">ño</syl>
+                                 <syl con="b" wordpos="t">ño</syl>
                                  <syl con="d" wordpos="i">es</syl>
                               </verse>
                               <verse n="3">
@@ -1179,7 +1179,7 @@
                                  <syl wordpos="t">pos</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="d" wordpos="m">ño</syl>
+                                 <syl wordpos="t">ño</syl>
                               </verse>
                               <verse n="3">
                                  <syl wordpos="t">tas</syl>
@@ -1228,16 +1228,17 @@
                                  <syl>con</syl>
                               </verse>
                               <verse n="2">
-                                 <syl wordpos="t">ño</syl>
+                                 <syl con="b" wordpos="t">ño</syl>
+                                 <syl con="d" wordpos="i">es</syl>
                               </verse>
                               <verse n="3">
-                                 <syl>pa</syl>
+                                 <syl con="d" wordpos="i">pa</syl>
                               </verse>
                            </note>
                         </layer>
                      </staff>
                      <slur startid="#n6xu02z" endid="#n1xj40iu"/>
-                     <slur startid="#noidp2" endid="#noidp3"/>
+                     <slur startid="#noidp2" endid="#noidp3" lform="dashed"/>
                      <tie startid="#n1atf7ms" endid="#n1t1gzl5"/>
                      <app type="dissonant_analysis">
                         <lem/>
@@ -1294,7 +1295,6 @@
                                  <syl>con</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">ño</syl>
                                  <syl con="d" wordpos="i">es</syl>
                               </verse>
                               <verse n="3">
@@ -1379,9 +1379,7 @@
                            <note dur="8" pname="g" accid="s" oct="4"/>
                            <note dur="8" pname="f" accid.ges="s" oct="4"/>
                            <corr xml:id="cooi092">
-                              <note xml:id="n16mk9b4" dur="2" pname="g" oct="4">
-                                 <accid accid="s" func="edit" enclose="paren"/>
-                              </note>
+                              <note xml:id="n16mk9b4" dur="2" pname="g" accid.ges="s" oct="4"/>
                            </corr>
                         </layer>
                         <annot plist="#cooi092">Redonda en el manuscrito</annot>
@@ -2782,15 +2780,17 @@
                </lg>
                <lg type="copla" n="2">
                   <l>Con el agua que sus ojos</l>
-                  <l>vertieron, al principio</l>
-                  <l>del mas desdichado octubre</l>
+                  <l>virtieron, al principio</l>
+                  <l>del más desdichado octubre</l>
                   <l>que por año esteril vino.</l>
                </lg>
                <lg type="copla" n="3">
                   <l>Rompiendo palabras tiernas</l>
                   <l>de unos papeles fingidos,</l>
                   <l>arrojándolos al aire,</l>
-                  <l>estas palabras dijo:</l>
+                  <l>aquestas palabras dijo:
+                     <annot type="text-note">_aquestas_: mantenemos la forma arcaica de _estas_ para conservar la métrica</annot>
+                  </l>
                </lg>
             </lg>
             <lg type="estribillo" decls="#estribillo">
