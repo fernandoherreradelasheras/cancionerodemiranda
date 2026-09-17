@@ -7,12 +7,12 @@ Del tono “Venganza, griegos repite” se conservan hasta seis testimonios musi
 * Cancionero Poético Musical Hispano de Lisboa
 * Cancionero de Onteniente
 * Cartapacio de Coimbra P-Cug MM 234
-* Colección personal de Miguel Querol
-* Colegiata de Alquézar
+* Colección personal de Miguel Querol[^noconsultado]
+* Colegiata de Alquézar[^noconsultado]
 
-además del testimonio perdido mencionado el índice del Libro de Tonos Humanos.
+El Libro de Tonos Humanos documenta, al incluirlo en uno de sus índices, la existencia de otro testimonio musical perdido. 
 
-
+[^noconsultado]: No nos ha sido posible consultar estos testimonios.
 
 
 ### Testimonios poéticos
@@ -44,7 +44,7 @@ Cancionero de Onteniente:
 - Copla 6: Ya el fuego encendiendo al aire
 - Estribillo: Piedad, favor ... cielos sordos
 
-CPMHL:
+Cancionero Poético-Musical Hispánico de Lisboa:
 
 - Estribillo: Piedad, favor ... cielos sordos
 - Copla 1: “¡Venganza, griegos!” repite
@@ -63,7 +63,7 @@ Colección de opúsculos sobre Teología, Moral, Sagrada Escritura, poesías, se
 - Copla 7: En fin quedó destruida
 [Sin estribillo]
 
-Manuscrito de la Biblioteca Estense Universitaria de Módena, Est. 199 = ε.32.3.6 (ff. 131v-132r)1:
+Manuscrito de la Biblioteca Estense Universitaria de Módena, Est. 199 = ε.32.3.6 (ff. 131v-132r):
 
 - Copla 1: “Venganzas, griegos”, repiten
 - Copla 2: Arda Paris y arda Elena
@@ -81,7 +81,7 @@ Cancionero de Miranda:
 - Copla 3: Y al fuego encendiendo al aire
 - Copla 4: Aquel pájaro difunto
 
-P-Cug MM 234:
+Cartapacios de Coimbra, P-Cug MM 234:
 
 - Estribillo: Piedad, favor ... cielos sordos
 - Copla 1: “¡Venganza, griegos!” repite
@@ -89,11 +89,11 @@ P-Cug MM 234:
 
 Las coplas 5-10 del testimonio de Jerónimo Nieto las podemos rastrear hasta el romance *Al incendio de Troya* de Jerónimo Cáncer y Velasco, impreso en sus *Obras varias* (1651). Se trata, con toda probabilidad, de un añadido del compilador ajeno a la tradición cantada del tono, que difícilmente mezclaría coplas de asonancias diferentes (las del tono son en o-o y el romance de Cancer en o-e).  
 
-En el CPMHL tres de las cuatro coplas son únicas a ese testimonio, mientras que en MSS/6620 lo son cuatro de siete. En el cancionero de Miranda, algunas coplas de la tradición común tienen lecturas curiosas (pájaro de Juno -> pájaro defunto) y el estribillo, consistente en todos los demás testimonios, se revela como una *lectio singularis* que reorienta el pasaje hacia el desengaño de la vanidad mundana.
+En el CPMHL tres de las cuatro coplas son únicas a ese testimonio, mientras que en MSS/6620 lo son cuatro de siete. 
 
 El testimonio de la Biblioteca Estense confirma este panorama de transmisión abierta. Copia cuatro coplas sin estribillo, igual que los otros dos testimonios exclusivamente poéticos (Nieto y MSS/6620). Las tres primeras coinciden con el núcleo común y siguen el mismo orden que Nieto (con Paris antes que Elena), mientras que la cuarta, “Cada relincho es un trueno”, lo conecta con MSS/6620, único otro testimonio que la transmite, si bien allí precede a “Troya que entonces estaba” en lugar de seguirla. Presenta, además, lecturas propias: el íncipit en plural (“Venganzas, griegos, repiten”) y, en el segundo verso, “Aquiles, blasón heroico”, donde la tradición común y las citas teatrales leen “blasón de todos”.
 
-Queda como constante la copla que abre todos los testimonios,  cuyo primer versos "¡Venganza, griegos! repite" llegó a funcionar como una suerte de *meme* barroco glosado y evocado una y otra vez. Así, por ejemplo, aparece citado en diversas obras teatrales de la época:
+Queda como constante la copla que abre todos los testimonios, cuyo primer versos "¡Venganza, griegos! repite" llegó a funcionar como una suerte de *meme* barroco glosado y evocado una y otra vez. Así, por ejemplo, aparece citado en diversas obras teatrales de la época:
 
 * _Los Amantes de Teruel_ de Suárez de Deza. El personaje de Doña Elena exclama “Venganza, griegos repite” en un aparte de la tercera jornada.
 * _Lucrecia y Tarquino_. El vejete pronuncia los dos primeros versos “Venganza, griegos, repite / Aquiles, blasón de todos”
@@ -105,9 +105,21 @@ Esta última referencia de la Academia de los Singulares presenta otras conexion
 
 Como todo buen tono popular, conoció versiones vueltas a lo divino (como la de León Marchante publicada en sus obras póstumas: "Venganza, poder repite") y fue citado en villancicos de "tonos antiguos" (Tolibiyo, Baltolo de Miciezes) 
 
+### Variantes textuales
 
+Las variantes de las coplas comunes separan con nitidez la tradición cantada de la exclusivamente poética. En la segunda copla, única del núcleo común que transmiten a la vez dos fuentes musicales (Onteniente y Miranda) y las tres poéticas, las lecturas se reparten así:
 
+| | Fuentes musicales | Fuentes poéticas |
+|---|---|---|
+| v. 1 | Arda Helena y arda Paris | Arda Paris y arda Helena (6620: "y arde Troya") |
+| v. 2 | prosigue (Miranda: "prosiga") | repite |
+| v. 3 | siendo en delitos de celos | siendo en delitos de amor (Nieto); sean delitos de amor (Estense); y sea en lances de amor (6620) |
+| v. 4 | cómplice el mármol y el plomo | cómplice el fuego y el plomo |
+| v. 5 | del oriente hermoso // sin renacer en sus llamas // jeroglífico del otro | de la Arabia // que el renacer de sí mismo // fue jeroglífico propio |
 
+En todos los casos la lección de las fuentes poéticas puede explicarse como trivialización de la musical: "repite" por atracción del célebre primer verso, "delitos de amor" por ser la expresión más corriente y "fuego" por contagio de un contexto donde todo arde, frente a un "mármol" que, junto al plomo, designa la materia misma de la ciudad cómplice de los amantes. El camino inverso es difícil de justificar, por lo que cabe suponer que los tres testimonios poéticos, que además carecen de estribillo, descienden de un ascendiente común ya alterado, y que la tradición cantada, con Onteniente a la cabeza, conserva un texto más cercano al original. Dentro de la rama poética, Nieto mantiene la construcción "siendo en delitos de", mientras que el manuscrito estense y MSS/6620 coinciden en deformarla hacia un subjuntivo ("sean", "y sea en") que quiebra la sintaxis, lo que confirma el parentesco entre ambos que ya sugería la copla "Cada relincho es un trueno". Entre las fuentes musicales, Miranda presenta varias lecturas singulares. Algunas son simples accidentes de copia, que esta edición enmienda: "prosiga", atraído por los subjuntivos del verso anterior; "encendido" por "encendiendo" en uno de los libretes; e "Y al fuego" por "Ya el fuego", que deja sin sujeto a "compite" y se explica por la sinalefa bajo una misma nota. Otras poseen sentido propio y se conservan como parte de la versión que transmite el cancionero: "pájaro difunto" por "pájaro de Juno".
+
+El estribillo, ausente de los testimonios exclusivamente poéticos y transmitido solo por las fuentes musicales, presenta dos redacciones. Ambas comparten los dos primeros versos ("¡Piedad, favor, socorro!, / y es pedir puerto al golfo"), la asonancia en o-o de las coplas y un mismo molde métrico (7-7-11-7 y un endecasílabo final partido en 5+6), con palabras de rima casi superponibles: "todo" se mantiene en idéntica posición, "los ojos" resuena dentro de "mis despojos" y "sordos" ocupa el lugar de "locos". Las dos se ajustan, por tanto, a la misma música, y una ha de derivar de la otra. La redacción común a Onteniente, el CPMHL y Coimbra es sintáctica y conceptualmente más trabada: el "que" causal explica por qué el clamor equivale a pedir puerto al golfo, y a los tres gritos iniciales responden, en correlación trimembre, tres negativas que ascienden de lo humano a lo divino ("sin lágrimas los ojos, / los ecos mudos / y los cielos sordos"). El oxímoron "se anegue en llamas" y la falta de unas lágrimas que serían la única agua capaz de apagar el incendio prolongan, además, el juego de elementos de la copla "Ya el fuego encendiendo al aire". La lección del Cancionero de Miranda, en cambio, introduce una primera persona ("mis despojos") que convierte el clamor en lamento de la propia Troya, recicla léxico de la primera copla ("rayos" y "blasones" remiten al "rayo por asta" y al "blasón de todos") y, con el adjetivo "locos", añade un juicio moral sobre la soberbia del vencedor. Lo hace a costa de una sintaxis más forzada: el sujeto de "es pedir puerto al golfo" pasa a ser "pensar que...", el verso "ha de vencer el mundo todo" admite dos lecturas (que ni el mundo entero bastaría para vencer a Aquiles, o que es vano que este aspire a conquistarlo) y el gerundio "sintiendo" queda descolgado. Estos rasgos apuntan a una refundición encajada sobre el molde rítmico y las rimas de un texto preexistente, más que a una *lectio difficilior* original, y el sentido del cambio coincide con el de  otra de las lecturas singulares del Cancionero de Miranda, "pájaro difunto" por "pájaro de Juno": en ambos casos el texto se desplaza hacia lo fúnebre y el desengaño. Que el testimonio del CPMHL y el los cartapacios de Coimbra, fuentes también portuguesas, transmitan la redacción común indica que la variante no caracteriza a toda la rama lusa de la transmisión, sino solo al Cancionero de Miranda o a su modelo inmediato.
 
 ### La atribución de la música
 
@@ -150,9 +162,7 @@ Como curiosidad y sin valor ni pretensión probatoria, existe un precedente de a
 
 ### Fuentes empleadas para completar la parte perdida
 
-Para completar la parte perdida del librete de Alto del Cancionero de Miranda no se han podido consultar dos de las fuentes que se consideran completas: el manuscrito que estuvo en poder de Miguel Querol y el testimonio conservado en el archivo musical de la Colegiata de Alquézar. El Cancionero de Onteniente conserva solo una voz que ya tenemos y por tanto no puede aportar nada. Sí resulta de utilidad el Cancionero Poético Musical Hispano de Lisboa que, aunque también tiene perdida la parte de alto, al ser un tono para tres tiples la parte que fue al librete de alto de ese cancionero no fue la misma que la que se recogió en el librete correspondiente del Cancionero de Miranda. Así el tiple 1º de ambos cancioneros coincide pero el tiple 2º sería el 3º del otro. Esta extraña configuración de tres tiples y tenor se confirma en el testimonio conservado en el Cartapacio de Coimbra P-Cug MM 234 que ademas remarca este hecho con una nota: `de tres Tip.`. 
 
-
-Por ello, la presente edición toma el segundo tiple del CPMHL como fuente principal para completar la voz perdida del Cancionero de Miranda, tanto en el estribillo como en las coplas. Esta lectura se ha cotejado con el tercer tiple del Cartapacio de Coimbra P-Cug MM 234 para aplicar algunas correcciones al texto del CPMHL, fundamentalmente en el tratamiento de la musica ficta.
+La parte que falta en el Cancionero de Miranda se correponde a la del tercer tiple. Esta inusual configuración de tres tiples y tenor se confirma explicitamente mediante el testimonio conservado en el Cartapacio de Coimbra P-Cug MM 234, que además incluye una nota: `de tres Tip.`. Para completar esta parte, no se han podido consultar dos de las fuentes que se consideran completas: el manuscrito que estuvo en poder de Miguel Querol y el testimonio conservado en el archivo musical de la Colegiata de Alquézar. El Cancionero de Onteniente conserva solo una voz que ya tenemos y por tanto no puede aportar nada. Podemos encontrar la parte del Tiple 3º que falta en nuestro cancionero en dos fuentes: por un lado, el estribillo del Tiple 2º del Cancionero Poético-Musical Hispánico de Lisboa (no así el de las coplas que resulta ser la parte del tiple 2º del Cancionero de Miranda) y por otro, estribillo del tercer tiple de Coimbra y las coplas del segundo. Estos dos testimonios presentan algunas variaciones, sobre todo en cuando a las alteraciones y utilizan un texto diferente para el final del estribillo que es necesario ajustar. 
 
 Del mismo modo, el guion que transmite el CPMHL, ausente en el Cancionero de Miranda, y del manuscrito de Coimbra se ha incorporado a la presente edición.
