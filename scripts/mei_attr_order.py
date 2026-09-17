@@ -197,7 +197,7 @@ ELEMENT_ORDER = {
     'corpName': ['xml:id', 'type', 'role', 'auth'],
     'name': ['xml:id', 'type', 'role', 'auth'],
     'date': ['xml:id', 'isodate'],
-    'perfRes': ['xml:id', 'type', 'label'],
+    'perfRes': ['xml:id', 'type', 'source', 'label'],
     'mei': ['xml:id', 'meiversion'],
 }
 

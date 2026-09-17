@@ -118,6 +118,31 @@ the printed organic (`scripts/build_index.py`):
 | `lost` | in the scoring, absent from the source and not supplied by the edition| `(Alto)` |
 | `fragmentary` | survives only in part | `Tenor*` |
 
+`@source` links each part to the witness that transmits it, by the siglum of
+§1.2. It is what makes the organic and the `sourceDesc` agree when the title
+of a partbook does not say which voice it carries: in tono 46 the Tenor book
+of the cancionero (L122) holds the Alto part, and the Tenor comes from the
+CPMHL. Several witnesses are listed separated by spaces, the principal one
+first; a reconstructed part points to the reconstruction pseudo-source; a
+`lost` part has no `@source`.
+
+```xml
+<perfResList>
+   <perfRes source="#P-Ln_MM4802-1 #P-La_47-VI-11">Tiple 1º</perfRes>
+   <perfRes source="#P-Ln_MM4802-2">Tiple 2º</perfRes>
+   <perfRes source="#P-Lant_PT-TT-MUS-L122">Alto</perfRes>
+   <perfRes source="#P-La_47-VI-13">Tenor</perfRes>
+   <perfRes source="#P-La_47-VI-10">Guion</perfRes>
+</perfResList>
+```
+
+For the tonos whose only witnesses are the partbooks of the cancionero the
+mapping is fixed (Tiple 1º → 4802/1, Tiple 2º → 4802/2, Tenor or Bajo → L122,
+Guion → 4803, reconstructed Alto → `alto-part-recomposition`) and
+`scripts/mei_perfres_source.py` fills it in; a tono with concordances is done
+by hand. Attribute order is `xml:id`, `type`, `source`, `label`
+(`scripts/mei_attr_order.py`).
+
 
 ---
 
