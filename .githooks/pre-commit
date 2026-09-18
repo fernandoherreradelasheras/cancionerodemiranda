@@ -60,3 +60,39 @@ if [ -n "$mei_staged" ]; then
         exit 1
     fi
 fi
+
+# Ensure the apparatus of the staged MEIs can be printed as footnote markers.
+# expand_annots.py aborts the PDF when the note an <annot> hangs off carries no
+# xml:id, and silently drops the note when the @plist names an id that is not in
+# the document; both are cheap to catch here and expensive to find in a build.
+if [ -n "$mei_staged" ]; then
+    tmp=$(mktemp --suffix=.mei) || exit 1
+    danglers=""
+    unreadable=""
+    for f in $mei_staged; do
+        git cat-file blob ":$f" > "$tmp" 2>/dev/null || continue
+        output=$(python scripts/mei_check_annot_anchors.py "$tmp" 2>&1)
+        case $? in
+            0) ;;
+            1) danglers="$danglers $(rel "$f")"
+               echo "pre-commit: aparato crítico no imprimible en $(rel "$f"):" >&2
+               echo "$output" | sed -e "1d" -e "s|^|  |" >&2 ;;
+            *) unreadable="$unreadable $(rel "$f")" ;;
+        esac
+    done
+    rm -f "$tmp"
+
+    if [ -n "$unreadable" ]; then
+        echo "pre-commit: these MEI files could not be analysed:" >&2
+        for f in $unreadable; do echo "    $f" >&2; done
+        exit 1
+    fi
+
+    if [ -n "$danglers" ]; then
+        echo "  Las notas de anclaje sin xml:id se arreglan con:" >&2
+        echo "    python $(rel scripts/ensure_note_ids.py)$danglers && git add$danglers" >&2
+        echo "  Un @plist colgante hay que corregirlo a mano: apunta a un xml:id" >&2
+        echo "  que no existe en el documento." >&2
+        exit 1
+    fi
+fi
