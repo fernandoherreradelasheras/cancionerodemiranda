@@ -105,14 +105,22 @@ def main(input_path, output_path, json_path, reserved_lines=None):
 
     # If any annotation has been added, insert notes section to <pgFoot> in every <scoreDef>
     if output_json:
+        # The notes are printed smaller than the rest of the page footer; the
+        # size is footnote_wrap's, the single place it is decided, and setting it
+        # here (rather than only when the text is drawn) is what makes a reserved
+        # <lb/> line exactly as tall as the line of text that will occupy it.
+        fontsize = f'{footnote_wrap.FONT_SIZE_PERCENT}%'
         for scoredef in root.xpath('//mei:scoreDef', namespaces=NSMAP):
             pgfoot = scoredef.find('.//mei:pgFoot', namespaces=NSMAP)
             if pgfoot is None:
                 pgfoot = etree.Element('{%s}pgFoot' % MEI_NS, func="all")
                 scoredef.append(pgfoot)
-                rend1 = etree.SubElement(pgfoot, '{%s}rend' % MEI_NS, halign="left", valign="bottom", type="foot-notes")
+                rend1 = etree.SubElement(pgfoot, '{%s}rend' % MEI_NS, halign="left",
+                                         valign="bottom", type="foot-notes",
+                                         fontsize=fontsize)
             else:
-                rend1 = etree.Element('{%s}rend' % MEI_NS, halign="left", valign="top", type="foot-notes")
+                rend1 = etree.Element('{%s}rend' % MEI_NS, halign="left", valign="top",
+                                      type="foot-notes", fontsize=fontsize)
                 pgfoot.insert(0, rend1)
 
             rend1.text = "Notas:"

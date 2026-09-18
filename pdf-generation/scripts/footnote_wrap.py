@@ -9,13 +9,29 @@ fixed characters-per-line and not a per-page measurement: the pre-render pass ha
 no SVG to measure, and a mismatch between the two passes would leave blank gaps or
 overflow the page.
 
-MAX_CHARS_PER_LINE is sized to the printable column of the A4 page at the footnote
-font size (the column fits ~90 average glyphs across the whole corpus); it sits a
-little under that so lines never reach the right edge. Retune it only if the page
-geometry (size, margins) or the footnote font size changes.
+FONT_SIZE_PERCENT is the one knob for how big the notes are printed. Everything
+else follows from it: expand_annots.py writes it into `@fontsize` of the <pgFoot>
+<rend>, so each reserved <lb/> line is exactly as tall as a line of the text that
+will be written into it; annotate_svg.py draws the text at the size verovio then
+resolved, read back from the rendering; and the line width below scales with it.
+
+CHARS_PER_LINE_AT_FULL_SIZE is sized to the printable column of the A4 page at
+verovio's own page-footer size, and sits a little under the true fit so lines
+never reach the right edge. Retune it only if the page geometry (size, margins)
+changes -- the font size is already accounted for.
 """
 
-MAX_CHARS_PER_LINE = 115
+# Percentage of verovio's default page-footer text size (100% = the size of the
+# rest of the footer). The apparatus is meant to read as apparatus: small enough
+# not to compete with the music and the lyrics, large enough to stay legible in
+# print, and small enough that a long note costs few lines of page height.
+FONT_SIZE_PERCENT = 75
+
+CHARS_PER_LINE_AT_FULL_SIZE = 115
+
+# Half the size, twice the characters: the column is a fixed width and the glyph
+# advance scales with the font.
+MAX_CHARS_PER_LINE = round(CHARS_PER_LINE_AT_FULL_SIZE * 100 / FONT_SIZE_PERCENT)
 
 
 def wrap(text, cpl=MAX_CHARS_PER_LINE):

@@ -7,7 +7,13 @@ import footnote_wrap
 SVG_NS = "http://www.w3.org/2000/svg"
 NSMAP = {"svg": SVG_NS}
 
-FONT_HEIGHT = 360
+# Used only if the reserved block turns out to carry no usable geometry, which
+# would mean verovio changed how it writes <pgFoot>. The real size and line step
+# are read from the rendering (reserved_grid), so the one place the size is
+# decided is footnote_wrap.FONT_SIZE_PERCENT, which expand_annots.py puts into
+# the MEI before verovio ever runs.
+FALLBACK_FONT_HEIGHT = 360
+
 
 def lines_of(annot):
     """How many lines this note takes once wrapped, text and number included."""
@@ -52,6 +58,47 @@ def max_lines_per_page(svg_dir, annotations):
     return worst
 
 
+def reserved_grid(pgfoot):
+    """(x, y, line height, font size) of the lines expand_annots.py reserved.
+
+    The reserve is a `<rend type="foot-notes">` holding "Notas:" and one `<lb/>`
+    per line, which verovio lays out at the `@fontsize` the MEI asked for. Reading
+    the result back, rather than assuming a size here, is what keeps the text on
+    the baselines that were reserved for it: change
+    footnote_wrap.FONT_SIZE_PERCENT and both passes follow, with no second number
+    to keep in step.
+
+    The first baseline is the `<rend>`'s own ("Notas:"); the notes start on the
+    next one, and the distance between the two is the line height.
+    """
+    notes_span = pgfoot.xpath('.//svg:tspan[contains(@class, "rend") and '
+                              'contains(@data-type, "foot-notes")]', namespaces=NSMAP)
+    if not notes_span:
+        return 0.0, 0.0, FALLBACK_FONT_HEIGHT, f'{FALLBACK_FONT_HEIGHT}px'
+    rend = notes_span[0]
+
+    sized = rend.xpath('.//svg:tspan[@font-size]', namespaces=NSMAP)
+    font_size = sized[0].get('font-size') if sized else f'{FALLBACK_FONT_HEIGHT}px'
+
+    # The <rend>'s own x/y, then those of every line <lb/> put after it.
+    baselines = []
+    for el in [rend] + rend.findall('{%s}tspan' % SVG_NS):
+        if 'x' not in el.attrib or 'y' not in el.attrib:
+            continue
+        try:
+            baselines.append((float(el.get('x')), float(el.get('y'))))
+        except ValueError:
+            print('invalid x y in foot-notes tspan')
+    if len(baselines) < 2:
+        # No room was reserved, or verovio stopped writing the coordinates; place
+        # the text where the block starts and space it by the font size.
+        x, y = baselines[0] if baselines else (0.0, 0.0)
+        return x, y, FALLBACK_FONT_HEIGHT, font_size
+
+    (_, first), (x, y) = baselines[0], baselines[1]
+    return x, y, y - first, font_size
+
+
 def append_annotation(svg_path, annotations):
     parser = etree.XMLParser(remove_blank_text=True)
     tree = etree.parse(svg_path, parser)
@@ -64,31 +111,17 @@ def append_annotation(svg_path, annotations):
         return
     pgfoot = pgfoot_g[0]
 
-    # Find the first empty line in foot-notes placeholder
-    notes_span = pgfoot.xpath('.//svg:tspan[contains(@class, "rend") and contains(@data-type, "foot-notes")]', namespaces=NSMAP)
-    x_val = 0
-    y_val = 0
-    if notes_span:
-        tspans = notes_span[0].findall('{%s}tspan' % SVG_NS)
-        for tspan in tspans:
-            if 'x' not in tspan.attrib or 'y' not in tspan.attrib:
-                continue
-            x = tspan.get('x', '0')
-            y = tspan.get('y', '0')
-            try:
-                x_val = float(x)
-                y_val = float(y)
-                print(f"Found y coordinate for first line placeholder: {y_val}")
-                break
-            except ValueError:
-                print('invalid x y in foot-notes tspan')
+    x_val, y_val, line_height, font_size = reserved_grid(pgfoot)
+    print(f"Found y coordinate for first line placeholder: {y_val} "
+          f"(font {font_size}, line height {line_height})")
 
     addedAnnotations = 0
 
     # SVG text does not wrap and neither does verovio's pgFoot, so break each note
     # into fixed-width lines (footnote_wrap, shared with the <lb> space reserved in
-    # expand_annots.py so the two passes agree). Each line is its own <tspan>; y
-    # advances one FONT_HEIGHT per line.
+    # expand_annots.py so the two passes agree). Each line is its own <tspan>, drawn
+    # at the size and on the baselines of the reserved lines it replaces, so line n
+    # of the text lands on reserved line n however the size is configured.
     #
     # For each annotation, add a new <text> — but only on the pages that show
     # its markers (annotations_of_page, shared with max_lines_per_page so the
@@ -101,10 +134,10 @@ def append_annotation(svg_path, annotations):
                 "x": str(x_val),
                 "y": str(y_val),
                 "text-anchor": 'start',
-                "font-size": f'{FONT_HEIGHT}px'
+                "font-size": font_size
             })
             tspan_el.text = line
-            y_val += FONT_HEIGHT
+            y_val += line_height
         pgfoot.append(text_el)
         addedAnnotations = addedAnnotations + 1
 

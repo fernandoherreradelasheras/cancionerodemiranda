@@ -100,7 +100,7 @@
                <rend halign="right" fontsize="90%">Cancionero de Miranda</rend>
             </xsl:element>
             <xsl:element name="pgFoot" use-attribute-sets="pghead-all">
-               <rend halign="center" fontsize="90%">© 2025 https://humanoydivino.com licensed under CC BY-SA 4.0</rend>
+               <rend halign="center" fontsize="80%">© 2026 https://humanoydivino.com licensed under CC BY-SA 4.0</rend>
             </xsl:element>
   </xsl:template>
 
