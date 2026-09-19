@@ -15,7 +15,7 @@ const Tono = () => {
     return (
         <>
             { tonoIndex == null && <div>Cargando...</div> }
-            { tonoIndex != null && <PageTitle title={ `Cancionero de Miranda - ${scoreViewerConfig?.scores[tonoIndex].title}`} /> }
+            { tonoIndex != null && <PageTitle title={ `${scoreViewerConfig?.scores[tonoIndex].title} · Tono ${tonoIndex + 1} · Cancionero de Miranda`} /> }
             <TonoView tonoIndex={tonoIndex} />
         </>
     )

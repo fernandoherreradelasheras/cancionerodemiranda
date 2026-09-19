@@ -31,7 +31,7 @@ const about = (
 
 const tonos = (
   <>
-  <PageTitle title="Cancionero de Miranda: tonos" />
+  <PageTitle title="Tonos · Cancionero de Miranda" />
   <Tonos />
   </>
 )
