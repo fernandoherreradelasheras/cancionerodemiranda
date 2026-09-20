@@ -137,13 +137,17 @@ const renderHead = ({ title, description, path, jsonLd, canonical = path, image 
     return [HEAD_START, ...tags, HEAD_END].join("\n  ")
 }
 
-const writePage = (path, { head, body }) => {
+// Pages whose React view has its own <h1> (the home page and the progress report) mark their
+// static block as transient: main.tsx removes it once the app is up, so that the rendered
+// page has exactly one <h1>, as does the HTML as served. The tono pages keep theirs, since
+// the app renders no heading of its own there
+const writePage = (path, { head, body, transient }) => {
     let html = template
         .replace(/<html lang="[^"]*">/, `<html lang="es">`)
         .replace(/<title>.*?<\/title>/s, head)
     if (body) {
         html = html.replace(`<div id="root"></div>`,
-            `<div id="root"></div>${BODY_START}\n  <article id="static-content">\n${body}\n  </article>${BODY_END}`)
+            `<div id="root"></div>${BODY_START}\n  <article id="static-content"${transient ? " data-transient" : ""}>\n${body}\n  </article>${BODY_END}`)
     }
     const dir = `${DIST}${path}`
     mkdirSync(dir, { recursive: true })
@@ -173,7 +177,7 @@ for (const [path, title, canonical, description, body] of [
     ["/about/", `Acerca del ${SITE_NAME}`, "/", SITE_DESCRIPTION, HOME_BODY],
     ["/progreso/", `Progreso de la edición · ${SITE_NAME}`, "/progreso/", PROGRESS_DESCRIPTION, PROGRESS_BODY],
 ]) {
-    writePage(path, { head: renderHead({ title, description, path, canonical }), body })
+    writePage(path, { head: renderHead({ title, description, path, canonical }), body, transient: true })
     if (path === canonical) {
         sitemap.push({ path })
     }
