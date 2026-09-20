@@ -21,9 +21,14 @@ const TONOS_DIR = "../tonos"
 
 const DEFAULT_IMAGE = `${SITE}/humano-y-divino-logo1.jpg`
 
-const SITE_DESCRIPTION = "Edición crítica del Cancionero de Miranda (P-Ln M.M. 4802/1-2 y M.M. 4803, "
-    + "P-Lant PT/TT/MUS/L122): 77 tonos humanos del siglo XVII con partitura, texto poético, "
-    + "facsímiles y estudio."
+const SITE_DESCRIPTION = "Edición crítica en curso del Cancionero de Miranda: 77 tonos humanos "
+    + "del siglo XVII con partitura, texto poético, facsímiles y audio."
+
+const LIST_DESCRIPTION = "Los 77 tonos del Cancionero de Miranda, con el estado de edición de cada "
+    + "uno y acceso a su partitura, su texto poético y los facsímiles del manuscrito."
+
+const PROGRESS_DESCRIPTION = "Estado de la edición del Cancionero de Miranda tono a tono: "
+    + "transcripción del texto, transcripción de la música y reconstrucción de la voz de alto."
 
 const config = JSON.parse(readFileSync("src/assets/tonos-config.json", "utf8"))
 const index = JSON.parse(readFileSync(`${TONOS_DIR}/index.json`, "utf8"))
@@ -149,12 +154,12 @@ const sitemap = []
 
 // Home, about and progress: the content is React, only the metadata changes. The index
 // route renders About, so /about/ is a duplicate of / and points its canonical there
-for (const [path, title, canonical] of [
-    ["/", SITE_NAME, "/"],
-    ["/about/", `Acerca del ${SITE_NAME}`, "/"],
-    ["/progreso/", `Progreso de la edición · ${SITE_NAME}`, "/progreso/"],
+for (const [path, title, canonical, description] of [
+    ["/", SITE_NAME, "/", SITE_DESCRIPTION],
+    ["/about/", `Acerca del ${SITE_NAME}`, "/", SITE_DESCRIPTION],
+    ["/progreso/", `Progreso de la edición · ${SITE_NAME}`, "/progreso/", PROGRESS_DESCRIPTION],
 ]) {
-    writePage(path, { head: renderHead({ title, description: SITE_DESCRIPTION, path, canonical }) })
+    writePage(path, { head: renderHead({ title, description, path, canonical }) })
     if (path === canonical) {
         sitemap.push({ path })
     }
@@ -164,7 +169,7 @@ for (const [path, title, canonical] of [
 const listItems = config.scores.map((score, i) =>
     `    <li><a href="/tono/${i + 1}/">${escapeHtml(score.title)}</a></li>`).join("\n")
 writePage("/tonos/", {
-    head: renderHead({ title: `Tonos · ${SITE_NAME}`, description: SITE_DESCRIPTION, path: "/tonos/" }),
+    head: renderHead({ title: `Tonos · ${SITE_NAME}`, description: LIST_DESCRIPTION, path: "/tonos/" }),
     body: `    <h1>Tonos del ${SITE_NAME}</h1>\n    <ol>\n${listItems}\n    </ol>`
 })
 sitemap.push({ path: "/tonos/", lastmod: lastModified(["src/assets/tonos-config.json"]) })

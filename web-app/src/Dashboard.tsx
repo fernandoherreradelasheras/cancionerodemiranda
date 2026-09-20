@@ -59,7 +59,7 @@ function Dashboard() {
         ((stats.textValidated + stats.musicValidated) / (totalWorks * 2)) * 100
     ); return (
         <div className="dashboard" style={{ margin: '2em 0' }}>
-            <Title level={3} style={{ textAlign: 'start', marginBottom: '1.5em' }}>
+            <Title level={1} style={{ textAlign: 'start', marginBottom: '1.5em', fontSize: '1.5em' }}>
                 Informe de progreso
             </Title>
 
