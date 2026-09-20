@@ -152,14 +152,28 @@ const writePage = (path, { head, body }) => {
 
 const sitemap = []
 
-// Home, about and progress: the content is React, only the metadata changes. The index
-// route renders About, so /about/ is a duplicate of / and points its canonical there
-for (const [path, title, canonical, description] of [
-    ["/", SITE_NAME, "/", SITE_DESCRIPTION],
-    ["/about/", `Acerca del ${SITE_NAME}`, "/", SITE_DESCRIPTION],
-    ["/progreso/", `Progreso de la edición · ${SITE_NAME}`, "/progreso/", PROGRESS_DESCRIPTION],
+// Home, about and progress: the content is React, and a summary of it goes into the static
+// block, which is also where these pages get their h1 (crawlers that do not run JavaScript
+// see no heading otherwise). The index route renders About, so /about/ is a duplicate of /
+// and points its canonical there
+const HOME_BODY = `    <h1>${SITE_NAME}</h1>
+    <p>Edición crítica en curso del Cancionero de Miranda, un manuscrito de 77 tonos humanos
+    del siglo XVII conservado en Lisboa (P-Ln M.M. 4802/1-2 y M.M. 4803, y P-Lant
+    PT/TT/MUS/L122). De cada tono se ofrecen la partitura, el texto poético, los facsímiles
+    del manuscrito, una introducción de estudio y una versión imprimible.</p>
+    <p>El trabajo se hace en abierto, y su estado puede seguirse tono a tono.</p>
+    <nav><a href="/tonos/">Listado de tonos</a> · <a href="/progreso/">Progreso de la edición</a></nav>`
+
+const PROGRESS_BODY = `    <h1>Progreso de la edición</h1>
+    <p>${PROGRESS_DESCRIPTION}</p>
+    <nav><a href="/tonos/">Listado de tonos</a> · <a href="/">Acerca del proyecto</a></nav>`
+
+for (const [path, title, canonical, description, body] of [
+    ["/", SITE_NAME, "/", SITE_DESCRIPTION, HOME_BODY],
+    ["/about/", `Acerca del ${SITE_NAME}`, "/", SITE_DESCRIPTION, HOME_BODY],
+    ["/progreso/", `Progreso de la edición · ${SITE_NAME}`, "/progreso/", PROGRESS_DESCRIPTION, PROGRESS_BODY],
 ]) {
-    writePage(path, { head: renderHead({ title, description, path, canonical }) })
+    writePage(path, { head: renderHead({ title, description, path, canonical }), body })
     if (path === canonical) {
         sitemap.push({ path })
     }
