@@ -21,7 +21,7 @@ import {
     tonoHasAudio,
     tonoHasMusicValidated
 } from './utils';
-import { List } from 'antd';
+import { Listy } from 'antd';
 
 
 library.add(faFileLines, faMarker, faMusic, faHighlighter,
@@ -93,14 +93,12 @@ const StatusIcons = ({ tonoConfig, tonoStatus }: { tonoConfig: ScoreViewerConfig
 const TonoItem = ({ tonoConfig, tonoStatus, index }: { tonoConfig: ScoreViewerConfigScore, tonoStatus: TonoStatus, index: number }) => {
 
     return (
-        <List.Item className="tono-list-item" style={{ paddingBottom: "1.4em" }}>
-            <Link className="item-tono-status" to={`/tono/${index + 1}/`} state={{ tono: tonoConfig }}>
-                <div style={{ marginTop: "0.2em", marginBottom: "0.2em" }}>
-                    <span className="tono-title">{index + 1}. {tonoConfig?.title}</span>{getAuthors(tonoStatus)}
-                </div>
-                <StatusIcons tonoConfig={tonoConfig} tonoStatus={tonoStatus} />
-            </Link>
-        </List.Item>
+        <Link className="item-tono-status" to={`/tono/${index + 1}/`} state={{ tono: tonoConfig }}>
+            <div style={{ marginTop: "0.2em", marginBottom: "0.2em" }}>
+                <span className="tono-title">{index + 1}. {tonoConfig?.title}</span>{getAuthors(tonoStatus)}
+            </div>
+            <StatusIcons tonoConfig={tonoConfig} tonoStatus={tonoStatus} />
+        </Link>
     )
 }
 
@@ -113,11 +111,15 @@ const TonosList = () => {
     }
 
     return (
-        <List className="alt tono-list" >
-            {scoreViewerConfig?.scores?.map((tonoConfig: ScoreViewerConfigScore, index: number) =>
-                <TonoItem tonoConfig={tonoConfig} tonoStatus={definitions![index]} index={index} key={index} />
-            )}
-        </List>
+        <Listy
+            className="alt tono-list"
+            classNames={{ item: "tono-list-item" }}
+            items={scoreViewerConfig.scores.map((tonoConfig, index) => ({ tonoConfig, index }))}
+            rowKey="index"
+            itemRender={({ tonoConfig, index }) =>
+                <TonoItem tonoConfig={tonoConfig} tonoStatus={definitions[index]} index={index} />
+            }
+        />
     );
 };
 

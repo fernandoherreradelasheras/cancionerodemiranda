@@ -23,7 +23,7 @@ function StatusCard({ title, icon, completed, total, color, description }: Statu
 
     return (
         <Card size="small" className="status-card" style={{ height: '100%' }}>
-            <Space direction="vertical" style={{ width: '100%' }}>
+            <Space orientation="vertical" style={{ width: '100%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text strong>{title}</Text>
                     <FontAwesomeIcon icon={icon} style={{ color: color, fontSize: '1.2em' }} />
@@ -74,7 +74,7 @@ function Dashboard() {
                             title="Completados"
                             value={overallCompletion}
                             suffix="%"
-                            valueStyle={{ color: overallCompletion > 50 ? '#3f8600' : '#cf1322' }}
+                            styles={{ content: { color: overallCompletion > 50 ? '#3f8600' : '#cf1322' } }}
                         />
                     </Col>
                     <Col xs={12} sm={6} md={4}>
@@ -100,7 +100,7 @@ function Dashboard() {
 
 
             <Row gutter={[8, 8]}>
-                <Divider orientation="left">Estudios e introducciones</Divider>
+                <Divider titlePlacement="start">Estudios e introducciones</Divider>
             </Row>
             <Row gutter={[16, 16]}>
                 <Col xs={24} sm={12} lg={8}>
@@ -115,7 +115,7 @@ function Dashboard() {
                 </Col>
             </Row>
             <Row gutter={[8, 8]}>
-                <Divider orientation="left">Texto poético</Divider>
+                <Divider titlePlacement="start">Texto poético</Divider>
             </Row>
             <Row gutter={[16, 16]}>
                 <Col xs={24} sm={12} lg={8}>
@@ -152,7 +152,7 @@ function Dashboard() {
                 </Col>
             </Row>
             <Row gutter={[8, 8]}>
-                <Divider orientation="left">Transcripción Musical</Divider>
+                <Divider titlePlacement="start">Transcripción Musical</Divider>
             </Row>
             <Row gutter={[16, 16]}>
                 <Col xs={24} sm={12} lg={8}>
@@ -228,7 +228,7 @@ function Dashboard() {
 
 
             <Row gutter={[8, 8]} justify="center" align="middle" style={{ marginTop: '2em' }}>
-                <Divider orientation="center">Resumen</Divider>
+                <Divider titlePlacement="center">Resumen</Divider>
             </Row>
 
             <Row gutter={24} justify="center" align="middle">
@@ -282,7 +282,7 @@ function Dashboard() {
                         </div>
 
                         {/* Legend */}
-                        <Space direction="vertical" size="small" style={{ textAlign: 'center' }}>
+                        <Space orientation="vertical" size="small" style={{ textAlign: 'center' }}>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <div
                                     style={{

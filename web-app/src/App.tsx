@@ -5,7 +5,6 @@ import BaseLayout from './BaseLayout';
 import Tono from './Tono';
 import Tonos from './Tonos';
 import PageTitle from './PageTitle';
-import '@ant-design/v5-patch-for-react-19';
 import Dashboard from './Dashboard';
 
 

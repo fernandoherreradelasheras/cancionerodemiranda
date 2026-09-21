@@ -8,7 +8,6 @@ import { Location } from 'react-router-dom'
 
 import { ConfigProvider, Layout, Menu, MenuProps, theme, Typography, Grid } from 'antd';
 
-import { MenuInfo } from 'rc-menu/lib/interface';
 
 import { isMobile } from 'react-device-detect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -74,7 +73,7 @@ function BaseLayout() {
     /* Navigation happens here, in the handler, and not in an effect watching
        currentTonoNumber: otherwise state and URL sync both ways and any re-run of the
        effect below reverts the page change */
-    const onMenuSelected = (info: MenuInfo) => {
+    const onMenuSelected = (info: Parameters<NonNullable<MenuProps['onClick']>>[0]) => {
         if (info.key.startsWith("sub1:/tono/") || info.key.startsWith("/tono/")) {
             const tonoNumber = parseInt(info.key.replace(/.*tono\//, ""))
             if (isNaN(tonoNumber)) {
