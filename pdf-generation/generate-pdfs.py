@@ -54,6 +54,8 @@ REPO_ROOT = BASE_DIR.parent
 LATEX_DIR = BASE_DIR / "latex"
 XSLT_DIR = BASE_DIR / "xslt"
 PIPELINE_SCRIPTS_DIR = BASE_DIR / "scripts"
+sys.path.append(str(PIPELINE_SCRIPTS_DIR))
+from kdp_preflight import ink_box  # noqa: E402  (the KDP score placement measures what the preflight checks)
 
 # Verovio engraving options, fixed for the whole cancionero (unit and scale are
 # per-tono). Reference: https://book.verovio.org/toolkit-reference/toolkit-options.html
@@ -63,7 +65,9 @@ VEROVIO_OPTIONS = {
     "page-margin-left": "150",
     "page-margin-right": "150",
     "page-margin-top": "50",
-    "page-margin-bottom": "50",
+    # Room at the foot of the page for the page number LaTeX prints over the
+    # score (pagestyle 'score'), clear of the scholar edition's footnotes.
+    "page-margin-bottom": "130",
     "bottom-margin-header": "8",   # a stray duplicate '2.5' used to precede (and be overridden by) this
     "top-margin-pg-footer": "4",
     "lyric-height-factor": "1.2",
@@ -86,6 +90,13 @@ VEROVIO_FLAGS = ["--mdiv-all", "-a", "--mm-output", "--no-justification",
 # of the footnotes taking that room, so it is engraved unjustified.
 VEROVIO_FLAGS_MUSIC_ONLY = []
 
+# Where the score pages may put ink in the KDP print layout (mm from each edge).
+# Verovio's own margins can't guarantee it: they are the same on both sides of
+# the spread, and a system that doesn't fit runs past the right one. The inner
+# margin is KDP's largest (0.875in, 701-828 pages) plus a little, so it holds
+# whatever the final page count; the bottom one clears the page number.
+KDP_SCORE_MARGINS = {"inner": 23.0, "outer": 8.0, "top": 8.0, "bottom": 15.0}
+
 # Incremental builds: manifest file and the shared assets whose contents affect
 # every tono's output (a change to any of them invalidates all cached builds).
 # tonos/index.json is deliberately not here: it holds one entry per tono, and
@@ -96,14 +107,15 @@ SHARED_ASSETS = [
     "pdf-generation/generate-pdfs.py", "pdf-generation/coplas_overlay.py",
     "pdf-generation/poem_from_mei.py",
     "pdf-generation/latex/header.tex", "pdf-generation/latex/iberianpolyphony.sty",
-    "pdf-generation/latex/acerca.tex",
+    "pdf-generation/latex/acerca.tex", "pdf-generation/latex/acerca-kdp.tex",
     "pdf-generation/latex/criterios-musicales-performer.tex",
     "pdf-generation/latex/criterios-musicales-scholar.tex",
     "pdf-generation/xslt/pgHead.xsl", "pdf-generation/xslt/coplas-placeholder.xsl",
     "pdf-generation/scripts/extract_comments_from_mei.py",
     "pdf-generation/scripts/mei_annotations.py",
     "pdf-generation/scripts/expand_annots.py", "pdf-generation/scripts/footnote_wrap.py",
-    "pdf-generation/scripts/annotate_svg.py", "scripts/normalize_ficta.py",
+    "pdf-generation/scripts/annotate_svg.py", "pdf-generation/scripts/kdp_preflight.py",
+    "scripts/normalize_ficta.py",
     # The MEI Basic derivative is embedded in the PDF, so its generator counts.
     "scripts/simplify_to_mei_basic.py", "scripts/mei_resolve_editorial.py",
 ]
@@ -125,6 +137,14 @@ class Config:
     facsimile_resize: str = FACSIMILE_RESIZE
     pre_release: bool = bool(PRE_RELEASE)
     base_url: str = BASE_URL
+    with_facsimile: bool = True
+    # Print layout for Amazon KDP (books only): gutter margins, black links,
+    # full-resolution facsimiles (see --kdp).
+    kdp: bool = False
+    # Whole-book build (--book): no per-page license footers, on text or score
+    # pages; the license goes once on the credits page.
+    book: bool = False
+    isbn: str = ""
 
     @property
     def debug_log(self):
@@ -147,7 +167,7 @@ class CommandError(Exception):
 
 class LatexError(Exception):
     """A LaTeX run failed; carries the parsed, human-readable error excerpt."""
-    def __init__(self, tex_file, log_path, errors, returncode):
+    def __init__(self, tex_file, log_path, errors, returncode, output_tail=""):
         self.tex_file = tex_file
         self.log_path = log_path
         self.errors = errors
@@ -156,6 +176,11 @@ class LatexError(Exception):
             detail = "\n\n".join(errors[:MAX_LATEX_ERRORS])
             if len(errors) > MAX_LATEX_ERRORS:
                 detail += f"\n\n... y {len(errors) - MAX_LATEX_ERRORS} error(es) más"
+        elif output_tail:
+            # A crash (Lua error, image library, signal) aborts the engine before
+            # it flushes the .log; what it said is only on the console.
+            detail = ("(el log no recoge el error; últimas líneas de la salida del motor)\n"
+                      + output_tail)
         else:
             detail = "(no se identificaron líneas de error; revisar el log completo)"
         super().__init__(f"LaTeX falló en {tex_file} (exit {returncode}). "
@@ -268,17 +293,21 @@ class Latex:
         return "".join(self._parts)
 
 
-def add_image(directory, file, caption, title=None):
-    """Generate LaTeX code for including an image"""
-
+def resized_image(directory, file):
+    """Path of the facsimile scaled to CONFIG.facsimile_resize, creating it if needed."""
     orig_path = f'{directory}/{file}'
     resize = CONFIG.facsimile_resize
     resized_path = orig_path if resize == "100" else f'{orig_path}_{resize}.jpg'
-    path = Path(resized_path)
-    if not path.is_file():
+    if not Path(resized_path).is_file():
         print(f'Resizing image {orig_path} {resize}%')
-        resize_cmd = [ 'magick', orig_path, '-resize', f'{resize}%', resized_path]
-        run(resize_cmd)
+        run(['magick', orig_path, '-resize', f'{resize}%', resized_path])
+    return resized_path
+
+
+def add_image(directory, file, caption, title=None):
+    """Generate LaTeX code for including an image"""
+
+    resized_path = resized_image(directory, file)
 
     lines = ["\\begin{figure}[p]"]
 
@@ -331,7 +360,12 @@ def render_latex(dir, file):
     result = subprocess.run(cmd, capture_output=True, env=env)
     if result.returncode != 0:
         log_path = os.path.join(dir, Path(file).stem + ".log")
-        raise LatexError(file, log_path, parse_latex_log(log_path), result.returncode)
+        output = (result.stdout + result.stderr).decode("utf-8", "replace")
+        output_path = os.path.join(dir, Path(file).stem + ".console")
+        Path(output_path).write_text(output)
+        tail = "\n".join(output.splitlines()[-30:])
+        tail += f"\n(salida completa: {output_path})"
+        raise LatexError(file, log_path, parse_latex_log(log_path), result.returncode, tail)
 
 
 def run(cmd, cwd=None, input_text=None):
@@ -582,7 +616,8 @@ def generate_mei(input_mei, order, tmp_dir, output_mei):
     composer = _persname(root, '//mei:composer/mei:persName')
     poet = _persname(root, '//mei:lyricist/mei:persName')
 
-    result = apply_xslt(tree, str(XSLT_DIR / 'pgHead.xsl'), title=title, ordinal=ordinal, poet=poet, composer=composer)
+    result = apply_xslt(tree, str(XSLT_DIR / 'pgHead.xsl'), title=title, ordinal=ordinal,
+                        poet=poet, composer=composer, footer='no' if CONFIG.book else 'yes')
     result.write(output_mei, encoding="utf-8", xml_declaration=True)
 
 
@@ -760,6 +795,54 @@ def music_data_json(data):
     })
 
 
+def score_includepdf(pdf_path):
+    """LaTeX that includes the score PDF. In the KDP layout each page goes in
+    scaled and shifted so its ink lands inside KDP_SCORE_MARGINS: the ink box
+    is measured, not assumed, since overflowing systems and the coplas overlay
+    reach past Verovio's margins. One scale for the whole tono (never above 1,
+    so the staff size stays uniform) and one shift per side of the spread, from
+    the union of its pages' ink, so every page of the tono is placed alike."""
+    options = "pagecommand={\\thispagestyle{score}}"
+    if not CONFIG.kdp:
+        return f"\\includepdf[pages=-,{options}]{{{pdf_path}}}\n"
+
+    mm = 72 / 25.4
+    doc = fitz.open(pdf_path)
+    W, H = doc[0].rect.width / mm, doc[0].rect.height / mm
+    box = fitz.Rect()
+    for page in doc:
+        box |= ink_box(page)
+    x0, y0, x1, y1 = (v / mm for v in box)
+    m = KDP_SCORE_MARGINS
+    scale = min(1.0, (W - m["inner"] - m["outer"]) / (x1 - x0),
+                (H - m["top"] - m["bottom"]) / (y1 - y0))
+    # pdfpages scales about the page centre, then applies the offset.
+    sx0, sx1 = W / 2 + scale * (x0 - W / 2), W / 2 + scale * (x1 - W / 2)
+    sy0, sy1 = H / 2 + scale * (y0 - H / 2), H / 2 + scale * (y1 - H / 2)
+
+    def shift(lo, hi):
+        """The smallest move that brings the ink inside [lo, hi] of the page."""
+        return min(max(0.0, lo), hi)
+
+    dx_recto = shift(m["inner"] - sx0, W - m["outer"] - sx1)  # gutter on the left
+    dx_verso = shift(m["outer"] - sx0, W - m["inner"] - sx1)  # gutter on the right
+    dy_down = shift(m["top"] - sy0, H - m["bottom"] - sy1)
+
+    def include(n, dx):
+        return (f"\\includepdf[pages={n},scale={scale:.4f},{options},"
+                f"offset={dx:.2f}mm {-dy_down:.2f}mm]{{{pdf_path}}}")
+
+    lines = []
+    for n in range(1, doc.page_count + 1):
+        # The page parity is only known to LaTeX. pdfpages negates the x offset
+        # on even pages of a twoside document, hence the sign on the verso one.
+        lines.append(f"\\clearpage\\ifodd\\value{{page}}{include(n, dx_recto)}"
+                     f"\\else{include(n, -dx_verso)}\\fi")
+    log(f"KDP: {pdf_path} escala {scale:.3f}, desplazamiento recto {dx_recto:.1f} mm, "
+        f"verso {dx_verso:.1f} mm, vertical {dy_down:.1f} mm")
+    return "\n".join(lines) + "\n"
+
+
 def build_tono_body(data, buildType, out_dir, with_criterios=True):
     """The composable body of one tono (intro, text, score, facsímil). Side
     effects: runs pandoc/verovio (via generate_score) and writes intro.tex,
@@ -793,12 +876,19 @@ def build_tono_body(data, buildType, out_dir, with_criterios=True):
     doc.raw(generate_audio_link(data, buildType))
 
     if generated_score is not None:
-        doc.line(f"\\includepdf[pages=-]{{{out_dir}/{generated_score}}}")
+        doc.raw(score_includepdf(f"{out_dir}/{generated_score}"))
 
-    (Path(out_dir) / 'facsimil.tex').write_text(get_facsimil(data['facsimileItems']))
-    doc.input(f"{out_dir}/facsimil.tex")
+    if CONFIG.with_facsimile:
+        (Path(out_dir) / 'facsimil.tex').write_text(get_facsimil(data['facsimileItems']))
+        doc.input(f"{out_dir}/facsimil.tex")
 
     return str(doc), generated_score
+
+
+def acerca_tex():
+    """The closing 'about' page. The print one (KDP) promises no attached MEI:
+    KDP rejects attachments, and paper couldn't carry them anyway."""
+    return "acerca-kdp.tex" if CONFIG.kdp else "acerca.tex"
 
 
 def build_tono_document(data, buildType, tmp_dir):
@@ -807,7 +897,7 @@ def build_tono_document(data, buildType, tmp_dir):
     doc.raw(format_init())
     body, generated_score = build_tono_body(data, buildType, tmp_dir)
     doc.raw(body)
-    doc.line("\\clearpage").input("acerca.tex").raw("\\end{document}")
+    doc.line("\\clearpage").input(acerca_tex()).raw("\\end{document}")
     return str(doc), generated_score
 
 
@@ -822,9 +912,36 @@ def book_values_tex(edition):
             "\\def\\mytitle{}\n\\def\\mystatustext{}\n\\def\\mystatusmusic{}\n")
 
 
+def git_head():
+    try:
+        return subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode().strip()
+    except subprocess.CalledProcessError:
+        return "?"
+
+
+def format_copyright_page(edition):
+    """Verso of the title page of every book: license, ISBN (print only) and
+    the commit the book was built from, so any copy can be traced."""
+    from datetime import date
+    isbn = f"ISBN: {CONFIG.isbn}\\\\[1ex]\n" if CONFIG.isbn else ""
+    return ("\\clearpage\\thispagestyle{empty}\n"
+            "\\null\\vfill\n\\begin{flushleft}\\footnotesize\n"
+            "\\textit{Cancionero de Miranda}. "
+            f"{edition}.\\\\[1ex]\n"
+            "Edición de Fernando Herrera.\\\\[1ex]\n"
+            f"{isbn}"
+            "Publicado bajo licencia Creative Commons Atribución 4.0 (CC BY 4.0).\\\\[1ex]\n"
+            "Fuentes, partituras y audio: \\url{https://cdm.humanoydivino.com}\\\\[1ex]\n"
+            f"Versión del texto: {git_head()}, {date.today().isoformat()}.\n"
+            "\\end{flushleft}\n\\clearpage\n")
+
+
 def format_book_init(edition):
     """Book preamble + a global cover + the table of contents."""
+    kdp = "\\def\\kdp{true}\n" if CONFIG.kdp else ""
     return ("\\documentclass[12pt, a4paper, twoside,hidelinks]{article}\n"
+            "\\def\\book{true}\n"
+            f"{kdp}"
             "\\usepackage{iberianpolyphony}\n"
             "\\addcovermanuscriptbackground\n"
             "\\input{header.tex}\n"
@@ -838,7 +955,8 @@ def format_book_init(edition):
             "Misçelanea de Tonos de varios autores a 4º do Pe. Dos. de Mirda "
             "da Costa Cappellão cantor da Cappella Real}\n"
             "\\end{titlepage}\n"
-            "\\tableofcontents\n\\clearpage\n")
+            + format_copyright_page(edition)
+            + "\\tableofcontents\n\\clearpage\n")
 
 
 def build_book(tonos, buildType, tmp_dir):
@@ -863,13 +981,53 @@ def build_book(tonos, buildType, tmp_dir):
         doc.line(f"\\section*{{\\centering\\Huge {n}. {escape_latex(title)}}}")
         doc.raw(body)
 
-    doc.line("\\clearpage").input("acerca.tex").raw("\\end{document}")
+    doc.line("\\clearpage").input(acerca_tex()).raw("\\end{document}")
     return str(doc)
 
 
-def generate_book(scores, status, tono_limit, buildType, tmp_dir):
+FACSIMILE_BOOK = "facsimile"
+FACSIMILE_BOOK_LABEL = "Facsímiles"
+
+
+def build_facsimile_book(tonos, tmp_dir):
+    """The facsimile annex to the editions built with --without-facsimile: a
+    global cover + TOC, then only each tono's facsimile pages, under the same
+    headings as the book so the two can be read side by side."""
+    (Path(tmp_dir) / 'values.tex').write_text(book_values_tex(FACSIMILE_BOOK_LABEL))
+
+    doc = Latex()
+    doc.raw(format_book_init(FACSIMILE_BOOK_LABEL))
+
+    for data in tonos:
+        n, title = data['number'], data['title']
+        if not data.get('facsimileItems'):
+            print(f"** Facsímiles: tono {n} sin facsímiles, se omite **")
+            continue
+        print(f"** Facsímiles: tono {n}: {title} **")
+        # No floats here, unlike add_image: a float page drifts away from the
+        # heading, the TOC anchor and the running head that belong to it.
+        for i, item in enumerate(data['facsimileItems']):
+            doc.line("\\clearpage")
+            if i == 0:
+                doc.line("\\phantomsection")
+                doc.line(f"\\addcontentsline{{toc}}{{section}}{{{n}. {escape_latex(title)}}}")
+                doc.line(f"\\markright{{{escape_latex(title)}}}")
+                doc.line(f"\\section*{{\\centering\\Huge {n}. {escape_latex(title)}}}")
+            height = "0.8" if i == 0 else "0.9"
+            doc.line("\\begin{center}")
+            doc.line(f"\\captionof{{figure}}{{{item['name']}}}")
+            doc.line(f"\\includegraphics[width=0.95\\linewidth,height={height}\\textheight,"
+                     f"keepaspectratio]{{{resized_image('facsimil-images', item['file'])}}}")
+            doc.line("\\end{center}")
+
+    doc.line("\\clearpage").input(acerca_tex()).raw("\\end{document}")
+    return str(doc)
+
+
+def generate_book(scores, status, tono_limit, book, tmp_dir):
     """Prepare the tonos and render the whole-book PDF (two LaTeX passes for the
-    TOC). `tono_limit` (1-based) builds only the first N tonos, for testing."""
+    TOC). `book` is an EditionType or FACSIMILE_BOOK. `tono_limit` (1-based)
+    builds only the first N tonos, for testing."""
     tonos = []
     for i, score in enumerate(scores):
         if tono_limit and i >= tono_limit:
@@ -878,7 +1036,12 @@ def generate_book(scores, status, tono_limit, buildType, tmp_dir):
             continue
         tonos.append(prepare_tono_data(score, status[i] if i < len(status) else {}))
 
-    latex_str = build_book(tonos, buildType, tmp_dir)
+    if book == FACSIMILE_BOOK:
+        latex_str = build_facsimile_book(tonos, tmp_dir)
+        name = "Facsimiles"
+    else:
+        latex_str = build_book(tonos, book, tmp_dir)
+        name = f"{book.value.capitalize()}_libro{facsimile_suffix()}"
     (Path(tmp_dir) / 'tmp.tex').write_text(latex_str)
     print(f"Rendering book ({len(tonos)} tonos) — pass 1/2")
     render_latex(tmp_dir, 'tmp.tex')
@@ -886,9 +1049,17 @@ def generate_book(scores, status, tono_limit, buildType, tmp_dir):
     render_latex(tmp_dir, 'tmp.tex')
 
     os.makedirs("output", exist_ok=True)
-    out = f"output/Cancionero_de_Miranda_{buildType.value.capitalize()}_libro.pdf"
+    out = f"output/Cancionero_de_Miranda_{name}{'_kdp' if CONFIG.kdp else ''}.pdf"
     shutil.move(f"{tmp_dir}/tmp.pdf", out)
     print(f"Libro generado: {out}")
+    if CONFIG.kdp:
+        # Reported, not fatal: a test build of a few tonos is always short of
+        # KDP's 24-page minimum, and the PDF is still worth looking at.
+        print("Comprobando requisitos de KDP")
+        try:
+            run(['python', str(PIPELINE_SCRIPTS_DIR / 'kdp_preflight.py'), out])
+        except CommandError as exc:
+            print(f"AVISO: el PDF no cumple los requisitos de KDP:\n{exc.output}")
     return out
 
 
@@ -1068,9 +1239,14 @@ def normalize_title(title):
     return unicodedata.normalize('NFKD', title).encode('ascii', 'ignore').decode('ascii').replace(' ', '_')
 
 
+def facsimile_suffix():
+    """Marks in the file name an edition built without the facsimile pages."""
+    return "" if CONFIG.with_facsimile else "_without_facsimile"
+
+
 def output_pdf_path(data, buildType):
     return (f'output/{str(data["number"]).zfill(2)}_{normalize_title(data["title"])}'
-            f'_{buildType.value.capitalize()}_edition.pdf')
+            f'_{buildType.value.capitalize()}_edition{facsimile_suffix()}.pdf')
 
 
 def tono_input_files(data):
@@ -1219,20 +1395,36 @@ def main():
                         help="Comprobar que están todas las dependencias y salir.")
     parser.add_argument("--skip-doctor", action="store_true",
                         help="No comprobar las dependencias antes de generar.")
-    parser.add_argument("--clean-tmp", action="store_true",
-                        help="Borrar los ficheros intermedios al terminar (por defecto se conservan).")
+    parser.add_argument("--keep-tmp", action="store_true",
+                        help="Manetener los ficheros intermedios al terminar (por defecto se borran).")
     parser.add_argument("-j", "--jobs", type=int, default=0,
                         help="Nº de tonos a construir en paralelo (0 = auto según CPU, 1 = secuencial).")
     parser.add_argument("--book", nargs="?", const="performer",
-                        choices=[e.value for e in EditionType],
+                        choices=[e.value for e in EditionType] + [FACSIMILE_BOOK],
                         help="Generar un único PDF 'libro' con todos los tonos seguidos "
                              "(sin portadas por tono, páginas continuas e índice). "
                              "Edición opcional: --book scholar (por defecto performer). "
+                             "--book facsimile genera solo los facsímiles de cada tono, "
+                             "como anexo de las ediciones --without-facsimile. "
                              "Con un número de tono, hace un libro de los primeros N (prueba).")
+    parser.add_argument("--without-facsimile", action="store_true",
+                        help="Generar la edición sin las páginas de facsímil "
+                             "(se añade '_without_facsimile' al nombre del PDF).")
+    parser.add_argument("--kdp", action="store_true",
+                        help="Con --book: maquetar para imprimir en Amazon KDP (márgenes "
+                             "interiores, enlaces sin color, facsímiles a resolución completa) "
+                             "y comprobar sus requisitos. Se añade '_kdp' al nombre del PDF.")
+    parser.add_argument("--isbn", default="",
+                        help="ISBN que imprimir en la página de créditos (con --kdp).")
     parser.add_argument("--engine", default=LATEX_RENDERED,
                         choices=["pdflatex", "lualatex", "xelatex"],
                         help="Motor LaTeX a usar (por defecto pdflatex).")
     args = parser.parse_args()
+
+    if args.book == FACSIMILE_BOOK and args.without_facsimile:
+        parser.error("--book facsimile y --without-facsimile son incompatibles")
+    if args.kdp and not args.book:
+        parser.error("--kdp solo tiene sentido con --book")
 
     if args.doctor:
         sys.exit(0 if run_doctor(verbose=True) else 1)
@@ -1242,8 +1434,14 @@ def main():
 
     tmp_dir = tempfile.mkdtemp()
     CONFIG.tmp_dir = tmp_dir
-    CONFIG.debug = not args.clean_tmp
+    CONFIG.debug = args.keep_tmp
     CONFIG.latex_engine = args.engine
+    CONFIG.with_facsimile = not args.without_facsimile
+    CONFIG.kdp = args.kdp
+    CONFIG.book = bool(args.book)
+    CONFIG.isbn = args.isbn
+    if args.kdp:
+        CONFIG.facsimile_resize = "100"  # scans are 300 dpi; KDP wants that on paper
 
     with open(os.path.join("tonos", "tonos.json")) as f:
         config = json.load(f)
@@ -1275,7 +1473,8 @@ def main():
         pass
 
     if args.book:
-        generate_book(scores, status, args.tono, EditionType(args.book), tmp_dir)
+        book = FACSIMILE_BOOK if args.book == FACSIMILE_BOOK else EditionType(args.book)
+        generate_book(scores, status, args.tono, book, tmp_dir)
         if not CONFIG.debug:
             shutil.rmtree(tmp_dir, ignore_errors=True)
         return

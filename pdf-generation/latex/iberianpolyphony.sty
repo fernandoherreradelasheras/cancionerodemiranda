@@ -26,8 +26,16 @@
 \ifpdftex\RequirePackage{musixtex}\fi % Musical examples (unused; skip on modern engines)
 \RequirePackage{verse} % Poetry formatting
 
-% Geometry
-\geometry{a4paper, margin=2cm}
+% Geometry. \kdp (defined by generate-pdfs.py --kdp) selects the print
+% layout for Amazon KDP: the inner margin must grow with the page count
+% (0.875in for 701-828 pages); 25mm covers every allowed count. The top one
+% keeps the running head, which sits above the text block, clear of KDP's
+% 0.25in minimum (at top=2cm it starts at 5.6mm).
+\ifdefined\kdp
+  \geometry{a4paper, inner=25mm, outer=20mm, top=23mm, bottom=2cm}
+\else
+  \geometry{a4paper, margin=2cm}
+\fi
 
 % Colors for Identity
 \definecolor{iberianRed}{HTML}{A50021} % Deep crimson
@@ -35,11 +43,17 @@
 \definecolor{iberianGold}{HTML}{896d00} % Gold accent
 
 % Page Background Watermark (optional)
+% In print (\kdp) the image is kept inside the margins: ink at the page edge
+% would force the whole file into KDP's bleed layout.
 \newcommand{\addcovermanuscriptbackground}{
     \AddToShipoutPictureBG*{%
-        \AtPageLowerLeft{%
-            \includegraphics[width=\paperwidth,height=\paperheight]{manuscript_background.png} % Background image
-        }
+        \ifdefined\kdp
+            \AtPageCenter{\makebox(0,0){\includegraphics[width=\textwidth,height=\textheight]{manuscript_background.png}}}
+        \else
+            \AtPageLowerLeft{%
+                \includegraphics[width=\paperwidth,height=\paperheight]{manuscript_background.png} % Background image
+            }
+        \fi
     }
 }
 
@@ -56,7 +70,14 @@
 \fancyhead[LE]{\textcolor{iberianRed}{\small \textit{Cancionero de Miranda}}} % Left header
 \fancyhead[RO]{\textcolor{iberianRed}{\small \textit{\rightmark}}} % Right header
 \fancyfoot[C]{\thepage} % Center footer
+% Score pages (included PDFs engraved by Verovio, which prints its own
+% header): only the running page number, so the numbering stays continuous.
+\fancypagestyle{score}{\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+% The books (\book, from generate-pdfs.py --book) state the license once, on
+% the credits page, instead of on every page.
+\ifdefined\book\else
 \fancyfoot[LE,RO]{\textcolor{iberianGold}{\footnotesize Publicado bajo licencia CC-BY. (c) humanoydivino.com}}
+\fi
 
 % Section Titles with Identity Colors
 \titleformat{\section}[block]

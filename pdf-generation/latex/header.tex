@@ -33,7 +33,8 @@
 \usepackage{subcaption}
 \usepackage{pdfpages}
 \usepackage{verse}
-\usepackage{hyperref} 
+\usepackage{xurl} % long URLs may break anywhere instead of running into the margin
+\usepackage{hyperref}
 \usepackage{multicol}
 \usepackage{qrcode}
 \usepackage{longtable}
@@ -106,11 +107,15 @@
 	\textbf{#3}
 }
 \captionsetup{format=custom,justification=raggedleft,font={Large}}
-\hypersetup{
+\ifdefined\kdp
+  \hypersetup{hidelinks} % links are inert on paper; coloured text would print
+\else
+  \hypersetup{
     colorlinks=true,
-    linkcolor=cyan,
-    urlcolor=blue,
+    linkcolor=iberianRed,
+    urlcolor=iberianGold,
   }
+\fi
 
 
 \let\emphasized\emph

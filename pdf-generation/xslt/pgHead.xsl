@@ -3,6 +3,9 @@
 
     <xsl:output method="xml" indent="yes"/>
 
+    <!-- 'no' leaves out the license line under every score page (books) -->
+    <xsl:param name="footer" select="'yes'"/>
+
     <xsl:template match="@* | node()">
         <xsl:copy>
             <xsl:apply-templates select="@* | node()"/>
@@ -99,9 +102,13 @@
                <rend halign="left" fontsize="90%">Tono <xsl:value-of select="$ordinal"/>: <xsl:value-of select="$title"/></rend>
                <rend halign="right" fontsize="90%">Cancionero de Miranda</rend>
             </xsl:element>
+            <!-- License line on every score page; the books carry it once, on
+                 the credits page, and pass footer='no'. -->
+            <xsl:if test="$footer != 'no'">
             <xsl:element name="pgFoot" use-attribute-sets="pghead-all">
                <rend halign="center" fontsize="80%">© 2026 https://humanoydivino.com licensed under CC BY-SA 4.0</rend>
             </xsl:element>
+            </xsl:if>
   </xsl:template>
 
 
