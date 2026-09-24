@@ -10,9 +10,11 @@ Del tono “Venganza, griegos repite” se conservan hasta seis testimonios musi
 * Colección personal de Miguel Querol[^noconsultado]
 * Colegiata de Alquézar[^noconsultado]
 
-El Libro de Tonos Humanos documenta, al incluirlo en uno de sus índices, la existencia de otro testimonio musical perdido. 
+El Libro de Tonos Humanos documenta, al incluirlo en uno de sus índices, la existencia de otro testimonio musical perdido.[^lthindice]
 
 [^noconsultado]: No nos ha sido posible consultar estos testimonios.
+
+[^lthindice]: *Libro de Tonos Humanos*, E-Mn M/1262, f. 261v. Disponible en: [https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=532](https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=532)
 
 
 ### Testimonios poéticos
@@ -139,7 +141,11 @@ En primer lugar, la atribución del *Cancionero de Onteniente* merece mayor conf
 
 [^lambeacpmhl]: LABEA, Mariano y JOSA, Lola: Cancionero Poético Musical Hispánico de Lisboa, vol. I. Madrid, 2004. pp. 49-50
 
-Un segundo argumento a favor de Correa se desprende de la cita a "Venganza, griegos, repite" en un villancico cantado en la catedral de Toledo en 1655 con música de Tomás Miciezes (que desgraciadamente no se conserva): ***Tolibiyo, Baltolo***. En él, los protagonistas proponen cantar un _toniyo_ para alegarar a Flasiquiya y le van ofreciendo al niño diferentes tonos famosos, cantando su íncipit, para que este los rechace. Los dos primeros tonos citados están atribuidos de manera indubitada a Manuel Correa: "Gigante Cristalino" aprarece atribuido a Correa en el Libro de Tonos Humanos y "Blancos penachos de escarcha" es la segunda estrofa de "Ya es turbante Guadarrama", atribuido a Correa en el Cancionero de Onteniente. Del tercero de los tonos "A los azotes del aire", no se conserva testimonio musical pero aspectos contextuales permiten vincular el tono perdido al repertorio de Correa. El ultimo de los tonos citados es "Venganza, griegos, repite", que se canta de manera cómica como "Venganza, griegos, Venganza". La lectura de este villancico como un homenaje a Manuel Correa mediante la cita de sus composiciones más famosas implica, necesariamente, que Manuel Correa era el autor de estos tonos[^vidayfama]. 
+Un segundo argumento a favor de Correa se desprende de la cita a "Venganza, griegos, repite" en un villancico cantado en la catedral de Toledo en 1655 con música de Tomás Miciezes (que desgraciadamente no se conserva): ***Tolibiyo, Baltolo***. En él, los protagonistas proponen cantar un _toniyo_ para alegarar a Flasiquiya y le van ofreciendo al niño diferentes tonos famosos, cantando su íncipit, para que este los rechace. Los dos primeros tonos citados están atribuidos de manera indubitada a Manuel Correa: "Gigante Cristalino" aprarece atribuido a Correa en el Libro de Tonos Humanos[^gigantelth][^gigantegemma] y "Blancos penachos de escarcha" es la segunda estrofa de "Ya es turbante Guadarrama", atribuido a Correa en el Cancionero de Onteniente. Del tercero de los tonos "A los azotes del aire", no se conserva testimonio musical pero aspectos contextuales permiten vincular el tono perdido al repertorio de Correa. El ultimo de los tonos citados es "Venganza, griegos, repite", que se canta de manera cómica como "Venganza, griegos, Venganza". La lectura de este villancico como un homenaje a Manuel Correa mediante la cita de sus composiciones más famosas implica, necesariamente, que Manuel Correa era el autor de estos tonos[^vidayfama]. 
+
+[^gigantelth]: *Libro de Tonos Humanos*, E-Mn M/1262, ff. 143v-144r [149v-150r]. Disponible en: [https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=XXXX](https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=XXXX)
+
+[^gigantegemma]: Tono editado por TORRELLAS PAZ, Gemma: «Gigante cristalino (Manuel Correa)», *Archivo Musical GemmaPartituras*. Disponible en: [https://www.gemmapartituras.com/gigante-cristalino-manuel-correa/](https://www.gemmapartituras.com/gigante-cristalino-manuel-correa/)
 
 [^vidayfama]: Para el estudio de este villancico y como homenaje a Manuel Correa véase HERRERA DE LAS HERAS, Fernando: "Manuel Correa: vida descubierta, fama rastreada". Disponible en https://humanoydivino.com/otros/manuel_correa_vida_descubierta_fama_rastreada/
 

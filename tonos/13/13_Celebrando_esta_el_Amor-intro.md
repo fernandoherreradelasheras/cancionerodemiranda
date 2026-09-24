@@ -19,7 +19,7 @@ hasta alarmas y armas.
 
 Sí comparte el nombre, Anarda, y la idea la belleza como arma
 que embiste y avasalla con uno de los tonos más bellos del **Libro
-de Tonos humanos**: *A desafiar las flores*
+de Tonos humanos**: *A desafiar las flores*[^lth][^gemma]
 
 > A desafiar las flores,\
 > ¡qué linda Anarda salió!;\
@@ -34,3 +34,7 @@ de Tonos humanos**: *A desafiar las flores*
 
 
 ![Tiple primero de A desafiar las flores del Libro de Tonos Humanos. E-Mn M/1262 f. 153v.](assets/13_a_desafiar_LTH.jpg)
+
+[^lth]: *Libro de Tonos Humanos*, E-Mn M/1262, ff. 147v-149r [153v-155r]. Disponible en: [https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=314](https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=314)
+
+[^gemma]: Tono editado por TORRELLAS PAZ, Gemma: «A desafiar las flores (Anónimo, s. XVII)», *Archivo Musical GemmaPartituras*. Disponible en: [https://www.gemmapartituras.com/a-desafiar-las-flores-anonimo-s-xvii/](https://www.gemmapartituras.com/a-desafiar-las-flores-anonimo-s-xvii/)
