@@ -35,20 +35,29 @@ el lugar de donde las ninfas recogían las perlas para la reina en el tono 19
 (*Perlas iba cogiendo*).
 
 
-Musicalmente, el tono aprovecha al máximo el contraste entre sus dos secciones. Las
-coplas, en compás binario y apenas nueve compases, son una declamación homofónica
-casi recitada, con las cuatro voces moviéndose sobre la misma sílaba y el tiple 1º
-salmodiando buena parte del primer verso sobre una sola nota; el guion las remata en
-solitario con un breve enlace instrumental hacia el estribillo que pasa a compás
-ternario. Este se abre con entradas escalonadas de las cuatro voces sobre *y él sea
-testigo*.  La escritura imitativa alcanza
-su punto más gráfico en *cuántas veces sus raudales*, donde un giro melismático de
-seis notas va pasando del tiple 1º al resto de voces dibujando el fluir del río
-antes de que el texto lo haga retroceder. A partir de
-ahí las voces se retroceden a la declamación homofónica y silábica.
+Musicalmente, el tono aprovecha al máximo el contraste entre sus dos secciones. Las coplas, en compás binario y apenas
+nueve compases, son una declamación homofónica casi recitada, con las cuatro voces moviéndose sobre la misma sílaba y el
+tiple 1º salmodiando buena parte del primer verso sobre una sola nota; el guion las remata en solitario con un breve
+enlace instrumental hacia el estribillo que pasa a compás ternario. Este se abre con entradas escalonadas de las cuatro
+voces sobre *y él sea testigo*.  La escritura imitativa alcanza su punto más gráfico en *cuántas veces sus raudales*,
+donde un giro melismático de seis notas va pasando del tiple 1º al resto de voces dibujando el fluir del río antes de
+que el texto lo haga retroceder. A partir de ahí las voces se retroceden a la declamación homofónica y silábica.
 
-Para la reconstrucción editorial de la voz de alto las
-coplas ofrecen poco margen, su carácter estrictamente homofónicas con el bajo fijado por
-el guion limitan las opciones al relleno armónico compatible. El estribillo, en cambio,
-exige decidir el perfil melódico y comienzo de las entradas imitativas y la reconstrucción
-es por tanto más conjetural.
+Dentro de esa declamación, la palabra *llanto* recibe un singular tratamiento. En el compás 32 el tenor,
+doblado por el guion, desciende una cuarta disminuida hasta la sensible de la cadencia a sol; en el 36 es el tiple 1º,
+que acaba de subir una sexta menor sobre *de mi*, el que salta la misma cuarta disminuida hacia la sensible de la
+cadencia final. Es la figura que la teoría alemana del siglo XVII catalogó como *saltus duriusculus*: un intervalo que
+el contrapunto proscribía y que se admitía precisamente como recurso patético para pintar el dolor.
+
+Dentro de esa declamación, la palabra *llanto* recibe un tratamiento singular. En el compás 32 el tenor, doblado por el
+guion, desciende una cuarta disminuida hasta la sensible de la cadencia a sol. En el 36 es el tiple 1º, que acaba de
+subir una sexta menor sobre *de mi*, el que salta la misma cuarta disminuida hacia la sensible de la cadencia final. La
+tratadística hispana conocía bien el recurso y la tensión que encerraba. Cerone pedía que, donde la letra significara
+«dolor, pasión, aspereza, dureza, llanto, sospiros», la música fuera «dura, áspera y triste» (*El melopeo y maestro*,
+1613, lib. XII, cap. V). Nassarre, por su parte, excluía ciertos saltos «por la aspereza de su entonación» (*Fragmentos
+músicos*, 1700, trat. I, cap. V). Es el mismo intervalo proscrito que la teoría alemana del siglo XVII catalogó como
+*saltus duriusculus* y admitió como recurso patético.
+
+Para la reconstrucción editorial de la voz de alto las coplas ofrecen poco margen, su carácter estrictamente homofónicas
+con el bajo fijado por el guion limitan las opciones al relleno armónico compatible. El estribillo, en cambio, exige
+decidir el perfil melódico y comienzo de las entradas imitativas y la reconstrucción es por tanto más conjetural.
