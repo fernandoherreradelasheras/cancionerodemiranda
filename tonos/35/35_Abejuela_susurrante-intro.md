@@ -41,3 +41,7 @@ También encontramos estas mismas tres imágenes en el quinto villancico cantado
 [...]
 
 Coincide nuestro tono con el villancico de 1686 en el uso simbólico de tres voces y no cuatro para las coplas.
+
+La organización del texto vuelve visible esa correspondencia triple. Al principio aparecen las tres criaturas y a continuación sus objetos, *flor*, *luz* y *ardor*. Las coplas vuelven por separado sobre cada relación y asignan a cada animal un mandato acorde con su naturaleza. El desarrollo no introduce una historia nueva, sino que despliega lo que ya contenía la enumeración inicial.
+
+La oposición entre vivir y morir cambia según a quién se dirige. A la salamandra se le promete una vida más plena en la llama; a la mariposa se le brinda una muerte que merece el nombre de vida. La insistencia en *mejor* y en *más* traduce el tránsito de una atracción sensible a un objeto más alto. El léxico de flor, luz y fuego conserva reconocible el impulso de cada criatura a la vez que transforma el sentido de su destino.
