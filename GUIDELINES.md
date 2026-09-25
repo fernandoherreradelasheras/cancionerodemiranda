@@ -405,6 +405,10 @@ python pdf-generation/scripts/list_annotations.py [tono…] [--problems] [--json
   when an apparatus entry describes the note. The performer edition runs
   `scripts/normalize_ficta.py`, which drops `@func` and `@enclose` so the
   accidentals print plainly; the scholar edition keeps the parentheses.
+- A **reconstructed voice has no *ficta***. Ficta marks the distance between what
+  the source wrote and what the edition adds, and a voice the source does not
+  transmit has no written text to measure it against: every note in it is already
+  editorial. Its accidentals are plain `@accid`, never an `<accid func="edit">`.
 
 ## 6. Coloration
 
