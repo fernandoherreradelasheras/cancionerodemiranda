@@ -149,7 +149,7 @@ ELEMENT_ORDER = {
     # --- definitions ------------------------------------------------------
     'scoreDef': ['xml:id', 'keysig', 'meter.count', 'meter.unit', 'meter.sym',
                  'midi.bpm', 'optimize'],
-    'staffDef': ['xml:id', 'n', 'lines',
+    'staffDef': ['xml:id', 'n', 'decls', 'lines',
                  'clef.shape', 'clef.line', 'clef.dis', 'clef.dis.place',
                  'keysig', 'trans.diat', 'trans.semi'],
     'staffGrp': ['xml:id', 'n', 'symbol', 'bar.thru'],

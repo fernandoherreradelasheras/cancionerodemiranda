@@ -92,11 +92,11 @@
             <title>Divina aurora alemana</title>
             <perfMedium>
                <perfResList>
-                  <perfRes source="#P-Ln_MM4802-1">Tiple 1º</perfRes>
-                  <perfRes source="#P-Ln_MM4802-2">Tiple 2º</perfRes>
-                  <perfRes type="reconstructed" source="#alto-part-recomposition">Alto</perfRes>
-                  <perfRes source="#P-Lant_PT-TT-MUS-L122">Tenor</perfRes>
-                  <perfRes source="#P-Ln_MM4803">guion</perfRes>
+                  <perfRes xml:id="perfRes-tiple1" source="#P-Ln_MM4802-1">Tiple 1º</perfRes>
+                  <perfRes xml:id="perfRes-tiple2" source="#P-Ln_MM4802-2">Tiple 2º</perfRes>
+                  <perfRes xml:id="perfRes-alto" type="reconstructed" source="#alto-part-recomposition">Alto</perfRes>
+                  <perfRes xml:id="perfRes-tenor" source="#P-Lant_PT-TT-MUS-L122">Tenor</perfRes>
+                  <perfRes xml:id="perfRes-guion" source="#P-Ln_MM4803">guion</perfRes>
                </perfResList>
             </perfMedium>
          </work>
@@ -109,24 +109,24 @@
                <scoreDef xml:id="sd.initial" meter.count="4" meter.unit="4" midi.bpm="90.0">
                   <staffGrp>
                      <staffGrp symbol="bracket">
-                        <staffDef n="1" lines="5">
+                        <staffDef n="1" decls="#perfRes-tiple1" lines="5">
                            <label>Tiple 1.º</label>
                            <clef shape="G" line="2"/>
                         </staffDef>
-                        <staffDef n="2" lines="5">
+                        <staffDef n="2" decls="#perfRes-tiple2" lines="5">
                            <label>Tiple 2.º</label>
                            <clef shape="G" line="2"/>
                         </staffDef>
-                        <staffDef n="3" lines="5">
+                        <staffDef n="3" decls="#perfRes-alto" lines="5">
                            <label>[Alto]</label>
                            <clef shape="G" line="2"/>
                         </staffDef>
-                        <staffDef n="4" lines="5">
+                        <staffDef n="4" decls="#perfRes-tenor" lines="5">
                            <label>Tenor</label>
                            <clef xml:id="cjkdud4" shape="G" line="2" dis="8" dis.place="below"/>
                         </staffDef>
                      </staffGrp>
-                     <staffDef n="5" lines="5">
+                     <staffDef n="5" decls="#perfRes-guion" lines="5">
                         <label>Guion</label>
                         <clef xml:id="cjkdud5" shape="F" line="4"/>
                      </staffDef>

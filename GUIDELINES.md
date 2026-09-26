@@ -143,6 +143,23 @@ Guion → 4803, reconstructed Alto → `alto-part-recomposition`) and
 by hand. Attribute order is `xml:id`, `type`, `source`, `label`
 (`scripts/mei_attr_order.py`).
 
+Every `<perfRes>` carries an `xml:id`: it is what the staves of the part point at
+with `@decls` (§2.3) and what `facsimileItems[].part` names in `tonos.json` (§9).
+The id is `perfRes-` followed by the part name lower-cased, without spaces, dots
+or ordinal signs, so the same part has the same id in every tono:
+
+```xml
+<perfResList>
+   <perfRes xml:id="perfRes-tiple1" source="#P-Ln_MM4802-1">Tiple 1º</perfRes>
+   <perfRes xml:id="perfRes-tiple2" source="#P-Ln_MM4802-2">Tiple 2º</perfRes>
+   <perfRes xml:id="perfRes-alto" type="reconstructed" source="#alto-part-recomposition">Alto</perfRes>
+   <perfRes xml:id="perfRes-tenor" source="#P-Lant_PT-TT-MUS-L122">Tenor</perfRes>
+   <perfRes xml:id="perfRes-guion" source="#P-Ln_MM4803">Guion</perfRes>
+</perfResList>
+```
+
+A `lost` part gets its id too, although no staff points at it.
+
 
 ---
 
@@ -184,7 +201,7 @@ printing them.
 ### 2.3 `staffDef` — parts and clefs
 
 ```xml
-<staffDef n="1" lines="5">
+<staffDef n="1" decls="#perfRes-tiple1" lines="5">
    <label>Tiple 1º</label>
    <labelAbbr>Ti.1</labelAbbr>
    <clef xml:id="cghe12" shape="G" line="2"/>
@@ -193,6 +210,16 @@ printing them.
 
 - `@n` numbers the staves in score order; the apparatus names a voice by looking
   its `<label>` up from `@n`, so every staff needs one.
+- **`@decls` links the staff to its part**: it points at the `xml:id` of the
+  `<perfRes>` (§1.3). It is the only link between a staff and a part: labels are
+  not compared, so a staff labelled *Bajo* can belong to the perfRes *Tenor*, and
+  the numbering of the staves may change from one `<mdiv>` to the next. Every
+  `staffDef` of the score carries it, those of later `scoreDef`s and of the solo
+  `<mdiv>`s included; the `staffDef`s inside the original-clefs `<app>` (§3) do
+  not. `scripts/mei_perfres_decls.py` adds the ids and the `@decls` to a tono
+  that lacks them, pairing parts (the `lost` ones left out) and staves by
+  position, and `scripts/mei_add_guion.py` writes them for a reconstructed
+  Guion.
 - The `<clef>` here is the **modern** clef of the transcription. The octave-down
   tenor clef is `shape="G" line="2" dis="8" dis.place="below"`.
 - A clef that differs from the source carries an `xml:id`, because the
@@ -519,7 +546,72 @@ responsible, and it is printed **between square brackets**:
 
 ---
 
-## 9. Attribute order
+## 9. The facsimile
+
+### 9.1 Images in `tonos.json`
+
+The facsimile images of a tono are listed in its `facsimileItems`, with the path
+relative to `facsimil-images/`. Each image says in `part` which part it shows, by
+the `xml:id` of the `<perfRes>` (§1.3):
+
+```json
+"facsimileItems": [
+  { "name": "Tiple 1º página 8", "file": "S1/image-008.jpg", "part": "perfRes-tiple1" },
+  { "name": "Tenor página 11",   "file": "T/image-011.jpg",  "part": "perfRes-tenor" }
+]
+```
+
+The folder of the image names the partbook it was scanned from: `S1` 4802/1,
+`S2` 4802/2, `T` L122, `G` 4803, and `others` for the concordances. `part` is the
+perfRes whose `@source` holds that partbook, which is not always the part the
+folder suggests: in tono 46 the images in `T` are the Alto. The images in
+`others` are assigned one by one. An image without `part` is taken for the full
+score; any value other than a string is a configuration error in score-viewer.
+
+While the player runs, the facsimile follows a part onto its next image, and when
+the images cover more than one part the facsimile can show all of them side by
+side, each with its own pages. The staves of a part are found through the
+`staffDef/@decls` of §2.3.
+
+### 9.2 Notes linked to the image
+
+A note or rest whose `@facs` points at a `<zone>` of the `<facsimile>` is marked
+on the image beside the score in split view, while it sounds and, with the
+"Show note on the facsimile on click" setting, when it is clicked. The
+`<facsimile>` is the first child of `<music>`, one `<surface>` per image:
+
+```xml
+<music>
+   <facsimile>
+      <surface label="Tiple 1º página 8" lrx="1702" lry="2424">
+         <graphic target="S1/image-008.jpg" width="1702px" height="2424px"/>
+         <zone xml:id="zone-1" ulx="750" uly="1212" lrx="751" lry="1213"/>
+      </surface>
+   </facsimile>
+   <body>
+      …
+      <note facs="#zone-1" dur="2" pname="c" oct="5"/>
+```
+
+- A config image is matched to its `<surface>` by `<graphic>@target` against the
+  image `file` (either may be a trailing part of the other path), or else by the
+  surface `@label` against the image `name`. Writing the same path as `file` in
+  `@target` and the same text as `name` in `@label` keeps both ways working.
+- Coordinates are pixels of the original image, whose size is in
+  `surface/@lrx`/`@lry`. A zone is a point (1 px) on the figure.
+- Several events may point at the same zone: a tied note is one figure in the
+  source, and so are several measure rests written as a single sign.
+- Only what the source writes is linked: nothing inside `<supplied>`, the source
+  reading (`<sic>`, `<orig>`) rather than the correction of a `<choice>`, and the
+  readings of an `<app>` only on the images of their own witness. The staves of
+  a reconstructed part have no images and no links.
+
+The links are made with `tools/facsimile-link/` (see its README), which writes
+only the `<facsimile>` block and the `@facs` attributes.
+
+---
+
+## 10. Attribute order
 
 Attribute order is meaningless to XML and very much not meaningless to a diff.
 `scripts/mei_attr_order.py` defines one preferred order and enforces it.
@@ -547,7 +639,7 @@ otherwise, so run `--update` after any tool has touched a file.
 
 ---
 
-## 10. Before committing
+## 11. Before committing
 
 | Command | What it checks |
 |---|---|

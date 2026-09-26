@@ -66,9 +66,9 @@
             <title>En ti hallé querida Filis</title>
             <perfMedium>
                <perfResList>
-                  <perfRes source="#P-Ln_MM4802-1">Tiple 1º</perfRes>
-                  <perfRes source="#P-Ln_MM4802-2">Tiple 2º</perfRes>
-                  <perfRes source="#P-Lant_PT-TT-MUS-L122">Bajo</perfRes>
+                  <perfRes xml:id="perfRes-tiple1" source="#P-Ln_MM4802-1">Tiple 1º</perfRes>
+                  <perfRes xml:id="perfRes-tiple2" source="#P-Ln_MM4802-2">Tiple 2º</perfRes>
+                  <perfRes xml:id="perfRes-bajo" source="#P-Lant_PT-TT-MUS-L122">Bajo</perfRes>
                </perfResList>
             </perfMedium>
          </work>
@@ -80,17 +80,17 @@
             <score>
                <scoreDef xml:id="sd.initial" meter.count="3" meter.unit="2" midi.bpm="180.0">
                   <staffGrp symbol="bracket">
-                     <staffDef n="1" lines="5">
+                     <staffDef n="1" decls="#perfRes-tiple1" lines="5">
                         <label>Tiple 1</label>
                         <labelAbbr>T. 1</labelAbbr>
                         <clef xml:id="cjkdud1" shape="G" line="2"/>
                      </staffDef>
-                     <staffDef n="2" lines="5">
+                     <staffDef n="2" decls="#perfRes-tiple2" lines="5">
                         <label>Tiple 2</label>
                         <labelAbbr>T. 2</labelAbbr>
                         <clef xml:id="cjkdud2" shape="G" line="2"/>
                      </staffDef>
-                     <staffDef n="3" lines="5">
+                     <staffDef n="3" decls="#perfRes-bajo" lines="5">
                         <label>Bajo</label>
                         <labelAbbr>B.</labelAbbr>
                         <clef xml:id="cjkdud3" shape="F" line="4"/>
@@ -2416,15 +2416,15 @@
                <section xml:id="estribillo" label="estribillo" restart="true">
                   <scoreDef xml:id="sd.estribillo" meter.count="3" meter.unit="2" midi.bpm="180.0">
                      <staffGrp symbol="bracket">
-                        <staffDef n="1" lines="5">
+                        <staffDef n="1" decls="#perfRes-tiple1" lines="5">
                            <label>Tiple 1</label>
                            <labelAbbr>T. 1</labelAbbr>
                         </staffDef>
-                        <staffDef n="2" lines="5">
+                        <staffDef n="2" decls="#perfRes-tiple2" lines="5">
                            <label>Tiple 2</label>
                            <labelAbbr>T. 2</labelAbbr>
                         </staffDef>
-                        <staffDef n="3" lines="5">
+                        <staffDef n="3" decls="#perfRes-bajo" lines="5">
                            <label>Bajo</label>
                            <labelAbbr>B.</labelAbbr>
                         </staffDef>
