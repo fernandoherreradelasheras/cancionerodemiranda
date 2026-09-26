@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="https://music-encoding.org/schema/5.1/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.1">
@@ -4025,7 +4025,7 @@
                      <staff n="3">
                         <layer n="1">
                            <rest dur="2"/>
-                           <note dur="2" pname="f" oct="4">
+                           <note dur="2" pname="f" accid="s" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">quie</syl>
                               </verse>
@@ -4478,7 +4478,7 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="1" pname="g" accid="s" oct="4">
+                           <note dur="1" pname="e" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">fle</syl>
                               </verse>
@@ -4510,6 +4510,14 @@
                            <note dur="2" pname="a" oct="3"/>
                         </layer>
                      </staff>
+                     <app type="dissonant_analysis">
+                        <lem/>
+                        <rdg type="dissonant_analysis">
+                           <harm type="rdiss" n="10" staff="1" tstamp="1" place="above">
+                              <rend label="disonancia no clasificada, intervalo de 2ª o 7ª" color="red">Z</rend>
+                           </harm>
+                        </rdg>
+                     </app>
                   </measure>
                   <measure n="37">
                      <staff n="1">
@@ -4548,7 +4556,7 @@
                                  <syl con="d" wordpos="i">quie</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="e" oct="4">
+                           <note dur="2" pname="c" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">bra</syl>
                               </verse>
@@ -4577,6 +4585,7 @@
                            </supplied>
                         </layer>
                      </staff>
+                     <slur staff="2" startid="#n775181" endid="#n931717"/>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -4585,7 +4594,6 @@
                            </harm>
                         </rdg>
                      </app>
-                     <slur staff="2" startid="#n775181" endid="#n931717"/>
                   </measure>
                   <measure n="38">
                      <staff n="1">
@@ -4669,7 +4677,7 @@
                         <layer n="1">
                            <note xml:id="nudg8b1" dur="1" dots="1" pname="e" oct="5">
                               <verse n="1">
-                                 <syl>quie</syl>
+                                 <syl con="d" wordpos="i">quie</syl>
                               </verse>
                            </note>
                         </layer>
@@ -6265,12 +6273,12 @@
                                  <syl wordpos="t">rre</syl>
                               </verse>
                            </note>
-                           <note dur="2" dots="1" pname="g" oct="4">
+                           <note dur="2" dots="1" pname="g" accid="s" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">co</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="g" oct="4">
+                           <note dur="4" pname="g" accid.ges="s" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">rre</syl>
                               </verse>
@@ -6441,17 +6449,17 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note dur="2" pname="d" oct="4">
+                           <note dur="2" pname="g" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">ye</syl>
                               </verse>
                            </note>
-                           <note xml:id="n772133" dur="2" dots="1" pname="d" oct="4">
+                           <note xml:id="n772133" dur="2" dots="1" pname="g" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">vo</syl>
                               </verse>
                            </note>
-                           <note xml:id="n480529" dur="4" pname="d" oct="4"/>
+                           <note xml:id="n480529" dur="4" pname="f" oct="4"/>
                         </layer>
                      </staff>
                      <staff n="4">
@@ -6474,6 +6482,7 @@
                         </layer>
                      </staff>
                      <slur startid="#ntph0ab" endid="#n1tm26jk"/>
+                     <slur staff="3" startid="#n772133" endid="#n480529"/>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -6481,11 +6490,16 @@
                               <rend label="nota de paso ascendente">P</rend>
                            </harm>
                            <harm type="rdiss" n="4" staff="4" tstamp="3" place="above">
-                              <rend label="nota de paso ascendente acentuada">V</rend>
+                              <rend label="agente de suspensión binaria">g</rend>
+                           </harm>
+                           <harm type="rdiss" n="6" staff="3" tstamp="3" place="above">
+                              <rend label="suspensión binaria">s</rend>
+                           </harm>
+                           <harm type="rdiss" n="6" staff="3" tstamp="3.5" place="above">
+                              <rend label="nota de paso descendente">p</rend>
                            </harm>
                         </rdg>
                      </app>
-                     <slur staff="3" startid="#n772133" endid="#n480529"/>
                   </measure>
                   <measure n="63">
                      <staff n="1">
@@ -6693,6 +6707,7 @@
                      </staff>
                      <slur startid="#id686" endid="#id706"/>
                      <slur startid="#id692" endid="#id707"/>
+                     <slur staff="3" startid="#n316258" endid="#n20102"/>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -6716,7 +6731,6 @@
                            </harm>
                         </rdg>
                      </app>
-                     <slur staff="3" startid="#n316258" endid="#n20102"/>
                   </measure>
                   <measure n="66">
                      <staff n="1">
@@ -8260,12 +8274,12 @@
                                  <syl con="d" wordpos="i">glo</syl>
                               </verse>
                            </note>
-                           <note dur="2" dots="1" pname="d" oct="4">
+                           <note dur="2" dots="1" pname="g" oct="4">
                               <verse n="1">
                                  <syl wordpos="t">ria</syl>
                               </verse>
                            </note>
-                           <note dur="4" pname="d" oct="4">
+                           <note dur="4" pname="g" oct="4">
                               <verse n="1">
                                  <syl con="b">no</syl>
                                  <syl con="d" wordpos="i">es</syl>
