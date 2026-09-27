@@ -432,6 +432,16 @@ python pdf-generation/scripts/list_annotations.py [tono…] [--problems] [--json
   when an apparatus entry describes the note. The performer edition runs
   `scripts/normalize_ficta.py`, which drops `@func` and `@enclose` so the
   accidentals print plainly; the scholar edition keeps the parentheses.
+- **Editorial *ficta* is repeated on every note it affects in the bar.** A ficta
+  does not carry through the measure: each later note of the same pitch and
+  octave in the same layer gets its own `<accid func="edit">`, not a bare
+  `@accid.ges`. If a later note of that pitch is meant to sound unaltered, it
+  gets an editorial natural (`<accid accid="n" func="edit" enclose="paren"/>`),
+  since the reader would otherwise carry the ficta forward. An accidental
+  written in the source (`@accid`) ends the chain, and a note that continues a
+  tie does not repeat it. `scripts/mei_ficta_bar.py` lists the notes that break
+  this rule and, with `--fix`, corrects them and checks that the MIDI is
+  unchanged.
 - A **reconstructed voice has no *ficta***. Ficta marks the distance between what
   the source wrote and what the edition adds, and a voice the source does not
   transmit has no written text to measure it against: every note in it is already
