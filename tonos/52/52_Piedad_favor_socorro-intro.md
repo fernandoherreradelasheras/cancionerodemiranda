@@ -169,6 +169,16 @@ Como curiosidad y sin valor ni pretensión probatoria, existe un precedente de a
 ### Fuentes empleadas para completar la parte perdida
 
 
-La parte que falta en el Cancionero de Miranda se correponde a la del tercer tiple. Esta inusual configuración de tres tiples y tenor se confirma explicitamente mediante el testimonio conservado en el Cartapacio de Coimbra P-Cug MM 234, que además incluye una nota: `de tres Tip.`. Para completar esta parte, no se han podido consultar dos de las fuentes que se consideran completas: el manuscrito que estuvo en poder de Miguel Querol y el testimonio conservado en el archivo musical de la Colegiata de Alquézar. El Cancionero de Onteniente conserva solo una voz que ya tenemos y por tanto no puede aportar nada. Podemos encontrar la parte del Tiple 3º que falta en nuestro cancionero en dos fuentes: por un lado, el estribillo del Tiple 2º del Cancionero Poético-Musical Hispánico de Lisboa (no así el de las coplas que resulta ser la parte del tiple 2º del Cancionero de Miranda) y por otro, estribillo del tercer tiple de Coimbra y las coplas del segundo. Estos dos testimonios presentan algunas variaciones, sobre todo en cuando a las alteraciones y utilizan un texto diferente para el final del estribillo que es necesario ajustar. 
+La parte que falta en el Cancionero de Miranda se correponde a la del tercer tiple. Esta inusual configuración de tres tiples y tenor se confirma explicitamente mediante el testimonio conservado en el Cartapacio de Coimbra P-Cug MM 234, que además incluye una nota: `de tres Tip.`. Para completar esta parte, no se han podido consultar dos de las fuentes que se consideran completas: el manuscrito que estuvo en poder de Miguel Querol y el testimonio conservado en el archivo musical de la Colegiata de Alquézar. El Cancionero de Onteniente conserva solo una voz que ya tenemos y por tanto no puede aportar nada. Podemos encontrar la parte del Tiple 3º que falta en nuestro cancionero en dos fuentes. En el estribillo la transmiten el librete de Tiple 1º del Cancionero Poético-Musical Hispánico de Lisboa y el tercer tiple de Coimbra. En las coplas, en cambio, los dos tiples del CPMHL coinciden con los del Cancionero de Miranda, y la parte solo se conserva en el segundo tiple de Coimbra. Los libretes de tiple del CPMHL se cruzan, por tanto, de una sección a otra: el de Tiple 2º lleva en el estribillo la parte de nuestro Tiple 1º. El reparto de los testimonios por voces queda así:
 
-Del mismo modo, el guion que transmite el CPMHL, ausente en el Cancionero de Miranda, y del manuscrito de Coimbra se ha incorporado a la presente edición.
+| voz | estribillo | coplas |
+|---|---|---|
+| Tiple 1º | CdM (Superius primus), CPMHL (Tiple 2º), Coimbra | CdM (Superius primus), CPMHL (Tiple 1º), Coimbra |
+| Tiple 2º | CdM (Superius secundus), Coimbra | CdM (Superius secundus), CPMHL (Tiple 2º), Coimbra |
+| Tiple 3º | CPMHL (Tiple 1º), Coimbra | Coimbra |
+| Tenor | CdM, CPMHL, Coimbra | CdM, CPMHL, Coimbra |
+| Guion | CPMHL | CPMHL |
+
+Estos dos testimonios presentan algunas variaciones, sobre todo en cuando a las alteraciones y utilizan un texto diferente para el final del estribillo que es necesario ajustar. 
+
+El guion, ausente en el Cancionero de Miranda, se toma del CPMHL.

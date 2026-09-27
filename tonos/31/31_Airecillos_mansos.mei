@@ -91,6 +91,62 @@
                   </physLoc>
                </bibl>
             </source>
+            <source xml:id="P-La_47-VI-11" n="6" type="complementary" label="manuscript">
+               <bibl>
+                  <title>Cancionero Poético-Musical Hispánico de Lisboa - (Tiple 1º a 4)</title>
+                  <physLoc>
+                     <repository>
+                        <identifier auth="RISM">P-La</identifier>
+                        <corpName role="holding institution">
+                           <name type="organization">Biblioteca da Ajuda</name>
+                        </corpName>
+                     </repository>
+                     <identifier type="shelfmark">47-VI-11</identifier>
+                  </physLoc>
+               </bibl>
+            </source>
+            <source xml:id="P-La_47-VI-12" n="7" type="complementary" label="manuscript">
+               <bibl>
+                  <title>Cancionero Poético-Musical Hispánico de Lisboa - (Tiple 2º a 4)</title>
+                  <physLoc>
+                     <repository>
+                        <identifier auth="RISM">P-La</identifier>
+                        <corpName role="holding institution">
+                           <name type="organization">Biblioteca da Ajuda</name>
+                        </corpName>
+                     </repository>
+                     <identifier type="shelfmark">47-VI-12</identifier>
+                  </physLoc>
+               </bibl>
+            </source>
+            <source xml:id="P-La_47-VI-13" n="8" type="complementary" label="manuscript">
+               <bibl>
+                  <title>Cancionero Poético-Musical Hispánico de Lisboa - (Tenor a 4)</title>
+                  <physLoc>
+                     <repository>
+                        <identifier auth="RISM">P-La</identifier>
+                        <corpName role="holding institution">
+                           <name type="organization">Biblioteca da Ajuda</name>
+                        </corpName>
+                     </repository>
+                     <identifier type="shelfmark">47-VI-13</identifier>
+                  </physLoc>
+               </bibl>
+            </source>
+            <source xml:id="P-La_47-VI-10" n="9" type="complementary" label="manuscript">
+               <bibl>
+                  <title>Cancionero Poético-Musical Hispánico de Lisboa - (Guião a 4)</title>
+                  <physLoc>
+                     <repository>
+                        <identifier auth="RISM">P-La</identifier>
+                        <corpName role="holding institution">
+                           <name type="organization">Biblioteca da Ajuda</name>
+                        </corpName>
+                     </repository>
+                     <identifier type="shelfmark">47-VI-10</identifier>
+                  </physLoc>
+               </bibl>
+            </source>
          </sourceDesc>
       </fileDesc>
       <encodingDesc>
@@ -107,11 +163,11 @@
             <title>Airecillos mansos</title>
             <perfMedium>
                <perfResList>
-                  <perfRes xml:id="perfRes-tiple1" source="#P-Ln_MM4802-1">Tiple 1º</perfRes>
-                  <perfRes xml:id="perfRes-tiple2" source="#P-Ln_MM4802-2">Tiple 2º</perfRes>
+                  <perfRes xml:id="perfRes-tiple1" source="#P-Ln_MM4802-1 #P-La_47-VI-11">Tiple 1º</perfRes>
+                  <perfRes xml:id="perfRes-tiple2" source="#P-Ln_MM4802-2 #P-La_47-VI-12">Tiple 2º</perfRes>
                   <perfRes xml:id="perfRes-alto1" source="#P-EVc_Ms-CLI-1-1-d-1">Alto 1º</perfRes>
-                  <perfRes xml:id="perfRes-alto2" source="#P-Lant_PT-TT-MUS-L122">Alto 2º</perfRes>
-                  <perfRes xml:id="perfRes-guion" source="#P-Ln_MM4803">Guion</perfRes>
+                  <perfRes xml:id="perfRes-alto2" source="#P-Lant_PT-TT-MUS-L122 #P-La_47-VI-13">Alto 2º</perfRes>
+                  <perfRes xml:id="perfRes-guion" source="#P-Ln_MM4803 #P-La_47-VI-10">Guion</perfRes>
                </perfResList>
             </perfMedium>
          </work>
@@ -302,11 +358,14 @@
                                  <syl con="d" wordpos="i">Ai</syl>
                               </verse>
                            </note>
-                           <note xml:id="nl4bbgk" dur="4" pname="f" oct="4">
-                              <reg xml:id="r6712i">
-                                 <accid xml:id="aq0un4k2" accid="s"/>
-                              </reg>
-                           </note>
+                           <app xml:id="r6712i">
+                              <lem source="#P-EVc_Ms-CLI-1-1-d-1">
+                                 <note xml:id="nl4bbgk" dur="4" pname="f" accid="s" oct="4"/>
+                              </lem>
+                              <rdg source="#P-Lant_PT-TT-MUS-L122 #P-La_47-VI-13">
+                                 <note dur="4" pname="f" oct="4"/>
+                              </rdg>
+                           </app>
                            <note xml:id="nknnxjw" dur="4" pname="g" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="m">re</syl>
@@ -314,8 +373,8 @@
                            </note>
                            <note xml:id="n1ym3uh3" dur="4" pname="e" oct="4"/>
                         </layer>
+                        <annot plist="#r6712i">El fa no aparece sostenido ni en nuestro manuscrito ni en CPMHL pero sí en la partitura de Évora, del mismo modo que lo hace para el Alto 1º en el primer compás. Asumimos, pues, esta alteración en las subsiguientes apariciones del motivo musical.</annot>
                      </staff>
-                     <annot plist="#r6712i">El fa no aparece sostenido ni en nuestro manuscrito ni en CPMHL pero sí en la partitura de Évora, del mismo modo que lo hace para el Alto 1º en el primer compás. Asumimos, pues, esta alteración en las subsiguientes apariciones del motivo musical</annot>
                      <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="d" oct="3"/>
@@ -1368,7 +1427,7 @@
                         <layer n="1">
                            <note xml:id="n1eh96o1" dur="1" dots="1" pname="g" oct="4">
                               <verse n="1">
-                                 <syl wordpos="t">di</syl>
+                                 <syl con="d" wordpos="m">di</syl>
                               </verse>
                            </note>
                         </layer>
@@ -1423,7 +1482,7 @@
                            <note xml:id="n1v8gnpq" dur="2" pname="g" oct="4"/>
                            <note dur="1" pname="f" accid="s" oct="4">
                               <verse n="1">
-                                 <syl>to</syl>
+                                 <syl wordpos="t">to</syl>
                               </verse>
                            </note>
                         </layer>
@@ -1800,7 +1859,7 @@
                         <layer n="1">
                            <note xml:id="n1n0xyow" dur="1" dots="1" pname="f" oct="5">
                               <verse n="1">
-                                 <syl wordpos="t">di</syl>
+                                 <syl con="d" wordpos="m">di</syl>
                               </verse>
                            </note>
                         </layer>
@@ -1843,7 +1902,7 @@
                            <note xml:id="nn7svgr" dur="2" pname="f" oct="5"/>
                            <note xml:id="ndw0y3" dur="2" pname="e" accid="f" oct="5">
                               <verse n="1">
-                                 <syl>to,</syl>
+                                 <syl wordpos="t">to,</syl>
                               </verse>
                            </note>
                            <note xml:id="na1x99f" dur="2" pname="d" oct="5"/>
@@ -2340,7 +2399,7 @@
                         <layer n="1">
                            <note dur="1" dots="1" pname="b" accid.ges="f" oct="4">
                               <verse n="1">
-                                 <syl>duer</syl>
+                                 <syl con="d" wordpos="i">duer</syl>
                               </verse>
                            </note>
                         </layer>
@@ -2393,7 +2452,7 @@
                         <layer n="1">
                            <note xml:id="n130852" dur="2" pname="a" oct="4">
                               <verse n="1">
-                                 <syl>me,</syl>
+                                 <syl wordpos="t">me,</syl>
                               </verse>
                            </note>
                            <note xml:id="n36222" dur="1" pname="c" oct="5">
@@ -2462,7 +2521,7 @@
                         <layer n="1">
                            <note dur="1" dots="1" pname="c" oct="5">
                               <verse n="1">
-                                 <syl>duer</syl>
+                                 <syl con="d" wordpos="i">duer</syl>
                               </verse>
                            </note>
                         </layer>
@@ -2515,7 +2574,7 @@
                         <layer n="1">
                            <note xml:id="n264956" dur="2" pname="b" accid.ges="f" oct="4">
                               <verse n="1">
-                                 <syl>me</syl>
+                                 <syl wordpos="t">me</syl>
                               </verse>
                            </note>
                            <note xml:id="n661678" dur="1" pname="b" accid.ges="f" oct="4">
@@ -2798,8 +2857,8 @@
                               </verse>
                            </note>
                         </layer>
+                        <annot plist="#coier8923d">Adelantamos el becuadro al primer si, tal y como sucede en el guion. Dejamos el segundo si con bemol siguiendo la partitura de Évora.</annot>
                      </staff>
-                     <annot plist="#coier8923d">Adelantamos el becuadro al primer si, tal y como sucede en el guion. Dejamos el segundo si con bemol siguiendo la partitura de Évora.</annot>
                      <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="b" accid="n" oct="2"/>
@@ -2961,8 +3020,8 @@
                               </verse>
                            </note>
                         </layer>
+                        <annot plist="#c78d9j">Re sostenido en el manuscrito que resulta incompatible con el re natural del guion y que tampoco aparece en el CPMHL ni en Évora.</annot>
                      </staff>
-                     <annot plist="#c78d9j">re sostenido en el manuscrito que resulta incompatible con el re natural del guion y que tampoco aparece en el CPMHL ni en Évora.</annot>
                      <staff n="5">
                         <layer n="1">
                            <note dur="2" pname="d" oct="3"/>
@@ -3201,6 +3260,7 @@
                               </rdg>
                            </app>
                         </layer>
+                        <annot plist="#apo9872">La3 en el librete del Cancionero de Miranda. Se adopta el Do4 de la partitura de Évora.</annot>
                      </staff>
                      <staff n="5">
                         <layer n="1">
@@ -3209,7 +3269,7 @@
                         </layer>
                      </staff>
                      <bracketSpan staff="2" startid="#n998385" endid="#n479905" func="coloration" lwidth="0.5vu"/>
-                     <bracketSpan staff="4" startid="#n131138" endid="#n111350" func="coloration" lwidth="0.5vu"/>
+                     <bracketSpan staff="4" startid="#n131138" endid="#n192093" func="coloration" lwidth="0.5vu"/>
                      <bracketSpan staff="5" startid="#n866697" endid="#n579632" func="coloration" lwidth="0.5vu"/>
                      <app type="dissonant_analysis">
                         <lem/>
@@ -3318,7 +3378,7 @@
                         <layer n="1">
                            <rest dur="2"/>
                            <app xml:id="ai2334">
-                              <lem class="#vgrp-cromatismo-c49-51">
+                              <lem class="#vgrp-cromatismo-c49-51" source="#P-Ln_MM4802-2">
                                  <note xml:id="nai23341" dur="2" pname="e" accid="f" oct="5">
                                     <verse n="1">
                                        <syl con="d" wordpos="i">sus</syl>
@@ -3330,7 +3390,7 @@
                                     </verse>
                                  </note>
                               </lem>
-                              <rdg class="#vgrp-cromatismo-c49-51">
+                              <rdg class="#vgrp-cromatismo-c49-51" source="#P-EVc_Ms-CLI-1-1-d-1">
                                  <note dur="2" pname="e" oct="5">
                                     <verse n="1">
                                        <syl con="d" wordpos="i">sus</syl>
@@ -3345,18 +3405,18 @@
                            </app>
                         </layer>
                      </staff>
-                     <annot plist="#ai2334 #ai2335">La partitura de Évora opta por mantener el primer mi natural y aplicar bemol al segundo mi tanto en el compás 49, tiple 2º el 51, alto 2º, dando lugar a un cromatismo interesante</annot>
+                     <annot plist="#ai2334 #ai2335">La partitura de Évora opta por mantener el primer mi natural y aplicar bemol al segundo mi tanto en el compás 49 (Tiple 2º) como en el 51 (Alto 2º), dando lugar a un cromatismo interesante.</annot>
                      <staff n="3">
                         <layer n="1">
                            <rest dur="2"/>
                            <note dur="2" pname="g" oct="4">
                               <verse n="1">
-                                 <syl>sus</syl>
+                                 <syl con="d" wordpos="i">sus</syl>
                               </verse>
                            </note>
                            <note dur="2" pname="g" oct="4">
                               <verse n="1">
-                                 <syl>pi</syl>
+                                 <syl wordpos="t">pi</syl>
                               </verse>
                            </note>
                         </layer>
@@ -3422,12 +3482,12 @@
                            <rest dur="2"/>
                            <note dur="2" pname="b" accid.ges="f" oct="4">
                               <verse n="1">
-                                 <syl>sus</syl>
+                                 <syl con="d" wordpos="i">sus</syl>
                               </verse>
                            </note>
                            <note dur="2" pname="b" accid.ges="f" oct="4">
                               <verse n="1">
-                                 <syl>pi</syl>
+                                 <syl wordpos="t">pi</syl>
                               </verse>
                            </note>
                         </layer>
@@ -3494,7 +3554,7 @@
                         <layer n="1">
                            <rest dur="2"/>
                            <app xml:id="ai2335">
-                              <lem class="#vgrp-cromatismo-c49-51">
+                              <lem class="#vgrp-cromatismo-c49-51" source="#P-Lant_PT-TT-MUS-L122">
                                  <note xml:id="nai23351" dur="2" pname="e" accid="f" oct="4">
                                     <verse n="1">
                                        <syl>sus</syl>
@@ -3506,7 +3566,7 @@
                                     </verse>
                                  </note>
                               </lem>
-                              <rdg class="#vgrp-cromatismo-c49-51">
+                              <rdg class="#vgrp-cromatismo-c49-51" source="#P-EVc_Ms-CLI-1-1-d-1">
                                  <note xml:id="nai23351r" dur="2" pname="e" oct="4">
                                     <verse n="1">
                                        <syl>sus</syl>
@@ -4178,7 +4238,7 @@
                                  <syl wordpos="t">mor</syl>
                               </verse>
                               <verse n="4">
-                                 <syl con="b">mo</syl>
+                                 <syl con="b" wordpos="t">mo</syl>
                                  <syl con="d" wordpos="i">en</syl>
                               </verse>
                               <verse n="5">
@@ -4254,7 +4314,7 @@
                                  <syl wordpos="t">mor</syl>
                               </verse>
                               <verse n="4">
-                                 <syl con="b">mo</syl>
+                                 <syl con="b" wordpos="t">mo</syl>
                                  <syl con="d" wordpos="i">en</syl>
                               </verse>
                               <verse n="5">
@@ -4330,7 +4390,7 @@
                                  <syl wordpos="t">mor</syl>
                               </verse>
                               <verse n="4">
-                                 <syl con="b">mo</syl>
+                                 <syl con="b" wordpos="t">mo</syl>
                                  <syl con="d" wordpos="i">en</syl>
                               </verse>
                               <verse n="5">
@@ -4406,7 +4466,7 @@
                                  <syl wordpos="t">mor</syl>
                               </verse>
                               <verse n="4">
-                                 <syl con="b">mo</syl>
+                                 <syl con="b" wordpos="t">mo</syl>
                                  <syl con="d" wordpos="i">en</syl>
                               </verse>
                               <verse n="5">
@@ -4802,7 +4862,7 @@
                                  <syl con="d" wordpos="i">A</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">que</syl>
+                                 <syl con="b" wordpos="t">que</syl>
                                  <syl con="d" wordpos="i">es</syl>
                               </verse>
                               <verse n="3">
@@ -4855,7 +4915,7 @@
                                  <syl con="d" wordpos="i">A</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">que</syl>
+                                 <syl con="b" wordpos="t">que</syl>
                                  <syl con="d" wordpos="i">es</syl>
                               </verse>
                               <verse n="3">
@@ -4908,7 +4968,7 @@
                                  <syl con="d" wordpos="i">A</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">que</syl>
+                                 <syl con="b" wordpos="t">que</syl>
                                  <syl con="d" wordpos="i">es</syl>
                               </verse>
                               <verse n="3">
@@ -4961,7 +5021,7 @@
                                  <syl con="d" wordpos="i">A</syl>
                               </verse>
                               <verse n="2">
-                                 <syl con="b">que</syl>
+                                 <syl con="b" wordpos="t">que</syl>
                                  <syl con="d" wordpos="i">es</syl>
                               </verse>
                               <verse n="3">
@@ -7306,7 +7366,7 @@
                         <layer n="1">
                            <note dur="2" pname="f" oct="4">
                               <verse n="1">
-                                 <syl>so</syl>
+                                 <syl con="d" wordpos="i">so</syl>
                               </verse>
                               <verse n="2">
                                  <syl con="d" wordpos="i">ai</syl>
@@ -7330,7 +7390,7 @@
                            </note>
                            <note dur="2" dots="1" pname="b" accid.ges="f" oct="4">
                               <verse n="1">
-                                 <syl>plan,</syl>
+                                 <syl wordpos="t">plan,</syl>
                               </verse>
                               <verse n="2">
                                  <syl con="d" wordpos="m">ro</syl>
@@ -8384,7 +8444,7 @@
                </lg>
                <lg type="copla" n="2">
                   <l>¡Párese el nevado cierzo!,
-                     <annot type="text-note">_pareçe_: en nuestro manuscrito, de igual grafía en Évora, "parese" en el CPMHL y "paresse' en el pliego impreso. Consideramos que "párese" en la opción que mejor encaja semánticamente (ordenar a un viento frío que se detenga porque el niño está desnudo), en cuanto al ritmo (todas las coplas empiezan en sílaba tónica) y como parte de una figura de repetición en la que las coplas segunda y cuarta también comienzan con un imperativo.</annot>
+                     <annot type="text-note">_pareçe_: en nuestro manuscrito, de igual grafía en Évora, "parese" en el CPMHL y "paresse" en el pliego impreso. Consideramos que "párese" es la opción que mejor encaja semánticamente (ordenar a un viento frío que se detenga porque el niño está desnudo), en cuanto al ritmo (todas las coplas empiezan en sílaba tónica) y como parte de una figura de repetición en la que las coplas segunda y cuarta también comienzan con un imperativo.</annot>
                   </l>
                   <l>porque está desnudo el niño,</l>
                   <l>y a un jazmín, el maltratarle</l>
@@ -8406,7 +8466,7 @@
                   <l>Véase cómo enfrenaron,</l>
                   <l>los cristales sus ruidos:</l>
                   <l>no cruzan las arboledos
-                     <annot type="text-note">mantenemos el original _arboledos_ que aperece igual en el CPMHL y en el pliego impreso.</annot>
+                     <annot type="text-note">mantenemos el original _arboledos_ que aparece igual en el CPMHL y en el pliego impreso.</annot>
                   </l>
                   <l>ni cantan los pajarillos.</l>
                </lg>
