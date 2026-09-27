@@ -469,7 +469,10 @@ the hyphen of a divided word, `u` for an underscore extension, `b` for elision
 
 Corrections to the sung text are wrapped exactly like corrections to the notes —
 `<corr>` around the `<verse>`, or an `<app>` around the `<syl>` — and the marker
-lands on the note that carries them.
+lands on the note that carries them. This is for problems of the setting in one
+voice (a syllable a part has misplaced or duplicated, text under the wrong
+notes). A variant of the *poem* itself, a different word or spelling, is not
+encoded under the notes: it goes in the text-note of the poem (§8.1).
 
 ---
 
@@ -534,6 +537,16 @@ numbered by that line's position in the poem:
 
 An `<annot type="text-note">` placed directly under the `<div>`, outside any
 line, is a note about the source as a whole and is printed without a number.
+
+**Variants of the text are documented here, once.** When the witnesses (or the
+libretes of one witness) disagree on a word of the poem, or the edition emends
+it, the text-note of that line says what each source reads and which reading is
+adopted. The lyrics under the notes then carry the adopted reading in every
+voice, silently: no `<app>` or `<corr>` around those `<syl>`, even when the
+part that transmits a voice reads otherwise (tono 46, *suerte* and *vivir*,
+which the tenor part taken from the CPMHL reads *muerte* and *sufrir*). The
+reader finds the variant in the notes to the poem, not repeated under each
+voice.
 
 ### 8.2 Supplied text
 

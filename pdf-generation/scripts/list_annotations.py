@@ -7,7 +7,12 @@ in the editions, without building 154 PDFs to find out.
 
 Every annotation is listed with the location it will carry, the editor's prose,
 the qualifiers taken from the MEI, and whether the scholar edition can anchor a
-footnote marker on it. Encoding problems (a dangling `@plist`, an annot with no
+footnote marker on it. When an annot points at an <app> whose readings belong
+to a variant group (`@class="#vgrp-..."`, declared as a <category>), the other
+<app>s of the group are listed too, even if the `@plist` does not name them:
+the group is one editorial decision and has to be proof-read as a whole. This
+is a listing aid only -- the PDFs print the annot's text, location and
+qualifiers, never the readings, so it changes nothing in them. Encoding problems (a dangling `@plist`, an annot with no
 locatable target, a note that no marker can reach) are reported as AVISO lines
 and counted in the summary.
 
@@ -57,11 +62,60 @@ def anchors_of(annotation):
     return ids
 
 
+def variant_groups(root):
+    """{class id: (label, [app, ...])} for the variant groups the <app>s of a
+    tono classify under, apps in document order. The label is the <category>
+    <label> when there is one, else the class id itself."""
+    labels = {}
+    for category in root.xpath('//mei:classDecls//mei:category', namespaces=ann.NSMAP):
+        label = category.find("mei:label", ann.NSMAP)
+        if category.get(ann.XML_ID) and label is not None:
+            labels[category.get(ann.XML_ID)] = " ".join("".join(label.itertext()).split())
+    groups = {}
+    for app in root.xpath('//mei:app', namespaces=ann.NSMAP):
+        if ann.is_clefs_apparatus(app):
+            continue
+        for cid in ann._classes_of(app):
+            groups.setdefault(cid, (labels.get(cid, cid), []))[1].append(app)
+    return groups
+
+
+def group_extras(annotation, groups, source_names):
+    """[(class id, label, n apps, [Reading])] for the <app>s that share a variant group
+    with the ones the annot points at but that its @plist leaves out."""
+    pointed = {ann._editorial_of(t) for t in annotation.anchors}
+    out = []
+    for cid in dict.fromkeys(annotation.categories):
+        label, apps = groups.get(cid, (cid, []))
+        readings, count = [], 0
+        for app in apps:
+            if app in pointed:
+                continue
+            count += 1
+            measure, _ = ann._locate(app)
+            for reading in ann.readings_of(app, source_names):
+                reading.where = measure or ""
+                readings.append(reading)
+        if readings:
+            out.append((cid, label, count, readings))
+    return out
+
+
+def reading_line(reading, with_where):
+    mark = "impresa" if reading.printed else "alternativa"
+    sources = f' — {", ".join(reading.sources)}' if reading.sources else ''
+    where = f'c.{reading.where} ' if with_where and reading.where else ''
+    return f'        · {where}{reading.label} ({mark}): {reading.text}{sources}'
+
+
 def report(number, title, mei_path, problems_only=False):
     """Print one tono's apparatus; return (n annotations, n warnings)."""
     warnings = []
     root = ET.parse(str(mei_path)).getroot()
     annotations = ann.collect(root, warn=warnings.append)
+    groups = variant_groups(root)
+    source_names = ann._source_names(root)
+    shown_groups = {}          # class id -> number of the note that listed it
 
     lines = []
     for i, annotation in enumerate(annotations, start=1):
@@ -84,12 +138,23 @@ def report(number, title, mei_path, problems_only=False):
         tail = f'  [{"; ".join(qualifiers)}]' if qualifiers else ''
         lines.append(f'  {i:>3}. {annotation.location or "(sin localización)"}: '
                      f'{annotation.text or "(sin texto)"}{tail}')
+        extras = group_extras(annotation, groups, source_names)
+        with_where = len(annotation.measures) > 1 or bool(extras)
         for reading in annotation.readings:
-            mark = "impresa" if reading.printed else "alternativa"
-            sources = f' — {", ".join(reading.sources)}' if reading.sources else ''
-            where = f'c.{reading.where} ' if len(annotation.measures) > 1 else ''
-            lines.append(f'        · {where}{reading.label} ({mark}): '
-                         f'{reading.text}{sources}')
+            lines.append(reading_line(reading, with_where))
+        # The rest of the variant group: in full the first time the group
+        # comes up, by reference afterwards, so a group spread over several
+        # annots is not printed once per annot.
+        for cid, label, apps, readings in extras:
+            more = f'{apps} variante{"s" if apps > 1 else ""} más'
+            if cid in shown_groups:
+                lines.append(f'        + grupo «{label}» (#{cid}): {more}, '
+                             f'véase la nota {shown_groups[cid]}')
+                continue
+            shown_groups[cid] = i
+            lines.append(f'        + grupo «{label}» (#{cid}): {more}, fuera del @plist')
+            for reading in readings:
+                lines.append(reading_line(reading, True))
         for problem in note_warnings:
             lines.append(f'        ! {problem}')
 
@@ -104,26 +169,46 @@ def report(number, title, mei_path, problems_only=False):
     return len(annotations), len(warnings)
 
 
+def reading_json(reading, with_where=False):
+    out = {"label": reading.label, "text": reading.text,
+           "printed": reading.printed, "sources": reading.sources}
+    if with_where:
+        out["measure"] = reading.where
+    return out
+
+
+def annotation_json(annotation, groups, source_names):
+    out = {
+        "location": annotation.location,
+        "measures": annotation.measures,
+        "parts": annotation.parts,
+        "type": annotation.kind,
+        "text": annotation.text,
+        "qualifiers": annotation.qualifiers(),
+        "anchors": anchors_of(annotation),
+        "unresolved": annotation.unresolved,
+        "readings": [reading_json(r) for r in annotation.readings],
+    }
+    extras = group_extras(annotation, groups, source_names)
+    if extras:
+        out["group_readings"] = [{
+            "class": cid, "label": label,
+            "readings": [reading_json(r, with_where=True) for r in readings],
+        } for cid, label, _, readings in extras]
+    return out
+
+
 def as_json(number, title, mei_path):
     root = ET.parse(str(mei_path)).getroot()
     annotations = ann.collect(root)
+    groups = variant_groups(root)
+    source_names = ann._source_names(root)
     return {
         "tono": number,
         "title": title,
         "mei": str(mei_path.relative_to(REPO_ROOT)),
-        "annotations": [{
-            "location": a.location,
-            "measures": a.measures,
-            "parts": a.parts,
-            "type": a.kind,
-            "text": a.text,
-            "qualifiers": a.qualifiers(),
-            "anchors": anchors_of(a),
-            "unresolved": a.unresolved,
-            "readings": [{"label": r.label, "text": r.text,
-                          "printed": r.printed, "sources": r.sources}
-                         for r in a.readings],
-        } for a in annotations],
+        "annotations": [annotation_json(a, groups, source_names)
+                        for a in annotations],
     }
 
 
