@@ -137,7 +137,6 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
     }
 
 
-    const editor = scoreProperties?.editor
     const reconstruction = scoreProperties?.reconstructionBy
     const numMeasures = scoreProperties?.numMeasures
     const title = tonoIndex ? `${scoreViewerConfig?.scores[tonoIndex].title}` : ""
@@ -181,31 +180,30 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     sm={{ flex: 1 }}
                     xs={{ flex: '50%' }}>
                     <Typography.Text>Música: {tonoStatus?.music_author}</Typography.Text><br />
-                    <Typography.Text>Texto: {tonoStatus?.text_author}</Typography.Text><br />
+                    <Typography.Text>Texto: {tonoStatus?.text_author}</Typography.Text>
+                </Col>
+                <Col xl={{ flex: 1 }}
+                    lg={{ flex: 1 }}
+                    md={{ flex: 1 }}
+                    sm={{ flex: 1 }}
+                    xs={{ flex: '50%' }}>
+                    <div className="tono-status-line">
+                        <Typography.Text>Música: {musicStatusText}</Typography.Text>
+                        <Progress percent={musicStatusValue} steps={9} size="small" showInfo={false} strokeColor={progressColors} />
+                    </div>
+                    <div className="tono-status-line">
+                        <Typography.Text>Texto: {textStatusText}</Typography.Text>
+                        <Progress percent={textStatusValue} steps={9} size="small" showInfo={false} strokeColor={progressColors} />
+                    </div>
+                </Col>
+                <Col xl={{ flex: 1 }}
+                    lg={{ flex: 1 }}
+                    md={{ flex: 1 }}
+                    sm={{ flex: 1 }}
+                    xs={{ flex: '50%' }}>
                     <Typography.Text>Orgánico: {tonoStatus?.organic}</Typography.Text>
-
-                </Col>
-                <Col xl={{ flex: 1 }}
-                    lg={{ flex: 1 }}
-                    md={{ flex: 1 }}
-                    sm={{ flex: 1 }}
-                    xs={{ flex: '50%' }}>
-                    <div>Música: {musicStatusText}</div>
-                    <Progress percent={musicStatusValue} steps={9} showInfo={false} strokeColor={progressColors} />
-                    <div>Texto: {textStatusText}</div>
-                    <Progress percent={textStatusValue} steps={9} showInfo={false} strokeColor={progressColors} />
-                </Col>
-                <Col xl={{ flex: 1 }}
-                    lg={{ flex: 1 }}
-                    md={{ flex: 1 }}
-                    sm={{ flex: 1 }}
-                    xs={{ flex: '50%' }}>
-                    {scoreProperties ? <div>
-                        <> <Typography.Text>Transcripción: {editor}</Typography.Text><br /> </>
-                        {reconstruction ?
-                            <> <Typography.Text>Reconstrucción: {reconstruction}</Typography.Text><br /> </> : null}
-                        <> <Typography.Text>Num compases: {numMeasures}</Typography.Text> </>
-                    </div> : null}
+                    {reconstruction ?
+                        <> <br /><Typography.Text>Reconstrucción: {reconstruction}</Typography.Text> </> : null}
                 </Col>
                 <Col xl={{ flex: 1 }}
                     lg={{ flex: 1 }}
