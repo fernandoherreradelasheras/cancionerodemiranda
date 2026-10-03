@@ -130,10 +130,10 @@ function BaseLayout() {
         return [menuItemKeyFromLocationAndTono(location, currentTonoNumber)]
     }, [location, currentTonoNumber])
 
-    /* The Content and the content div have their own padding and they add up: 48px per side
-       on desktop. On narrow screens that eats a quarter of the width, so there it is
-       reduced to 8 + 8 */
-    const horizontalPadding = breakpoint.md ? 24 : 8
+    /* Only the scrolling div has horizontal padding (the Content has none, so they don't
+       add up). It is relative to the viewport width so narrow screens don't waste space
+       on it: 1% of the width, never more than 1rem nor less than 0.25rem */
+    const horizontalPadding = "clamp(0.25rem, 1vw, 1rem)"
 
 
     return (
@@ -181,7 +181,7 @@ function BaseLayout() {
                             minHeight: 0,
                             display: 'flex',
                             flexDirection: 'column',
-                            padding: `0 ${horizontalPadding}px`,
+                            padding: 0,
                             background: colorBgContainer }}>
                         {/* The app shell is not scrollable: this is the only scrolling area, and
                             it has a definite height, so pages can fill it with height: 100% */}
@@ -190,7 +190,7 @@ function BaseLayout() {
                                 flex: 1,
                                 minHeight: 0,
                                 overflow: "auto",
-                                padding: `0px ${horizontalPadding}px 0 ${horizontalPadding}px`,
+                                padding: `0 ${horizontalPadding}`,
                                 borderRadius: borderRadiusLG  }}>
 
                             <Outlet />
