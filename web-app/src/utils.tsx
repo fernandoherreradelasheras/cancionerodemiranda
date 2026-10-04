@@ -1,5 +1,5 @@
 import { RefObject } from "react"
-import { ScoreViewerConfigScore } from 'score-viewer';
+import { ScoreViewerConfig, ScoreViewerConfigScore } from 'score-viewer';
 import tonosConfig from "./assets/tonos-config.json"
 
 const STATUS_FILE = "index.json"
@@ -11,9 +11,9 @@ const VITE_TEST_URLS = import.meta.env.VITE_TEST_URLS
 
 const TESTING = (VITE_TEST_URLS != undefined) ? true : false
 
-export const config = TESTING ?
+export const config: ScoreViewerConfig = (TESTING ?
   { ...tonosConfig, settings: { ...tonosConfig.settings, basePath: TESTING_PATH, facsimileImagesPath: TESTING_IMAGES_PATH } }
-  : tonosConfig
+  : tonosConfig) as ScoreViewerConfig
 
 export const statusUrl = config.settings.basePath + STATUS_FILE
 
