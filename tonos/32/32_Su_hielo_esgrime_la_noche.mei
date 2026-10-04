@@ -67,6 +67,11 @@
                   <title>Reconstruction of the lost Alto part</title>
                </bibl>
             </source>
+            <source xml:id="guion-recomposition" n="5" type="complementary" label="digital">
+               <bibl>
+                  <title>Reconstruction of the lost Guion part</title>
+               </bibl>
+            </source>
          </sourceDesc>
       </fileDesc>
       <workList>
@@ -78,6 +83,7 @@
                   <perfRes xml:id="perfRes-tiple2" source="#P-Ln_MM4802-2">Tiple 2º</perfRes>
                   <perfRes xml:id="perfRes-alto" type="reconstructed" source="#alto-part-recomposition">Alto</perfRes>
                   <perfRes xml:id="perfRes-tenor" source="#P-Lant_PT-TT-MUS-L122">Tenor</perfRes>
+                  <perfRes type="reconstructed" source="#guion-recomposition">Guion</perfRes>
                </perfResList>
             </perfMedium>
          </work>
@@ -92,22 +98,27 @@
                      <staffDef n="1" decls="#perfRes-tiple1" lines="5">
                         <label>Tiple 1º</label>
                         <labelAbbr>T. 1</labelAbbr>
-                        <clef xml:id="cjkdud1" shape="G" line="2"/>
+                        <clef shape="G" line="2"/>
                      </staffDef>
                      <staffDef n="2" decls="#perfRes-tiple2" lines="5">
                         <label>Tiple 2º</label>
                         <labelAbbr>T. 2</labelAbbr>
-                        <clef xml:id="cjkdud2" shape="G" line="2"/>
+                        <clef shape="G" line="2"/>
                      </staffDef>
                      <staffDef n="3" decls="#perfRes-alto" lines="5">
                         <label>[Alto]</label>
                         <labelAbbr>[A.]</labelAbbr>
-                        <clef xml:id="cjkdud2_1" shape="G" line="2"/>
+                        <clef shape="G" line="2"/>
                      </staffDef>
                      <staffDef n="4" decls="#perfRes-tenor" lines="5">
                         <label>Tenor</label>
                         <labelAbbr>Tn.</labelAbbr>
                         <clef xml:id="cjkdud3" shape="G" line="2" dis="8" dis.place="below"/>
+                     </staffDef>
+                     <staffDef n="5" lines="5">
+                        <label>[Guion]</label>
+                        <labelAbbr>[G.]</labelAbbr>
+                        <clef shape="F" line="4"/>
                      </staffDef>
                   </staffGrp>
                </scoreDef>
@@ -208,6 +219,12 @@
                                  <syl>Dos</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" pname="c" oct="3"/>
+                           <note dur="2" pname="c" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -408,10 +425,17 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="a" oct="2"/>
+                           <note xml:id="nbliju8r" dur="1" pname="f" oct="3"/>
+                        </layer>
+                     </staff>
                      <tie startid="#n36dm4x" endid="#njab2ut"/>
                      <tie startid="#n196g3ry" endid="#n1a1ymej"/>
                      <tie startid="#nbd6k3c" endid="#n1p5c135"/>
                      <tie startid="#alto_n1" endid="#alto_n2"/>
+                     <tie staff="5" startid="#nbliju8r" endid="#g32_m3_1"/>
                   </measure>
                   <measure n="3">
                      <staff n="1">
@@ -544,6 +568,12 @@
                                  <syl con="d" wordpos="i">su</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m3_1" dur="2" pname="f" oct="3"/>
+                           <note dur="1" pname="b" accid="f" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -734,6 +764,12 @@
                                  <syl>hoy</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="f" oct="3"/>
                         </layer>
                      </staff>
                      <app type="dissonant_analysis">
@@ -948,6 +984,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" pname="c" oct="3"/>
+                           <note xml:id="g32_m5_2" dur="2" pname="c" accid="s" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m5_2" endid="#g32_m6_1"/>
                      <tie startid="#n1nhaicy" endid="#n1pxr6ji"/>
                      <tie startid="#nbx3zfk" endid="#nrb454"/>
                      <tie startid="#nt9txkx" endid="#n16q5q5e"/>
@@ -1098,6 +1141,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m6_1" dur="2" pname="c" accid.ges="s" oct="3"/>
+                           <note dur="1" pname="d" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="7">
                      <staff n="1">
@@ -1178,6 +1227,12 @@
                            <rest dur="2"/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" pname="a" oct="2"/>
+                           <note dur="2" pname="a" oct="3"/>
+                        </layer>
+                     </staff>
                      <slur startid="#n1hgekh5" endid="#n1qmj79"/>
                      <slur startid="#alto_n5" endid="#alto_n6"/>
                      <app type="dissonant_analysis">
@@ -1242,6 +1297,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="a" oct="3"/>
+                           <note dur="1" pname="a" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -1339,6 +1400,12 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="a" oct="2"/>
+                           <note dur="1" pname="d" oct="3"/>
                         </layer>
                      </staff>
                      <bracketSpan staff="1" startid="#n413899" endid="#n724288" func="coloration" lwidth="0.5vu"/>
@@ -1490,6 +1557,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m10_1" dur="1" dots="1" pname="g" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m10_1" endid="#n9dueoqf"/>
                      <tie startid="#n11n8mgb" endid="#n1l8xam0"/>
                      <tie startid="#nezivu1" endid="#n32fom1"/>
                      <tie startid="#alto_n7" endid="#alto_n8"/>
@@ -1559,6 +1632,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="n9dueoqf" dur="2" pname="g" oct="3"/>
+                           <note dur="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="12">
                      <staff n="1">
@@ -1609,6 +1688,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" pname="c" oct="3"/>
+                           <note dur="2" pname="c" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -1706,6 +1791,12 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="f" oct="3"/>
                         </layer>
                      </staff>
                      <bracketSpan staff="1" startid="#n970626" endid="#n235052" func="coloration" lwidth="0.5vu"/>
@@ -1815,6 +1906,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="f" oct="3"/>
+                        </layer>
+                     </staff>
                      <bracketSpan staff="2" startid="#n110034" endid="#n470080" func="coloration" lwidth="0.5vu"/>
                      <bracketSpan staff="4" startid="#n44148" endid="#n976113" func="coloration" lwidth="0.5vu"/>
                   </measure>
@@ -1889,6 +1985,11 @@
                            </corr>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="f" oct="3"/>
+                        </layer>
+                     </staff>
                      <annot plist="#co89d">Semibreve y silencio de mínima en el manuscrito. Corregimos a semibreve con puntillo para igualarlo a la otra voz</annot>
                   </measure>
                   <measure n="16">
@@ -1940,6 +2041,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" pname="f" oct="3"/>
+                           <note dur="2" pname="f" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -2052,6 +2159,12 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="f" oct="3"/>
+                           <note dur="1" pname="b" accid="f" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -2188,6 +2301,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                      <bracketSpan staff="1" startid="#n722451" endid="#n711067" func="coloration" lwidth="0.5vu"/>
                      <bracketSpan staff="2" startid="#n824280" endid="#n4536" func="coloration" lwidth="0.5vu"/>
                      <bracketSpan staff="4" startid="#n305724" endid="#n960760" func="coloration" lwidth="0.5vu"/>
@@ -2291,6 +2409,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <sb/>
                </section>
@@ -2312,6 +2435,10 @@
                         <staffDef n="4" decls="#perfRes-tenor" lines="5">
                            <label>Tenor</label>
                            <labelAbbr>Tn.</labelAbbr>
+                        </staffDef>
+                        <staffDef n="5" lines="5">
+                           <label>[Guion]</label>
+                           <labelAbbr>[G.]</labelAbbr>
                         </staffDef>
                      </staffGrp>
                   </scoreDef>
@@ -2360,6 +2487,11 @@
                            <mRest/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="21">
                      <staff n="1">
@@ -2404,6 +2536,13 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="2" dots="1" pname="d" oct="3"/>
+                           <note dur="4" pname="e" oct="3"/>
                         </layer>
                      </staff>
                      <app type="dissonant_analysis">
@@ -2472,6 +2611,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="g" oct="3"/>
+                           <note dur="2" dots="1" pname="c" oct="3"/>
+                           <note dur="4" pname="d" oct="3"/>
+                        </layer>
+                     </staff>
                      <bracketSpan staff="1" startid="#n288734" endid="#n367555" func="coloration" lwidth="0.5vu"/>
                      <app type="dissonant_analysis">
                         <lem/>
@@ -2524,6 +2670,12 @@
                                  <syl con="d" wordpos="m">ga</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="e" oct="3"/>
+                           <note dur="1" pname="d" oct="3"/>
                         </layer>
                      </staff>
                      <app type="dissonant_analysis">
@@ -2585,6 +2737,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="b" oct="2"/>
+                           <note dur="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                      <bracketSpan staff="4" startid="#n845184" endid="#nagyyf4" func="coloration" lwidth="0.5vu"/>
                      <tie staff="3" startid="#n54pt3v2" endid="#ntii26l211"/>
                      <app type="dissonant_analysis">
@@ -2642,6 +2800,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="b" oct="2"/>
+                           <note xml:id="g32_m25_2" dur="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m25_2" endid="#g32_m26_1"/>
                      <tie startid="#n54ptv2" endid="#nagyyf4"/>
                   </measure>
                   <measure n="26">
@@ -2692,6 +2857,12 @@
                                  <syl con="d" wordpos="i">a</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m26_1" dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="b" oct="2"/>
                         </layer>
                      </staff>
                      <app type="dissonant_analysis">
@@ -2748,6 +2919,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m27_1" dur="1" dots="1" pname="a" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m27_1" endid="#g32_m28_1"/>
                      <tie startid="#n15yrlt8" endid="#n10iw5st"/>
                      <tie startid="#n3vpimy" endid="#nsu1uom"/>
                      <tie startid="#n1lig910" endid="#n6v2fh5"/>
@@ -2827,6 +3004,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m28_1" dur="2" pname="a" oct="2"/>
+                           <note dur="1" pname="a" oct="2"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="29">
                      <staff n="1">
@@ -2889,6 +3072,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="d" oct="3"/>
+                           <note dur="2" dots="1" pname="f" oct="3"/>
+                           <note dur="4" pname="g" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="30">
                      <staff n="1">
@@ -2946,6 +3136,13 @@
                                  <syl con="d" wordpos="i">can</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="a" oct="3"/>
+                           <note dur="2" dots="1" pname="g" oct="3"/>
+                           <note dur="4" pname="f" oct="3"/>
                         </layer>
                      </staff>
                      <tie startid="#n173gxpc" endid="#n1joatyi"/>
@@ -3028,6 +3225,12 @@
                               </verse>
                            </note>
                            <note xml:id="n253976" dur="4" pname="b" oct="3"/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="e" oct="3"/>
+                           <note dur="1" pname="f" oct="3"/>
                         </layer>
                      </staff>
                      <slur staff="4" startid="#n568569" endid="#n578676"/>
@@ -3115,6 +3318,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="f" oct="3"/>
+                        </layer>
+                     </staff>
                      <bracketSpan staff="2" startid="#n40563" endid="#n351672" func="coloration" lwidth="0.5vu"/>
                      <bracketSpan staff="4" startid="#n1tn32c" endid="#n469875" func="coloration" lwidth="0.5vu"/>
                   </measure>
@@ -3170,6 +3379,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m33_1" dur="1" dots="1" pname="g" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m33_1" endid="#g32_m34_1"/>
                      <tie startid="#n1pbdcvk" endid="#n2pj8rf"/>
                      <tie startid="#nu96ckw" endid="#nqkka9"/>
                      <app type="dissonant_analysis">
@@ -3253,6 +3468,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m34_1" dur="2" pname="g" oct="3"/>
+                           <note dur="1" pname="g" oct="3"/>
+                        </layer>
+                     </staff>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -3314,6 +3535,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m35_1" dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m35_1" endid="#g32_m36_1"/>
                   </measure>
                   <measure n="36">
                      <staff n="1">
@@ -3378,6 +3605,13 @@
                                  <syl wordpos="t">ro</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m36_1" dur="1" pname="c" oct="3"/>
+                           <note dur="4" pname="c" oct="3"/>
+                           <note dur="4" pname="b" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -3461,6 +3695,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m37_1" dur="1" dots="1" pname="a" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m37_1" endid="#g32_m38_1"/>
                   </measure>
                   <measure n="38">
                      <staff n="1">
@@ -3527,6 +3767,12 @@
                                  <syl wordpos="t">ro</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m38_1" dur="1" pname="a" oct="2"/>
+                           <note dur="2" pname="a" oct="2"/>
                         </layer>
                      </staff>
                      <app type="dissonant_analysis">
@@ -3615,6 +3861,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="b" accid="f" oct="2"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="40">
                      <staff n="1">
@@ -3635,6 +3886,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="d" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -3670,6 +3927,11 @@
                                  <syl con="d" wordpos="i">llo</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="g" oct="2"/>
                         </layer>
                      </staff>
                      <slur startid="#n19my9sh" endid="#n1ykc1gc"/>
@@ -3712,6 +3974,11 @@
                                  <syl wordpos="t">rar,</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
                         </layer>
                      </staff>
                      <app type="dissonant_analysis">
@@ -3769,6 +4036,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" accid="s" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="44">
                      <staff n="1">
@@ -3805,6 +4077,11 @@
                                  <syl wordpos="t">rar,</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="d" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -3848,6 +4125,11 @@
                                  <syl con="d" wordpos="m">llo</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="g" oct="2"/>
                         </layer>
                      </staff>
                      <tie startid="#n5hm9sd" endid="#n18zp61r"/>
@@ -3933,6 +4215,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="e" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="47">
                      <staff n="1">
@@ -3971,6 +4258,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m47_1" dur="1" dots="1" pname="a" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m47_1" endid="#g32_m48_1"/>
                   </measure>
                   <measure n="48">
                      <staff n="1">
@@ -4037,6 +4330,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m48_1" dur="2" pname="a" oct="2"/>
+                           <note dur="2" dots="1" pname="a" oct="2"/>
+                           <note dur="4" pname="b" oct="2"/>
+                        </layer>
+                     </staff>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -4083,6 +4383,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="50">
                      <staff n="1">
@@ -4103,6 +4408,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="f" oct="3"/>
+                           <note dur="1" pname="g" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -4169,6 +4480,11 @@
                                  <syl con="d" wordpos="i">com</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -4253,6 +4569,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                      <slur staff="1" startid="#n71038" endid="#id338"/>
                      <app type="dissonant_analysis">
                         <lem/>
@@ -4300,6 +4621,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m53_1" dur="1" dots="1" pname="a" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m53_1" endid="#g32_m54_1"/>
                      <slur startid="#nu2enk6" endid="#n1sc53ez"/>
                      <tie startid="#n1blto0m" endid="#n1pozl7p"/>
                      <tie startid="#na12321" endid="#na12322"/>
@@ -4324,6 +4651,11 @@
                      <staff n="4">
                         <layer n="1">
                            <note xml:id="n1xayddp" dur="1" dots="1" pname="a" oct="3"/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m54_1" dur="1" dots="1" pname="a" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -4364,6 +4696,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m55_1" dur="1" dots="1" pname="d" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m55_1" endid="#g32_m56_1"/>
                   </measure>
                   <measure n="56">
                      <staff n="1">
@@ -4430,6 +4768,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m56_1" dur="2" pname="d" oct="3"/>
+                           <note dur="2" dots="1" pname="d" oct="3"/>
+                           <note dur="4" pname="e" oct="3"/>
+                        </layer>
+                     </staff>
                      <app type="dissonant_analysis">
                         <lem/>
                         <rdg type="dissonant_analysis">
@@ -4476,6 +4821,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m57_1" dur="1" dots="1" pname="f" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m57_1" endid="#g32_m58_1"/>
                   </measure>
                   <measure n="58">
                      <staff n="1">
@@ -4518,6 +4869,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m58_1" dur="2" pname="f" oct="3"/>
+                           <note dur="1" pname="f" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -4592,6 +4949,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="f" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="60">
                      <staff n="1">
@@ -4664,6 +5026,13 @@
                            <note xml:id="n1e27f4m" dur="4" pname="a" oct="3"/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="f" oct="3"/>
+                           <note dur="2" dots="1" pname="f" oct="3"/>
+                           <note dur="4" pname="a" oct="3"/>
+                        </layer>
+                     </staff>
                      <slur startid="#n1e02xfl" endid="#n1shf06"/>
                      <tie startid="#n1e02xfl" endid="#n1cwdl3u"/>
                      <slur startid="#nhejum2" endid="#n1e27f4m"/>
@@ -4712,6 +5081,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="b" accid="f" oct="3"/>
+                        </layer>
+                     </staff>
                      <slur startid="#nh4z2d5" endid="#n184mube"/>
                      <tie startid="#n1aa9lht" endid="#n1shf06"/>
                      <slur startid="#na1212112" endid="#na1212113"/>
@@ -4751,11 +5125,16 @@
                      </staff>
                      <staff n="3">
                         <layer n="1">
-                           <note xml:id="n819670" dur="2" pname="e" oct="4"/>
+                           <note dur="2" pname="e" oct="4"/>
                            <note dur="1" pname="c" oct="4"/>
                         </layer>
                      </staff>
                      <staff n="4">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="a" oct="3"/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
                         <layer n="1">
                            <note dur="1" dots="1" pname="a" oct="3"/>
                         </layer>
@@ -4804,6 +5183,12 @@
                            <note xml:id="nvns0yr" dur="1" dots="1" pname="g" oct="3"/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m63_1" dur="1" dots="1" pname="g" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m63_1" endid="#g32_m64_1"/>
                      <tie startid="#n1nxv2gq" endid="#na8hmle"/>
                      <slur startid="#n1bw838" endid="#n1rk4gy3"/>
                      <tie startid="#n1bw838" endid="#n3seaz4"/>
@@ -4843,6 +5228,11 @@
                      <staff n="4">
                         <layer n="1">
                            <note xml:id="n1tjp3kt" dur="1" dots="1" pname="g" oct="3"/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m64_1" dur="1" dots="1" pname="g" oct="3"/>
                         </layer>
                      </staff>
                      <app type="dissonant_analysis">
@@ -4894,6 +5284,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m65_1" dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m65_1" endid="#g32_m66_1"/>
                   </measure>
                   <measure n="66">
                      <staff n="1">
@@ -4919,6 +5315,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m66_1" dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="c" oct="3"/>
                         </layer>
                      </staff>
                      <tie startid="#n1ydwxal" endid="#n1qtaj2"/>
@@ -4948,6 +5350,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="g" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -4982,6 +5390,12 @@
                            <mRest/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m68_1" dur="1" dots="1" pname="a" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m68_1" endid="#g32_m69_1"/>
                      <tie startid="#n6v67zw" endid="#n7bj5b4"/>
                   </measure>
                   <measure n="69">
@@ -4990,7 +5404,7 @@
                            <note xml:id="n7bj5b4" dur="2" pname="c" oct="5"/>
                            <note xml:id="n578176" dur="1" pname="b" oct="4">
                               <verse n="1">
-                                 <syl wordpos="t">ma</syl>
+                                 <syl wordpos="t">ba</syl>
                               </verse>
                            </note>
                         </layer>
@@ -5008,6 +5422,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m69_1" dur="2" pname="a" oct="2"/>
+                           <note dur="1" pname="g" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -5040,6 +5460,13 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="2" dots="1" pname="e" oct="3"/>
+                           <note dur="4" pname="d" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -5078,6 +5505,13 @@
                            <mRest/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="2" dots="1" pname="d" oct="3"/>
+                           <note dur="4" pname="e" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="72">
                      <staff n="1">
@@ -5109,6 +5543,12 @@
                            <mRest/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="g" oct="3"/>
+                           <note dur="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                      <bracketSpan staff="1" startid="#n874544" endid="#n243782" func="coloration" lwidth="0.5vu"/>
                   </measure>
                   <measure n="73">
@@ -5134,6 +5574,11 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="g" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -5169,6 +5614,11 @@
                            <mRest/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
                      <tie startid="#nooegk0" endid="#nuhsych"/>
                      <bracketSpan staff="2" startid="#nooegk0" endid="#n852113" func="coloration" lwidth="0.5vu"/>
                   </measure>
@@ -5196,6 +5646,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="g" oct="2"/>
                         </layer>
                      </staff>
                   </measure>
@@ -5228,6 +5684,11 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="d" oct="3"/>
                         </layer>
                      </staff>
                      <tie startid="#n1yqpkm2" endid="#n14pistx"/>
@@ -5268,6 +5729,12 @@
                      <staff n="4">
                         <layer n="1">
                            <mRest/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="d" oct="3"/>
+                           <note dur="1" pname="c" oct="3"/>
                         </layer>
                      </staff>
                      <app type="dissonant_analysis">
@@ -5320,6 +5787,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="f" oct="3"/>
+                           <note xml:id="g32_m78_2" dur="1" pname="b" accid="f" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m78_2" endid="#g32_m79_1"/>
                      <tie startid="#na4khbn" endid="#n15raqyn"/>
                      <bracketSpan staff="4" startid="#na4khbn" endid="#n983409" func="coloration" lwidth="0.5vu"/>
                   </measure>
@@ -5368,6 +5842,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m79_1" dur="2" pname="b" accid.ges="f" oct="2"/>
+                           <note xml:id="g32_m79_2" dur="1" pname="a" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m79_2" endid="#g32_m80_1"/>
                      <bracketSpan staff="2" startid="#n13537" endid="#n587928" func="coloration" lwidth="0.5vu"/>
                      <app type="dissonant_analysis">
                         <lem/>
@@ -5430,6 +5911,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m80_1" dur="2" pname="a" oct="2"/>
+                           <note xml:id="g32_m80_2" dur="1" pname="b" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m80_2" endid="#g32_m81_1"/>
                      <tie startid="#n12k3v99" endid="#nlmig92"/>
                   </measure>
                   <measure n="81">
@@ -5466,6 +5954,12 @@
                                  <syl wordpos="t">ba</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m81_1" dur="2" pname="b" oct="2"/>
+                           <note dur="1" pname="a" oct="2"/>
                         </layer>
                      </staff>
                      <bracketSpan staff="1" startid="#n772565" endid="#n323238" func="coloration" lwidth="0.5vu"/>
@@ -5519,6 +6013,13 @@
                                  <syl con="d" wordpos="i">sus</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="c" oct="3"/>
+                           <note dur="2" dots="1" pname="c" oct="4"/>
+                           <note dur="4" pname="b" oct="3"/>
                         </layer>
                      </staff>
                      <tie startid="#n12574ic" endid="#n1gnpjc6"/>
@@ -5578,6 +6079,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="a" oct="3"/>
+                           <note dur="2" dots="1" pname="g" oct="3"/>
+                           <note dur="4" pname="f" oct="3"/>
+                        </layer>
+                     </staff>
                      <slur startid="#npftt0w" endid="#n1j8f64c"/>
                      <tie startid="#npftt0w" endid="#n147odh1"/>
                      <app type="dissonant_analysis">
@@ -5623,6 +6131,12 @@
                                  <syl>el</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="e" oct="3"/>
+                           <note dur="1" pname="f" oct="3"/>
                         </layer>
                      </staff>
                      <bracketSpan staff="4" startid="#n642661" endid="#n1uvjh6o" func="coloration" lwidth="0.5vu"/>
@@ -5702,6 +6216,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="g" oct="3"/>
+                           <note xml:id="g32_m85_2" dur="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m85_2" endid="#g32_m86_1"/>
                      <tie startid="#nylgbii" endid="#n6pmd74"/>
                      <tie startid="#nbvgscr" endid="#n15r55qb"/>
                      <bracketSpan staff="1" startid="#n401525" endid="#nd4xsc7" func="coloration" lwidth="0.5vu"/>
@@ -5769,6 +6290,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m86_1" dur="2" pname="c" oct="3"/>
+                           <note xml:id="g32_m86_2" dur="1" pname="b" oct="2"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m86_2" endid="#g32_m87_1"/>
                      <tie startid="#nzwubz" endid="#nwnito5"/>
                      <app type="dissonant_analysis">
                         <lem/>
@@ -5824,6 +6352,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m87_1" dur="2" pname="b" oct="2"/>
+                           <note xml:id="g32_m87_2" dur="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m87_2" endid="#g32_m88_1"/>
                      <tie startid="#nsvodwc" endid="#n6r33z1"/>
                      <tie startid="#n1gi8w87" endid="#n2hkwqo"/>
                      <bracketSpan staff="2" startid="#nsvodwc" endid="#n973119" func="coloration" lwidth="0.5vu"/>
@@ -5871,6 +6406,12 @@
                                  <syl wordpos="t">ra</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m88_1" dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="b" oct="2"/>
                         </layer>
                      </staff>
                      <tie startid="#n1kvnoor" endid="#n3ncws8"/>
@@ -5936,6 +6477,13 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="g" oct="2"/>
+                           <note xml:id="g32_m89_2" dur="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m89_2" endid="#g32_m90_1"/>
                      <slur startid="#n1gh2hsp" endid="#n1uvjh6o"/>
                      <tie startid="#n1gh2hsp" endid="#n1betgrs"/>
                      <app type="dissonant_analysis">
@@ -5983,6 +6531,12 @@
                            <note xml:id="n1uvjh6o" dur="1" pname="b" oct="3"/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m90_1" dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="b" oct="2"/>
+                        </layer>
+                     </staff>
                      <slur startid="#n1wq4j81" endid="#nd4xsc7"/>
                      <slur staff="3" startid="#nr2fpwj2" endid="#n2znrgu1"/>
                   </measure>
@@ -6023,6 +6577,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m91_1" dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m91_1" endid="#g32_m92_1"/>
                   </measure>
                   <measure n="92">
                      <staff n="1">
@@ -6073,6 +6633,13 @@
                                  <syl con="d" wordpos="i">sus</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m92_1" dur="2" pname="c" oct="3"/>
+                           <note dur="2" dots="1" pname="c" oct="4"/>
+                           <note dur="4" pname="b" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -6137,6 +6704,13 @@
                                  <syl con="d" wordpos="i">sus</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="a" oct="3"/>
+                           <note dur="2" dots="1" pname="g" oct="3"/>
+                           <note dur="4" pname="f" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -6204,6 +6778,13 @@
                            <note xml:id="n1khezes" dur="4" pname="d" oct="3"/>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="e" oct="3"/>
+                           <note dur="2" pname="d" oct="3"/>
+                           <note dur="2" pname="g" oct="2"/>
+                        </layer>
+                     </staff>
                      <slur startid="#nh8kvc0" endid="#n1khezes"/>
                      <app type="dissonant_analysis">
                         <lem/>
@@ -6267,6 +6848,12 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m95_1" dur="1" dots="1" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <tie startid="#g32_m95_1" endid="#g32_m96_1"/>
                      <tie startid="#n1m04ugr" endid="#ngwa3vm"/>
                      <bracketSpan staff="4" startid="#n1m04ugr" endid="#njlqh69" func="coloration" lwidth="0.5vu"/>
                      <app type="dissonant_analysis">
@@ -6327,7 +6914,7 @@
                                  <syl wordpos="t">ra</syl>
                               </verse>
                            </note>
-                           <note dur="2" pname="c" oct="4">
+                           <note dur="2" pname="f" oct="4">
                               <verse n="1">
                                  <syl con="d" wordpos="i">sus</syl>
                               </verse>
@@ -6342,6 +6929,12 @@
                                  <syl con="d" wordpos="i">sus</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note xml:id="g32_m96_1" dur="2" pname="c" oct="3"/>
+                           <note dur="1" pname="d" oct="3"/>
                         </layer>
                      </staff>
                      <slur startid="#ni9l4q6" endid="#n1ut84hd"/>
@@ -6394,6 +6987,12 @@
                               </verse>
                            </note>
                            <note xml:id="n19oa549" dur="2" pname="c" oct="3"/>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="2" pname="e" oct="3"/>
+                           <note dur="1" pname="c" oct="3"/>
                         </layer>
                      </staff>
                      <tie startid="#n15gk4ds" endid="#n1pji5pc"/>
@@ -6450,6 +7049,11 @@
                            </note>
                         </layer>
                      </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="g" oct="3"/>
+                        </layer>
+                     </staff>
                   </measure>
                   <measure n="99" right="end">
                      <staff n="1">
@@ -6486,6 +7090,11 @@
                                  <syl>sol</syl>
                               </verse>
                            </note>
+                        </layer>
+                     </staff>
+                     <staff n="5">
+                        <layer n="1">
+                           <note dur="1" dots="1" pname="c" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
