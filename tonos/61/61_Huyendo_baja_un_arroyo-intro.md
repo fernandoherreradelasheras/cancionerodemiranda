@@ -11,11 +11,19 @@ musical madrileño.
 
 [^gemma]: Tono editado por TORRELLAS PAZ, Gemma: «Huyendo baja un arroyo (Manuel Correa)», *Archivo Musical GemmaPartituras*. Disponible en: [https://www.gemmapartituras.com/huyendo-baja-un-arroyo-manuel-correa/](https://www.gemmapartituras.com/huyendo-baja-un-arroyo-manuel-correa/)
 
+## El texto
+
 El poema desarrolla una alegoría amorosa en clave pastoril. Un arroyo que huye de la montaña y se detiene en un valle
-florido simboliza al amante que, seducido por la belleza, queda preso de amor. La versión del _Libro de tonos humanos_
+florido simboliza al amante que, seducido por la belleza, queda preso de amor.
+
+## Fuentes poéticas
+
+La versión del _Libro de tonos humanos_
 tiene dos estrofas y una copla a solo que no aparecen en la composición del Maestro Capitán del Cancionero de Miranda
 (_Acabando de ausentarse_, _Los pastores le consuelan_ y _Si el sol que los cielos dora_) mientras que esta presenta una
 estrofa que no aparece en la de Correa (_Aquí un día cuando el alba_).
+
+## Otras versiones musicales
 
 El tono es uno de los cinco del Cancionero de Miranda cuya voz grave se rotula «Bajo» y no «Tenor» (61, 65, 66, 71 y
 74), y el único a cuatro voces con esa disposición: dos tiples, alto y bajo, frente a la norma de dos tiples, alto y
@@ -27,6 +35,12 @@ Las dos puestas en música son composiciones distintas, pero no independientes. 
 coplas y, en el estribillo, la melodía con la que arranca y el tratamiento de los dos últimos versos. Como sucede
 habitualmente con este repertorio es posible que ambas deriven de una misma manera de cantar este romance, quizá una
 tonada anterior a las dos, o bien que uno de los compositores conocía la obra del otro sobre que hizo su propia versión. 
+
+## La música
+
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
 
 Al estar perdido librete de la voz del alto del Cancinoero de Miranda esta parte es reconstrucción editorial. En las
 coplas la textura deja poco margen: el alto entra el último en la imitación de «lisonjeando», un compás después del

@@ -1,5 +1,25 @@
+*[TODO: apertura: forma (coplas/estribillo, nº de coplas, metro, asonancia), orgánico (Tiple 1º, Tiple 2º, Alto, Tenor y guion), autoría del texto (Salazar y Torres) y de la música (anónima en el Cancionero de Miranda; tono a solo de Hidalgo con el mismo texto).]*
+
+## El texto
+
+*[TODO: comentario del texto.]*
+
+## Fuentes poéticas
+
 El texto ***El curso transparente*** aparece cantado en la comedia *Los Juegos Olímpicos* escrita por **Agustín Salazar y Torres** e interpretada por primera vez en la corte madrileña para celebrar los años de la reina Mariana de Austria en 1673.
 Gozó de gran popularidad a tenor de los diferentes  testimonios poéticos y musicales conservados.
+
+Son también testimonio de la existencia del tono cantado su presencia en obras poéticas que
+recopilaban letras de tonos cantados como son el *Libro de tonos de
+Jeronimo Nieto* o la segunda parte del Libro de tonos puestos en cifra
+para arpa E-Mn M/2478. Este último manuscrito incluye también una
+parodia en clave escatológica de las coplas originales: *El culo
+transparente // de tu ceñida braga*.
+
+El tono a 4 del Cancionero de Miranda omite una de las coplas incluidas
+en el texto de la comedia y que sí aparece en el tono de Hidalgo (la cuarta).
+
+## Fuentes musicales
 
 De un tono a solo con este texto y música de **Juan de Hidalgo**, probablmente el encargado de la música para la representación palaciega de la comedia de Salazar y Torres, 
 se conservan hasta seis copias:
@@ -28,13 +48,10 @@ manuscrito Gayangos-Barbieri.
 En el tono a 4 del Cancionero de Miranda, se pueden reconocer en las coplas patrones rítmicos que podrían recordar 
 al solo de Hidalgo, aunque estos patrones vienen, en cierta forma dictados por la métrica y acentuación del texto. No parece por tanto que el tono de Hidalgo y el del Cancionero de Miranda fueran reelaboración el uno del otro o de un modelo anterior sino más bien versiones musicales diferentes de un texto de gran popularidad que emplean patrones métricos similares.
 
-Son también testimonio de la existencia del tono cantado su presencia en obras poéticas que
-recopilaban letras de tonos cantados como son el *Libro de tonos de
-Jeronimo Nieto* o la segunda parte del Libro de tonos puestos en cifra
-para arpa E-Mn M/2478. Este último manuscrito incluye también una
-parodia en clave escatológica de las coplas originales: *El culo
-transparente // de tu ceñida braga*.
+## La música
 
-El tono a 4 del Cancionero de Miranda omite una de las coplas incluidas
-en el texto de la comedia y que sí aparece en el tono de Hidalgo (la cuarta).
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
 
+## La edición
+
+*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion en la fuente); redactar la reconstrucción del alto.]*

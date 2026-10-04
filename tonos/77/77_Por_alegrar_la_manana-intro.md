@@ -1,3 +1,11 @@
+*[TODO: apertura: forma (coplas/estribillo, metro, asonancia), orgánico (Tiple, Alto, Tenor) y autoría.]*
+
+## El texto
+
+*[TODO: comentario del texto.]*
+
+## Fuentes poéticas
+
 El tono ***Por alegrar la mañana*** es un caso interesante de adaptación poética. El texto del tono concuerda con el de un poema incluído en el manuscrito E-Mn MSS/3700 (f.177)[^1]. El tono comprende la primera mitad del poema del manuscrito, las cuatro primeras cuartetas y los dos versos que le siguen a modo de estribillo[^2], y deja sin copiar las ocho cuartetas restantes. En este manuscrito el poema aparece dentro de un bloque de poemas varios sin autoría. 
 
 [^1]: El poema completo aparece editado en HILL, John M.: "Some verse of or about Lisardo". Revue Hispanique Vol. 72, 1928.
@@ -12,13 +20,12 @@ Tras esta concordancia completa, encontramos concordancias parciales de seccione
 
 Este romance, casi al completo, está musicado a 3 voces por **Juan Blas** en el Cancionero de la Sablonara[^3] (nº 54, f.59v). Ni la música para las coplas de Juan Blas ni el resto del texto del Príncipe de Esquilache coinciden con el tono del Cancionero de Miranda ni con las estrofas extra del E-Mn MSS/3700.
 
-[^3] D-Mbs Cod. hisp 2
+[^3]: D-Mbs Cod. hisp 2
 
 El estribillo del tono: 
 
 > Pajarillos suaves: templad las voces,\
 > que parecen penas y son amores.
-
 
 presenta hasta tres testimonios concordantes, con diferentes variaciones: otro tono del Cancionero de la Sablonara, un fragmento cantado auto sacramental de Lope de Vega o de Mira de Amescua y un tono de Juan Arañés.
 
@@ -45,7 +52,6 @@ El resto del texto que cantan los músicos en el auto tampoco tiene corresponden
 > que parecen penas\
 > y son amores.
 
-
 Una última variante del estribillo aparece en el *Libro segundo de tonos y villancicos* de **Juan Arañés**, que cambia *pajarillos* por *avecillas* y *penas* por *celos*:
 
 > Avecillas süaves,\
@@ -57,6 +63,12 @@ De nuevo, las coplas de Arañés no guardan parentesco con ninguno de los otros 
 
 En resumen, el tono del Cancionero de Miranda incorpora un estribillo popular que probablemente fuera cantado. Sobra la cuarteta inicial, tanto por difusión como por fechas y precedentes en el propio Cancionero, parece más plausible que el autor anónimo de nuestro tono/poema tomara inspiración del romance de Esquilache.
 
+## La música
 
 TODO: análisis de las semajanzas melódicas de los tres testimonios musiclaes del estribillo
 
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
+
+*[TODO: alto reconstruido (Tiple, [Alto], Tenor); redactar la reconstrucción editorial del alto.]*

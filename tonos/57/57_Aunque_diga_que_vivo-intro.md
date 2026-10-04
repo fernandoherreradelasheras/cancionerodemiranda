@@ -3,6 +3,20 @@ ochenta compases, y de un romance de cinco coplas octosílabas con asonancia á-
 versos pares, despachado en once. Se conserva completo en los cuatro libretes del
 Cancionero de Miranda, guion incluido.
 
+## El texto
+
+El poema construye su paradoja sobre un uso doble de la soledad. El estribillo la da
+por causa de muerte, *pues lo cierto es que muero de soledades*, y las coplas se dedican
+a desmentirlo interpelando a esas mismas soledades: no pueden matar a quien las tiene
+por compañía, porque el que vive de deseos constantes lleva consigo con qué poblarlas.
+De ahí la sentencia de la tercera copla, que soledad sin deseos no la ha padecido nadie,
+y la vuelta de tuerca de la cuarta, donde las soledades pasan de enemigas a maestras,
+ya que son ellas las que le enseñan lo que ama. La quinta cierra con el nombre de la
+dama y con la conclusión que resuelve la paradoja del estribillo: la ausencia no separa
+a quien sabe querer con fe.
+
+## Fuentes musicales
+
 La atribución a **Fray Felipe de la Madre de Dios** se sostiene sobre un solo apoyo: la
 anotación del librete de guion. Ni los dos de tiple ni el de tenor dicen nada, y tampoco
 lo hace el otro testimonio del tono, el del Cancionero Poético-Musical Hispánico de
@@ -19,15 +33,7 @@ emplea con más frecuencia valores breves. El registro y el ámbito, en cambio, 
 prácticamente los mismos. El texto también presenta diferencias sutiles entre ambas 
 fuentes pero que en algunos casos cambian el sentido del verso.
 
-El poema construye su paradoja sobre un uso doble de la soledad. El estribillo la da
-por causa de muerte, *pues lo cierto es que muero de soledades*, y las coplas se dedican
-a desmentirlo interpelando a esas mismas soledades: no pueden matar a quien las tiene
-por compañía, porque el que vive de deseos constantes lleva consigo con qué poblarlas.
-De ahí la sentencia de la tercera copla, que soledad sin deseos no la ha padecido nadie,
-y la vuelta de tuerca de la cuarta, donde las soledades pasan de enemigas a maestras,
-ya que son ellas las que le enseñan lo que ama. La quinta cierra con el nombre de la
-dama y con la conclusión que resuelve la paradoja del estribillo: la ausencia no separa
-a quien sabe querer con fe.
+## La música
 
 El estribillo se abre musicalmente de manera singular: un largo solo del tenor de 
 catorce compases en los que expone todo el material melódico del estribillo. Tras
@@ -37,6 +43,8 @@ voz en voz y repetido sin descanso hasta la homofonía de los últimos compases.
 coplas, mucho más breves, empiezan también escalonadas, con las voces entrando de
 dos en dos sobre *soledades importunas*, pero enseguida se reúnen para declamar
 juntas el resto del romance.
+
+## La edición
 
 La voz del alto, cuyo librete está perdido, es reconstrucción editorial. En el estribillo,
 tras el solo del tenor, el alto anticipa el motivo del tiple 1º para *no me crea nadie*

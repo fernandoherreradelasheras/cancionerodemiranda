@@ -1,5 +1,15 @@
+*[TODO: apertura: forma (número de coplas, metro, asonancia), orgánico, autoría del texto y de la música, concordancias conocidas o no localizadas.]*
+
+## El texto
+
 El texto del tono ***Norabuena, venga al mundo*** combina rasgos propios de la poesía devocional y de la poesía amorosa del Siglo de Oro. A lo largo de las coplas, el poeta recurre deliberadamente a un vocabulario que puede pertenecer tanto al ámbito del amor divino como al del amor humano. Expresiones como «prodigio de amor», «deidad más bella», «hermosura», «ojos», «corazón» o «adoración» mantienen durante buena parte del poema cierta ambigüedad en torno a la identidad del objeto celebrado. La mención explícita al «niño Dios» en la tercera copla orienta inequívocamente el texto hacia una lectura devocional, pero no anula por ello el lenguaje de la lírica amorosa, sino que lo resignifica. El poema participa así de un procedimiento frecuente en la poesía religiosa del periodo, en el que imágenes y fórmulas propias del amor humano se trasladan al ámbito de lo divino.
 
 Desde el punto de vista métrico, las cuatro coplas presentan una estructura muy regular. A los cuatro primeros versos de cada estrofa se añaden siempre los dos mismos versos finales: «Norabuena venga, venga / venga enhorabuena el sol». Su recurrencia les otorga una función semejante a la de un estribillo, pero no forman una sección métrica independiente: son versos octosilábicos que se integran plenamente en el romance y mantienen su organización métrica y su asonancia.
 
+## La música
+
 La música subraya, sin embargo, la singularidad de esta fórmula final. En la musicalización de los primeros cuatro versos predomina una escritura de carácter declamatorio, con las voces avanzando en buena medida de forma conjunta y con una relación bastante directa entre sílaba y nota. Este tratamiento favorece la inteligibilidad del texto y permite que las imágenes poéticas se sucedan con claridad. Al llegar a «Norabuena venga, venga», la escritura cambia sensiblemente: la frase se amplía mediante repeticiones, entradas escalonadas y superposiciones entre las voces. 
+
+## La edición
+
+*[TODO: Tiple 1º, Tiple 2º, Tenor y guion de la fuente; alto reconstruido: redactar la reconstrucción del alto.]*

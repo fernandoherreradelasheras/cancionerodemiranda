@@ -1,6 +1,14 @@
 El tono nº29, ***Con el cántaro Marica***, es el primero del cancionero del que no tenemos una parte de guion, algo que a partir de este punto sucederá con frecuencia. Se trata, al igual que el tono anterior, de un tono de sección única sin estribillo.
 
+## El texto
+
 El texto poético transforma el bucólico marco pastoril de una pastora que va a la fuente a por agua en una escena dramática. La paradoja central de quien busca agua mientras derrama lágrimas se combina con una narración circular que refuerza temáticamente la imposibilidad de escape del amor.
+
+## La música
+
+*[TODO: comentario musical (textura homofónica de cc. 1-20 frente a las entradas escalonadas de cc. 21-38, cadencias).]*
+
+## La edición
 
 Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion son reconstrucción editorial. La primera mitad del tono (cc. 1-20) es homofónica: las voces declaman juntas sílaba a sílaba y el alto se limita a completar la armonía. En la segunda (cc. 21-38), el verso *del discreto y del amar* se reparte en entradas escalonadas. La fuente presenta emparejados al tiple 1º con el tenor (cc. 21 y 26) y a los dos tiples (c. 34), pero el tiple 2º (cc. 23 y 27) y el tenor (c. 32) entran solos. En esas entradas el alto se suma con el mismo ritmo y el mismo texto, de modo que el diálogo se mantiene por parejas de voces de principio a fin.
 

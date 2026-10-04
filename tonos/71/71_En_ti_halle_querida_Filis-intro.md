@@ -3,6 +3,8 @@ bajo, de modo que se conserva completo y no necesita reconstrucción. El texto e
 romance de seis coplas octosílabas con asonancia á-a en los versos pares, rematado
 por un estribillo de solo dos versos.
 
+## El texto
+
 El poema pertenece a la vertiente vituperadora de la lírica amorosa, y su hallazgo
 está en el primer verso, construido como una trampa. *En ti hallé, querida Filis, lo
 que del tiempo esperaba* se lee al principio como el arranque de un elogio, y el
@@ -31,6 +33,8 @@ el de tiple 2º lo corrige debajo. *Crer* es la forma portuguesa, y un lusismo e
 copia de un texto castellano encaja con lo que el tono 44 muestra desde el otro lado,
 donde la única pieza en portugués aparece con la eñe castellana.
 
+## La música
+
 La música reparte el peso de manera muy desigual entre las dos secciones. Las coplas
 ocupan veintidós compases de compás ternario y son homofónicas, con las tres voces
 declamando juntas cada verso y separándolos con silencios. Su único momento de
@@ -47,3 +51,7 @@ verso reagrupa a las tres en homofonía para cerrar en mi. Esa desproporción, c
 narración despachada en veintidós compases y el lamento expandido a más del doble, es
 la que define el tono: lo que importa no es el relato del desengaño sino el
 estribillo que lo condena.
+
+## La edición
+
+*[TODO: tono completo en la fuente (Tiple 1º, Tiple 2º, Bajo); indicar que no requiere reconstrucción.]*

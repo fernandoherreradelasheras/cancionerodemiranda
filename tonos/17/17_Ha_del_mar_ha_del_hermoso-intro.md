@@ -7,6 +7,8 @@ cuartetas octosílabas con asonancia á-e sostenida en los versos pares
 libretes de voces y en el de guion, y sólo falta, como en la mayor parte del
 cancionero, la parte de alto.
 
+## El texto
+
 El poema está construido sobre una fórmula de llamada. *¡Ha del mar!* es el grito
 con que se interpela desde lejos, y de él nace la anáfora que abre las tres primeras
 coplas: se llama al mar, después al *palacio de Tetis* y por último al
@@ -33,12 +35,16 @@ pertenezca también a esa serie de piezas de circunstancia regia, aunque el text
 ofrece ninguna referencia concreta, ni un nombre, ni un río, ni un reino, que
 permita identificar a la homenajeada ni la ocasión.
 
+## La música
+
 Musicalmente el tono es de una sencillez extrema, acorde con su brevedad.
 La escritura es homofónica de principio a fin: no hay un solo pasaje
 imitativo y las voces declaman el texto nota contra nota, con la única
 excepción del arranque, donde el tiple 1º anima la llamada con un giro en valores
 breves (do–si–do–re) mientras las demás sostienen el acorde. La música se articula
 en cuatro frases, una por verso, separadas por silencios.
+
+## La edición
 
 La estricta homofonía tiene una consecuencia favorable para esta edición: para la
 reconstrucción editorial de la voz del alto el margen de decisión es sido escaso.

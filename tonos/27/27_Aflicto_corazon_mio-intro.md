@@ -1,4 +1,15 @@
+*[TODO: apertura: forma (coplas/estribillo, nº de coplas, metro, asonancia), orgánico (tiple, dos altos, tenor y guion), autoría de texto y música y concordancias conocidas o no localizadas.]*
+
+## El texto
+
 El tono ***Aflicto corazón mío*** expresa el tormento amoroso y los celos del yo poético a través de un diálogo con su propio corazón. El empleo de paronomasias (juegos fonéticos entre palabras similares) y quiasmos, crea un efecto de circularidad que refleja la naturaleza obsesiva de los celos.
+
+## La música
+
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
 
 Las claves utilizadas en las partes conservadas de este tono (Superius Primus Do en 1ª, Superius Secundus Do en 3ª y Tenor Do en 4ª), se corresponden con tiple, alto/tenor y tenor/bajo. El rangos escritos en los libretes de Superius Secundus (Do4 - Do5) y Tenor (Do3 - Fa4) resultarían forzados por arriba para tenor y bassus respectivamente así que nos quedamos con la opción tiple, alto y tenor. La voz perdida ha de moverse en una zona más grave que la de superius secundus (por el orden implícito de agudo a grave) así que podría tratarse de un segundo alto o de un primer tenor.
 
+*[TODO: alto 2º reconstruido; redactar la reconstrucción del alto 2º (el resto de voces y el guion se conservan en la fuente).]*

@@ -3,11 +3,7 @@ octosílabas con asonancia á-e en los versos pares y de un estribillo de cuatro
 largos. El librete de guion del Cancionero de Miranda no copió el acompañamiento, que
 esta edición toma del Cancionero Poético-Musical Hispánico de Lisboa.
 
-Ese cancionero transmite el mismo tono con muy pocas divergencias, y la principal
-afecta al reparto de las voces entre los libretes: lo que aquí se copia en el de tiple
-1º está allí en el de tiple 2º, y al revés. El fenómeno se repite en otros tonos
-concordantes entre ambas colecciones, unas veces intercambiando las partes de una única
-sección y otras, como en este caso, intercambiando las partes en todo el tono. 
+## El texto
 
 El poema es una alegoría amorosa construida sobre el canto de un jilguero. Las dos
 primeras coplas presentan la escena, con el pájaro posado en el *facistol de un sauce*
@@ -20,6 +16,16 @@ riman en la cuarta copla en un juego de derivación, *acorde y concorde*, *unifo
 y el valle queda en suspensión. El estribillo se dirige por fin al pájaro para pedirle
 que no interrumpa el canto, y cierra con los dos imperativos que resumen el poema,
 *hechicen tus ecos, eleven tus voces*.
+
+## Fuentes musicales
+
+Ese cancionero transmite el mismo tono con muy pocas divergencias, y la principal
+afecta al reparto de las voces entre los libretes: lo que aquí se copia en el de tiple
+1º está allí en el de tiple 2º, y al revés. El fenómeno se repite en otros tonos
+concordantes entre ambas colecciones, unas veces intercambiando las partes de una única
+sección y otras, como en este caso, intercambiando las partes en todo el tono. 
+
+## La música
 
 La música responde a ese programa con dos recursos. En la sección
 estrófica el primer verso se enuncia dos veces, y en la repetición los dos tiples se
@@ -36,6 +42,8 @@ del cancionero que ponen en escena una corriente de agua adoptan el binario, per
 el arroyo es sólo el lugar de la escena, y lo que el poema describe no es su curso sino
 el canto que suena sobre él.
 
+## La edición
+
 Para la reconstrucción editorial de voz del alto, cuyo librete está perdido, la primera
 sección de las coplas (cc. 1 - 27) presenta poco margen al tratarse de canto en homofonía.
 En el final de las coplas el alto repite primero (cc. 27-28) el tema presentado por el tiple 2º
@@ -45,3 +53,5 @@ tiene que ser el alto el que introduzca en solitario el tema en los dos primeros
 donde el tenor dobla al tiple 1º, el alto dobla al tiple 2º ya que, de otro modo, esta voz intermedia 
 quedaría sepultada entre el resto. De aquí al final, este esquema se alterna con partes de canto
 homofónico entre las cuatro voces en las que el alto completa la armonía.
+
+*[TODO: frase inicial que defina el caso mixto: guion tomado del CPMHL (dicho en la apertura) y alto reconstruido.]*

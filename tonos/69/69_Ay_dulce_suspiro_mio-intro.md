@@ -1,3 +1,11 @@
+*[TODO: apertura: forma (coplas/estribillo, metro, asonancia), orgánico (Tiple, Alto, Tenor), autoría y concordancias.]*
+
+## El texto
+
+*[TODO: comentario del texto.]*
+
+## Fuentes poéticas
+
 El estribillo de este tono lo encontramos en las Obras de Don Eugenio Gerardo Lobo: 
 
 (Don Eugenio REDONDILLA, QUE LE DIO UNA DAMA.
@@ -7,7 +15,6 @@ Ay dulce suspiro mío
 quando te apartas de mi,  
 no quissiera mas de ti  
 que hallarme donde te embio.
-
 
 cuya glosa nada tiene que ver con nuestras coplas. Las redondillas que _le dio una dama_ a Lobo tienen su origen en la canción en redondillas de Gregorio Silvetre: 
 
@@ -27,3 +34,10 @@ que hallarme donde te envio
 
 Aunque el texto del tono coincide plenamente con el de Lobo, difícilmente podría ser esta la fuente pues Lobo nació en 1679 y no publicaría sus obras poéticas hasta bien entrado el XVIII (La primera, LA Selva de las Musas en Cádiz, 1717. Encontramos el Ay dulce suspiro en sus Obras poéticas lýricas de 1738). Es probable que la canción de Silvestre fuera difundida a lo largo del XVII evolucionando a la forma en la que la encotramos en el Cancionero de Miranda y glosada por Lobo. 
 
+## La música
+
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
+
+*[TODO: alto reconstruido (Tiple, [Alto], Tenor); redactar la reconstrucción editorial del alto.]*

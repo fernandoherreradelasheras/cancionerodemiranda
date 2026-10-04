@@ -1,3 +1,13 @@
 Del tono a tres voces ***Junto a un arroyo de plata***, nos falta la voz intermedia correspondiente al alto. 
 
+## El texto
+
 El poema despliega una estructura dialógica tripartita que comienza con la voz de un narrador externo presentando la escena pastoril en la sitúa a Ricello junto al arroyo. A continuación, Ricello convierte al arroyo personificado en confidente de su dolor amoroso, empleando el tópico del locus amoenus como espacio de confidencia. En el estribillo intercalado entre las coplas Ricello se dirige directamente a Belisa con su lamento; finalmente, la respuesta de la amada transforma el poema de elegía pastoril en diálogo amoroso. Esta progresión desde la presentación narrativa objetiva hacia la queja solitaria y, posteriormente, hacia el diálogo recíproco, refleja la dinámica barroca entre desengaño y redención amorosa.
+
+## La música
+
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
+
+*[TODO: alto reconstruido (Tiple, [Alto], Tenor); redactar la reconstrucción editorial del alto.]*

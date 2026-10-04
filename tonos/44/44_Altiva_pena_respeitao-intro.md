@@ -5,6 +5,8 @@ la lengua de la canción profana de corte en Lisboa era la del reino vecino, inc
 en una compilación reunida por un músico de la Capilla Real portuguesa y destinada,
 presumiblemente, a una institución portuguesa.
 
+## El texto
+
 La excepción, además, no es del todo limpia, y basta el primer verso para
 comprobarlo. Los tres libretes escriben *Altiva peña respeitão*, con la eñe
 castellana en lugar del dígrafo portugués *nh*, de modo que en tres palabras
@@ -94,6 +96,8 @@ la más oscura del conjunto y la traducción la deja deliberadamente sin resolve
 *a certificar conformes* admite varias lecturas, y ninguna aclara del todo si las
 esferas y los horizontes son término de comparación o sujeto de la conformidad.
 
+## La música
+
 Musicalmente el tono se reparte en dos secciones de carácter opuesto. Las coplas,
 apenas once compases en compasillo, arrancan con las voces entrando escalonadas y se
 resuelven enseguida en una declamación conjunta y bastante rápida, apropiada para
@@ -115,6 +119,8 @@ el tercer verso, entra tras un silencio con *inda espero constante* y reproduce 
 motivo de notas repetidas con que el tenor lo había expuesto. La rima común de
 *constante* y *quebrante* hace que las voces terminen sobre la misma sílaba, y la
 constancia del amante suena, literalmente, por encima del quebranto.
+
+## La edición
 
 Este tono es uno de los que no conservan parte de guion, y su voz de alto es, como en
 casi todo el cancionero, reconstrucción editorial.

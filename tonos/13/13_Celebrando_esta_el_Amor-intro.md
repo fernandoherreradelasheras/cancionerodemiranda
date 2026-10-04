@@ -2,6 +2,33 @@ El breve tono *Celebrando está el amor*, aún configurado en una sola
 sección, repite el mismo verso *alamar no, sino alarma* como pie de
 cierre de cada estrofa.
 
+## El texto
+
+*[TODO: comentario del texto.]*
+
+Comparte el nombre, Anarda, y la idea la belleza como arma
+que embiste y avasalla con uno de los tonos más bellos del **Libro
+de Tonos humanos**: *A desafiar las flores*[^lth][^gemma]
+
+> A desafiar las flores,\
+> ¡qué linda Anarda salió!;\
+> bien puede dársele el vítor,\
+> que es cobarde toda flor.
+
+> ¡Al arma, al arma,\
+> plantas y flores,\
+> que las armas de Anarda\
+> el campo reconoce,\
+> y ya embisten sus soles!
+
+![Tiple primero de A desafiar las flores del Libro de Tonos Humanos. E-Mn M/1262 f. 153v.](assets/13_a_desafiar_LTH.jpg)
+
+[^lth]: *Libro de Tonos Humanos*, E-Mn M/1262, ff. 147v-149r [153v-155r]. Disponible en: [https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=314](https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=314)
+
+[^gemma]: Tono editado por TORRELLAS PAZ, Gemma: «A desafiar las flores (Anónimo, s. XVII)», *Archivo Musical GemmaPartituras*. Disponible en: [https://www.gemmapartituras.com/a-desafiar-las-flores-anonimo-s-xvii/](https://www.gemmapartituras.com/a-desafiar-las-flores-anonimo-s-xvii/)
+
+## Fuentes poéticas
+
 La primera cuarteta de nuestro tono humano coincide en gran parte con la
 primera de un romance de **Antonio Hurtado de Mendoza** copiado en el
 folio 57r del manuscrito E-Mp II/2802:
@@ -17,24 +44,10 @@ hasta alarmas y armas.
 
 ![Romance de Antonio Hurtado de Mendoza. Real Biblioteca de Palacio, Madrid, Patrimonio Nacional, II/2802, f. 57r.](assets/13_RB_II2802_57r.jpg)
 
-Sí comparte el nombre, Anarda, y la idea la belleza como arma
-que embiste y avasalla con uno de los tonos más bellos del **Libro
-de Tonos humanos**: *A desafiar las flores*[^lth][^gemma]
+## La música
 
-> A desafiar las flores,\
-> ¡qué linda Anarda salió!;\
-> bien puede dársele el vítor,\
-> que es cobarde toda flor.
+*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
 
-> ¡Al arma, al arma,\
-> plantas y flores,\
-> que las armas de Anarda\
-> el campo reconoce,\
-> y ya embisten sus soles!
+## La edición
 
-
-![Tiple primero de A desafiar las flores del Libro de Tonos Humanos. E-Mn M/1262 f. 153v.](assets/13_a_desafiar_LTH.jpg)
-
-[^lth]: *Libro de Tonos Humanos*, E-Mn M/1262, ff. 147v-149r [153v-155r]. Disponible en: [https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=314](https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=314)
-
-[^gemma]: Tono editado por TORRELLAS PAZ, Gemma: «A desafiar las flores (Anónimo, s. XVII)», *Archivo Musical GemmaPartituras*. Disponible en: [https://www.gemmapartituras.com/a-desafiar-las-flores-anonimo-s-xvii/](https://www.gemmapartituras.com/a-desafiar-las-flores-anonimo-s-xvii/)
+*[TODO: Tiple 1º, Tiple 2º, Tenor y guion de la fuente; alto reconstruido: redactar la reconstrucción del alto.]*

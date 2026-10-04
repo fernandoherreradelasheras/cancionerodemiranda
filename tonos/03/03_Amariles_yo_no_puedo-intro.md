@@ -1,6 +1,6 @@
-El tono ***Amariles, yo no puedo***  presenta una interesante construcción poético-musical en la que cada copla termina
-con las palabras *Yo no sé* repetidas de manera diferente por cada voz en la que destaca el tenor con salto ascendente
-de quinta.
+*[TODO: apertura: forma (nº de coplas, metro, asonancia), orgánico, autoría de texto y música y concordancias no localizadas.]*
+
+## El texto
 
 El poema desarrolla el tópico del amor inevitable y la pérdida de la voluntad del amante, muy frecuente en la lírica
 barroca. El texto explora las paradojas del sentimiento amoroso a través de una serie de imposibilidades conceptistas:
@@ -24,3 +24,13 @@ obedecerla supondría, no obstante, renunciar a la misma fidelidad en que se fun
 descortesía de no poder *hacerte el gusto*. El poema va así de la ignorancia sobre el nacimiento del amor a la certeza
 de que perdura: el sujeto no sabe cómo ha quedado cautivo, pero sí que no puede desear su libertad. La repetición de *Yo
 no sé* mantiene esa diferencia entre ignorar las causas y admitir la fuerza del afecto.
+
+## La música
+
+El tono ***Amariles, yo no puedo***  presenta una interesante construcción poético-musical en la que cada copla termina
+con las palabras *Yo no sé* repetidas de manera diferente por cada voz en la que destaca el tenor con salto ascendente
+de quinta.
+
+## La edición
+
+*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto.]*

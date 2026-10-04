@@ -13,6 +13,18 @@ sino como "MISSA".
 
 ![Comienzo de Airecillos mansos en el pliego de villancicos de la Capilla Real de Lisboa de la Navidad de 1681](assets/31_pliego.jpg)
 
+## El texto
+
+*[TODO: comentario del texto.]*
+
+## Fuentes poéticas
+
+En cuanto al texto, la versión de Évora incluye solo las tres primeras
+coplas de las cinco de los otros dos testimonios musicales que a su vez
+omiten la última copla incluida en el pliego.
+
+## Fuentes musicales
+
 La parte del libro de tenor de *Airecillos mansos* en el Cancionero de
 Miranda no lleva ninguna indicación específica pero su equivalente en el
 Cancionero poético-musical hispano de Lisboa está anotada como Alto. La
@@ -26,9 +38,7 @@ hispano de Lisboa presenta alguna diferencias (sobre todo cambios de
 octava de algunos grupos de notas pero también en cuanto al reparto de
 algunas duraciones).
 
-En cuanto al texto, la versión de Évora incluye solo las tres primeras
-coplas de las cinco de los otros dos testimonios musicales que a su vez
-omiten la última copla incluida en el pliego.
+## Difusión y pervivencia
 
 Varios versos del texto los podemos trazar a lo largo de todo el siglo
 XVII en diversas encarnaciones a lo humano y a lo divino. Así, los
@@ -56,10 +66,15 @@ recuerde*:
 > pajarillos no\
 > que harto desveladico me le tengo yo
 
+[^1]: [http://bdh-rd.bne.es/viewer.vm?id=0000060876](http://bdh-rd.bne.es/viewer.vm?id=0000060876)
+
 Es probable que este villancico de 1651 fuera compuesto por Carlo
 Patiño, pues esa autoría consta en una readaptación para el Santísimo
 Sacramento conservada en Canet de Mar (Au 788)[^2]. Encontramos el mismo
 texto en un villancico cantado en Córdoba en la Navidad de 1665.
+
+[^2]: Editada por Mariano Lambea y Lola Josa en
+    [https://digital.csic.es/handle/10261/156526](https://digital.csic.es/handle/10261/156526)
 
 De nuevo en la vertiente profana, en 1662 se estrena la comedia de
 Calderón Ni amor se libra de amor, donde se canta:
@@ -87,7 +102,10 @@ de Pedro II:
 > fuentecillas, vuestras corrientes,\
 > no le despierten.
 
-[^1]: [http://bdh-rd.bne.es/viewer.vm?id=0000060876](http://bdh-rd.bne.es/viewer.vm?id=0000060876)
+## La música
 
-[^2]: Editada por Mariano Lambea y Lola Josa en
-    [https://digital.csic.es/handle/10261/156526](https://digital.csic.es/handle/10261/156526)
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
+
+*[TODO: tono completado con otra fuente: Alto 1º, perdido en el Cancionero de Miranda, tomado de la copia de Évora (P-EVc Ms. CLI/1-1 d 1); Tiple 1º, Tiple 2º, Alto 2º y guion del Cancionero de Miranda. Redactar.]*

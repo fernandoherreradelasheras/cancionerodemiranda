@@ -3,6 +3,8 @@ bloque a tres voces sin estribillo. Está escrito para tiple, alto y tenor, así
 solo lo transmiten los libretes de tiple 1º y de tenor. El texto es un romance de
 siete coplas octosílabas con asonancia á-o en los versos pares.
 
+## El texto
+
 El poema es un apóstrofe sostenido a Cupido, y su interés está en el giro que da al
 tópico. Las dos primeras coplas son de reproche indignado, con cuatro preguntas
 encadenadas que le echan en cara al dios haber gastado ya la flor de los años del
@@ -26,6 +28,8 @@ la lectura de *de* como preposición de causa, «la gloria que tengo sólo por a
 y en ese caso no hay arcaísmo ninguno. Los indicios de antigüedad de este tono son,
 por tanto, formales y musicales antes que lingüísticos.
 
+## La música
+
 Musicalmente el tono es de una llaneza notable, incluso para el bloque al que
 pertenece. Veinticinco compases de ritmo ternario, armadura de un bemol y final en
 sol bastan para las siete coplas. La escritura es homofónica y silábica de principio
@@ -39,6 +43,8 @@ lanzan a un breve giro en valores menores mientras el tenor sostiene la nota, un
 detalle mínimo pero bien colocado, justo sobre la palabra *flor* de *gastar la flor de
 mis años*. Esa sobriedad, sin contrastes de compás ni juego de texturas, es coherente
 con el estrato antiguo al que la forma parece remitir.
+
+## La edición
 
 La reconstrucción de la voz de alto, al ser la escritura homofónica de principio a fin,
 sin un solo pasaje imitativo en el que hubiera que restituir una entrada, la

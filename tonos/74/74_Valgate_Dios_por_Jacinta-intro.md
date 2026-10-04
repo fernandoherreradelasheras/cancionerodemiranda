@@ -2,5 +2,18 @@ El tono a tres voces ***Válgate Dios, por Jacinta*** se conserva completo en el
 
 [^zaragoza]: Se compone de tres volumenes y está conservado en la biblioteca de la Universidad de Zaragoza (Ms-247, Ms-248 y Ms-249). El poema se encuentra en el vol 2 (Ms-248) f. 886r-886v
 
+## El texto
+
+*[TODO: comentario del texto.]*
+
+## Fuentes poéticas
+
 Sobre esa base, el tono presenta una elaboración propia. Las tres particellas coinciden en seleccionar seis coplas, suprimir las dos restantes ("De tus vecinas los celos…" y "Lo que siento y lo que digo…") y alterar el orden, anticipando "A las penas que me daban" a "Cuando al alba de San Juan". La supresión de la copla de las vecinas deja sin antecedente el posesivo de "Nunca dije a sus envidias", y a esa incoherencia responde, en un solo librete (el del tiple 1º), la enmienda "tus invidias". Otras divergencias entre las voces, como "alcanzarse" por "alcanzarte" en los dos tiples frente al "alcanzarte" del bajo, muestran que las tres particellas se copiaron con cierta independencia, con retoques locales y no según una revisión única. No todo es retoque deliberado: "también la hermosura mata" por "mate", presente en las tres voces, rompe la asonancia en á‑e y se explica como descuido del antígrafo, no como búsqueda de coherencia.
 
+## La música
+
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
+
+*[TODO: tono completo en la fuente (Tiple 1º, Tiple 2º, Bajo); indicar que no requiere reconstrucción.]*

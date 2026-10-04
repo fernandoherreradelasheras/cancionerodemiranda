@@ -1,3 +1,11 @@
+*[TODO: apertura: forma (número de coplas, metro, asonancia), orgánico, autoría del texto y de la música, concordancias conocidas o no localizadas.]*
+
+## El texto
+
+*[TODO: comentario del texto.]*
+
+## Fuentes poéticas
+
 El texto del tono **Divina Aurora alemana** está tomado, de manera
 parcial, de un romance de Agustín Salazar y Torres que apareció
 publicado de forma póstuma en el primer volumen de la **Citara de
@@ -15,6 +23,9 @@ Mariana de Austria[^1] y los años posteriores a su publicación en 1681,
 en la Capilla Real portuguesa se lanzaran a cantar las glorias de la
 madre del rey de España.
 
+[^1]: BELTRÁN DEL RÍO SOUS, Adriana: \"Nuevo discurso de la vida y
+    escritos de Agustín de Salazar y Torres\", 2022. p 208
+
 Observando los cambios con respecto al romance original encontramos una
 posible explicación a su presencia en el Cancionero de Miranda: la
 reutilización del texto, quitando cualquier referencia a la monarquía
@@ -28,6 +39,8 @@ de nuestros tonos, Mariana y María Sofía, se les una una tercera,
 también Mariana: Mariana del Palatinado-Neoburgo, segunda esposa de
 Carlos II y hermana de María Sofía.
 
+## Difusión y pervivencia
+
 Otro importante testimonio de la circulación de tonos humanos dirigidos
 a los monarcas ibéricos lo encontramos en un volumen fáctico que reune
 diversa documentación y correspondencia de la reina María Sofía. Este
@@ -36,6 +49,12 @@ portugués de María Sofía hasta su muerte en 1699. Entre la numerosa
 correspondencia familiar no faltan los intercambios con su hermana la
 reina de España, a los que acompañarían seguramente el romance que con
 el que se celebró uno de los cumpleaños de Mariana de Neorbugo[^2]
+
+[^2]: La ficha bibliográfica de la BNF asocia por error este romance la
+    reina madre Mariana de Austria. El índice del manuscrito solo indica
+    *Cançao aos annos da Rª de Hespanha* y el contenido del poema, que
+    insiste una vez más en su fertilidad para darle un heredero al
+    rey, no deja duda alguna
 
 Como curiosidad incluimos el texto de este romance intercambiado entre
 las reinas.
@@ -120,12 +139,10 @@ las reinas.
 > *y por ti la edad dorada*  
 > *para toda España venga*  
 
+## La música
 
-[^1]: BELTRÁN DEL RÍO SOUS, Adriana: \"Nuevo discurso de la vida y
-    escritos de Agustín de Salazar y Torres\", 2022. p 208
+*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
 
-[^2]: La ficha bibliográfica de la BNF asocia por error este romance la
-    reina madre Mariana de Austria. El índice del manuscrito solo indica
-    *Cançao aos annos da Rª de Hespanha* y el contenido del poema, que
-    insiste una vez más en su fertilidad para darle un heredero al
-    rey, no deja duda alguna
+## La edición
+
+*[TODO: Tiple 1º, Tiple 2º, Tenor y guion de la fuente; alto reconstruido: redactar la reconstrucción del alto.]*

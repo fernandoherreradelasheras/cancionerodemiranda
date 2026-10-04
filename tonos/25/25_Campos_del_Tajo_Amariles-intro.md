@@ -4,6 +4,8 @@ romance de cinco cuartetas octosílabas con asonancia aguda en á, al que se añ
 estribillo de cuatro versos. Se conserva en los tres libretes de voces y en el de
 guion, y sólo falta la parte de alto.
 
+## El texto
+
 Es el primer tono del cancionero que llora la muerte de la amada. Hasta aquí las
 quejas amorosas lo han sido siempre por desdén, por ausencia o por imposible, y el
 único antecedente próximo, la tórtola viuda del tono 14, lo es sólo por analogía.
@@ -34,6 +36,7 @@ cuya fórmula reaparece casi literalmente en el segundo verso de nuestra primera
 el lugar de donde las ninfas recogían las perlas para la reina en el tono 19
 (*Perlas iba cogiendo*).
 
+## La música
 
 Musicalmente, el tono aprovecha al máximo el contraste entre sus dos secciones. Las coplas, en compás binario y apenas
 nueve compases, son una declamación homofónica casi recitada, con las cuatro voces moviéndose sobre la misma sílaba y el
@@ -43,12 +46,6 @@ voces sobre *y él sea testigo*.  La escritura imitativa alcanza su punto más g
 donde un giro melismático de seis notas va pasando del tiple 1º al resto de voces dibujando el fluir del río antes de
 que el texto lo haga retroceder. A partir de ahí las voces se retroceden a la declamación homofónica y silábica.
 
-Dentro de esa declamación, la palabra *llanto* recibe un singular tratamiento. En el compás 32 el tenor,
-doblado por el guion, desciende una cuarta disminuida hasta la sensible de la cadencia a sol; en el 36 es el tiple 1º,
-que acaba de subir una sexta menor sobre *de mi*, el que salta la misma cuarta disminuida hacia la sensible de la
-cadencia final. Es la figura que la teoría alemana del siglo XVII catalogó como *saltus duriusculus*: un intervalo que
-el contrapunto proscribía y que se admitía precisamente como recurso patético para pintar el dolor.
-
 Dentro de esa declamación, la palabra *llanto* recibe un tratamiento singular. En el compás 32 el tenor, doblado por el
 guion, desciende una cuarta disminuida hasta la sensible de la cadencia a sol. En el 36 es el tiple 1º, que acaba de
 subir una sexta menor sobre *de mi*, el que salta la misma cuarta disminuida hacia la sensible de la cadencia final. La
@@ -56,7 +53,9 @@ tratadística hispana conocía bien el recurso y la tensión que encerraba. Cero
 «dolor, pasión, aspereza, dureza, llanto, sospiros», la música fuera «dura, áspera y triste» (*El melopeo y maestro*,
 1613, lib. XII, cap. V). Nassarre, por su parte, excluía ciertos saltos «por la aspereza de su entonación» (*Fragmentos
 músicos*, 1700, trat. I, cap. V). Es el mismo intervalo proscrito que la teoría alemana del siglo XVII catalogó como
-*saltus duriusculus* y admitió como recurso patético.
+*saltus duriusculus* y admitió como recurso patético para pintar el dolor.
+
+## La edición
 
 Para la reconstrucción editorial de la voz de alto las coplas ofrecen poco margen, su carácter estrictamente homofónicas
 con el bajo fijado por el guion limitan las opciones al relleno armónico compatible. El estribillo, en cambio, exige

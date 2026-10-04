@@ -4,13 +4,7 @@ cuarenta y dos compases, y de un romance de cinco coplas octosílabas, con asona
 tono en el orden inverso, con las coplas delante y el estribillo después, y de ahí que
 en su edición se identifique como *Quien ama y no se declara*.
 
-La principal diferencia entre ambos testimonios es que el Cancionero Poético-Musical
-Hispánico de Lisboa incluye una parte de guion, por lo que utilizamos esa fuente para
-suplir la ausencia de acompañamiento en el nuestro. En lo demás, las dos copias están
-muy próximas: las coplas coinciden nota por nota en todas las voces, y las diferencias
-musicales, casi todas de escasa entidad, se concentran en el estribillo. El texto
-presenta también algunas diferencias menores, algunas claramente identificables como
-errores de copia.
+## El texto
 
 El poema opone dos maneras de amar y establece entre ellas una jerarquía moral que las
 cinco coplas van razonando. Quien ama y calla merece el premio de Amor; quien se declara
@@ -24,6 +18,18 @@ mas vive donde se muere*. El estribillo, que en este cancionero aparece antes qu
 ese razonamiento, lo desmiente en sus tres versos: la dama ve la fineza y aun
 así no se ablanda.
 
+## Fuentes musicales
+
+La principal diferencia entre ambos testimonios es que el Cancionero Poético-Musical
+Hispánico de Lisboa incluye una parte de guion, por lo que utilizamos esa fuente para
+suplir la ausencia de acompañamiento en el nuestro. En lo demás, las dos copias están
+muy próximas: las coplas coinciden nota por nota en todas las voces, y las diferencias
+musicales, casi todas de escasa entidad, se concentran en el estribillo. El texto
+presenta también algunas diferencias menores, algunas claramente identificables como
+errores de copia.
+
+## La música
+
 Las dos secciones se reparten el trabajo de manera muy marcada. El estribillo es
 íntegramente imitativo: entra el tiple 1º solo y le van respondiendo las demás voces,
 cada una a un compás de distancia, y a partir de ahí los dos miembros del texto
@@ -35,5 +41,9 @@ imitativo, de modo que el romance se oye entero y sin estorbo. La desproporción
 sección y otra, más del doble a favor del estribillo pese a que este sólo tiene tres
 versos, deja claro dónde está el centro de gravedad de la pieza.
 
+## La edición
+
 La voz del alto, cuyo librete está perdido, es reconstrucción editorial.
 TODO: comments about the reconstruction
+
+*[TODO: indicar que el guion, ausente en el Cancionero de Miranda, se toma del Cancionero Poético-Musical Hispánico de Lisboa.]*

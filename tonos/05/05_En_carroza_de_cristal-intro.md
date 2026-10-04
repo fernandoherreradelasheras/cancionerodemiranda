@@ -1,3 +1,7 @@
+*[TODO: apertura: forma (nº de coplas, metro, asonancia), orgánico, autoría de texto y música y concordancias no localizadas.]*
+
+## El texto
+
 El tono ***En carroza de cristal*** presenta un elaborado ejercicio de poesía cortesana donde el carácter alegórico del
 texto indica que formaba parte de una fiesta o celebración real.
 
@@ -23,3 +27,11 @@ La tercera trae una alteración mayor que el adelanto del amanecer. El sol se ol
 *suspenso*, término que reúne la detención del movimiento y el asombro de quienes contemplan la fiesta. La celebración
 se encarece así por sus efectos sobre el orden natural. El texto conservado no nombra a la persona agasajada; deja
 percibir su excelencia a través de la conducta excepcional del sol.
+
+## La música
+
+*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
+
+## La edición
+
+*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto.]*

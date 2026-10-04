@@ -1,2 +1,13 @@
-El tono ***Deidad, que divina enseñas*** con música de **Fray Felipe de la Madre de Dios** y texto anónimo es un canto de alabanza a la mujer idealizada. A través de una serie de hipérboles y metáforas eleva a la amada a categoría divina, maestra de la armonía cósmica. Mediante antítesis (sol que llora/cielo que ríe), sinestesia (ojos con fuego y aire) y personificación, los elementos naturales reaccionan ante la belleza femenina. Es notable el contraste de las coplas y el estribillo que revela el sufrimiento del yo poético (_prisiones, suspiros, memorias y llanto_) ante tal idealización.
+El tono ***Deidad, que divina enseñas*** con música de **Fray Felipe de la Madre de Dios** y texto anónimo es un canto de alabanza a la mujer idealizada.
 
+## El texto
+
+A través de una serie de hipérboles y metáforas eleva a la amada a categoría divina, maestra de la armonía cósmica. Mediante antítesis (sol que llora/cielo que ríe), sinestesia (ojos con fuego y aire) y personificación, los elementos naturales reaccionan ante la belleza femenina. Es notable el contraste de las coplas y el estribillo que revela el sufrimiento del yo poético (_prisiones, suspiros, memorias y llanto_) ante tal idealización.
+
+## La música
+
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
+
+*[TODO: alto y guion reconstruidos; redactar la reconstrucción del alto y el párrafo del guion (skill mei-guion-intro).]*

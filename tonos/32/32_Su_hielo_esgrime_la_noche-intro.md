@@ -1,8 +1,16 @@
+*[TODO: apertura: forma (coplas y estribillo, metro, asonancia), orgánico, autoría desconocida de la música y relación con el tono 33.]*
+
+## El texto
+
+*[TODO: comentario del texto (coplas *Su hielo esgrime la noche* y estribillo *Despertad zagalejos*).]*
+
+## Fuentes poéticas
+
 El origen textual del tono ***Su hielo esgrime la noche*** es complejo y atípico 
 y está relacionado con el tono siguiente del cancionero, ***Helado sol en llamas***,
 por lo que reiteramos aquí algunos comentarios.
 
-### Fuentes poéticas
+### Testimonios
 
 Las coplas de ambos tonos aparecen, junto a otros dos estribillos,
 en un villancico doble, que se cantó en la **Iglesia del Pilar de Zaragoza** en **1668** y que se
@@ -61,7 +69,6 @@ manteniendo los dos primeros grupos de coplas y el primer estribillo del origina
   - *Vendas de amor esas fajas*
   - *En amorosos empeños*
   - *Doradas aquellas pajas*
-  
 
 ![Comienzo del último villancico de los cantado en la Navidad de 1669 en la Catedral de Córdoba](assets/33_cordoba_1669.jpg)
 
@@ -83,6 +90,8 @@ En 1671, en las celebraciones de Navidad de la Catedral de Huesca, encontramos o
     - *Hoy es de tu fineza*
     - *Que suelen finezas*
 
+![Cuarta página del pliego de villancicos cantados en la Catedral de Huesva en 1671](assets/32_huesca.jpg)
+
 El tercero de los villancicos cantados en la Navidad de 1673 en la Catedral de Barbastro[^3] presenta la misma configuración que el cantado dos años antes en Huesca pero como estribillo mantiene uno de los originales de Sánchez:
 - **Romance**:
   - *Su hielo esgrime la noche*
@@ -100,8 +109,6 @@ El tercero de los villancicos cantados en la Navidad de 1673 en la Catedral de B
 
 [^3]: Se conservan en un volumen facticio GB-Lb 11450.dd.8.
 
-![Cuarta página del pliego de villancicos cantados en la Catedral de Huesva en 1671](assets/32_huesca.jpg)
-
 En los villancicos que cantaron en la Iglesia de San Justo y Pasto de Alcalá de Henares la Navidad de 1681 el quinto villancico sigue prácticamente el esquema del de Huesca de 1671 salvo una copla de la introducción omitida y un error "mucho" -> "mudo":
 
 - **Introducción**:
@@ -116,8 +123,6 @@ En los villancicos que cantaron en la Iglesia de San Justo y Pasto de Alcalá de
   - *Si mudo te explicas*
   - *Oy es de tu fineza*
   - *Que suelen finezas*
- 
-
 
 En el manuscrito ***Musica de varios autores escogida por el maestro Geronimo Vermell***[^4], cuya compilación se inició en 1690 pero recoge también obras posteriores[^5], aparece un villancico de **Benito Bello de Torices** que sigue el esquema del cantado en Huesca en 1671. La parte que allí se llamaba romance se indica aquí como introdución y Vermell solo copia la primera copla. En las coplas finales se desvía un poco del esquema de Huesca ya que incluye *Rendidos tres monarcas* que solo aparecía en el villancico primero de Sánchez.
 
@@ -127,13 +132,8 @@ En el manuscrito ***Musica de varios autores escogida por el maestro Geronimo Ve
   - *Helado sol en llamas*
   - *Mucho dices callando*
   - *Rendidos tres monarcas*
-  
+
 ![f.105v de la Música de varios autores de Gerónimo Vermell con el comienzo de Su yelo esgrime la noche](assets/33_vermell.jpg)
-
-
-
-
-
 
 [^4]: Musica de varios autores escogida por el maestro Geronimo Vermell : 1690 : se escrivia en la ciudad de Borja. E-Bbc M/927 ff. 105v-106r. Copia digitalizada disponible en https://mdc.csuc.cat/digital/collection/partiturBC/id/73573
 [^5]: ANGULO, Raúl: Sebastián Duron (1660-1716). Obras sacras en romance vol. 3. pp. 8-9
@@ -154,7 +154,6 @@ de Barbastro** en la Navidad de **1677**[^6]. Este villancico, consta de estribi
 ![Último villancico de los cantado en la Navidad de 1677 en la Catedral de Barbastro](assets/33_barbastro_1677.jpg)
 
 [^6]: Villancicos, que se han de cantar en la ... Cathedral de Barbastro, la noche del Nacimiento de ... Iesu Christo, este año de 1677. Ejemplar E-Mn R/34981/8 disponible online: https://bnedigital.bne.es/bd/es/viewer?id=33ba60da-e85e-4973-9c71-63d728c10c22
-
 
 Completar el rompecabezas de estos dos tonos del Cancionero de Miranda nos lleva
 de nuevo al mundo de lo humano y al terreno teatral. El estribillo del segundo tono:
@@ -187,6 +186,8 @@ La escena en la que Orfeo canta esta canción no aparece en las sucesivas edicio
 
 [^7]: Copia digital de este manuscrito disponible online en https://bnedigital.bne.es/bd/es/viewer?id=7fbccbbd-3611-49d8-ad84-89da3e19623f
 [^8]: PUCHAU, Maria del Mar: El arte dramático de Antonio de Solís y sus relaciones con la música: sus comedias mitológicas. pp. 215-217. Así mismo la autora es la responsable de la edición cŕitica de la comedia para Clásicos Hispánicos bajo licencia Creative Commons BY-NC disponible online en https://clasicoshispanicos.com/ebook/euridice-y-orfeo/
+
+### El texto en el Cancionero de Miranda
 
 Aún conociendo la fuente poética de cada una las partes de este complejo tono,
 solo podemos conjeturar acerca de los procesos de reelaboración que
@@ -222,6 +223,18 @@ coincidencia entre el *no cantéis, llorar es mejor* del primer estribillo con e
 
 [^9]: Entre ellas "Pajarillo que cantas alegre" de Juan Hidalgo del manuscrito E-Mn MC/5001/15, "Pajarillo que cantas amores" de Matías Veana en el manuscrito Gayangos-Barbieri E-Mn MSS/13622, "Pajarillo que cantas en un monte" de Salvador García (cantados en la fiesta de la Transfiguración de Cristo en la Iglesia de San Salvador de Sevilla en 1700)
 
+En las notas al tono nº33, *Helado sol en llamas*, del que conocemos además la fuente musical original, se añaden unos comentarios acerca de la adaptación y reelaboración de este par de tonos.
+
+## La música
+
+*[TODO: comentario musical (coplas con solos del tiple 1º y trío, cadena de entradas del estribillo, cadencias).]*
+
+## La edición
+
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion son reconstrucción editorial. En las coplas el alto deja poco margen de decisión: los dos primeros versos son homofónicos y en los dos últimos el alto forma, con el tiple 2º y el tenor, el trío que responde a las intervenciones a solo del tiple 1º (cc. 8-19). El estribillo es más comprometido. En la cadena de entradas de *despertad zagalejos*, una por compás, el alto ocupa el hueco del c. 21, entre la del tiple 1º (c. 20) y la del tenor (c. 22). En *llorar, llorar es mejor* (cc. 41-46) acompaña al tenor casi siempre en terceras, y en *que al compás de su llanto* entra con el tiple 2º (c. 58), al que responden juntos el tiple 1º y el tenor en el compás siguiente. En el pasaje de *llora el alba y suspira el sol* (cc. 66-84), en el que los tiples y el tenor se van pasando las frases a solo, el alto calla, y entra en el c. 85 con la cabeza de *y suspira* que antes han expuesto el tiple 1º (c. 70), el tiple 2º (c. 77) y el tenor (c. 82). La negra de paso de ese motivo forma en los cc. 85 y 95 una cuarta sobre el bajo, la misma que la fuente produce con esa figura entre el tiple 2º y el tenor (cc. 30, 56 y 83), y se ha mantenido para no romper la imitación.
+
+El guion se ha reconstruido como un *basso seguente* sobre el tenor, que es la práctica dominante en los guiones conservados del cancionero. El tenor, en clave de do en 3ª, se mueve en un registro agudo, así que el guion lo dobla por lo general a la octava baja y solo al unísono en sus frases graves (cc. 29-35, 55-64, 82-84 y 92-99). Donde el tenor calla, que en este tono es a menudo, el guion lleva un bajo armónico propio: bajo los solos del tiple 1º de las coplas encadena quintas descendentes (la-re-sol-do, cc. 8-11), y en los dos compases en que callan todas las voces (cc. 40 y 50) enlaza las frases con un paso de subdominante a dominante hacia la entrada siguiente. En el c. 1, donde las voces entran con una anacrusa de negra, el guion ataca desde el primer tiempo la nota de la entrada, como hace el de la fuente en el único caso análogo del cancionero (tono 39, c. 73). En el silencio de todas las voces que sigue a la cadencia en la del c. 7, el guion no se queda en la nota tenida, sino que sube y baja la octava (cc. 7-8), con la misma fórmula que el guion conservado del tono 27 en una cadencia idéntica (cc. 9-11). Con el tenor cantando, solo se aparta de él para dar la fundamental en los cc. 41 y 45; en la cadencia del c. 94, donde toma el sol-do mientras el tenor desciende mi-re-do, y en el c. 97, donde omite una nota de paso del tenor.
+
 Nuestra decisión de editar este grupo de coplas y estribillos como dos tonos diferentes y no como
 un tono doble a modo del villancico de 1668 obedece a que en el Cancionero de Miranda aparecen con dos entradas diferentes en 
 los índices de los libretes:
@@ -236,13 +249,5 @@ los índices de los libretes:
 - Librete del *Tenor*: 
   * Despertad zagalejos
   * Pajarillo que cantas
-  
+
 La discrepancia entre el tiple 1º y el 2º se debe a que las coplas impares se cantan a solo por el tiple 1º, y restos a 4. Por eso el tiple 1º lista la primera copla (a solo) *Helado sol en llamas* y la segunda (a 4) *En brazos del alba* mientras que el tiple 2º solo lista la segunda.
-
-En las notas al tono nº33, *Helado sol en llamas*, del que conocemos además la fuente musical original, se añaden unos comentarios acerca de la adaptación y reelaboración de este par de tonos.
-
-### Reconstrucción del alto y del guion
-
-Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion son reconstrucción editorial. En las coplas el alto deja poco margen de decisión: los dos primeros versos son homofónicos y en los dos últimos el alto forma, con el tiple 2º y el tenor, el trío que responde a las intervenciones a solo del tiple 1º (cc. 8-19). El estribillo es más comprometido. En la cadena de entradas de *despertad zagalejos*, una por compás, el alto ocupa el hueco del c. 21, entre la del tiple 1º (c. 20) y la del tenor (c. 22). En *llorar, llorar es mejor* (cc. 41-46) acompaña al tenor casi siempre en terceras, y en *que al compás de su llanto* entra con el tiple 2º (c. 58), al que responden juntos el tiple 1º y el tenor en el compás siguiente. En el pasaje de *llora el alba y suspira el sol* (cc. 66-84), en el que los tiples y el tenor se van pasando las frases a solo, el alto calla, y entra en el c. 85 con la cabeza de *y suspira* que antes han expuesto el tiple 1º (c. 70), el tiple 2º (c. 77) y el tenor (c. 82). La negra de paso de ese motivo forma en los cc. 85 y 95 una cuarta sobre el bajo, la misma que la fuente produce con esa figura entre el tiple 2º y el tenor (cc. 30, 56 y 83), y se ha mantenido para no romper la imitación.
-
-El guion se ha reconstruido como un *basso seguente* sobre el tenor, que es la práctica dominante en los guiones conservados del cancionero. El tenor, en clave de do en 3ª, se mueve en un registro agudo, así que el guion lo dobla por lo general a la octava baja y solo al unísono en sus frases graves (cc. 29-35, 55-64, 82-84 y 92-99). Donde el tenor calla, que en este tono es a menudo, el guion lleva un bajo armónico propio: bajo los solos del tiple 1º de las coplas encadena quintas descendentes (la-re-sol-do, cc. 8-11), y en los dos compases en que callan todas las voces (cc. 40 y 50) enlaza las frases con un paso de subdominante a dominante hacia la entrada siguiente. En el c. 1, donde las voces entran con una anacrusa de negra, el guion ataca desde el primer tiempo la nota de la entrada, como hace el de la fuente en el único caso análogo del cancionero (tono 39, c. 73). En el silencio de todas las voces que sigue a la cadencia en la del c. 7, el guion no se queda en la nota tenida, sino que sube y baja la octava (cc. 7-8), con la misma fórmula que el guion conservado del tono 27 en una cadencia idéntica (cc. 9-11). Con el tenor cantando, solo se aparta de él para dar la fundamental en los cc. 41 y 45; en la cadencia del c. 94, donde toma el sol-do mientras el tenor desciende mi-re-do, y en el c. 97, donde omite una nota de paso del tenor.

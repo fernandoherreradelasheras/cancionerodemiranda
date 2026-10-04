@@ -1,6 +1,8 @@
 El tono ***Quién dirá que tus dos niñas*** cierra el bloque inicial de veintidós tonos
 de sección única. Del siguiente en adelante aparecen ya los estribillos.
 
+## El texto
+
 El poema es un romance de cinco cuartetas octosílabas con asonancia á-a en los versos
 pares (*traza*, *almas*, *malas*, *casa*, *pestañas*, *falsas*, *arrojadas*, *albas*,
 *cara*, *espaldas*), y está construido de principio a fin sobre una metáfora criminal:
@@ -12,6 +14,8 @@ pero estos ojos delinquen a mediodía, *pues no hay noche con dos albas*. La qui
 cierra con una antítesis cortesana, roban con valentía, cara a cara, pero matan cuando
 la dama *vuelve espaldas*.
 
+## Otras versiones musicales
+
 El Cancionero Poético-Musical Hispánico de Lisboa transmite estas mismas coplas con
 música distinta aunque relacionada y con un estribillo dialogado que aquí no aparece[^1]. 
 Ambas versiones musicales comparten el mismo plan: los tres primeros versos se declaman
@@ -21,12 +25,17 @@ escalonadas, y se repite después para cerrar. Además, sobre las palabras *Qui�
 el tenor y el guion recorren en ambas fuentes las mismas notas y las tres frases finales
 cadencian en los mismos grados.
 
+[^1]: Quién dirá que tus dos niñas [Texto, partitura y facsímil]. CPMHL, II, 54 [LAMBEA
+& JOSA]. Disponible en http://hdl.handle.net/10261/25892
+
+## La música
+
+*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
+
+## La edición
 
 La voz de alto es reconstrucción editorial. El margen de decisión es desigual a lo largo
 de la pieza. En la declamación homofónica de los tres primeros versos, con el bajo fijado
 por el guion y todas las voces moviéndose sobre la misma sílaba, apenas queda nada que elegir.
 En la imitación del último verso el alto se une al tiple 2º en el c.19 pues de otra forma 
 quedaría la voz del tiple 2º sepultada entre el tiple 1º y el tenor que cantan conjuntamente.
-
-[^1]: Quién dirá que tus dos niñas [Texto, partitura y facsímil]. CPMHL, II, 54 [LAMBEA
-& JOSA]. Disponible en http://hdl.handle.net/10261/25892

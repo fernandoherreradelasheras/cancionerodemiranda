@@ -1,12 +1,6 @@
-El verso con el que se abre este tono, ***Querido imposible mío***, lo encontramos glosado en un pliego[^1] que, aunque
-bastante posterior, sirve como testimonio de la popularidad del verso. En esa misma estrofa, *pues os quiero cuanto
-puedo* remite a uno de los villancicos de Juan Vázquez publicados en 1559: *Que aunque os quiero cuanto puedo // no os
-quiero quanto debería*
+*[TODO: apertura: forma (nº de coplas, metro, asonancia), orgánico, autoría de texto y música y concordancias no localizadas.]*
 
-![Comienzo del pliego "Glosas de un amante muy fino..." Ejemplar Gb-Lb 11450.f.26.(10.)](assets/02_pliego_querido_imposible.jpg)
-
-[^1]: Glosas de un amante muy fino, que espresa su mucho amor a su querida dama. Varias ediciones. Barcelona 1830,
-    Valencia \[s.n.\], etc...
+## El texto
 
 Las cuatro coplas despliegan una petición de favor que busca presentarse como un gesto de respeto. La fórmula de
 arranque, *Querido imposible mío*, junta la cercanía afectiva del posesivo y la distancia que impone lo inalcanzable. A
@@ -24,3 +18,23 @@ de que el amor se queje y llegue a tacharla de ingrata. La voz intenta alejar de
 personificado, capaz de dar voces. La protesta se presenta así como fruto del sufrimiento, aunque contradice la cautela
 con que se había iniciado el poema. La cortesía verbal deja traslucir la presión que ejerce el deseo de ser
 correspondido.
+
+## Difusión y pervivencia
+
+El verso con el que se abre este tono, ***Querido imposible mío***, lo encontramos glosado en un pliego[^1] que, aunque
+bastante posterior, sirve como testimonio de la popularidad del verso. En esa misma estrofa, *pues os quiero cuanto
+puedo* remite a uno de los villancicos de Juan Vázquez publicados en 1559: *Que aunque os quiero cuanto puedo // no os
+quiero quanto debería*
+
+![Comienzo del pliego "Glosas de un amante muy fino..." Ejemplar Gb-Lb 11450.f.26.(10.)](assets/02_pliego_querido_imposible.jpg)
+
+[^1]: Glosas de un amante muy fino, que espresa su mucho amor a su querida dama. Varias ediciones. Barcelona 1830,
+    Valencia \[s.n.\], etc...
+
+## La música
+
+*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
+
+## La edición
+
+*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto.]*

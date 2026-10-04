@@ -2,6 +2,12 @@ El tono ***Las redes sobre la arena*** toma el texto del romance homónimo que f
 
 ![Páginas 172-173 del manuscrito Chacón (E-Mn RES/45<2> V.2), con la fecha «581» y la advertencia sobre la autoría en el margen](assets/las_redes_chacon.png)
 
+## El texto
+
+*[TODO: comentario del texto.]*
+
+## Fuentes poéticas
+
 El romance publicado en la _Flor de varios romances nuevos_ de 1591 completaba las dos estrofas gongorinas con nueve cuyos comienzos son _buscándola con los ojos_ // _has te arrepentido acaso_ //  _o perjura si a mi fe_ // _Glauca mía no respondes_ // _si esto yo te perdono_ // _mas triste cuantos agüeros_ // _los delfines van nadando_ // _mas la hermosa pescadora_ // _llena de risa responde_. Esta misma versión se repite en la edición del Romancero General de 1600. 
 
 ![Comienzo del romance en la _Flor de varios romances nuevos_ de 1591](assets/las_redes_1591.png)
@@ -20,8 +26,18 @@ La selección prescinde de todo el parlamento de Alción (las estrofas 3ª a 9ª
 
 [^MARGIT]: FRENK, Margit: «Góngora, Lope, Liñán, en el siglo XVI mexicano», en _Homenaje a Eugenio Asensio_, Madrid, 1988, pp. 185-197.
 
-Existe otro testimonio poético musical de este tono en el Cancionero poético-musical hispánico de Lisboa donde sí se conserva la parte de guion/acompañamiento que tomamos para completar nuestra edición.
-
 Las dos fuentes musicales pertenecen a la tradición manuscrita del romance y no a la de las antologías impresas: leen _que las ondas_ y _se queja_, como Chacón y la edición de Hozes, donde la _Flor_ de 1591 y el _Romancero general_ traen _a quien las olas_ y _salía_. Frente a toda la tradición poética comparten, en cambio, lecturas propias: _sobre la arena_ y, sobre todo, el nombre de la ninfa, que en ellas es Laura y no Glauca. El Cancionero de Miranda conserva además la estrofa _viendo con cuánta pasión_, que el CPMHL omite.
 
+## Fuentes musicales
+
+Existe otro testimonio poético musical de este tono en el Cancionero poético-musical hispánico de Lisboa donde sí se conserva la parte de guion/acompañamiento que tomamos para completar nuestra edición.
+
+## La música
+
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
+
 El alto es reconstrucción editorial. La primera sección de las coplas al resultar homofónica se limita a completar la armonía. Para las entradas imitativas escalonadas de sección final, se ha decidido entrar en el segundo tiempo del c.6 frente a entrar al final del c.5 por un detalle interno: entre el c.5 y el c.6 hay octavas paralelas entre el tiple 2º y el guion, algo que sería solo aceptable si el tiple 2º fuera la voz más grave que el *basso seguente* doble una octava por abajo. Como en esa parte el tenor está callando, la única opción para que el tiple 2º sea la voz más grave es que el alto calle también.  Algo parecido sucede en el estribillo en el c.24: solo si el alto calla sería aceptable el unísono en Re4 entre el tiple 1º, que sería la voz más grave, y el guion.
+
+*[TODO: indicar al comienzo el caso mixto: guion tomado del CPMHL (y lecturas del tiple 2º de esa fuente, según perfRes) y alto reconstruido.]*

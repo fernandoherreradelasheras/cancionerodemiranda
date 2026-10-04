@@ -1,1 +1,13 @@
+*[TODO: apertura: forma (coplas/estribillo, metro, asonancia), orgánico (Tiple, Alto, Tenor), autoría y concordancias.]*
+
+## El texto
+
 El tono a tres ***Derramando estaba perlas*** desarrolla el tema del sufrimiento por ausencia a través de la voz femenina de Silvia. Esta articula una queja amorosa que transita de la descripción narrativa al monólogo directo, culminando en un estribillo suplicante que intensifica la expresión del deseo y la desesperación.
+
+## La música
+
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
+
+*[TODO: alto reconstruido (Tiple, [Alto], Tenor); redactar la reconstrucción editorial del alto.]*

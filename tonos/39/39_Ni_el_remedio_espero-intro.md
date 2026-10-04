@@ -7,11 +7,7 @@ obras de **Fray Felipe de la Madre de Dios**, con once tonos el compositor más
 representado de toda la compilación. Sus once tonos se reparten entre los números 39
 y 60, repartidos en tres bloques (39-41, 47-49, 57-58).
 
-El tono no se identifica en el manuscrito por el íncipit con que aquí lo titulamos.
-Las tablas de los tres libretes de voces (superius primus, superius secundus y tenor)
-no lo registran por el comienzo de su primera sección, sino por el de la segunda:
-*Qué fuertes que son mis penas*. La elección se entiende atendiendo a la disposición
-de la pieza, que antepone el estribillo a las coplas.
+## El texto
 
 El poema, del que no se conoce ningún otro testimonio poético, consiste en un
 estribillo seguido de seis coplas que desarrolla una paradoja sin salida:
@@ -27,6 +23,8 @@ consecuencia que faltaba: al que padece, el alivio le resulta un rigor nuevo. La
 copla final plantea el único lugar textualmente dudoso del tono, discutido en el
 aparato crítico de esta edición.
 
+## La música
+
 La música del estribillo arranca con un largo solo de veinte compases
 para el tiple 1º. A partir del compás 21 van entrando el tiple 2º y el tenor, con el
 material del solo tratado en imitación durante buena parte de la sección. Las voces
@@ -40,8 +38,16 @@ El desequilibrio entre la extensión de las secciones (el estribillo ocupa seten
 dos compases y las coplas apenas quince) no es un capricho de este tono sino un rasgo
 constante del Fray Felipe que transmite el cancionero.
 
+## La edición
+
 La voz de alto es reconstrucción editorial. La escritura imitativa del estribillo la hace
 aquí particularmente comprometida: no se trata de rellenar una armonía, sino de restituir
 una de las cuatro entradas de un tejido en el que las demás voces sí conservan su perfil.
 Las coplas, homofónicas y con el bajo fijado por el guion, ofrecen en cambio poco margen
 de duda.
+
+El tono no se identifica en el manuscrito por el íncipit con que aquí lo titulamos.
+Las tablas de los tres libretes de voces (superius primus, superius secundus y tenor)
+no lo registran por el comienzo de su primera sección, sino por el de la segunda:
+*Qué fuertes que son mis penas*. La elección se entiende atendiendo a la disposición
+de la pieza, que antepone el estribillo a las coplas.

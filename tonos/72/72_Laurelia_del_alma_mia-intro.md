@@ -2,6 +2,8 @@ El tono ***Laurelia del alma mía*** es uno de los cinco del bloque final que se
 conservan completos, al no llevar voz de alto. Consta de siete coplas y un
 estribillo.
 
+## El texto
+
 Lo primero que llama la atención del texto es que no es un romance, pese a estar en
 cuartetas octosílabas. La asonancia no se mantiene: cambia de una copla a otra hasta
 cinco veces, ó-a en la primera, á-a en la segunda, á-o en la tercera, é-o en la
@@ -33,6 +35,17 @@ incluso el octosílabo por el hexasílabo y se construye sobre una antítesis el
 *canto si me miras, lloro si te escondes*. Lo que el cancionero recoge aquí no es un
 tono de corte, sino un cantar popular al que se ha puesto polifonía.
 
+No se ha localizado el texto en los repertorios consultados, pero el nombre de la
+dama sí tiene procedencia identificable. *Laurelia* no pertenece al repertorio
+onomástico de la lírica pastoril, donde reinan Filis, Anarda o Belisa, sino al de los
+libros de caballerías: es el de una doncella del *Florambel de Lucea* de Francisco de
+Enciso Zárate, cuya primera parte se imprimió en Valladolid en 1532. Otro indicio
+que apunta al pasado, pues remite a un género que fue lectura corriente en la primera
+mitad del siglo XVI y que afinales del XVII llevaba ya dos generaciones fuera de
+circulación.
+
+## La música
+
 La música invierte el reparto de texturas que cabría esperar. Las coplas, en compás
 binario, no son la declamación homofónica habitual en las secciones estróficas: cada
 verso entra escalonado, de la voz grave a la aguda y a un compás de distancia, de modo
@@ -44,12 +57,6 @@ dos veces: la segunda repite la música de la primera con las voces subidas de
 registro, y sólo al final, en el *por qué no respondes* que cierra, el tiple 1º se
 retrasa un compás para que la pregunta quede resonando escalonada.
 
-No se ha localizado el texto en los repertorios consultados, pero el nombre de la
-dama sí tiene procedencia identificable. *Laurelia* no pertenece al repertorio
-onomástico de la lírica pastoril, donde reinan Filis, Anarda o Belisa, sino al de los
-libros de caballerías: es el de una doncella del *Florambel de Lucea* de Francisco de
-Enciso Zárate, cuya primera parte se imprimió en Valladolid en 1532. Otro indicio
-que apunta al pasado, pues remite a un género que fue lectura corriente en la primera
-mitad del siglo XVI y que afinales del XVII llevaba ya dos generaciones fuera de
-circulación.
+## La edición
 
+*[TODO: tono completo en la fuente (Tiple 1º, Tiple 2º, Tenor); indicar que no requiere reconstrucción.]*

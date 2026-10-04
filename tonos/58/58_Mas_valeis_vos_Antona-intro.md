@@ -9,9 +9,21 @@ I (3ª, 7ª y 11ª), Alto (4ª, 8ª y 12º), Tiple II (5ª, 9ª y 13ª) y Tenor
 principio y sorprende que dada su extensión, se dejara fuera una sola
 copla del poema original. No sabemos si se dejó fuera *Toda la zagala* o
 *Expiraba el día* poque la omisión de saltarse una de esas dos coplas y
-tomar la otra le corresponde a la parte perdida del Alto. La música de
+tomar la otra le corresponde a la parte perdida del Alto.
+
+## El texto
+
+*[TODO: comentario del texto (endechas de Bocángel).]*
+
+## La música
+
+La música de
 los solos es prácticamente idéntica para todas las partes aunque el
 tiple I y el Tenor arrancan en el "dar" del compás con una nota extra
 frente las dos otrs voces que arráncan en el "alzar". Coincide esta
 circustancia con que ambas partes tienen dos de sus tres coplas arrando
 en sílaba tónica.
+
+## La edición
+
+*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto y la decisión sobre la copla omitida en sus solos.]*

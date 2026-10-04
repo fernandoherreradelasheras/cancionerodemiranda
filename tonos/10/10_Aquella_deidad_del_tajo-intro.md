@@ -1,19 +1,33 @@
 El tono *Aquella deidad del Tajo* uno de los romances en castellano de
  **António da Fonseca Soares** (conocido como Frei António das
-Chagas tras tomar en 1662 el hábito de la orden franciscana). El texto, que
+Chagas tras tomar en 1662 el hábito de la orden franciscana).
+
+## El texto
+
+*[TODO: comentario del texto.]*
+
+## Fuentes poéticas
+
+### Testimonios
+
+El texto, que
 permanece inédito, se conserva en, al menos cuatro fuentes manuscritas:
 
 * *Romances portugueses e castelhanos que compôs Frei António das Chagas
 antes de ser religioso*, P-Lant PT/TT/MSLIV/1726[^1] (p. 493-6)
-* Compilación poética P-Lant PT/TT/MSLIV/2844
+* Compilación poética P-Lant PT/TT/MSLIV/2844[^2]
 * Compilación poética del autor titulada *Obras en que se incluyen
 romances líricos castellanos de Antonio da Fonseca Soares*, conservada
 en la Biblioteca de Ajuda, P-La 49-III-79 (p. 47-51).
 * *Poesías Varias, Portuguesas y Castellanas. Obras del
 insigne Fr. Antonio das Chagas*, GB-Lbl Egerton 660 (f.192)
 
+[^1]: Disponible en [https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03](https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03)
+[^2]: Disponible en [https://digitarq.arquivos.pt/documentDetails/9f1e66fea8fb48cc8edc270cdcd82889](https://digitarq.arquivos.pt/documentDetails/9f1e66fea8fb48cc8edc270cdcd82889)
+
 ![Fragmento de la página 47 del manuscrito P-La 49-III-79](assets/10_P-La_49-III-79.jpg)
 
+### Transmisión y variantes
 
 La versión recogida en GB-Lbl Egerton 660 tiene hasta once coplas más. Cinco de ellas se sitúan entre la cuarta y la quinta del testimonio del Cancionero de Miranda:
 
@@ -76,7 +90,10 @@ Tras la copla que aperece como última en el Cancinero de Miranda, el testimonio
 
 ![Coplas finales del romance en el f.193r de  GB-Lbl Egerton 660](assets/10_egerton.jpg)
 
+## La música
 
-[^1]: Disponible en [https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03](https://digitarq.arquivos.pt/documentDetails/39bd8d5c5fa246bcabc087ac7edceb03)
-[^2]: Disponible en [https://digitarq.arquivos.pt/documentDetails/9f1e66fea8fb48cc8edc270cdcd82889](https://digitarq.arquivos.pt/documentDetails/9f1e66fea8fb48cc8edc270cdcd82889)
+*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
 
+## La edición
+
+*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto.]*

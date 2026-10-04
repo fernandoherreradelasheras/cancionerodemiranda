@@ -1,3 +1,7 @@
+El texto de ***Qué bien siente Manzanares*** es un romance en coplas octosílabas con asonancia aguda en á en los versos pares.
+
+## El bloque de tonos a tres voces
+
 Con el tono ***Qué bien siente Manzanares*** se abre el bloque final del Cancionero de
 Miranda constituido por quince tonos a tres voces. La configuración de voces en este
 bloque aprovecha casi todas las posibilidades orgánicas que la plantilla original de
@@ -26,9 +30,13 @@ permiten ver otra agrupación interna del cancionero: todos los tonos de secció
 de manera conjunta en bloques: el inicial de veintidós tonos breves, uno a mitad del cancionero
 (tonos 28 y 29) y estos dos primeros tonos a 3 voces (tonos 63 y 64).
 
+## El texto
 
+*[TODO: comentario del texto.]*
 
-El texto de ***Qué bien siente Manzanares*** es un romance en coplas octosílabas con asonancia aguda en á en los versos pares. Este romance aparece en la novela ***El amor por la piedad*** de **Alonso del Castillo Solórzano**, publicada dentro de _Huerta de Valencia_ en 1629. En la parte final de la novela, Solórzano encadena dos romances cantados:
+## Fuentes poéticas
+
+Este romance aparece en la novela ***El amor por la piedad*** de **Alonso del Castillo Solórzano**, publicada dentro de _Huerta de Valencia_ en 1629. En la parte final de la novela, Solórzano encadena dos romances cantados:
 
 > Quiso una noche Don Fernando darla una música, que entre las graciás que tenía era una el tener excelente voz, y con ella muy grande destreza, y asi mismo tal vez era favorecido de las Musas con muy gallardo natural de poeta.  Previno, pues, los mejores músicos de la Corte, que es adonde se canta lo más fino y airoso de toda España, porque allí asiste la flor de los mejores hombres de este arte. Avisó a Doña Estefanía, y pasada la media noche, cuando todos están en quieto silencio fue con los cuatro músicos a la calle, donde después de haber avisado con los sonoros, y bien templados instrumentos cantaron a cuatro voces este romance:
 
@@ -65,7 +73,6 @@ El texto de ***Qué bien siente Manzanares*** es un romance en coplas octosílab
 > _ocioso vive el cuidado,_  
 > _dormida la prevención._
 
-
 > Después de haber cantado este romance los cuatro músicos con grande destreza y sonoros pasos de garganta, tomó Don Fernando una bien templada guitarra, y a ella cantó este romance que había escrito a la venida de su dama a Madrid:
 
 > _Qué bien siente Manzanares_  
@@ -93,7 +100,11 @@ _niño Amor, cieguezuelo rapaz,_
 _que en los ojos de Estela divina_  
 _Arpones, flechas yrayos hay._
 
+## La música
 
+*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+
+## La edición
 
 El tono está escrito para Tiple, Alto y Tenor, lo que hace necesaria la reconstrucción editorial de la voz perdida del Alto. Una reconstrucción que difiere poco metodológicamente de las realizadas para los tonos a cuatro voces. Por un lado, las partes homofónicas (que son las más abundantes en este bloque de tonos) podrían presentar menos incertidumbre a la hora de completar la armonía de las otras dos voces. Pero por otro, la ausencia de guion reduce algunas certezas que la parte instrumental aclaraba cuando presentaba diferencias con la voz más grave.
 
@@ -104,4 +115,3 @@ que bien siente d[oñ]a. afima
 ```
 
 cuyo significado no hemos podido desentrañar.
-

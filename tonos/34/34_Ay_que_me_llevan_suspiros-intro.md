@@ -4,6 +4,8 @@ anotación del guion sabemos que en la primera copla los versos del alto comenza
 esto, planteamos una reconstrucción del texto poético de las coplas suponiendo que el alto cantaba en los 17 compases de
 su parte a solo tres versos: pentasílabo, heptasílabo y pentasílabo.
 
+## El texto
+
 El conflicto del poema surge de atribuir a los suspiros un efecto contrario al deseado. Deberían detener al amante y,
 por ser aire, favorecen sus vuelos. Las órdenes se corrigen conforme la voz descubre otras consecuencias: se quiere
 frenar la partida, luego se admite que los suspiros continúen porque hacen presente al ausente y, finalmente, se acepta
@@ -24,6 +26,14 @@ En la reconstrucción de la primera copla continuamos la metáfora del viento. E
 náutico central de la copla. Para la tercera rematamos la paradoja barroca del ardor helado. Para la copla final optamos
 por preparar la conclusión.
 
+## La música
+
+*[TODO: comentario musical (alternancia de solos y sección a cuatro en las coplas, contraste con el estribillo, cadencias).]*
+
+## La edición
+
 Pese a que el tono no está escrito en claves altas lo hemos transpuesto una cuarta justa hacia abajo siguiendo la
 indicación del comienzo del estribillo en el guion: `e tãbem se dis 4a abaixo`. Así mismo en la sección de coplas el
 guion aclara: `solos por quinto tom, os altos, os tiples, os tenores, os altos`.
+
+*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion en la fuente); redactar la reconstrucción musical del alto, además de la del texto de sus versos a solo.]*
