@@ -5,8 +5,8 @@
 El Cancionero de Miranda se abre con un bloque de 22 tonos breves sin estribillo. En ninguno de estos tonos aparece
 indicación acerca del compositor y tampoco se ha podido localizar ninguno por concordancias. Del mismo modo que los
 tonos de este bloque son homogéneos en cuanto a la forma, también parecen compartir un rasgo sobre su origen poético. De
-los poetas identificados, abundan los textos de poetas portugueses: varios de Frei António das Chaga, António Barbosa
-Bacelar y Miguel de Barrios, que pese a ser Cordobés su familiar era de origen portugués.
+los poetas identificados, abundan los textos de poetas portugueses: varios de Frei António das Chagas, António Barbosa
+Bacelar y Miguel de Barrios, que, pese a ser cordobés, era de familia de origen portugués.
 
 ## El texto
 
