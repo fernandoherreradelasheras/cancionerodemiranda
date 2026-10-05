@@ -4,7 +4,7 @@
 
 El poema desarrolla el tópico del amor inevitable y la pérdida de la voluntad del amante, muy frecuente en la lírica
 barroca. El texto explora las paradojas del sentimiento amoroso a través de una serie de imposibilidades conceptistas:
-*no sé cómo se puede* // *querer dejar de querer*, donde el poeta juega con la contradicción inherente entre la voluntad
+*no sé cómo ser puede* // *querer dejar de querer*, donde el poeta juega con la contradicción inherente entre la voluntad
 y la pasión.
 
 La estructura del romance se articula en torno a *Yo no sé*: cada cuarteta se cierra con la triple repetición de la
