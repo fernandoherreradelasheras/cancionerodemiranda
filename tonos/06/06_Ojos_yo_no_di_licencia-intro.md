@@ -8,7 +8,7 @@ utilidad: unas lágrimas que no traen remedio pueden ser *porfía*, y recordar l
 Al personificar los ojos, el poema convierte en interlocutores a quienes realizan el gesto que el sujeto trata de
 impedir. El dolor queda así escindido entre su manifestación corporal y la voluntad que la juzga.
 
-Las coplas avanzan a base de preguntas, condiciones y mandatos: *Qué importa*, *Si a lo imposible aspiráis*, *no
+Las coplas avanzan a base de preguntas, condiciones y mandatos: *¿Qué importa…?*, *Si a lo imposible aspiráis*, *no
 desmayéis*, *no lloréis*. Ese lenguaje de consejo no conduce a una solución estable: la exhortación a buscar la dicha
 sin cobardía convive con el deseo de poner fin al sufrimiento.
 

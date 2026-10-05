@@ -8,7 +8,7 @@ de Antonio Barbosa Bacelar que encontramos en la compilación manuscrita P-Lant 
 ## Fuentes poéticas
 
 Más tarde sería incluido en el tomo segundo de A Fénix Renascida[^1] (p.167). Del largo romance
-de Barbosa Bacelar el tono incluye las cuartetas 1ª, 2ª, 3ª, 13ª, 17ª y
+de Barbosa Bacelar el tono incluye las cuartetas 1ª, 2ª, 13ª, 17ª y
 18ª y no toma el estribillo.
 
 ![Página 167 del segundo volumen de A Fénix Renascida en su edición, edición de 1746](assets/07_fenis_renascida.jpg)
