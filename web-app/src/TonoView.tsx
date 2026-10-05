@@ -1,10 +1,9 @@
 import { useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { MusicStatus, TextStatus } from './utils'
+import { phaseLabel } from './utils'
+import PhaseStrip from './PhaseStrip'
 import { Context } from './Context'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMusic, faFilePdf, faFileImage } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Col, Collapse, Grid, Progress, ProgressProps, Row, Space, Typography } from 'antd'
+import { FilePdfFilled } from '@ant-design/icons'
+import { Col, Collapse, Grid, Row, Space, Typography } from 'antd'
 import { ScoreProperties, ScoreViewer, ScoreViewerRef } from 'score-viewer'
 import { isMobile, useMobileOrientation } from 'react-device-detect'
 
@@ -15,36 +14,10 @@ const MINIMUM_SCORE_HEIGHT = 300
 
 const { useBreakpoint } = Grid
 
-library.add(faMusic, faFilePdf, faFileImage)
 
 type Section = {
     label: string,
     id: string
-}
-
-const getProgressFromTextStatus = (status?: TextStatus) => {
-    switch (status) {
-        case undefined: return { value: 5, text: "sin comenzar" }
-        case "not started": return { value: 5, text: "sin comenzar" }
-        case "raw transcription": return { value: 25, text: "transcripción en progreso" }
-        case "transcription completed": return { value: 70, text: "transcripción completa" }
-        case "reviewed": return { value: 80, text: "revisado" }
-    }
-    return { value: 100, text: "completado" }
-
-}
-
-const getProgressFromMusicStatus = (status?: MusicStatus) => {
-    switch (status) {
-        case undefined: return { value: 5, text: "sin comenzar" }
-        case "not started": return { value: 5, text: "sin comenzar" }
-        case "raw transcription": return { value: 20, text: "transcripción en progreso" }
-        case "transcription completed": return { value: 40, text: "transcripción completa" }
-        case "reconstruction started": return { value: 60, text: "reconstrucción en progreso" }
-        case "music completed": return { value: 70, text: "música completa" }
-        case "reviewed": return { value: 80, text: "revisado" }
-    }
-    return { value: 100, text: "completado" }
 }
 
 const get_edition_name = (name: string) => {
@@ -79,17 +52,6 @@ const get_edition_filename = (name: string, tonoIndex: number, title: string) =>
 
 
 
-const progressColors: ProgressProps['strokeColor'] = [
-    '#FF4B4B',
-    '#FF8C42',
-    '#FF8C42',
-    '#FFC13D',
-    '#FFC13D',
-    '#9ED36A',
-    '#4CAF50',
-    '#4CAF50',
-    '#2E7D32'
-]
 
 
 
@@ -120,8 +82,6 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
     const tonoStatus = useMemo(() => definitions && tonoIndex != null ? definitions[tonoIndex] : null, [definitions, tonoIndex])
 
-    const { "value": textStatusValue, "text": textStatusText } = getProgressFromTextStatus(tonoStatus?.status_text)
-    const { "value": musicStatusValue, "text": musicStatusText } = getProgressFromMusicStatus(tonoStatus?.status_music)
 
     const scoreViewerRef = useRef<ScoreViewerRef>(null);
 
@@ -187,14 +147,14 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                     md={{ flex: 1 }}
                     sm={{ flex: 1 }}
                     xs={{ flex: '50%' }}>
-                    <div className="tono-status-line">
-                        <Typography.Text>Música: {musicStatusText}</Typography.Text>
-                        <Progress percent={musicStatusValue} steps={9} size="small" showInfo={false} strokeColor={progressColors} />
-                    </div>
-                    <div className="tono-status-line">
-                        <Typography.Text>Texto: {textStatusText}</Typography.Text>
-                        <Progress percent={textStatusValue} steps={9} size="small" showInfo={false} strokeColor={progressColors} />
-                    </div>
+                    {tonoStatus ? <>
+                        <PhaseStrip phases={tonoStatus.phases} showLabels />
+                        <Typography.Text type="secondary" style={{ fontSize: "0.9em" }}>
+                            {tonoStatus.complete
+                                ? "Edición completa"
+                                : `${Math.round(tonoStatus.progress * 100)} % · siguiente: ${phaseLabel(tonoStatus.next_phase).toLowerCase()}`}
+                        </Typography.Text>
+                    </> : null}
                 </Col>
                 <Col xl={{ flex: 1 }}
                     lg={{ flex: 1 }}
@@ -221,7 +181,7 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
                                     title={get_edition_name(pdf.name)}
                                     download={get_edition_filename(pdf.name, tonoIndex, title)}
                                     href={pdf.url}>
-                                    <FontAwesomeIcon icon={faFilePdf} /> {get_edition_shortname(pdf.name)}
+                                    <FilePdfFilled /> {get_edition_shortname(pdf.name)}
                                 </a> : null
                             )}
                         </Space>

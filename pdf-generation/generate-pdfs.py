@@ -401,13 +401,36 @@ def format_edition(buildType):
         return  "\\def\\myedition{Edición musicológica}\n"
 
 
+# Edition phases from tonos/index.json (see scripts/build_index.py), split into
+# the two status lines of the prerelease cover.
+TEXT_PHASES = {'text': 'transcripción', 'text_review': 'revisión'}
+MUSIC_PHASES = {
+    'music': 'transcripción',
+    'music_review': 'revisión de la transcripción',
+    'voice': 'reconstrucción de la voz perdida',
+    'voice_review': 'revisión de la voz reconstruida',
+    'guion': 'reconstrucción del guion',
+    'guion_review': 'revisión del guion',
+    'full_review': 'revisión musical completa',
+    'external_review': 'revisión externa',
+}
+
+
+def phases_summary(phases, labels):
+    """«en curso: …; pendiente: …» for the phases that are not done yet."""
+    groups = [(state, [label for key, label in labels.items() if phases.get(key, 'pending') == state])
+              for state in ('in_progress', 'pending')]
+    parts = [f"{'en curso' if state == 'in_progress' else 'pendiente'}: {', '.join(names)}"
+             for state, names in groups if names]
+    return '; '.join(parts) or 'completo'
+
+
 def format_status(data):
-    status_text = data['status_text']
-    status_music = data['status_music']
-    out = (f"\\def\\mystatustext{{{status_text}}}\n"
-           f"\\def\\mystatusmusic{{{status_music}}}\n")
-    # Stamp a "draft" watermark unless both text and music are completed.
-    if any(s != "completed" for s in (status_text, status_music)):
+    phases = data['phases']
+    out = (f"\\def\\mystatustext{{{phases_summary(phases, TEXT_PHASES)}}}\n"
+           f"\\def\\mystatusmusic{{{phases_summary(phases, MUSIC_PHASES)}}}\n")
+    # Stamp a "draft" watermark until every phase that applies is done.
+    if not data['complete']:
         out += "\\DraftwatermarkOptions{stamp=true}\n"
     return out
 
@@ -1124,9 +1147,9 @@ def prepare_tono_data(data, status):
     composer, lyricist = get_entries_from_mei(data['meiFile'])
     data['music_author'] = composer
     data['text_author'] = lyricist
-    data['status_text'] = status['status_text']
-    data['status_music'] = status['status_music']
-    data['organic'] = status.get('organic', '')  # merged from tonos/index.json in main()
+    data['phases'] = status.get('phases', {})
+    data['complete'] = status.get('complete', False)
+    data['organic'] = status.get('organic', '')
 
     # Key signatures come from the MEI (single source of truth): encodedArmor is
     # the score's keySig; originalArmor is it un-transposed by the editorial
@@ -1456,9 +1479,10 @@ def main():
     with open(os.path.join("tonos", "status.json")) as f:
         status = json.load(f)
 
-    # Organic is derived from each MEI's perfMedium and cached in tonos/index.json
-    # (see scripts/build_index.py). Merge it into the status entries so the rest
-    # of the pipeline keeps reading data['organic'] unchanged. The entries are
+    # Organic and the full phase map (with the phases that do not apply) are
+    # derived from each MEI and cached in tonos/index.json (see
+    # scripts/build_index.py). Merge them into the status entries so the rest
+    # of the pipeline reads them from there. The entries are
     # also kept around per tono, to fingerprint each one with its own (below).
     index_by_path = {}
     try:
@@ -1467,8 +1491,9 @@ def main():
         for i, score in enumerate(scores):
             if i < len(status):
                 entry = index_by_path.get(score['path'], {})
-                if entry.get('organic'):
-                    status[i]['organic'] = entry['organic']
+                for key in ('organic', 'phases', 'complete'):
+                    if key in entry:
+                        status[i][key] = entry[key]
     except FileNotFoundError:
         pass
 

@@ -43,13 +43,22 @@ span.text-completed,
   background-color: #f8f0db;
 }
 
-.tono-list svg.author-icon {
-  color: #d08c0f;
+.tono-list .tono-authors,
+.tono-list .tono-progress-label {
+  color: #706558;
 }
 
-.tono-list svg.status-icon {
-  color: #706558;
-  margin-left: 0.5em;
+.tono-list .tono-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.9em;
+}
+
+.tono-list .tono-progress-value {
+  min-width: 3em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .loading-spinner {
@@ -257,20 +266,6 @@ body {
   white-space: nowrap;
 }
 
-.tono-status-line {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  column-gap: 0.5em;
-}
-
-.tono-status-line .ant-progress {
-  margin: 0;
-  line-height: 1;
-}
-
-
-
 /* Tables. TODO: This should be in score-view probably*/
 .text-view table {
   border-collapse: collapse;
@@ -296,4 +291,122 @@ body {
   max-width: 100% !important;
   width: auto;
   height: auto;
+}
+
+/* Edition phases (PhaseStrip) */
+:root {
+  --phase-done: #4c9a3f;
+  --phase-in-progress: #e8a823;
+  --phase-pending: #ddd3bf;
+}
+
+.phase-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 0.7em;
+  align-items: flex-end;
+}
+
+.phase-group-label {
+  font-size: 0.75em;
+  color: #706558;
+  line-height: 1.2;
+}
+
+.phase-cells {
+  display: flex;
+  gap: 2px;
+}
+
+.phase-cell {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.phase-strip.compact .phase-cell {
+  width: 10px;
+  height: 14px;
+}
+
+.phase-strip.compact {
+  gap: 0 0.45em;
+  flex-wrap: nowrap;
+}
+
+.phase-cell.done {
+  background-color: var(--phase-done);
+}
+
+.phase-cell.in_progress {
+  background: repeating-linear-gradient(135deg, var(--phase-in-progress) 0 3px, #f3cf7f 3px 5px);
+}
+
+.phase-cell.pending {
+  background-color: var(--phase-pending);
+}
+
+.phase-cell.na {
+  visibility: hidden;
+}
+
+.phase-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em 1.2em;
+  font-size: 0.9em;
+}
+
+.phase-row {
+  display: grid;
+  grid-template-columns: minmax(10em, 18em) 1fr 5.5em;
+  align-items: center;
+  gap: 0.8em;
+  margin: 0.3em 0;
+}
+
+.phase-row-bar {
+  display: flex;
+  height: 14px;
+  border-radius: 3px;
+  overflow: hidden;
+  gap: 1px;
+}
+
+.phase-row-count {
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .phase-row {
+    grid-template-columns: 1fr 5em;
+  }
+
+  .phase-row-label {
+    grid-column: 1 / -1;
+  }
+}
+
+.phase-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11em, 1fr));
+  gap: 0.3em 1.5em;
+  margin-top: 1em;
+}
+
+.phase-matrix-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  color: inherit !important;
+}
+
+.phase-matrix-number {
+  width: 1.6em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: #706558;
 }

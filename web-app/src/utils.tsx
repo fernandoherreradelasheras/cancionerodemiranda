@@ -28,22 +28,59 @@ export interface TranscriptionEntry {
   label?: string
 }
 
-export enum TextStatus {
-  "not started" = "not started",
-  "raw transcription" = "raw transcription",
-  "transcription completed" = "transcription completed",
-  "reviewed" = "reviewed",
-  "completed" = "completed"
-}
+/**
+ * Edition phases of a tono, in working order. status.json records the state of
+ * each one; scripts/build_index.py marks as "n/a" the ones that do not apply
+ * to the tono according to its MEI, and writes the full map to index.json.
+ */
+export type PhaseState = "pending" | "in_progress" | "done" | "n/a"
 
-export enum MusicStatus {
-  "not started" = "not started",
-  "raw transcription" = "raw transcription",
-  "transcription completed" = "transcription completed",
-  "reconstruction started" = "reconstruction started",
-  "music completed" = "music completed",
-  "reviewed" = "reviewed",
-  "completed" = "completed"
+export type PhaseKey = "text" | "text_review" | "music" | "music_review" |
+  "voice" | "voice_review" | "guion" | "guion_review" | "full_review" |
+  "external_review" | "intro"
+
+export type PhaseGroup = { label: string, phases: { key: PhaseKey, label: string }[] }
+
+export const PHASE_GROUPS: PhaseGroup[] = [
+  {
+    label: "Texto", phases: [
+      { key: "text", label: "Transcripción del texto" },
+      { key: "text_review", label: "Revisión del texto" },
+    ]
+  },
+  {
+    label: "Música", phases: [
+      { key: "music", label: "Transcripción musical" },
+      { key: "music_review", label: "Revisión de la transcripción musical" },
+    ]
+  },
+  {
+    label: "Reconstrucción", phases: [
+      { key: "voice", label: "Reconstrucción de la voz perdida" },
+      { key: "voice_review", label: "Revisión de la voz reconstruida" },
+      { key: "guion", label: "Reconstrucción del guion" },
+      { key: "guion_review", label: "Revisión del guion reconstruido" },
+      { key: "full_review", label: "Revisión musical completa" },
+    ]
+  },
+  {
+    label: "Edición", phases: [
+      { key: "external_review", label: "Revisión musical externa" },
+      { key: "intro", label: "Estudio introductorio" },
+    ]
+  },
+]
+
+export const PHASES = PHASE_GROUPS.flatMap(group => group.phases)
+
+export const phaseLabel = (key: PhaseKey | null) =>
+  PHASES.find(phase => phase.key == key)?.label ?? ""
+
+export const PHASE_STATE_LABELS: Record<PhaseState, string> = {
+  "done": "hecho",
+  "in_progress": "en curso",
+  "pending": "pendiente",
+  "n/a": "no aplica",
 }
 
 export type AudioOverlay = {
@@ -66,8 +103,10 @@ export interface TonoStatus {
   index: number;
   number: number;
   path: string;
-  status_text: TextStatus;
-  status_music: MusicStatus;
+  phases: Record<PhaseKey, PhaseState>;
+  progress: number;              // 0-1, a phase in progress counts half
+  next_phase: PhaseKey | null;   // first phase not done, in working order
+  complete: boolean;             // every phase that applies is done
   // Derived from each tono's MEI and cached in tonos/index.json (see
   // scripts/build_index.py). The MEI is the source of truth.
   music_author: string;
@@ -111,153 +150,39 @@ export type ScoreStats = {
 
 
 /**
- * Utility functions for checking tono (musical work) status
- * These functions are used across components to determine completion status
+ * Per phase count of tonos in each state, over the tonos it applies to
  */
+export type PhaseStats = Record<PhaseKey, Record<PhaseState, number>>
 
-export function tonoHasMusic(tonoConfig: ScoreViewerConfigScore | null): boolean {
-  if (tonoConfig == null) {
-    return false;
-  } else {
-    return (tonoConfig.meiFile != undefined && tonoConfig.meiFile != '');
-  }
-}
-
-export function tonoHasIntro(tono: ScoreViewerConfigScore | null): boolean {
-  if (tono == null) {
-    return false;
-  } else {
-    return (tono.introductionFile != undefined && tono.introductionFile.length > 0);
-  }
-}
-
-export function tonoHasText(tono: ScoreViewerConfigScore | null): boolean {
-  if (tono == null) {
-    return false;
-  } else {
-    return (tono.text != undefined && tono.text.length > 0);
-  }
-}
-
-export function tonoHasTextCompleted(tono: TonoStatus | null): boolean {
-  return (tono?.status_text == "transcription completed" || tono?.status_text == "reviewed"
-    || tono?.status_text == "completed");
-}
-
-export function tonoHasTextValidated(tono: TonoStatus | null): boolean {
-  return (tono?.status_text == "reviewed");
-}
-
-export function tonoHasMusicTranscriptionCompleted(tono: TonoStatus | null): boolean {
-  return (tono?.status_music == "transcription completed" ||
-    tono?.status_music == "reconstruction started" ||
-    tono?.status_music == "music completed" ||
-    tono?.status_music == "reviewed" ||
-    tono?.status_music == "completed");
-}
-
-export function tonoHasMusicCompleted(tono: TonoStatus | null): boolean {
-  return tonoNeedReconstruction(tono) && (tono?.status_music == "music completed" ||
-    tono?.status_music == "reviewed" ||
-    tono?.status_music == "completed");
-}
-
-export function tonoHasMusicVoiceReconstructionInprogress(tono: TonoStatus | null): boolean {
-  return tonoNeedReconstruction(tono) && (tono?.status_music == "reconstruction started" ||
-    tono?.status_music == "reviewed" ||
-    tono?.status_music == "completed");
-}
-
-export function tonoHasMusicVoiceReconstructed(tono: TonoStatus | null): boolean {
-  return tonoNeedReconstruction(tono) && tonoHasMusicCompleted(tono);
-}
-
-
-
-export function tonoNeedReconstruction(tono: TonoStatus | null): boolean {
-  return tono?.reconstructed ?? false;
-}
-
-export function tonoHasAudio(tono: ScoreViewerConfigScore | null): boolean {
-  return (tono?.audioFiles != undefined && tono.audioFiles.length >= 1 && tono.audioFiles[0].file != undefined);
-}
-
-export function tonoHasMusicValidated(tono: TonoStatus | null): boolean {
-  return (tono?.status_music == "reviewed");
-}
-
-/**
- * Utility type for aggregating status statistics
- */
 export interface TonoStatusStats {
-  hasIntro: number;
-  hasText: number;
-  textCompleted: number;
-  textValidated: number;
-  hasMusic: number;
-  musicTranscriptionCompleted: number;
-  voiceReconstructed: number;
-  voiceReconstructionInProgress: number;
-  needsReconstruction: number;
-  musicCompleted: number
-  hasAudio: number;
-  musicValidated: number;
-  completed: number;
-  incompleted: number;
+  phases: PhaseStats;
+  progress: number;    // 0-1, over every phase that applies in every tono
+  completed: number;   // tonos with every phase done
 }
 
-/**
- * Calculate statistics for an array of tonos and their status
- * @param scores Array of score configurations
- * @param statuses Array of status objects
- * @returns Object with aggregated statistics
- */
 export function calculateTonoStats(
   scores: ScoreViewerConfigScore[],
   statuses: TonoStatus[]
 ): TonoStatusStats {
-  const stats: TonoStatusStats = {
-    hasIntro: 0,
-    hasText: 0,
-    textCompleted: 0,
-    textValidated: 0,
-    hasMusic: 0,
-    musicTranscriptionCompleted: 0,
-    voiceReconstructed: 0,
-    voiceReconstructionInProgress: 0,
-    needsReconstruction: 0,
-    musicCompleted: 0,
-    hasAudio: 0,
-    musicValidated: 0,
-    completed: 0,
-    incompleted: 0
-  };
+  const phases = Object.fromEntries(PHASES.map(({ key }) =>
+    [key, { "done": 0, "in_progress": 0, "pending": 0, "n/a": 0 }])) as PhaseStats
+  let weight = 0
+  let applicable = 0
+  let completed = 0
 
-  scores.forEach((tonoConfig, index) => {
-    const tonoStatus = statuses[index];
+  scores.forEach((_, index) => {
+    const tonoStatus = statuses[index]
+    if (!tonoStatus) return
+    if (tonoStatus.complete) completed++
+    PHASES.forEach(({ key }) => {
+      const state = tonoStatus.phases[key]
+      phases[key][state]++
+      if (state != "n/a") {
+        applicable++
+        weight += state == "done" ? 1 : state == "in_progress" ? 0.5 : 0
+      }
+    })
+  })
 
-    if (tonoHasIntro(tonoConfig)) stats.hasIntro++;
-    if (tonoHasText(tonoConfig)) stats.hasText++;
-    if (tonoHasTextCompleted(tonoStatus)) stats.textCompleted++;
-    if (tonoHasTextValidated(tonoStatus)) stats.textValidated++;
-    if (tonoHasMusic(tonoConfig)) stats.hasMusic++;
-    if (tonoHasMusicTranscriptionCompleted(tonoStatus)) stats.musicTranscriptionCompleted++;
-    if (tonoHasMusicVoiceReconstructed(tonoStatus)) stats.voiceReconstructed++;
-    if (tonoHasMusicVoiceReconstructionInprogress(tonoStatus)) stats.voiceReconstructionInProgress++;
-    if (tonoNeedReconstruction(tonoStatus)) stats.needsReconstruction++;
-    if (tonoHasMusicCompleted(tonoStatus)) stats.musicCompleted++;
-    if (tonoHasAudio(tonoConfig)) stats.hasAudio++;
-    if (tonoHasMusicValidated(tonoStatus)) stats.musicValidated++;
-    if (tonoHasMusicValidated(tonoStatus) && tonoHasTextValidated(tonoStatus)) {
-      stats.completed++
-    } else {
-      stats.incompleted++;
-    }
-
-
-  });
-
-  return stats;
+  return { phases, progress: applicable > 0 ? weight / applicable : 0, completed }
 }
-
-

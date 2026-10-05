@@ -2,22 +2,19 @@ import { useEffect, useMemo, useState } from 'react'
 import { Outlet, useLocation, useNavigate  } from 'react-router-dom'
 import { Context } from './Context';
 import { getJson, latestPdfsPath, TonoStatus, statusUrl, config } from './utils';
-import { faBars, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { library } from '@fortawesome/fontawesome-svg-core'
 import { Location } from 'react-router-dom'
 
 import { ConfigProvider, Layout, Menu, MenuProps, theme, Typography, Grid } from 'antd';
 
 
 import { isMobile } from 'react-device-detect';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { ScoreViewerConfig, ScoreViewerConfigScore } from 'score-viewer';
 
 
 const { Header, Content } = Layout;
 const { useBreakpoint } = Grid
 
-library.add(faBars, faArrowLeft, faArrowRight)
 
 
 const menuItemKeyFromLocationAndTono = (location: Location, currentTonoNumber: number | null) => {
@@ -110,7 +107,7 @@ function BaseLayout() {
 
     const items = useMemo<MenuProps['items']>(() => [
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
-            { key: prevTono, icon: <FontAwesomeIcon size="2xs" icon={faArrowLeft} />, disabled: currentTonoNumber == null || prevTono == "/tono/prev" } : null,
+            { key: prevTono, icon: <ArrowLeftOutlined />, disabled: currentTonoNumber == null || prevTono == "/tono/prev" } : null,
         {
             key: 'sub1', label: selectorLabel, style: currentTonoNumber ? { fontWeight: "bolder" } : {}, children:
                 scoreViewerConfig?.scores.map((s: ScoreViewerConfigScore, index: number) => {
@@ -119,7 +116,7 @@ function BaseLayout() {
                 })
         },
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
-            { key: nextTono, icon: <FontAwesomeIcon icon={faArrowRight} />, disabled: currentTonoNumber == null || nextTono == "/tono/next" } : null,
+            { key: nextTono, icon: <ArrowRightOutlined />, disabled: currentTonoNumber == null || nextTono == "/tono/next" } : null,
         { key: "/tonos/", label: "Listado de tonos", style: location.pathname == "/tonos/" ? { fontWeight: "bolder" } : {} },
         { key: "/progreso/", label: "Progreso", style: location.pathname == "/progreso/" ? { fontWeight: "bolder" } : {} },
         { key: "/", label: "Acerca de", style: location.pathname == "/about/" || location.pathname == "/" ? { fontWeight: "bolder" } : {} }
