@@ -16,7 +16,7 @@ de su marco ceremonial original.
 
 El orden de las tres coplas refuerza ese efecto de aparición solemne. La primera describe el vehículo antes de nombrar a
 quien lo ocupa: la sintaxis mantiene en suspenso la acción mientras enumera la carroza, los caballos, las ruedas y los
-rayos. Solo al comienzo de la segunda se completa la escena con *Sale más temprano el sol*. Al demorarse el sujeto, el
+rayos. Solo al comienzo de la segunda se completa la escena con *sale más temprano el sol*. Al demorarse el sujeto, el
 aparato luminoso lo anuncia antes de que el poema lo nombre.
 
 Los materiales escogidos, cristal y oro, convierten la carroza en una extensión del astro. La luz no se limita al
