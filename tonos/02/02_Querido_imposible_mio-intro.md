@@ -13,8 +13,8 @@ el sol*. La tercera empuja el encarecimiento hasta el límite de *lo humano*. Es
 desigualdad entre quien puede otorgar alivio y quien lo pide: por mucho que crezca el afecto, es la voluntad de la dama
 la que decide.
 
-En la última copla varía levemente el tono de la súplica. El imperativo *Dadle alivio a mis pesares* abre la posibilidad
-de que el amor se queje y llegue a tacharla de ingrata. La voz intenta alejar de sí esa amenaza cargándola sobre un amor
+En la última copla varía levemente el tono de la súplica. El imperativo *Dadle alivio a mis pesares* se completa con una
+alternativa, *o dará voces mi amor*: si no hay alivio, el amor se quejará y llegará a tacharla de ingrata. La voz intenta alejar de sí esa amenaza cargándola sobre un amor
 personificado, capaz de dar voces. La protesta se presenta así como fruto del sufrimiento, aunque contradice la cautela
 con que se había iniciado el poema. La cortesía verbal deja traslucir la presión que ejerce el deseo de ser
 correspondido.
