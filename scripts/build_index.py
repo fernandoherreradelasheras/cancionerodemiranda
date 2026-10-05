@@ -36,6 +36,7 @@ PHASES = [
     'voice', 'voice_review',
     'guion', 'guion_review',
     'full_review',
+    'facsimile',
     'external_review',
     'intro',
 ]

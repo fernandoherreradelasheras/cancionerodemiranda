@@ -37,7 +37,7 @@ export type PhaseState = "pending" | "in_progress" | "done" | "n/a"
 
 export type PhaseKey = "text" | "text_review" | "music" | "music_review" |
   "voice" | "voice_review" | "guion" | "guion_review" | "full_review" |
-  "external_review" | "intro"
+  "facsimile" | "external_review" | "intro"
 
 export type PhaseGroup = { label: string, phases: { key: PhaseKey, label: string }[] }
 
@@ -65,6 +65,7 @@ export const PHASE_GROUPS: PhaseGroup[] = [
   },
   {
     label: "Edición", phases: [
+      { key: "facsimile", label: "Enlace con el facsímil" },
       { key: "external_review", label: "Revisión musical externa" },
       { key: "intro", label: "Estudio introductorio" },
     ]
