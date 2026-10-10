@@ -1,12 +1,12 @@
-El breve tono *Celebrando está el amor*, aún configurado en una sola
-sección, repite el mismo verso *alamar no, sino alarma* como pie de
+El breve tono *Celebrando está el Amor*, aún configurado en una sola
+sección, repite el mismo verso *alarma, no sino alarma* como pie de
 cierre de cada estrofa.
 
 ## El texto
 
 *[TODO: comentario del texto.]*
 
-Comparte el nombre, Anarda, y la idea la belleza como arma
+Comparte el nombre, Anarda, y la idea de la belleza como arma
 que embiste y avasalla con uno de los tonos más bellos del **Libro
 de Tonos humanos**: *A desafiar las flores*[^lth][^gemma]
 
