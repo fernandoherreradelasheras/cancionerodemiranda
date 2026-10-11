@@ -1,4 +1,4 @@
-El tono ***Ha del mar, ha del hermoso*** pertenece al bloque inicial del Cancionero
+El tono ***Ah del mar, ah del hermoso*** pertenece al bloque inicial del Cancionero
 de Miranda, el de los veintidós tonos de sección única sin estribillo, y es uno de
 los más breves de todo el conjunto: diecinueve compases de compás ternario sobre
 los que se cantan las cuatro coplas. El texto es un romance corto de cuatro
@@ -9,7 +9,7 @@ cancionero, la parte de alto.
 
 ## El texto
 
-El poema está construido sobre una fórmula de llamada. *¡Ha del mar!* es el grito
+El poema está construido sobre una fórmula de llamada. *¡Ah del mar!* es el grito
 con que se interpela desde lejos, y de él nace la anáfora que abre las tres primeras
 coplas: se llama al mar, después al *palacio de Tetis* y por último al
 *nevado cerúleo promontorio*. Las tres llamadas recorren de abajo arriba el mismo
