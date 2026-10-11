@@ -1,4 +1,4 @@
-El tono *Aquella deidad del Tajo* uno de los romances en castellano de
+El tono *Aquella deidad del Tajo* es uno de los romances en castellano de
  **António da Fonseca Soares** (conocido como Frei António das
 Chagas tras tomar en 1662 el hábito de la orden franciscana).
 
