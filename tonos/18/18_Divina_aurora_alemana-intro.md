@@ -6,7 +6,7 @@
 
 ## Fuentes poéticas
 
-El texto del tono **Divina Aurora alemana** está tomado, de manera
+El texto del tono **Divina aurora alemana** está tomado, de manera
 parcial, de un romance de Agustín Salazar y Torres que apareció
 publicado de forma póstuma en el primer volumen de la **Citara de
 Apolo**: *A los felices años de la reina nuestra señora Doña Mariana de
@@ -32,7 +32,7 @@ reutilización del texto, quitando cualquier referencia a la monarquía
 hispánico, para cantar en Lisboa a otra monarca alemana. Esta situación
 se produciría a partir de 1687 cuando **María Sofía Isabel del
 Palatinado-Neoburgo** contrajo matrimonio con **Pedro II**. Los versos añadidos
-*Viva el lazo indisoluble // de amor en tu dulce empeño* parecen indicar
+*Viva el lazo indisoluble // de amor en tu dulce empleo* parecen indicar
 que además de cambiar la reina, se cambió el cumpleaños por la boda. El
 rizo se terminaría de rizar en 1689 cuando, a las dos deidades alemanas
 de nuestros tonos, Mariana y María Sofía, se les una una tercera,
