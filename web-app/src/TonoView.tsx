@@ -99,7 +99,7 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
     const reconstruction = scoreProperties?.reconstructionBy
     const numMeasures = scoreProperties?.numMeasures
-    const title = tonoIndex ? `${scoreViewerConfig?.scores[tonoIndex].title}` : ""
+    const title = tonoIndex != null ? scoreViewerConfig?.scores[tonoIndex]?.title ?? "" : ""
 
     /* The sections used to be a fifth column of vertically stacked links, one line each.
        They live next to the score now: it is score navigation, and the header no longer
@@ -198,6 +198,10 @@ const TonoView = ({ tonoIndex }: { tonoIndex: number | null }) => {
 
     return (
         <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+
+            {/* The page heading: the header menu already shows the title, so it is only for
+                screen readers and crawlers, which otherwise find no heading in the page */}
+            {title ? <h1 className="visually-hidden">{title}</h1> : null}
 
             {collapsibleHeader ?
                 <Collapse

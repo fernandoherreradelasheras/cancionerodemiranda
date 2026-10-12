@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Outlet, useLocation, useNavigate  } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate  } from 'react-router-dom'
 import { Context } from './Context';
 import { getJson, latestPdfsPath, TonoStatus, statusUrl, config } from './utils';
 import { Location } from 'react-router-dom'
@@ -69,7 +69,14 @@ function BaseLayout() {
 
     /* Navigation happens here, in the handler, and not in an effect watching
        currentTonoNumber: otherwise state and URL sync both ways and any re-run of the
-       effect below reverts the page change */
+       effect below reverts the page change. The labels are links too (crawlers follow
+       them, readers can open them in a new tab): when the click lands on a link it has
+       already navigated, so the handler only navigates when the URL is still elsewhere */
+    const goTo = (path: string) => {
+        if (window.location.pathname !== path) {
+            navigate(path)
+        }
+    }
     const onMenuSelected = (info: Parameters<NonNullable<MenuProps['onClick']>>[0]) => {
         if (info.key.startsWith("sub1:/tono/") || info.key.startsWith("/tono/")) {
             const tonoNumber = parseInt(info.key.replace(/.*tono\//, ""))
@@ -77,10 +84,10 @@ function BaseLayout() {
                 return
             }
             setCurrentTonoNumber(tonoNumber)
-            navigate(`/tono/${tonoNumber}/`)
+            goTo(`/tono/${tonoNumber}/`)
         } else {
             setCurrentTonoNumber(null)
-            navigate(info.key)
+            goTo(info.key)
         }
     }
 
@@ -107,19 +114,21 @@ function BaseLayout() {
 
     const items = useMemo<MenuProps['items']>(() => [
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
-            { key: prevTono, icon: <ArrowLeftOutlined />, disabled: currentTonoNumber == null || prevTono == "/tono/prev" } : null,
+            { key: prevTono, icon: <ArrowLeftOutlined />, disabled: currentTonoNumber == null || prevTono == "/tono/prev",
+              label: prevTono == "/tono/prev" ? null : <Link to={prevTono} aria-label="Tono anterior" /> } : null,
         {
             key: 'sub1', label: selectorLabel, style: currentTonoNumber ? { fontWeight: "bolder" } : {}, children:
                 scoreViewerConfig?.scores.map((s: ScoreViewerConfigScore, index: number) => {
                     const tonoNumber = `${index + 1}`
-                    return { key: `sub1:/tono/${tonoNumber}/`, label: `Tono ${tonoNumber}: ${s.title}` }
+                    return { key: `sub1:/tono/${tonoNumber}/`, label: <Link to={`/tono/${tonoNumber}/`}>{`Tono ${tonoNumber}: ${s.title}`}</Link> }
                 })
         },
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
-            { key: nextTono, icon: <ArrowRightOutlined />, disabled: currentTonoNumber == null || nextTono == "/tono/next" } : null,
-        { key: "/tonos/", label: "Listado de tonos", style: location.pathname == "/tonos/" ? { fontWeight: "bolder" } : {} },
-        { key: "/progreso/", label: "Progreso", style: location.pathname == "/progreso/" ? { fontWeight: "bolder" } : {} },
-        { key: "/", label: "Acerca de", style: location.pathname == "/about/" || location.pathname == "/" ? { fontWeight: "bolder" } : {} }
+            { key: nextTono, icon: <ArrowRightOutlined />, disabled: currentTonoNumber == null || nextTono == "/tono/next",
+              label: nextTono == "/tono/next" ? null : <Link to={nextTono} aria-label="Tono siguiente" /> } : null,
+        { key: "/tonos/", label: <Link to="/tonos/">Listado de tonos</Link>, style: location.pathname == "/tonos/" ? { fontWeight: "bolder" } : {} },
+        { key: "/progreso/", label: <Link to="/progreso/">Progreso</Link>, style: location.pathname == "/progreso/" ? { fontWeight: "bolder" } : {} },
+        { key: "/", label: <Link to="/">Acerca de</Link>, style: location.pathname == "/about/" || location.pathname == "/" ? { fontWeight: "bolder" } : {} }
     ].filter(i => i !== null)
     ,[breakpoint, prevTono, nextTono, selectorLabel, scoreViewerConfig, currentTonoNumber, location.pathname])
 
@@ -168,6 +177,9 @@ function BaseLayout() {
                             { status.length > 0 ? <Menu
                                 mode="horizontal"
                                 subMenuCloseDelay={0.3}
+                                // The tono links are in the page from the start, not only once
+                                // the submenu opens: they are how crawlers reach every tono
+                                forceSubMenuRender
                                 selectedKeys={selectedKeys}
                                 items={items}
                                 onSelect={onMenuSelected}

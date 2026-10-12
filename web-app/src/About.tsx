@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
+import { useGlobalContext } from "./Context"
 
 const REPO_URL = "https://github.com/fernandoherreradelasheras/cancionerodemiranda"
 const SCORE_VIEWER_URL = "https://www.npmjs.com/package/score-viewer"
@@ -35,6 +36,23 @@ const STATUS: { state: "done" | "in_progress" | "pending", title: string, items:
         ]
     },
 ]
+
+/* The tonos whose introduction is finished, linked: they are the most complete pages of the
+   edition, and the home page is where crawlers start */
+const StudiedTonos = () => {
+    const { status, scoreViewerConfig } = useGlobalContext()
+    const studied = (status ?? []).filter(tono => tono.phases?.intro === "done")
+    if (!studied.length || !scoreViewerConfig) {
+        return null
+    }
+    return (
+        <p>Tonos con estudio introductorio completo:{" "}
+            {studied.map((tono, i) =>
+                <span key={tono.number}>{i > 0 ? ", " : ""}
+                    <Link to={`/tono/${tono.number}/`}>{scoreViewerConfig.scores[tono.number - 1]?.title}</Link>
+                </span>)}.</p>
+    )
+}
 
 const About = () => (
     <section className="about">
@@ -302,6 +320,8 @@ const About = () => (
                             {items.map(item => <li key={item}>{item}</li>)}
                         </ul>
                     </div>)}
+
+                <StudiedTonos />
 
                 <p className="about-more">
                     <NavLink to="/progreso/">Progreso tono a tono</NavLink>

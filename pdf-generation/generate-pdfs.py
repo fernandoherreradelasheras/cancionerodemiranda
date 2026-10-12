@@ -56,6 +56,7 @@ XSLT_DIR = BASE_DIR / "xslt"
 PIPELINE_SCRIPTS_DIR = BASE_DIR / "scripts"
 sys.path.append(str(PIPELINE_SCRIPTS_DIR))
 from kdp_preflight import ink_box  # noqa: E402  (the KDP score placement measures what the preflight checks)
+from strip_placeholders import strip_placeholders, with_alto_notice, reconstructed_voices  # noqa: E402  (the PDFs print only finished text)
 
 # Verovio engraving options, fixed for the whole cancionero (unit and scale are
 # per-tono). Reference: https://book.verovio.org/toolkit-reference/toolkit-options.html
@@ -115,6 +116,7 @@ SHARED_ASSETS = [
     "pdf-generation/scripts/mei_annotations.py",
     "pdf-generation/scripts/expand_annots.py", "pdf-generation/scripts/footnote_wrap.py",
     "pdf-generation/scripts/annotate_svg.py", "pdf-generation/scripts/kdp_preflight.py",
+    "pdf-generation/scripts/strip_placeholders.py",
     "scripts/normalize_ficta.py",
     # The MEI Basic derivative is embedded in the PDF, so its generator counts.
     "scripts/simplify_to_mei_basic.py", "scripts/mei_resolve_editorial.py",
@@ -879,7 +881,12 @@ def build_tono_body(data, buildType, out_dir, with_criterios=True):
     intro = data.get('introductionFile') or ''
     if intro and intro != "null":
         out = f'{out_dir}/intro.tex'
-        run(['pandoc', Path(intro), '-o', out, '--from', 'markdown+autolink_bare_uris'])
+        # The working placeholders of the source (*[TODO: …]*) never reach the PDF; the
+        # reconstructed alto is stated even while its paragraph is still a placeholder
+        mei = data.get('meiFile') or ''
+        voices = reconstructed_voices(Path(mei).read_text(encoding='utf-8')) if mei and Path(mei).is_file() else []
+        run(['pandoc', '-o', out, '--from', 'markdown+autolink_bare_uris'],
+            input_text=with_alto_notice(strip_placeholders(Path(intro).read_text(encoding='utf-8')), voices))
         doc.section("Introducción").input(out)
 
     doc.raw(format_text_part(data['poem'], out_dir))

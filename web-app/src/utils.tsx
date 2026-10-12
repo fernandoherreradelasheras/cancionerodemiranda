@@ -4,16 +4,26 @@ import tonosConfig from "./assets/tonos-config.json"
 
 const STATUS_FILE = "index.json"
 
-const TESTING_PATH = "/tonos/"
+// The viewer reads index.json, the MEI, the introductions and the audio from this site: the
+// deploy publishes them under /tonos/ with the working placeholders of the introductions
+// removed (see prerender.mjs), and the dev server serves them through public/tonos. The
+// facsimile images stay on raw.githubusercontent.com (tonos.json), too big to deploy, unless
+// VITE_TEST_URLS asks for the local copy behind public/facsimil-images.
+const TONOS_PATH = "/tonos/"
 const TESTING_IMAGES_PATH = "/facsimil-images/"
 
 const VITE_TEST_URLS = import.meta.env.VITE_TEST_URLS
 
 const TESTING = (VITE_TEST_URLS != undefined) ? true : false
 
-export const config: ScoreViewerConfig = (TESTING ?
-  { ...tonosConfig, settings: { ...tonosConfig.settings, basePath: TESTING_PATH, facsimileImagesPath: TESTING_IMAGES_PATH } }
-  : tonosConfig) as ScoreViewerConfig
+export const config: ScoreViewerConfig = {
+  ...tonosConfig,
+  settings: {
+    ...tonosConfig.settings,
+    basePath: TONOS_PATH,
+    ...(TESTING ? { facsimileImagesPath: TESTING_IMAGES_PATH } : {}),
+  },
+} as ScoreViewerConfig
 
 export const statusUrl = config.settings.basePath + STATUS_FILE
 
