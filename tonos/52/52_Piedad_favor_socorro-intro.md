@@ -1,8 +1,19 @@
-*[TODO: apertura: forma (estribillo «¡Piedad, favor, socorro!» y coplas del romance «¡Venganza, griegos!» repite, metro, asonancia o-o), orgánico (tres tiples, tenor y guion), autoría disputada de la música (Patiño / Correa) y texto anónimo.]*
+El tono ***Piedad, favor, socorro*** es el único del cancionero escrito para tres tiples y tenor, y de él el Cancionero
+de Miranda solo conserva dos de los tiples. Su música está disputada entre **Carlos Patiño**, a quien la atribuye el
+propio cancionero, y **Manuel Correa**. El texto, tremendamente popular, es anónimo. El estribillo (cc. 1-97) aparece
+antes que las coplas (cc. 98-117), cuatro cuartetas octosílabas del romance *¡Venganza, griegos!, repite*, con la misma
+asonancia en ó-o que el estribillo.
 
 ## El texto
 
-*[TODO: comentario del texto (estribillo y coplas sobre el incendio de Troya).]*
+El poema hace del saqueo de Troya un cuadro de fuego visto desde los dos bandos. Las coplas siguen a Aquiles, *blasón de
+todos*, que clama venganza *blandiendo un rayo por asta*, y el incendio que él mismo pide: *arda Helena, y arda Paris*,
+y con ellos la ciudad, cuyo *mármol* y *plomo* se vuelven *cómplices* del delito de los amantes. El fuego compite con el
+aire *al son de gemidos roncos*, y la última copla cierra con el emblema del fénix, que aquí arde *sin renacer en sus
+llamas*.
+
+El estribillo da la otra voz, la de los vencidos. Su triple grito, *¡piedad, favor, socorro!*, es en vano, como *pedir
+puerto al golfo*. La forma en que el Cancionero de Miranda refunde los versos siguientes se comenta más abajo.
 
 ## Fuentes poéticas
 
@@ -170,7 +181,14 @@ Como todo buen tono popular, conoció versiones vueltas a lo divino (como la de 
 
 ## La música
 
-*[TODO: comentario musical (textura a tres tiples y tenor, contraste entre estribillo y coplas, cadencias).]*
+El estribillo arranca con los tres gritos, *¡piedad!*, *¡favor!*, *¡socorro!*, en homofonía, en valores largos y
+separados por silencios (cc. 1-7). Desde el c. 8 el grito y su comentario se superponen: unas voces dicen en escala
+descendente *y es pedir puerto al golfo* mientras otras siguen repitiendo *¡piedad, favor, socorro!*, de modo que el
+clamor no cesa bajo la frase que lo declara inútil. El resto del estribillo desarrolla en imitación cada uno de sus
+versos, con las cadencias concentradas sobre re (cc. 50-63) y sobre la (cc. 76-96).
+
+Las coplas (cc. 98-117) declaman en homofonía los tres primeros versos, y solo el cuarto, *y desbocando un escollo*, se
+reparte en entradas sucesivas antes de la cadencia final sobre re.
 
 ## La edición
 
