@@ -1,8 +1,20 @@
-*[TODO: apertura: forma (coplas y estribillo, metro, asonancia), orgánico, autoría desconocida de la música y relación con el tono 33.]*
+El tono ***Su hielo esgrime la noche*** pertenece al segundo bloque del Cancionero de Miranda, el de los tonos con
+coplas y estribillo, y forma pareja con el siguiente, ***Helado sol en llamas***: las coplas de ambos proceden del mismo
+villancico, como se detalla más abajo. Las coplas (cc. 1-19) aparecen antes que el estribillo (cc. 20-99). Son cuatro
+cuartetas octosílabas con rima aguda en ó, y el estribillo, *Despertad zagalejos*, una tirada de versos breves de medida
+varia.
 
 ## El texto
 
-*[TODO: comentario del texto (coplas *Su hielo esgrime la noche* y estribillo *Despertad zagalejos*).]*
+Cada copla plantea un combate entre contrarios con el léxico de la esgrima y de la guerra: la noche *esgrime* su hielo,
+el sol *fulmina* su ardor, la sombra *lucha* con el árbol, el desdén *se armó* contra Amor. Los dos últimos versos
+repiten siempre la misma fórmula, *que lo abrasa, aquí del hielo, / que lo hiela, aquí del sol*: *¡aquí de…!* era la
+llamada con que se pedía socorro, de modo que quien se abrasa pide auxilio al hielo y quien se hiela, al sol. La última
+copla resuelve la serie en el propio Amor, que une en sí *dos contrarios*: lo alaba la parte de *un ciego* y lo humilla
+la de *un Dios*, las dos caras de Cupido.
+
+El estribillo cambia de registro y se vuelve hacia los pastores. Los despierta para cantar al amor y enseguida
+rectifica, *pero no cantéis, / llorar es mejor*, porque al compás de ese llanto también la naturaleza llora y suspira.
 
 ## Fuentes poéticas
 
@@ -227,7 +239,15 @@ En las notas al tono nº33, *Helado sol en llamas*, del que conocemos además la
 
 ## La música
 
-*[TODO: comentario musical (coplas con solos del tiple 1º y trío, cadena de entradas del estribillo, cadencias).]*
+Las coplas oponen dos texturas. Los dos primeros versos van en homofonía a cuatro (cc. 1-7); en los dos últimos, el
+tiple 1º canta a solo la acción (*que lo abrasa*, *que lo hiela*) y las demás voces le responden juntas con la llamada
+(*aquí del hielo*, *aquí del sol*), que la música convierte así en un grito de varias voces (cc. 8-19).
+
+El estribillo sigue casi palabra por palabra su texto. *Despertad zagalejos* entra en cadena, una voz tras otra (cc.
+20-24). *Pero no cantéis* se dice dos veces en homofonía y, obedeciendo al mandato, todas las voces callan el compás
+siguiente (c. 40); *llorar* se canta en valores largos (cc. 41-47), y sobre *llanto* se extienden los melismas más
+amplios de la pieza (cc. 53-55 y 60-65). En *llora el alba y suspira el sol* (cc. 66-99) las voces se pasan la frase a
+solo antes de reunirse para la cadencia final sobre do.
 
 ## La edición
 
