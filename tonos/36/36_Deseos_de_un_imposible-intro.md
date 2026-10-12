@@ -1,8 +1,30 @@
-*[TODO: párrafo de apertura (forma: coplas y estribillo, seis coplas, romance octosílabo; orgánico Tiple 1º, Tiple 2º, [Alto], Tenor; texto de Lope de Vega, música anónima).]*
+***Deseos de un imposible*** es un romance de **Lope de Vega**, que lo intercaló, cantado, en *La desdicha por la
+honra*, una de las novelas a Marcia Leonarda impresas en *La Circe* (1624), después de que hubiera circulado anónimo en
+la *Primavera y flor de los mejores romances* (1621). La música del tono es anónima. Las coplas (cc. 1-23), seis
+cuartetas octosílabas con asonancia á-e en los versos pares, aparecen antes que el estribillo (cc. 24-55), cuatro versos
+breves que mantienen la misma asonancia.
 
 ## El texto
 
-*[TODO: comentario del texto.]*
+Cada copla del romance es una paradoja del amante que persigue un imposible. En la primera, los deseos que no hallan
+remedio son los mismos que *solicitan remediarme*: la enfermedad se ofrece como cura. La segunda da al imposible un
+espacio, una *tierra que todo es aire* por la que el amante camina a *pasos perdidos* detrás de su pensamiento, que va
+siempre por delante y no se deja alcanzar. La tercera invierte el valor del desengaño: el amante lo recibe de los
+*tiempos* y les pide que lo engañen, porque el bien que adora es tan alto que perder la ilusión sería peor que la
+muerte.
+
+La cuarta recoge dos palabras de las anteriores, *pasos* y *deseos*, para describir una búsqueda sin término (*busco un
+fin que no le tiene*) de la que el amante, aun sabiéndola inútil, no se cansa. Las dos últimas llevan la paradoja al
+ánimo: *vivo en mis males alegre*, *contento estoy de estar triste*, y la mayor pena es *que la pena me falte*, porque
+perderla sería perder también el deseo.
+
+El último verso cierra el círculo con la palabra del primero: *que, como sigo imposibles, / todo me parece fácil*. El
+imposible que al comienzo había llevado al amante *a tiempos tales* es, al final, lo que le hace fácil todo lo demás.
+Ese regreso da a las seis coplas de la redacción breve, la que transmite el Cancionero de Miranda, un cierre propio, y
+explica que la tradición pudiera detenerse ahí sin que el poema quedara trunco.
+
+El estribillo resume en una exclamación la actitud de las coplas: el amor es *loco*, *mas tan süave* que lo disculpa
+cualquiera que conozca su causa, la dama, que en las seis coplas no aparece sino como *el bien que adoro*.
 
 ## Fuentes poéticas
 
@@ -35,7 +57,9 @@ Otro testimonio poético de *Deseos de un imposible* aparece abriendo el *Cancio
 [^thomas]: Phillipps, Thomas: *Catalogus librorum manuscriptorum in Bibliotheca D. Thomae Phillipps, Bart. A.D. 1837* p. 413
 [^cambridge]: A fecha de julio de 2026 la suma exigida por la Universidad de Cambridge para obtener una imagen digital de este manuscrito, destinada exclusivamente al estudio privado, ascendía a 39.60€ al cambio. Para la edición de este cancionero se han solicitado digitalizaciones a, entre otras, la Biblioteca de Ajuda de Lisboa, Arquivo Nacional Torre do Tombo, British Library, Bibloteca del Palacio Real de Madrid, Bibliotheque Nationale de France, New York Public Library, Biblioteca Nacional de España, Hispanic Society de New York, Biblioteca Nacional de Catalunya, Real Biblioteca del Monasterio de El Escorial, Biblioteca Geral da Universidade de Coimbra, Bayerische Staatsbibliothek o la Biblioteca Pública de Evora. Todas ellas han facilitado el acceso a sus fondos, o bien de manera gratuita o mediante el pago de unas tasas de reproducción razonables, frente a las exigidas por la Universidad de Cambridge que cuadragintuplican la media de estas instituciones. La misma Universidad de Cambridge es ilegítima poseedora de un manuscrito tan singular como el [Libro de tono de Joseph Marin, robado de la Biblioteca Nacional de España](https://humanoydivino.com/otros/libro_de_tonos_de_joseph_marin_the_story/), hecho que la institución conoce perfectamente pero sobre el que guarda un vergonzante silencio.
 
-*[TODO: incorporar la colación del US-NYhsa B2477 cuando llegue la reproducción solicitada. Determinar si corresponde al ms. XXIX del catálogo de Rodríguez-Moñino citado por Castaldo; y, sobre todo, comprobar cuál de los dos textos con el mismo incipit transmite: el romance de Lope o el poema de Esquilache del f. 82 de MSS/3700 (véase el apartado de autoría).]*
+No ha sido posible examinar el US-NYhsa B2477. Por la atribución a Esquilache de la nota que lo acompaña, lo más
+probable es que transmita el poema del f. 82 de MSS/3700, que comparte con el romance sus dos primeros versos, y no el
+de Lope (véase el apartado sobre la autoría).
 
 ### Transmisión y variantes
 
@@ -74,7 +98,9 @@ La macroestructura de los diferentes testimonios es:
 
 ![E-Mn MSS/3700 (N) con el comienzo de *Deseos de un imposible* bajo la rúbrica «Lope de Bega».](assets/36_EMn_3700_91.png)
 
-*[TODO: añadir figuras de E-Mn MSS/8252, ff. 4r-v (V) y de E-Mn MSS/3811, f. 64v (N2).]*
+![E-Mn MSS/8252 (V), ff. 4r-v, con *Deseos de un imposible* bajo la rúbrica «Romance del Conde de Villamediana» y, al final, el colofón dedicado a don Diego de Mendieta.](assets/36_EMn_8252_4r-4v.png)
+
+![E-Mn MSS/3811 (N2), f. 64v, con *Deseos de un imposible* bajo la rúbrica «Romance de un amante».](assets/36_EMn_3811_64v.png)
 
 Se distinguen una **redacción larga**, con la serie del «hermoso dueño» (C7, C8, C10), que conservan *LC*, *N*, *N2* y *V*, y una **redacción breve** de seis coplas (C1–C6) en *Bc*, *M* y *PF*. *A* presenta un caso aparte: conserva solo cuatro de las coplas compartidas (C1, C2, C3 y C6) y las amplía con coplas exclusivas, de modo que combina reducción en el material común y amplificación con texto propio. Las coplas C13 y C14, que cierran esa amplificación, reaparecen en *V*: la cola del romance no fue una invención del copista de *A*, sino materia que circulaba en el entorno napolitano, y solo las coplas C11, C12 y el añadido C15 quedan como exclusivas de *A*. El estribillo se conserva de modo decreciente en los testimonios poéticos: triple en *LC*, doble en *PF* y único y final en *N* y *N2*; se pierde en *A*, *Bc* y *V*. *M* queda fuera de la comparación de la posición y las repeticiones del estribillo ya que, como en la mayoría de las fuentes musicales de su género, el texto del estribillo se copia debajo de la música sin más indicaciones, y queda en manos de los intérpretes la decisión de cada cuántas coplas repetirlo.
 
@@ -139,7 +165,7 @@ Los dos únicos testimonios que transmiten las coplas C13–C14 son también los
 
 Las señales de autoría presentes en el conjunto de los testimonios tienen pesos muy desiguales: la inclusión en *La Circe*, la rúbrica del f. 91 de MSS/3700, la rúbrica de Villamediana de *V* y la atribución a Esquilache de B2477, que, como se verá, probablemente ni siquiera se refiere a nuestro romance. A ellas hay que sumar, a modo de contexto previo, el anonimato de la *Primavera y flor*, que es casi neutro, porque las antologías del romancero nuevo imprimen sus piezas sin nombre de autor por sistema, aun cuando este fuera conocido (Lope, Góngora o Liñán circulan anónimos en esos mismos repertorios); la rúbrica temática «Romance de un amante» de *N2* es funcionalmente equivalente a ese anonimato. La inclusión en *La Circe* es, en cambio, la prueba de mayor peso, pues se trata de un libro autorizado y publicado por el propio Lope, que intercala el romance, cantado en una novela suya. Esta inclusión no se puede interpretar como una autoatribución porque Lope insertaba también versos ajenos o tradicionales en su prosa y en su teatro, así que hemos de considerarla como un indicio fuerte de la autoría de Lope, pero no una demostración cerrada. La rúbrica «Lope de Bega» de MSS/3700, tomada en solitario, sería frágil, ya que las atribuciones de los cancioneros manuscritos son inestables y el nombre de Lope atraía hacia sí poemas anónimos. Gana, sin embargo, una solidez notable dentro del propio códice: MSS/3700 copia dos poemas que arrancan con el mismo dístico, «Deseos de un imposible / me han traído a tiempos tales», y los distingue con atribuciones diferentes, el del f. 82, que diverge desde el tercer verso, «Del Príncipe de Esquilache», y el del f. 91, el romance que nos ocupa, «Lope de Bega». Quien rubricó no atribuyó por atracción mecánica del incipit, sino que conocía ambos textos, sabía que eran obras distintas y asignó cada una a su autor. Esa discriminación consciente convierte la rúbrica del f. 91 en un testimonio de atribución mucho más fiable de lo que sería una etiqueta aislada.
 
-El poema del f. 82 reordena, además, el valor de la señal de Esquilache. Sabiendo que circulaba un poema del príncipe con el mismo arranque, la explicación más económica de la nota del US-NYhsa B2477 («versos que decían ser de Esquilache») es que ese códice transmita, no el romance de Lope, sino el poema de Esquilache u otro derivado del mismo incipit: la atribución dejaría entonces de ser una señal competidora sobre nuestro romance para convertirse en la etiqueta correcta de un texto distinto. La reproducción solicitada del manuscrito, cuya llegada está prevista para septiembre de 2026, permitirá comprobarlo; entre tanto, la atribución a Esquilache queda como la más débil del conjunto y, muy probablemente, como atribución de otro poema.
+El poema del f. 82 reordena, además, el valor de la señal de Esquilache. Sabiendo que circulaba un poema del príncipe con el mismo arranque, la explicación más económica de la nota del US-NYhsa B2477 («versos que decían ser de Esquilache») es que ese códice transmita, no el romance de Lope, sino el poema de Esquilache u otro derivado del mismo incipit: la atribución dejaría entonces de ser una señal competidora sobre nuestro romance para convertirse en la etiqueta correcta de un texto distinto. No ha sido posible comprobarlo sobre el manuscrito, y la atribución a Esquilache queda como la más débil del conjunto y, muy probablemente, como atribución de otro poema.
 
 La rúbrica de *V*, «Romance del Conde de Villamediana», merece examen aparte. El contexto le da algo más de entidad que a una rúbrica suelta, pues el códice es una compilación dedicada a la poesía satírica del conde, formada en Nápoles en 1651. La propia pregunta añadida, «¿está impreso en sus obras?», muestra sin embargo que la atribución se recibió con reservas dentro del mismo entorno que la formuló, y la verificación que propone arroja resultado negativo: el romance no figura en ninguna de las ediciones de las *Obras* de Villamediana. La atribución encaja además en un patrón conocido, el de la capacidad del conde, como Lope o Góngora, para atraer hacia sí poesía ajena, en especial la de tono desengañado. Es, en suma, una señal débil que no compite con las anteriores, aunque su valor documental es alto en otro plano: acredita que la cola amplificada del romance circulaba en Nápoles bajo un nombre distinto del de Lope, treinta años después de la compilación de *A*, y que ya entonces un lector atento supo dudar de la rúbrica con el criterio correcto, el cotejo con el corpus impreso autorizado.
 
@@ -150,10 +176,6 @@ La filiación aporta el argumento decisivo a la atribución a Lope, que aflora d
 El Cancionero de Miranda transmite la redacción breve, de seis coplas (C1–C6), y el estribillo copiado bajo la música sin indicación de repeticiones; las lecciones críticas del texto coinciden en las tres voces existentes del tono. Pertenece con seguridad a la familia β, cuya innovación conjuntiva «que sigo mi pensamiento» comparte con *Bc*, *LC* y *PF*. Dentro de β, sus acuerdos lo aproximan a la subfamilia β1 de la *Primavera y flor*: lee «hallando» (en la forma «me hallando»), «que matarme» y el singular «la pena me falte» con *Bc* y *PF*, mientras que con *LC* comparte únicamente «menor», banalización del comparativo fácilmente poligenética. No es, con todo, copia de ninguno de los dos testimonios de β1, de los que lo separan sus lecciones privativas («me hallando», «que no le temo») y, frente a *Bc*, «pasos» y «la mayor pena». Para constituir el texto de *M*, *PF* y *Bc* son los testimonios de control más próximos; *LC* conserva su valor como representante de la redacción larga autorizada, pero no es el pariente inmediato; *N* y *N2* documentan la fisonomía larga del arquetipo, y *A* y *V* la rama napolitana. Esta adscripción tiene una lectura histórica coherente: el texto que se cantaba con el tono de *M* sigue la vulgata impresa del romancero, la de la *Primavera y flor*, que es justamente la antología de los romances que corrían cantados, y no el texto autorial de *La Circe*.
 
 Dos lecciones privativas de *M* merecen nota. La primera, «que no me hallando remedio» (C1, v. 3), es la lección «hallando» de β1 con una sílaba de apoyo de probable origen musical: «que no hallando remedio», con la sinalefa no‑ha que un cantor tendería a hacer, queda heptasílabo, y el «me» restituye el octosílabo conservando la sinalefa; la rama impresa mantiene la medida mediante un hiato tipográficamente invisible pero incómodo en el canto. Que el único testimonio musical de la tradición sea precisamente el que introduce el apoyo silábico avala que se trata de una lección genuina de la práctica cantada. La segunda, «Busco un fin que no le temo» (C4, v. 1), frente al «que no le tiene» unánime del resto de la tradición, ofrece un sentido posible (buscar un fin, la muerte, que no se teme, en línea con el «matarme» de C3) pero aplana la paradoja que da motor a la copla, la de buscar un fin que no tiene fin, y el paso paleográfico tiene→temo es trivial; lo más probable es que sea corrupción del modelo de *M* o de su copia y enmendamos en nuestra edición poético-musical.
-
-## Fuentes musicales
-
-El Cancionero de Miranda es la única fuente musical conocida de este tono.
 
 ## Otras versiones musicales
 
@@ -181,7 +203,27 @@ La frase de los adaptadores televisivos, escrita a tres siglos de distancia, res
 
 ## La música
 
-*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+Las coplas dan a cada parte de la cuarteta un tratamiento propio. Los dos primeros se declaman en homofonía, con
+cadencia sobre mi en *imposible* (c. 3) y sobre do en *tales* (c. 8); en el segundo, el tiple 2º se adelanta a las demás
+voces en *me han traído* y en *tiempos* (cc. 4 y 6). El tercero, *que no me hallando remedio*, se dice dos veces,
+también en homofonía, separadas por un compás de silencio de todas las voces (c. 12): la segunda vez la frase sube un
+tono, y la cadencia pasa de sol (c. 11) a la (c. 15). El cuarto, *solicitan remediarme*, cambia de textura: lo abren el
+tiple 1º y el tenor (c. 16), y dos compases después el tiple 2º repite la línea del tiple 1º a la misma altura (c. 18),
+mientras el tenor sostiene un mi durante tres compases (cc. 19-21) hasta la cadencia final sobre la (c. 22).
+
+El estribillo empieza con entradas escalonadas de *Ay, Dios*, que se suceden compás a compás desde el tiple 2º (c. 24)
+alternando la y mi, y cada voz enlaza su exclamación con *qué loco amor*; las frases cadencian sobre la (c. 26) y re (c.
+29), hasta que todas las voces dicen juntas *qué loco amor* (c. 31) y cadencian sobre mi (c. 32). *Mas tan süave* es
+homofónico, salvo el tiple 1º, que entra dos tiempos más tarde (c. 33), y los tiples se detienen en un melisma sobre la
+*a* de *süave* (cc. 34-35).
+
+*Que me disculpa quien* se confía a una cadena de entradas a solo, cada una dos compases después de la anterior y en un
+registro más grave, que abre el tiple 1º (c. 37). Al final de cada entrada, otras voces se le suman en *quien*, y el
+tenor, que en todo el pasaje solo canta esa palabra, da re, sol y do (cc. 39, 41 y 43), una progresión por quintas. Tras
+*la causa sabe*, que el tiple 1º empieza solo (c. 44), el estribillo vuelve sobre los dos últimos versos con todas las
+voces juntas y cadencia sobre do (c. 50). En el último *la causa sabe* el tiple 2º entra un compás después que las demás
+voces (c. 52), y el tenor sostiene de nuevo un mi (cc. 52-53), como al final de las coplas, que concluyen con la misma
+cadencia sobre la (cc. 22-23 y 54-55).
 
 ## La edición
 
