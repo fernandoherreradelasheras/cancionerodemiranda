@@ -12,7 +12,7 @@ prohibidas, *no se halla que fuesen falsas*, donde la agudeza está en la llave 
 ganzúa del ladrón. La cuarta copla lleva la idea a su remate: el ladrón busca la noche,
 pero estos ojos delinquen a mediodía, *pues no hay noche con dos albas*. La quinta
 cierra con una antítesis cortesana, roban con valentía, cara a cara, pero matan cuando
-la dama *vuelve espaldas*.
+*vuelven espaldas*.
 
 ## Otras versiones musicales
 
