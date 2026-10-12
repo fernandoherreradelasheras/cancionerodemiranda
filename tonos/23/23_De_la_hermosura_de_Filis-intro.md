@@ -16,7 +16,7 @@ La estructura del romance articula un crescendo descriptivo que va desde la comp
 
 Hay en el Libro de Tonos Humanos otro tono con el mismo título compuesto por Manuel Machado[^1][^2] aunque sin más relación que la coincidencia del primer verso.
 
-[^1]: *Libro de Tonos Humanos*, E-Mn M/1262, ff. 193v-194r [199v-200r]. Disponible en: [https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=390](https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=390)
+[^1]: *Libro de Tonos Humanos*, E-Mn M/1262, ff. 193v-194r [199v-200r]. Disponible en: [https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=408](https://bnedigital.bne.es/bd/viewer?oid=0000038176&site=bdh&page=408)
 
 [^2]: Tono editado por TORRELLAS PAZ, Gemma: «De la hermosura de Filis (Manuel Machado)», *Archivo Musical GemmaPartituras*. Disponible en: [https://www.gemmapartituras.com/de-la-hermosura-de-filis-manuel-machado/](https://www.gemmapartituras.com/de-la-hermosura-de-filis-manuel-machado/)
 
