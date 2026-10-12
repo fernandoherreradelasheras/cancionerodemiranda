@@ -209,13 +209,372 @@ span.toggle-text {
   cursor: pointer;
 }
 
-section.about header.main h1 {
-  font-size: 1.5em;
-  margin: 0.5em 0;
+/* About page: left-aligned like the score viewer and the list of tonos */
+section.about {
+  --about-ink: #33291f;
+  --about-muted: #706558;
+  --about-accent: #654321;
+  --about-rule: #ddd2bf;
+  max-width: 66rem;
+  margin: 0 0 3em;
+  color: var(--about-ink);
+  font-size: 1.05rem;
+  line-height: 1.65;
 }
 
-section.about p {
-  font-size: large;
+section.about header.main h1 {
+  font-size: 1.5em;
+  margin: 0.5em 0 0.6em;
+}
+
+section.about a {
+  color: var(--about-accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(101, 67, 33, 0.35);
+  text-underline-offset: 0.18em;
+}
+
+section.about a:hover {
+  text-decoration-color: currentColor;
+}
+
+.about-figure {
+  margin: 0;
+  max-width: 44rem;
+}
+
+.about-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.about-figure figcaption {
+  margin-top: 0.4em;
+  font-size: 0.85em;
+  color: var(--about-muted);
+}
+
+section.about p.about-lead {
+  max-width: 40rem;
+  margin: 1.4em 0 0.4em;
+  font-size: 1.25em;
+  line-height: 1.5;
+}
+
+.about-body {
+  display: grid;
+  grid-template-columns: minmax(0, 44rem) minmax(13rem, 17rem);
+  column-gap: 3.5rem;
+  align-items: start;
+}
+
+.about-main {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.about-main h2 {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--about-accent);
+  margin: 1.8em 0 0.5em;
+}
+
+.about-main h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1em;
+  font-weight: 600;
+  margin: 1.1em 0 0.2em;
+}
+
+.about-main p {
+  margin: 0 0 0.9em;
+}
+
+.about-main ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.about-main li {
+  margin-bottom: 0.15em;
+}
+
+/* the three blocks, numbered in roman like the parts of the study */
+ol.about-blocks {
+  list-style: upper-roman;
+  margin: -0.4em 0 0.9em;
+  padding-left: 2.2em;
+}
+
+ol.about-blocks li::marker {
+  color: var(--about-muted);
+}
+
+ol.about-blocks li span {
+  display: inline-block;
+  min-width: 7.5em;
+  color: var(--about-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* the record of the manuscript, in the margin as in a catalogue */
+.about-record {
+  grid-column: 2;
+  grid-row: 1;
+  margin-top: 2.3em;
+  padding-left: 1.2em;
+  border-left: 1px solid var(--about-rule);
+  font-size: 0.9em;
+  line-height: 1.45;
+}
+
+.about-record dl {
+  margin: 0;
+}
+
+.about-record dt {
+  margin-top: 0.9em;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--about-muted);
+}
+
+.about-record dt:first-child {
+  margin-top: 0;
+}
+
+.about-record dd {
+  margin: 0.1em 0 0;
+}
+
+/* subsections of the edition: online, printed, software */
+.about-main h3.about-sub {
+  display: block;
+  font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--about-muted);
+  margin: 1.8em 0 0.7em;
+  clear: both;
+}
+
+/* the viewer on a tablet and a phone, side by side at the same height: each image takes
+   a share of the row proportional to its aspect ratio */
+.about-devices {
+  margin: 0.4em 0 1.4em;
+}
+
+.about-devices-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.2em;
+}
+
+.about-devices img {
+  display: block;
+  min-width: 0;
+  height: auto;
+  border: 7px solid #2b2420;
+  box-shadow: 0 2px 8px rgba(51, 41, 31, 0.25);
+}
+
+.about-devices img.tablet {
+  flex: 1.439 1 0;
+  border-radius: 1.1rem;
+}
+
+.about-devices img.phone {
+  flex: 0.462 1 0;
+  border-radius: 1.3rem;
+}
+
+.about-devices figcaption {
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  color: var(--about-muted);
+}
+
+@media (max-width: 600px) {
+  .about-devices-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about-devices img.tablet {
+    flex: none;
+    width: 100%;
+  }
+
+  .about-devices img.phone {
+    flex: none;
+    width: 55%;
+  }
+}
+
+/* two screenshots side by side at the same height, sized by their aspect ratios */
+.about-pair {
+  margin: 0.4em 0 1.4em;
+}
+
+.about-pair-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+.about-pair img {
+  display: block;
+  min-width: 0;
+  height: auto;
+  border: 1px solid var(--about-rule);
+}
+
+.about-pair img.wide {
+  flex: 1.325 1 0;
+}
+
+.about-pair img.narrow {
+  flex: 0.673 1 0;
+}
+
+.about-pair figcaption {
+  margin-top: 0.4em;
+  font-size: 0.85em;
+  color: var(--about-muted);
+}
+
+@media (max-width: 600px) {
+  .about-pair-row {
+    flex-direction: column;
+  }
+
+  .about-pair img.wide {
+    flex: none;
+    width: 100%;
+  }
+
+  .about-pair img.narrow {
+    flex: none;
+    width: 60%;
+  }
+}
+
+/* screenshots and printed pages */
+.about-shot {
+  clear: both;
+  margin: 0.4em 0 1.4em;
+}
+
+.about-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--about-rule);
+}
+
+.about-shot figcaption {
+  margin-top: 0.4em;
+  font-size: 0.85em;
+  color: var(--about-muted);
+}
+
+.about-books {
+  display: flex;
+  gap: 1.2em;
+  margin: 0.4em 0 1.4em;
+}
+
+.about-books img {
+  display: block;
+  height: auto;
+  width: 9.5rem;
+  max-width: 30%;
+  box-shadow: 1px 2px 6px rgba(51, 41, 31, 0.3);
+}
+
+/* bibliographic reference, with a hanging indent */
+section.about p.about-ref {
+  padding-left: 1.6em;
+  text-indent: -1.6em;
+  margin-left: 1.6em;
+  font-size: 0.95em;
+}
+
+/* history: dates in the margin of the column, events beside them */
+.about-timeline {
+  display: grid;
+  grid-template-columns: 10.5em 1fr;
+  gap: 0.5em 1.2em;
+  margin: 1.2em 0 1em;
+}
+
+.about-timeline dt {
+  color: var(--about-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.about-timeline dd {
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .about-timeline {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .about-timeline dd {
+    margin-bottom: 0.7em;
+  }
+}
+
+section.about p.about-date {
+  color: var(--about-muted);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+section.about p.about-more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 2em;
+  margin-top: 1.4em;
+}
+
+section.about p.about-more a::after {
+  content: " →";
+}
+
+@media (max-width: 900px) {
+  .about-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-record {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 1.2em;
+  }
+
+  .about-main {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  section.about {
+    font-size: 1rem;
+  }
+
+  section.about p.about-lead {
+    font-size: 1.12em;
+  }
 }
 
 .dashboard .ant-card {
