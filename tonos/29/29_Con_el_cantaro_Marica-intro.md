@@ -16,7 +16,7 @@ Las dos primeras coplas preparan esa equivalencia con un vocabulario musical. Ma
 instrumento desafinado, y el suspiro se lee como síntoma, *señas son de enfermedad*.
 
 Las dos últimas cierran el círculo. Llegar a la fuente no da descanso, porque la niña llora celos y *llorando crecen
-más*, y volver a la cabaña tampoco, porque sigue a un guía que no puede orientarla, *un Dios ciego y rapaz*. Ninguno de
+más*, y volver a la cabaña tampoco, porque sigue a un guía que no puede orientarla, *un dios ciego y rapaz*. Ninguno de
 los dos extremos del recorrido, ni la fuente ni la casa, llega a ser refugio.
 
 ## La música
