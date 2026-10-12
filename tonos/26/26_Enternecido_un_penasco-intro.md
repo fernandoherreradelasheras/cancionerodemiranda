@@ -5,21 +5,17 @@ los pares y mantenida también en el estribillo: *gemidos*, *vidrio*, *suspiros*
 
 ## El texto
 
-Todo el poema descansa en una sola agudeza: un peñasco llora al oír quejarse a un
-pajarillo. La primera copla la formula apoyándose en un sentido técnico de la lengua, el
-de los *ojos* de una peña, que son sus manantiales. De ahí que el peñasco llore *por dos
-ojos de esmeralda*, verdes de musgo, *lágrimas de vidrio*. La fuente que brota de la
-roca queda convertida en llanto, y con ella la roca en un ser que siente.
+Todo el poema descansa en una sola agudeza: un peñasco llora al oír quejarse a un pajarillo. La primera copla la formula
+apoyándose en un sentido técnico de la lengua, el de los *ojos* de una peña, que son sus manantiales. De ahí que el
+peñasco llore *por dos ojos de esmeraldas*, verdes de musgo, *lágrimas de vidrio*. La fuente que brota de la roca queda
+convertida en llanto, y con ella la roca en un ser que siente.
 
-Las tres coplas siguientes van sacando consecuencias. La segunda atribuye esa compasión
-al castigo inmerecido que sufre el pájaro. La tercera advierte que el llanto de la
-piedra es cortesía y no alivio, porque ante una peña la obstinación resulta delirio. Por
-último, la cuarta copla descubre para qué servía el rodeo, ya que son los riscos los que
-acusan a Lizes, la dama, más de lo que la acusa el dolor del pájaro, porque 
-*sienten los peñascos lo que deben a sus oídos*. El tópico de la naturaleza compasiva
-queda así invertido en reproche: si se ablanda lo más duro que hay, la dureza de la dama
-se queda sin excusa. El estribillo cierra sin consuelo, sobre unos suspiros que no
-aprovechan.
+Las tres coplas siguientes van sacando consecuencias. La segunda atribuye esa compasión al castigo inmerecido que sufre
+el pájaro. La tercera advierte que el llanto de la piedra es cortesía, si no alivio, porque ante una peña la obstinación
+resulta delirio. Por último, la cuarta copla descubre para qué servía el rodeo, ya que son los riscos los que acusan a
+Lices, la dama, más de lo que la acusa el dolor del pájaro, porque *sienten los peñascos lo que deben a sus oídos*. El
+tópico de la naturaleza compasiva queda así invertido en reproche: si se ablanda lo más duro que hay, la dureza de la
+dama se queda sin excusa. El estribillo cierra sin consuelo, sobre unos suspiros que no aprovechan.
 
 ## Fuentes musicales
 
