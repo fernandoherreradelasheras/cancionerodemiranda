@@ -1,8 +1,20 @@
-*[TODO: apertura: forma (coplas y estribillo, metro, asonancia), orgánico, relación con el tono 32 y con el tono a solo de Cristóbal Galán.]*
+El tono ***Helado sol en llamas*** forma pareja con el anterior, ***Su hielo esgrime la noche***: sus coplas proceden
+del mismo villancico, y su estribillo, *Pajarillo que cantas amante*, es una elaboración a cuatro voces del tono a solo
+de **Cristóbal Galán** sobre el texto de una cación escrita por **Antonio de Solís**. Las coplas (cc. 1-32) aparecen
+antes que el estribillo (cc. 33-92). Son seis cuartetas en asonancia é-o que alternan el heptasílabo, en las impares, y
+el hexasílabo, en las pares; el estribillo es una tirada de versos de medida varia.
 
 ## El texto
 
-*[TODO: comentario del texto (coplas *Helado sol en llamas* y estribillo *Pajarillo que cantas amante*).]*
+Las coplas prolongan el juego de contrarios del tono anterior. La primera es una serie de antítesis sobre un mismo
+sujeto: *helado sol en llamas, / nieve abrasada en hielo, / fuego que estás temblando, / cristal que estáis ardiendo*.
+La tercera y la cuarta llevan la paradoja al silencio, que habla (*mucho dices callando*, *silencio tan parlero*) y se
+escucha con los ojos (*que escuchan los ojos / cuando habla el silencio*), y las dos últimas cierran con la fineza que
+nace del desprecio.
+
+El estribillo vuelve a la rectificación del tono 32: manda callar al pajarillo porque *llorar es mejor*, y porque Amor
+tiene en el llanto *más cariñosa canción*. Donde la canción de Solís dice *ausente*, el Cancionero de Miranda trae
+*amante*.
 
 ## Fuentes poéticas
 
@@ -11,7 +23,7 @@ Sobre origen textual del tono ***Helado sol en llamas***, véase la introducció
 
 ## Fuentes musicales
 
-El proceso de adaptación musical de este tono es casi tan complejo e interesate que el textual. La música del estribillo del tono del Cancionero de Miranda, *Pajarillo que cantas ausente*, es una elaboración a cuatro voces de un tono a solo que **Cristobal Galán** compuso sobre el texto íntegro de la canción *Pajarillo que cantas ausente* del ***Eurídice y Orfeo*** de **Antonio de Solís**. El tiple 2º de nuestra versión a cuatro voces reproduce con notable fidelidad la melodía del solo de Galán al que se le añade una voz ornamental por encima con terceras y sextas paralelas alternando pasajes en imitación libre con otos con textua homofónica. El tenor proporciona un bajo funcional, a veces con línea independiente. Esta adaptación ignora las coplas que aparecen después del estribillo de Galán.
+El proceso de adaptación musical de este tono es casi tan complejo e interesate que el textual. La música del estribillo del tono del Cancionero de Miranda, *Pajarillo que cantas amante*, es una elaboración a cuatro voces de un tono a solo que **Cristobal Galán** compuso sobre el texto íntegro de la canción *Pajarillo que cantas ausente* del ***Eurídice y Orfeo*** de **Antonio de Solís**. El tiple 2º de nuestra versión a cuatro voces reproduce con notable fidelidad la melodía del solo de Galán al que se le añade una voz ornamental por encima con terceras y sextas paralelas alternando pasajes en imitación libre con otos con textua homofónica. El tenor proporciona un bajo funcional, a veces con línea independiente. Esta adaptación ignora las coplas que aparecen después del estribillo de Galán.
 
 La fuente principal de el tono de Galán se encuentra en el manuscrito de la **Hispanic Society de Nueva York** US-NYhsa 380/824a/38,1 cuyo origen está en el entorno de la **Catedral de Burgos**[^1].
 
@@ -46,15 +58,23 @@ Dado el contexto de intensa actividad compilatoria y adaptativa textual que rode
 
 ## Difusión y pervivencia
 
-La difusión por tierras napolitanas es una muestra de la popularidad que debió de alcanzar el tono de Galán. Encontramos más trazas de esta popularidad en el archivo de la Catedral de Valladolid, donde encontramos una particela suelta para bajoncillos con la anotación de *"Pajarillos"* (7071) y otra de tenor *"Pajarillo que al alba saludas"* (1820). En los prolijos apuntes de Miguel Gómez Camargo del archivo de aquella catedral encontramos varias anotaciones que bien podrían ser contrafactas a lo divino del tono de Galán como la *"Pajarillo que lloras a muerte"* (1535)[^5].
+La difusión por tierras napolitanas es una muestra de la popularidad que debió de alcanzar el tono de Galán. Encontramos
+más trazas de esta popularidad en el archivo de la Catedral de Valladolid, donde encontramos una partichela suelta para
+bajoncillos con la anotación de *"Pajarillos"* (E-V leg. 51/13) y otra de tenor *"Pajarillo que al alba saludas"* (E-V
+leg. 85/5). En los prolijos apuntes de Miguel Gómez Camargo del archivo de aquella catedral encontramos varias
+anotaciones que bien podrían ser contrafactas a lo divino del tono de Galán como la *"Pajarillo que lloras a muerte"*
+(E-V leg. 84/82)[^5].
 
-[^5]: Agradezco a Raúl Angulo haberme puesto tras la pista de algunas de estas particellas.
-
-TODO: Poner legajos de Valladolid en vez de nº de López-Calo.
+[^5]: Agradezco a Raúl Angulo haberme puesto tras la pista de algunas de estas partichelas.
 
 ## La música
 
-*[TODO: comentario musical (copla a solo y copla a cuatro, entradas por parejas del estribillo, cadencias).]*
+Cada estrofa musical de las coplas reúne dos coplas del poema, y la alternancia métrica coincide con la de la textura:
+la copla heptasílaba la canta el tiple 1º a solo (cc. 1-15) y la hexasílaba, las cuatro voces (cc. 16-32), en una
+escritura casi siempre homofónica que repite al final el último verso.
+
+El estribillo, cuyo tiple 2º sigue la melodía de Galán, interrumpe el canto donde el texto lo manda: *calla, no cantes*
+lo dice primero el tiple 1º solo (cc. 47-49) y lo retoman después las demás voces, una tras otra (cc. 50-52).
 
 ## La edición
 
