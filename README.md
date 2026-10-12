@@ -26,3 +26,16 @@ If you are not planning to contribute to this work and just want to get the musi
 The experimental [score viewer](https://cdm.humanoydivino.com/) renders the in-progress musical transcriptions using the [verovio](https://www.verovio.org/index.xhtml) toolkit is a responsive and customizable view directly on your browser. It also can generate a engraved pdf with the transcription.
 
 We will be experimenting with different features unlocked by using the MEI score format (selective display of annotations and comments, variants, automatic transposition, etc...)
+
+## License
+
+- Music and text transcriptions: public domain; where this is not applicable,
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- Introductions, critical notes and study: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- Code of the online edition (`web-app/`, `scripts/`, `pdf-generation/`): [GPL-3.0](LICENSE).
+- Facsimiles of the Biblioteca Nacional de Portugal (M.M. 4802/1-2, M.M. 4803): public domain
+  ([Public Domain Mark](https://creativecommons.org/publicdomain/mark/1.0/)).
+- Facsimiles of the Arquivo Nacional Torre do Tombo (PT/TT/MUS/L122): © Arquivo Nacional Torre do Tombo,
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
+To cite this edition, see [CITATION.cff](CITATION.cff).
