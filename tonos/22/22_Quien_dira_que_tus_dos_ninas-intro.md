@@ -30,7 +30,17 @@ cadencian en los mismos grados.
 
 ## La música
 
-*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
+Cada uno de los tres primeros versos es una frase con su propia cadencia. El primero se
+detiene en la (c. 3), y un compás de guion solo lo separa del siguiente. El segundo repite
+tres veces su final, *tal traza, tal traza, tal traza*, y cierra cada repetición con una
+cadencia frigia sobre si (cc. 8, 9 y 10): la insistencia en una cadencia que no da reposo
+deja el verso en suspenso hasta que el tercero vuelve a la, ahora con cadencia perfecta
+(c. 15).
+
+El cuarto verso cambia de textura. Los dos tiples lo abren a dúo, en terceras, con un motivo
+de cuatro notas ascendentes (c. 16), y las demás voces lo van retomando en los compases
+siguientes, de modo que *se anden robando* pasa de unas voces a otras mientras las cadencias
+se desplazan hacia re (cc. 17 y 21), donde concluye la pieza (c. 23).
 
 ## La edición
 
