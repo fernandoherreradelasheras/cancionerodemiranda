@@ -7,6 +7,7 @@ const EDITIO_URL = "https://editio.humanoydivino.com"
 const PAPER_URL = "https://doi.org/10.1145/3748336.3748337"
 const ARTICLE_URL = "https://hdl.handle.net/10261/339181"
 const SITE_URL = "https://cdm.humanoydivino.com"
+const ZENODO_DOI = "10.5281/zenodo.23321037"
 
 /* Status of the edition: updated by hand at each milestone */
 const STATUS_DATE = "octubre de 2026"
@@ -24,7 +25,7 @@ const STATUS: { state: "done" | "in_progress" | "pending", title: string, items:
         state: "in_progress", title: "En curso", items: [
             "Transcripción musical del tono 71.",
             "Reconstrucción del guion en los tonos que no lo conservan: 6 terminados y 2 en curso, de 30.",
-            "Estudios introductorios: 12 terminados y el resto en redacción.",
+            "Estudios introductorios: 25 terminados y el resto en redacción.",
             "Enlace de la partitura con el facsímil: 3 tonos.",
         ]
     },
@@ -262,7 +263,13 @@ const About = () => (
                 <h3 className="about-sub">Trabajo en abierto</h3>
 
                 <p>Todo el trabajo de la edición, del estudio a la generación de las versiones en papel,
-                    se hace en abierto en el <a href={REPO_URL}>repositorio público del proyecto</a>.</p>
+                    se hace en abierto en el <a href={REPO_URL}>repositorio público del proyecto</a>.
+                    Cada versión de la edición se archiva en Zenodo con su propio DOI; para citar la
+                    edición se usa el DOI común a todas las versiones:</p>
+
+                <p className="about-ref">Fernando Herrera de las Heras, <em>Cancionero de Miranda:
+                    edición crítica digital</em>, Zenodo, 2026.{" "}
+                    <a href={`https://doi.org/${ZENODO_DOI}`}>doi:{ZENODO_DOI}</a>.</p>
 
                 <h2>Línea de tiempo del proyecto</h2>
 
@@ -306,7 +313,7 @@ const About = () => (
 
                     <dt>Octubre de 2026</dt>
                     <dd>Primeros tonos con el facsímil enlazado nota a nota y revisión del texto del
-                        primer bloque.</dd>
+                        primer bloque. Primera versión de la edición archivada en Zenodo.</dd>
                 </dl>
 
                 <h2>Estado actual</h2>

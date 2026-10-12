@@ -1,5 +1,7 @@
 # Cancionero de Miranda
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23321037.svg)](https://doi.org/10.5281/zenodo.23321037)
+
 <img src="https://github.com/fernandoherreradelasheras/cancionerodemiranda/blob/main/facsimil-images/S1/image-100.jpg?raw=true" width="300" />
 
 ## About 
@@ -38,4 +40,5 @@ We will be experimenting with different features unlocked by using the MEI score
 - Facsimiles of the Arquivo Nacional Torre do Tombo (PT/TT/MUS/L122): © Arquivo Nacional Torre do Tombo,
   [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-To cite this edition, see [CITATION.cff](CITATION.cff).
+Each release of the edition is archived in Zenodo. To cite it, use the DOI shared by all versions,
+[10.5281/zenodo.23321037](https://doi.org/10.5281/zenodo.23321037), or see [CITATION.cff](CITATION.cff).
