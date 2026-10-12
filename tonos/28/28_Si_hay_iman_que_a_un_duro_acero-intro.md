@@ -30,7 +30,16 @@ estribillo.
 
 ## La música
 
-*[TODO: comentario musical (textura, contraste entre las coplas a solo y la responsión a cuatro, cadencias).]*
+El tono contrapone una copla a solo para el alto 1º, acompañado únicamente por el guion (cc. 1-27), y una responsión a
+cuatro que retoma su texto (cc. 28-49). En la copla, la pregunta *¿qué haré yo?* se dice tres veces en secuencia
+descendente (cc. 10-16), y *cuanto más tierna es un alma* se repite un tono más alto (cc. 18 y 22) antes de cerrar sobre
+la (c. 24).
+
+La responsión empieza por la pregunta, repartida en entradas sucesivas que se van sumando hasta reunir las cuatro voces
+(cc. 28-35); *cuanto más tierna es un alma* vuelve después en imitación (cc. 36-39), y el final, homofónico, cierra con
+*cuanto más imán, amor* y una última pregunta. Cada *¿qué haré yo?* de la responsión acaba en una cadencia sobre la,
+casi siempre frigia (cc. 30, 32, 34, 46 y 48), y el tono termina en ella sin volver a re, donde había empezado la copla:
+la pregunta queda abierta, como la deja el poema.
 
 ## La edición
 
