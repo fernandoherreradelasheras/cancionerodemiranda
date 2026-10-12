@@ -11,23 +11,19 @@ quejas amorosas lo han sido siempre por desdén, por ausencia o por imposible, y
 único antecedente próximo, la tórtola viuda del tono 14, lo es sólo por analogía.
 Aquí la pérdida es real y el poema adopta de lleno el molde de la elegía fúnebre.
 
-Está construido sobre una cadena de testigos que va creciendo con el dolor. Se abre
-interpelando a los campos, a quienes Amariles *debió tantas lisonjas* y ahora debe
-*lástimas*; en la última copla el llanto ha pasado ya al río, que en *lágrimas de
-cristal* llora estas memorias, y de él al mar, que aún las conserva; y el estribillo
-recoge esa herencia y la remata convirtiendo al Tajo en testigo. El duelo se
-transmite así aguas abajo, de la ribera al río y del río al mar, ensanchándose en
-cada relevo.
+Está construido sobre una cadena de testigos que va creciendo con el dolor. Se abre interpelando a los campos, a quienes
+Amariles *debió tantas lisonjas* y ahora debe *lástimas*; en la última copla el llanto ha pasado ya al río, que en
+*lágrimas de cristal* ha de llorar estas memorias, y de él al mar, que aún ha de conservarlas; y el estribillo recoge
+esa herencia y la remata convirtiendo al Tajo en testigo. El duelo se transmite así aguas abajo, de la ribera al río y
+del río al mar, ensanchándose en cada relevo.
 
-Las coplas centrales despliegan el repertorio consolatorio propio del género. La
-segunda resuelve la muerte temprana con una paradoja solar: nació sol y llegó al
-ocaso *sin declinar los rayos*, es decir, murió sin que su luz llegara a menguar. La
-tercera convierte esa perfección en causa de la muerte, no en su agravante: estaba
-*destinada a perfecciones* y lo fatal era preciso *no habiendo más que lograr*. La
-cuarta la traslada al cielo como astro y cifra el elogio en el viejo tópico de la
-edad desmentida por el juicio, *muchos siglos de entendida en pocos años de edad*.
-El estribillo cierra con la paradoja más rebuscada del texto: el río retrocede su
-propio caudal para no apagar el *fuego* del llanto del amante.
+Las coplas centrales despliegan el repertorio consolatorio propio del género. La segunda resuelve la muerte temprana con
+una paradoja solar: nació sol y llegó al ocaso *sin declinar los rayos*, es decir, murió sin que su luz llegara a
+menguar. La tercera convierte esa perfección en causa de la muerte, no en su agravante: estaba *destinada a
+perfecciones* y lo fatal era preciso *no habiendo más que lograr*. La cuarta la traslada al cielo como astro y cifra el
+elogio en el viejo tópico de la edad desmentida por el juicio, *muchos siglos de entendida, en pocos años de edad*. El
+estribillo cierra con la paradoja más rebuscada del texto: el río retrocede su propio caudal para no apagar el *fuego*
+del llanto del amante.
 
 El nombre de la difunta lo comparte con otros dos tonos del cancionero, el 3
 (*Amariles, yo no puedo*) y el 9 (*La belleza de Amariles*). El Tajo y
