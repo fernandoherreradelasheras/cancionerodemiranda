@@ -1,11 +1,14 @@
-*[TODO: apertura: forma (nº de coplas, metro, asonancia), orgánico, autoría de texto y música y concordancias no localizadas.]*
+El tono ***Amariles, yo no puedo*** pertenece al bloque inicial del Cancionero de Miranda, el de los veintidós tonos de
+sección única sin estribillo: veinticinco compases de compás ternario para las cinco coplas. El texto es un romance de
+cinco cuartetas octosílabas con rima aguda en é en los versos pares (*bien*, *querer*, *quedé*, *volver*, *después*…), y
+a cada cuarteta le sigue el verso suelto *Yo no sé*.
 
 ## El texto
 
 El poema desarrolla el tópico del amor inevitable y la pérdida de la voluntad del amante, muy frecuente en la lírica
 barroca. El texto explora las paradojas del sentimiento amoroso a través de una serie de imposibilidades conceptistas:
-*no sé cómo ser puede* // *querer dejar de querer*, donde el poeta juega con la contradicción inherente entre la voluntad
-y la pasión.
+*no sé cómo ser puede* // *querer dejar de querer*, donde el poeta juega con la contradicción inherente entre la
+voluntad y la pasión.
 
 La estructura del romance se articula en torno a *Yo no sé*: cada cuarteta se cierra con la triple repetición de la
 expresión, integrada en la propia copla, que refuerza la idea de desconcierto y desamparo amoroso. Esta repetición
@@ -27,10 +30,16 @@ no sé* mantiene esa diferencia entre ignorar las causas y admitir la fuerza del
 
 ## La música
 
-El tono ***Amariles, yo no puedo***  presenta una interesante construcción poético-musical en la que cada copla termina
-con las palabras *Yo no sé* repetidas de manera diferente por cada voz en la que destaca el tenor con salto ascendente
-de quinta.
+La copla avanza en homofonía hasta que el texto empieza a vacilar. *Que no sé* se repite alternando entre las voces (cc.
+8-12), y *querer dejar de querer* se parte en tres fragmentos separados por silencios (cc. 15-17), como si el verso
+tropezara con su propia contradicción. Cada copla termina con *yo no sé*, que las voces repiten por separado de modo que
+la expresión pasa de una a otra (cc. 19-24), y en la que destaca el tenor con su salto ascendente de quinta sobre *sé*.
+Las repeticiones se cierran sobre do (cc. 20, 22 y 24), pero el tono acaba sobre sol (c. 25), con los puntos suspensivos
+del texto.
 
 ## La edición
 
-*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto.]*
+La voz del alto, cuyo librete está perdido, es reconstrucción editorial. En la declamación homofónica de la copla el
+margen de decisión es escaso, con el bajo fijado por el guion conservado. Es mayor en la alternancia de *que no sé* (cc.
+8-12) y en el *yo no sé* final (cc. 19-24), donde ha habido que decidir con qué voces se empareja el alto y cuándo
+entra: en el segundo pasaje retoma a la misma altura el motivo del tenor.
