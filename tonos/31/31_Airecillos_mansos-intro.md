@@ -20,7 +20,7 @@ sino como "MISSA".
 ## Fuentes poéticas
 
 En cuanto al texto, la versión de Évora incluye solo las tres primeras
-coplas de las cinco de los otros dos testimonios musicales que a su vez
+coplas de las seis de los otros dos testimonios musicales, que a su vez
 omiten la última copla incluida en el pliego.
 
 ## Fuentes musicales
