@@ -88,9 +88,9 @@ el melisma de *susurrante*: el tiple 1º (c. 1), el tenor (c. 2) y el tiple 2º 
 salto de cuarta con que empieza el tenor (sol-do), el descenso de semitono de los tiples en *abejuela* (do-si♮) y el
 mismo melisma, una quinta por debajo del tiple 1º (cc. 7-8). Con el mismo criterio ocupa su lugar en las demás cadenas
 imitativas: en la de *mariposa*, con una entrada por compás, llega en el c. 16, después del tiple 1º (c. 13), el tenor
-(c. 14) y el tiple 2º (c. 15), y repite la línea del tenor; en las entradas de *Mira* por quintas descendentes toma la
+(c. 14) y el tiple 2º (c. 15), y repite la línea del tenor; en las entradas de *mira* por quintas descendentes toma la
 tercera, en si♭ (c. 25). Donde una voz de la fuente responde a otra, el alto se suma en terceras o sextas a la que
-canta: al tiple 2º y luego al tiple 1º en *vive en el salamandra* (cc. 38-44), mientras el tenor les responde, y al
+canta: al tiple 2º y luego al tiple 1º en *vive en él, salamandra* (cc. 38-44), mientras el tenor les responde, y al
 tiple 1º en *si la salamandra* (cc. 85 y 89). En el solo del tiple 2º (cc. 65-71) calla. En las coplas, que el tono
 canta a tres sin tenor, el alto es la voz más grave del trío: entra en estrecho, a una negra de los dos tiples, con la
 cabeza de *Abejuela, si pretendes* a la quinta baja (cc. 104-105), y en *aquel jazmín* (c. 109) conserva la nota
@@ -100,7 +100,7 @@ El guion se ha reconstruido como un *basso seguente* sobre el tenor, que es la p
 conservados del cancionero: lo dobla al unísono cuando el tenor canta en su registro grave y a la octava baja cuando
 sube, con un ritmo más sencillo que funde las notas repetidas y omite las de paso y los melismas. Donde el tenor calla,
 lleva un bajo armónico propio. Alterna do y sol bajo las primeras entradas de *Abejuela* (cc. 1-6) y da la fundamental
-de cada entrada de *Mira* en la cadena de quintas descendentes do-fa-si♭-mi♭ (cc. 23-26). Bajo el solo del tiple 2º (cc.
+de cada entrada de *mira* en la cadena de quintas descendentes do-fa-si♭-mi♭ (cc. 23-26). Bajo el solo del tiple 2º (cc.
 65-71) repite el bajo que el tenor da a esa misma melodía en los cc. 54-56, primero un grado más abajo y luego a la
 octava alta, y en el c. 85 dobla la melodía del tiple 1º, la misma que el tenor canta como bajo dos compases después. En
 los silencios de un tiempo que separan las frases (cc. 1, 13, 23, 45, 53, 92 y 104) ataca la nota o la armonía de la
