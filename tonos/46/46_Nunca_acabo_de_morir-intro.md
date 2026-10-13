@@ -6,7 +6,9 @@
 
 ## Fuentes poéticas
 
-El texto del CPMHL presenta un par de variantes que parecen nacidas de un intento de simplificar la lectura, aunque no se puede descartar el proceso inverso.
+El texto del CPMHL presenta varias variantes frente al del Cancionero de Miranda. Algunas parecen nacidas de un intento
+de simplificar la lectura, aunque no se puede descartar el proceso inverso; en la segunda copla, en cambio, su lectura
+es la más clara y es la que sigue esta edición.
 
 ## Fuentes musicales
 
