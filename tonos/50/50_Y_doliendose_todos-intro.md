@@ -1,4 +1,7 @@
- El tono ***Y doliéndose todos*** aparece como anónimo entre varios atribuidos a Fray Felipe de la Madre de Dios. Desconocemos también el poeta que presenta inicialmente un paisaje idílico donde todos los elementos naturales (fuente, sauces, piedras) participan en una sinfonía armoniosa. Sin embargo, esta armonía se quiebra cuando el yo lírico, doliente por la ausencia de su amada Matilde, reprocha a la naturaleza su indiferencia ante su sufrimiento.
+El tono ***Y doliéndose todos*** aparece como anónimo entre varios atribuidos a Fray Felipe de la Madre de Dios.
+Desconocemos también el poeta que presenta inicialmente un paisaje idílico donde todos los elementos naturales (fuente,
+sauces, piedras) participan en una sinfonía armoniosa. Sin embargo, esta armonía se quiebra cuando el amante, doliente
+por la ausencia de su amada Matilde, reprocha a la naturaleza su indiferencia ante su sufrimiento.
 
 ## El texto
 
