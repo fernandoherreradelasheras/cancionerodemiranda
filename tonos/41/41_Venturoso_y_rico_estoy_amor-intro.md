@@ -11,8 +11,8 @@ al propio Amor para declarar su independencia.
 El vocabulario de las coplas es el del juego de naipes. El amante se declara *rico* porque ha ganado *todo el resto en
 una mano*: el *resto* es el caudal entero que el jugador arriesga, y la *mano*, una sola jugada. La *suerte* de la
 segunda copla prolonga la imagen, y la tercera saca de ella la consecuencia moral: el amante agradece su fortuna solo a
-la *dicha*, no a su mérito, *por no peligrar de vano*, puesto que lo imposible lo halló cuando era *indigno aún de lo
-posible*. La cuarta cierra el argumento con una paradoja: no puede ser desdichado quien ya no puede desear más.
+la *dicha*, no a su mérito, *por no peligrar de vano*, puesto que, *indigno aun de lo posible*, hoy se halla *en lo
+imposible*. La cuarta cierra el argumento con una paradoja: no puede ser desdichado quien ya no puede desear más.
 
 El estribillo convierte esa plenitud en despedida. El amante manda a Amor que quiebre sus flechas y apague sus rayos,
 porque *mi pena y mi gloria / no está en tu mano*. La última palabra devuelve la imagen del principio: quien le ganó a
