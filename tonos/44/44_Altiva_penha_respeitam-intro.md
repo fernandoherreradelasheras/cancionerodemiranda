@@ -1,4 +1,4 @@
-El tono ***Altiva peña respeitão*** es el único de los setenta y siete del
+El tono ***Altiva penha respeitam*** es el único de los setenta y siete del
 Cancionero de Miranda cuyo texto está en portugués. Los otros setenta y seis están
 en castellano, de modo que esta pieza es la excepción que confirma hasta qué punto
 la lengua de la canción profana de corte en Lisboa era la del reino vecino, incluso
@@ -33,16 +33,16 @@ El poema es una alegoría amorosa sostenida sobre un solo emblema, el de la peñ
 batida por el mar. Las cinco coplas describen el peñasco: las iras del mar lo
 respetan, se levanta soberbio sin temer ni al viento ni a Júpiter, sirve de atalaya
 a las esferas y de atlante a los horizontes, y se defiende de sí mismo hasta el
-punto de negar la fuerza de los años y burlar a las aguas sus golpes. Solo en la
+punto de negar la fuerza de los años y burlarse de los golpes de las aguas. Solo en la
 quinta copla se descubre el segundo término de la comparación: los mares que
 embisten la peña vienen *sempre de finezas cheios, sempre de venturas pobres*, esto
 es, cargados de la devoción del amante y vacíos de correspondencia. La peña es, por
 tanto, la dureza de la dama, y el mar, el enamorado que se estrella contra ella una
 y otra vez. El *te* con que la quinta copla se dirige al peñasco (*Penha, te
-resistes dura*) prepara el estribillo, donde la peña recibe por fin su nombre.
+resiste dura*) prepara el estribillo, donde la peña recibe por fin su nombre.
 
 El estribillo cierra el conceptismo con un juego de palabras que las grafías de los
-copistas ocultan a primera vista. Los tres libretes escriben *se espenha Nise em
+copistas ocultan a primera vista. Los tres libretes escriben *se espenha Nize em
 defenderte* y *Enpenha sou* (o *son*) *tambem pera sofrerte*. Separadas las
 palabras, la lectura es *se és penha, Nise, em defender-te, / em penha sou também
 para sofrer-te*: si Nise es peña en defenderse, el amante se ha vuelto peña para
@@ -65,21 +65,21 @@ _a tantos combates firme,_
 _sorda a tantas voces._
 
 _Tan soberbia se levanta_  
-_que no recela deforme_  
-_ni rebeliones del viento,_  
+_que no recela disforme_  
+_ni rebeldías del viento,_  
 _ni de Jove indignaciones._
 
 _O robusta, o dilatada,_  
-_a certificar conformes_  
+_la certifican conformes_  
 _por atalaya las esferas,_  
 _por atlante los horizontes._
 
 _De sí misma defendida_  
 _causa a sí propia temores,_  
 _pues niega la fuerza de los años_  
-_y burla a las aguas los golpes._
+_burla de las aguas los golpes._
 
-_Peña, te resistes dura_  
+_Peña, resístete dura_  
 _a tantos mares que corren_  
 _siempre de finezas llenos,_  
 _siempre de venturas pobres._
@@ -89,12 +89,10 @@ _en peña soy también para sufrirte;_
 _aún espero constante_  
 _que una peña con otra se quebrante._
 
-El estribillo es una silva de cuatro versos con rima pareada (11-11-7-11). Los
-libretes lo parten en unidades más breves, *Nise / em defenderte*, *com outra / se
-quebrante*, que responden a las frases musicales y no al metro. La tercera copla es
-la más oscura del conjunto y la traducción la deja deliberadamente sin resolver:
-*a certificar conformes* admite varias lecturas, y ninguna aclara del todo si las
-esferas y los horizontes son término de comparación o sujeto de la conformidad.
+El estribillo es una silva de cuatro versos con rima pareada (11-11-7-11). Los libretes lo parten en unidades más
+breves, *Nize / em defenderte*, *com outra / se quebrante*, que responden a las frases musicales y no al metro. La
+tercera copla es la más oscura del conjunto. Los tres libretes escriben *certificão*, es decir, *certificam*: las
+esferas y los horizontes son el sujeto que, conformes, da fe de la peña, como atalaya y como atlante.
 
 ## La música
 

@@ -169,7 +169,7 @@ const About = () => (
                 <figure className="about-pair">
                     <div className="about-pair-row">
                         <img className="wide" src="/about/en-linea-introduccion.jpg" loading="lazy"
-                            alt="Pestaña de introducción del tono 44, Altiva peña respeitão, en el visor" />
+                            alt="Pestaña de introducción del tono 44, Altiva penha respeitam, en el visor" />
                         <img className="narrow" src="/about/en-linea-texto.jpg" loading="lazy"
                             alt="Pestaña de texto poético del tono 44, con las coplas en portugués y los versos numerados" />
                     </div>
