@@ -9,19 +9,15 @@ y 60, repartidos en tres bloques (39-41, 47-49, 57-58).
 
 ## El texto
 
-El poema, del que no se conoce ningún otro testimonio poético, consiste en un
-estribillo seguido de seis coplas que desarrolla una paradoja sin salida:
-el amante desdeñado rechaza a la vez el remedio de su dolor y la muerte que lo
-terminaría, porque el sufrimiento se ha convertido para él en la única forma de vida
-concebible, *yo no quiero más vida que los martirios*. Sobre esa declaración inicial
-las coplas construyen una imaginería carcelaria sostenida, la de los *grillos*, los
-*hierros* y el *albedrío* rendido, cuyo giro característico consiste en que las penas
-resultan siempre más duras que la prisión física: aquellas vienen del hado, estas
-del propio *arbitrio* del amante, que es quien las elige. La quinta copla vuelve al
-estribillo casi con sus mismas palabras, *ni la espero ni la admito*, para extraer la
-consecuencia que faltaba: al que padece, el alivio le resulta un rigor nuevo. La
-copla final plantea el único lugar textualmente dudoso del tono, discutido en el
-aparato crítico de esta edición.
+El poema, del que no se conoce ningún otro testimonio poético, consiste en un estribillo seguido de seis coplas que
+desarrolla una paradoja sin salida: el amante desdeñado rechaza a la vez el remedio de su dolor y la muerte que lo
+terminaría, porque el sufrimiento se ha convertido para él en la única forma de vida concebible, *yo no quiero más vida
+que los martirios*. Sobre esa declaración inicial las coplas construyen una imaginería carcelaria sostenida, la de los
+*grillos*, los *hierros* y el *albedrío* rendido, cuyo giro característico consiste en que las penas resultan siempre
+más duras que la prisión física: los grillos vienen del hado; las penas, del propio *arbitrio* del amante, que es quien
+las elige. La quinta copla vuelve al estribillo casi con sus mismas palabras, *ni la espero ni la admito*, para extraer
+la consecuencia que faltaba: al que padece, el alivio le resulta un rigor nuevo. La copla final plantea el lugar
+textualmente más dudoso del tono, discutido en el aparato crítico de esta edición.
 
 ## La música
 
