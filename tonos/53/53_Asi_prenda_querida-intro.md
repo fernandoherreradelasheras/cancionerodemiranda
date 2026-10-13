@@ -1,4 +1,4 @@
-El tono de **Antonio Marques Lésbio** ***Ansi, prenda querida***, además de la parte de alto ausente en todo el Cancionero de Miranda ha perdido la mayoría de la música del tiple 1º pues la hoja correspondiente del librete de esta voz está arrancada y solo se conserva un fragmeto de la parte inferior en la que sobreviven ocho notas del estribillo y las siete últimas de las coplas. Aún así, con apenas dos voces y el acompañamiento se advierte que Lésbio compuso un tono bellísimo.
+El tono de **Antonio Marques Lésbio** ***Así, prenda querida***, además de la parte de alto ausente en todo el Cancionero de Miranda ha perdido la mayoría de la música del tiple 1º pues la hoja correspondiente del librete de esta voz está arrancada y solo se conserva un fragmeto de la parte inferior en la que sobreviven ocho notas del estribillo y las siete últimas de las coplas. Aún así, con apenas dos voces y el acompañamiento se advierte que Lésbio compuso un tono bellísimo.
 
 ## El texto
 
