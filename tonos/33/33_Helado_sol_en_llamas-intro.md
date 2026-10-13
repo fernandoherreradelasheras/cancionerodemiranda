@@ -1,16 +1,16 @@
 El tono ***Helado sol en llamas*** forma pareja con el anterior, ***Su hielo esgrime la noche***: sus coplas proceden
 del mismo villancico, y su estribillo, *Pajarillo que cantas amante*, es una elaboración a cuatro voces del tono a solo
-de **Cristóbal Galán** sobre el texto de una cación escrita por **Antonio de Solís**. Las coplas (cc. 1-32) aparecen
-antes que el estribillo (cc. 33-92). Son seis cuartetas en asonancia é-o que alternan el heptasílabo, en las impares, y
-el hexasílabo, en las pares; el estribillo es una tirada de versos de medida varia.
+de **Cristóbal Galán** sobre el texto de una canción escrita por **Antonio de Solís**. Las coplas (cc. 1-32) aparecen
+antes que el estribillo (cc. 33-92). Son tres coplas de dos cuartetas en asonancia é-o, la primera de heptasílabos y la
+segunda de hexasílabos; el estribillo es una tirada de versos de medida varia.
 
 ## El texto
 
-Las coplas prolongan el juego de contrarios del tono anterior. La primera es una serie de antítesis sobre un mismo
-sujeto: *helado sol en llamas, / nieve abrasada en hielo, / fuego que estás temblando, / cristal que estáis ardiendo*.
-La tercera y la cuarta llevan la paradoja al silencio, que habla (*mucho dices callando*, *silencio tan parlero*) y se
-escucha con los ojos (*que escuchan los ojos / cuando habla el silencio*), y las dos últimas cierran con la fineza que
-nace del desprecio.
+Las coplas prolongan el juego de contrarios del tono anterior. La primera cuarteta es una serie de antítesis sobre un
+mismo sujeto: *helado sol en llamas, / nieve abrasada en hielo, / fuego que estáis temblando, / cristal que estáis
+ardiendo*. La segunda copla lleva la paradoja al silencio, que habla (*mucho dices callando*, *silencio tan parlero*) y
+se escucha con los ojos (*que escuchan los ojos / cuando habla el silencio*), y la tercera cierra con la fineza que nace
+del desprecio.
 
 El estribillo vuelve a la rectificación del tono 32: manda callar al pajarillo porque *llorar es mejor*, y porque Amor
 tiene en el llanto *más cariñosa canción*. Donde la canción de Solís dice *ausente*, el Cancionero de Miranda trae
@@ -69,15 +69,15 @@ anotaciones que bien podrían ser contrafactas a lo divino del tono de Galán co
 
 ## La música
 
-Cada estrofa musical de las coplas reúne dos coplas del poema, y la alternancia métrica coincide con la de la textura:
-la copla heptasílaba la canta el tiple 1º a solo (cc. 1-15) y la hexasílaba, las cuatro voces (cc. 16-32), en una
-escritura casi siempre homofónica que repite al final el último verso.
+Cada copla reúne dos cuartetas, y la alternancia métrica coincide con la de la textura: la cuarteta heptasílaba la canta
+el tiple 1º a solo (cc. 1-15) y la hexasílaba, las cuatro voces (cc. 16-32), en una escritura casi siempre homofónica
+que repite al final el último verso.
 
 El estribillo, cuyo tiple 2º sigue la melodía de Galán, interrumpe el canto donde el texto lo manda: *calla, no cantes*
 lo dice primero el tiple 1º solo (cc. 47-49) y lo retoman después las demás voces, una tras otra (cc. 50-52).
 
 ## La edición
 
-Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion son reconstrucción editorial. La música de las coplas une una copla a solo del tiple 1º (cc. 1-15), en la que el alto calla, y otra a cuatro (cc. 16-32) de escritura casi siempre homofónica, en la que el alto completa la armonía y solo tiene que decidir su entrada en *rigores tan duros*, la última de una cadena que abren el tenor y el tiple 1º (c. 21) y continúa el tiple 2º (c. 22). En el estribillo, donde el tiple 2º reproduce la melodía del solo de Galán, las entradas se organizan por parejas: a la del tiple 2º y el tenor (c. 33) responde dos compases después la del tiple 1º y el alto (c. 35), y el alto repite nota por nota la línea del tenor del mismo modo que el tiple 1º repite la del tiple 2º. Con el mismo criterio, el alto canta en sextas con el tiple 1º en *que no cabe en tus voces* (c. 60) y en terceras con el tenor en la repetición del verso (c. 62), y tiene su propia entrada en la cadena de *no cantes* (cc. 50-52).
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion son reconstrucción editorial. Cada copla une una cuarteta a solo del tiple 1º (cc. 1-15), en la que el alto calla, y otra a cuatro (cc. 16-32) de escritura casi siempre homofónica, en la que el alto completa la armonía y solo tiene que decidir su entrada en *rigores tan duros*, la última de una cadena que abren el tenor y el tiple 1º (c. 21) y continúa el tiple 2º (c. 22). En el estribillo, donde el tiple 2º reproduce la melodía del solo de Galán, las entradas se organizan por parejas: a la del tiple 2º y el tenor (c. 33) responde dos compases después la del tiple 1º y el alto (c. 35), y el alto repite nota por nota la línea del tenor del mismo modo que el tiple 1º repite la del tiple 2º. Con el mismo criterio, el alto canta en sextas con el tiple 1º en *que no cabe en tus voces* (c. 60) y en terceras con el tenor en la repetición del verso (c. 62), y tiene su propia entrada en la cadena de *no cantes* (cc. 50-52).
 
 El guion se ha reconstruido como un *basso seguente* sobre el tenor, que es la práctica dominante en los guiones conservados del cancionero, por lo general a la octava baja, porque el tenor, en clave de do en 3ª, se mueve en un registro agudo. Donde el tenor calla, el guion lleva un bajo armónico propio; el caso más extenso es la copla a solo del tiple 1º (cc. 1-15), en la que el guion da la fundamental de cada armonía y cierra con la dominante y la final las cadencias en sol, re y do (cc. 4, 8 y 15). Al principio de cada sección, con las voces en anacrusa (cc. 1 y 33), ataca desde el primer tiempo la nota de la entrada, y en el compás vacío del c. 16 toca un enlace de dos notas hacia la armonía con que entran las voces. Con el tenor cantando, solo se aparta de él para dar la fundamental donde doblarlo dejaría un 6/4 (c. 36) y en las cadencias a sol y a la (cc. 40 y 46). Las cuartas que los tiples forman sobre el bajo son retardos (cc. 20, 62-63, 70, 77 y 90) o notas de paso (cc. 37, 60, 76 y 86-87), salvo la entrada del tiple 1º en el c. 22; están ya entre los tiples y la voz más grave de la fuente y, como suelen hacer los guiones conservados del cancionero, el guion las mantiene al doblarla. En el estribillo, cuyo tiple 2º sigue el tono a solo de Galán, el guion se ha contrastado con el acompañamiento de ese tono (US-NYhsa 380/824a/38,1), que el manuscrito copia en la misma tonalidad que el Cancionero. El tenor del arreglo lleva casi siempre ese bajo, a menudo a la octava alta, de modo que el *basso seguente* coincide con él; donde el tenor calla o se aparta, el guion toma literalmente el bajo de Galán: el do♯ tenido bajo el retardo del tenor (c. 38), el compás vacío y el *no cantes* a solo del tiple 1º (cc. 47-49) y el paso re-mi-fa que rellena el silencio de las voces en el c. 68.
