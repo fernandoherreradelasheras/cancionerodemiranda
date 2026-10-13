@@ -1,4 +1,7 @@
-El tono ***Por hacer apacibles los bosques*** compuesto por **Fray Felipe de la Madre de Dios** presenta una estructura atípica con estribillo y tres coplas en forma de décimas con música diferente para cada una de ellas. Los dos últimos versos de cada décima, extraidos en parte del estribillo, se repiten a modo de intra-estribillo, con la peculiaridad de que el último verso, en la libertad métrica propia de los estribillos, alcanza las doces sílabas.
+El tono ***Por hacer apacibles los bosques*** compuesto por **Fray Felipe de la Madre de Dios** presenta una estructura
+atípica con estribillo y tres coplas en forma de décimas con música diferente para cada una de ellas. Los dos últimos
+versos de cada décima son los mismos que cierran el estribillo y funcionan a modo de intra-estribillo, con la
+peculiaridad de que el último verso, en la libertad métrica propia de los estribillos, alcanza las doce sílabas.
 
 ## El texto
 
