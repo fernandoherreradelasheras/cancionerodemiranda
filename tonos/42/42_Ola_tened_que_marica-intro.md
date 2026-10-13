@@ -45,7 +45,7 @@ La tercera copla cierra el razonamiento con un triple juego sobre
 *aire*. Las flores quemadas prometen, *corteses*, volar como *ceniza
 fácil* en el aire de la caída, que es a la vez el viento que las esparce
 y el garbo con que la dama ha caído; y juran que aquello *no ha sido
-cosa del aire*, es decir, ni obra del viento ni cosa sin importancia.
+cosa de aire*, es decir, ni obra del viento ni cosa sin importancia.
 
 El estribillo traslada la escena al Amor. *Corrido* vale aquí por
 avergonzado y por fugitivo, y el poliptoton con *corriendo sangre* añade
@@ -117,9 +117,9 @@ unísono dos compases después, cuando los tiples retomen el pasaje (cc.
 6-7). En *sobre las flores se cae*, que los tiples cantan contra el
 verso anterior en el tenor, cierra la cadena de entradas escalonadas del
 tiple 1º (c. 10) y el tiple 2º (c. 11) en el c. 12. En el estribillo
-canta en acorde con las demás voces *corrido va el amor* y la cadena de
+canta en acorde con las demás voces *corrido va el Amor* y la cadena de
 *ay* (cc. 40-45 y 75-80). Calla en el dúo en canon del tenor y el tiple
-1º sobre *no volverá el amor* (cc. 29-34) y, en su repetición (cc.
+1º sobre *no volverá el Amor* (cc. 29-34) y, en su repetición (cc.
 35-40), toma con las mismas notas el lugar del tiple 1º. En *y corriendo
 sangre de él* entra imitando al tiple 1º al unísono un compás después
 (c. 49), antes del tiple 2º (c. 50), y en el dúo siguiente del tenor y
