@@ -1,4 +1,4 @@
-El tono ***¡Ay, que llanto!*** compuesto por Fray Felipe de la Madre de Dios pone en música un romance castellano inédito de António da Fonseca Soares (conocido como Frei António das Chagas tras tomar en 1662 el hábito de la orden franciscana).
+El tono ***¡Ay, qué llanto!*** compuesto por Fray Felipe de la Madre de Dios pone en música un romance castellano inédito de António da Fonseca Soares (conocido como Frei António das Chagas tras tomar en 1662 el hábito de la orden franciscana).
 
 ## El texto
 
