@@ -7,11 +7,11 @@ varia.
 ## El texto
 
 Cada copla plantea un combate entre contrarios con el léxico de la esgrima y de la guerra: la noche *esgrime* su hielo,
-el sol *fulmina* su ardor, la sombra *lucha* con el árbol, el desdén *se armó* contra Amor. Los dos últimos versos
-repiten siempre la misma fórmula, *que lo abrasa, aquí del hielo, / que lo hiela, aquí del sol*: *¡aquí de…!* era la
+el sol *fulmina* su ardor, la sombra *lucha* con el arrebol, el desdén *se armó* contra Amor. Los dos últimos versos
+repiten siempre la misma fórmula, *que lo abrasa, ¡aquí del hielo!, / que lo hiela, ¡aquí del sol!*: *¡aquí de…!* era la
 llamada con que se pedía socorro, de modo que quien se abrasa pide auxilio al hielo y quien se hiela, al sol. La última
 copla resuelve la serie en el propio Amor, que une en sí *dos contrarios*: lo alaba la parte de *un ciego* y lo humilla
-la de *un Dios*, las dos caras de Cupido.
+la de *un dios*, las dos caras de Cupido.
 
 El estribillo cambia de registro y se vuelve hacia los pastores. Los despierta para cantar al amor y enseguida
 rectifica, *pero no cantéis, / llorar es mejor*, porque al compás de ese llanto también la naturaleza llora y suspira.
@@ -217,10 +217,17 @@ Sánchez:
 se cambia sutilmente para incidir en la figura de Cupido mientras quita
 peso al contraste hombre/Dios:
 
-> Dos contrarios en un sujeto,\
-> hoy quiere unir el amor\
-> que lo alaba, aquí de un ciego\
-> que lo humilla, aquí de un Dios.
+> Dos contrarios nun sujeto,\
+> hoy quiere unir el Amor\
+> que lo alaba, ¡aquí de un ciego!,\
+> que lo humilla, ¡aquí de un dios!
+
+La copla rehecha es la única de las cuatro que no procede de Sánchez, y su primer verso solo es octosílabo con la
+contracción portuguesa *nun*: con el castellano *en un* tendría nueve sílabas, y la música no le da más que ocho notas,
+las mismas que al primer verso de las otras coplas. Quien adaptó la copla pensaba, por tanto, en portugués, y lo más
+probable es que la versión a lo humano se hiciera en el entorno lisboeta en que se copió el cancionero. El dato no
+permite, en cambio, decir nada del compositor: la música es la misma para las cuatro coplas y pudo existir antes de que
+se rehiciera el texto de la última.
 
 Y del segundo grupo, directamente no se incluyen las dos últimas que
 hace referencia a los Reyes Magos.
@@ -251,7 +258,7 @@ solo antes de reunirse para la cadencia final sobre do.
 
 ## La edición
 
-Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion son reconstrucción editorial. En las coplas el alto deja poco margen de decisión: los dos primeros versos son homofónicos y en los dos últimos el alto forma, con el tiple 2º y el tenor, el trío que responde a las intervenciones a solo del tiple 1º (cc. 8-19). El estribillo es más comprometido. En la cadena de entradas de *despertad zagalejos*, una por compás, el alto ocupa el hueco del c. 21, entre la del tiple 1º (c. 20) y la del tenor (c. 22). En *llorar, llorar es mejor* (cc. 41-46) acompaña al tenor casi siempre en terceras, y en *que al compás de su llanto* entra con el tiple 2º (c. 58), al que responden juntos el tiple 1º y el tenor en el compás siguiente. En el pasaje de *llora el alba y suspira el sol* (cc. 66-84), en el que los tiples y el tenor se van pasando las frases a solo, el alto calla, y entra en el c. 85 con la cabeza de *y suspira* que antes han expuesto el tiple 1º (c. 70), el tiple 2º (c. 77) y el tenor (c. 82). La negra de paso de ese motivo forma en los cc. 85 y 95 una cuarta sobre el bajo, la misma que la fuente produce con esa figura entre el tiple 2º y el tenor (cc. 30, 56 y 83), y se ha mantenido para no romper la imitación.
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion son reconstrucción editorial. En las coplas el alto deja poco margen de decisión: los dos primeros versos son homofónicos y en los dos últimos el alto forma, con el tiple 2º y el tenor, el trío que responde a las intervenciones a solo del tiple 1º (cc. 8-19). El estribillo es más comprometido. En la cadena de entradas de *despertad, zagalejos*, una por compás, el alto ocupa el hueco del c. 21, entre la del tiple 1º (c. 20) y la del tenor (c. 22). En *llorar, llorar es mejor* (cc. 41-46) acompaña al tenor casi siempre en terceras, y en *que al compás de su llanto* entra con el tiple 2º (c. 58), al que responden juntos el tiple 1º y el tenor en el compás siguiente. En el pasaje de *llora el alba y suspira el sol* (cc. 66-84), en el que los tiples y el tenor se van pasando las frases a solo, el alto calla, y entra en el c. 85 con la cabeza de *y suspira* que antes han expuesto el tiple 1º (c. 70), el tiple 2º (c. 77) y el tenor (c. 82). La negra de paso de ese motivo forma en los cc. 85 y 95 una cuarta sobre el bajo, la misma que la fuente produce con esa figura entre el tiple 2º y el tenor (cc. 30, 56 y 83), y se ha mantenido para no romper la imitación.
 
 El guion se ha reconstruido como un *basso seguente* sobre el tenor, que es la práctica dominante en los guiones conservados del cancionero. El tenor, en clave de do en 3ª, se mueve en un registro agudo, así que el guion lo dobla por lo general a la octava baja y solo al unísono en sus frases graves (cc. 29-35, 55-64, 82-84 y 92-99). Donde el tenor calla, que en este tono es a menudo, el guion lleva un bajo armónico propio: bajo los solos del tiple 1º de las coplas encadena quintas descendentes (la-re-sol-do, cc. 8-11), y en los dos compases en que callan todas las voces (cc. 40 y 50) enlaza las frases con un paso de subdominante a dominante hacia la entrada siguiente. En el c. 1, donde las voces entran con una anacrusa de negra, el guion ataca desde el primer tiempo la nota de la entrada, como hace el de la fuente en el único caso análogo del cancionero (tono 39, c. 73). En el silencio de todas las voces que sigue a la cadencia en la del c. 7, el guion no se queda en la nota tenida, sino que sube y baja la octava (cc. 7-8), con la misma fórmula que el guion conservado del tono 27 en una cadencia idéntica (cc. 9-11). Con el tenor cantando, solo se aparta de él para dar la fundamental en los cc. 41 y 45; en la cadencia del c. 94, donde toma el sol-do mientras el tenor desciende mi-re-do, y en el c. 97, donde omite una nota de paso del tenor.
 
