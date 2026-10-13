@@ -1,4 +1,4 @@
-Dos de cumbres del barroco portugués se funden en el tono **Hola, tened
+Dos de cumbres del barroco portugués se funden en el tono **Hola, tened,
 que Marica**: la música de Antonio Marques Lésbio y la poesía de don
 Francisco Manuel de Melo.
 
