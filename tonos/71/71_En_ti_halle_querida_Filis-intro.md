@@ -24,7 +24,7 @@ XVII sonaba ya a lengua vieja, y *servite* por *servirte*, con esa pérdida de l
 del infinitivo ante el pronombre enclítico propia del castellano antiguo, del tipo de
 *dezillo* por *decirlo*, aunque en este caso tampoco pueda descartarse el hábito
 gráfico de un copista portugués. El poema añade dos rasgos sintácticos de la misma
-época: la enclisis en pretérito de *fieme de tus promesas, creíme de tus palabras*, y
+época: la enclisis en pretérito de *fïeme de tus promesas, creíme de tus palabras*, y
 el régimen de *creerse de* por *creer*.
 
 Un tercer detalle apunta en otra dirección, no a la antigüedad del poema sino a la
