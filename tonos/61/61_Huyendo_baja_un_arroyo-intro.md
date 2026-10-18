@@ -34,7 +34,8 @@ Ambas composiciones usan compás binario para las coplas y ternario para el estr
 Las dos puestas en música son composiciones distintas, pero no independientes. Comparten el esquema declamatorio de las
 coplas y, en el estribillo, la melodía con la que arranca y el tratamiento de los dos últimos versos. Como sucede
 habitualmente con este repertorio es posible que ambas deriven de una misma manera de cantar este romance, quizá una
-tonada anterior a las dos, o bien que uno de los compositores conocía la obra del otro sobre que hizo su propia versión. 
+tonada anterior a las dos, o bien que uno de los compositores conocía la obra del otro, sobre la que hizo su propia
+versión.
 
 ## La música
 
@@ -42,7 +43,7 @@ tonada anterior a las dos, o bien que uno de los compositores conocía la obra d
 
 ## La edición
 
-Al estar perdido librete de la voz del alto del Cancinoero de Miranda esta parte es reconstrucción editorial. En las
+Al estar perdido el librete de la voz del alto del Cancionero de Miranda esta parte es reconstrucción editorial. En las
 coplas la textura deja poco margen: el alto entra el último en la imitación de «lisonjeando», un compás después del
 bajo, y el resto se deduce de la armonía de las tres voces conservadas. En el estribillo el margen es mayor en los
 pasajes en que el tiple 1º y el bajo callan, donde la reconstrucción se ha guiado por el tiple 2º y por la versión de
