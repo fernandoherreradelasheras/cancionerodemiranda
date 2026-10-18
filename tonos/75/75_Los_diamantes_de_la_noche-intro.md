@@ -1,4 +1,6 @@
-El tono ***Los diamantes de la noche*** adapta el romance homónimo publicado por primera vez en la ***Primavera y flor de los mejores romances*** de 1623. El tono troma las cuartetas primera, tercera, cuarta y quinta del romance y los dos primeros versos del cantarcillo final.
+El tono ***Los diamantes de la noche*** adapta el romance homónimo publicado por primera vez en la ***Primavera y flor
+de los mejores romances*** de 1623. El tono toma las cuartetas primera, tercera, cuarta, quinta y novena del romance y
+los dos primeros versos del cantarcillo final.
 
 ## El texto
 
