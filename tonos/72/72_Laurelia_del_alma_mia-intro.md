@@ -21,10 +21,11 @@ mantiene por exigencia del ritmo.
 
 La irregularidad alcanza también a la sintaxis y al cómputo silábico. La quinta copla
 enumera aves, peces y fieras sin llegar a un verbo principal, y sólo cierra su sentido
-si se lee unida a la sexta; *tu semblante es del cielo* se queda en siete sílabas; y
-el segundo verso de la séptima, *pues cansa de ya cantar*, presenta un orden de
-palabras anómalo. Son rasgos propios de un texto de transmisión oral, fijado de
-memoria, antes que de una pieza de origen cortesano.
+si se lee unida a la sexta; *tu semblante es del cielo* se queda en siete sílabas; y el
+segundo verso de la séptima, *pues cansa de ya cantar*, presenta en el tiple 2º y el
+tenor un orden de palabras anómalo (el tiple 1º lee *ya de*). Son rasgos propios de un
+texto de transmisión oral, fijado de memoria, antes que de una pieza de origen
+cortesano.
 
 Todo apunta en la misma dirección. El registro es popular de principio a fin, y
 bastante alejado del que domina el resto del cancionero: no hay aquí deidades, ni
