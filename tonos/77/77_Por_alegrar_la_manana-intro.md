@@ -24,7 +24,7 @@ Este romance, casi al completo, está musicado a 3 voces por **Juan Blas** en el
 
 El estribillo del tono: 
 
-> Pajarillos suaves: templad las voces,\
+> Pajarillos suaves, templad las voces,\
 > que parecen penas y son amores.
 
 presenta hasta tres testimonios concordantes, con diferentes variaciones: otro tono del Cancionero de la Sablonara, un fragmento cantado auto sacramental de Lope de Vega o de Mira de Amescua y un tono de Juan Arañés.
