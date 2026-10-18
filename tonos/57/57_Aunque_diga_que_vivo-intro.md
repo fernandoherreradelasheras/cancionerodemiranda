@@ -1,19 +1,20 @@
 El tono ***Aunque diga que vivo*** consta de un estribillo de cuatro versos, que ocupa
-ochenta compases, y de un romance de cinco coplas octosílabas con asonancia á-e en los
+ochenta compases, y de un romance de seis coplas octosílabas con asonancia á-e en los
 versos pares, despachado en once. Se conserva completo en los cuatro libretes del
 Cancionero de Miranda, guion incluido.
 
 ## El texto
 
-El poema construye su paradoja sobre un uso doble de la soledad. El estribillo la da
-por causa de muerte, *pues lo cierto es que muero de soledades*, y las coplas se dedican
-a desmentirlo interpelando a esas mismas soledades: no pueden matar a quien las tiene
-por compañía, porque el que vive de deseos constantes lleva consigo con qué poblarlas.
-De ahí la sentencia de la tercera copla, que soledad sin deseos no la ha padecido nadie,
-y la vuelta de tuerca de la cuarta, donde las soledades pasan de enemigas a maestras,
-ya que son ellas las que le enseñan lo que ama. La quinta cierra con el nombre de la
-dama y con la conclusión que resuelve la paradoja del estribillo: la ausencia no separa
-a quien sabe querer con fe.
+El poema construye su paradoja sobre un uso doble de la soledad. El estribillo la da por
+causa de muerte, *pues lo cierto es que muero de soledades*, y las coplas se dedican a
+desmentirlo interpelando a esas mismas soledades: no pueden matar a quien tiene deseos, y
+el amante que vive de ellas, constante, lleva consigo con qué poblarlas. De ahí la
+sentencia de la tercera copla, que soledad sin deseos no lo ha padecido nadie, y la vuelta
+de tuerca de la cuarta, donde las soledades pasan de enemigas a maestras, ya que son ellas
+las que le enseñan, de lo que ama, no el rigor sino lo agradable. En la quinta el amante
+agradece a esa dulce compañía unas lisonjas que ningún bien alcanza a retratar, y la sexta
+cierra con el nombre de la dama y con la conclusión que resuelve la paradoja del
+estribillo: la ausencia no separa a quien sabe querer con fe.
 
 ## Fuentes musicales
 
@@ -24,14 +25,14 @@ Lisboa, que lo transmite como anónimo.
 
 Ese otro testimonio reparte además las voces de otro modo: lo que aquí se copia en el librete
 de tiple 1º está allí en el de tiple 2º, y al revés, y el intercambio vale para las dos
-secciones. La voces de ambos testimonios, salvo la distancia en una de las entradas del tenor
+secciones. Las voces de ambos testimonios, salvo la distancia en una de las entradas del tenor
 y algún reparto de duraciones son prácticamente iguales. La parte del guion, sin embargo,
-dos realizaciones distintas: en más de la mitad de los compases el bajo sigue un perfil
-propio en cada fuente, y donde coinciden suele diferenciarlos el grado de movimiento,
+presenta dos realizaciones distintas: en más de la mitad de los compases el bajo sigue un
+perfil propio en cada fuente, y donde coinciden suele diferenciarlos el grado de movimiento,
 porque el guion del Cancionero de Miranda repite la nota allí donde el otro la sostiene y
-emplea con más frecuencia valores breves. El registro y el ámbito, en cambio, son
-prácticamente los mismos. El texto también presenta diferencias sutiles entre ambas 
-fuentes pero que en algunos casos cambian el sentido del verso.
+emplea con más frecuencia valores breves. El registro y el ámbito, en cambio, son prácticamente
+los mismos. El texto también presenta diferencias sutiles entre ambas fuentes, que en algunos
+casos cambian el sentido del verso.
 
 ## La música
 
