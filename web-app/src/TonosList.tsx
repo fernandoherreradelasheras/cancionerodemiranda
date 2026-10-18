@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from './Context';
 import { ScoreViewerConfigScore } from 'score-viewer';
-import { TonoStatus } from './utils';
+import { TonoStatus, pathOfTono } from './utils';
 import { Listy } from 'antd';
 import PhaseStrip from './PhaseStrip';
 
@@ -31,7 +31,7 @@ const TonoProgress = ({ tonoStatus }: { tonoStatus: TonoStatus }) =>
 const TonoItem = ({ tonoConfig, tonoStatus, index }: { tonoConfig: ScoreViewerConfigScore, tonoStatus: TonoStatus, index: number }) => {
 
     return (
-        <Link className="item-tono-status" to={`/tono/${index + 1}/`} state={{ tono: tonoConfig }}>
+        <Link className="item-tono-status" to={pathOfTono(index + 1)} state={{ tono: tonoConfig }}>
             <div style={{ marginTop: "0.2em", marginBottom: "0.2em" }}>
                 <span className="tono-title">{index + 1}. {tonoConfig?.title}</span>{getAuthors(tonoStatus)}
             </div>

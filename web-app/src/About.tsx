@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom"
 import { useGlobalContext } from "./Context"
+import { pathOfTono } from "./utils"
 
 const REPO_URL = "https://github.com/fernandoherreradelasheras/cancionerodemiranda"
 const SCORE_VIEWER_URL = "https://www.npmjs.com/package/score-viewer"
@@ -50,7 +51,7 @@ const StudiedTonos = () => {
         <p>Tonos con estudio introductorio completo:{" "}
             {studied.map((tono, i) =>
                 <span key={tono.number}>{i > 0 ? ", " : ""}
-                    <Link to={`/tono/${tono.number}/`}>{scoreViewerConfig.scores[tono.number - 1]?.title}</Link>
+                    <Link to={pathOfTono(tono.number)}>{scoreViewerConfig.scores[tono.number - 1]?.title}</Link>
                 </span>)}.</p>
     )
 }

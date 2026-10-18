@@ -1,6 +1,7 @@
 import { RefObject } from "react"
 import { ScoreViewerConfig, ScoreViewerConfigScore } from 'score-viewer';
 import tonosConfig from "./assets/tonos-config.json"
+import { tonoPath } from "./tonoPath.js"
 
 const STATUS_FILE = "index.json"
 
@@ -24,6 +25,16 @@ export const config: ScoreViewerConfig = {
     ...(TESTING ? { facsimileImagesPath: TESTING_IMAGES_PATH } : {}),
   },
 } as ScoreViewerConfig
+
+// tonos.json carries, besides the configuration of the viewer, the slug of each tono page (see
+// tonoPath.js), which the viewer ignores
+export type TonoScore = ScoreViewerConfigScore & { slug: string }
+
+// Path of a tono page by its number (1-based). A number with no tono goes to the list
+export const pathOfTono = (number: number) => {
+  const score = config.scores[number - 1] as TonoScore | undefined
+  return score ? tonoPath(number, score.slug) : "/tonos/"
+}
 
 export const statusUrl = config.settings.basePath + STATUS_FILE
 

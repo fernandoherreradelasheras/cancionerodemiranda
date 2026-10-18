@@ -20,6 +20,7 @@ import { micromark } from "micromark"
 import { DOMParser } from "@xmldom/xmldom"
 import { gfm, gfmHtml } from "micromark-extension-gfm"
 import { reconstructedVoices, stripPlaceholders, withAltoNotice } from "./scripts/strip-placeholders.mjs"
+import { legacyTonoPath, tonoPath } from "./src/tonoPath.js"
 
 const SITE = "https://cdm.humanoydivino.com"
 const SITE_NAME = "Cancionero de Miranda"
@@ -180,10 +181,49 @@ const writePage = (path, { head, body, transient }) => {
     writeFileSync(`${dir}index.html`, html)
 }
 
+// Every tono needs its own slug in tonos.json, plain ASCII (scripts/tono-slugs.mjs adds the
+// missing ones): without it the page would have no address
+const slugs = new Set()
+for (const score of config.scores) {
+    if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(score.slug ?? "") || slugs.has(score.slug)) {
+        throw new Error(`Tono ${score.path}: missing, invalid or repeated slug "${score.slug ?? ""}"`
+            + " in tonos.json (see scripts/tono-slugs.mjs)")
+    }
+    slugs.add(score.slug)
+}
+
+const pathOf = (number) => tonoPath(number, config.scores[number - 1].slug)
+
 const tonoLink = (number) =>
-    `<a href="/tono/${number}/">${escapeHtml(config.scores[number - 1].title)}</a>`
+    `<a href="${pathOf(number)}">${escapeHtml(config.scores[number - 1].title)}</a>`
 
 const sitemap = []
+
+// The old address of a page (see src/tonoPath.js): an immediate meta refresh, which Google
+// treats as a permanent redirect (GitHub Pages cannot send a 301), with the canonical and a
+// plain link for anything that ignores both. It does not load the app, and stays out of the
+// sitemap
+const writeRedirect = (from, to, title) => {
+    const url = `${SITE}${to}`
+    const dir = `${DIST}${from}`
+    mkdirSync(dir, { recursive: true })
+    writeFileSync(`${dir}index.html`, [
+        `<!doctype html>`,
+        `<html lang="es">`,
+        `<head>`,
+        `  <meta charset="UTF-8" />`,
+        `  <title>${escapeHtml(title)}</title>`,
+        `  <link rel="canonical" href="${url}" />`,
+        `  <meta http-equiv="refresh" content="0; url=${url}" />`,
+        `  <script>location.replace(${JSON.stringify(to)} + location.search + location.hash)</script>`,
+        `</head>`,
+        `<body>`,
+        `  <p>Esta página se ha trasladado a <a href="${url}">${url}</a>.</p>`,
+        `</body>`,
+        `</html>`,
+        ``,
+    ].join("\n"))
+}
 
 // Home, about and progress: the content is React, and a summary of it goes into the static
 // block, which is also where these pages get their h1 (crawlers that do not run JavaScript
@@ -265,7 +305,7 @@ let withIntro = 0
 let withPoem = 0
 config.scores.forEach((score, i) => {
     const number = i + 1
-    const path = `/tono/${number}/`
+    const path = pathOf(number)
     const data = index.find((t) => t.number === number) ?? {}
 
     const introPath = score.introductionFile ? `${TONOS_DIR}/${score.path}/${score.introductionFile}` : null
@@ -352,9 +392,9 @@ config.scores.forEach((score, i) => {
     }
 
     const nav = [
-        number > 1 ? `<a href="/tono/${number - 1}/" rel="prev">« ${escapeHtml(config.scores[i - 1].title)}</a>` : null,
+        number > 1 ? `<a href="${pathOf(number - 1)}" rel="prev">« ${escapeHtml(config.scores[i - 1].title)}</a>` : null,
         `<a href="/tonos/">Todos los tonos</a>`,
-        number < config.scores.length ? `<a href="/tono/${number + 1}/" rel="next">${escapeHtml(config.scores[i + 1].title)} »</a>` : null,
+        number < config.scores.length ? `<a href="${pathOf(number + 1)}" rel="next">${escapeHtml(config.scores[i + 1].title)} »</a>` : null,
     ].filter(Boolean).join(" · ")
 
     const langAttribute = language === "es" ? "" : ` lang="${language}"`
@@ -371,6 +411,7 @@ config.scores.forEach((score, i) => {
     const image = figure ? `${SITE}${figure}` : undefined
 
     writePage(path, { head: renderHead({ title, description, path, jsonLd, image }), body })
+    writeRedirect(legacyTonoPath(number), path, title)
     sitemap.push({ path, lastmod: lastModified([introPath, meiPath].filter((f) => f && existsSync(f))) })
 })
 

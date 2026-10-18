@@ -1,7 +1,7 @@
 import { Card, Progress, Row, Col, Statistic, Typography, Divider } from 'antd';
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from './Context';
-import { calculateTonoStats, PHASE_GROUPS, PhaseState } from './utils';
+import { calculateTonoStats, PHASE_GROUPS, PhaseState, pathOfTono } from './utils';
 import PhaseStrip, { PhaseLegend } from './PhaseStrip';
 
 const { Title, Text } = Typography;
@@ -91,7 +91,7 @@ function Dashboard() {
                 <PhaseLegend />
                 <div className="phase-matrix">
                     {scoreViewerConfig.scores.map((tonoConfig, index) => definitions[index]
-                        ? <Link key={index} to={`/tono/${index + 1}/`} state={{ tono: tonoConfig }}
+                        ? <Link key={index} to={pathOfTono(index + 1)} state={{ tono: tonoConfig }}
                             className="phase-matrix-row" title={tonoConfig.title}>
                             <span className="phase-matrix-number">{index + 1}</span>
                             <PhaseStrip phases={definitions[index].phases} compact />

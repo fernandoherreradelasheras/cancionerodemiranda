@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate  } from 'react-router-dom'
 import { Context } from './Context';
-import { getJson, latestPdfsPath, TonoStatus, statusUrl, config } from './utils';
+import { getJson, latestPdfsPath, TonoStatus, statusUrl, config, pathOfTono } from './utils';
 import { Location } from 'react-router-dom'
 
 import { ConfigProvider, Layout, Menu, MenuProps, theme, Typography, Grid } from 'antd';
@@ -84,7 +84,7 @@ function BaseLayout() {
                 return
             }
             setCurrentTonoNumber(tonoNumber)
-            goTo(`/tono/${tonoNumber}/`)
+            goTo(pathOfTono(tonoNumber))
         } else {
             setCurrentTonoNumber(null)
             goTo(info.key)
@@ -106,10 +106,10 @@ function BaseLayout() {
     }, [scoreViewerConfig, currentTonoNumber])
 
 
-    const prevTono = useMemo(() => currentTonoNumber && currentTonoNumber > 1 ? `/tono/${currentTonoNumber - 1}/` : "/tono/prev"
+    const prevTono = useMemo(() => currentTonoNumber && currentTonoNumber > 1 ? pathOfTono(currentTonoNumber - 1) : "/tono/prev"
     , [currentTonoNumber])
     const lastTonoNumber = useMemo(() => status[status.length - 1]?.number ?? 0, [status])
-    const nextTono = useMemo(() => currentTonoNumber && currentTonoNumber < lastTonoNumber ? `/tono/${currentTonoNumber + 1}/` : "/tono/next"
+    const nextTono = useMemo(() => currentTonoNumber && currentTonoNumber < lastTonoNumber ? pathOfTono(currentTonoNumber + 1) : "/tono/next"
     , [currentTonoNumber, lastTonoNumber])
 
     const items = useMemo<MenuProps['items']>(() => [
@@ -120,7 +120,7 @@ function BaseLayout() {
             key: 'sub1', label: selectorLabel, style: currentTonoNumber ? { fontWeight: "bolder" } : {}, children:
                 scoreViewerConfig?.scores.map((s: ScoreViewerConfigScore, index: number) => {
                     const tonoNumber = `${index + 1}`
-                    return { key: `sub1:/tono/${tonoNumber}/`, label: <Link to={`/tono/${tonoNumber}/`}>{`Tono ${tonoNumber}: ${s.title}`}</Link> }
+                    return { key: `sub1:/tono/${tonoNumber}/`, label: <Link to={pathOfTono(index + 1)}>{`Tono ${tonoNumber}: ${s.title}`}</Link> }
                 })
         },
         breakpoint.xxl || breakpoint.xl || breakpoint.lg || breakpoint.md ?
