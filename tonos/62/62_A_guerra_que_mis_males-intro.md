@@ -1,4 +1,6 @@
-El tono ***Aquella que mis males***, compuesto por **Gonçalo Mendes Saldanha** y escrito por un poeta anónimo que juega con la alternancia entre el registro coloquial y el elevado en una elegía amorosa que llama la atención por el uso de formas arcaicas ("vite", "veles") y el manejo de la sintaxis encabalgada en cuartetas heptasílabas.
+El tono ***A guerra que mis males***, compuesto por **Gonçalo Mendes Saldanha** y escrito por un poeta anónimo que juega
+con la alternancia entre el registro coloquial y el elevado en una elegía amorosa que llama la atención por el uso de
+formas arcaicas ("vite", "veles") y el manejo de la sintaxis encabalgada en cuartetas heptasílabas.
 
 ## El texto
 
