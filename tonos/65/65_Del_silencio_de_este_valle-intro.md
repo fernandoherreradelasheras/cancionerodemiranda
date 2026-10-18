@@ -1,7 +1,7 @@
-*Del silencio de este valle* es uno los tonos del Cancionero de
-Miranda a los que, por estar escrito para dos tiples y bajo, no le
-afecta la desaparición del libro de alto y está completo sin necesidad
-de ninguna reconstrucción.
+*Del silencio de este valle* es uno de los tonos del Cancionero de
+Miranda a los que, por estar escritos para dos tiples y bajo, no afecta
+la desaparición del libro de alto: está completo sin necesidad de
+ninguna reconstrucción.
 
 ## El texto
 
@@ -9,11 +9,10 @@ de ninguna reconstrucción.
 
 ## Fuentes poéticas
 
-El texto es es un romance con estribillo de **Francisco de Borja y
-Aragón** incluido con el número CCXXXIX en *Las Obras en verso de Don
-Francisco de Borja, Principe de Esquilache* publicadas en Amberes 1663.
-Del las ocho cuartetas que tiene el romance, el tono incluye las cinco
-primeras.
+El texto es un romance con estribillo de **Francisco de Borja y Aragón**
+incluido con el número CCXXXIX en *Las Obras en verso de Don Francisco
+de Borja, Principe de Esquilache* publicadas en Amberes en 1663. De las
+ocho cuartetas que tiene el romance, el tono incluye las cinco primeras.
 
 ## Otras versiones musicales
 
