@@ -1,6 +1,5 @@
-El tono **Ya no quiero navegar**, compuesto por textbfJoao Lorenzo
-Rebello, comparte fuente poética con el villancico homónimo a 5 voces de
-la colección de la Biblioteca Pública de Évora[^1].
+El tono **Ya no quiero navegar**, compuesto por **João Lourenço Rebello**, comparte fuente poética con el villancico
+homónimo a 5 voces de la colección de la Biblioteca Pública de Évora[^1].
 
 [^1]: P-EVc Ms. CLI/1-5 d nº15
 
@@ -15,12 +14,9 @@ se copiaron.
 
 ## Fuentes poéticas
 
-Pese a tratarse de
-una obra a lo humano y otra a lo divino, el texto del estribillo es
-completamente igual. Las tres coplas del uno del villancico, sin
-embargo, parecen no guardar ninguna relación con el tono del Cancionero
-de Miranda: *No más me quiero engolfar*, *Por aquel mar de María* y *Del
-mar del mundo corsario*.
+Pese a tratarse de una obra a lo humano y otra a lo divino, el texto del estribillo es casi idéntico. Las tres coplas
+del villancico, sin embargo, parecen no guardar ninguna relación con el tono del Cancionero de Miranda: *No más me
+quiero engolfar*, *Por aquel mar de María* y *Del mar del mundo corsario*.
 
 ## La música
 
