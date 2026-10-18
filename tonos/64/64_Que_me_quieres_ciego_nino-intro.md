@@ -7,17 +7,17 @@ siete coplas octosílabas con asonancia á-o en los versos pares.
 
 El poema es un apóstrofe sostenido a Cupido, y su interés está en el giro que da al
 tópico. Las dos primeras coplas son de reproche indignado, con cuatro preguntas
-encadenadas que le echan en cara al dios haber gastado ya la flor de los años del
-amante y le piden que lo deje en paz. La tercera y la cuarta plantean la hipótesis de
-un asalto nuevo, unos *ojos bellos* con los que Cupido pretendería cautivar de nuevo
-el alma, y la refutan con un argumento de imposibilidad material: para eso tendría
-antes que borrar un retrato que el alma adora y del que el corazón es esclavo. Las
-dos siguientes convierten la refutación en desafío, *no te canses, ciego amor, ni
-pierdas flechas en vano*, y la última cierra con un remate estoico. Lo que se rechaza
-no es el amor, sino un amor nuevo: la resistencia del amante consiste enteramente en
-su fidelidad a un amor anterior, y su victoria sobre el dios está en que no le queda
-nada que conquistar. Aunque la fortuna permita que sea tan mal pagado, la gloria de
-amar es suya y nadie se la quita.
+encadenadas que le echan en cara al dios haber gastado ya la flor de los años del amante
+y le piden que lo deje en paz. La tercera y la cuarta plantean la hipótesis de un asalto
+nuevo, unos *ojos bellos* con los que Cupido pretendería cautivar de nuevo el alma, y la
+refutan con un argumento de imposibilidad material: para eso tendría antes que borrar un
+retrato que el alma adora y del que el corazón es esclavo. Las dos siguientes convierten
+la refutación en desafío, *no te canses, ciego amor, ni pierdas flechas en vano*, y la
+última cierra con un remate estoico: el amante se vuelve hacia la Fortuna y le advierte
+que, aunque permita que sea tan mal pagado, no puede quitarle la gloria de amar. Lo que
+se rechaza no es el amor, sino un amor nuevo: la resistencia del amante consiste
+enteramente en su fidelidad a un amor anterior, y su victoria sobre el dios está en que
+no le queda nada que conquistar.
 
 La antigüedad que la forma sugiere no encuentra, en cambio, apoyo en la lengua del
 poema. No aparece ninguna de las formas anticuadas que en otros tonos del bloque
@@ -46,11 +46,7 @@ con el estrato antiguo al que la forma parece remitir.
 
 ## La edición
 
-La reconstrucción de la voz de alto, al ser la escritura homofónica de principio a fin,
-sin un solo pasaje imitativo en el que hubiera que restituir una entrada, la
-reconstrucción se reduce prácticamente a elegir en cada acorde la nota que completa la
-armonía de las dos voces conservadas.
-
-En el texto, la última copla presenta la enmienda anotada en el aparato: los
-manuscritos leen *aunque fortuna permitas*, y la edición adopta *permita*, con la
-fortuna por sujeto.
+Como la escritura es homofónica de principio a fin, sin un solo pasaje imitativo en el
+que hubiera que restituir una entrada, la reconstrucción de la voz de alto se reduce
+prácticamente a elegir en cada acorde la nota que completa la armonía de las dos voces
+conservadas.
