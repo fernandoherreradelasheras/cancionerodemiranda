@@ -120,5 +120,24 @@ constancia del amante suena, literalmente, por encima del quebranto.
 
 ## La edición
 
-Este tono es uno de los que no conservan parte de guion, y su voz de alto es, como en
-casi todo el cancionero, reconstrucción editorial.
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente tampoco conserva
+para este tono, son reconstrucción editorial. *[TODO: redactar la reconstrucción del alto y el margen de decisión con
+que se ha trabajado.]*
+
+El guion se ha reconstruido como un *basso seguente* sobre el tenor, que hace de bajo en todo el tono y es la práctica
+dominante en los guiones conservados del cancionero. Lo dobla casi siempre a la octava baja, sostiene con él los
+pedales de si (cc. 6-9) y de la (cc. 25-29) y pasa al unísono en el bajo cromático fa-fa♯-sol-sol♯-la de la cadencia
+final (cc. 32-36). Simplifica su ritmo fundiendo las notas repetidas de la declamación y omitiendo las corcheas de paso
+de los cc. 1-3, pero conserva en el c. 4 la bordadura mi-fa del tenor, porque con el mi tenido el la del tiple 2º
+quedaría en cuarta sobre el bajo. En el c. 2 toma el fa♯ del tenor en lugar de su re, con lo que evita un tritono
+re-sol♯ en el bajo. Donde el tenor calla, lleva un bajo armónico propio: la y re bajo las entradas a solo del tiple 2º y
+del tiple 1º con *Porém, se és penha* (cc. 12-14), y la nota con que entra el tenor, atacada en el primer tiempo (cc. 15
+y 25). En el compás de silencio de las cuatro voces que precede a *em penha sou também* (c. 20) da el la, dominante de
+la entrada en re.
+
+Las cuartas que los tiples forman sobre el bajo son retardos y apoyaturas que resuelven en la tercera (cc. 6, 34 y 36),
+la cuarta de la cadencia frigia del c. 11, notas de paso (cc. 15 y 23) y bordaduras y sonoridades de mi menor sobre los
+pedales de si y de la (cc. 8 y 26-29); están ya entre los tiples y el tenor de la fuente y, como suelen hacer los
+guiones conservados del cancionero, el guion las mantiene al doblar al tenor. Las del alto son de la misma clase: en el
+c. 8 da sobre el pedal la misma sonoridad de mi menor que el tiple 1º en el tiempo siguiente, y en el c. 23 dobla a la
+octava baja el mi del tiple 2º.
