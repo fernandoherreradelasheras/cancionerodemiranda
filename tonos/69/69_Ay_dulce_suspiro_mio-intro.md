@@ -45,4 +45,19 @@ glosada por Lobo.
 
 ## La edición
 
-*[TODO: alto reconstruido (Tiple, [Alto], Tenor); redactar la reconstrucción editorial del alto.]*
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente no trae para este
+tono, son reconstrucción editorial. *[TODO: redactar la reconstrucción del alto y el margen de decisión con que se ha
+trabajado.]*
+
+El guion se ha reconstruido como un *basso seguente* sobre el tenor, siguiendo la práctica dominante en los guiones
+conservados del cancionero: lo dobla al unísono cuando el tenor canta entre re3 y si3 y a la octava baja en las frases
+que suben a do4-re4 (cc. 20-23, 26-33 y 48-50), y sostiene con él los pedales de re (cc. 28-29) y de la (cc. 62-63).
+Funde las notas repetidas y omite las de paso (cc. 30 y 48), pero conserva las negras del tenor en los cc. 17 y 51,
+porque fundirlas dejaría una cuarta del tiple sobre el bajo, y sus puntillos en los cc. 40, 44, 52 y 57, donde todas las
+voces cambian de acorde en la negra. Cuando las voces callan en el primer tiempo, suena ya en él con la nota de la
+entrada (cc. 1, 7, 17, 39, 47, 51 y 56). Donde el tenor calla (cc. 24-25), el tiple repite un grado más alto su frase de
+los cc. 17-19, y el guion sigue la secuencia con el bajo correspondiente.
+
+Las cuartas que el tiple forma sobre el bajo (cc. 56 y 62) están ya entre el tiple y el tenor de la fuente. Las del alto
+son 6/4 de paso y cadenciales en terceras con el tiple (cc. 8-9 y 28), la misma fórmula que la fuente usa en los cc. 56
+y 62.
