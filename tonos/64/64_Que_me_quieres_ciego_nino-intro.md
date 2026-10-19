@@ -46,7 +46,16 @@ con el estrato antiguo al que la forma parece remitir.
 
 ## La edición
 
-Como la escritura es homofónica de principio a fin, sin un solo pasaje imitativo en el
-que hubiera que restituir una entrada, la reconstrucción de la voz de alto se reduce
-prácticamente a elegir en cada acorde la nota que completa la armonía de las dos voces
-conservadas.
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que
+la fuente no trae para este tono, son reconstrucción editorial. Como la escritura es
+homofónica de principio a fin, sin un solo pasaje imitativo en el que hubiera que
+restituir una entrada, la reconstrucción del alto se reduce prácticamente a elegir en cada
+acorde la nota que completa la armonía de las dos voces conservadas.
+
+El guion se ha reconstruido como un *basso seguente* sobre el tenor, que canta en todos
+los compases, siguiendo la práctica dominante en los guiones conservados del cancionero.
+Lo dobla nota a nota, fundiendo sus notas repetidas: a la octava baja en las frases que
+rondan do4-re4 y al unísono desde los saltos descendentes del tenor (cc. 8, 13 y 20),
+hasta la nota final, de nuevo a la octava baja. Cuando las voces callan en el primer
+tiempo, suena ya en él con la nota de la entrada (cc. 7 y 12). La única cuarta sobre el
+bajo es una nota de paso del alto en el c. 7, en sextas con el tiple como en el c. 1.
