@@ -24,9 +24,13 @@ MEI_NS = 'http://www.music-encoding.org/ns/mei'
 NSMAP = {'mei': MEI_NS}
 ANON = '[Anónimo]'
 
-TONOS_JSON = Path('tonos/tonos.json')
-STATUS_JSON = Path('tonos/status.json')
-INDEX_JSON = Path('tonos/index.json')
+# Rutas ancladas a la raíz del repositorio, para poder lanzar el script desde
+# cualquier directorio.
+ROOT = Path(__file__).resolve().parent.parent
+TONOS_DIR = ROOT / 'tonos'
+TONOS_JSON = TONOS_DIR / 'tonos.json'
+STATUS_JSON = TONOS_DIR / 'status.json'
+INDEX_JSON = TONOS_DIR / 'index.json'
 
 # Edition phases, in working order. Which of the conditional ones apply is
 # derived from the MEI (see applicable_phases), never written in status.json.
@@ -151,7 +155,7 @@ def summarize(phases):
 
 
 def build_entry(number, score, status):
-    mei_path = Path('tonos') / score['path'] / score['meiFile']
+    mei_path = TONOS_DIR / score['path'] / score['meiFile']
     root = ET.parse(str(mei_path)).getroot()
 
     title = first_text(root, '//mei:titleStmt/mei:title[@type="main"]/text()') or score['title']
@@ -206,7 +210,7 @@ def main():
         sys.stdout.write(render(index))
         return
     INDEX_JSON.write_text(render(index))
-    print(f"Escrito {INDEX_JSON} ({len(index)} tonos)")
+    print(f"Escrito {INDEX_JSON.relative_to(ROOT)} ({len(index)} tonos)")
 
 
 if __name__ == '__main__':
