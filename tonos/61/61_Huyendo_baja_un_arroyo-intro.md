@@ -43,7 +43,7 @@ versión.
 
 ## La edición
 
-Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente tampoco conserva
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente no trae
 para este tono, son reconstrucción editorial. En las coplas la textura deja poco margen: el alto entra el último en la
 imitación de «lisonjeando», un compás después del bajo, y el resto se deduce de la armonía de las tres voces
 conservadas. En el estribillo el margen es mayor en los pasajes en que el tiple 1º y el bajo callan, donde la

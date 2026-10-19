@@ -108,7 +108,7 @@ este párrafo y remitir a él.]*
 ## La edición
 
 Tanto la voz de alto, cuyo librete está perdido en todo el cancionero,
-como el guion, que la fuente tampoco conserva para este tono, son
+como el guion, que la fuente no trae para este tono, son
 reconstrucción editorial. Las coplas se abren con una exclamación en
 acorde (cc. 1-3) en la que el alto completa la armonía. En *fulminando
 sus donaires* se empareja con el tenor (cc. 4-5) y canta con su mismo

@@ -34,7 +34,7 @@ cuarteta del tono. No tiene estribillo la versión de Ajuda.
 
 ## La edición
 
-Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente tampoco conserva
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente no trae
 para este tono, son reconstrucción editorial. *[TODO: redactar la reconstrucción del alto y el margen de decisión con
 que se ha trabajado.]*
 

@@ -58,13 +58,19 @@ def is_accompaniment(label):
     return base.startswith('guion')
 
 
+# perfRes/@type of the parts written by the edition: `reconstructed` restores a part
+# that existed and is lost (the Alto); `supplied` adds one the source does not carry,
+# without implying that it ever existed (the Guion). Both print and count alike.
+EDITORIAL = ('reconstructed', 'supplied')
+
+
 def _fmt_res(name, state):
     """Voice name carrying its editorial state.
 
     The brackets answer who wrote it: [x] supplied by the edition, (x) in the
     organic but absent from the source. The asterisk answers a different
     question — how much of it survives — so it does not reuse either pair."""
-    if state == 'reconstructed':
+    if state in EDITORIAL:
         return f'[{name}]'
     if state == 'lost':
         return f'({name})'
@@ -75,8 +81,8 @@ def _fmt_res(name, state):
 
 def derive_organic(root):
     """Organic from meiHead/.../perfMedium/perfResList. Each <perfRes> is a voice
-    (or the accompaniment, detected by name), with @type in {reconstructed, lost,
-    fragmentary}. Returns (organic_string, reconstructed, incomplete, fragmentary).
+    (or the accompaniment, detected by name), with @type in {reconstructed, supplied,
+    lost, fragmentary}. Returns (organic_string, reconstructed, incomplete, fragmentary).
 
     The list is bare — "Tiple 1º, Tiple 2º, [Alto], Tenor y guion" — with no
     voice count and no parenthesised clauses: a parenthesis here means a lost
@@ -85,7 +91,7 @@ def derive_organic(root):
     voces, acomp = [], []
     for pr in res:
         name = (pr.text or '').strip()
-        state = pr.get('type')  # None | 'reconstructed' | 'lost' | 'fragmentary'
+        state = pr.get('type')  # None | 'reconstructed' | 'supplied' | 'lost' | 'fragmentary'
         (acomp if is_accompaniment(name) else voces).append((name, state))
 
     organic = ', '.join(_fmt_res(n, s) for n, s in voces)
@@ -95,7 +101,7 @@ def derive_organic(root):
                           for n, s in acomp)
         organic = f'{organic} y {names}' if organic else names
 
-    reconstructed = any(s == 'reconstructed' for _, s in voces + acomp)
+    reconstructed = any(s in EDITORIAL for _, s in voces + acomp)
     fragmentary = any(s == 'fragmentary' for _, s in voces + acomp)
     # A voice preserved only in fragments is as much an incomplete testimony as
     # one missing outright.
@@ -107,11 +113,11 @@ def applicable_phases(voces, acomp):
     """Phases that apply to a tono, from the perfRes states.
 
     A sung voice that is lost, fragmentary or already reconstructed needs the
-    voice reconstruction. The guion needs it when it is lost or reconstructed,
+    voice reconstruction. The guion needs it when it is lost or already supplied,
     or when the MEI has no guion at all (every tono gets one). Anything
-    reconstructed needs the full musical review of the result."""
-    voice = any(s in ('lost', 'fragmentary', 'reconstructed') for _, s in voces)
-    guion = not acomp or any(s in ('lost', 'reconstructed') for _, s in acomp)
+    written by the edition needs the full musical review of the result."""
+    voice = any(s in ('lost', 'fragmentary') + EDITORIAL for _, s in voces)
+    guion = not acomp or any(s in ('lost',) + EDITORIAL for _, s in acomp)
     conditional = {
         'voice': voice, 'voice_review': voice,
         'guion': guion, 'guion_review': guion,
@@ -140,7 +146,7 @@ def merge_phases(number, declared, applicable, voces, acomp):
         phases[p] = state
 
     for phase, parts in (('voice', voces), ('guion', acomp)):
-        if any(s == 'reconstructed' for _, s in parts) and phases[phase] == 'pending':
+        if any(s in EDITORIAL for _, s in parts) and phases[phase] == 'pending':
             print(f"aviso: el tono {number} tiene {phase} reconstruido en el MEI "
                   f"y status.json lo da por pendiente", file=sys.stderr)
     return phases

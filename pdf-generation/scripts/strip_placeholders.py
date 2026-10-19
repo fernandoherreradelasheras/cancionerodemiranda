@@ -63,12 +63,13 @@ def strip_placeholders(md):
     return out.lstrip("\n").rstrip("\n") + "\n"
 
 
-RECONSTRUCTED = re.compile(r'<perfRes\b[^>]*\bsource="#alto-part-recomposition"[^>]*>([^<]*)</perfRes>')
+RECONSTRUCTED = re.compile(r'<perfRes\b[^>]*\bsource="#(?:alto|guion)-(?:part-)?recomposition"[^>]*>([^<]*)</perfRes>')
 
 
 def reconstructed_voices(mei):
-    """Las voces que el MEI declara reconstrucción del librete perdido del alto (los
-    <perfRes> con @source #alto-part-recomposition), por su etiqueta: "Alto", "Alto 2º"…"""
+    """Las voces que escribe la edición, por su etiqueta: el alto reconstruido (@source
+    #alto-part-recomposition: "Alto", "Alto 2º"…) y el guion que la fuente no trae
+    (@source #guion-recomposition)."""
     return [m.strip() for m in RECONSTRUCTED.findall(mei)]
 
 
@@ -83,7 +84,8 @@ def alto_notice(voices):
         return None
     name = f"del {alto.lower()}"
     if any(re.match(r"guion", v, re.I) for v in voices):
-        return f"Tanto la voz {name}, cuyo librete está perdido, como el guion son reconstrucción editorial."
+        return (f"Tanto la voz {name}, cuyo librete está perdido, como el guion, que la fuente no trae "
+                "para este tono, son reconstrucción editorial.")
     return f"La voz {name}, cuyo librete está perdido, es reconstrucción editorial."
 
 

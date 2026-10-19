@@ -79,8 +79,10 @@ Conventions:
 - The RISM siglum goes in `<repository><identifier auth="RISM">`, the call
   number in `<identifier type="shelfmark">`. The apparatus resolves `@source` to
   `RISM (title)` using exactly these two, so both are worth filling in.
-- A reconstructed part is a source of its own, e.g.
-  `<source xml:id="alto-part-recomposition" type="complementary" label="digital">`.
+- A part written by the edition is a source of its own, e.g.
+  `<source xml:id="alto-part-recomposition" type="complementary" label="digital">`
+  for the reconstructed Alto and `<source xml:id="guion-recomposition" …>`, titled
+  *Editorial Guion part (not present in the source)*, for a supplied Guion.
 
 The standing witnesses of the collection are `P-Ln_MM4802-1` (Superius primus),
 `P-Ln_MM4802-2` (Superius secundus), `P-Ln_MM4803`, `P-Lant_PT-TT-MUS-L122`
@@ -101,7 +103,7 @@ The scoring is declared once, in the header, as a `perfResList` in score order:
             <perfRes>Tiple 2º</perfRes>
             <perfRes type="reconstructed">Alto</perfRes>
             <perfRes>Tenor</perfRes>
-            <perfRes type="reconstructed">Guion</perfRes>
+            <perfRes type="supplied">Guion</perfRes>
          </perfResList>
       </perfMedium>
    </work>
@@ -114,7 +116,8 @@ the printed organic (`scripts/build_index.py`):
 | `@type` | meaning | printed as |
 |---|---|---|
 | *(none)* | transmitted by the source | `Tenor` |
-| `reconstructed` | absent from the source and supplied by the edition | `[Alto]` |
+| `reconstructed` | lost from the source and restored by the edition (the Alto, whose partbook is lost) | `[Alto]` |
+| `supplied` | not carried by the source and supplied by the edition, with no claim that it ever existed (a Guion the 4803 book does not have) | `[guion]` |
 | `lost` | in the scoring, absent from the source and not supplied by the edition| `(Alto)` |
 | `fragmentary` | survives only in part | `Tenor*` |
 
@@ -123,8 +126,13 @@ the printed organic (`scripts/build_index.py`):
 of a partbook does not say which voice it carries: in tono 46 the Tenor book
 of the cancionero (L122) holds the Alto part, and the Tenor comes from the
 CPMHL. Several witnesses are listed separated by spaces, the principal one
-first; a reconstructed part points to the reconstruction pseudo-source; a
-`lost` part has no `@source`.
+first; a reconstructed or supplied part points to its pseudo-source
+(`alto-part-recomposition`, `guion-recomposition`); a `lost` part has no
+`@source`.
+
+Never call a supplied Guion *lost*: that the 4803 book does not carry a part does
+not prove the part existed (it may never have been copied, and for the tonos a 3
+at the end it most likely never existed).
 
 ```xml
 <perfResList>
@@ -138,7 +146,8 @@ first; a reconstructed part points to the reconstruction pseudo-source; a
 
 For the tonos whose only witnesses are the partbooks of the cancionero the
 mapping is fixed (Tiple 1º → 4802/1, Tiple 2º → 4802/2, Tenor or Bajo → L122,
-Guion → 4803, reconstructed Alto → `alto-part-recomposition`) and
+Guion → 4803, reconstructed Alto → `alto-part-recomposition`, supplied Guion →
+`guion-recomposition`) and
 `scripts/mei_perfres_source.py` fills it in; a tono with concordances is done
 by hand. Attribute order is `xml:id`, `type`, `source`, `label`
 (`scripts/mei_attr_order.py`).
@@ -218,13 +227,13 @@ printing them.
   `<mdiv>`s included; the `staffDef`s inside the original-clefs `<app>` (§3) do
   not. `scripts/mei_perfres_decls.py` adds the ids and the `@decls` to a tono
   that lacks them, pairing parts (the `lost` ones left out) and staves by
-  position, and `scripts/mei_add_guion.py` writes them for a reconstructed
+  position, and `scripts/mei_add_guion.py` writes them for a supplied
   Guion.
 - The `<clef>` here is the **modern** clef of the transcription. The octave-down
   tenor clef is `shape="G" line="2" dis="8" dis.place="below"`.
 - A clef that differs from the source carries an `xml:id`, because the
   original-clefs apparatus refers back to it.
-- A reconstructed part gets its label in square brackets: `[Alto]`, `[G.]`.
+- A reconstructed or supplied part gets its label in square brackets: `[Alto]`, `[G.]`.
 
 ### 2.4 Sections
 
@@ -442,7 +451,7 @@ python pdf-generation/scripts/list_annotations.py [tono…] [--problems] [--json
   tie does not repeat it. `scripts/mei_ficta_bar.py` lists the notes that break
   this rule and, with `--fix`, corrects them and checks that the MIDI is
   unchanged.
-- A **reconstructed voice has no *ficta***. Ficta marks the distance between what
+- A **reconstructed or supplied voice has no *ficta***. Ficta marks the distance between what
   the source wrote and what the edition adds, and a voice the source does not
   transmit has no written text to measure it against: every note in it is already
   editorial. Its accidentals are plain `@accid`, never an `<accid func="edit">`.
@@ -627,7 +636,7 @@ on the image beside the score in split view, while it sounds and, with the
 - Only what the source writes is linked: nothing inside `<supplied>`, the source
   reading (`<sic>`, `<orig>`) rather than the correction of a `<choice>`, and the
   readings of an `<app>` only on the images of their own witness. The staves of
-  a reconstructed part have no images and no links.
+  a reconstructed or supplied part have no images and no links.
 
 The links are made with `tools/facsimile-link/` (see its README), which writes
 only the `<facsimile>` block and the `@facs` attributes.
