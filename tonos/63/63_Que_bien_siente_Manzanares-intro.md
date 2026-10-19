@@ -106,7 +106,20 @@ _Arpones, flechas yrayos hay._
 
 ## La edición
 
-El tono está escrito para Tiple, Alto y Tenor, lo que hace necesaria la reconstrucción editorial de la voz perdida del Alto. Una reconstrucción que difiere poco metodológicamente de las realizadas para los tonos a cuatro voces. Por un lado, las partes homofónicas (que son las más abundantes en este bloque de tonos) podrían presentar menos incertidumbre a la hora de completar la armonía de las otras dos voces. Pero por otro, la ausencia de guion reduce algunas certezas que la parte instrumental aclaraba cuando presentaba diferencias con la voz más grave.
+El tono está escrito para tiple, alto y tenor. Tanto la voz de alto, cuyo librete está perdido en todo el cancionero,
+como el guion, que la fuente no trae para este tono, son reconstrucción editorial. La del alto difiere poco
+metodológicamente de las realizadas para los tonos a cuatro voces. Por un lado, las partes homofónicas (que son las más
+abundantes en este bloque de tonos) podrían presentar menos incertidumbre a la hora de completar la armonía de las otras
+dos voces. Pero por otro, la ausencia de guion reduce algunas certezas que la parte instrumental aclaraba cuando
+presentaba diferencias con la voz más grave.
+
+El guion se ha reconstruido como un *basso seguente* sobre el tenor, que canta en todos los compases, siguiendo la
+práctica dominante en los guiones conservados del cancionero. Lo dobla nota a nota, al unísono en la primera frase (cc.
+1-4) y a la octava baja en las centrales, en las que el tenor sube a si3-re4 (cc. 5-11), con un ritmo más sencillo que
+funde las notas repetidas y omite el si de paso del c. 10. Vuelve al unísono en el salto la-re del tenor (c. 12) y pasa
+de nuevo a la octava baja en la cadencia final (cc. 15-16). En las tres entradas tras el silencio del primer tiempo (cc.
+1, 5 y 9) suena ya desde él con la nota de la entrada. La única cuarta sobre el bajo (c. 3) está ya entre el tiple y el
+tenor de la fuente, y en ese mismo compás el guion repite, al doblar al tenor, su salto de quinta disminuida sol-do♯.
 
 El librete del tiple primero y del tenor incluyen al final del tono una anotación en grande:
 
