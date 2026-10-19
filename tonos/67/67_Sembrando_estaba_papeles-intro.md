@@ -22,4 +22,12 @@ suena tres veces, con cadencia sobre la (c. 24), sobre do (c. 28) y de nuevo sob
 ## La edición
 
 Las tres voces del tono, tiple 1º, tiple 2º y tenor, se conservan completas en la fuente y no requieren reconstrucción.
-El librete del guion no trae acompañamiento para este tono.
+El librete del guion no trae acompañamiento para este tono, y el guion que se edita es reconstrucción editorial.
+
+Se ha reconstruido como un *basso seguente* sobre el tenor, siguiendo la práctica dominante en los guiones conservados
+del cancionero: lo dobla al unísono en todo el tono, salvo el re4 del c. 9 y las notas finales de cada sección, que toma
+a la octava baja, con un ritmo más sencillo que funde las notas repetidas, como las de los pedales de mi y de sol del
+estribillo (cc. 21 y 25), y omite las de paso. Solo conserva las corcheas del tenor en los cc. 9 y 18, porque fundirlas
+dejaría el do de los tiples en cuarta sobre el bajo. Cuando las voces entran después del primer tiempo, el guion suena
+ya desde él con la nota de la entrada (cc. 1, 4, 14 y 18). Las séptimas que los tiples forman sobre el pedal de mi del
+tenor (cc. 22 y 29-30) son retardos y apoyaturas de la fuente, que el guion mantiene al doblar al tenor.
