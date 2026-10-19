@@ -43,8 +43,24 @@ versión.
 
 ## La edición
 
-Al estar perdido el librete de la voz del alto del Cancionero de Miranda esta parte es reconstrucción editorial. En las
-coplas la textura deja poco margen: el alto entra el último en la imitación de «lisonjeando», un compás después del
-bajo, y el resto se deduce de la armonía de las tres voces conservadas. En el estribillo el margen es mayor en los
-pasajes en que el tiple 1º y el bajo callan, donde la reconstrucción se ha guiado por el tiple 2º y por la versión de
-Correa del mismo pasaje.
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente tampoco conserva
+para este tono, son reconstrucción editorial. En las coplas la textura deja poco margen: el alto entra el último en la
+imitación de «lisonjeando», un compás después del bajo, y el resto se deduce de la armonía de las tres voces
+conservadas. En el estribillo el margen es mayor en los pasajes en que el tiple 1º y el bajo callan, donde la
+reconstrucción se ha guiado por el tiple 2º y por la versión de Correa del mismo pasaje.
+
+El guion se ha reconstruido como un *basso seguente* sobre el bajo cantado, que hace aquí el papel del tenor de los
+demás tonos, siguiendo la práctica dominante en los guiones conservados del cancionero. Lo dobla casi siempre al
+unísono, que en una voz tan grave deja el guion en su registro habitual, y pasa a la octava baja cuando el bajo sube a
+do4 y re4 (cc. 7 y 44-52) o para no seguirlo en sus saltos (cc. 3 y 67). Funde sus notas repetidas, pero conserva el
+ritmo con puntillo del dúo del tiple 1º y el bajo que abre el estribillo (cc. 19-21), porque reducirlo dejaría cuartas
+sobre el guion. Cuando las voces callan en el primer tiempo, ataca en él la nota que tomará el bajo (cc. 1, 7, 27, 44 y
+56, y las respuestas de *no, no* de los cc. 62-64). Donde el bajo calla, lleva un bajo armónico propio: re y do bajo las
+entradas del tiple 2º y el tiple 1º en *lisonjeando* (cc. 11-12); bajo el dúo del tiple 2º y el alto del c. 22, la línea
+del bajo en el pasaje paralelo del c. 20, a la octava baja; en el largo pasaje sin bajo de *que al nacer del alba* y *se
+me puso el sol* (cc. 32-40), décimas con el tiple 2º (cc. 36 y 39), como las del bajo con el tiple 1º en los cc. 19-20,
+y la fundamental do en la cadencia del c. 35; y las fundamentales bajo las entradas imitativas de los cc. 50-52 y 74-75.
+
+Las cuartas que los tiples forman sobre el bajo están todas en la fuente, entre ellos y el bajo cantado: notas de paso,
+la apoyatura del tiple 2º en el c. 13 y el retardo de los cc. 45-47. El guion, que dobla al bajo, las mantiene, como
+suelen hacer los guiones conservados del cancionero.
