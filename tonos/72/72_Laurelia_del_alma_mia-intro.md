@@ -60,4 +60,14 @@ retrasa un compás para que la pregunta quede resonando escalonada.
 
 ## La edición
 
-*[TODO: tono completo en la fuente (Tiple 1º, Tiple 2º, Tenor); indicar que no requiere reconstrucción.]*
+Las tres voces del tono, tiple 1º, tiple 2º y tenor, se conservan completas en la fuente y no requieren reconstrucción.
+El guion, que la fuente no trae para este tono, es reconstrucción editorial.
+
+Se ha reconstruido como un *basso seguente* sobre el tenor, siguiendo la práctica dominante en los guiones conservados
+del cancionero. En las coplas, con el tenor entre si2 y do4, lo dobla al unísono; en el estribillo pasa a la octava baja
+en las frases que rondan si3-re4 (cc. 24-31 y 39-45) y vuelve al unísono en los saltos del tenor. Simplifica su ritmo
+reduciendo puntillos y corcheas (cc. 3, 8, 9 y 11), salvo donde la nota de paso del tenor evita una cuarta de un tiple
+sobre el bajo (cc. 1 y 36). Las frases del estribillo empiezan tras un silencio de blanca, y el guion suena ya en el
+primer tiempo con la nota de la entrada, igual que en el primer compás del tono. Las cuartas que los tiples forman sobre
+el bajo, 6/4 cadenciales en su mayoría, están ya entre ellos y el tenor de la fuente, y el guion las mantiene al doblar
+al tenor.
