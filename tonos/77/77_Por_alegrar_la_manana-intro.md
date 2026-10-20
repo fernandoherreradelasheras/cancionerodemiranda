@@ -71,4 +71,17 @@ TODO: análisis de las semajanzas melódicas de los tres testimonios musiclaes d
 
 ## La edición
 
-*[TODO: alto reconstruido (Tiple, [Alto], Tenor); redactar la reconstrucción editorial del alto.]*
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente no trae para este
+tono, son reconstrucción editorial. *[TODO: redactar la reconstrucción del alto y el margen de decisión con que se ha
+trabajado.]*
+
+El guion se ha reconstruido como un *basso seguente* sobre el tenor, siguiendo la práctica dominante en los guiones
+conservados del cancionero: lo dobla a la octava baja en las frases que rondan do4-re4 y al unísono en las graves, y
+cambia de registro en los saltos del tenor (cc. 2, 14 y 22). Simplifica su ritmo reduciendo las corcheas y omitiendo las
+notas de paso (cc. 5, 6, 9 y 10). Cuando las voces callan en el primer tiempo, suena ya en él con la nota de la entrada
+(cc. 1, 7, 12, 20, 28, 31, 40, 44, 48, 52, 67 y 75), y sostiene su nota sobre el silencio de negra de las voces del c.
+4. Donde el tenor calla lleva un bajo propio: re y mi bajo el *amores* del tiple y el alto en el c. 55, y sol y do en
+los primeros tiempos de los cc. 64 y 71. En las dos cadencias de *que padecen* (cc. 68 y 72), con el tenor en la
+sensible si, da la fundamental sol en lugar de doblarlo; en el c. 72 evita así sumarse a las octavas do-si que forman el
+tiple y el tenor de la fuente. La séptima atacada del c. 37 y la cuarta del c. 56 están también entre el tiple y el
+tenor.
