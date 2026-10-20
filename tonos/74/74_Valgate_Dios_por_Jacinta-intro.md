@@ -16,4 +16,13 @@ Sobre esa base, el tono presenta una elaboración propia. Las tres particellas c
 
 ## La edición
 
-*[TODO: tono completo en la fuente (Tiple 1º, Tiple 2º, Bajo); indicar que no requiere reconstrucción.]*
+Las tres voces del tono, tiple 1º, tiple 2º y bajo, se conservan completas en la fuente y no requieren reconstrucción.
+El guion, que la fuente no trae para este tono, es reconstrucción editorial.
+
+Se ha reconstruido como un *basso seguente* sobre el bajo cantado, siguiendo la práctica dominante en los guiones
+conservados del cancionero: lo dobla al unísono en todo el tono, salvo el re4 de los cc. 42-43, que toma a la octava
+baja, y funde sus notas repetidas. Cuando el bajo calla en el primer tiempo, el guion suena ya en él: ataca la nota de
+la entrada (cc. 4, 12, 16 y 21), prolonga ligada la del compás anterior mientras los tiples sostienen la suya (cc. 33 y
+53) o da la fundamental de lo que cantan los tiples, si♭ bajo el retardo del tiple 1º en el c. 28 y sol bajo el sol del
+tiple 2º en el c. 42. Las séptimas atacadas de los cc. 14 y 18 y las demás disonancias sobre el bajo son las que los
+tiples forman con el bajo de la fuente.
