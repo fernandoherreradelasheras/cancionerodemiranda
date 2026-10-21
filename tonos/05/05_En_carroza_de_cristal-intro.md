@@ -4,8 +4,8 @@ coplas.
 
 ## El texto
 
-El poema es un elaborado ejercicio de poesía cortesana donde el carácter alegórico del
-texto indica que formaba parte de una fiesta o celebración real.
+El poema es un elaborado ejercicio de poesía cortesana donde el carácter alegórico del texto indica que formaba parte de
+una fiesta o celebración real.
 
 La alegoría se sostiene en una hipérbole continuada que culmina, en la tercera copla, con uno de los tópicos laudatorios
 de la poesía cortesana barroca. La descripción de la carroza solar está en consonancia con el aparato escénico de las

@@ -21,17 +21,30 @@ alcance general: el fracaso de las lágrimas forma parte de un orden en el que t
 ## Fuentes poéticas
 
 El texto, inédito hasta la fecha, se encuentra en un manuscrito poético en la Biblioteca de Ajuda titulado *Obras en que
-se incluyen romances líricos castellanos de Antonio da Fonseca Soares*, P-La 49-III-79 (p.276-277).
+se incluyen romances líricos castellanos de Antonio da Fonseca Soares*, P-La 49-III-79 (pp. 276-277), con el epígrafe
+*A sus proprios ojos, llorando las desgracias de sus amores*.
 
 ![Fragmento de la p.276 de P-La 49-III-79 con el comienzo del Romance "Ojos yo no os di licencia"](assets/06_ajuda_49-III-79.jpg)
 
-De manera poco habitual, el texto del tono presenta dos cuartetas más, las dos últimas, que no aparecen en la
-compilación poética.
+Allí el romance consta sólo de cuatro cuartetas, cerradas con un rasgo caligráfico, que el tono reproduce con
+diferencias mínimas, todas en la primera copla. De manera poco habitual, el tono añade dos cuartetas más, las dos
+últimas, que no aparecen en la compilación poética.
 
 ## La música
 
-*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
+La copla es homofónica de principio a fin, con las voces silabeando juntas. El primer verso se repite (cc. 1-9), y en
+él el vocativo *Ojos* queda aislado por un silencio antes de *yo no di licencia*, que el tenor adelanta un tiempo a los
+tiples. El segundo verso cadencia sobre fa (c. 13) y, tras un compás en que sólo suena el guion, *que lágrimas sin
+remedio* se desplaza hacia mi bemol (cc. 15-17) antes de volver por sol a la cadencia final sobre do. La palabra
+*porfía* recibe un melisma de cinco compases (cc. 20-24), con el tiple 1º, el tenor y el guion subiendo juntos por
+grados mientras el tiple 2º sostiene el sol.
+
+Al final de la música para la copla el guion incluye un rojão, un interludio instrumental de ocho compases (cc. 25-33) para enlazar con
+la repetición sobre la siguiente compa. Otros dos tons de la primera parte del cancionero, el 7 y el 15, inclueyen rojões.
 
 ## La edición
 
-*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto.]*
+La voz del alto, cuyo librete está perdido, es reconstrucción editorial. En la declamación homofónica el margen de
+decisión es escaso. Es mayor en el melisma de *porfía* (cc. 20-24), donde las voces conservadas se separan y el alto ha
+de trazar su propia línea; la reconstrucción lo hace bajar por grados en el c. 21, en movimiento contrario al tiple 1º y
+al tenor.
