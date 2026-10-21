@@ -1,12 +1,16 @@
-*[TODO: apertura: forma (nº de coplas, metro, asonancia), orgánico, autoría de texto y música y concordancias no localizadas.]*
+El primer tono del Cancionero de Miranda, ***Un imposible me mata***, pone música a un romance de cuatro cuartetas
+octosílabas con asonancia í-e en los versos pares (*rinden*, *imposible*, *triste*, *quise*…). Las cuatro coplas se
+cantan con la misma música, de dieciocho compases en ternario.
 
 ## El bloque de tonos de sección única
 
 El Cancionero de Miranda se abre con un bloque de 22 tonos breves sin estribillo. En ninguno de estos tonos aparece
 indicación acerca del compositor y tampoco se ha podido localizar ninguno por concordancias. Del mismo modo que los
 tonos de este bloque son homogéneos en cuanto a la forma, también parecen compartir un rasgo sobre su origen poético. De
-los poetas identificados, abundan los textos de poetas portugueses: varios de Frei António das Chagas, António Barbosa
-Bacelar y Miguel de Barrios, que, pese a ser cordobés, era de familia de origen portugués.
+los siete tonos cuyo poeta se ha identificado, cinco son de autores portugueses: Frei António das Chagas (tonos 6, 10 y
+11), António Barbosa Bacelar (7) y Miguel de Barrios (9), cordobés de familia portuguesa. Los otros dos son de
+castellanos, Agustín de Salazar y Torres (18) y Antonio Hurtado de Mendoza (13), y de este último sólo es la primera
+copla.
 
 ## El texto
 
@@ -36,8 +40,20 @@ guitarra* recopilada por *Juan Antonio de Iza Zamácola* y publicada por primera
 
 ## La música
 
-*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
+La música sigue la cuarteta verso a verso: a cada verso le corresponde una frase musical, y cada frase acaba en cadencia. El
+primero y el último, que son los dos que dicen *imposible*, van en homofonía, llevan signo de repetición (cc. 1-4 y
+16-18) y cadencian sobre do. La copla empieza y acaba, pues, con la misma palabra y la misma cadencia, aunque el poema
+haya cambiado entretanto el sentido de la palabra.
+
+En medio, el segundo verso abandona la homofonía. *Y sus memorias me rinden* empieza en el tenor y las demás voces le
+van respondiendo a un compás de distancia cada una (cc. 5-7), hasta cadenciar sobre la (c. 10), lejos del do en que
+acaban las otras tres frases. En el c. 11 las voces callan mientras el guion mantiene el la, y la pregunta del tercer
+verso entra en negras (*¿quién dirá*); después vuelven las blancas y la cadencia sobre do de *me muero* (c. 14).
 
 ## La edición
 
-*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto.]*
+La voz del alto, cuyo librete está perdido, es reconstrucción editorial. En los versos homofónicos hay poco margen de
+decisión, porque las demás voces van juntas en homofonía y el guion conservado fija el bajo. El margen es mayor en las entradas
+escalonadas del segundo verso (cc. 5-10), donde había que decidir cuándo entra el alto. El guion, que aquí sigue al
+tenor a la octava baja, no empieza hasta el c. 5, a la vez que él, así que el alto no puede entrar antes. En la
+reconstrucción entra con el tenor, va en terceras paralelas por encima de él y llega con él a la cadencia sobre la.
