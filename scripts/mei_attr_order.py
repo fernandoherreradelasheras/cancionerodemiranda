@@ -87,8 +87,12 @@ GLOBAL_ORDER = [
     'halign', 'valign', 'ho', 'vo', 'x', 'y',
     'color', 'fontfam', 'fontname', 'fontsize', 'fontstyle', 'fontweight',
     'rend', 'visible',
+    # facsimile geometry: zone and surface corners, image size
+    'ulx', 'uly', 'lrx', 'lry', 'width', 'height',
     # document level and header
     'meiversion', 'isodate', 'auth', 'auth.uri', 'role', 'xml:lang',
+    # link to the facsimile zone, the least important of all: always last
+    'facs',
 ]
 
 # ELEMENT_ORDER overrides GLOBAL_ORDER for the elements that carry most of the
