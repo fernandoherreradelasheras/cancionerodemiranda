@@ -1,8 +1,10 @@
-*[TODO: apertura: forma (nº de coplas, metro, asonancia), orgánico, autoría de texto y música y concordancias no localizadas.]*
+El tono ***En carroza de cristal*** pone en música tres cuartetas octosílabas con asonancia í-a en los versos pares
+(*pías*, *guarnecidas*, *días*…), con una misma música de diecisiete compases en compás ternario para las tres
+coplas.
 
 ## El texto
 
-El tono ***En carroza de cristal*** presenta un elaborado ejercicio de poesía cortesana donde el carácter alegórico del
+El poema es un elaborado ejercicio de poesía cortesana donde el carácter alegórico del
 texto indica que formaba parte de una fiesta o celebración real.
 
 La alegoría se sostiene en una hipérbole continuada que culmina, en la tercera copla, con uno de los tópicos laudatorios
@@ -30,8 +32,19 @@ percibir su excelencia a través de la conducta excepcional del sol.
 
 ## La música
 
-*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
+La copla es una declamación homofónica estricta. Las voces cantan juntas sílaba a sílaba de principio a fin, y cada
+verso ocupa una frase de cuatro compases separada de la siguiente por un silencio. El primer verso y el último llevan
+signo de repetición (cc. 1-4 y 14-17), y ambos cadencian sobre re; entre ellos, las frases se detienen sobre si en
+*pías* (c. 8) y sobre mi en *ruedas* (c. 12). La música cierra así la primera copla sobre la final, aunque su sintaxis
+quede en suspenso hasta el *sale más temprano el sol* de la segunda.
+
+El giro más llamativo está en el segundo verso. Sobre *que tiran volantes* el tenor y el guion suben cromáticamente de
+re a mi a través del re sostenido que trae escrito la fuente (cc. 5-7), contra el re natural que acaba de cantar el
+tiple 1º.
 
 ## La edición
 
-*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion de la fuente); redactar la reconstrucción del alto.]*
+La voz del alto, cuyo librete está perdido, es reconstrucción editorial. El margen de decisión es mínimo: las voces
+declaman juntas en todo el tono y el guion conservado fija el bajo, de modo que la parte que falta queda casi
+determinada como relleno armónico. La única elección es rítmica, en los dos compases donde las voces conservadas no
+coinciden en el ritmo: el alto sigue al tiple 1º en el c. 2 y al tiple 2º en el c. 14, sin el puntillo de las otras.
