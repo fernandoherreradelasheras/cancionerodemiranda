@@ -1,8 +1,8 @@
 import { Card, Progress, Row, Col, Statistic, Typography, Divider } from 'antd';
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from './Context';
-import { calculateTonoStats, PHASE_GROUPS, PhaseState, pathOfTono } from './utils';
-import PhaseStrip, { PhaseLegend } from './PhaseStrip';
+import { calculateTonoStats, PHASE_GROUPS, PHASE_STATE_LABELS, PhaseState, pathOfTono } from './utils';
+import { PhaseLegend } from './PhaseStrip';
 
 const { Title, Text } = Typography;
 
@@ -89,15 +89,53 @@ function Dashboard() {
             <Card>
                 <Title level={4}>Por tono</Title>
                 <PhaseLegend />
-                <div className="phase-matrix">
-                    {scoreViewerConfig.scores.map((tonoConfig, index) => definitions[index]
-                        ? <Link key={index} to={pathOfTono(index + 1)} state={{ tono: tonoConfig }}
-                            className="phase-matrix-row" title={tonoConfig.title}>
-                            <span className="phase-matrix-number">{index + 1}</span>
-                            <PhaseStrip phases={definitions[index].phases} compact />
-                        </Link>
-                        : null)}
+                <div className="phase-table-wrapper">
+                    <table className="phase-table">
+                        <thead>
+                            <tr>
+                                <th rowSpan={2} className="phase-table-tono">Tono</th>
+                                {PHASE_GROUPS.map(group =>
+                                    <th key={group.label} colSpan={group.phases.length} className="phase-table-group">
+                                        {group.label}
+                                    </th>)}
+                                <th rowSpan={2} className="phase-table-progress">%</th>
+                            </tr>
+                            <tr>
+                                {PHASE_GROUPS.flatMap(group => group.phases.map(({ key, label, short }, i) =>
+                                    <th key={key} title={label}
+                                        className={`phase-table-phase${i == 0 ? " group-start" : ""}`}>
+                                        <span>{short}</span>
+                                    </th>))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {scoreViewerConfig.scores.map((tonoConfig, index) => {
+                                const tonoStatus = definitions[index]
+                                return tonoStatus
+                                    ? <tr key={index}>
+                                        <td className="phase-table-tono">
+                                            <Link to={pathOfTono(index + 1)} state={{ tono: tonoConfig }} title={tonoConfig.title}>
+                                                <span className="phase-table-number">{index + 1}</span> {tonoConfig.title}
+                                            </Link>
+                                        </td>
+                                        {PHASE_GROUPS.flatMap(group => group.phases.map(({ key, label }, i) => {
+                                            const state = tonoStatus.phases[key] ?? "pending"
+                                            const description = `${label}: ${PHASE_STATE_LABELS[state]}`
+                                            return <td key={key} title={description}
+                                                className={`phase-table-cell${i == 0 ? " group-start" : ""}`}>
+                                                <span className={`phase-cell ${state}`} aria-label={description} />
+                                            </td>
+                                        }))}
+                                        <td className="phase-table-progress">{Math.round(tonoStatus.progress * 100)}</td>
+                                    </tr>
+                                    : null
+                            })}
+                        </tbody>
+                    </table>
                 </div>
+                <Text type="secondary" style={{ fontSize: '0.9em', display: 'block', marginTop: '1em' }}>
+                    Celda vacía: la fase no aplica al tono.
+                </Text>
             </Card>
         </div>
     );

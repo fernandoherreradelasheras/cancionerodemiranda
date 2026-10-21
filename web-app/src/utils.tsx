@@ -60,35 +60,36 @@ export type PhaseKey = "text" | "text_review" | "music" | "music_review" |
   "voice" | "voice_review" | "guion" | "guion_review" | "full_review" |
   "facsimile" | "external_review" | "intro"
 
-export type PhaseGroup = { label: string, phases: { key: PhaseKey, label: string }[] }
+// short names the phase within its group, for column headers
+export type PhaseGroup = { label: string, phases: { key: PhaseKey, label: string, short: string }[] }
 
 export const PHASE_GROUPS: PhaseGroup[] = [
   {
     label: "Texto", phases: [
-      { key: "text", label: "Transcripción del texto" },
-      { key: "text_review", label: "Revisión del texto" },
+      { key: "text", label: "Transcripción del texto", short: "Transcripción" },
+      { key: "text_review", label: "Revisión del texto", short: "Revisión" },
     ]
   },
   {
     label: "Música", phases: [
-      { key: "music", label: "Transcripción musical" },
-      { key: "music_review", label: "Revisión de la transcripción musical" },
+      { key: "music", label: "Transcripción musical", short: "Transcripción" },
+      { key: "music_review", label: "Revisión de la transcripción musical", short: "Revisión" },
     ]
   },
   {
     label: "Reconstrucción", phases: [
-      { key: "voice", label: "Reconstrucción de la voz perdida" },
-      { key: "voice_review", label: "Revisión de la voz reconstruida" },
-      { key: "guion", label: "Reconstrucción del guion" },
-      { key: "guion_review", label: "Revisión del guion reconstruido" },
-      { key: "full_review", label: "Revisión musical completa" },
+      { key: "voice", label: "Reconstrucción de la voz perdida", short: "Voz" },
+      { key: "voice_review", label: "Revisión de la voz reconstruida", short: "Rev. voz" },
+      { key: "guion", label: "Reconstrucción del guion", short: "Guion" },
+      { key: "guion_review", label: "Revisión del guion reconstruido", short: "Rev. guion" },
+      { key: "full_review", label: "Revisión musical completa", short: "Rev. completa" },
     ]
   },
   {
     label: "Edición", phases: [
-      { key: "facsimile", label: "Enlace con el facsímil" },
-      { key: "external_review", label: "Revisión musical externa" },
-      { key: "intro", label: "Estudio introductorio" },
+      { key: "facsimile", label: "Enlace con el facsímil", short: "Facsímil" },
+      { key: "external_review", label: "Revisión musical externa", short: "Rev. externa" },
+      { key: "intro", label: "Estudio introductorio", short: "Estudio" },
     ]
   },
 ]

@@ -749,25 +749,116 @@ body {
   }
 }
 
-.phase-matrix {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11em, 1fr));
-  gap: 0.3em 1.5em;
+/* Dashboard, per tono: one row per tono, one column per phase */
+.phase-table-wrapper {
   margin-top: 1em;
 }
 
-.phase-matrix-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
+.phase-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1.1em;
+}
+
+.phase-table th {
+  background-color: #ffffff;
+  font-weight: 600;
+  color: #706558;
+  position: sticky;
+  z-index: 1;
+}
+
+.phase-table thead tr:first-child th {
+  top: 0;
+  height: 2em;
+}
+
+.phase-table thead tr:nth-child(2) th {
+  top: 2em;
+  border-bottom: 1px solid #c9bea8;
+}
+
+.phase-table-group {
+  text-align: center;
+  border-left: 1px solid #c9bea8;
+  border-bottom: 1px solid #e6dfd0;
+  padding: 0 0.4em;
+}
+
+.phase-table-phase {
+  vertical-align: bottom;
+  padding: 0.3em 0;
+  font-weight: normal !important;
+}
+
+.phase-table-phase span {
+  display: inline-block;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.phase-table-tono {
+  text-align: left;
+  vertical-align: bottom;
+  padding: 0.2em 1.5em 0.2em 0.2em;
+  max-width: 28em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.phase-table-tono a {
   color: inherit !important;
 }
 
-.phase-matrix-number {
+.phase-table-number {
+  display: inline-block;
   width: 1.6em;
   text-align: right;
   font-variant-numeric: tabular-nums;
   color: #706558;
+}
+
+.phase-table-cell {
+  width: 2.4em;
+  text-align: center;
+  padding: 0.2em 0;
+}
+
+.phase-table-cell .phase-cell {
+  width: 16px;
+  height: 16px;
+}
+
+.phase-table .group-start {
+  border-left: 1px solid #c9bea8;
+}
+
+.phase-table-progress {
+  text-align: right;
+  vertical-align: bottom;
+  padding: 0.15em 0.2em 0.15em 0.8em;
+  font-variant-numeric: tabular-nums;
+  color: #706558;
+}
+
+.phase-table tbody tr:nth-child(even) td {
+  background-color: #faf8f3;
+}
+
+.phase-table tbody tr:hover td {
+  background-color: #f0ebdf;
+}
+
+@media (max-width: 700px) {
+  .phase-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .phase-table-tono {
+    max-width: 12em;
+  }
 }
 
 /* Present for screen readers and crawlers, not drawn */
