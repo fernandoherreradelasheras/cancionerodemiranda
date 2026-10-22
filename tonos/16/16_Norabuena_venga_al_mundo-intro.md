@@ -9,15 +9,16 @@ El texto combina rasgos propios de la poesía devocional y de la poesía amorosa
 coplas, el poeta recurre deliberadamente a un vocabulario que puede pertenecer tanto al ámbito del amor divino como al
 del amor humano. Expresiones como «prodigio de amor», «deidad más bella», «hermosura», «ojos», «corazón» o «adoración»
 mantienen durante buena parte del poema cierta ambigüedad en torno a la identidad del objeto celebrado. La mención
-explícita al «Niño Dios» en la tercera copla orienta inequívocamente el texto hacia una lectura devocional, pero no
-anula por ello el lenguaje de la lírica amorosa, sino que lo resignifica. El poema participa así de un procedimiento
-frecuente en la poesía religiosa del periodo, en el que imágenes y fórmulas propias del amor humano se trasladan al
-ámbito de lo divino.
+explícita al «Niño Dios» en la tercera copla sitúa el elogio en un marco religioso, sin identificar necesariamente con
+él a la figura celebrada, y mantiene el lenguaje de la lírica amorosa abierto a una lectura devocional o a un elogio
+humano inscrito en ese marco. El poema participa así de un procedimiento frecuente en la poesía religiosa del periodo,
+en el que imágenes y fórmulas propias del amor humano se trasladan al ámbito de lo divino.
 
 Desde el punto de vista métrico, las cuatro coplas presentan una estructura muy regular. A los cuatro primeros versos de
 cada estrofa se añaden siempre los dos mismos versos finales: «Norabuena venga, venga, / venga enhorabuena el sol». Su
 recurrencia les otorga una función semejante a la de un estribillo, pero no forman una sección métrica independiente:
 son versos octosilábicos que se integran plenamente en el romance y mantienen su organización métrica y su asonancia.
+
 
 ## La música
 
