@@ -1,18 +1,44 @@
-Conocemos al poeta del tono ***A los encuentros del aire*** porque el romance apareció publicado en el segundo volumen de A Fênix Renascida, dentro del bloque dedicado a **Antonio Álvares Soares**. 
+Conocemos al poeta del tono ***A los encuentros del aire*** porque el romance apareció publicado en el segundo volumen
+de A Fênix Renascida (p. 377 de la primera edición, de 1716), dentro del bloque dedicado a **Antonio Álvares Soares**.
+El tono lo toma completo: cuatro cuartetas octosílabas con asonancia á-o en los versos pares (*Tajo*, *peñasco*,
+*salado*, *ambos*…) y un estribillo de heptasílabos y pentasílabos alternos, que el impreso coloca a continuación de las
+coplas sin rótulo. Las coplas ocupan trece compases en compás binario y el estribillo cincuenta y nueve en ternario.
+
+El texto del cancionero se aparta del impreso en una decena de lecturas, casi todas en las dos primeras coplas. La más
+notable está en el tercer verso: donde el impreso lee *oponiendo en su defensa*, que mantiene la alegoría bélica del
+poema, el cancionero trae *levantando de un cristal*, que repite el *cristal* del verso anterior.
+
+El romance circulaba ya en Lisboa en 1664: en el relato inicial de la XV reunión de la Academia de los Singulares, el
+personaje de Leandro canta una cuarteta que termina con su primer verso, en la misma página en que se citan otros dos
+tonos del cancionero (véase la introducción al tono 52).
 
 ## El texto
 
-El poema, a medio camino entre la alegoría mitológica y la observación naturalista, se vertebra a través de la metáfora bélica que enfrenta al río Tajo y al mar. En la última estrofa aparece Anarda como víctima humana colateral de este conflicto de la Naturaleza.
+El poema, a medio camino entre la alegoría mitológica y la observación naturalista, se vertebra a través de la metáfora
+bélica que enfrenta al río Tajo y al mar. En la última estrofa aparece Anarda como víctima humana colateral de este
+conflicto de la Naturaleza.
 
 ## La música
 
-*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+Las coplas se cantan por parejas de voces en imitación: el tiple 2º empieza *A los encuentros del aire* y el tiple 1º
+y el tenor le responden un compás después (cc. 1-3), con un melisma sobre *aire*, y el mismo juego de entradas
+escalonadas se repite en *bramaba un cristal del Tajo* y en *levantando de un cristal* (cc. 4-10). Sólo el último
+verso, *a cada encuentro, un peñasco*, reúne a todas las voces, hasta la cadencia sobre si (c. 13).
+
+El estribillo arranca con la llamada al barquero, *Retírate, barquero, // repara y mira*, que las voces van retomando
+una a una con la misma melodía, cada dos compases, hasta acumularse las cuatro (cc. 14-32), como las voces que Fabio
+lanza desde la tierra. *Que peligrando Anarda* lo canta el tiple 1º solo y *todos peligran* lo cantan, a la letra,
+todas las voces (cc. 33-38), y ese contraste entre el solo y el tutti se repite con las voces cambiadas en el resto del
+estribillo, que vuelve a la llamada al barquero ya a cuatro (cc. 50-58) y cierra con *todos peligran* sobre la cadencia
+en mi (c. 72).
 
 ## La edición
 
-Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente no trae
-para este tono, son reconstrucción editorial. *[TODO: redactar la reconstrucción del alto y el margen de decisión con
-que se ha trabajado.]*
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el acompañamiento, que el librete de guion
+no trae para este tono, son reconstrucción editorial. En las coplas la reconstrucción empareja el alto con el tiple 2º,
+que inicia solo cada cadena de entradas, frente al tiple 1º y el tenor, que le responden juntos. En el estribillo, donde
+las voces conservadas retoman una a una la llamada al barquero cada dos compases, el tiple 1º en si y el tiple 2º y el
+tenor en mi, la reconstrucción da al alto la cuarta entrada, en si3, una octava por debajo de la del tiple 1º (c. 20).
 
 El guion se ha reconstruido como un *basso seguente* sobre el tenor, que es la práctica dominante en los guiones
 conservados del cancionero: lo dobla al unísono cuando el tenor canta en su registro grave y a la octava baja cuando
