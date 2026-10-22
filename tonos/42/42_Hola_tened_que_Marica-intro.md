@@ -81,73 +81,62 @@ este romance también se cantó, y con música de Lésbio.
 
 [^josalambea]: JOSA, Lola y LAMBEA, Mariano: «Poemas para música de Francisco Manuel de Melo», *Bulletin Hispanique*, 2 (2001), pp. 429-430.
 
-Hay además un vínculo directo entre el poeta y el compilador del
-cancionero. Domingos de Miranda, cantor de la Capilla Real de Lisboa,
-partió en 1662 hacia Inglaterra acompañando como maestro de capilla a la
-nueva reina, Catalina de Braganza[^cdm], y en esa corte hubo de convivir
-con Melo durante la misión diplomática que llevó a este a Londres entre
-febrero y mayo de 1663. Allí, probablemente, uno de los músicos de la
-reina, el maestro Miguel de Herrera, puso música a dos tonos de Melo que
-abren *La Avena de Tersícore*: *Vengo a daros buenas reinas*, escrito
-para que se cantase por Pascua en la cámara de la reina, y *Apeose el
-firmamento*, para después de un sarao real[^herrera].
+Hay además un vínculo directo entre el poeta y el compilador del cancionero. Domingos de Miranda, cantor de la Capilla
+Real de Lisboa, partió en 1662 hacia Inglaterra acompañando como maestro de capilla a la nueva reina, Catalina de
+Braganza[^cdm] (véase el apartado 5.3 del estudio), y en esa corte hubo de convivir con Melo durante la misión
+diplomática que llevó a este a Londres entre febrero y mayo de 1663. Allí, probablemente, uno de los músicos de la
+reina, el maestro Miguel de Herrera, puso música a dos tonos de Melo que abren *La Avena de Tersícore*: *Vengo a daros
+buenas reinas*, escrito para que se cantase por Pascua en la cámara de la reina, y *Apeose el firmamento*, para después
+de un sarao real[^herrera].
 
 [^cdm]: HERRERA DE LAS HERAS, Fernando, con la colaboración de Mariano LAMBEA: «Un cancionero polifónico ibérico inédito: El Cancionero de Miranda», *DIGITAL.CSIC*, 2023, p. 2. Disponible en: [https://digital.csic.es/handle/10261/339181](https://digital.csic.es/handle/10261/339181). El artículo remite a MATOS FERNANDES LATINO, Maria Adriana de: *Instituições, eventos e músicos: uma abordagem à música em Portugal no século XVII*, vol. I, Universidade Nova de Lisboa, 2001, p. 165, y al testamento de la reina de 1699, en CAMPBELL DAVIDSON, Lillias: *Catherine of Bragança, Infanta of Portugal & Queen-Consort of England*, Londres, 1908, pp. 497-498.
 
 [^herrera]: HERRERA DE LAS HERAS, Fernando: «Miguel de Herrera y la música para la reina Catalina de Braganza», *Humano y divino*, 6 de noviembre de 2024. Disponible en: [https://humanoydivino.com/humanos/miguel_de_herrera/](https://humanoydivino.com/humanos/miguel_de_herrera/)
 
-*[TODO: los datos biográficos de Domingos de Miranda (capilla de
-Catalina de Braganza, coincidencia con Melo en Londres) probablemente se
-copien y amplíen en el estudio de esta edición; cuando exista, abreviar
-este párrafo y remitir a él.]*
-
 ## La música
 
-*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+Las coplas se abren con un grito a cuatro, *Hola, tened, que Marica*, declamado en acorde (cc. 1-3). *Fulminando sus
+donaires* lo canta primero el tenor y lo repiten después los tiples (cc. 4-9), y los dos últimos versos se superponen:
+mientras el tenor declama solo *hoy, de cansada de estrellas*, los tiples entran escalonados con *sobre las flores se
+cae* (cc. 10-14), un verso que se repite después a cuatro en líneas que descienden hasta la cadencia sobre mi (c. 17).
+
+El estribillo, cuatro veces más largo, tiene forma circular: los versos con que empieza, *Corrido va el Amor, corrido
+va, // no volverá el Amor, no volverá*, vuelven al final con la misma música (cc. 64-87). *Corrido va el Amor* se
+declama a cuatro en dos frases separadas por un compás de silencio de las voces y se encadena después en entradas
+superpuestas (cc. 18-28). *No volverá el Amor* es un dúo en canon a un compás entre el tenor y el tiple 1º (cc. 29-34),
+que se repite a continuación (cc. 35-39). Los *ay* se encadenan sobre un tenor que baja por grados de ligadura en
+ligadura, con una disonancia en cada paso (cc. 40-45), y *corriendo sangre de él* desciende en entradas escalonadas (cc.
+48-51). El centro del estribillo, de *cuando el muchacho cruel* a *yo sé que no vuelve acá*, es otro dúo en canon del
+tenor y el tiple 1º (cc. 52-63), y la vuelta de los primeros versos cierra con *no volverá* a cuatro sobre la cadencia
+en la (c. 87).
 
 ## La edición
 
-Tanto la voz de alto, cuyo librete está perdido en todo el cancionero,
-como el guion, que la fuente no trae para este tono, son
-reconstrucción editorial. Las coplas se abren con una exclamación en
-acorde (cc. 1-3) en la que el alto completa la armonía. En *fulminando
-sus donaires* se empareja con el tenor (cc. 4-5) y canta con su mismo
-ritmo, en terceras y sextas, la línea que el tiple 2º repetirá al
-unísono dos compases después, cuando los tiples retomen el pasaje (cc.
-6-7). En *sobre las flores se cae*, que los tiples cantan contra el
-verso anterior en el tenor, cierra la cadena de entradas escalonadas del
-tiple 1º (c. 10) y el tiple 2º (c. 11) en el c. 12. En el estribillo
-canta en acorde con las demás voces *corrido va el Amor* y la cadena de
-*ay* (cc. 40-45 y 75-80). Calla en el dúo en canon del tenor y el tiple
-1º sobre *no volverá el Amor* (cc. 29-34) y, en su repetición (cc.
-35-40), toma con las mismas notas el lugar del tiple 1º. En *y corriendo
-sangre de él* entra imitando al tiple 1º al unísono un compás después
-(c. 49), antes del tiple 2º (c. 50), y en el dúo siguiente del tenor y
-el tiple 1º (cc. 52-63) calla, como el tiple 2º.
+Tanto la voz de alto, cuyo librete está perdido en todo el cancionero, como el guion, que la fuente no trae para este
+tono, son reconstrucción editorial. Las coplas se abren con una exclamación en acorde (cc. 1-3) en la que el alto
+completa la armonía. En *fulminando sus donaires* se empareja con el tenor (cc. 4-5) y canta con su mismo ritmo, en
+terceras y sextas, la línea que el tiple 2º repetirá al unísono dos compases después, cuando los tiples retomen el
+pasaje (cc. 6-7). En *sobre las flores se cae*, que los tiples cantan contra el verso anterior en el tenor, cierra la
+cadena de entradas escalonadas del tiple 1º (c. 10) y el tiple 2º (c. 11) en el c. 12. En el estribillo canta en acorde
+con las demás voces *corrido va el Amor* y la cadena de *ay* (cc. 40-45 y 75-80). Calla en el dúo en canon del tenor y
+el tiple 1º sobre *no volverá el Amor* (cc. 29-34) y, en su repetición (cc. 35-40), toma con las mismas notas el lugar
+del tiple 1º. En *y corriendo sangre de él* entra imitando al tiple 1º al unísono un compás después (c. 49), antes del
+tiple 2º (c. 50), y en el dúo siguiente del tenor y el tiple 1º (cc. 52-63) calla, como el tiple 2º.
 
-El guion se ha reconstruido como un *basso seguente* sobre el tenor, que
-es la práctica dominante en los guiones conservados del cancionero. Lo
-dobla a la octava baja cuando el tenor canta en torno a su do y su re
-centrales y al unísono en sus frases graves (cc. 10-15 y 47-51), en este
-último caso para que el pedal de mi de los cc. 50-51 no baje a la octava
-grave. Simplifica el ritmo del tenor fundiendo sus notas repetidas y el
-salto de octava del c. 1 y omitiendo algunas notas de paso (cc. 4, 19 y
-22), pero en el c. 5 conserva sus negras, porque reducirlas dejaría el
-fa♯ de paso del alto en cuarta aumentada sobre el bajo. En los compases
-en que callan todas las voces (cc. 20, 23, 66, 69 y 81) lleva un enlace
-de dos notas hacia la entrada siguiente; en el c. 8 ataca en el primer
-tiempo el re con que entrará el tenor, y bajo el si con que el tiple 1º
-cierra a solo el canon (c. 34) da la dominante mi. Con el tenor cantando
-solo se aparta de él en la cadencia del c. 84, donde da la fundamental
-mi bajo el si del tenor para no dejar el mi del alto en cuarta sobre el
-bajo.
+El guion se ha reconstruido como un *basso seguente* sobre el tenor, que es la práctica dominante en los guiones
+conservados del cancionero. Lo dobla a la octava baja cuando el tenor canta en torno a su do y su re centrales y al
+unísono en sus frases graves (cc. 10-15 y 47-51), en este último caso para que el pedal de mi de los cc. 50-51 no baje a
+la octava grave. Simplifica el ritmo del tenor fundiendo sus notas repetidas y el salto de octava del c. 1 y omitiendo
+algunas notas de paso (cc. 4, 19 y 22), pero en el c. 5 conserva sus negras, porque reducirlas dejaría el fa♯ de paso
+del alto en cuarta aumentada sobre el bajo. En los compases en que callan todas las voces (cc. 20, 23, 66, 69 y 81)
+lleva un enlace de dos notas hacia la entrada siguiente; en el c. 8 ataca en el primer tiempo el re con que entrará el
+tenor, y bajo el si con que el tiple 1º cierra a solo el canon (c. 34) da la dominante mi. Con el tenor cantando solo se
+aparta de él en la cadencia del c. 84, donde da la fundamental mi bajo el si del tenor para no dejar el mi del alto en
+cuarta sobre el bajo.
 
-Las cuartas que los tiples forman sobre el bajo son notas de paso (cc.
-2, 9, 18 y 26 y sus repeticiones), apoyaturas y retardos cadenciales que
-resuelven en la tercera (cc. 14, 33, 56, 62 y 86) o disonancias que
-nacen de la cadena de ligaduras del tenor en los *ay* (cc. 44-45 y
-79-80); están ya entre los tiples y el tenor de la fuente y, como suelen
-hacer los guiones conservados del cancionero, el guion las mantiene al
-doblar al tenor. Las del alto se dan en esa misma cadena (cc. 41, 44, 76
-y 79), en la cadencia del c. 39, que imita la del tiple 1º del c. 33, y
-como nota de paso en el c. 25.
+Las cuartas que los tiples forman sobre el bajo son notas de paso (cc. 2, 9, 18 y 26 y sus repeticiones), apoyaturas y
+retardos cadenciales que resuelven en la tercera (cc. 14, 33, 56, 62 y 86) o disonancias que nacen de la cadena de
+ligaduras del tenor en los *ay* (cc. 44-45 y 79-80); están ya entre los tiples y el tenor de la fuente y, como suelen
+hacer los guiones conservados del cancionero, el guion las mantiene al doblar al tenor. Las del alto se dan en esa misma
+cadena (cc. 41, 44, 76 y 79), en la cadencia del c. 39, que imita la del tiple 1º del c. 33, y como nota de paso en el
+c. 25.
