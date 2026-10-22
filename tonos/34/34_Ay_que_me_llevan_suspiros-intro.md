@@ -4,6 +4,11 @@ anotación del guion sabemos que en la primera copla los versos del alto comenza
 esto, planteamos una reconstrucción del texto poético de las coplas suponiendo que el alto cantaba en los 17 compases de
 su parte a solo tres versos: pentasílabo, heptasílabo y pentasílabo.
 
+Cada copla consta de una cuarteta de heptasílabos seguida de tres tercetos de cinco, siete y cinco sílabas, con
+asonancia á-e en los versos pares y en los pentasílabos (*amante*, *aire*, *tales*, *ausentarse*…). El estribillo,
+que aparece antes que las coplas, ocupa ciento veintiocho compases y las coplas ochenta y cinco, todo en compás
+ternario.
+
 ## El texto
 
 El conflicto del poema surge de atribuir a los suspiros un efecto contrario al deseado. Deberían detener al amante y,
@@ -28,7 +33,17 @@ por preparar la conclusión.
 
 ## La música
 
-*[TODO: comentario musical (alternancia de solos y sección a cuatro en las coplas, contraste con el estribillo, cadencias).]*
+El estribillo es una larga elaboración imitativa de sus cinco versos. Arranca con un *ay* que los tiples sostienen en
+valores largos mientras las voces graves declaman *que me llevan suspiros al aire*, y los papeles se intercambian varias
+veces (cc. 1-20). *Al bien de mis males* y *¡Ay, Dios, y qué crueldades!* se reparten en entradas escalonadas, y *pues
+suspiros debían pararle* se repite en una larga cadena de entradas en la que *pararle* se detiene en valores largos,
+hasta el cierre a cuatro (cc. 73-127).
+
+Las coplas siguen la forma de la estrofa: la cuarteta y cada uno de los tres tercetos corresponden a un solo. El tiple
+1º canta la cuarteta sobre una melodía que baja un grado en cada *suspiros* (cc. 129-146). Los tercetos se cantan
+después sobre una misma melodía y un mismo bajo: el primero el tiple 2º (cc. 148-162), el segundo el tenor (cc.
+164-178), que las cuatro voces repiten a continuación como único pasaje a cuatro de la copla (cc. 180-194), y el último
+el alto (cc. 196-210).
 
 ## La edición
 
@@ -36,4 +51,9 @@ Pese a que el tono no está escrito en claves altas lo hemos transpuesto una cua
 indicación del comienzo del estribillo en el guion: `e tãbem se dis 4a abaixo`. Así mismo en la sección de coplas el
 guion aclara: `solos por quinto tom, os altos, os tiples, os tenores, os altos`.
 
-*[TODO: alto reconstruido (Tiple 1º, Tiple 2º, Tenor y guion en la fuente); redactar la reconstrucción musical del alto, además de la del texto de sus versos a solo.]*
+La voz del alto, cuyo librete está perdido, es reconstrucción editorial, que en este tono requiere también del texto de
+su solo en cada copla, tal como se explica más arriba. En el estribillo, de escritura imitativa, la reconstrucción
+integra el alto en las cadenas de entradas de las demás voces, y ahí el margen de decisión es considerable. Para el
+solo de las coplas, en cambio, la fuente da una base firme: durante esos compases el guion repite nota por nota el bajo
+que sostiene los solos del tiple 2º y del tenor, que cantan sobre él una misma melodía, y la reconstrucción le da al
+alto esa misma melodía.
