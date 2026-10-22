@@ -1,10 +1,14 @@
-El breve tono *Celebrando está el Amor*, aún configurado en una sola
-sección, repite el mismo verso *alarma, no sino alarma* como pie de
-cierre de cada estrofa.
+El breve tono *Celebrando está el Amor*, aún configurado en una sola sección, repite el mismo verso *alarma, no sino
+alarma* como pie de cierre de cada estrofa. Son tres cuartetas octosílabas con asonancia á-a en los versos pares
+(*Anarda*, *alarma*, *avasalla*…), con una misma música de veintiséis compases en compás ternario.
 
 ## El texto
 
-*[TODO: comentario del texto.]*
+El poema se construye sobre la paronomasia de tres palabras casi idénticas, *alma*, *arma* y *alarma*, que el pie
+fijo de cada copla lleva al primer plano. La primera copla presenta las travesuras de Anarda como una guerra de amor
+que alcanza a todos; la segunda reparte los términos, el alma que avasalla y el arma que se lleva el triunfo, y la
+tercera los sitúa en el cuerpo de la dama, el alma en su garbo y el arma en sus ojos, que reciben por ello el laurel de
+la victoria. El mismo grito de alarma ante la belleza de una dama abre el tono 08, *Alarma, alarma, luceros*.
 
 Comparte el nombre, Anarda, y la idea de la belleza como arma
 que embiste y avasalla con uno de los tonos más bellos del **Libro
@@ -46,8 +50,18 @@ hasta alarmas y armas.
 
 ## La música
 
-*[TODO: comentario musical (textura, imitación, cadencias, relación texto-música).]*
+Los tres primeros versos se declaman en homofonía, con cadencias sobre re en *Amor* (c. 4), sobre mi en *Anarda*
+(c. 12) y sobre la en *toca* (c. 16). El primero se repite en eco (cc. 6-9), con la indicación *brando* (suave) que la
+fuente escribe en portugués, como en los dos tonos anteriores: son los tres únicos del cancionero que la llevan.
+
+El pie, *alarma, no sino alarma*, ocupa casi la mitad de la copla y queda dentro de la repetición que abarca los dos
+últimos versos (cc. 14-26). Tras enunciarse una vez en homofonía, la música le añade dos *no* aislados por silencios
+(cc. 21-22), como dos gritos, y desmenuza el resto, *sino alarma*, en entradas escalonadas a un compás de distancia
+hasta la cadencia final sobre re (c. 26).
 
 ## La edición
 
-*[TODO: Tiple 1º, Tiple 2º, Tenor y guion de la fuente; alto reconstruido: redactar la reconstrucción del alto.]*
+La voz del alto, cuyo librete está perdido, es reconstrucción editorial. En los versos homofónicos el margen de
+decisión es escaso, con el bajo fijado por el guion conservado. Es mayor en las entradas escalonadas de *sino alarma*
+(cc. 23-26), donde el tiple 1º y el tenor arrancan juntos y el tiple 2º les responde un compás después: como en el
+tono anterior, la reconstrucción empareja el alto con el tiple 2º.
