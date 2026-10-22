@@ -15,7 +15,16 @@ sino como "MISSA".
 
 ## El texto
 
-*[TODO: comentario del texto.]*
+El poema es una nana: la voz pide al aire, al viento y a la naturaleza entera que callen para no despertar a un niño
+dormido. El estribillo lo formula con el giro popular *paso, quedito*, y las coplas lo amplían con una sucesión de
+imperativos dirigidos a los vientos (*¡Párese el nevado cierzo!*, *¡párese el céfiro frío!*) y con la anáfora de la
+quinta, *¡Cómo se duermen las flores, // cómo se callan los riscos…!*, que describe el silencio ya conseguido. El
+texto juega además con el doble sentido del aire, el viento que no debe soplar y los suspiros del niño, que le bastan
+por todo aire, y con el *airoso* de la segunda copla.
+
+El niño es a la vez Amor, *el amor que está dormido*, *el dulce Cupido*, y el Niño de la Navidad, en la que el pliego de
+1681 documenta que se cantó. La ambigüedad entre lo humano y lo divino permite que el mismo texto figure en un
+cancionero de tonos humanos y en la fiesta de Navidad de la Capilla Real.
 
 ## Fuentes poéticas
 
@@ -104,8 +113,24 @@ de Pedro II:
 
 ## La música
 
-*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+El estribillo, que aparece antes que las coplas y casi triplica su extensión, pinta cada una de sus imágenes.
+*Airecillos* entra en imitación, por parejas de voces a un compás de distancia, con un motivo de negras que sube y gira,
+y se disuelve en largos melismas de negras que corren a la vez por todas las voces (cc. 1-10). *Mansos* los sustituye
+por valores largos y descendentes (cc. 11-16), y *paso, quedito* se extiende en una larga cadena de entradas en valores
+largos que las voces se van pasando (cc. 17-33). Tras *que duerme mi niño* y las entradas escalonadas de *y le bastan
+los aires*, *de sus suspiros* se canta entrecortado, con la palabra partida por silencios en todas las voces, *sus-pi,
+sus-pi, suspiros*, hasta el calderón final (cc. 48-56).
+
+Las coplas, mucho más breves, se declaman a cuatro hasta el último verso, *no soplan los airecillos*, en el que cada
+voz entra a su vez con un melisma de negras sobre *soplan* (cc. 68-77): la música hace soplar a los airecillos en el
+mismo verso que lo niega.
 
 ## La edición
 
-*[TODO: tono completado con otra fuente: Alto 1º, perdido en el Cancionero de Miranda, tomado de la copia de Évora (P-EVc Ms. CLI/1-1 d 1); Tiple 1º, Tiple 2º, Alto 2º y guion del Cancionero de Miranda. Redactar.]*
+El tono no requiere reconstrucción. La voz del alto 1º, que falta en el Cancionero de Miranda y en el Cancionero
+Poético-Musical Hispánico de Lisboa, se toma de la partitura de Évora (P-EVc Ms. CLI/1-1 d 1), el único testimonio que
+la conserva; el tiple 1º, el tiple 2º, el alto 2º y el guion proceden del Cancionero de Miranda. Como la copia de Évora
+sólo trae la letra de las tres primeras coplas, a la parte del alto 1º se le han añadido las demás tal como las traen
+las partes del Cancionero de Miranda. La parte del librete de tenor se edita como alto 2º, de acuerdo con su clave y con
+el rótulo que lleva en el Cancionero Poético-Musical Hispánico de Lisboa. La séptima copla, que no copia ninguno de los
+testimonios musicales, se toma del pliego impreso de la Navidad de 1681.
