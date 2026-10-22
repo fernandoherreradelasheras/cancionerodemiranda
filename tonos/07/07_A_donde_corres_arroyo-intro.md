@@ -47,8 +47,8 @@ tiple 1º y le van respondiendo las demás voces con la misma frase, cada vez m�
 Sólo entonces vuelve a entrar el tiple 1º para reunir a todas las voces en la cadencia final sobre la (c. 23). La frase
 baja de registro de entrada en entrada como el arroyo que se despeña hacia el mar.
 
-A diferencia de los tonos 21 y 24, que tratan también corrientes de agua con compás binario, éste se mantiene de
-principio a fin en ternario, como el 38, *Al compás de un arroyuelo*.
+A diferencia del tono 21 y de las coplas del 24, que tratan también corrientes de agua en compás binario, éste se
+mantiene de principio a fin en ternario, como el 38, *Al compás de un arroyuelo*.
 
 Como en el tono anterior, al final de la copla el guion incluye un rojão, de apenas cuatro compases (cc. 24-27), que
 sirce de enlace instrumental de una copla con la siguiente.
