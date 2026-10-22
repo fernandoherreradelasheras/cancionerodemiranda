@@ -1,8 +1,13 @@
-*[TODO: apertura: forma (coplas/estribillo, nº de coplas, metro, asonancia), orgánico (tiple, dos altos, tenor y guion), autoría de texto y música y concordancias conocidas o no localizadas.]*
+El tono ***Aflicto corazón mío*** pone en música un romance de cuatro cuartetas octosílabas con asonancia é-o en los
+versos pares (*fuego*, *aliento*, *incendio*, *miento*…) y un estribillo de tres versos de medida irregular que
+prolonga el juego de ecos de las coplas (*calles, halles*; *recelos, celos*). Las coplas ocupan diecinueve compases y el
+estribillo treinta y siete, ambos en compás ternario.
 
 ## El texto
 
-El tono ***Aflicto corazón mío*** expresa el tormento amoroso y los celos del yo poético a través de un diálogo con su propio corazón. El empleo de paronomasias (juegos fonéticos entre palabras similares) y quiasmos, crea un efecto de circularidad que refleja la naturaleza obsesiva de los celos.
+El poema expresa el tormento amoroso y los celos del yo poético a través de un diálogo con su propio corazón. El empleo
+de paronomasias (juegos fonéticos entre palabras similares) y quiasmos, crea un efecto de circularidad que refleja la
+naturaleza obsesiva de los celos.
 
 Las cuatro coplas cierran sus dos últimos versos con un eco: la palabra final repite el final de la anterior (*abrase,
 ase* y *desaliento aliento*; *desdigo digo* y *desmiento, miento*; *locura cura* y *remedio medio*; *infamo amo* y
@@ -26,17 +31,34 @@ amor, en el que cada verso acaba en una palabra contenida en la anterior y que a
 copla: *Es el amor, según abrasa, brasa*.[^aradra]
 
 [^rengifo]: DÍAZ RENGIFO, Juan: *Arte poética española*, Salamanca, 1592, caps. LXX-LXXI, pp. 97-100. El soneto *A
-    Jesús, derramando lágrimas y sangre en su santísima Circuncisión*, con el verso *Por aplicar a su locura cura*, está en
-    la p. 98; la redondilla, en las pp. 99-100.
+    Jesús, derramando lágrimas y sangre en su santísima Circuncisión*, con el verso *Por aplicar a su locura cura*, está
+    en la p. 98; la redondilla, en las pp. 99-100.
 [^aradra]: ARADRA SÁNCHEZ, Rosa María: «Los ritmos del eco. Variaciones sobre la repetición», *Castilla. Estudios de
     Literatura*, 6 (2015), pp. 205-227 (pp. 209-210 para el soneto).
 
 ## La música
 
-*[TODO: comentario musical (textura, contraste entre secciones, cadencias).]*
+La música hace sonar los ecos del texto. En las coplas, declamadas a cuatro y con un compás del guion solo entre
+verso y verso, la palabra del eco se canta dos veces: *abrase, ase, ase* (cc. 12-14) y *desaliento, aliento, aliento*
+(cc. 17-19).
+
+En el estribillo el eco se convierte en diálogo. Una voz sola canta *que por más que calles* y todas le responden a
+cuatro con *halles*; luego otra voz sola canta *que son tus recelos* y todas responden *celos*. Cada pregunta se oye dos
+veces, en voces distintas y una cuarta más arriba o más abajo, de modo que el pasaje se compone de cuatro solos con su
+respuesta (cc. 30-45). Lo enmarcan las dos enunciaciones de *¡Ay, corazón mío, cómo temo*, al principio y al final, en
+las que el *ay* se prolonga en valores largos que las voces se van pasando mientras las demás entran escalonadas con
+*corazón mío* (cc. 20-29 y 46-56).
 
 ## La edición
 
-Las claves utilizadas en las partes conservadas de este tono (Superius Primus Do en 1ª, Superius Secundus Do en 3ª y Tenor Do en 4ª), se corresponden con tiple, alto/tenor y tenor/bajo. El rangos escritos en los libretes de Superius Secundus (Do4 - Do5) y Tenor (Do3 - Fa4) resultarían forzados por arriba para tenor y bassus respectivamente así que nos quedamos con la opción tiple, alto y tenor. La voz perdida ha de moverse en una zona más grave que la de superius secundus (por el orden implícito de agudo a grave) así que podría tratarse de un segundo alto o de un primer tenor.
+Las partes conservadas usan las claves de Do en 1ª (Superius Primus), Do en 3ª (Superius Secundus) y Do en 4ª (Tenor),
+que corresponden a tiple, a alto o tenor y a tenor o bajo. El librete del Superius Secundus va de Do4 a Do5, y el del
+Tenor, de Do3 a Fa4: son ámbitos demasiado agudos para un tenor y para un bajo, respectivamente. Las tres voces son, por
+tanto, tiple, alto y tenor. La voz perdida debía de moverse por debajo del Superius Secundus, porque las partes siguen
+un orden de agudo a grave. Pudo ser un segundo alto o un primer tenor.
 
-*[TODO: alto 2º reconstruido; redactar la reconstrucción del alto 2º (el resto de voces y el guion se conservan en la fuente).]*
+La voz perdida es reconstrucción editorial. En las coplas, declamadas a cuatro en homofonía, el margen de decisión es
+escaso. En el estribillo, las tres voces conservadas callan en los cc. 30-31 y 42-43 mientras el acompañamiento sigue
+sonando. En esos pasajes la estructura de solos y respuestas obliga a asignar esos dos solos a la voz perdida, igual que
+los cc. 34-35 son del tiple y los cc. 38-39 del alto 1º. La reconstrucción toma para ellos la melodía del solo vecino,
+una cuarta más baja. Es lo mismo que hace el guion, que en esos pasajes repite su bajo transportado.
