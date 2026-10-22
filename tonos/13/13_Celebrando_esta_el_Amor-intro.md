@@ -61,7 +61,6 @@ hasta la cadencia final sobre re (c. 26).
 
 ## La edición
 
-La voz del alto, cuyo librete está perdido, es reconstrucción editorial. En los versos homofónicos el margen de
-decisión es escaso, con el bajo fijado por el guion conservado. Es mayor en las entradas escalonadas de *sino alarma*
-(cc. 23-26), donde el tiple 1º y el tenor arrancan juntos y el tiple 2º les responde un compás después: como en el
-tono anterior, la reconstrucción empareja el alto con el tiple 2º.
+La voz del alto, cuyo librete está perdido, es reconstrucción editorial. En los versos homofónicos el margen de decisión
+es escaso. En las entradas escalonadas de *sino alarma* (cc. 23-26), donde el tiple 1º y el tenor arrancan juntos y el
+tiple 2º les responde un compás después la reconstrucción empareja el alto con el tiple 2º.
