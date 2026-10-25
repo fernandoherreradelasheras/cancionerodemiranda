@@ -23,7 +23,7 @@ registro grave y a la octava baja cuando sube, y cambia de registro en sus salto
 general (c. 34). Simplifica su ritmo fundiendo las notas repetidas de la declamación y omitiendo las negras de paso del
 tenor (cc. 45-47, 49 y 54). Solo conserva las que evitan una cuarta o un choque con las voces de arriba (cc. 53, 72, 76
 y 86) y, en el c. 80, el puntillo con que el tenor baja a mi, para que esa nota no quede por debajo del guion. Donde el
-tenor calla, lleva un bajo armónico propio: bajo el tiple 1º a solo que abre el estribillo (cc. 1-5) traza la progresión
+tenor calla, lleva un bajo armónico propio: bajo el tiple 2º a solo que abre el estribillo (cc. 1-5) traza la progresión
 re-si♭-do-re-si♭-sol-la-fa-sol, que desemboca en la dominante la y resuelve en re con la entrada del tenor (c. 6), y en
 el c. 13 da fa y si♭ bajo los tiples y el alto. Cuando las voces callan en el primer tiempo, el guion ataca ya en él la
 nota de su entrada (cc. 1, 26, 45, 53, 66 y 82) o la sostiene ligada desde el compás anterior, como en las entradas
