@@ -16,24 +16,23 @@ const STATUS_DATE = "octubre de 2026"
 const STATUS: { state: "done" | "in_progress" | "pending", title: string, items: string[] }[] = [
     {
         state: "done", title: "Terminado", items: [
-            "Transcripción del texto poético de los 77 tonos.",
+            "Transcripción y revisión del texto poético de los 77 tonos.",
             "Transcripción y revisión de la música de 76 tonos.",
             "Reconstrucción y revisión de la voz perdida en los 67 tonos que la necesitan.",
-            "Revisión del texto del primer bloque (tonos 1 a 22).",
+            "Enlace nota a nota de la partitura con el facsímil en 76 tonos.",
         ]
     },
     {
         state: "in_progress", title: "En curso", items: [
             "Transcripción musical del tono 71.",
-            "Reconstrucción del guion en los tonos que no lo conservan: 6 terminados y 2 en curso, de 30.",
-            "Estudios introductorios: 25 terminados y el resto en redacción.",
-            "Enlace de la partitura con el facsímil: 3 tonos.",
+            "Reconstrucción del guion en los tonos que no lo conservan: 27 terminados y 2 en curso, de 30.",
+            "Revisión de los guiones reconstruidos: 28 revisados, de 30.",
+            "Estudios introductorios: 55 terminados y el resto en redacción.",
         ]
     },
     {
         state: "pending", title: "Pendiente", items: [
-            "Revisión del texto de los tonos 23 a 77.",
-            "Revisión de los guiones reconstruidos.",
+            "Enlace de la partitura con el facsímil en el tono 28.",
             "Revisión musical completa y revisión musical externa.",
         ]
     },
@@ -181,13 +180,30 @@ const About = () => (
                 <p><strong>El facsímil enlazado</strong> vincula cada nota de la transcripción con su
                     lugar en el manuscrito. En la vista dividida, Ctrl+clic sobre una nota de la
                     partitura la localiza y la resalta en el facsímil, y Ctrl+clic sobre una nota del
-                    facsímil lleva a la transcripción. El enlace está hecho por ahora en tres tonos.</p>
+                    facsímil lleva a la transcripción. El enlace está hecho en casi todos los tonos.</p>
 
                 <figure className="about-shot">
                     <img src="/about/facsimil-enlazado.jpg" loading="lazy"
                         alt="Vista dividida del tono 1: la nota de «ble» del tiple 1º, marcada en la partitura, aparece resaltada en el facsímil del librete" />
                     <figcaption>Tono 1 en vista dividida: la nota pulsada en la partitura (círculo) se
                         resalta en el librete del tiple 1º.</figcaption>
+                </figure>
+
+                <p><strong>Los facsímiles más dañados</strong> tienen además una versión con el
+                    traspaso de tinta atenuado. En muchos folios la escritura del reverso se transparenta, y en
+                    algunos del librete del tenor la corrosión ha llevado la tinta a través del papel
+                    hasta igualarla con la de la propia cara. Un botón del visor alterna entre la imagen
+                    original y la versión limpia, que se obtiene alineando cada página con el reverso
+                    de su folio y restándole la tinta de la otra cara. La limpieza no se apoya en la
+                    transcripción, de modo que sirve para contrastarla, y la imagen conserva las
+                    dimensiones del original, así que el facsímil enlazado funciona igual sobre las
+                    dos.</p>
+
+                <figure className="about-shot">
+                    <img src="/about/facsimil-traspaso-atenuado.jpg" loading="lazy"
+                        alt="La misma página del librete del tenor en el visor, para el tono 67: a la izquierda, el facsímil original, con la tinta del reverso atravesando el papel; a la derecha, la versión con el traspaso de tinta atenuado, con el botón correspondiente activado" />
+                    <figcaption>Tono 67, librete del tenor: a la izquierda, el facsímil original; a la
+                        derecha, la versión con el traspaso de tinta atenuado.</figcaption>
                 </figure>
 
                 <p><strong>El audio</strong> ofrece versiones con cantantes virtuales, útiles para
@@ -313,8 +329,9 @@ const About = () => (
                         edición y otro de facsímiles.</dd>
 
                     <dt>Octubre de 2026</dt>
-                    <dd>Primeros tonos con el facsímil enlazado nota a nota y revisión del texto del
-                        primer bloque. Primera versión de la edición archivada en Zenodo.</dd>
+                    <dd>Facsímil enlazado nota a nota en casi todos los tonos y revisión del texto de
+                        los 77. Primera versión de la edición archivada en Zenodo. Versiones de los
+                        facsímiles más dañados con el traspaso de tinta atenuado.</dd>
                 </dl>
 
                 <h2>Estado actual</h2>
