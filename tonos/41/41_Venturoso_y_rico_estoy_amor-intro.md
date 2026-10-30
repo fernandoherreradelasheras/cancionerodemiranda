@@ -18,12 +18,18 @@ El estribillo convierte esa plenitud en despedida. El amante manda a Amor que qu
 porque *mi pena y mi gloria / no está en tu mano*. La última palabra devuelve la imagen del principio: quien le ganó a
 Amor el resto en una mano ya no tiene su suerte en la mano de Amor.
 
+Fray Felipe puso en música otro poema construido sobre metáforas de naipes, *El retrato de una dama hecho de los
+naipes*, de Francisco Manuel de Melo[^melo] del que no nos ha llegado la música. En el poema melodino, la dama tiene por
+cabello *el rey de oros / con que tienes, con que embidas / todo lance, todo resto*.
+
+[^melo]: Francisco Manuel de Melo, *La Avena de Tersícore*, tono III, en *Obras métricas*, 1665, t. II, pp. 54-55.
+
 ## La música
 
-El compositor de este tono, **Fray Felipe de la Madre de Dios**, alterna el compás binario de la primera sección, la de
-las coplas, con el ternario del estribillo. Las coplas están dichas casi de manera declamativa aunque el juego de
-respuestas entre las voces anticipa la textura más compleja de la extensa segunda sección. En el estribillo despliega el
-compositor una rica paleta de recursos que incluyen el contrapunto y un rico juego rítmico sobre palabras bisílabas.
+La música alterna el compás binario de la primera sección, la de las coplas, con el ternario del estribillo. Las coplas
+están dichas casi de manera declamativa aunque el juego de respuestas entre las voces anticipa la textura más compleja
+de la extensa segunda sección. En el estribillo despliega el compositor una rica paleta de recursos que incluyen el
+contrapunto y un rico juego rítmico sobre palabras bisílabas.
 
 ## La edición
 
