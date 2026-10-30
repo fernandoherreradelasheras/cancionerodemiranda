@@ -32,6 +32,13 @@ quién ha de vivir. El interrogatorio avanza por pasos mínimos: *Cintia, deidad
 misma, y el elogio, que empezó midiendo el sol por la dama, se cierra sobre su propio objeto: el estribillo termina en
 el mismo *¡Viva Cintia!* con que empieza.
 
+Fray Felipe puso también en música otro estribillo que pregunta hasta dar con el nombre de la dama, el del poema *Años y
+amores* de Francisco Manuel de Melo[^melo], del que no nos ha llegado la música. El estribillo de aquel tono, que también
+juega con las repeticiones se cierra con los versos *Quiere bien, quiere bien: / ¿a quién?, ¿a quién? / A Amariles,
+Cupido*.
+
+[^melo]: Francisco Manuel de Melo, *La Avena de Tersícore*, tono IX, en *Obras métricas*, 1665, t. II, p. 58.
+
 ## La música
 
 Los tres primeros versos de la copla se declaman en homofonía silábica (cc. 1-10), con cadencias a re (c. 4), a sol (c.
