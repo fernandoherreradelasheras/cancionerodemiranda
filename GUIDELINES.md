@@ -464,6 +464,14 @@ Blackened notation is marked on the span it covers, not on the note heads:
 <bracketSpan staff="1" startid="#n1r0mwzo" endid="#id23" func="coloration" lwidth="0.5vu"/>
 ```
 
+A span of a single note cannot use the same `@startid` and `@endid`, because Verovio
+does not draw it. It is anchored by time instead, from just before the attack to
+half a beat after it, and covers the events that attack inside that interval:
+
+```xml
+<bracketSpan staff="1" tstamp="1.75" tstamp2="0m+2.5" func="coloration" lwidth="0.5vu"/>
+```
+
 MEI Basic cannot express this, and `scripts/simplify_to_mei_basic.py` says so in
 the derived file.
 

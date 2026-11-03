@@ -26,7 +26,7 @@ while [ "$I" -le "$MDIVS" ]; do
 	# Drop every mdiv but this one; a no-op on a score that has just one.
 	xmlstarlet ed -P -N mei="$MEI_NS" -d "//mei:body/mei:mdiv[.//mei:measure][position() != $I]" "$TMP/filtered_flattened.mei" > "$W.mei"
 
-	python3 -m converter21 -f mei -t humdrum "$W.mei" "$W.krn"
+	python3.14 -m converter21 -f mei -t humdrum "$W.mei" "$W.krn"
 	if [ $? != 0 ]; then
 		echo "error converting mdiv $I to humdrum. Kept temporal files at $TMP"
 		exit 1

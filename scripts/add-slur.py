@@ -8,6 +8,7 @@ import random
 from lxml import etree
 
 from mei_attr_order import order_element_attrs
+from mei_reading import single_event_tstamps
 
 # MEI namespace
 MEI_NS = "http://www.music-encoding.org/ns/mei"
@@ -103,16 +104,26 @@ def add_slur_or_tie(mei_file, element_type, staff_n, start_measure_n,
         raise ValueError(f"End note at position {end_note_pos} in staff {staff_n} "
                         f"of measure {end_measure_n} not found")
     
+    # A bracket over a single note goes by time: Verovio does not draw one with
+    # the same startid and endid
+    single_note = element_type == 'bracketSpan' and start_note is end_note
+
     # Get or create IDs for both notes
-    start_id = get_or_create_note_id(start_note)
-    end_id = get_or_create_note_id(end_note)
+    if not single_note:
+        start_id = get_or_create_note_id(start_note)
+        end_id = get_or_create_note_id(end_note)
     
     # Create the appropriate element, with its attributes in the order set by
     # mei_attr_order.py: where it attaches first, then what it is
     element = etree.Element(f"{{{MEI_NS}}}{element_type}", nsmap=NSMAP)
     element.set("staff", f"{staff_n}")
-    element.set("startid", f"#{start_id}")
-    element.set("endid", f"#{end_id}")
+    if single_note:
+        tstamp, tstamp2 = single_event_tstamps(root, start_note)
+        element.set("tstamp", tstamp)
+        element.set("tstamp2", tstamp2)
+    else:
+        element.set("startid", f"#{start_id}")
+        element.set("endid", f"#{end_id}")
     if element_type == 'bracketSpan':
         element.set("func", "coloration")
         element.set("lwidth", "0.5vu")
@@ -131,8 +142,9 @@ def add_slur_or_tie(mei_file, element_type, staff_n, start_measure_n,
     print(f"Successfully added {element_type} from measure {start_measure_n} "
           f"(note {start_note_pos}) to measure {end_measure_n} (note {end_note_pos}) "
           f"in staff {staff_n}")
-    print(f"  Start ID: #{start_id}")
-    print(f"  End ID: #{end_id}")
+    if not single_note:
+        print(f"  Start ID: #{start_id}")
+        print(f"  End ID: #{end_id}")
 
 
 def main():
