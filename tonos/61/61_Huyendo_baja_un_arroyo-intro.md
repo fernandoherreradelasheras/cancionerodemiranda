@@ -93,6 +93,12 @@ habitualmente con este repertorio es posible que ambas deriven de una misma mane
 tonada anterior a las dos, o bien que uno de los compositores conocía la obra del otro, sobre la que hizo su propia
 versión.
 
+El cartapacio P-Cug MM 54 de la Biblioteca Geral da Universidade de Coimbra, que trae también los textos de los tonos
+29, 65 y 73, copia un tono a cuatro voces con el íncipit *Huiendo baxa un arroyo*. Al ser a cuatro, como el de Romero y
+no como el de Correa, que es a tres, puede tratarse de la misma música del Cancionero de Miranda. El manuscrito está en
+restauración y no se ha podido consultar todavía, de modo que queda por comprobar si la concordancia es solo textual o
+también musical.
+
 ## La música
 
 Las coplas (cc. 1-18) declaman el romance con una nota por sílaba, casi siempre en corcheas. Están en compás binario,

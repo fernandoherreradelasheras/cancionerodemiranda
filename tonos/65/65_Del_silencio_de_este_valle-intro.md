@@ -43,6 +43,11 @@ Manojuelo Poético-Musical de Barcelona", 2013. El texto y la partitura de esta 
 [^2]: Copia digital disponible en
 [http://bdh-rd.bne.es/viewer.vm?id=0000129924](http://bdh-rd.bne.es/viewer.vm?id=0000129924)
 
+El cartapacio P-Cug MM 54 de la Biblioteca Geral da Universidade de Coimbra, que trae también los textos de los tonos
+29, 61 y 73, copia este romance en un tono a tres voces. Como el del Cancionero de Miranda es también a tres, puede
+tratarse de la misma música. El manuscrito está en restauración y no se ha podido consultar todavía, de modo que queda
+por comprobar si la concordancia es solo textual o también musical.
+
 ## La música
 
 Las coplas reparten las tres voces en una pareja y una voz suelta. El tiple 2º y el bajo cantan juntos, con el mismo

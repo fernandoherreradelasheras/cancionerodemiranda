@@ -19,6 +19,13 @@ Las dos últimas cierran el círculo. Llegar a la fuente no da descanso, porque 
 más*, y volver a la cabaña tampoco, porque sigue a un guía que no puede orientarla, *un dios ciego y rapaz*. Ninguno de
 los dos extremos del recorrido, ni la fuente ni la casa, llega a ser refugio.
 
+## Otras fuentes
+
+El cartapacio P-Cug MM 54 de la Biblioteca Geral da Universidade de Coimbra, que trae también los textos de los tonos
+61, 65 y 73, copia un tono a cuatro voces con el íncipit *Con el cántaro Marica*. Como el del Cancionero de Miranda es
+también a cuatro, puede tratarse de la misma música. El manuscrito está en restauración y no se ha podido consultar
+todavía, de modo que queda por comprobar si la concordancia es solo textual o también musical.
+
 ## La música
 
 La copla se divide en dos mitades. En la primera (cc. 1-20) las voces declaman juntas los tres primeros versos:
