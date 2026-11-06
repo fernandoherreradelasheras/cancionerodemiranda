@@ -343,9 +343,9 @@
                         <clef shape="G" line="2"/>
                      </staffDef>
                      <staffDef n="3" decls="#perfRes-tenor" lines="5">
-                        <label>Bajo</label>
-                        <labelAbbr>B.</labelAbbr>
-                        <clef xml:id="cjkdud2" shape="F" line="4"/>
+                        <label>Tenor</label>
+                        <labelAbbr>Tn.</labelAbbr>
+                        <clef xml:id="cjkdud2" shape="G" line="2" dis="8" dis.place="below"/>
                      </staffDef>
                      <staffDef n="4" decls="#perfRes-guion" lines="5">
                         <label>[Guion]</label>
@@ -1168,7 +1168,8 @@
                      </staff>
                      <staff n="4">
                         <layer n="1">
-                           <note xml:id="g70_m7_1" dur="1" pname="b" oct="3"/>
+                           <note xml:id="g70_m7_1" dur="4" pname="b" oct="3"/>
+                           <note dur="2" dots="1" pname="b" oct="3"/>
                         </layer>
                      </staff>
                   </measure>
@@ -3552,8 +3553,8 @@
                            <labelAbbr>[A.]</labelAbbr>
                         </staffDef>
                         <staffDef n="3" decls="#perfRes-tenor" lines="5">
-                           <label>Bajo</label>
-                           <labelAbbr>B.</labelAbbr>
+                           <label>Tenor</label>
+                           <labelAbbr>Tn.</labelAbbr>
                         </staffDef>
                         <staffDef n="4" decls="#perfRes-guion" lines="5">
                            <label>[Guion]</label>
@@ -4103,10 +4104,10 @@
                      </staff>
                   </measure>
                   <scoreDef meter.sym="common" midi.bpm="80.0"/>
-                  <measure n="37">
+                  <measure xml:id="m70-37" n="37" left="rptstart">
                      <staff n="1">
                         <layer n="1">
-                           <note dur="2" pname="b" oct="4" facs="#zone-159">
+                           <note xml:id="genid-1" dur="2" pname="b" oct="4" facs="#zone-159">
                               <verse n="1">
                                  <syl>¡Ay</syl>
                               </verse>
@@ -4162,6 +4163,7 @@
                            </harm>
                         </rdg>
                      </app>
+                     <annot plist="#m70-37">El tiple y el tenor traen al comienzo de este compás una barra de repetición sin otra que le corresponda. Se toma como comienzo de la repetición, que se cierra al final del estribillo.</annot>
                   </measure>
                   <measure n="38">
                      <staff n="1">
@@ -5257,7 +5259,7 @@
                      <tie startid="#n1coj3sz" endid="#n1eagsnu"/>
                      <tie startid="#alto_m59_n1" endid="#alto_m60_n1"/>
                   </measure>
-                  <measure n="60" right="end">
+                  <measure n="60" right="rptend">
                      <staff n="1">
                         <layer n="1">
                            <note xml:id="n5ok3x4" dur="1" dots="1" pname="g" oct="4" facs="#zone-241"/>
@@ -5305,7 +5307,7 @@
                   <l>mil imposibles parecen:</l>
                   <l>están pintando a lo vivo
                      <annot type="text-note">_pintar a lo vivo_: con gran realismo.</annot>
-                     <annot type="text-note">_están pintando_: el Tiple lee _està pintado_ y el Bajo _esta pintando_; se enmienda el número por la concordancia con _imaginaciones_.</annot>
+                     <annot type="text-note">_están pintando_: el Tiple lee _està pintado_ y el Tenor _esta pintando_; se enmienda el número por la concordancia con _imaginaciones_.</annot>
                   </l>
                   <l>dichosas y amargas suertes.</l>
                </lg>
@@ -5327,7 +5329,7 @@
             <lg type="estribillo" decls="#estribillo">
                <lg>
                   <l>Voyme desterrando
-                     <annot type="text-note">El manuscrito del bajo (librete de tenor) lee _desterrado_.</annot>
+                     <annot type="text-note">El librete del tenor lee _desterrado_.</annot>
                   </l>
                   <l>de estas orillas.</l>
                   <l>¡Ay de mí!</l>
