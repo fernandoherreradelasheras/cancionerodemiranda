@@ -36,6 +36,13 @@ const tonos = (
   </>
 )
 
+const progreso = (
+  <>
+  <PageTitle title="Progreso de la edición · Cancionero de Miranda" />
+  <Dashboard />
+  </>
+)
+
 // The pages used to live at /tono/<number>/ (see tonoPath.js). The deploy turns those into
 // redirects, so this only catches in-app navigation to an old path
 const LegacyTono = () => {
@@ -51,7 +58,7 @@ const router = createBrowserRouter(
       <Route path='tono/:tonoNumber/:slug/' element={ <Tono/>} />
       <Route path='tono/:tonoNumber/' element={ <LegacyTono/>} />
       <Route path='about/' element={about} />
-      <Route path='progreso/' element={<Dashboard />} />
+      <Route path='progreso/' element={progreso} />
 
   </Route>
   )
