@@ -17,9 +17,10 @@ de la compilación. Los textos conservan formas que a finales del siglo XVII est
 rústicas, y que se señalan en la introducción de cada tono que las presenta. A ello se suman rasgos formales que remiten
 a una etapa previa del género, como la repetición de los dos últimos versos de la copla al final del estribillo, que
 conserva el tono 68 cuando el esquema lineal se había impuesto ya en villancicos y tonos humanos. Y apunta en la misma
-dirección la datación de los siete textos del bloque cuya fuente poética se ha localizado, todos ellos del primer tercio
-o de la primera mitad del siglo, desde la canción de Gregorio Silvestre que está detrás del tono 69 hasta el romance del
-este tono 63, que se imprime en 1629.
+dirección la datación de los textos del bloque cuya fuente poética se ha localizado. Seis de los siete son del primer
+tercio o de la primera mitad del siglo, y el más tardío es el romance de este tono 63, que se imprime en 1629. El
+séptimo, el estribillo del tono 69, reelabora una redondilla anónima del siglo XVI que glosó Gregorio Silvestre, aunque
+la forma en que lo trae el cancionero solo está documentada en la que glosa Eugenio Gerardo Lobo en 1738.
 
 Tanto este tono como el siguiente están compuestos por una sección única sin estribillo. Esto podría verse como un rasgo
 arcaizante que también apuntara a un origen pretérito de este bloque de tonos a tres voces. En cualquier caso, estos dos
