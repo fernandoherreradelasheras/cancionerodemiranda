@@ -26,8 +26,7 @@ copió un texto castellano.
 
 El cartapacio P-Cug MM 54 de la Biblioteca Geral da Universidade de Coimbra trae el mismo texto en un tono a tres voces,
 con el íncipit *Junto a un arroio de plata*. El manuscrito está en restauración y no se ha podido consultar todavía, de
-modo que queda por comprobar si la música es también la misma. El mismo cartapacio trae también los textos de los tonos
-29, 61 y 65.
+modo que queda por comprobar si la música es también la misma.
 
 ## La música
 

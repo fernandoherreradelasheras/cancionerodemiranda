@@ -21,10 +21,9 @@ los dos extremos del recorrido, ni la fuente ni la casa, llega a ser refugio.
 
 ## Otras fuentes
 
-El cartapacio P-Cug MM 54 de la Biblioteca Geral da Universidade de Coimbra, que trae también los textos de los tonos
-61, 65 y 73, copia un tono a cuatro voces con el íncipit *Con el cántaro Marica*. Como el del Cancionero de Miranda es
-también a cuatro, puede tratarse de la misma música. El manuscrito está en restauración y no se ha podido consultar
-todavía, de modo que queda por comprobar si la concordancia es solo textual o también musical.
+El cartapacio P-Cug MM 54 de la Biblioteca Geral da Universidade de Coimbra incluye un tono a cuatro voces con el
+íncipit *Con el cántaro Marica*. El manuscrito está en restauración y no se ha podido consultar todavía, de modo que
+queda por comprobar si la concordancia es solo textual o también musical.
 
 ## La música
 
